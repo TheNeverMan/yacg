@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<goverments>
+<goverment name="Tribe" title="Chief" state_name="Tribe of" requirement="Agriculture" info="yes" texture="assets/textures/goverments/tribe-goverment-texture.png"/>
+<goverment name="Monarchy" title="King" state_name="Kingdom of" requirement="Feudalism" info="yes" texture="assets/textures/goverments/monarchy-goverment-texture.png"/>
+<goverment name="Republic" title="Consul" state_name="Republic of" requirement="Philosophy" info="yes" texture="assets/textures/goverments/republic-goverment-texture.png"/>
+<goverment name="Communism" title="Chairman" state_name="People's Republic of" requirement="Ideology" info="yes" texture="assets/textures/goverments/communism-goverment-texture.png"/>
+<goverment name="Dictatorship" title="Highest Leader" state_name="Great Empire of" requirement="Combustion" info="yes" texture="assets/textures/goverments/dictatorship-goverment-texture.png"/>
+<goverment name="Despotism" title="Despot" state_name="Empire of" requirement="Hunting" info="yes" texture="assets/textures/goverments/despotism-goverment-texture.png/"/>
+<goverment name="Theocracy" title="God-King" state_name="Holy Empire of" requirement="Religion" info="yes" texture="assets/textures/goverments/theocracy-goverment-texture.png"/>
+<goverment name="Democracy" title="President" state_name="Democratic Republic of" requirement="Free Speech" info="yes" texture="assets/textures/goverments/democracy-goverment-texture.png"/>
+<goverment name="Fundamentalism" title="Holy Leader" state_name="Religious State of" requirement="Fundamentalism" info="yes" texture="assets/textures/goverments/fundamentalism-goverment-texture.png"/>
+</goverments>
+</miniyacg>

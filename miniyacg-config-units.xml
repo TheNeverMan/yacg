@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<units>
+<unit name="Warriors" cost="5" atk="3" def="3" move="2" mait="1" is_naval="0" is_land="1" info="people with stick" requirement="Hunting" texture="assets/textures/units/warrior-unit-texture.png">
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Archers" cost="7" atk="5" def="2" move="2" mait="2" is_naval="0" is_land="1" info="people with bow" requirement="Archery" texture="assets/textures/units/archer-unit-texture.png">
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Horsemen" cost="12" atk="3" def="2" move="4" mait="3" is_naval="0" is_land="1" info="people with horse and stick" requirement="Horsemanship" texture="assets/textures/units/horseman-unit-texture.png">
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Galley" cost="10" atk="2" def="2" move="4" mait="3" is_naval="1" is_land="0" info="boat" requirement="Sailing" texture="assets/textures/units/galley-unit-texture.png">
+<tile name="Sea"/>
+</unit>
+<unit name="Swordsmen" cost="15" atk="4" def="4" move="2" mait="3" is_naval="0" is_land="1" info="people with strong stick" requirement="Metal Casting" texture="assets/textures/units/swordsman-unit-texture.png" >
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Knights" cost="30" atk="6" def="5" move="3" mait="6" is_naval="0" is_land="1" info="people with strong stick and horse" requirement="Feudalism" texture="assets/textures/units/knight-unit-texture.png" >
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Catapults" cost="25" atk="8" def="3" move="2" mait="5" is_naval="0" is_land="1" info="people with stone launcher" requirement="Balistics" texture="assets/textures/units/catapult-unit-texture.png" >
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Frigate" cost="40" atk="6" def="6" move="6" mait="7" is_naval="1" is_land="0" info="people with good boat" requirement="Navigation" texture="assets/textures/units/frigate-unit-texture.png" >
+<tile name="Sea"/>
+</unit>
+<unit name="Infantry" cost="50" atk="7" def="6" move="3" mait="10" is_naval="0" is_land="1" info="people with gun" requirement="Gunpowder" texture="assets/textures/units/infantry-unit-texture.png" >
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Tanks" cost="70" atk="12" def="10" move="3" mait="15" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Combustion" texture="assets/textures/units/tank-unit-texture.png" >
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Artillery" cost="65" atk="14" def="7" move="2" mait="12" is_naval="0" is_land="1" info="people with big gun" requirement="Explosives" texture="assets/textures/units/artillery-unit-texture.png" >
+<tile name="Forest"/>
+<tile name="Mountain"/>
+<tile name="Land"/>
+</unit>
+<unit name="Destroyer" cost="80" atk="12" def="12" move="8" mait="20" is_naval="1" is_land="0" info="people with big metal boat" requirement="Combustion" texture="assets/textures/units/destroyer-unit-texture.png" >
+<tile name="Sea"/>
+</unit>
+</units>
+</miniyacg>

@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="China"  r="254" g="206" b="27" personality="Authoritarian">
+<replacement name="Monarchy" leader="Emperor" state_name="Great Qing of"/>
+<info>
+China as a culture and military entity is
+one of the longest existing on Earth.
+It begun with creation of Chinese Empire
+(which although many times shattered) managed to
+survive to modern era, when it was replaced with Communist
+China.
+
+Chinese traits are Militaristic and Scientific - they represent
+Chinese ingeniuity (paper, gunpowder, kite, press have their origin in China)
+and military power as they were and are one of global superpowers.
+
+Chinese leaders include greatest emperors and chairmans of Chinese Communist Party.
+China's color is yellow - backgound color of Qing Dynasty flag.
+</info>
+<leader name="Qin Shi Huang"/>
+<leader name="Mao Zedong"/>
+<leader name="Han Wudi"/>
+<leader name="Tang Taizong"/>
+<leader name="Deng Xiaoping"/>
+<leader name="Sun Yat-sen"/>
+<leader name="Ming Chengzu"/>
+<leader name="Song Taizhu"/>
+<leader name="Tang Xuanzong"/>
+<leader name="Tang Taizong"/>
+<trait name="S"/>
+<trait name="M"/>
+<city name="Bejing"/>
+<city name="Shanghai"/>
+<city name="Guangzhou"/>
+<city name="Shenzen"/>
+<city name="Nanjing"/>
+<city name="Hong Kong"/>
+<city name="Chengdu"/>
+<city name="Chongqing"/>
+<city name="Hangzhou"/>
+<city name="Wuhan"/>
+<city name="Tianjin"/>
+<city name="Suzhou"/>
+<city name="Xi'an"/>
+<city name="Changshu"/>
+<city name="Sheyang"/>
+<city name="Qingdao"/>
+<city name="Zhengzhou"/>
+<city name="Dalian"/>
+<city name="Donyguan"/>
+<city name="Ningbo"/>
+</civ>
+<civ name="Majapahit"  r="209" g="168" b="64" personality="Expansive">
+<replacement name="Theocracy" leader="Dharmmadhyaksa ring Kasewan" state_name="Holy Empire of"/>
+<replacement name="Republic" leader="Mahapatih" state_name="Republic of"/>
+<replacement name="Monarchy" leader="Chakravarti" state_name="Empire of"/>
+<trait name="N"/>
+<trait name="N"/>
+<info>
+Majapahit was a major maritime empire in
+the territory of modern day Indonesia. In fact
+it was the last major buddhist-hinduist empire in the region.
+Its territory covered the lands of Indonesia, Singapore, Malaysia
+Brunei and Thailand.
+
+Majaphit's traits are Nautical and Nautical that represent the islandbased
+character of the country.
+
+Majapahit's leaders include kings of Majapahit.
+Majaphit's color is gold - the color of Surya Majapahit, the symbol of Majapahit.
+</info>
+<leader name="Hayam Wuruk"/>
+<leader name="Gajah Mahda"/>
+<leader name="Raden Wijaya"/>
+<leader name ="Tribhuwana Wijayatunggadewi"/>
+<leader name="Wikramawardhana"/>
+<leader name="Jayanegara"/>
+<leader name="Suhita"/>
+<leader name="Kertawijaya"/>
+<leader name="Rajasawardhana"/>
+<leader name="Girishawardhana"/>
+<leader name="Suraprabhawa"/>
+<leader name="Girindrawardhana"/>
+<city name="Trowulan"/>
+<city name="Pajang"/>
+<city name="Kahuripan"/>
+<city name="Lasem"/>
+<city name="Lumajang"/>
+<city name="Tuban"/>
+<city name="Hajung Galuh"/>
+<city name="Tulwang"/>
+<city name="Kalapa"/>
+<city name="Pakuan"/>
+<city name="Galuh"/>
+<city name="Lwagajah"/>
+<city name="Bedahulu"/>
+<city name="Guran"/>
+<city name="Lombok"/>
+<city name="Saksak"/>
+<city name="Katingan"/>
+<city name="Banjar"/>
+<city name="Sampit"/>
+</civ>
+<civ name="Egypt"  r="194" g="57" b="20" personality="Holy">
+<info>
+Ancient Egypt is a state that survived 3000 years and developed massive cultural
+heritage that can be seen to this day - for example Pyramids. Egypt can be considered
+one of the first major emipres in the human history.
+
+Egypt's traits are Economic and Reliqious to represent the power it had to
+build great buildings and irrigate Nile.
+
+Egypt's leaders include pharaohs from all 3 ancient Egyptian kingdoms.
+Egypt's color is orange - the color of Red Crown.
+</info>
+<replacement name="Theocracy" leader="Pharaoh" state_name="Kingdom of"/>
+<leader name="Ramesses II"/>
+<leader name="Cleopatra VII"/>
+<leader name="Hatshepsut"/>
+<leader name="Thutmose III"/>
+<leader name="Tutankhamun"/>
+<leader name="Amenhotep III"/>
+<leader name="Akhenaten"/>
+<leader name="Djoser"/>
+<leader name="Khufu"/>
+<leader name="Snefru"/>
+<trait name="E"/>
+<trait name="R"/>
+<city name="Thebes"/>
+<city name="Memphis"/>
+<city name="Akhetaten"/>
+<city name="Pi-Ramesses"/>
+<city name="Herakleopolis"/>
+<city name="Elephantine"/>
+<city name="Aswan"/>
+<city name="Heliopolis"/>
+<city name="Abydos"/>
+<city name="Abu Simbel"/>
+<city name="Napata"/>
+<city name="Tunis"/>
+<city name="Avaris"/>
+<city name="Kadesh"/>
+<city name="Gaza"/>
+<city name="Byblos"/>
+<city name="Tyr"/>
+<city name="Sidon"/>
+<city name="Carchemish"/>
+<city name="Citium"/>
+</civ>
+<civ name="England"  r="201" g="8" b="42" personality="Expansive">
+<info>
+England is a kingdom that was forged in early medieval age.
+It not only survived to this day, unified entire island, but also
+managed to create the biggest empire known to humankind.
+
+English traits are Militaristic and Nautical to represent the
+colonial power of England.
+
+English leaders include kings, queens and prime ministers of the monarchy.
+English color is red from English flag - the Union Jack.
+</info>
+<replacement name="Democracy" leader="Prime Minister" state_name="Kingdom of"/>
+<replacement name="Tribe" leader="Chief" state_name="Anglo-Saxon Tribes of"/>
+<trait name="M"/>
+<trait name="N"/>
+<leader name="Victoria"/>
+<leader name="Elizabeth"/>
+<leader name="Winston Churchill"/>
+<leader name="Henry V"/>
+<leader name="Richard I"/>
+<leader name="Edward I"/>
+<leader name="Edward VII"/>
+<leader name="George VI"/>
+<leader name="Arthur"/>
+<leader name="Henry VIII"/>
+<city name="London"/>
+<city name="Manchester"/>
+<city name="Birmingham"/>
+<city name="Liverpool"/>
+<city name="Glasgow"/>
+<city name="Edinburg"/>
+<city name="Cambridge"/>
+<city name="Shaffield"/>
+<city name="Brighton"/>
+<city name="Leeds"/>
+<city name="Bristol"/>
+<city name="Leicester"/>
+<city name="Coventry"/>
+<city name="Bradford"/>
+<city name="York"/>
+<city name="Nakefield"/>
+<city name="Nottingham"/>
+<city name="Newcastle Upon Tyre"/>
+<city name="Sunderland"/>
+<city name="Plymouth"/>
+</civ>
+<civ name="America" r="60" g="59" b="110" personality="Enlightened">
+<info>
+America or United States of America is one of the strongest modern empires.
+Its power emerged during world wars, when America shown itself as industrial,
+economical and scientific powerhouse, which later succeeded in defeating Soviet Union
+during Cold War.
+
+American traits are Scientific and Economic, they represent the economical and
+scientific power of America.
+
+American leaders include american presidents.
+American color is blue from american flag.
+</info>
+<replacement name="Democracy" leader="President" state_name="United States of"/>
+<trait name="E"/>
+<trait name="S"/>
+<leader name="Theodore Roosevelt"/>
+<leader name="Abraham Lincoln"/>
+<leader name="George Washington"/>
+<leader name="Franklin Roosevelt"/>
+<leader name="Thomas Jefferson"/>
+<leader name="Dwight Eisenhower"/>
+<leader name="Harry Truman"/>
+<leader name="John Kennedy"/>
+<leader name="Ronald Reagan"/>
+<leader name="Lyndon Johnson"/>
+<city name="Washington"/>
+<city name="New York"/>
+<city name="Los Angeles"/>
+<city name="Chicago"/>
+<city name="Houston"/>
+<city name="Miami"/>
+<city name="Dallas"/>
+<city name="Atlanta"/>
+<city name="Las Vegas"/>
+<city name="San Francisco"/>
+<city name="Phoenix"/>
+<city name="Philadelphia"/>
+<city name="San Diego"/>
+<city name="Dallas"/>
+<city name="Austin"/>
+<city name="Seattle"/>
+<city name="Denver"/>
+<city name="Boston"/>
+<city name="Jacksonville"/>
+<city name="Indianapolis"/>
+
+</civ>
+<civ name="Inca"   r="1" g="138" b="44" personality="Holy">
+<info>
+Incan Empire was the biggest empire of South America
+before european colonization. Although its existence was short
+it still managed to make amazing achivements, like panandean road system
+or building of Macchu Picchu.
+
+Incan traits are Militaristic and Agricultural, they represent the power it held in the
+region and its unique terrace farming system.
+
+Incan leaders include Sapa Incas and resistance leaders.
+Incan color is green, one of the colors of rainbow on Sapa Inca banner.
+</info>
+<trait name="M"/>
+<trait name="A"/>
+<replacement name="Theocracy" leader="Sapa Inca" state_name="Empire of"/>
+<leader name="Manco Capac"/>
+<leader name="Atahualpa"/>
+<leader name="Pachacuti"/>
+<leader name="Huayna Capac"/>
+<leader name="Topa Inca Yupanqui"/>
+<leader name="Manco Inca Yupanqui"/>
+<leader name="Yáhuar Huácac"/>
+<leader name="Sayri Túpac"/>
+<leader name="Titu Cusi"/>
+<leader name="Túpac Amaru"/>
+<city name="Cuzco"/>
+<city name="Macchu Piccu"/>
+<city name="Choquequirao"/>
+<city name="Huamanga"/>
+<city name="Vitcos"/>
+<city name="Aypate"/>
+<city name="Huánuco Pampa"/>
+<city name="Vilca"/>
+<city name="Cota Cota"/>
+<city name="Espíritu Pampa"/>
+<city name="Corihuayrachina"/>
+<city name="Vilcabamba"/>
+<city name="Paititi"/>
+<city name="Tiwanaku"/>
+<city name="Ollantaytambo"/>
+<city name="Moray"/>
+<city name="Winay Wayna"/>
+<city name="Llactapata"/>
+<city name="Sacsayhuaman"/>
+<city name="Inca Pisac"/>
+<city name="Nazca"/>
+<city name="Pachamac"/>
+<city name="Quito"/>
+<replacement name="Tribe" leader="King" state_name="Kingdom of"/>
+</civ>
+<civ name="Babylon" r="120" g="120" b="120" personality="Enlightened">
+<info>
+Ancient Babylon or Babylonia was a state that emerged between rivers Euphrates and Tigris.
+Although it wasn't as big as other empires it made major scientific and cultural advances, such as
+one of the first writing systems, mathematical and astronomical discoveries, and building of Hanging Gardens.
+
+Babylonian traits are Scientific and Cultural, they represent the cultural impact of Babylonia.
+
+Babylonian leaders include kings from various dynasties.
+Babylonian color is grey.
+</info>
+<replacement name="Despotism" leader="šakkanakki Bābili" state_name="Kingdom of"/>
+<leader name="Hammurabi"/>
+<leader name="Nebuchadnezzar I"/>
+<leader name="Ea-gâmil"/>
+<leader name="Ammi-Saduqa"/>
+<leader name="Ilum-ma-ilī"/>
+<leader name="Sin-Muballit"/>
+<leader name="Ammi-Ditana"/>
+<leader name="Karaindash"/>
+<leader name="Marduk-shapik-zeri"/>
+<leader name="Adad-apla-iddina"/>
+<trait name="S"/>
+<trait name="C"/>
+<city name="Babilon"/>
+<city name="Kish"/>
+<city name="Sippar"/>
+<city name="Nippur"/>
+<city name="Isin"/>
+<city name="Larsa"/>
+<city name="Uruk"/>
+<city name="Lagash"/>
+<city name="Eshnunna"/>
+<city name="Eridu"/>
+<city name="Mari"/>
+<city name="Ur"/>
+<city name="Malgium"/>
+<city name="Rapiqum"/>
+<city name="Umma"/>
+<city name="Borsippa"/>
+<city name="Adab"/>
+<city name="Elam"/>
+<city name="Lullubi"/>
+<city name="Levant"/>
+</civ>
+<civ name="Congo" r="27" g="64" b="43" personality="Peaceful">
+<info>
+Congo in medieval age was inhabitated by many local tribes and in 1390
+they managed to create Kingdom of Kongo, which survived to 1914.
+Right now region of Congo is split between two republics. Mainly it is
+Democratic Republic of Congo, it is 11th biggest country in the world and
+it has many valuable ores and other mining valuables.
+
+Congolese traits are Cultural and Religious which represent 
+cultural heritage of independent Kingdom of Kongo.
+
+Congolese leaders include DRC presidents, Brazzaville presidents and medieval kings.
+Congolese color is dark green that can be found on Kingdom of Kongo coat of arms.
+</info>
+<trait name="R"/>
+<trait name="C"/>
+<leader name="Lukeni lua Nimi"/>
+<leader name="Alfons I"/>
+<leader name="Joseph Kasa-Vubu"/>
+<leader name="Joseph Kabila"/>
+<leader name="João I"/>
+<leader name="Diogo I"/>
+<leader name="Alphonse Massamba-Débat"/>
+<leader name="Álvaro II"/>
+<leader name="Garcia II"/>
+<leader name="Pedro IV"/>
+<replacement name="Monarchy" leader="Manikongo" state_name="Kingdom of"/>
+<leader name="Republic" leader="Mfila Ntu" state_name="Republic of"/>
+<city name="Kinshasa"/>
+<city name="Lubumbashi"/>
+<city name="Mbuji-Mayi"/>
+<city name="Kananga"/>
+<city name="Kisangani"/>
+<city name="Bukavu"/>
+<city name="Tshikapa"/>
+<city name="Kolwezi"/>
+<city name="Likasi"/>
+<city name="Goma"/>
+<city name="Kikwit"/>
+<city name="Uvira"/>
+<city name="Bunia"/>
+<city name="Mbandaka"/>
+<city name="Matadi"/>
+<city name="Butembo"/>
+<city name="Kabinda"/>
+<city name="Mwene-Ditu"/>
+<city name="Boma"/>
+<city name="Kindu"/>
+</civ>
+<civ name="Rome" r="113" g="1" b="147" personality="Enterprising">
+<info>
+Ancient Rome is one of greatest ancient empires that ever existed.
+Born from Roman Republic (one of the first republics in the world) it spaned from
+british islands to Egypt. Its impact on Europe was very big, many current capitals were
+founded by romans.
+
+Roman traits are Economical and Expansive, they represent economical power of Rome
+and its maritime character.
+
+Roman leaders include roman emperors.
+Roman color is purple.
+</info>
+<trait name="E"/>
+<trait name="X"/>
+<leader name="Caesar"/>
+<leader name="Octavian Augustus"/>
+<leader name="Trajan"/>
+<leader name="Marcus Aurelius"/>
+<leader name="Hadrian"/>
+<leader name="Constantine"/>
+<leader name="Antoninus Pius"/>
+<leader name="Vespasian"/>
+<leader name="Claudius"/>
+<leader name="Tiberius"/>
+<city name="Rome"/>
+<city name="Antioch"/>
+<city name="Amorium"/>
+<city name="Milan"/>
+<city name="Ravenna"/>
+<city name="Capua"/>
+<city name="Ancyra"/>
+<city name="Nicomedia"/>
+<city name="Bostra"/>
+<city name="Pompeii"/>
+<city name="Cosa"/>
+<city name="Ariminum"/>
+<city name="Sopianae"/>
+<city name="Arrabona"/>
+<city name="Belum"/>
+<city name="Placentia"/>
+<city name="Scarbantia"/>
+<city name="Asculum"/>
+<city name="Tarravo"/>
+<replacement name="Despotism" leader="King" state_name="Kingdom of"/>
+<replacement name="Monarchy" leader="Imperator" state_name="Empire of"/>
+</civ>
+<civ name="Mongolia" r="219" g="26" b="46" personality="Expansive">
+<info>
+Mongol Empire although short-lived was the largest contiguous empire in history.
+Mongols united by Genghis Khan conquered lands from Eastern Europe to China.
+
+Mongolia's traits are Nomadic and Expansive, to represent the nomadic empire strength.
+
+Mongol leaders are medieval khans.
+Mongol color is brown that can be found on the modern-day Mongolia's flag.
+</info>
+<leader name="Genghis Khan"/>
+<leader name="Kubilai Khan"/>
+<leader name="Ogedei Khan"/>
+<leader name="Mongke Khan"/>
+<leader name="Hulagu Khan"/>
+<leader name="Temür Khan"/>
+<leader name="Külüg Khan"/>
+<leader name="Ayurbarwada Buyantu Khan"/>
+<leader name="Tolui"/>
+<leader name="Töregene Khatun"/>
+<trait name="D"/>
+<trait name="X"/>
+<city name="Quaraqorum"/>
+<city name="Avarga"/>
+<city name="Khan Baliq"/>
+<city name="Sarai"/>
+<city name="Sighna"/>
+<city name="Hsia"/>
+<city name="Ongiin Ord"/>
+<city name="Tenduk"/>
+<city name="Suurin"/>
+<city name="Tosokh"/>
+<city name="Shar Ord"/>
+<city name="Arlyn Balgas"/>
+<city name="Tsagaan Balgas"/>
+<city name="Khaidu Ord"/>
+<city name="Tataryn Kherem"/>
+<city name="Khokn Nuuriin Ord"/>
+<city name="Khogshin Teeliin Balgas"/>
+<city name="Choir"/>
+<city name="Ikh Khuree"/>
+<city name="Tsetserleg"/>
+<replacement name="Despotism" leader="Khan" state_name="Khamag Confederacy of"/>
+<replacement name="Monarchy" leader="Great Khan" state_name="Khaganate of"/>
+</civ>
+<civ name="Brittany" r="0" g="0" b="0" personality="Peaceful">
+<info>
+Brittany is a historical kingdom in France (currently a region). Unified in 846 by
+Nominoe, it was independent until 1532 when it became part of France.
+
+Breton traits are Commercial and Cultural, to represent the importance of ports in Nantes
+and the cultural independence from France.
+
+Breton leaders are various kings and dukes.
+Breton color is black - one of two colors on their flag.
+</info>
+<leader name="Nominoe"/>
+<leader name="Erispoe"/>
+<leader name="Alan II"/>
+<leader name="Anne"/>
+<leader name="Conan I"/>
+<leader name="Geoffrey I"/>
+<leader name="Alan IV"/>
+<leader name="John IV"/>
+<leader name="John II"/>
+<leader name="Alan I"/>
+<city name="Rennes"/>
+<city name="Nantes"/>
+<city name="Brest"/>
+<city name="Lorient"/>
+<city name="Vannes"/>
+<city name="Quimper"/>
+<city name="Saint-Malo"/>
+<city name="Saint-Nazaire"/>
+<city name="Lannion"/>
+<city name="Saint-Brieuc"/>
+<city name="Lanester"/>
+<city name="Redon"/>
+<city name="Roscoff"/>
+<city name="Quiberon"/>
+<city name="Paimpol"/>
+<city name="Crozon"/>
+<city name="Montaigu"/>
+<city name="Avranches"/>
+<city name="Pontivy"/>
+<city name="Dinan"/>
+<replacement name="Monarchy" leader="Duke" state_name="Duchy of"/>
+</civ>
+</civs>
+</miniyacg>

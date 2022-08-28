@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<technologies>
+<technology name="Hunting" cost="20" info="use weapons to kill animals" texture="assets/textures/techs/hunting-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="military"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Agriculture" cost="0" info="get food from grass" texture="assets/textures/techs/agriculture-tech-texture.png"/>
+<technology name="Wheel" cost="40" info="use wheel to move" texture="assets/textures/techs/wheel-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="economic"/>
+</technology>
+<technology name="Mining" cost="50" info="hit stone to gold" texture="assets/textures/techs/mining-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="economic"/>
+</technology>
+<technology name="Sailing" cost="30" info="get boated to move" texture="assets/textures/techs/sailing-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="naval"/>
+</technology>
+<technology name="Archery" cost="60" info="shoot sticks" texture="assets/textures/techs/archery-tech-texture.png">
+<requirement name="Hunting"/>
+<trait name="military"/>
+</technology>
+<technology name="Horsemanship" cost="70" info="get horse to move" texture="assets/textures/techs/horsemanship-tech-texture.png">
+<requirement name="Hunting"/>
+<requirement name="Wheel"/>
+<trait name="expanse"/>
+<trait name="military"/>
+</technology>
+<technology name="Philosophy" cost="90" info="think to get food" texture="assets/textures/techs/philosophy-tech-texture.png">
+<requirement name="Wheel"/>
+<trait name="economic"/>
+</technology>
+<technology name="Religion" cost="120" info="think to get food" texture="assets/textures/techs/philosophy-tech-texture.png">
+<requirement name="Philosophy"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Metal Casting" cost="120" info="melt stone to get sword" texture="assets/textures/techs/metalcasting-tech-texture.png">
+<requirement name="Mining"/>
+<trait name="military"/>
+</technology>
+<technology name="Balistics" cost="130" info="use brain to stone enemies" texture="assets/textures/techs/balistics-tech-texture.png">
+<requirement name="Archery"/>
+<trait name="military"/>
+</technology>
+<technology name="Feudalism" cost="220" info="use someone to get food" texture="assets/textures/techs/feudalism-tech-texture.png">
+<trait name="expand_borders"/>
+<requirement name="Horsemanship"/>
+<requirement name="Metal Casting"/>
+<trait name="expanse"/>
+<trait name="economic"/>
+</technology>
+<technology name="Navigation" cost="160" info="use brain to boat well" texture="assets/textures/techs/navigation-tech-texture.png">
+<trait name="embarkment"/>
+<requirement name="Sailing"/>
+<requirement name="Metal Casting"/>
+<trait name="naval"/>
+</technology>
+<technology name="Gunpowder" cost="500" info="use dust to stone better" texture="assets/textures/techs/gunpowder-tech-texture.png">
+<requirement name="Balistics"/>
+<requirement name="Steam Engine"/>
+<trait name="military"/>
+</technology>
+<technology name="Explosives" cost="600" info="more dust for more" texture="assets/textures/techs/explosives-tech-texture.png">
+<trait name="remove_upgrades"/>
+<requirement name="Gunpowder"/>
+<trait name="military"/>
+</technology>
+<technology name="Steam Engine" cost="400" info="get water to burn" texture="assets/textures/techs/steamengine-tech-texture.png">
+<trait name="expand_borders"/>
+<requirement name="Feudalism"/>
+<trait name="expanse"/>
+<trait name="economic"/>
+</technology>
+<technology name="Ideology" cost="600" info="get think" texture="assets/textures/techs/ideology-tech-texture.png">
+<requirement name="Steam Engine"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Free Speech" cost="800" info="get think" texture="assets/textures/techs/freespeech-tech-texture.png">
+<requirement name="Ideology"/>
+<trait name="economic"/>
+</technology>
+<technology name="Fundamentalism" cost="1000" info="get think" texture="assets/textures/techs/fundamentalism-tech-texture.png">
+<requirement name="Combustion"/>
+<trait name="military"/>
+</technology>
+<technology name="Combustion" cost="800" info="get black water to burn" texture="assets/textures/techs/combustion-tech-texture.png">
+<trait name="improve_movement_boost"/>
+<requirement name="Steam Engine"/>
+<trait name="military"/>
+</technology>
+</technologies>
+</miniyacg>
