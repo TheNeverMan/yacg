@@ -501,6 +501,8 @@ Breton color is black - one of two colors on their flag.
 <leader name="John IV"/>
 <leader name="John II"/>
 <leader name="Alan I"/>
+<trait name="O"/>
+<trait name="C"/>
 <city name="Rennes"/>
 <city name="Nantes"/>
 <city name="Brest"/>

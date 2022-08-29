@@ -84,7 +84,7 @@ void AI::Settle_City_With_Unit()
   vector<Unit_On_Map> units = *Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units();
   for(auto &var : units)
   {
-    if(!(Main_Game->Get_Map()->Is_Upgrade_In_Radius_By_Name("City", var.Coordinates.x, var.Coordinates.y)) && Main_Game->Get_Upgrade_By_Name("City").Is_Tile_Allowed_By_Name(Main_Game->Get_Map()->Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Name()))
+    if(!(Main_Game->Get_Map()->Is_Upgrade_In_Radius_By_Name("City", var.Coordinates.x, var.Coordinates.y)) && Main_Game->Get_Upgrade_By_Name("City").Is_Tile_Allowed_By_Name(Main_Game->Get_Map()->Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Name()) && Main_Game->Get_Map()->Get_Owner(var.Coordinates.x, var.Coordinates.y) == 0)
     {
       Main_Game->Build_City(var.Coordinates.x, var.Coordinates.y, Main_Game->Get_Currently_Moving_Player_Id(), Main_Game->Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius());
     }

@@ -12,6 +12,7 @@
 #include "globals.h"
 #include "window_manager.h"
 #include "logger.h"
+#include "game_css_provider.h"
 
 class Window_Manager;
 
@@ -21,6 +22,7 @@ class Game_Window : public Gtk::Window
     Game_Window(Window_Manager *m_m);
     ~Game_Window();
   protected:
+    Game_CSS_Provider Main_Provider;
     Gtk::Box Root_Box;
     Gtk::Box Map_Root_Box;
     Gtk::Frame Map_Frame;
@@ -43,6 +45,7 @@ class Game_Window : public Gtk::Window
     Gtk::Button Load_Button;
     Gtk::Button Newspaper_Button;
     Gtk::Button Quit_Button;
+    Gtk::Button Help_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
     vector<Gtk::Box*> Map_Images;
     Gtk::Label ProgressBar_Label;
@@ -71,6 +74,7 @@ class Game_Window : public Gtk::Window
     void Change_Player_Count_Value(Gtk::SpinButton *spin);
     void Change_Main_Player_Civ(Gtk::Label *info_label, Gtk::Image *civ_color, Gtk::ComboBoxText *combo);
     void Exit_To_Main_Menu();
+    void Show_Help_Message();
     //Gtk::ProgressBar Refresh_Bar;
   private:
     Window_Manager* Main_Manager;
@@ -93,6 +97,7 @@ class Game_Window : public Gtk::Window
     bool Is_Unit_Selected();
     void Update_Tile_By_Coords_Only(int x, int y);
     void Player_Has_Lost_Game();
+    void Show_Intro_Message();
     Game Main_Game;
     void Generate_Map_View();
     void Update_Map();

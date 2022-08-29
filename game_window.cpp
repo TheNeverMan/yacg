@@ -287,16 +287,19 @@ void Game_Window::Update_Unit_Action_Buttons(int x, int y)
   auto *button = Gtk::make_managed<Gtk::Button>("Deselect Unit");
   button->signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Deselect_Unit));
   Action_Buttons_Box.pack_start(*button);
+  Main_Provider.Add_CSS(button);
   button->show();
   auto *button_2 = Gtk::make_managed<Gtk::Button>("Disband Unit");
   button_2->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Disband_Unit), x, y));
   Action_Buttons_Box.pack_start(*button_2);
+  Main_Provider.Add_CSS(button_2);
   button_2->show();
   if(!Main_Game.Get_Currently_Moving_Player()->Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Full_HP())
   {
     auto *button_3 = Gtk::make_managed<Gtk::Button>("Heal Unit");
     button_3->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Heal_Unit), selected_unit_x, selected_unit_y));
     Action_Buttons_Box.pack_start(*button_3);
+    Main_Provider.Add_CSS(button_3);
     button_3->show();
   }
 }
@@ -308,6 +311,7 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
     auto *button = Gtk::make_managed<Gtk::Button>("Select Unit");
     button->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Select_Unit), x, y));
     Action_Buttons_Box.pack_start(*button);
+    Main_Provider.Add_CSS(button);
     button->show();
   }
   if(Main_Game.Get_Map()->Get_Owner(x,y) == Main_Game.Get_Currently_Moving_Player_Id() || (Main_Game.Get_Map()->Get_Owner(x,y) == 0 && Main_Game.Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y)))
@@ -319,6 +323,7 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
         auto *button = Gtk::make_managed<Gtk::Button>("Build " + upgrade.Get_Name());
         button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), upgrade.Get_Name(), x,y, Main_Game.Get_Currently_Moving_Player_Id()));
         Action_Buttons_Box.pack_start(*button);
+        Main_Provider.Add_CSS(button);
         button->show();
       }
     }
@@ -327,6 +332,7 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
       auto *button = Gtk::make_managed<Gtk::Button>("Remove " + Main_Game.Get_Map()->Get_Tile(x,y).Get_Upgrade().Get_Name());
       button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), "none" , x,y, Main_Game.Get_Currently_Moving_Player_Id()));
       Action_Buttons_Box.pack_start(*button);
+      Main_Provider.Add_CSS(button);
       button->show();
     }
     if(Main_Game.Get_Map()->Get_Tile(x,y).Get_Upgrade().Has_Trait("recruit"))
@@ -339,6 +345,7 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
           auto *button = Gtk::make_managed<Gtk::Button>("Recruit " + unit.Get_Name());
           button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Recruit_Unit),unit.Get_Name() ,x,y));
           Action_Buttons_Box.pack_start(*button);
+          Main_Provider.Add_CSS(button);
           button->show();
         }
       }
@@ -480,9 +487,13 @@ void Game_Window::Show_Civs_Clicked()
     box->pack_start(*label);
     box->show();
     image->show();
+    Main_Provider.Add_CSS(box);
+    Main_Provider.Add_CSS(image);
+    Main_Provider.Add_CSS(label);
     Civs_List_Box.pack_start(*box);
     start++;
   }
+  Main_Provider.Add_CSS(&Civs_Dialog);
   Civs_Dialog.run();
   //return true;
 }
@@ -523,6 +534,7 @@ void Game_Window::Player_Has_Lost_Game()
   Logger::Log_Info("Player has lost the game!");
   Gtk::MessageDialog dialog(*this, "You have lost!");
   dialog.set_secondary_text("Your Civilization has been defeated!");
+  Main_Provider.Add_CSS(&dialog);
   dialog.run();
   Logger::Log_Info("Closing Main Window...");
   Main_Manager->Switch_Current_Window(2); //intro window
@@ -593,6 +605,13 @@ void Game_Window::Manage_Goverments_Clicked()
   Dialog_Root_Frame.add(Gov_Box);
   Dialog_Root_Frame.show();
   Gov_Box.show();
+  if(govs.size() == 1)
+  {
+    auto *label = Gtk::make_managed<Gtk::Label>("Research technologies to get access to different goverments");
+    label->show();
+    Main_Provider.Add_CSS(label);
+    Gov_Box.pack_start(*label);
+  }
   for(auto &gov : govs)
   {
     if(gov.Get_Name() != Main_Game.Get_Currently_Moving_Player()->Get_Active_Goverment_Name())
@@ -606,10 +625,18 @@ void Game_Window::Manage_Goverments_Clicked()
       box->show();
       image->show();
       button->show();
+      auto *label = Gtk::make_managed<Gtk::Label>(gov.Info());
+      box->pack_start(*label);
+      label->show();
+      Main_Provider.Add_CSS(box);
+      Main_Provider.Add_CSS(image);
+      Main_Provider.Add_CSS(button);
+      Main_Provider.Add_CSS(label);
       button->signal_clicked().connect(sigc::bind<Gov>(sigc::mem_fun(*this, &Game_Window::Change_Goverment), gov ));
     }
   }
   Root_Box.show();
+  Main_Provider.Add_CSS(&Gov_Dialog);
   Gov_Dialog.run();
 }
 
@@ -633,12 +660,19 @@ void Game_Window::Manage_Techs_Clicked()
     auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     auto *image = Gtk::make_managed<Gtk::Image>(tech.Get_Texture_Path());
     auto *button = Gtk::make_managed<Gtk::Button>("Research " + tech.Get_Name());
+    auto *label = Gtk::make_managed<Gtk::Label>(tech.Info());
     Research_Box.pack_start(*box);
     box->pack_start(*image);
     box->pack_start(*button);
+    box->pack_start(*label);
     box->show();
+    label->show();
     image->show();
     button->show();
+    Main_Provider.Add_CSS(box);
+    Main_Provider.Add_CSS(image);
+    Main_Provider.Add_CSS(button);
+    Main_Provider.Add_CSS(label);
     button->signal_clicked().connect(sigc::bind<Tech>(sigc::mem_fun(*this, &Game_Window::Change_Technology_Goal), tech ));
   }
   Glib::RefPtr<Gtk::Adjustment> Research_Adjustment;
@@ -653,6 +687,7 @@ void Game_Window::Manage_Techs_Clicked()
   info.show();
   Research_Percent_Switch.show();
   //Research_Percent_Button.show();
+  Main_Provider.Add_CSS(&Research_Dialog);
   Research_Percent_Switch.signal_value_changed().connect(sigc::bind<Gtk::SpinButton*>(sigc::mem_fun(*this, &Game_Window::Set_Research_Funds_Percentage), &Research_Percent_Switch ));
   Research_Dialog.run();
 }
@@ -685,6 +720,7 @@ void Game_Window::Manage_Overview_Clicked()
   Dialog_Root_Frame.show();
   Stats_Box.show();
   Root_Box.show();
+  Main_Provider.Add_CSS(&Overview_Dialog);
   Overview_Dialog.run();
 }
 
@@ -701,6 +737,7 @@ void Game_Window::Manage_Economy_Clicked()
   text = " Brutto Income " + to_string(money[0]);
   text = text + "\n Tile Maitenance -" + to_string(money[1]);
   text = text + "\n Unit Maitenance -" + to_string(Main_Game.Get_Currently_Moving_Player()->Get_Unit_Maitenance());
+  text = text + "\n Research Funds -" + to_string(money[0] * ((double) Main_Game.Get_Currently_Moving_Player()->Get_Research_Percent() / 100.0 ));
   Finance_Label = Gtk::Label(text);
   Dialog_Box->pack_start(Root_Box);
   Root_Box.pack_start(Dialog_Root_Frame);
@@ -710,6 +747,7 @@ void Game_Window::Manage_Economy_Clicked()
   Dialog_Root_Frame.show();
   Finance_Box.show();
   Root_Box.show();
+  Main_Provider.Add_CSS(&Finance_Dialog);
   Finance_Dialog.run();
 }
 
@@ -777,11 +815,7 @@ void Game_Window::Change_Main_Player_Civ(Gtk::Label *info_label, Gtk::Image *civ
 void Game_Window::Show_Game_Creation_Dialog()
 {
   Gtk::Dialog Game_Gen_Dialog("Create New Game");
-  auto provider = Gtk::CssProvider::create();
-  provider->load_from_path(assets_directory_path + "style.css");
-  auto ctx = Game_Gen_Dialog.get_style_context();
-  ctx->add_class("window");
-  ctx->add_provider(provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+  Main_Provider.Add_CSS(&Game_Gen_Dialog);
   Game_Gen_Dialog.add_button("Generate Map", 0);
   Gtk::Box *Dialog_Box = Game_Gen_Dialog.get_content_area();
   Gtk::Frame Dialog_Map_Frame("World Settings");
@@ -994,7 +1028,9 @@ void Game_Window::Show_Newspaper_Clicked()
     auto *label = Gtk::make_managed<Gtk::Label>(event);
     label->show();
     Events_List_Box.pack_start(*label);
+    Main_Provider.Add_CSS(label);
   }
+  Main_Provider.Add_CSS(&Newspaper_Dialog);
   Newspaper_Dialog.run();
 }
 
@@ -1004,17 +1040,55 @@ void Game_Window::Exit_To_Main_Menu()
   Main_Manager->Switch_Current_Window(2);
 }
 
+void Game_Window::Show_Intro_Message()
+{
+  Gtk::MessageDialog dialog(*this, "Start the game");
+  string message = "You lead the civilization of " + Main_Game.Get_Currently_Moving_Player()->Get_Name() + ". ";
+  message = message + "\n Your civilization may colapse after few years or survive thousands. Who knows?";
+  message = message + "\n Your civlization has following traits: ";
+  vector<string> traits = Main_Game.Get_Currently_Moving_Player()->Get_Traits();
+  for(string &trait : traits)
+  {
+    if(trait == "M")
+      message = message + "\n Militaristic - Your units have one more attack strength";
+    if(trait == "E")
+      message = message + "\n Economic - You can build upgrades one gold cheaper";
+    if(trait == "S")
+      message = message + "\n Scientific - Your research funds are 10% bigger";
+    if(trait == "N")
+      message = message + "\n Nautical - Your naval units have two more movement";
+    if(trait == "C")
+      message = message + "\n Cultural - Changing a goverment costs no actions";
+    if(trait == "R")
+      message = message + "\n Religious - You have one more actions from the start of the game";
+    if(trait == "X")
+      message = message + "\n Expansive - Cities you settle start with bigger teritorry";
+    if(trait == "A")
+      message = message + "\n Agricultural - Farms produce one more gold";
+    if(trait == "O")
+      message = message + "\n Commercial - Production boost from roads is doubled";
+    if(trait == "D")
+      message = message + "\n Nomadic - All your units have one more movement";
+  }
+  dialog.set_secondary_text(message);
+  Main_Provider.Add_CSS(&dialog);
+  dialog.run();
+}
+
+void Game_Window::Show_Help_Message()
+{
+  Gtk::MessageDialog dialog(*this, "Help");
+  string message = "Here will be help text";
+  dialog.set_secondary_text(message);
+  Main_Provider.Add_CSS(&dialog);
+  dialog.run();
+}
+
 Game_Window::Game_Window(Window_Manager *m_m) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;
   Main_Game = Game(false);
-  auto provider = Gtk::CssProvider::create();
-  Logger::Log_Info("Loading CSS...");
-  provider->load_from_path(assets_directory_path + "style.css");
-  auto ctx = this->get_style_context();
-  ctx->add_class("window");
-  ctx->add_provider(provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
   Last_Clicked_Tile = nullptr;
   is_delete_of_game_necessary = false;
   is_unit_selected = false;
@@ -1043,6 +1117,7 @@ Game_Window::Game_Window(Window_Manager *m_m) : Root_Box(Gtk::ORIENTATION_HORIZO
   Save_Button = Gtk::Button("Save Game");
   Load_Button = Gtk::Button("Load Game");
   Quit_Button = Gtk::Button("Exit To Main Menu");
+  Help_Button = Gtk::Button("Help");
   Map_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   UI_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   End_Turn_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
@@ -1072,6 +1147,7 @@ Game_Window::Game_Window(Window_Manager *m_m) : Root_Box(Gtk::ORIENTATION_HORIZO
   UI_Root_Box.pack_start(Save_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Load_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Quit_Button, Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start(Help_Button, Gtk::PACK_SHRINK);
   Map_Root_Box.pack_start(Map_Frame);
   Map_Root_Box.pack_start(ProgressBar_Label, Gtk::PACK_SHRINK);
   Map_Root_Box.pack_start(Capital_Label, Gtk::PACK_SHRINK);
@@ -1088,6 +1164,20 @@ Game_Window::Game_Window(Window_Manager *m_m) : Root_Box(Gtk::ORIENTATION_HORIZO
   Load_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Load_Game) );
   Newspaper_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Newspaper_Clicked) );
   Quit_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Exit_To_Main_Menu) );
+  Help_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Help_Message) );
+  Main_Provider.Add_CSS(this);
+  Main_Provider.Add_CSS(&End_Turn_Button);
+  Main_Provider.Add_CSS(&Map_Update_Button);
+  Main_Provider.Add_CSS(&Manage_Economy_Button);
+  Main_Provider.Add_CSS(&Manage_Techs_Button);
+  Main_Provider.Add_CSS(&Show_Civs_Button);
+  Main_Provider.Add_CSS(&Manage_Goverments_Button);
+  Main_Provider.Add_CSS(&Civ_Overview_Button);
+  Main_Provider.Add_CSS(&Save_Button);
+  Main_Provider.Add_CSS(&Load_Button);
+  Main_Provider.Add_CSS(&Newspaper_Button);
+  Main_Provider.Add_CSS(&Quit_Button);
+  Main_Provider.Add_CSS(&Help_Button);
   Show_Game_Creation_Dialog();
   Generate_Map_View();
   show_all_children();
@@ -1095,4 +1185,5 @@ Game_Window::Game_Window(Window_Manager *m_m) : Root_Box(Gtk::ORIENTATION_HORIZO
   maximize();
   Update_Map();
   Update_Labels();
+  Show_Intro_Message();
 }

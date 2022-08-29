@@ -2,6 +2,7 @@
 #include <gtkmm.h>
 
 #include "window_manager.h"
+#include "game_css_provider.h"
 
 class Window_Manager;
 
@@ -9,6 +10,7 @@ class Intro_Window : public Gtk::Window
 {
   private:
     Window_Manager* Main_Manager;
+    Game_CSS_Provider Main_Provider;
   protected:
     Gtk::Button Play_Button;
     Gtk::Box UI_Root_Box;
