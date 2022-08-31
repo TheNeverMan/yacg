@@ -72,6 +72,7 @@ class Game : public XML_Serializable
     vector<Coords> Tiles_To_Update;
   public:
     Unit Get_Unit_By_Name(string name);
+    void Set_Autosave(bool a);
     bool Is_Player_Eliminated(int player_id);
     bool Has_Currently_Moving_Player_Any_Actions_Left();
     vector<string> Get_Newspaper_Events();

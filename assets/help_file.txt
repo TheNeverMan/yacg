@@ -1,0 +1,72 @@
+How to play?
+
+In YACG you lead a civilization through whole history from ancient era to modern.
+You will unlock new features by researching technologies. You will be also fighting
+other players.
+
+Cities
+
+Cities are the most important aspect of the game as they give you actions and claim
+tiles around them to your empire, if loose all cities you will be eliminated from the
+game. Protect your cities at all cost.
+On the bottom of the screen there will be always information about your capital city loaction.
+
+Economy and Upgrades
+
+Your civilization has an economy, it is your task to create a flourishing economy.
+You can see your gold amount in the top right corner of the screen. Additionally you
+can click on the "Finance Ministry" to get detailed information about your current spendings. If you let your gold amount go negative you will be unable to recruit new
+units and build upgrades.
+
+Upgrades can be build on tiles you own or neutral tiles that you have unit on.
+Upgrades such as Farms or Mines produce gold. Upgrades such as Roads or Cities consume
+gold but can do other things.
+
+List of upgrades:
+
+Farm - Costs 5 to build produces 2 per turn
+Mine - Costs 15 to build produces 5 per turn
+City - Costs 25 to build consumes 2 gold but claims tiles, gives more actions and allows unit recruitment
+Road - Costs 4 to build consumes 2 per turn but gives your units more movement points and boost surrounding upgrade's production
+Boat - Costs 7 to build produces 2 per turn and allows to recruit naval units.
+
+To build an upgrade click on desired tile and select Build from menu on the right.
+You can't build if you don't have enough actions or gold, or if tile isn't suitable.
+
+Units
+
+When you research techs you will get access to different units. Recruit them in cities.
+After you recruit a unit you can move them around on the map. To do so click on the tile with unit, click on "Select Unit" and then click on the tile you want your unit to be moved to. If the unit does not have enough movement points to move on this tile a
+message will appear at the bottom of the screen.
+
+Each unit has movement points and each tile has its movement cost
+If unit has not enough movement points to move on tile it can't do that.
+
+Moving on to Sea, Mountain and Forest costs 2 movement points and on Land 1.
+Attacking enemy unit costs 1 points.
+
+Combat
+
+To attack enemy unit select your unit and click on nearby enemy unit.
+If it is possible to attack you will see that hp of units goes down.
+Each unit has 100 hp if it goes below 0 unit dies nad gets deleted.
+If your unit is damaged a new action will appear in unit selection menu - Heal Unit it allows to heal your unit back to full hp.
+If you move your unit on to enemy city it will get captured.
+
+Actions
+
+Different things to do in the game require actions. Each city provides one action and they get renewed after every turn.
+Building and removing upgrades costs actions. Recruiting and disbanding units as well. Moving units does not cost an action.
+
+Techs
+
+Different units and upgrades are not accessible from the start of the game, you need to research technologies to get them.
+To manage technology research click on the "Science Ministry". Here you can change currently researched tech or change research funds percentage.
+Each tech has its cost research funds percentage is percent of your income that will be substracted each turn from the cost. When cost reaches 0 tech is researched.
+When all techs are researched you don't need to spend gold on them anymore.
+
+Goverments
+
+By researching techs you get access to different goverments. To check that you can click "Overview" button - you can see your current goverment here.
+You can change your goverment by clicking "Revolution!" button. Note that it is only available when you have full actions (you haven't done anything this turn).
+If you change your goverment your actions will get zeroed.

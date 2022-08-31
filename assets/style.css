@@ -1,16 +1,20 @@
+
 window
 {
   background-image: url("window-background.png");
   font: 18px "Connection II";
+  color: #ffffff;
 }
 
 box *
 {
   background-image: url("button-background.png");
+  color: #ffffff;
 }
 
 dialog
 {
   background-image: url("window-background.png");
   font: 18px "Connection II";
+  color: #ffffff;
 }

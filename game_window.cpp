@@ -27,7 +27,6 @@ void Game_Window::Generate_Map_View()
       auto *event_box = Gtk::make_managed<Gtk::EventBox>();
       auto *i = Gtk::make_managed<Gtk::Image>(assets_directory_path + "textures" + path_delimeter + "tiles" + path_delimeter + "land-tile-texture.png");
       tmp->pack_start(*event_box, Gtk::PACK_SHRINK);
-      event_box->show();
       event_box->add(*i);
       event_box->set_events(Gdk::BUTTON_PRESS_MASK);
       vector<int> coords;
@@ -56,6 +55,10 @@ void Game_Window::Update_Tile(Gtk::Image *tile_image, int x, int y)
   Glib::RefPtr<Gdk::Pixbuf> finished_pix;
   Glib::RefPtr<Gdk::Pixbuf> border_pix;
   Glib::RefPtr<Gdk::Pixbuf> unit_pix;
+  Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
+  int tile_size = 32;
+  int true_tile_size = Main_Settings_Manager.Get_Tile_Size_Value();
+  scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
   //fetching unit texture from tile.Get_Textures_Path() is currently not supported
   if(Main_Game.Get_Map()->Get_Tile(x,y).Has_Unit())
   {
@@ -68,8 +71,8 @@ void Game_Window::Update_Tile(Gtk::Image *tile_image, int x, int y)
   tile_pix = Gdk::Pixbuf::create_from_file(textures[0]);
   //Logger::Log_Info(textures[0] );
   upgrade_pix = Gdk::Pixbuf::create_from_file(textures[1]);
-  finished_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
-  border_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
+  finished_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
+  border_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
   int border_alpha = 60;
   border_alpha = 120;
   border_pix->fill(Main_Game.Get_Border_Color_By_Player_Id(Main_Game.Get_Map()->Get_Owner(x, y)));
@@ -77,7 +80,9 @@ void Game_Window::Update_Tile(Gtk::Image *tile_image, int x, int y)
   upgrade_pix->composite(finished_pix,0,0,32,32,0,0,1,1,Gdk::INTERP_BILINEAR,255);
   unit_pix->composite(finished_pix,0,0,32,32,0,0,1,1,Gdk::INTERP_BILINEAR,255);
   border_pix->composite(finished_pix,0,0,32,32,0.0,0.0,1.0,1.0,Gdk::INTERP_BILINEAR,border_alpha);
-  tile_image->set(finished_pix);
+  finished_pix->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) tile_size), ((double) true_tile_size / (double) tile_size), Gdk::INTERP_BILINEAR);
+  tile_image->set(scaled_pix);
+  tile_image->set_size_request(true_tile_size, true_tile_size);
 }
 
 void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
@@ -218,7 +223,10 @@ void Game_Window::Clear_Action_Buttons()
 {
   auto children = Action_Buttons_Box.get_children();
   for( auto &var : children)
+  {
+    var->hide();
     Action_Buttons_Box.remove(*var);
+  }
 }
 
 void Game_Window::Recruit_Unit(string u, int x, int y)
@@ -227,6 +235,7 @@ void Game_Window::Recruit_Unit(string u, int x, int y)
   if(Main_Game.Get_Currently_Moving_Player()->Get_Gold() < Main_Game.Get_Unit_By_Name(u).Get_Cost())
   {
     Show_Not_Enough_Gold_Message();
+    return;
   }
   if(! Main_Game.Has_Currently_Moving_Player_Any_Actions_Left())
   {
@@ -253,6 +262,7 @@ void Game_Window::Disband_Unit(int x, int y)
   {
     Main_Game.Get_Map()->Get_Tile_Pointer(x,y)->Remove_Unit_From_Tile();
     Main_Game.Get_Currently_Moving_Player()->Remove_Unit_By_Coords(x,y);
+    Deselect_Unit();
     message = "Unit disbanded!";
   }
   Update_Labels();
@@ -304,6 +314,18 @@ void Game_Window::Update_Unit_Action_Buttons(int x, int y)
   }
 }
 
+void Game_Window::Show_Themed_Dialog(string message)
+{
+  Gtk::Dialog dialog("Info");
+  dialog.add_button("Ok", 0);
+  Gtk::Label Dialog_Label = Gtk::Label(message);
+  Gtk::Box *Dialog_Box = dialog.get_content_area();
+  Dialog_Box->pack_start(Dialog_Label);
+  dialog.show_all_children();
+  Main_Provider.Add_CSS(&dialog);
+  dialog.run();
+}
+
 void Game_Window::Update_Tile_Action_Buttons(int x, int y)
 {
   if(Main_Game.Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y))
@@ -320,9 +342,21 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
     {
       if(Main_Game.Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(upgrade.Get_First_Requirement()) && upgrade.Is_Tile_Allowed_By_Name(Main_Game.Get_Map()->Get_Tile(x,y).Get_Name()) && (Main_Game.Get_Map()->Get_Tile(x,y).Get_Upgrade().Get_Cost() == 0))
       {
+        auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+        string message = "Upgrade " + upgrade.Get_Name();
+        message = message + "\n Cost " + to_string(upgrade.Get_Cost());
+        message = message + "\n Production " + to_string(upgrade.Get_Production());
+        message = message + "\n Maintenace " + to_string(upgrade.Get_Maitenance());
+        auto *button_info = Gtk::make_managed<Gtk::Button>("?");
         auto *button = Gtk::make_managed<Gtk::Button>("Build " + upgrade.Get_Name());
         button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), upgrade.Get_Name(), x,y, Main_Game.Get_Currently_Moving_Player_Id()));
-        Action_Buttons_Box.pack_start(*button);
+        button_info->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Show_Themed_Dialog), message));
+        Action_Buttons_Box.pack_start(*box);
+        box->pack_start(*button);
+        box->pack_start(*button_info);
+        box->show();
+        button_info->show();
+        Main_Provider.Add_CSS(button_info);
         Main_Provider.Add_CSS(button);
         button->show();
       }
@@ -342,9 +376,23 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
       {
         if( !(Main_Game.Get_Map()->Get_Tile(x,y).Has_Unit()) && Main_Game.Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(unit.Get_First_Requirement()) && unit.Can_Move_On_Tile_By_Name(Main_Game.Get_Map()->Get_Tile(x,y).Get_Name()))
         {
+          auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+          string message = "Recruit " + unit.Get_Name();
+          message = message + "\n Cost " + to_string(unit.Get_Cost());
+          message = message + "\n Maintenace " + to_string(unit.Get_Maitenance());
+          message = message + "\n Attack Power " + to_string(unit.Get_Attack_Power());
+          message = message + "\n Defense Power " + to_string(unit.Get_Defense_Power());
+          message = message + "\n Movement Points " + to_string(unit.Get_Current_Actions());
+          auto *button_info = Gtk::make_managed<Gtk::Button>("?");
           auto *button = Gtk::make_managed<Gtk::Button>("Recruit " + unit.Get_Name());
           button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Recruit_Unit),unit.Get_Name() ,x,y));
-          Action_Buttons_Box.pack_start(*button);
+          button_info->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Show_Themed_Dialog), message));
+          Action_Buttons_Box.pack_start(*box);
+          box->pack_start(*button);
+          box->pack_start(*button_info);
+          box->show();
+          button_info->show();
+          Main_Provider.Add_CSS(button_info);
           Main_Provider.Add_CSS(button);
           button->show();
         }
@@ -432,6 +480,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
       Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
       Update_Tile_Information_Label(coords[0],coords[1]);
+      Update_Tile_By_Coords_Only(out[2], out[3]);
       Deselect_Unit();
     }
     else
@@ -448,8 +497,13 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     last_clicked_y = coords[1];
     Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
     Glib::RefPtr<Gdk::Pixbuf> selection_texture;
+    Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
+    int tile_size = 32;//Main_Settings_Manager.Get_Tile_Size_Value();
     selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "selection-texture.png");
-    selection_texture->composite(tile_image,0,0,32,32,0,0,1,1,Gdk::INTERP_BILINEAR,255);
+    int true_tile_size = Main_Settings_Manager.Get_Tile_Size_Value();
+    scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
+    selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) tile_size), ((double) true_tile_size / (double) tile_size), Gdk::INTERP_BILINEAR);
+    scaled_pix->composite(tile_image,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
     img->set(tile_image);
   }
   Update_Action_Buttons(coords[0],coords[1]);
@@ -532,12 +586,17 @@ void Game_Window::Update_Labels()
 void Game_Window::Player_Has_Lost_Game()
 {
   Logger::Log_Info("Player has lost the game!");
-  Gtk::MessageDialog dialog(*this, "You have lost!");
-  dialog.set_secondary_text("Your Civilization has been defeated!");
+  Gtk::Dialog dialog("Player has lost the game!");
+  dialog.add_button("Ok", 0);
+  string message = "You have lost and your civilization has been defeated!";
+  Gtk::Label Dialog_Label = Gtk::Label(message);
+  Gtk::Box *Dialog_Box = dialog.get_content_area();
+  Dialog_Box->pack_start(Dialog_Label);
+  dialog.show_all_children();
   Main_Provider.Add_CSS(&dialog);
   dialog.run();
   Logger::Log_Info("Closing Main Window...");
-  Main_Manager->Switch_Current_Window(2); //intro window
+  Main_Manager->Show_Intro_Window(); //intro window
 }
 
 void Game_Window::End_Turn()
@@ -643,6 +702,7 @@ void Game_Window::Manage_Goverments_Clicked()
 void Game_Window::Manage_Techs_Clicked()
 {
   Gtk::Dialog Research_Dialog("Science Ministry");
+  Research_Dialog.add_button("Apply", 0);
   Gtk::Box *Dialog_Box = Research_Dialog.get_content_area();
   Gtk::Box Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Gtk::Frame Dialog_Root_Frame("Set Research Goal");
@@ -676,7 +736,7 @@ void Game_Window::Manage_Techs_Clicked()
     button->signal_clicked().connect(sigc::bind<Tech>(sigc::mem_fun(*this, &Game_Window::Change_Technology_Goal), tech ));
   }
   Glib::RefPtr<Gtk::Adjustment> Research_Adjustment;
-  Research_Adjustment = Gtk::Adjustment::create(50.0,0.0,100.0,1.0,10,0.0);
+  Research_Adjustment = Gtk::Adjustment::create((double) Main_Game.Get_Currently_Moving_Player()->Get_Research_Percent() ,0.0,100.0,1.0,10,0.0);
   Gtk::SpinButton Research_Percent_Switch(Research_Adjustment);
   Gtk::Label info("Set Research Funds Percent:");
   //Gtk::Button Research_Percent_Button("Accept Funds");
@@ -690,6 +750,7 @@ void Game_Window::Manage_Techs_Clicked()
   Main_Provider.Add_CSS(&Research_Dialog);
   Research_Percent_Switch.signal_value_changed().connect(sigc::bind<Gtk::SpinButton*>(sigc::mem_fun(*this, &Game_Window::Set_Research_Funds_Percentage), &Research_Percent_Switch ));
   Research_Dialog.run();
+  Main_Game.Get_Currently_Moving_Player()->Set_Research_Funds_Percentage(static_cast<int>(Research_Percent_Switch.get_value()));
 }
 
 void Game_Window::Manage_Overview_Clicked()
@@ -967,6 +1028,28 @@ void Game_Window::Save_Game()
  }
 }
 
+void Game_Window::Clear_Map_Images()
+{
+  for(auto &box : Map_Images)
+  {
+    auto children = box->get_children();
+    for( auto &var : children)
+    {
+      auto eventbox = dynamic_cast<Gtk::EventBox*>(var);
+      auto images = eventbox->get_children();
+      for(auto &image : images)
+      {
+        image->hide();
+        eventbox->remove();
+      }
+      var->hide();
+      box->remove(*var);
+    }
+    box->hide();
+  }
+  Map_Images.clear();
+}
+
 void Game_Window::Load_Game()
 {
   Gtk::FileChooserDialog Load_Game_File_Chooser_Dialog("Please choose a file", Gtk::FILE_CHOOSER_ACTION_OPEN);
@@ -986,7 +1069,8 @@ void Game_Window::Load_Game()
      {
        ProgressBar_Label.set_text("Game loaded from " + path);
        Main_Game = *get<1>(return_value);
-       Map_Images.clear();
+       Main_Game.Set_Autosave(Main_Settings_Manager.Get_Autosave_Value());
+       Clear_Map_Images();
        Map_Scrolled_Window.remove();
        Generate_Map_View();
        Update_Labels();
@@ -1037,12 +1121,14 @@ void Game_Window::Show_Newspaper_Clicked()
 void Game_Window::Exit_To_Main_Menu()
 {
   Logger::Log_Info("Closing Game Window!");
-  Main_Manager->Switch_Current_Window(2);
+  Main_Manager->Show_Intro_Window();
 }
 
 void Game_Window::Show_Intro_Message()
 {
-  Gtk::MessageDialog dialog(*this, "Start the game");
+  Gtk::Dialog dialog("Start the game");
+  Gtk::Box *Dialog_Box = dialog.get_content_area();
+  dialog.add_button("Lets start!", 0);
   string message = "You lead the civilization of " + Main_Game.Get_Currently_Moving_Player()->Get_Name() + ". ";
   message = message + "\n Your civilization may colapse after few years or survive thousands. Who knows?";
   message = message + "\n Your civlization has following traits: ";
@@ -1070,25 +1156,79 @@ void Game_Window::Show_Intro_Message()
     if(trait == "D")
       message = message + "\n Nomadic - All your units have one more movement";
   }
-  dialog.set_secondary_text(message);
+  Gtk::Label Dialog_Label = Gtk::Label(message);
+  Dialog_Box->pack_start(Dialog_Label);
   Main_Provider.Add_CSS(&dialog);
+  dialog.show_all_children();
   dialog.run();
 }
 
 void Game_Window::Show_Help_Message()
 {
-  Gtk::MessageDialog dialog(*this, "Help");
-  string message = "Here will be help text";
-  dialog.set_secondary_text(message);
+  Gtk::Dialog dialog("Help");
+  dialog.add_button("Ok", 0);
+  fstream Help_File(assets_directory_path + "help_file.txt");
+  string message = "Loading Help Text Failed!";
+  if(Help_File.is_open())
+  {
+    std::ostringstream sstr;
+    sstr << Help_File.rdbuf();
+    message = sstr.str();
+  }
+  else
+  {
+    Logger::Log_Error("Loading Help File failed!");
+  }
+  Gtk::Label Dialog_Label = Gtk::Label(message);
+  Gtk::Box *Dialog_Box = dialog.get_content_area();
+  Gtk::ScrolledWindow Main_Scrolled_Window;// = Gtk::ScrolledWindow(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+  Main_Scrolled_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
+  Main_Scrolled_Window.set_min_content_height(600);
+  dialog.set_default_size(600,600);
+  Dialog_Box->pack_start(Main_Scrolled_Window);
+  Main_Scrolled_Window.add(Dialog_Label);
+  dialog.show_all_children();
   Main_Provider.Add_CSS(&dialog);
   dialog.run();
 }
 
-Game_Window::Game_Window(Window_Manager *m_m) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;
-  Main_Game = Game(false);
+  Main_Settings_Manager = m_s_m;
+  if(path != " ")
+  {
+    xml_document<> doc;
+    ifstream file (path);
+    if(file.is_open())
+    {
+      vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+      buffer.push_back('\0');
+      file.close();
+      try
+      {
+        doc.parse<0>(&buffer[0]);
+        xml_node<> *Root_Node = doc.first_node()->first_node();
+        Main_Game = Game(Root_Node);
+        Logger::Log_Info("Loading Game Successfull!");
+      }
+      catch(...)
+      {
+        Logger::Log_Error("Loading XML Game Data Failed...");
+        Logger::Log_Warning("Creating New Game!");
+        path = " ";
+      }
+    }
+    else
+    {
+      Logger::Log_Error("Opening file " + path + " failed!");
+      Logger::Log_Warning("Creating New Game!");
+      path = " ";
+    }
+  }
+  if(path == " ")
+    Main_Game = Game(Main_Settings_Manager.Get_Autosave_Value());
   Last_Clicked_Tile = nullptr;
   is_delete_of_game_necessary = false;
   is_unit_selected = false;
@@ -1178,12 +1318,14 @@ Game_Window::Game_Window(Window_Manager *m_m) : Root_Box(Gtk::ORIENTATION_HORIZO
   Main_Provider.Add_CSS(&Newspaper_Button);
   Main_Provider.Add_CSS(&Quit_Button);
   Main_Provider.Add_CSS(&Help_Button);
-  Show_Game_Creation_Dialog();
+  if(path == " ")
+    Show_Game_Creation_Dialog();
   Generate_Map_View();
   show_all_children();
   set_default_size(800,800);
   maximize();
   Update_Map();
   Update_Labels();
+  Main_Game.Set_Autosave(Main_Settings_Manager.Get_Autosave_Value());
   Show_Intro_Message();
 }

@@ -303,7 +303,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
   technologic_parameter = Change_Technology_Goal(technologic_parameter, tech_class);
   while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
   {
-    cout << "Turn" << endl;
+    //cout << "Turn" << endl;
     int index = Find_Biggest_Parameter({economy_parameter, military_parameter, naval_parameter, expanse_parameter});
     if(economy_parameter <= 0 && military_parameter <= 0 && expanse_parameter <= 0 && naval_parameter <= 0)
       break;

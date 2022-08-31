@@ -467,6 +467,11 @@ bool Game::All_Humans_Are_Eliminated()
   return out;
 }
 
+void Game::Set_Autosave(bool a)
+{
+  autosave = a;
+}
+
 bool Game::End_Player_Turn()
 {
   vector<int> income = Get_Map()->Get_Netto_Income_For_Player_By_Id(Get_Currently_Moving_Player_Id(), *Get_Currently_Moving_Player());
@@ -504,6 +509,8 @@ bool Game::End_Player_Turn()
 
   if(currently_moving_player == First_Not_Eliminated_Player_Id())
     turn_counter++;
+  if(autosave)
+    Save_Game("autosave.sav");
   Start_Turn_Of_Currently_Moving_Player();
   return true;
 }

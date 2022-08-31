@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include<iostream>
+#include<fstream>
 #include<gtkmm.h>
 #include<vector>
 #include<memory> //guide
@@ -13,13 +14,14 @@
 #include "window_manager.h"
 #include "logger.h"
 #include "game_css_provider.h"
+#include "settings_manager.h"
 
 class Window_Manager;
 
 class Game_Window : public Gtk::Window
 {
   public:
-    Game_Window(Window_Manager *m_m);
+    Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ");
     ~Game_Window();
   protected:
     Game_CSS_Provider Main_Provider;
@@ -75,9 +77,11 @@ class Game_Window : public Gtk::Window
     void Change_Main_Player_Civ(Gtk::Label *info_label, Gtk::Image *civ_color, Gtk::ComboBoxText *combo);
     void Exit_To_Main_Menu();
     void Show_Help_Message();
+    void Show_Themed_Dialog(string message);
     //Gtk::ProgressBar Refresh_Bar;
   private:
     Window_Manager* Main_Manager;
+    Settings_Manager Main_Settings_Manager;
     bool is_delete_of_game_necessary= false;
     void Show_Game_Creation_Dialog();
     Map_Generator_Data Map_Data;
@@ -86,6 +90,7 @@ class Game_Window : public Gtk::Window
     void Update_Tile_Action_Buttons(int x, int y);
     void Clear_Action_Buttons();
     void Test();
+    void Clear_Map_Images();
     void End_Turn();
     void Update_Labels();
     void Update_Economy_Label();
