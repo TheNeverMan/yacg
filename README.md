@@ -1,7 +1,7 @@
 # yacg
 YACG or Yet Another Civilization Game is a civilization-like strategy game. Choose one of historical civilizations and play from ancient era to modern.  
 If you want to know more, please join YACG Discord Server:  
-https://discord.gg/f9v8VTXR
+https://discord.gg/MBxsNUzJGZ
 
 How to install
 --------------
