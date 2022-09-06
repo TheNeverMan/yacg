@@ -15,6 +15,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Desert"/>
 </unit>
 <unit name="Galley" cost="10" atk="2" def="2" move="4" mait="3" is_naval="1" is_land="0" info="boat" requirement="Sailing" texture="assets/textures/units/galley-unit-texture.png">
 <tile name="Sea"/>
@@ -23,11 +24,13 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Desert"/>
 </unit>
 <unit name="Knights" cost="30" atk="6" def="5" move="3" mait="6" is_naval="0" is_land="1" info="people with strong stick and horse" requirement="Feudalism" texture="assets/textures/units/knight-unit-texture.png" >
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Desert"/>
 </unit>
 <unit name="Catapults" cost="25" atk="8" def="3" move="2" mait="5" is_naval="0" is_land="1" info="people with stone launcher" requirement="Balistics" texture="assets/textures/units/catapult-unit-texture.png" >
 <tile name="Forest"/>
@@ -41,16 +44,22 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Ice"/>
+<tile name="Desert"/>
 </unit>
 <unit name="Tanks" cost="70" atk="12" def="10" move="3" mait="15" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Combustion" texture="assets/textures/units/tank-unit-texture.png" >
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Ice"/>
+<tile name="Desert"/>
 </unit>
 <unit name="Artillery" cost="65" atk="14" def="7" move="2" mait="12" is_naval="0" is_land="1" info="people with big gun" requirement="Explosives" texture="assets/textures/units/artillery-unit-texture.png" >
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Ice"/>
+<tile name="Desert"/>
 </unit>
 <unit name="Destroyer" cost="80" atk="12" def="12" move="8" mait="20" is_naval="1" is_land="0" info="people with big metal boat" requirement="Combustion" texture="assets/textures/units/destroyer-unit-texture.png" >
 <tile name="Sea"/>

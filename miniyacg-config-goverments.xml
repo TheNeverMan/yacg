@@ -21,7 +21,7 @@ Under dictatorship maintenance of your army will cost 25% gold less, but also yo
 <goverment name="Despotism" title="Despot" state_name="Empire of" requirement="Hunting" info="Despotism is an early form of monarchy where one individual hold all power.
 Despotic goverments are usually built on power - the strongest individual rules.
 
-Despotism allows to build units one gold cheaper, but when you revolt to new goverment your gold will be zeroed." texture="assets/textures/goverments/despotism-goverment-texture.png/"/>
+Despotism allows to build units one gold cheaper, but when you revolt to new goverment your gold will be zeroed." texture="assets/textures/goverments/despotism-goverment-texture.png"/>
 <goverment name="Theocracy" title="God-King" state_name="Holy Empire of" requirement="Religion" info="Theocracy is advanced form of Despotism.
 In theocratic goverment ruler is identified as religious leader. Usually by stating that he/she is a god-son or sometimes that ruler is god himself.
 

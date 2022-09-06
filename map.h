@@ -30,7 +30,8 @@ class Map : public XML_Serializable
     bool Is_Tile_Out_Of_Bounds(int x, int y);
   public:
     xml_node<>* Serialize(memory_pool<>* doc);
-    Map(int x, int y, vector<Tile> t, vector<Upgrade> u);
+    Map(vector<Tile> t, vector<Upgrade> u);
+    void Set_Size(int x, int y);
     Map();
     Map(xml_node<>* Root_Node);
     void Deserialize(xml_node<>* Root_Node);

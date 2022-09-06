@@ -13,9 +13,14 @@ void Window_Manager::Create_Intro_Window()
   Start_Window = make_shared<Intro_Window>(this);
 }
 
-void Window_Manager::Create_Game_Window(Settings_Manager m_s_m)
+void Window_Manager::Create_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
 {
-  Main_Game_Window = make_shared<Game_Window>(this, m_s_m);
+  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, Map_Data, players, false);
+}
+
+void Window_Manager::Create_Game_Window_Load_Starting_Positions_From_File(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
+{
+  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, Map_Data, players, true);
 }
 
 void Window_Manager::Create_Game_Window_From_File(Settings_Manager m_s_m, string path)
@@ -23,6 +28,10 @@ void Window_Manager::Create_Game_Window_From_File(Settings_Manager m_s_m, string
   Main_Game_Window = make_shared<Game_Window>(this, m_s_m, path);
 }
 
+void Window_Manager::Create_Game_Creation_Window(Settings_Manager m_s_m)
+{
+  Creation_Window = make_shared<Game_Creation_Window>(this, m_s_m);
+}
 
 int Window_Manager::Run()
 {
@@ -47,9 +56,21 @@ void Window_Manager::Show_Intro_Window()
   Switch_Current_Window(2);
 }
 
-void Window_Manager::Show_Game_Window(Settings_Manager m_s_m)
+void Window_Manager::Show_Game_Creation_Window(Settings_Manager m_s_m)
 {
-  Create_Game_Window(m_s_m);
+  Create_Game_Creation_Window(m_s_m);
+  Switch_Current_Window(4);
+}
+
+void Window_Manager::Show_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
+{
+  Create_Game_Window(m_s_m, Map_Data, players);
+  Switch_Current_Window(3);
+}
+
+void Window_Manager::Show_Game_Window_Load_Starting_Positions(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
+{
+  Create_Game_Window_Load_Starting_Positions_From_File(m_s_m, Map_Data, players);
   Switch_Current_Window(3);
 }
 
@@ -89,6 +110,12 @@ void Window_Manager::Switch_Current_Window(int specifier)
         {
           Logger::Log_Info("Changing to Game Window!");
           Current_Window = Main_Game_Window;
+          break;
+        }
+        case 4:
+        {
+          Logger::Log_Info("Changing to Game Creation Window!");
+          Current_Window = Creation_Window;
           break;
         }
     }

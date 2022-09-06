@@ -1,9 +1,14 @@
 #include "map.h"
 
-Map::Map(int x, int y, vector<Tile> t, vector<Upgrade> u)
+Map::Map(vector<Tile> t, vector<Upgrade> u)
 {
   Upgrades = u;
   Tiles = t;
+
+}
+
+void Map::Set_Size(int x, int y)
+{
   int start = 0;
   while(start < x)
   {

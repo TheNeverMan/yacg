@@ -12,6 +12,8 @@
 <upgrade name="Road" cost="4" mait="1" prod="0" info="Raod text info" requirement="Wheel" texture="assets/textures/upgrades/road-upgrade-texture.png" avoid="0">
 <tile name="Land"/>
 <tile name="Forest"/>
+<tile name="Ice"/>
+<tile name="Desert"/>
 <trait name="economic_buff"/>
 <trait name="movement_buff"/>
 <trait name="must_border"/>
@@ -33,6 +35,8 @@
 <tile name="Sea"/>
 <tile name="Mountain"/>
 <tile name="Forest"/>
+<tile name="Ice"/>
+<tile name="Desert"/>
 </upgrade>
 </upgrades>
 </miniyacg>

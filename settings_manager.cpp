@@ -35,6 +35,7 @@ void Settings_Manager::Load_Data_From_XML()
   doc.parse<0>(&buffer[0]);
   xml_node<> *Settings_Node = doc.first_node()->first_node("settings");
   autosave = static_cast<bool>(stoi(Settings_Node->first_node("autosave")->value()));
+  autoresize = autosave = static_cast<bool>(stoi(Settings_Node->first_node("autoresize")->value()));
   tile_size = stoi(Settings_Node->first_node("tile_size")->value());
   Logger::Log_Info("XML Settings Data Loaded!" );
 }
@@ -48,6 +49,8 @@ void Settings_Manager::Write_To_File()
   Root_Node->append_node(Settings_Node);
   xml_node<>* Autosave_Node = doc.allocate_node(node_element, "autosave", doc.allocate_string(to_string(autosave).c_str()));
   Settings_Node->append_node(Autosave_Node);
+  xml_node<>* Autoresize_Node = doc.allocate_node(node_element, "autoresize", doc.allocate_string(to_string(autoresize).c_str()));
+  Settings_Node->append_node(Autoresize_Node);
   xml_node<>* Tile_Size_Node = doc.allocate_node(node_element, "tile_size", doc.allocate_string(to_string(tile_size).c_str()));
   Settings_Node->append_node(Tile_Size_Node);
   doc.append_node(Root_Node);
@@ -74,4 +77,14 @@ void Settings_Manager::Set_Autosave_Value(bool a)
 void Settings_Manager::Set_Tile_Size_Value(int t_s)
 {
   tile_size = t_s;
+}
+
+void Settings_Manager::Set_Autoresize_Tiles_Value(bool a)
+{
+  autoresize = a;
+}
+
+bool Settings_Manager::Get_Autoresize_Tiles_Value()
+{
+  return autoresize;
 }

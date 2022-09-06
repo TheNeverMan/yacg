@@ -9,5 +9,7 @@
 <trait name="major_def_bonus"/>
 </tile>
 <tile name="Land" cost="1" texture="assets/textures/tiles/land-tile-texture.png"/>
+<tile name="Ice" cost="2" texture="assets/textures/tiles/ice-tile-texture.png"/>
+<tile name="Desert" cost="1" texture="assets/textures/tiles/desert-tile-texture.png"/>
 </tiles>
 </miniyacg>

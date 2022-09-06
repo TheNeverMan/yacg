@@ -16,11 +16,14 @@ class Settings_Manager
     bool autosave;
     int tile_size;
     string path_to_file;
+    bool autoresize;
     void Load_Data_From_XML();
   public:
     Settings_Manager(string p_t_f);
     Settings_Manager();
     bool Get_Autosave_Value();
+    bool Get_Autoresize_Tiles_Value();
+    void Set_Autoresize_Tiles_Value(bool a);
     int Get_Tile_Size_Value();
     void Set_Autosave_Value(bool a);
     void Set_Tile_Size_Value(int t_s);

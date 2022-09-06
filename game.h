@@ -9,6 +9,7 @@
 #include<algorithm>
 #include<fstream>
 #include<map>
+#include<tuple>
 #include<memory>
 
 #include "tile.h"
@@ -27,6 +28,7 @@
 #include "help_object.h"
 #include "ai.h"
 #include "newspaper.h"
+#include "xml_data_loader.h"
 #include "ai_data.h"
 
 using namespace rapidxml;
@@ -51,17 +53,9 @@ class Game : public XML_Serializable
     Newspaper Main_Newspaper;
     int currently_moving_player;
     int turn_counter;
-    void XML_Load_Civs();
     void XML_Load_Data();
-    void XML_Load_Tiles();
-    void XML_Load_Techs();
-    void XML_Load_Units();
     void Do_AI_Actions_For_Currently_Moving_Player();
     bool Is_Currently_Moving_Player_AI();
-    void XML_Load_Upgrades();
-    void XML_Load_Goverments();
-    Map_Generator_Data Show_Map_Generator_UI();
-    void Show_Players_Generator_UI();
     void Move_Unit(int unit_x, int unit_y, int dest_x, int dest_y, int cost);
     void Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y);
     void Start_Turn_Of_Currently_Moving_Player();
@@ -70,7 +64,15 @@ class Game : public XML_Serializable
     bool Is_Player_AI(int player_id);
     bool All_Humans_Are_Eliminated();
     vector<Coords> Tiles_To_Update;
+    void Add_Player_By_Name(string name, bool is_ai);
+    void Generate_Map(Map_Generator_Data User_Data, bool load_starting_positions);
+    void Add_Players(vector<tuple<string, bool>> players);
+    void Assing_Starting_Position_For_Player(int player_id, int x, int y);
+    void Asign_Random_Starting_Position_For_Player(int player_id);
+    void Assign_Random_Starting_Positions();
+    void Assign_Starting_Positions_From_Data(map<string, array<int,2>> starting_positions);
   public:
+    void Disband_Unit(int x, int y);
     Unit Get_Unit_By_Name(string name);
     void Set_Autosave(bool a);
     bool Is_Player_Eliminated(int player_id);
@@ -79,19 +81,17 @@ class Game : public XML_Serializable
     xml_node<>*  Serialize(memory_pool<>* doc);
     string Get_Current_Turn_By_Years();
     bool Is_Map_Update_Required();
-    void Generate_Map(Map_Generator_Data User_Data);
-    void Assign_Starting_Positions();
-    Game(bool a);
+    Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions);
     Game();
     Game(xml_node<>* Root_Node);
     void Deserialize(xml_node<>* Root_Node);
-    void Add_Players(int player_id, int other_players_player_count, bool allow_duplicates);
     void Test();
     bool Save_Game(string path);
     tuple<bool, Game*> Load_Game(string path);
     int Get_Turn();
     bool End_Player_Turn();
     void Confirm_Pass_To_Game_Window();
+    vector<Civ> Get_Players();
     Civ *Get_Player_By_Id(int id);
     int Get_Currently_Moving_Player_Id();
     int Get_Amount_Of_Players();

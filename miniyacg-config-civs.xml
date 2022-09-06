@@ -347,7 +347,7 @@ Right now region of Congo is split between two republics. Mainly it is
 Democratic Republic of Congo, it is 11th biggest country in the world and
 it has many valuable ores and other mining valuables.
 
-Congolese traits are Cultural and Religious which represent 
+Congolese traits are Cultural and Religious which represent
 cultural heritage of independent Kingdom of Kongo.
 
 Congolese leaders include DRC presidents, Brazzaville presidents and medieval kings.
@@ -524,6 +524,450 @@ Breton color is black - one of two colors on their flag.
 <city name="Pontivy"/>
 <city name="Dinan"/>
 <replacement name="Monarchy" leader="Duke" state_name="Duchy of"/>
+</civ>
+<civ name="Persia"  r="129" g="221" b="238" personality="Expansive">
+<replacement name="Despotism" leader="Shahanshah" state_name="Iranian empire of"/>
+<info>
+At one point home to 44% of all humans, the Acheamenid Persian empire
+was the largest empire by precentage of population in history.
+It's known for it's effective administration and releative benevolence compared to its predecesors.
+Although the Achaemenids were later conquered by Alexander the Great, subsequent Persian states,
+like the Parthian, Sasanian, Safavid and Afsharid empires, continued to rule parts of
+the middle east up to and beyond the islamic conquest of Persia.
+Persian culture, religion and philosophy influenced their neighbours, and to this day
+areas from eastern Turkey to central Asia belong to the Persian cultural sphere.
+
+Persian traits are Economic and Cultural - they represent
+the famous Persian royal roads that linked the empire of Cyrus the Great
+and the lasting cultural influence of the Persian empires
+
+Persian leaders include the rulers of the Acheamenid, Parthian, Sassanian and Safavid dynasties.
+Persia's color is aquamarine - one of the possible colors of the Acheamenid standard.
+</info>
+<leader name="Achaemenes"/>
+<leader name="Cyrus the Great"/>
+<leader name="Darius I"/>
+<leader name="Xerxes I"/>
+<leader name="Darius III"/>
+<leader name="Arsaces I"/>
+<leader name="Mithridates I"/>
+<leader name="Mithridates II"/>
+<leader name="Ardashir I"/>
+<leader name="Khosrow II"/>
+<leader name="Ismail I"/>
+<leader name="Abbas the Great"/>
+<leader name="Nader Shah"/>
+<trait name="E"/>
+<trait name="C"/>
+<city name="Pasargadae"/>
+<city name="Susa"/>
+<city name="Persepolis"/>
+<city name="Ecbatana"/>
+<city name="Arbela"/>
+<city name="Ganzak"/>
+<city name="Tushpa"/>
+<city name="Anshan"/>
+<city name="Rhages"/>
+<city name="Hecatompylos"/>
+<city name="Merv"/>
+<city name="Cyropolis"/>
+<city name="Bactra"/>
+<city name="Farah"/>
+<city name="Maracanda"/>
+<city name="Sindomana"/>
+<city name="Taxila"/>
+<city name="Pushkalavati"/>
+<city name="Halicarnassus"/>
+<city name="Ctesiphon"/>
+<city name="Hecatompylos"/>
+<city name="Mithradatkirt"/>
+<city name="Asaak"/>
+<city name="Gor"/>
+<city name="Stakhr"/>
+<city name="Amoy"/>
+<city name="Laodicea"/>
+<city name="Dinavar"/>
+<city name="Shiz"/>
+<city name="Bannazbur"/>
+<city name="P'aytakaran"/>
+<city name="Qustar"/>
+<city name="Aria"/>
+</civ>
+
+<civ name="Germany" r="0" g="0" b="0" personality="Authoritarian">
+<info>
+Germany is important european nation.
+It has been shaping politics of the continent from medieval era to this day.
+
+German traits are Militaristic and Commercial to represent the industrial power of modern Germany
+and the heritage of Hansa.
+
+German leaders include Chancellors and Kaisers.
+German color is black a color that has many times appeared on their flag.
+</info>
+<trait name="M"/>
+<trait name="O"/>
+<leader name="Frederick William"/>
+<leader name="Albert"/>
+<leader name="William I"/>
+<leader name="Frederick I"/>
+<leader name="Frederick II"/>
+<leader name="Paul von Hindenburg"/>
+<leader name="Konrad Adenauer"/>
+<leader name="Otto von Bismarck"/>
+<leader name="Wilhem II"/>
+<leader name="Angela Merkel"/>
+<replacement name="Monarchy" state_name="German Reich of" leader="Kaiser"/>
+<replacement name="Democracy" state_name="Federal Republic of" leader="Chancellor"/>
+<replacement name="Dictatorship" state_name="Third Reich of" leader="Fuhrer"/>
+<replacement name="Republic" state_name="Republic of" leader="Chancellor"/>
+<city name="Berlin"/>
+<city name="Hamburg"/>
+<city name="Dresden"/>
+<city name="Munich"/>
+<city name="Cologne"/>
+<city name="Stuttgart"/>
+<city name="Dusseldorf"/>
+<city name="Essen"/>
+<city name="Dortmund"/>
+<city name="Leipzig"/>
+<city name="Bremen"/>
+<city name="Hanover"/>
+<city name="Nuremberg"/>
+<city name="Duisburg"/>
+<city name="Bochum"/>
+<city name="Wuppertal"/>
+<city name="Bielefeld"/>
+<city name="Bonn"/>
+<city name="Munster"/>
+<city name="Karlsruhe"/>
+<city name="Augsburg"/>
+<city name="Wiesbaden"/>
+<city name="Gelsenkirchen"/>
+<city name="Chemnitz"/>
+<city name="Aachen"/>
+</civ>
+
+<civ name="Khmer" r="111" g="153" b="60" personality="Holy">
+<info>
+Khmer Empire was a major South Asian Empire that existed in 802-1431 period.
+It controled most of mainland Southeast Asia and constructed great temples such as Ankgor Wat.
+
+Khmer traits are Cultural and Expansive to represent major impact of the empire on
+the region.
+</info>
+<trait name="C"/>
+<trait name="X"/>
+<leader name="Jayavarman II"/>
+<leader name="Jayavarman VII"/>
+<leader name="Suryavarman II"/>
+<leader name="Indravarman I"/>
+<leader name="Yasovarman I"/>
+<leader name="Harshavarman I"/>
+<leader name="Ishanavarman II"/>
+<leader name="Udayadityavarman II"/>
+<leader name="Dharanindravarman I"/>
+<leader name="Tribhuvanadityavarman"/>
+<city name="Mahendraparvata"/>
+<city name="Hariharalaya"/>
+<city name="Koh Ker"/>
+<city name="Yasodharapura"/>
+<city name="Angkor Wat"/>
+<city name="Bayon"/>
+<city name="Angkor Thom"/>
+<city name="Banteay Srei"/>
+<city name="Preah Rup"/>
+<city name="Ta Prohm"/>
+<city name="Preah Vihear"/>
+<city name="Prasat Neang Khmau"/>
+<city name="Prasat Linga"/>
+<city name="Beng Mealea"/>
+<city name="Kbal Spean"/>
+<city name="Banteay Samre"/>
+<city name="Preah Rup"/>
+<city name="Banteay Kdei"/>
+<city name="Prasat Suor Prat"/>
+<city name="Baphuon"/>
+<replacement name="Despotism" state_name="Empire of" leader="Chakravartin"/>
+</civ>
+<civ name="Songhay" r="216" g="1" b="55" personality="Expansive">
+<info>
+The Songhay empire was the largest empire in West African history.
+It was able to amass great wealth due to trade across the Sahara and on the
+Niger river. Under the Songhay, the university of Timbuktu became well known
+as a centre of science trouought the muslim world.
+
+Songhay traits are Religious and Commercial to represent the trade impact on the
+empire and its religious-scientific character
+
+Songhay leaders include Songhay emperors
+Songhay color is red from Mali Emipre flag
+</info>
+<trait name="Commercial"/>
+<trait name="Religious"/>
+<leader name="Sonni Ali"/>
+<leader name="Sonni Baru"/>
+<leader name="Askia Muhammad I"/>
+<leader name="Askia Musa"/>
+<leader name="Askia Mohammad Benkan"/>
+<leader name="Askia Isma'il"/>
+<leader name="Askia Ishaq I"/>
+<leader name="Askia Daoud"/>
+<leader name="Askia Muhammad II"/>
+<leader name="Muhammad Bani"/>
+<leader name="Askia Ishaq II"/>
+<city name="Gao"/>
+<city name="Timbuktu"/>
+<city name="Tadmekka"/>
+<city name="Oualata"/>
+<city name="Koumbi Saleh"/>
+<city name="Aoudaghost"/>
+<city name="Niani"/>
+<city name="Djenne"/>
+<city name="Bamba"/>
+<city name="Bamako"/>
+<city name="Arawan"/>
+<city name="Taghaza"/>
+<city name="Agadez"/>
+<city name="Gwandu"/>
+<city name="Argungu"/>
+<city name="Kebbi"/>
+<city name="Niamey"/>
+<city name="Torodi"/>
+<city name="Dori"/>
+<city name="Kukiya"/>
+<city name="Tondibi"/>
+<city name="Kayes"/>
+<city name="Wa"/>
+<city name="Takedda"/>
+<city name="Agadez"/>
+<replacement name="Monarchy" state_name="Empire of" leader="Emperor"/>
+</civ>
+<civ name="Maya" r="34" g="209" b="89" personality="Enlightened">
+<info>
+Mayan Civilizarion was on of the most important native cultures of America.
+It has never became a centralized empire, its famous for its astronomical and scientific advances.
+
+Mayan traits are Scientific and Scientific to represent their astronomical advances
+
+Mayan leader include various city-state leaders.
+Mayan color is green from on of mayan flags.
+</info>
+<trait name="S"/>
+<trait name="S"/>
+<leader name="Ucha'an K'an B'alam"/>
+<leader name="Lachan K'awiil Ajaw Bot"/>
+<leader name="Yuknoom Ch'een I"/>
+<leader name="Yajaw Te' K'inich II"/>
+<leader name="Kan II"/>
+<leader name="K'awiil Ek'"/>
+<leader name="Ucha'an K'in B'alam"/>
+<leader name="Yik'in Chan K'awiil"/>
+<leader name="Itzamnaaj Bahlam III"/>
+<leader name="Pacal The Great"/>
+<city name="Tikal"/>
+<city name="Palenque"/>
+<city name="Yaxchilan"/>
+<city name="Copan"/>
+<city name="Banampak"/>
+<city name="Dos Pilas"/>
+<city name="Calakmul"/>
+<city name="Rio Bec"/>
+<city name="Uaxactun"/>
+<city name="El Pilar"/>
+<city name="Caracol"/>
+<city name="Qʼumarkaj"/>
+<city name="Sayil"/>
+<city name="Coba"/>
+<city name="Seibal"/>
+</civ>
+<civ name="Poland" r="220" g="20" b="60" personality="Peaceful">
+<info>
+Poland is a central european nation that formed powerful kingdom in early medieval age.
+Later its power fell, but Poland survived to this day.
+
+Polish traits are Agricultural and Cultural to represent the historical importance of wheat farming
+and the polish tradition which survived years of occupation and wars.
+
+Polish leaders include kings, presidents and first secretaries.
+Polish color is red from polish flag.
+</info>
+<trait name="A"/>
+<trait name="C"/>
+<replacement name="Despotism" leader="Duke" state_name="Duchy of"/>
+<replacement name="Communism" leader="First Secretary" state_name="People's Republic of"/>
+<replacement name="Democracy" leader="President" state_name="Commonwealth of"/>
+<leader name="Lech Wałęsa"/>
+<leader name="Edward Gierek"/>
+<leader name="Józef Piłsudzki"/>
+<leader name="Stanisław August Poniatowski"/>
+<leader name="Jan III Sobieski"/>
+<leader name="Władysław III Waza"/>
+<leader name="Stefan Batory"/>
+<leader name="Kazimierz IV Jagiellończyk"/>
+<leader name="Władysław II Jagiełło"/>
+<leader name="Kazimierz III The Great"/>
+<leader name="Kazimierz I Odnowiciel"/>
+<leader name="Bolesław I Chrobry"/>
+<leader name="Mieszko I"/>
+<leader name="Lestek Piast"/>
+<leader name="Zygmunt II August"/>
+<city name="Warsaw"/>
+<city name="Cracow"/>
+<city name="Gdansk"/>
+<city name="Torun"/>
+<city name="Poznan"/>
+<city name="Lublin"/>
+<city name="Lodz"/>
+<city name="Bydgoszcz"/>
+<city name="Gdynia"/>
+<city name="Czestochowa"/>
+<city name="Radom"/>
+<city name="Sosnowiec"/>
+<city name="Kielce"/>
+<city name="Rzeszow"/>
+<city name="Tarnow"/>
+<city name="Gliwice"/>
+<city name="Gniezno"/>
+<city name="Zabrze"/>
+<city name="Olsztyn"/>
+<city name="Bytom"/>
+<city name="Rybnik"/>
+<city name="Tychy"/>
+<city name="Plock"/>
+<city name="Opole"/>
+<city name="Moszczona Panska"/>
+<city name="Siedlce"/>
+<city name="Gorzow Wielkopolski"/>
+<city name="Bialystok"/>
+<city name="Katowice"/>
+<city name="Nowy Sacz"/>
+<city name="Nysa"/>
+<city name="Elblag"/>
+<city name="Ustka"/>
+<city name="Walbrzych"/>
+<city name="Wloclawek"/>
+<city name="Chorzow"/>
+<city name="Grudziadz"/>
+<city name="Kalisz"/>
+<city name="Legnica"/>
+<city name="Raciborz"/>
+<city name="Inowroclaw"/>
+<city name="Zgierz"/>
+<city name="Swidnica"/>
+<city name="Glogow"/>
+<city name="Siemianowice Slaskie"/>
+<city name="Tczew"/>
+<city name="Stalowa Wola"/>
+<city name="Belchatow"/>
+<city name="Mielec"/>
+<city name="Piotrkow Trybunalski"/>
+<city name="Kedzierzyn-Kozle"/>
+<city name="Zdunska Wola"/>
+<city name="Krosno"/>
+<city name="Otwock"/>
+<city name="Zyrardow"/>
+<city name="Legionowo"/>
+<city name="Sopot"/>
+<city name="Kutno"/>
+<city name="Ciechanow"/>
+<city name="Radomsko"/>
+<city name="Sieradz"/>
+<city name="Boleslawiec"/>
+<city name="Wroclaw"/>
+<city name="Szczecin"/>
+<city name="Koszalin"/>
+<city name="Swinoujscie"/>
+<city name="Zielona Gora"/>
+<city name="Elk"/>
+<city name="Tomaszow Mazowiecki"/>
+<city name="Swietochlowice"/>
+<city name="Wejherowo"/>
+<city name="Skierniewice"/>
+<city name="Wodzislaw Slaski"/>
+<city name="Tarnobrzeg"/>
+<city name="Stargard"/>
+<city name="Starachowice"/>
+<city name="Suwalki"/>
+<city name="Chelm"/>
+<city name="Bialoleka"/>
+<city name="Lomza"/>
+<city name="Oswiecim"/>
+<city name="Nowa Sol"/>
+<city name="Skarzysko-Kamienna"/>
+<city name="Sieradz"/>
+<city name="Jaworzno"/>
+<city name="Bobolice"/>
+<city name="Deblin"/>
+<city name="Frombork"/>
+<city name="Gizycko"/>
+<city name="Ilawa"/>
+<city name="Kynica-Zdroj"/>
+<city name="Lututow"/>
+<city name="Opole"/>
+<city name="Sulejowek"/>
+<city name="Zamosc"/>
+<city name="Ustrzyki Dolne"/>
+<city name="Tarnopol"/>
+<city name="Minsk"/>
+<city name="Vilinus"/>
+<city name="Lviv"/>
+</civ>
+<civ name="Russia" r="255" g="205" b="1" personality="Authoritarian">
+<info>
+Russia is  one of the biggest empires on the planet.
+It always had a great impact on the politics.
+
+Russian traits are Militaristic and Militaristic to represent russian military.
+
+Russian leaders are tsars of Russian Empire.
+Russian color is yellow from Russian Empire flag.
+</info>
+<trait name="M"/>
+<trait name="M"/>
+<leader name="Ivan The Terrible"/>
+<leader name="Boris Godunov"/>
+<leader name="Michael I"/>
+<leader name="Peter the Great"/>
+<leader name="Elizabeth"/>
+<leader name="Catherine"/>
+<leader name="Alexander I"/>
+<leader name="Nicholas I"/>
+<leader name="Alexander II"/>
+<leader name="Nicholas II"/>
+<replacement name="Despotism" state_name="Grand Duchy of" leader="Grand Duke"/>
+<replacement name="Monarchy" state_name="Tsardom of" leader="Tsar"/>
+<replacement name="Communism" state_name="Soviet Republic of" leader="First Secretary"/>
+<city name="Moscow"/>
+<city name="Saint Petersburg"/>
+<city name="Novosibirsk"/>
+<city name="Yekaterinburg"/>
+<city name="Kazan"/>
+<city name="Nizhny Novogorod"/>
+<city name="Chelyabinsk"/>
+<city name="Samara"/>
+<city name="Omsk"/>
+<city name="Rostov-on-Don"/>
+<city name="Ufa"/>
+<city name="Krasnoyarsk"/>
+<city name="Voronezh"/>
+<city name="Perm"/>
+<city name="Volgograd"/>
+<city name="Krasnodar"/>
+<city name="Saratov"/>
+<city name="Tyumen"/>
+<city name="Tolyatti"/>
+<city name="Izhevsk"/>
+<city name="Barnaul"/>
+<city name="Ulyanovsk"/>
+<city name="Irkutsk"/>
+<city name="Khabarovsk"/>
+<city name="Makhachkala"/>
+<city name="Yaroslavl"/>
+<city name="Valdivostok"/>
+<city name="Orenburg"/>
+<city name="Tomsk"/>
+<city name="Kemerovo"/>
 </civ>
 </civs>
 </miniyacg>

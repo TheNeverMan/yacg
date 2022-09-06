@@ -359,7 +359,15 @@ AI_Data AI::Process_Turn(AI_Data Data)
 
     }
   }
-  Move_All_Units_Not_In_Cities_To_Enemy();
+  if(personality == "Peaceful")
+  {
+    if(rand() % 3 != 0)
+      Move_All_Units_Not_In_Cities_To_Enemy();
+  }
+  else
+  {
+    Move_All_Units_Not_In_Cities_To_Enemy();
+  }
 
   Main_Game->Get_Currently_Moving_Player()->Set_Research_Funds_Percentage((double) technologic_parameter * 7.0);
   return Data;

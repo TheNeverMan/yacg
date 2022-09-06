@@ -8,6 +8,7 @@
 #include<memory> //guide
 #include<chrono> //benchmarking
 #include<tuple>
+#include<map>
 
 #include "game.h"
 #include "globals.h"
@@ -15,6 +16,13 @@
 #include "logger.h"
 #include "game_css_provider.h"
 #include "settings_manager.h"
+#include "themed_dialog.h"
+#include "civs_dialog.h"
+#include "overview_dialog.h"
+#include "economy_dialog.h"
+#include "tech_dialog.h"
+#include "goverment_dialog.h"
+#include "newspaper_dialog.h"
 
 class Window_Manager;
 
@@ -22,6 +30,7 @@ class Game_Window : public Gtk::Window
 {
   public:
     Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ");
+    Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool load_starting_positions);
     ~Game_Window();
   protected:
     Game_CSS_Provider Main_Provider;
@@ -57,10 +66,7 @@ class Game_Window : public Gtk::Window
     void Show_Civs_Clicked();
     void Manage_Techs_Clicked();
     void Manage_Goverments_Clicked();
-    void Change_Technology_Goal(Tech new_goal);
-    void Set_Research_Funds_Percentage(Gtk::SpinButton *spin);
     void Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, int owner);
-    void Change_Goverment(Gov new_gov);
     void Recruit_Unit(string u, int x, int y);
     void Select_Unit(int x, int y);
     void Deselect_Unit();
@@ -69,21 +75,13 @@ class Game_Window : public Gtk::Window
     void Manage_Economy_Clicked();
     void Heal_Unit(int x, int y);
     void Show_Newspaper_Clicked();
-    void Change_Map_Data_X_Value(Gtk::SpinButton *spin);
-    void Change_Map_Data_Y_Value(Gtk::SpinButton *spin);
-    void Change_Map_Data_Continents_Value(Gtk::SpinButton *spin);
-    void Change_Map_Data_Water_Value(Gtk::SpinButton *spin);
-    void Change_Player_Count_Value(Gtk::SpinButton *spin);
-    void Change_Main_Player_Civ(Gtk::Label *info_label, Gtk::Image *civ_color, Gtk::ComboBoxText *combo);
     void Exit_To_Main_Menu();
     void Show_Help_Message();
     void Show_Themed_Dialog(string message);
-    //Gtk::ProgressBar Refresh_Bar;
   private:
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
     bool is_delete_of_game_necessary= false;
-    void Show_Game_Creation_Dialog();
     Map_Generator_Data Map_Data;
     void Update_Action_Buttons(int x, int y);
     void Update_Unit_Action_Buttons(int x, int y);
@@ -114,5 +112,8 @@ class Game_Window : public Gtk::Window
     int other_players_player_count;
     string main_player_civ_name;
     Gtk::Image *Last_Clicked_Tile;
+    void Initialize_GTK();
     void Update_Tile(Gtk::Image *tile_image, int x, int y);
+    array<int ,2> Get_Screen_Resolution();
+    void Set_Tiles_Size_Automatically();
 };

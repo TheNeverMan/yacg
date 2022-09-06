@@ -1,259 +1,51 @@
 #include "game.h"
 
-void Game::XML_Load_Tiles()
-{
-  Logger::Log_Info("Loading XML Tile Data..." );
-  xml_document<> doc;
-	ifstream file ("miniyacg-config-tiles.xml");
-	vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-	buffer.push_back('\0');
-  file.close();
-	doc.parse<0>(&buffer[0]);
-  xml_node<> *tiles_node = doc.first_node()->first_node("tiles");
-  for(xml_node<> * tile_node = tiles_node->first_node("tile"); tile_node; tile_node = tile_node->next_sibling())
-  {
-    int c = stoi(tile_node->first_attribute("cost")->value());
-    string n = tile_node->first_attribute("name")->value();
-    string t_p = tile_node->first_attribute("texture")->value();
-    vector<string> traits;
-    for(xml_node<> *trait_node = tile_node->first_node("trait"); trait_node; trait_node = trait_node->next_sibling("trait"))
-    {
-      traits.push_back(trait_node->first_attribute("name")->value());
-    }
-    Tile tmp(c, n, t_p, traits);
-    Tiles.push_back(tmp);
-  }
-  Logger::Log_Info("XML Tile Data Loaded!" );
-}
-
 int Game::Get_Amount_Of_Players()
 {
   return Players.size();
 }
 
-void Game::XML_Load_Techs()
-{
-  Logger::Log_Info("Loading XML Techs Data..." );
-  xml_document<> doc;
-	ifstream file ("miniyacg-config-techs.xml");
-	vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-	buffer.push_back('\0');
-  file.close();
-	doc.parse<0>(&buffer[0]);
-  xml_node<> *technologies_node = doc.first_node()->first_node("technologies");
-  for(xml_node<> * tech_node = technologies_node->first_node("technology"); tech_node; tech_node = tech_node->next_sibling())
-  {
-    int c = stoi(tech_node->first_attribute("cost")->value());
-    string n = tech_node->first_attribute("name")->value();
-    string h_t = tech_node->first_attribute("info")->value();
-    string t_p = tech_node->first_attribute("texture")->value();
-    vector<string> req;
-    vector<string> traits;
-    for(xml_node<> *req_node = tech_node->first_node("requirement"); req_node; req_node = req_node->next_sibling("requirement"))
-    {
-      req.push_back(req_node->first_attribute("name")->value());
-    }
-    for(xml_node<> *trait_node = tech_node->first_node("trait"); trait_node; trait_node = trait_node->next_sibling("trait"))
-    {
-      traits.push_back(trait_node->first_attribute("name")->value());
-    }
-    Tech tmp(n, c, req, h_t, t_p, traits);
-    Technologies.push_back(tmp);
-  }
-  //for(auto &var : Technologies)
-  //{
-  //  var.Info();
-  //}
-  Logger::Log_Info( "XML Techs Data Loaded!" );
-}
-
-void Game::XML_Load_Units()
-{
-  Logger::Log_Info("Loading XML Units Data..." );
-  xml_document<> doc;
-  ifstream file("miniyacg-config-units.xml");
-  vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-  buffer.push_back('\0');
-  file.close();
-	doc.parse<0>(&buffer[0]);
-  xml_node<> *units_node = doc.first_node()->first_node("units");
-  for(xml_node<> * unit_node = units_node->first_node("unit"); unit_node; unit_node = unit_node->next_sibling())
-  {
-    string n = unit_node->first_attribute("name")->value();
-    int c = stoi(unit_node->first_attribute("cost")->value());
-    int a = stoi(unit_node->first_attribute("atk")->value());
-    int d = stoi(unit_node->first_attribute("def")->value());
-    int m = stoi(unit_node->first_attribute("move")->value());
-    int ma = stoi(unit_node->first_attribute("mait")->value());
-    string r = unit_node->first_attribute("requirement")->value();
-    string h_t = unit_node->first_attribute("info")->value();
-    string t_p = unit_node->first_attribute("texture")->value();
-    vector<string> a_t;
-    for(xml_node<> *tile_node = unit_node->first_node("tile"); tile_node; tile_node = tile_node->next_sibling("tile"))
-    {
-      a_t.push_back(tile_node->first_attribute("name")->value());
-    }
-    Unit tmp(n, c, a, d, m, ma, h_t, r, t_p, a_t);
-    Units.push_back(tmp);
-  }
-  Logger::Log_Info("XML Units Data Loaded!" );
-}
-
-void Game::XML_Load_Civs()
-{
-  Logger::Log_Info("Loading XML Civs Data..." );
-  xml_document<> doc;
-  ifstream file("miniyacg-config-civs.xml");
-  vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-  buffer.push_back('\0');
-  file.close();
-	doc.parse<0>(&buffer[0]);
-  xml_node<> *civs_node = doc.first_node()->first_node("civs");
-  for(xml_node<> * civ_node = civs_node->first_node("civ"); civ_node; civ_node = civ_node->next_sibling())
-  {
-    string n = civ_node->first_attribute("name")->value();
-    string h_t = civ_node->first_node("info")->value();
-    int r = stoi(civ_node->first_attribute("r")->value());
-    int g = stoi(civ_node->first_attribute("g")->value());
-    int b = stoi(civ_node->first_attribute("b")->value());
-    string p = civ_node->first_attribute("personality")->value();
-    vector<string> cities;
-    vector<string> traits;
-    vector<string> leaders;
-    map<string, vector<string>> g_n_r;
-    for(xml_node<> *city_node = civ_node->first_node("city"); city_node; city_node = city_node->next_sibling("city"))
-    {
-      cities.push_back(city_node->first_attribute("name")->value());
-    }
-    for(xml_node<> *leader_node = civ_node->first_node("leader"); leader_node; leader_node = leader_node->next_sibling("leader"))
-    {
-      leaders.push_back(leader_node->first_attribute("name")->value());
-    }
-    for(xml_node<> *trait_node = civ_node->first_node("trait"); trait_node; trait_node = trait_node->next_sibling("trait"))
-    {
-      traits.push_back(trait_node->first_attribute("name")->value());
-    }
-    for(xml_node<> *rep_node = civ_node->first_node("replacement"); rep_node; rep_node = rep_node->next_sibling("replacement"))
-    {
-      g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("leader")->value());
-      g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("state_name")->value());
-    }
-    Civ tmp(n, leaders, h_t, cities, Technologies, Units, r, g, b, traits, Goverments, g_n_r, p);
-    Civs.push_back(tmp);
-  }
-
-  Logger::Log_Info("XML Civs Data Loaded!" );
-}
-
-void Game::XML_Load_Upgrades()
-{
-  Logger::Log_Info("Loading XML Upgrades Data..." );
-  xml_document<> doc;
-  ifstream file("miniyacg-config-upgrades.xml");
-  vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-  buffer.push_back('\0');
-  file.close();
-  doc.parse<0>(&buffer[0]);
-  xml_node<> *upgrades_node = doc.first_node()->first_node("upgrades");
-  for(xml_node<> * upgrade_node = upgrades_node->first_node("upgrade"); upgrade_node; upgrade_node = upgrade_node->next_sibling())
-  {
-    string n = upgrade_node->first_attribute("name")->value();
-    int c = stoi(upgrade_node->first_attribute("cost")->value());
-    int m = stoi(upgrade_node->first_attribute("mait")->value());
-    int p = stoi(upgrade_node->first_attribute("prod")->value());
-    string h_t = upgrade_node->first_attribute("info")->value();
-    string r = upgrade_node->first_attribute("requirement")->value();
-    string t_p = upgrade_node->first_attribute("texture")->value();
-    bool avoid = (bool) stoi(upgrade_node->first_attribute("avoid")->value());
-    vector<string> correct_tiles;
-    vector<string> traits;
-    for(xml_node<> *tile_node = upgrade_node->first_node("tile"); tile_node; tile_node = tile_node->next_sibling("tile"))
-    {
-      correct_tiles.push_back(tile_node->first_attribute("name")->value());
-    }
-    for(xml_node<> *trait_node = upgrade_node->first_node("trait"); trait_node; trait_node = trait_node->next_sibling("trait"))
-    {
-      traits.push_back(trait_node->first_attribute("name")->value());
-    }
-    Upgrade tmp(c, p, m, h_t, n, r, correct_tiles, t_p, avoid, traits);
-    Upgrades.push_back(tmp);
-  }
-//  for(auto &var : Upgrades)
-//  {
-//    var.Info();
-//  }
-  Logger::Log_Info("XML Upgrades Data Loaded!" );
-}
-
-void Game::XML_Load_Goverments()
-{
-  Logger::Log_Info("Loading XML Goverments Data..." );
-  xml_document<> doc;
-  ifstream file("miniyacg-config-goverments.xml");
-  vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-  buffer.push_back('\0');
-  file.close();
-  doc.parse<0>(&buffer[0]);
-  xml_node<> *govs_node = doc.first_node()->first_node("goverments");
-  for(xml_node<> * gov_node = govs_node->first_node("goverment"); gov_node; gov_node = gov_node->next_sibling())
-  {
-    string n = gov_node->first_attribute("name")->value();
-    string i = gov_node->first_attribute("info")->value();
-    string t_r = gov_node->first_attribute("requirement")->value();
-    string t_p = gov_node->first_attribute("texture")->value();
-    string l_t = gov_node->first_attribute("title")->value();
-    string s_n = gov_node->first_attribute("state_name")->value();
-    Gov tmp(n, l_t, s_n, t_r, i, t_p);
-    Goverments.push_back(tmp);
-  }
-  Logger::Log_Info("XML Goverments Data Loaded!" );
-}
 void Game::XML_Load_Data()
 {
-  XML_Load_Tiles();
-  XML_Load_Techs();
-  XML_Load_Units();
-  XML_Load_Goverments();
-  XML_Load_Civs();
-  XML_Load_Upgrades();
+  XML_Data_Loader Loader(" ");
+  Tiles = Loader.Load_Tiles();
+  Technologies = Loader.Load_Techs();
+  Units = Loader.Load_Units();
+  Goverments = Loader.Load_Govs();
+  Civs = Loader.Load_Civs();
+  Upgrades = Loader.Load_Upgrades();
 }
 
-Map_Generator_Data Game::Show_Map_Generator_UI()
-{
-  Map_Generator_Data out;
-  //to do gtkmm
-  //right now it will be in terminal
 
-  Logger::Log_Info("Alpha Map Generator" );
-  Logger::Log_Info("TO DO: Safety, This script has no correctness checking!" );
-  Logger::Log_Info("Please enter X size: ");
-  cin >> out.size_x;
-  Logger::Log_Info("Please enter Y size: ");
-  cin >> out.size_y;
-  Logger::Log_Info("Please enter amount of continents:");
-  cin >> out.continents_number;
-  Logger::Log_Info("Please enter oceans oceans_precentage:");
-  cin >> out.oceans_precentage;
-  return out;
-}
-
-void Game::Generate_Map(Map_Generator_Data User_Data)
+void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positions)
 {
+  Logger::Log_Info("Generating map...");
   Map_Generator Gen(User_Data, Tiles, Upgrades);
   Game_Map = Gen.Generate_Map_Using_User_Data();
+  map<string, array<int, 2>> starting_positions = Gen.Fetch_Starting_Positions_From_Map_Data();
+  if(starting_positions.empty() || !(load_starting_positions))
+  {
+    Logger::Log_Info("Assigning random starting positions...");
+    Assign_Random_Starting_Positions();
+  }
+  else
+  {
+    Logger::Log_Info("Loading starting positions...");
+    Assign_Starting_Positions_From_Data(starting_positions);
+  }
   //Game_Map.Print_Map_In_ASCII();
 }
 
-void Game::Show_Players_Generator_UI()
+void Game::Assing_Starting_Position_For_Player(int player_id, int x, int y)
 {
-  Logger::Log_Error("Unused Function");
+  Get_Player_By_Id(player_id)->Assign_Id(player_id);
+  Logger::Log_Info("Player " + Get_Player_By_Id(player_id)->Get_Leader_Name() + " will start at position " + to_string(x) + " " + to_string(y) );
+  Get_Player_By_Id(player_id)->Build_City_On_Map(x,y);
+  Game_Map.Build_City(x,y, player_id, Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius());
 }
 
-void Game::Assign_Starting_Positions()
+void Game::Asign_Random_Starting_Position_For_Player(int player_id)
 {
-  int player_id = 1;
-  for(auto &player : Players)
-  {
     int x = 0;
     int y = 0;
     bool loop = true;
@@ -263,45 +55,72 @@ void Game::Assign_Starting_Positions()
       y = rand() % Game_Map.Get_Y_Size();
       if(Game_Map.Is_Tile_Neutral(x,y) && Game_Map.Get_Tile(x,y).Get_Name() == "Land")
       {
-        player.Assign_Id(player_id);
-        Logger::Log_Info("Player " + player.Get_Leader_Name() + " will start at position " + to_string(x) + " " + to_string(y) );
-        player.Build_City_On_Map(x,y);
-        Game_Map.Build_City(x,y, player_id, 2);
+        Assing_Starting_Position_For_Player(player_id, x, y);
         loop = false;
-        player_id++;
       }
     }
+}
+
+void Game::Assign_Starting_Positions_From_Data(map<string, array<int, 2>> starting_positions)
+{
+  int player_id = 1;
+  for(auto &player : Players)
+  {
+    if(starting_positions.count(player.Get_Raw_Name()))
+    {
+      int x = starting_positions[player.Get_Raw_Name()][0];
+      int y = starting_positions[player.Get_Raw_Name()][1];
+      Assing_Starting_Position_For_Player(player_id, x ,y);
+    }
+    else
+    {
+      Logger::Log_Warning("Could not find starting position for " + player.Get_Raw_Name() + " assuming random...");
+      Asign_Random_Starting_Position_For_Player(player_id);
+    }
+    player_id++;
   }
 }
 
-void Game::Add_Players(int player_id, int other_players_player_count, bool allow_duplicates)
+void Game::Assign_Random_Starting_Positions()
+{
+  int player_id = 1;
+  for(auto &player : Players)
+  {
+    Asign_Random_Starting_Position_For_Player(player_id);
+    player_id++;
+  }
+}
+
+void Game::Add_Player_By_Name(string name, bool ai)
+{
+  Is_Player_AI_List.push_back(ai);
+  for(auto& civ : Civs)
+  {
+    if(civ.Get_Raw_Name() == name)
+    {
+      Players.push_back(civ);
+      return;
+    }
+  }
+  Logger::Log_Error("Civilization not found!");
+  Logger::Log_Warning("Adding random!");
+  Players.push_back(Civs[0]);
+}
+
+void Game::Add_Players(vector<tuple<string, bool>> players)
 {
   currently_moving_player = 1;
-  Players.push_back(Civs[player_id]);
   Is_Player_AI_List.push_back(0); //neutrals
-  Is_Player_AI_List.push_back(0);
-  Player_Border_Colors.push_back(Players[0].Get_Civ_Color());
-  if(!allow_duplicates)
-    Civs.erase(Civs.begin() + player_id);
-  int added_civs = 0;
-  while(Civs.size() != 0 && other_players_player_count != added_civs)
+  Logger::Log_Info("Adding " + to_string(players.size()) + " players!");
+  for(auto& player : players)
   {
-    Is_Player_AI_List.push_back(1);
-    AI_Data tmp;
-    AI_Data_For_Players[Players.size() - 1] = tmp;
-    int rand_id = rand() % Civs.size();
-    Players.push_back(Civs[rand_id]);
-    Player_Border_Colors.push_back((uint32_t)Players[Players.size() - 1].Get_Civ_Color());
-    if(!allow_duplicates)
-      Civs.erase(Civs.begin() + rand_id);
-    added_civs++;
+    Add_Player_By_Name(get<0>(player), get<1>(player));
   }
-  if(Civs.size() == 0)
-    Logger::Log_Warning("Not enough civilizations, player count decreased!");
+
   Logger::Log_Info("Players added!" );
 }
 
-Game::Game(bool a)
+Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions)
 {
   srand(time(0));
   turn_counter = 1;
@@ -309,7 +128,14 @@ Game::Game(bool a)
   Logger::Log_Warning("TO DO: Safety, If code crashes here check XML!" );
   XML_Load_Data();
   Logger::Log_Info("XML Data Loaded!" );
+  Add_Players(players);
+  Generate_Map(Map_Data, load_starting_positions);
+
   autosave = a;
+  for(auto &player : Players)
+  {
+    Player_Border_Colors.push_back(player.Get_Civ_Color());
+  }
 }
 
 Game::Game()
@@ -345,6 +171,8 @@ Map *Game::Get_Map()
 
 uint32_t Game::Get_Border_Color_By_Player_Id(int id)
 {
+  if(id == 0)
+    return 0;
   return Player_Border_Colors[id-1];
 }
 
@@ -932,4 +760,15 @@ Unit Game::Get_Unit_By_Name(string name)
   });
   Unit out = *it;
   return out;
+}
+
+void Game::Disband_Unit(int x, int y)
+{
+  Get_Map()->Get_Tile_Pointer(x,y)->Remove_Unit_From_Tile();
+  Get_Currently_Moving_Player()->Remove_Unit_By_Coords(x,y);
+}
+
+vector<Civ> Game::Get_Players()
+{
+  return Players;
 }
