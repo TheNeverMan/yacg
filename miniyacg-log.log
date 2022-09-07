@@ -1,0 +1,461 @@
+1.0.33-INSTALLER
+MINIYACG Logger v1.0
+[INFO] Preparing Windows...
+[INFO] Loading CSS...
+[INFO] Loading XML Settings Data...
+[INFO] XML Settings Data Loaded!
+[INFO] Loading CSS...
+[INFO] Initializing XML Loader with path ./
+[INFO] Loading XML Civs Data...
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading file miniyacg-config-civs.xml...
+[INFO] XML Civs Data Loaded!
+[INFO] Changing to Game Creation Window!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Loading CSS...
+[INFO] Showing Game Window...
+[INFO] Starting XML Data Loading...
+[WARNING] TO DO: Safety, If code crashes here check XML!
+[INFO] Initializing XML Loader with path  
+[INFO] Loading XML Tile Data...
+[INFO] Loading file miniyacg-config-tiles.xml...
+[INFO] XML Tile Data Loaded!
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading XML Civs Data...
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading file miniyacg-config-civs.xml...
+[INFO] XML Civs Data Loaded!
+[INFO] Loading XML Upgrades Data...
+[INFO] Loading file miniyacg-config-upgrades.xml...
+[INFO] XML Upgrades Data Loaded!
+[INFO] XML Data Loaded!
+[INFO] Adding 21 players!
+[INFO] Players added!
+[INFO] Generating map...
+[INFO] Loading map from file!
+[INFO] Loading map /home/leopoldkucinski/Dokumenty/yacg/maps/world-map.map...
+[INFO] Loading finished!
+[INFO] Loading map /home/leopoldkucinski/Dokumenty/yacg/maps/world-map.map...
+[INFO] Loading finished!
+[INFO] Loading starting positions...
+[INFO] Player Chief Raden Wijaya will start at position 94 38
+[INFO] Player Chief Thomas Jefferson will start at position 28 22
+[INFO] Player Chief Frederick II will start at position 59 18
+[INFO] Player Chief Elizabeth will start at position 65 17
+[INFO] Player Chief Hulagu Khan will start at position 86 17
+[INFO] Player Chief Kan II will start at position 26 33
+[INFO] Player Chief Richard I will start at position 53 17
+[INFO] Player King Topa Inca Yupanqui will start at position 31 42
+[INFO] Player Chief Álvaro II will start at position 59 40
+[INFO] Player Chief Conan I will start at position 54 19
+[INFO] Player Chief Yasovarman I will start at position 87 31
+[INFO] Player Chief Zygmunt II August will start at position 61 18
+[WARNING] Could not find starting position for Tuʻi Tonga assuming random...
+[INFO] Player Chief Kauʻulufonua I will start at position 81 27
+[INFO] Player Chief Askia Daoud will start at position 54 32
+[INFO] Player Chief Mithridates II will start at position 73 27
+[INFO] Player Chief Deng Xiaoping will start at position 95 22
+[INFO] Player Chief Tutankhamun will start at position 64 30
+[INFO] Player Chief Ilum-ma-ilī will start at position 69 25
+[INFO] Player Chief Hadrian will start at position 57 22
+[INFO] Player Chief Shalishuka will start at position 83 27
+[INFO] Player Chief Emmanuel Macron will start at position 56 20
+[INFO] Game Object Passed to Game Window!
+[INFO] Screen resolution is 1920x1080
+[INFO] Generating Map View...
+[INFO] Map Size is 118 60
+[INFO] Map View Generated!
+[INFO] Updating Map...
+[INFO] Map Updated!
+[INFO] Update took: 3121,435672 ms
+[INFO] Changing to Game Window!
+[INFO] Closing Game Window!
+[INFO] Changing to Intro Window!
+[INFO] Loading CSS...
+[INFO] Initializing XML Loader with path ./
+[INFO] Loading XML Civs Data...
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading file miniyacg-config-civs.xml...
+[INFO] XML Civs Data Loaded!
+[INFO] Changing to Game Creation Window!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Loading CSS...
+[INFO] Showing Game Window...
+[INFO] Starting XML Data Loading...
+[WARNING] TO DO: Safety, If code crashes here check XML!
+[INFO] Initializing XML Loader with path  
+[INFO] Loading XML Tile Data...
+[INFO] Loading file miniyacg-config-tiles.xml...
+[INFO] XML Tile Data Loaded!
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading XML Civs Data...
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading file miniyacg-config-civs.xml...
+[INFO] XML Civs Data Loaded!
+[INFO] Loading XML Upgrades Data...
+[INFO] Loading file miniyacg-config-upgrades.xml...
+[INFO] XML Upgrades Data Loaded!
+[INFO] XML Data Loaded!
+[INFO] Adding 21 players!
+[INFO] Players added!
+[INFO] Generating map...
+[INFO] Map Generator
+[INFO] Map Size X: 50 Y: 50
+[INFO] Cleaning The Map...
+[INFO] Map Clean!
+[INFO] Continents: 10 Land Percentage: 50 Land Tiles: 1250
+[INFO] Tiles Per Continent: 125
+[INFO] Generating Continent at 42 20 Depth: 3
+[INFO] Generating Continent at 30 20 Depth: 2
+[INFO] Generating Continent at 36 20 Depth: 1
+[INFO] Generating Continent at 42 24 Depth: 5
+[INFO] Desert continent!
+[INFO] Generating Continent at 42 35 Depth: 4
+[INFO] Generating Continent at 46 35 Depth: 3
+[INFO] Generating Continent at 48 12 Depth: 4
+[INFO] Generating Continent at 48 0 Depth: 3
+[INFO] Polar continent!
+[INFO] Generating Continent at 52 0 Depth: 2
+[INFO] Polar continent!
+[INFO] Generating Continent at 49 0 Depth: 1
+[INFO] Polar continent!
+[INFO] Generating Continent at 24 3 Depth: 4
+[INFO] Polar continent!
+[INFO] Generating Continent at 24 -8 Depth: 3
+[INFO] Polar continent!
+[INFO] Generating Continent at 19 -8 Depth: 2
+[INFO] Polar continent!
+[INFO] Generating Continent at 20 33 Depth: 7
+[INFO] Generating Continent at 20 21 Depth: 6
+[INFO] Generating Continent at 15 21 Depth: 5
+[INFO] Generating Continent at 17 21 Depth: 4
+[INFO] Generating Continent at 46 33 Depth: 5
+[INFO] Generating Continent at 57 33 Depth: 4
+[INFO] Generating Continent at 57 28 Depth: 3
+[INFO] Desert continent!
+[INFO] Generating Continent at 19 38 Depth: 6
+[INFO] Generating Continent at 7 38 Depth: 5
+[INFO] Generating Continent at 2 38 Depth: 4
+[INFO] Generating Continent at 0 38 Depth: 3
+[INFO] Generating Continent at 2 48 Depth: 6
+[INFO] Polar continent!
+[INFO] Generating Continent at 2 36 Depth: 5
+[INFO] Generating Continent at 2 42 Depth: 4
+[INFO] Generating Continent at 2 45 Depth: 3
+[INFO] Polar continent!
+[INFO] Generating Continent at 2 46 Depth: 2
+[INFO] Polar continent!
+[INFO] Generating Continent at 40 37 Depth: 4
+[INFO] Generating Continent at 51 37 Depth: 3
+[INFO] Generating Continent at 55 37 Depth: 2
+[INFO] Generating Continent at 44 34 Depth: 4
+[INFO] Generating Continent at 32 34 Depth: 3
+[INFO] Generating Continent at 32 29 Depth: 2
+[INFO] Desert continent!
+[ERROR] Map path not found
+[WARNING] No starting positions found, this may not be an error!
+[INFO] Assigning random starting positions...
+[INFO] Player Chief Kertawijaya will start at position 46 45
+[INFO] Player Chief Shatadhanvan will start at position 27 33
+[INFO] Player Chief Armand Fallières will start at position 24 44
+[INFO] Player Chief Abbas the Great will start at position 46 47
+[INFO] Player Chief Kazimierz I Odnowiciel will start at position 5 49
+[INFO] Player Chief Dwight Eisenhower will start at position 49 39
+[INFO] Player Chief Temür Khan will start at position 46 27
+[INFO] Player Chief Paul von Hindenburg will start at position 27 45
+[INFO] Player Chief Sonni Ali will start at position 24 42
+[INFO] Player King Manco Inca Yupanqui will start at position 42 40
+[INFO] Player Chief Geoffrey I will start at position 23 25
+[INFO] Player Chief Amenhotep III will start at position 21 22
+[INFO] Player Chief Edward I will start at position 21 39
+[INFO] Player Chief Sin-Muballit will start at position 34 7
+[INFO] Player Chief Lukeni lua Nimi will start at position 48 46
+[INFO] Player Chief K'awiil Ek' will start at position 34 34
+[INFO] Player Chief Sun Yat-sen will start at position 32 20
+[INFO] Player Chief Constantine will start at position 44 41
+[INFO] Player Chief Harshavarman I will start at position 23 37
+[INFO] Player Chief Catherine will start at position 45 43
+[INFO] Player Chief Fangaʻoneʻone will start at position 29 48
+[INFO] Game Object Passed to Game Window!
+[INFO] Screen resolution is 1920x1080
+[WARNING] Map may not be big enough to fit on screen...
+[INFO] Generating Map View...
+[INFO] Map Size is 50 50
+[INFO] Map View Generated!
+[INFO] Updating Map...
+[INFO] Map Updated!
+[INFO] Update took: 1169,245702 ms
+[INFO] Changing to Game Window!
+[INFO] Closing Game Window!
+[INFO] Changing to Intro Window!
+[INFO] Loading CSS...
+[INFO] Initializing XML Loader with path ./
+[INFO] Loading XML Civs Data...
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading file miniyacg-config-civs.xml...
+[INFO] XML Civs Data Loaded!
+[INFO] Changing to Game Creation Window!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Loading CSS...
+[INFO] Showing Game Window...
+[INFO] Starting XML Data Loading...
+[WARNING] TO DO: Safety, If code crashes here check XML!
+[INFO] Initializing XML Loader with path  
+[INFO] Loading XML Tile Data...
+[INFO] Loading file miniyacg-config-tiles.xml...
+[INFO] XML Tile Data Loaded!
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading XML Civs Data...
+[INFO] Loading XML Techs Data...
+[INFO] Loading file miniyacg-config-techs.xml...
+[INFO] XML Techs Data Loaded!
+[INFO] Loading XML Units Data...
+[INFO] Loading file miniyacg-config-units.xml...
+[INFO] XML Units Data Loaded!
+[INFO] Loading XML Govs Data...
+[INFO] Loading file miniyacg-config-goverments.xml...
+[INFO] XML Goverments Data Loaded!
+[INFO] Loading file miniyacg-config-civs.xml...
+[INFO] XML Civs Data Loaded!
+[INFO] Loading XML Upgrades Data...
+[INFO] Loading file miniyacg-config-upgrades.xml...
+[INFO] XML Upgrades Data Loaded!
+[INFO] XML Data Loaded!
+[INFO] Adding 21 players!
+[INFO] Players added!
+[INFO] Generating map...
+[INFO] Loading map from file!
+[INFO] Loading map /home/leopoldkucinski/Dokumenty/yacg/maps/world-map.map...
+[INFO] Loading finished!
+[INFO] Loading map /home/leopoldkucinski/Dokumenty/yacg/maps/world-map.map...
+[INFO] Loading finished!
+[INFO] Loading starting positions...
+[INFO] Player Chief Wikramawardhana will start at position 94 38
+[INFO] Player Chief Edward Gierek will start at position 61 18
+[INFO] Player Chief Antoninus Pius will start at position 57 22
+[INFO] Player Chief Konrad Adenauer will start at position 59 18
+[INFO] Player Chief Akhenaten will start at position 64 30
+[INFO] Player Chief Ismail I will start at position 73 27
+[INFO] Player Chief Bindusara will start at position 83 27
+[INFO] Player King Yáhuar Huácac will start at position 31 42
+[INFO] Player Chief Ucha'an K'in B'alam will start at position 26 33
+[INFO] Player Chief Külüg Khan will start at position 86 17
+[INFO] Player Chief Ammi-Ditana will start at position 69 25
+[INFO] Player Chief Louis XVIII will start at position 56 20
+[INFO] Player Chief Alexander I will start at position 65 17
+[INFO] Player Chief Maʻuhau will start at position 117 43
+[INFO] Player Chief Sonni Baru will start at position 54 32
+[INFO] Player Chief Edward VII will start at position 53 17
+[INFO] Player Chief Ishanavarman II will start at position 87 31
+[INFO] Player Chief Ming Chengzu will start at position 95 22
+[INFO] Player Chief Harry Truman will start at position 28 22
+[INFO] Player Chief Alfons I will start at position 59 40
+[INFO] Player Chief Alan IV will start at position 54 19
+[INFO] Game Object Passed to Game Window!
+[INFO] Screen resolution is 1920x1080
+[INFO] Generating Map View...
+[INFO] Map Size is 118 60
+[INFO] Map View Generated!
+[INFO] Updating Map...
+[INFO] Map Updated!
+[INFO] Update took: 3176,175363 ms
+[INFO] Changing to Game Window!
+[INFO] Loading CSS...
+[INFO] Showing Dialog...
+[INFO] Closing Game Window!
+[INFO] Changing to Intro Window!
+[INFO] Exiting...
+[INFO] Closing Game!

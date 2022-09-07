@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
 <civ name="China"  r="254" g="206" b="27" personality="Authoritarian">
@@ -50,6 +50,36 @@ China's color is yellow - backgound color of Qing Dynasty flag.
 <city name="Dalian"/>
 <city name="Donyguan"/>
 <city name="Ningbo"/>
+<city name="Xiamen"/>
+<city name="Fuzhou"/>
+<city name="Wuxi"/>
+<city name="Hefei"/>
+<city name="Kunming"/>
+<city name="Harbin"/>
+<city name="Jinan"/>
+<city name="Foshan"/>
+<city name="Changchun"/>
+<city name="Wenzhou"/>
+<city name="Shijazhuang"/>
+<city name="Nanning"/>
+<city name="Changzhou"/>
+<city name="Quanzhou"/>
+<city name="Nanchang"/>
+<city name="Guiyang"/>
+<city name="Taiyuan"/>
+<city name="Yantai"/>
+<city name="Jiaxing"/>
+<city name="Nantong"/>
+<city name="Jinhua"/>
+<city name="Zhuhai"/>
+<city name="Huizhou"/>
+<city name="Xuzhou"/>
+<city name="Haikou"/>
+<city name="Urumqi"/>
+<city name="Shaozing"/>
+<city name="Zhongshan"/>
+<city name="Taizhou"/>
+<city name="Jiujiang"/>
 </civ>
 <civ name="Majapahit"  r="209" g="168" b="64" personality="Expansive">
 <replacement name="Theocracy" leader="Dharmmadhyaksa ring Kasewan" state_name="Holy Empire of"/>
@@ -101,6 +131,36 @@ Majaphit's color is gold - the color of Surya Majapahit, the symbol of Majapahit
 <city name="Katingan"/>
 <city name="Banjar"/>
 <city name="Sampit"/>
+<city name="Solot"/>
+<city name="Berune"/>
+<city name="Luwu"/>
+<city name="Gowa"/>
+<city name="Salay"/>
+<city name="Makassar"/>
+<city name="Dompo"/>
+<city name="Bima"/>
+<city name="Sapi"/>
+<city name="Nagor"/>
+<city name="Keda"/>
+<city name="Jere"/>
+<city name="Kalanten"/>
+<city name="Tringgano"/>
+<city name="Dungun"/>
+<city name="Pahang"/>
+<city name="Kelang"/>
+<city name="Pakamuar"/>
+<city name="Tumasik"/>
+<city name="Lamuri"/>
+<city name="Samudra"/>
+<city name="Lwas"/>
+<city name="Parllak"/>
+<city name="Tumihang"/>
+<city name="Barus"/>
+<city name="Teba"/>
+<city name="Panai"/>
+<city name="Siyak"/>
+<city name="Niran"/>
+<city name="Kanjab"/>
 </civ>
 <civ name="Egypt"  r="194" g="57" b="20" personality="Holy">
 <info>
@@ -147,6 +207,36 @@ Egypt's color is orange - the color of Red Crown.
 <city name="Sidon"/>
 <city name="Carchemish"/>
 <city name="Citium"/>
+<city name="Khem"/>
+<city name="Yamu"/>
+<city name="Raqote"/>
+<city name="Khito"/>
+<city name="Ptkheka"/>
+<city name="Zau"/>
+<city name="Per-Wadjet"/>
+<city name="Khasut"/>
+<city name="Timinhor"/>
+<city name="Piemro"/>
+<city name="Thonis"/>
+<city name="Menouthis"/>
+<city name="Pikuat"/>
+<city name="Per-Atum"/>
+<city name="Dejdu"/>
+<city name="Hut-hery-ib"/>
+<city name="Taremu"/>
+<city name="Setennu"/>
+<city name="Tjebnutjer"/>
+<city name="Pachnamu´nis"/>
+<city name="Iunu"/>
+<city name="Tjaru"/>
+<city name="Per-Amun"/>
+<city name="Weprehwy"/>
+<city name="Tamiat"/>
+<city name="Djedet"/>
+<city name="Semabehdet"/>
+<city name="Per-Bast"/>
+<city name="Djanet"/>
+<city name="Hut-waret"/>
 </civ>
 <civ name="England"  r="201" g="8" b="42" personality="Expansive">
 <info>
@@ -194,6 +284,36 @@ English color is red from English flag - the Union Jack.
 <city name="Newcastle Upon Tyre"/>
 <city name="Sunderland"/>
 <city name="Plymouth"/>
+<city name="Kingstom upon Hull"/>
+<city name="Wolverhampton"/>
+<city name="Stoke-on-Trent"/>
+<city name="Derby"/>
+<city name="Southampton"/>
+<city name="Salford"/>
+<city name="Westminster"/>
+<city name="Portsmouth"/>
+<city name="York"/>
+<city name="Peterborough"/>
+<city name="Southend-on-Sea"/>
+<city name="Chelmsford"/>
+<city name="Oxford"/>
+<city name="Canterbury"/>
+<city name="St. Albans"/>
+<city name="Preston"/>
+<city name="Lancaster"/>
+<city name="Norwich"/>
+<city name="Exeter"/>
+<city name="Cambridge"/>
+<city name="Gloucester"/>
+<city name="Winchester"/>
+<city name="Carlisle"/>
+<city name="Worcester"/>
+<city name="Durham"/>
+<city name="Lincoln"/>
+<city name="Chester"/>
+<city name="Bath"/>
+<city name="Hereford"/>
+<city name="Salisbury"/>
 </civ>
 <civ name="America" r="60" g="59" b="110" personality="Enlightened">
 <info>
@@ -234,13 +354,43 @@ American color is blue from american flag.
 <city name="Phoenix"/>
 <city name="Philadelphia"/>
 <city name="San Diego"/>
-<city name="Dallas"/>
+<city name="Oklahoma City"/>
 <city name="Austin"/>
 <city name="Seattle"/>
 <city name="Denver"/>
 <city name="Boston"/>
 <city name="Jacksonville"/>
 <city name="Indianapolis"/>
+<city name="Charlotte"/>
+<city name="Nachville"/>
+<city name="El Paso"/>
+<city name="Boston"/>
+<city name="Detroit"/>
+<city name="Portland"/>
+<city name="Louisville"/>
+<city name="Baltimore"/>
+<city name="Milwaukee"/>
+<city name="Fresno"/>
+<city name="Tucson"/>
+<city name="Sacramento"/>
+<city name="Mesa"/>
+<city name="Kansas City"/>
+<city name="Atlanta"/>
+<city name="Omaha"/>
+<city name="Colorado Sprigns"/>
+<city name="Raleigh"/>
+<city name="Virgina Beach"/>
+<city name="Miami"/>
+<city name="Oakland"/>
+<city name="Minneapolis"/>
+<city name="Tulsa"/>
+<city name="Bakersfield"/>
+<city name="Wichita"/>
+<city name="Arlington"/>
+<city name="Aurora"/>
+<city name="New Orleans"/>
+<city name="Cleveland"/>
+<city name="Anaheim"/>
 
 </civ>
 <civ name="Inca"   r="1" g="138" b="44" personality="Holy">
@@ -292,6 +442,36 @@ Incan color is green, one of the colors of rainbow on Sapa Inca banner.
 <city name="Nazca"/>
 <city name="Pachamac"/>
 <city name="Quito"/>
+<city name="Rumiqullqa"/>
+<city name="Tucume"/>
+<city name="Saksaywaman"/>
+<city name="Inka Wasi"/>
+<city name="Ayacucho"/>
+<city name="Huancavelica"/>
+<city name="Inti Punku"/>
+<city name="Inti Watana"/>
+<city name="Llaqtapata"/>
+<city name="Machu Colca"/>
+<city name="Patallaqta"/>
+<city name="Nusta Hispana"/>
+<city name="Phuyupatamarka"/>
+<city name="Pinkuylluna"/>
+<city name="Puka Pukara"/>
+<city name="Qollmay"/>
+<city name="Quispiguanca"/>
+<city name="Qunchamarka"/>
+<city name="Quirkancha"/>
+<city name="Tarawasi"/>
+<city name="Tarmatampu"/>
+<city name="Tipon"/>
+<city name="Sayhuite"/>
+<city name="Wamanmarka"/>
+<city name="Willkaraqay"/>
+<city name="Puruchuco"/>
+<city name="Vilcashuaman"/>
+<city name="Pikllaqta"/>
+<city name="Pachakamaq"/>
+<city name="Wanuku Pampa"/>
 <replacement name="Tribe" leader="King" state_name="Kingdom of"/>
 </civ>
 <civ name="Babylon" r="120" g="120" b="120" personality="Enlightened">
@@ -338,6 +518,36 @@ Babylonian color is grey.
 <city name="Elam"/>
 <city name="Lullubi"/>
 <city name="Levant"/>
+<city name="Me-Turan"/>
+<city name="Tutub"/>
+<city name="Der"/>
+<city name="Urum"/>
+<city name="Kutha"/>
+<city name="Jemdet Nasr"/>
+<city name="Dilbat"/>
+<city name="Marad"/>
+<city name="Isin"/>
+<city name="Kisurra"/>
+<city name="Shuruppak"/>
+<city name="Bad-tibira"/>
+<city name="Zabalam"/>
+<city name="Umma"/>
+<city name="Girsu"/>
+<city name="Tell Zurghul"/>
+<city name="Tell Khaiber"/>
+<city name="Tulul al-Baqarat"/>
+<city name="Kuara"/>
+<city name="Ubaid"/>
+<city name="Akshak"/>
+<city name="Nagar"/>
+<city name="Urfa"/>
+<city name="Teil Taya"/>
+<city name="Balawat"/>
+<city name="Mumbaqat"/>
+<city name="Harran"/>
+<city name="Chagar Bazar"/>
+<city name="Al-Rawda"/>
+<city name="Shibaniba"/>
 </civ>
 <civ name="Congo" r="27" g="64" b="43" personality="Peaceful">
 <info>
@@ -387,6 +597,36 @@ Congolese color is dark green that can be found on Kingdom of Kongo coat of arms
 <city name="Mwene-Ditu"/>
 <city name="Boma"/>
 <city name="Kindu"/>
+<city name="Kamina"/>
+<city name="Gandajika"/>
+<city name="Bandundu"/>
+<city name="Gemena"/>
+<city name="Kipushi"/>
+<city name="Baraka"/>
+<city name="Bumba"/>
+<city name="Thysville"/>
+<city name="Beni"/>
+<city name="Kalemie"/>
+<city name="Muanda"/>
+<city name="Tshilenge"/>
+<city name="Lisala"/>
+<city name="Kisantu"/>
+<city name="Bukama"/>
+<city name="Ilebo"/>
+<city name="Kambove"/>
+<city name="Bakwa-Kalonji"/>
+<city name="Binga"/>
+<city name="Kongolo"/>
+<city name="Lodja"/>
+<city name="Katwa"/>
+<city name="Idiofa"/>
+<city name="Kalabo"/>
+<city name="Moba"/>
+<city name="Mulongo"/>
+<city name="Kaniama"/>
+<city name="Rutshuru"/>
+<city name="Manono"/>
+<city name="Miabi"/>
 </civ>
 <civ name="Rome" r="113" g="1" b="147" personality="Enterprising">
 <info>
@@ -432,6 +672,36 @@ Roman color is purple.
 <city name="Scarbantia"/>
 <city name="Asculum"/>
 <city name="Tarravo"/>
+<city name="Bononia"/>
+<city name="Italica"/>
+<city name="Modoetia"/>
+<city name="Salernum"/>
+<city name="Forum Livii"/>
+<city name="Barium"/>
+<city name="Dyrrachium"/>
+<city name="Brixia"/>
+<city name="Mediolanum"/>
+<city name="Comum"/>
+<city name="Regium Lepidi"/>
+<city name="Aquileia"/>
+<city name="Ascrivium"/>
+<city name="Scalabis"/>
+<city name="Villa Euracini"/>
+<city name="Attalia"/>
+<city name="Patavium"/>
+<city name="Spalatum"/>
+<city name="Nicomedia"/>
+<city name="Nicaea"/>
+<city name="Palma"/>
+<city name="Massa"/>
+<city name="Pistoria"/>
+<city name="Confloenta"/>
+<city name="Gerunda"/>
+<city name="Pompaelo"/>
+<city name="Naissus"/>
+<city name="Vesontio"/>
+<city name="Novidunum"/>
+<city name="Lugdunum"/>
 <replacement name="Despotism" leader="King" state_name="Kingdom of"/>
 <replacement name="Monarchy" leader="Imperator" state_name="Empire of"/>
 </civ>
@@ -477,6 +747,36 @@ Mongol color is brown that can be found on the modern-day Mongolia's flag.
 <city name="Choir"/>
 <city name="Ikh Khuree"/>
 <city name="Tsetserleg"/>
+<city name="Khovd"/>
+<city name="Ulaangom"/>
+<city name="Moron"/>
+<city name="Choibalsan"/>
+<city name="Uliastai"/>
+<city name="Zuun Kherem"/>
+<city name="Baruun Kherem"/>
+<city name="Bars Khot"/>
+<city name="Chin Tolgoin Balgas"/>
+<city name="Khar Bukhyn Balgas"/>
+<city name="Toba Khan Ord"/>
+<city name="Kharkhurem"/>
+<city name="Baibalyk"/>
+<city name="Khar Balgas"/>
+<city name="Khar Els"/>
+<city name="Bilge Khan Ord"/>
+<city name="Mume"/>
+<city name="Lungcheng"/>
+<city name="Shuvuutiin Gol Kherem"/>
+<city name="Tsenkher Gol Kherem"/>
+<city name="Bayanbulag Balgas"/>
+<city name="Terelj Hasar Balgas"/>
+<city name="Kherlen Tsagaan Aral"/>
+<city name="Lungzi"/>
+<city name="Lungtang"/>
+<city name="Tamsagbulag"/>
+<city name="Norovlin"/>
+<city name="Lungcheng"/>
+<city name="Luut"/>
+<city name="Orkhon"/>
 <replacement name="Despotism" leader="Khan" state_name="Khamag Confederacy of"/>
 <replacement name="Monarchy" leader="Great Khan" state_name="Khaganate of"/>
 </civ>
@@ -523,6 +823,36 @@ Breton color is black - one of two colors on their flag.
 <city name="Avranches"/>
 <city name="Pontivy"/>
 <city name="Dinan"/>
+<city name="Concarneau‎"/>
+<city name="Trégunc‎"/>
+<city name="Vannes"/>
+<city name="Vitre"/>
+<city name="Pontivy"/>
+<city name="Loudeac"/>
+<city name="Guingamp"/>
+<city name="Erquy"/>
+<city name="Clisson"/>
+<city name="Pornic"/>
+<city name="Fougeres"/>
+<city name="Crozon"/>
+<city name="Benodet"/>
+<city name="Lannion"/>
+<city name="Paimpol"/>
+<city name="Perros-Guirec"/>
+<city name="Morlaix"/>
+<city name="Landerneau"/>
+<city name="Ploermel"/>
+<city name="Carnac"/>
+<city name="Quiberon"/>
+<city name="Cholet"/>
+<city name="Bressuire"/>
+<city name="Thouars"/>
+<city name="Prthenay"/>
+<city name="Evron"/>
+<city name="Mayenne"/>
+<city name="Laval"/>
+<city name="Cholet"/>
+<city name="Le Mans"/>
 <replacement name="Monarchy" leader="Duke" state_name="Duchy of"/>
 </civ>
 <civ name="Persia"  r="129" g="221" b="238" personality="Expansive">
@@ -646,6 +976,31 @@ German color is black a color that has many times appeared on their flag.
 <city name="Gelsenkirchen"/>
 <city name="Chemnitz"/>
 <city name="Aachen"/>
+<city name="Halle"/>
+<city name="Magdeburg"/>
+<city name="Krefeld"/>
+<city name="Lubeck"/>
+<city name="Mainz"/>
+<city name="Saarbrucken"/>
+<city name="Kassel"/>
+<city name="Hagen"/>
+<city name="Erfurt"/>
+<city name="Potsdam"/>
+<city name="Heidelberg"/>
+<city name="Neuss"/>
+<city name="Darmstadt"/>
+<city name="Wolfsburg"/>
+<city name="Ulm"/>
+<city name="Paderborn"/>
+<city name="Solingen"/>
+<city name="Leverkusen"/>
+<city name="Oldenburg"/>
+<city name="Herne"/>
+<city name="Fruth"/>
+<city name="Krefeld"/>
+<city name="Kiel"/>
+<city name="Rostock"/>
+<city name="Kassel"/>
 </civ>
 
 <civ name="Khmer" r="111" g="153" b="60" personality="Holy">
@@ -668,6 +1023,7 @@ the region.
 <leader name="Udayadityavarman II"/>
 <leader name="Dharanindravarman I"/>
 <leader name="Tribhuvanadityavarman"/>
+<city name="Angkor"/>
 <city name="Mahendraparvata"/>
 <city name="Hariharalaya"/>
 <city name="Koh Ker"/>
@@ -684,10 +1040,40 @@ the region.
 <city name="Beng Mealea"/>
 <city name="Kbal Spean"/>
 <city name="Banteay Samre"/>
-<city name="Preah Rup"/>
+<city name="Tep Pranam"/>
 <city name="Banteay Kdei"/>
 <city name="Prasat Suor Prat"/>
 <city name="Baphuon"/>
+<city name="Ak Yum"/>
+<city name="Bakong"/>
+<city name="Phnom Dei"/>
+<city name="Kbal Spean"/>
+<city name="Bat Chum"/>
+<city name="Chau Say Tevoda"/>
+<city name="Mebon"/>
+<city name="Khleangs"/>
+<city name="Beng Mealea"/>
+<city name="Phnom Bok"/>
+<city name="Krol Ko"/>
+<city name="Lolei"/>
+<city name="Mangalartha"/>
+<city name="Neak Pean"/>
+<city name="Phimeanakas"/>
+<city name="Kutisvara"/>
+<city name="Phnom Bakheng"/>
+<city name="Phnom Krom"/>
+<city name="Prasat Baksei Chamkrong"/>
+<city name="Spean Thma"/>
+<city name="Srang Srah"/>
+<city name="Preah Pithu"/>
+<city name="Ta Keo"/>
+<city name="Ta Prohm Kei"/>
+<city name="Wat Athvea"/>
+<city name="Thommanon"/>
+<city name="Thma Bay Kaek"/>
+<city name="Ta Som"/>
+<city name="Ta Nei"/>
+<city name="Pre Rup"/>
 <replacement name="Despotism" state_name="Empire of" leader="Chakravartin"/>
 </civ>
 <civ name="Songhay" r="216" g="1" b="55" personality="Expansive">
@@ -703,8 +1089,8 @@ empire and its religious-scientific character
 Songhay leaders include Songhay emperors
 Songhay color is red from Mali Emipre flag
 </info>
-<trait name="Commercial"/>
-<trait name="Religious"/>
+<trait name="O"/>
+<trait name="R"/>
 <leader name="Sonni Ali"/>
 <leader name="Sonni Baru"/>
 <leader name="Askia Muhammad I"/>
@@ -780,6 +1166,41 @@ Mayan color is green from on of mayan flags.
 <city name="Sayil"/>
 <city name="Coba"/>
 <city name="Seibal"/>
+<city name="Naranjo"/>
+<city name="El Baúl"/>
+<city name="Aguada Fénix"/>
+<city name="Becan"/>
+<city name="Chichen Itza"/>
+<city name="Chunchucmil"/>
+<city name="Comalcalco"/>
+<city name="Dzibilchaltun"/>
+<city name="Iximche"/>
+<city name="Ixkun"/>
+<city name="Kaminaljuyu"/>
+<city name="Quiriguá"/>
+<city name="San Bartolo"/>
+<city name="Oxkintok"/>
+<city name="Nakbe"/>
+<city name="Mayapan"/>
+<city name="Moral Reforma"/>
+<city name="Naachtun"/>
+<city name="Yaxha"/>
+<city name="Yaxchilan"/>
+<city name="Uxmal"/>
+<city name="Tulum"/>
+<city name="San Bartolo"/>
+<city name="Altun Ha"/>
+<city name="Ake"/>
+<city name="Chinkultic"/>
+<city name="Dzehkabtun"/>
+<city name="Ekʼ Balam"/>
+<city name="Nojpetén"/>
+<city name="Guaquitepec"/>
+<city name="Huntichmul"/>
+<city name="Lacanha"/>
+<city name="Machaquila"/>
+<city name="Xlapak"/>
+<city name="Xpuhil"/>
 </civ>
 <civ name="Poland" r="220" g="20" b="60" personality="Peaceful">
 <info>
@@ -968,6 +1389,256 @@ Russian color is yellow from Russian Empire flag.
 <city name="Orenburg"/>
 <city name="Tomsk"/>
 <city name="Kemerovo"/>
+<city name="Tomsk"/>
+<city name="Sevastopol"/>
+<city name="Stavropol"/>
+<city name="Ryazan"/>
+<city name="Penza"/>
+<city name="Lipetsk"/>
+<city name="Novokuznetsk"/>
+<city name="Cheboksary"/>
+<city name="Astrakhan"/>
+<city name="Tula"/>
+<city name="Kirov"/>
+<city name="Kursk"/>
+<city name="Ulan-Ude"/>
+<city name="Tver"/>
+<city name="Magnitogorsk"/>
+<city name="Bryansk"/>
+<city name="Ivanovo"/>
+<city name="Yakutsk"/>
+<city name="Belgorod"/>
+<city name="Chita"/>
+</civ>
+
+<civ name="France" r="4" g="8" b="108" personality="Expansive">
+<info>
+France is an important european country. Not only it was a colonial superpower
+and it participated in both world wars and shaped world politics, but also ideas
+of freedom, equality and democracy have been born here.
+
+French traits are Cultural and Militaristic to represent the impact of First French Republic
+and military power of this former colonial power.
+
+French leaders are kings, emperors and presidents of France.
+French color is blue from its flag.
+</info>
+<trait name="C"/>
+<trait name="M"/>
+<leader name="Napolen Bonaparte"/>
+<leader name="Napoleon III"/>
+<leader name="Charles Le Gaulle"/>
+<leader name="Raymond Poincaré"/>
+<leader name="Chlodwig I"/>
+<leader name="Charlemagle"/>
+<leader name="Charles Martel"/>
+<leader name="Hugo Kapet"/>
+<leader name="Louis XII"/>
+<leader name="Francis I"/>
+<leader name="Henry IV The Great"/>
+<leader name="Louis XIV the Sun King"/>
+<leader name="Louis XVI"/>
+<leader name="Pepin the Short"/>
+<leader name="Emmanuel Macron"/>
+<leader name="Armand Fallières"/>
+<leader name="Louis XVIII"/>
+<leader name="Charles IX"/>
+<leader name="Philip II"/>
+<leader name="Charles the Bald"/>
+<city name="Paris"/>
+<city name="Marseille"/>
+<city name="Lyon"/>
+<city name="Toulouse"/>
+<city name="Nice"/>
+<city name="Montpellier"/>
+<city name="Strasbourg"/>
+<city name="Bordeaux"/>
+<city name="Lille"/>
+<city name="Reims"/>
+<city name="Toulon"/>
+<city name="Saint-Étienne"/>
+<city name="Le Havre"/>
+<city name="Grenoble"/>
+<city name="Dijon"/>
+<city name="Angers"/>
+<city name="Saint-Denis"/>
+<city name="Villeurbanne"/>
+<city name="Nîmes"/>
+<city name="Clermont-Ferrand"/>
+<city name="Le Mans"/>
+<city name="Tours"/>
+<city name="Amiens"/>
+<city name="Limoges"/>
+<city name="Annecy"/>
+<city name="Metz"/>
+<city name="Orléans"/>
+<city name="Saint-Denis"/>
+<city name="Rouen"/>
+<city name="Montreuil"/>
+<city name="Caen"/>
+<city name="Nancy"/>
+<city name="Poitiers"/>
+<city name="Dunkirk"/>
+<city name="Versailles"/>
+<city name="Cannes"/>
+<city name="Saint-Nazaire"/>
+<city name="Colombes"/>
+<city name="Avignon"/>
+<city name="Nanterre"/>
+<city name="Besançon"/>
+<city name="Lorient"/>
+<city name="Chambéry"/>
+<city name="Bayonne"/>
+<city name="Boulogne-Billancourt"/>
+<city name="Perpignan"/>
+<city name="Argenteuil"/>
+<city name="Vichy"/>
+<city name="Dieppe"/>
+<city name="Nantes"/>
+<replacement name="Democracy" leader="President" state_name="Republic of"/>
+<replacement name="Republic" leader="Consul" state_name="First Republic of"/>
+<replacement name="Despotism" leader="Emperor" state_name="Carolingian Empire of"/>
+<replacement name="Dictatorship" leader="His Excellency" state_name="Directory of"/>
+</civ>
+<civ name="Maurya" r="20" g="139" b="179" personality="Expansive">
+<info>
+Maurya Empire although relatively shortlived (it existed for 150 years) was
+one of the strongest powers that have ever existed in Indian Subcontinent.
+Chandragupts - its creator managed to unite most of Indian territory under his rule.
+
+Mauryan traits are Expanisve and Religious, Expansive because of the scale of conquests made by
+Chandragupta and Religious because Maurya Empire had major role in spreading Jainism in India.
+
+Mauryan leaders include its kings.
+Mauryan color is blue from one of its possible flags.
+</info>
+<trait name="X"/>
+<trait name="R"/>
+<leader name="Chandragupta"/>
+<leader name="Bindusara"/>
+<leader name="Ashoka"/>
+<leader name="Dasharatha"/>
+<leader name="Samprati"/>
+<leader name="Shalishuka"/>
+<leader name="Devavarman"/>
+<leader name="Shatadhanvan"/>
+<leader name="Brihadratha"/>
+<city name="Pataliputra"/>
+<city name="Taxila"/>
+<city name="Suvarnagiri"/>
+<city name="Ujjain"/>
+<city name="Tosali"/>
+<city name="Srinagar"/>
+<city name="Kandhar"/>
+<city name="Patala"/>
+<city name="Rajgriha"/>
+<city name="Mathura"/>
+<city name="Kausambi"/>
+<city name="Vidisha"/>
+<city name="Bharukaccha"/>
+<city name="Tamralipti"/>
+<city name="Pundravardhan"/>
+<city name="Tamralipti"/>
+<city name="Champa"/>
+<city name="Vaishali"/>
+<city name="Sarnath"/>
+<city name="Varanasi"/>
+<city name="Sankissa"/>
+<city name="Bairat"/>
+<city name="Lanipaka"/>
+<city name="Kaisi"/>
+<city name="Lumbini"/>
+<city name="Sannati"/>
+<city name="Amaravati"/>
+<city name="Sanchi"/>
+<city name="Girnar"/>
+<city name="Rampurwa"/>
+<city name="Tripuri"/>
+<city name="Brahmagiri"/>
+<city name="Mansehra"/>
+<city name="Nigali-Sagar"/>
+<city name="Sopara"/>
+<replacement name="Monarchy" state_name="Empire of" leader="Samrat"/>
+<replacement name="Republic" leader="Mantriparishad" state_name="Republic of"/>
+<replacement name="Despotism" leader="Kumara" state_name="Duchy of"/>
+</civ>
+
+<civ name="Tuʻi Tonga" r="12" g="65" b="154" personality="Peaceful">
+<info>
+Tui'Tongan Empire was longlived Oceanian maritime empire that lasted over 2000 years.
+Tongan people managed to sail thousands of kilometers over oceans and exchange goods, trade and spread their culture.
+It has been formed in 950 BC and collapsed in 1500 AD, it was of the most important empires in territory of Oceania.
+
+Tongan traits are Nautical and Cultural, they represent maritime character of the empire.
+
+Tongan leaders are various kings of the empire.
+Tongan color is blue from modern Tonga coat of arms.
+</info>
+<trait name="N"/>
+<trait name="C"/>
+<leader name="ʻAhoʻeitu"/>
+<leader name="Tuʻi Haʻatakalaua"/>
+<leader name="Momo"/>
+<leader name="Lolofakangalo"/>
+<leader name="Kauʻulufonua I"/>
+<leader name="Fangaʻoneʻone"/>
+<leader name="Maʻuhau"/>
+<leader name="Kaloa"/>
+<leader name="Uluakimata I"/>
+<leader name="Fatafehi"/>
+<city name="Muʻa"/>
+<city name="Mata'utu"/>
+<city name="Futuna"/>
+<city name="Alofi"/>
+<city name="Vanua Levu"/>
+<city name="Viti Levu"/>
+<city name="Lau-Inseln"/>
+<city name="Niue"/>
+<city name="Ha'apai"/>
+<city name="Tongatapu"/>
+<city name="Tafahi"/>
+<city name="Niuafo'ou"/>
+<city name="Upolu"/>
+<city name="Tutuila"/>
+<city name="Sava'i"/>
+<city name="Alofi"/>
+<city name="Tui Manu'a"/>
+<city name="Tui Fiti"/>
+<city name="Lapaha"/>
+<city name="'Uvea"/>
+<city name="Fatumanongi"/>
+<city name="Foa"/>
+<city name="Fotuhaʻa"/>
+<city name="Hakauata"/>
+<city name="Haʻano"/>
+<city name="Foʻi ʻoneʻone"/>
+<city name="Vai ko Paluki"/>
+<city name="Fetokopunga"/>
+<city name="Nukupule"/>
+<city name="Moʻungaʻone"/>
+<city name="Uonukuhahake"/>
+<city name="Fakahiku"/>
+<city name="Haʻafeva"/>
+<city name="Luanamo"/>
+<city name="Teaupa"/>
+<city name="Hakauata"/>
+<city name="Nukunamo"/>
+<city name="Kao"/>
+<city name="Limu"/>
+<city name="Lofanga"/>
+<city name="Niuafoʻou"/>
+<city name="Onoiki"/>
+<city name="Fonoifua"/>
+<city name="Mangoiki"/>
+<city name="Nomuka iki"/>
+<city name="Mangoiki"/>
+<city name="Tele-ki-Vavaʻu"/>
+<city name="Tonumeia"/>
+<city name="Puho'ava"/>
+<city name="Muifuiva"/>
+<replacement name="Despotism" leader="Tuʻi Kanokupolu" state_name="Chiefdom of"/>
+<replacement name="Monarchy" leader="Haʻa Tuʻi Tonga" state_name="Maritime Empire of"/>
+<replacement name="Theocracy" leader="Hikule'o" state_name="Holy Empire of"/>
 </civ>
 </civs>
 </miniyacg>
