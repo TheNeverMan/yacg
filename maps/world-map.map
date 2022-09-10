@@ -22,6 +22,11 @@
 <starting_position name="Tuʻi Tonga" x="117" y="43"/>
 <starting_position name="Maurya" x="83" y="27"/>
 <starting_position name="France" x="56" y="20"/>
+<starting_position name="Japan" x="100" y="24"/>
+<starting_position name="Iroquois" x="28" y="20"/>
+<starting_position name="Sikh" x="79" y="23"/>
+<starting_position name="Ethiopia" x="68" y="36"/>
+<starting_position name="Macedonia" x="62" y="23"/>
 </starting_positions>
 <replacements>
 <replacement char="s" name="Sea"/>

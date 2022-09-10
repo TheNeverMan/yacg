@@ -31,6 +31,7 @@ class Game_Creation_Window : public Gtk::Window
     vector<Gtk::Box*> Human_Players_Boxes;
     void Show_Map_Selection_Dialog();
   protected:
+    Gtk::ScrolledWindow Main_Scrolled_Window;
     Gtk::Frame Dialog_Map_Frame;
     Gtk::Box Dialog_Root_Box;
     Gtk::Box Map_UI_Box;

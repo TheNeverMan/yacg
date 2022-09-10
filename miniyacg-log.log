@@ -40,6 +40,19 @@ MINIYACG Logger v1.0
 [INFO] Adding random civilization!
 [INFO] Adding random civilization!
 [INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
 [WARNING] Too many players added - not enough civilizations!
 [INFO] Adding random civilization!
 [WARNING] Too many players added - not enough civilizations!
@@ -92,7 +105,7 @@ MINIYACG Logger v1.0
 [INFO] Loading file miniyacg-config-upgrades.xml...
 [INFO] XML Upgrades Data Loaded!
 [INFO] XML Data Loaded!
-[INFO] Adding 21 players!
+[INFO] Adding 26 players!
 [INFO] Players added!
 [INFO] Generating map...
 [INFO] Loading map from file!
@@ -101,28 +114,32 @@ MINIYACG Logger v1.0
 [INFO] Loading map /home/leopoldkucinski/Dokumenty/yacg/maps/world-map.map...
 [INFO] Loading finished!
 [INFO] Loading starting positions...
-[INFO] Player Chief Raden Wijaya will start at position 94 38
-[INFO] Player Chief Thomas Jefferson will start at position 28 22
-[INFO] Player Chief Frederick II will start at position 59 18
-[INFO] Player Chief Elizabeth will start at position 65 17
-[INFO] Player Chief Hulagu Khan will start at position 86 17
-[INFO] Player Chief Kan II will start at position 26 33
-[INFO] Player Chief Richard I will start at position 53 17
-[INFO] Player King Topa Inca Yupanqui will start at position 31 42
-[INFO] Player Chief Álvaro II will start at position 59 40
-[INFO] Player Chief Conan I will start at position 54 19
-[INFO] Player Chief Yasovarman I will start at position 87 31
-[INFO] Player Chief Zygmunt II August will start at position 61 18
-[WARNING] Could not find starting position for Tuʻi Tonga assuming random...
-[INFO] Player Chief Kauʻulufonua I will start at position 81 27
-[INFO] Player Chief Askia Daoud will start at position 54 32
+[INFO] Player Chief Tribhuwana Wijayatunggadewi will start at position 94 38
+[INFO] Player Chief Dasharatha will start at position 83 27
+[INFO] Player Chief Stanisław August Poniatowski will start at position 61 18
+[INFO] Player Chief Mongke Khan will start at position 86 17
 [INFO] Player Chief Mithridates II will start at position 73 27
-[INFO] Player Chief Deng Xiaoping will start at position 95 22
-[INFO] Player Chief Tutankhamun will start at position 64 30
-[INFO] Player Chief Ilum-ma-ilī will start at position 69 25
-[INFO] Player Chief Hadrian will start at position 57 22
-[INFO] Player Chief Shalishuka will start at position 83 27
-[INFO] Player Chief Emmanuel Macron will start at position 56 20
+[INFO] Player Chief Yajaw Te' K'inich II will start at position 26 33
+[INFO] Player Chief Cassander will start at position 63 23
+[INFO] Player Chief Frederick I will start at position 59 18
+[INFO] Player Chief Franklin Roosevelt will start at position 28 22
+[INFO] Player Chief Askia Ishaq II will start at position 54 32
+[INFO] Player King Huayna Capac will start at position 31 42
+[INFO] Player Chief Marcus Aurelius will start at position 57 22
+[INFO] Player Chief Peter the Great will start at position 65 17
+[INFO] Player Chief Lolofakangalo will start at position 117 43
+[INFO] Player Chief Republic will start at position 59 40
+[INFO] Player Chief Anne will start at position 54 19
+[INFO] Player Chief Indravarman I will start at position 87 31
+[INFO] Player Chief Ammi-Saduqa will start at position 69 25
+[INFO] Player Chief Rokujō will start at position 101 24
+[INFO] Player Chief Henry V will start at position 53 17
+[INFO] Player Chief Thutmose III will start at position 64 30
+[INFO] Player Chief Hira Singh Dogra will start at position 80 23
+[INFO] Player Chief Tewodros II will start at position 69 36
+[INFO] Player Chief Raymond Poincaré will start at position 56 20
+[INFO] Player Chief Tang Taizong will start at position 95 22
+[INFO] Player Hoyenah Deskaheh will start at position 29 20
 [INFO] Game Object Passed to Game Window!
 [INFO] Screen resolution is 1920x1080
 [INFO] Generating Map View...
@@ -130,8 +147,10 @@ MINIYACG Logger v1.0
 [INFO] Map View Generated!
 [INFO] Updating Map...
 [INFO] Map Updated!
-[INFO] Update took: 3121,435672 ms
+[INFO] Update took: 2726,380423 ms
 [INFO] Changing to Game Window!
+[INFO] Loading CSS...
+[INFO] Showing Dialog...
 [INFO] Closing Game Window!
 [INFO] Changing to Intro Window!
 [INFO] Loading CSS...
@@ -170,6 +189,33 @@ MINIYACG Logger v1.0
 [INFO] Adding random civilization!
 [INFO] Adding random civilization!
 [INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
+[WARNING] Too many players added - not enough civilizations!
+[INFO] Adding random civilization!
 [WARNING] Too many players added - not enough civilizations!
 [INFO] Adding random civilization!
 [WARNING] Too many players added - not enough civilizations!
@@ -220,7 +266,7 @@ MINIYACG Logger v1.0
 [INFO] Loading file miniyacg-config-upgrades.xml...
 [INFO] XML Upgrades Data Loaded!
 [INFO] XML Data Loaded!
-[INFO] Adding 21 players!
+[INFO] Adding 26 players!
 [INFO] Players added!
 [INFO] Generating map...
 [INFO] Map Generator
@@ -229,77 +275,88 @@ MINIYACG Logger v1.0
 [INFO] Map Clean!
 [INFO] Continents: 10 Land Percentage: 50 Land Tiles: 1250
 [INFO] Tiles Per Continent: 125
-[INFO] Generating Continent at 42 20 Depth: 3
-[INFO] Generating Continent at 30 20 Depth: 2
-[INFO] Generating Continent at 36 20 Depth: 1
-[INFO] Generating Continent at 42 24 Depth: 5
+[INFO] Generating Continent at 1 33 Depth: 5
+[INFO] Generating Continent at 12 33 Depth: 4
+[INFO] Generating Continent at 5 33 Depth: 3
+[INFO] Generating Continent at 5 36 Depth: 2
+[INFO] Generating Continent at 15 29 Depth: 4
 [INFO] Desert continent!
-[INFO] Generating Continent at 42 35 Depth: 4
-[INFO] Generating Continent at 46 35 Depth: 3
-[INFO] Generating Continent at 48 12 Depth: 4
-[INFO] Generating Continent at 48 0 Depth: 3
+[INFO] Generating Continent at 15 40 Depth: 3
+[INFO] Generating Continent at 8 40 Depth: 2
+[INFO] Generating Continent at 8 37 Depth: 1
+[INFO] Generating Continent at 33 45 Depth: 6
 [INFO] Polar continent!
-[INFO] Generating Continent at 52 0 Depth: 2
+[INFO] Generating Continent at 44 45 Depth: 5
 [INFO] Polar continent!
-[INFO] Generating Continent at 49 0 Depth: 1
+[INFO] Generating Continent at 44 49 Depth: 4
 [INFO] Polar continent!
-[INFO] Generating Continent at 24 3 Depth: 4
+[INFO] Generating Continent at 46 49 Depth: 3
 [INFO] Polar continent!
-[INFO] Generating Continent at 24 -8 Depth: 3
+[INFO] Generating Continent at 46 7 Depth: 6
 [INFO] Polar continent!
-[INFO] Generating Continent at 19 -8 Depth: 2
+[INFO] Generating Continent at 46 18 Depth: 5
+[INFO] Generating Continent at 46 11 Depth: 4
+[INFO] Generating Continent at 42 11 Depth: 3
+[INFO] Generating Continent at 3 13 Depth: 7
+[INFO] Generating Continent at -8 13 Depth: 6
+[INFO] Generating Continent at -12 13 Depth: 5
+[INFO] Generating Continent at 37 35 Depth: 6
+[INFO] Generating Continent at 37 46 Depth: 5
 [INFO] Polar continent!
-[INFO] Generating Continent at 20 33 Depth: 7
-[INFO] Generating Continent at 20 21 Depth: 6
-[INFO] Generating Continent at 15 21 Depth: 5
-[INFO] Generating Continent at 17 21 Depth: 4
-[INFO] Generating Continent at 46 33 Depth: 5
-[INFO] Generating Continent at 57 33 Depth: 4
-[INFO] Generating Continent at 57 28 Depth: 3
+[INFO] Generating Continent at 37 51 Depth: 4
+[INFO] Polar continent!
+[INFO] Generating Continent at 37 53 Depth: 3
+[INFO] Polar continent!
+[INFO] Generating Continent at 12 2 Depth: 5
+[INFO] Polar continent!
+[INFO] Generating Continent at 12 13 Depth: 4
+[INFO] Generating Continent at 12 7 Depth: 3
+[INFO] Polar continent!
+[INFO] Generating Continent at 11 9 Depth: 6
+[INFO] Generating Continent at 11 -2 Depth: 5
+[INFO] Polar continent!
+[INFO] Generating Continent at 6 -2 Depth: 4
+[INFO] Polar continent!
+[INFO] Generating Continent at 6 0 Depth: 3
+[INFO] Polar continent!
+[INFO] Generating Continent at 35 15 Depth: 4
+[INFO] Generating Continent at 35 26 Depth: 3
 [INFO] Desert continent!
-[INFO] Generating Continent at 19 38 Depth: 6
-[INFO] Generating Continent at 7 38 Depth: 5
-[INFO] Generating Continent at 2 38 Depth: 4
-[INFO] Generating Continent at 0 38 Depth: 3
-[INFO] Generating Continent at 2 48 Depth: 6
+[INFO] Generating Continent at 35 31 Depth: 2
+[INFO] Generating Continent at 35 33 Depth: 1
+[INFO] Generating Continent at 1 39 Depth: 3
+[INFO] Generating Continent at -10 39 Depth: 2
+[INFO] Generating Continent at -10 45 Depth: 1
 [INFO] Polar continent!
-[INFO] Generating Continent at 2 36 Depth: 5
-[INFO] Generating Continent at 2 42 Depth: 4
-[INFO] Generating Continent at 2 45 Depth: 3
-[INFO] Polar continent!
-[INFO] Generating Continent at 2 46 Depth: 2
-[INFO] Polar continent!
-[INFO] Generating Continent at 40 37 Depth: 4
-[INFO] Generating Continent at 51 37 Depth: 3
-[INFO] Generating Continent at 55 37 Depth: 2
-[INFO] Generating Continent at 44 34 Depth: 4
-[INFO] Generating Continent at 32 34 Depth: 3
-[INFO] Generating Continent at 32 29 Depth: 2
-[INFO] Desert continent!
 [ERROR] Map path not found
 [WARNING] No starting positions found, this may not be an error!
 [INFO] Assigning random starting positions...
-[INFO] Player Chief Kertawijaya will start at position 46 45
-[INFO] Player Chief Shatadhanvan will start at position 27 33
-[INFO] Player Chief Armand Fallières will start at position 24 44
-[INFO] Player Chief Abbas the Great will start at position 46 47
-[INFO] Player Chief Kazimierz I Odnowiciel will start at position 5 49
-[INFO] Player Chief Dwight Eisenhower will start at position 49 39
-[INFO] Player Chief Temür Khan will start at position 46 27
-[INFO] Player Chief Paul von Hindenburg will start at position 27 45
-[INFO] Player Chief Sonni Ali will start at position 24 42
-[INFO] Player King Manco Inca Yupanqui will start at position 42 40
-[INFO] Player Chief Geoffrey I will start at position 23 25
-[INFO] Player Chief Amenhotep III will start at position 21 22
-[INFO] Player Chief Edward I will start at position 21 39
-[INFO] Player Chief Sin-Muballit will start at position 34 7
-[INFO] Player Chief Lukeni lua Nimi will start at position 48 46
-[INFO] Player Chief K'awiil Ek' will start at position 34 34
-[INFO] Player Chief Sun Yat-sen will start at position 32 20
-[INFO] Player Chief Constantine will start at position 44 41
-[INFO] Player Chief Harshavarman I will start at position 23 37
-[INFO] Player Chief Catherine will start at position 45 43
-[INFO] Player Chief Fangaʻoneʻone will start at position 29 48
+[INFO] Player Chief Jayanegara will start at position 16 31
+[INFO] Player Chief Shalishuka will start at position 6 21
+[INFO] Player Chief Djoser will start at position 7 48
+[INFO] Player Hoyenah Tadodaho will start at position 13 5
+[INFO] Player Chief John IV will start at position 44 39
+[INFO] Player Chief Nicholas I will start at position 20 13
+[INFO] Player Chief Song Taizhu will start at position 44 18
+[INFO] Player Chief Charles IX will start at position 47 10
+[INFO] Player Chief Archelaus I will start at position 36 25
+[INFO] Player Chief Yik'in Chan K'awiil will start at position 22 32
+[INFO] Player Chief Kharak Singh will start at position 38 42
+[INFO] Player Chief Alphonse Massamba-Débat will start at position 41 47
+[INFO] Player Chief Józef Piłsudzki will start at position 21 29
+[INFO] Player Chief Udayadityavarman II will start at position 22 34
+[INFO] Player Chief Vespasian will start at position 22 39
+[INFO] Player Chief Kaloa will start at position 21 15
+[INFO] Player Chief Askia Ishaq I will start at position 16 45
+[INFO] Player Chief Yagbe'u Seyon will start at position 47 44
+[INFO] Player Chief John Kennedy will start at position 42 42
+[INFO] Player Chief Nobunaga Oda will start at position 38 15
+[INFO] Player Chief Ayurbarwada Buyantu Khan will start at position 17 41
+[INFO] Player Chief Karaindash will start at position 13 16
+[INFO] Player Chief Mithridates I will start at position 8 36
+[INFO] Player King Sayri Túpac will start at position 43 44
+[INFO] Player Chief George VI will start at position 40 24
+[INFO] Player Chief Otto von Bismarck will start at position 44 37
 [INFO] Game Object Passed to Game Window!
 [INFO] Screen resolution is 1920x1080
 [WARNING] Map may not be big enough to fit on screen...
@@ -308,7 +365,7 @@ MINIYACG Logger v1.0
 [INFO] Map View Generated!
 [INFO] Updating Map...
 [INFO] Map Updated!
-[INFO] Update took: 1169,245702 ms
+[INFO] Update took: 1559,205998 ms
 [INFO] Changing to Game Window!
 [INFO] Closing Game Window!
 [INFO] Changing to Intro Window!
@@ -348,39 +405,10 @@ MINIYACG Logger v1.0
 [INFO] Adding random civilization!
 [INFO] Adding random civilization!
 [INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
 [INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
 [INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
 [INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
 [INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
-[INFO] Adding random civilization!
-[WARNING] Too many players added - not enough civilizations!
 [INFO] Loading CSS...
 [INFO] Showing Game Window...
 [INFO] Starting XML Data Loading...
@@ -414,7 +442,7 @@ MINIYACG Logger v1.0
 [INFO] Loading file miniyacg-config-upgrades.xml...
 [INFO] XML Upgrades Data Loaded!
 [INFO] XML Data Loaded!
-[INFO] Adding 21 players!
+[INFO] Adding 26 players!
 [INFO] Players added!
 [INFO] Generating map...
 [INFO] Loading map from file!
@@ -423,27 +451,32 @@ MINIYACG Logger v1.0
 [INFO] Loading map /home/leopoldkucinski/Dokumenty/yacg/maps/world-map.map...
 [INFO] Loading finished!
 [INFO] Loading starting positions...
-[INFO] Player Chief Wikramawardhana will start at position 94 38
-[INFO] Player Chief Edward Gierek will start at position 61 18
-[INFO] Player Chief Antoninus Pius will start at position 57 22
-[INFO] Player Chief Konrad Adenauer will start at position 59 18
-[INFO] Player Chief Akhenaten will start at position 64 30
-[INFO] Player Chief Ismail I will start at position 73 27
-[INFO] Player Chief Bindusara will start at position 83 27
-[INFO] Player King Yáhuar Huácac will start at position 31 42
-[INFO] Player Chief Ucha'an K'in B'alam will start at position 26 33
-[INFO] Player Chief Külüg Khan will start at position 86 17
-[INFO] Player Chief Ammi-Ditana will start at position 69 25
-[INFO] Player Chief Louis XVIII will start at position 56 20
-[INFO] Player Chief Alexander I will start at position 65 17
-[INFO] Player Chief Maʻuhau will start at position 117 43
-[INFO] Player Chief Sonni Baru will start at position 54 32
-[INFO] Player Chief Edward VII will start at position 53 17
-[INFO] Player Chief Ishanavarman II will start at position 87 31
-[INFO] Player Chief Ming Chengzu will start at position 95 22
-[INFO] Player Chief Harry Truman will start at position 28 22
+[INFO] Player Chief Tribhuwana Wijayatunggadewi will start at position 94 38
+[INFO] Player Chief Yagbe'u Seyon will start at position 68 36
+[INFO] Player Chief George VI will start at position 53 17
+[INFO] Player Chief Mieszko I will start at position 61 18
+[INFO] Player Chief Archelaus I will start at position 62 23
+[INFO] Player Chief John IV will start at position 54 19
+[INFO] Player Chief Cyrus the Great will start at position 73 27
+[INFO] Player Chief Otto von Bismarck will start at position 59 18
+[INFO] Player King Sayri Túpac will start at position 31 42
+[INFO] Player Chief Rokujō will start at position 100 24
+[INFO] Player Chief Udayadityavarman II will start at position 87 31
+[INFO] Player Chief Kharak Singh will start at position 79 23
+[INFO] Player Chief Djoser will start at position 64 30
+[INFO] Player Chief Karaindash will start at position 69 25
+[INFO] Player Chief Chandragupta will start at position 83 27
+[INFO] Player Chief John Kennedy will start at position 28 22
+[INFO] Player Chief Kaloa will start at position 117 43
+[INFO] Player Chief Ayurbarwada Buyantu Khan will start at position 86 17
+[INFO] Player Chief Nicholas I will start at position 65 17
+[INFO] Player Chief Hugo Kapet will start at position 56 20
+[INFO] Player Hoyenah Deskaheh will start at position 28 20
 [INFO] Player Chief Alfons I will start at position 59 40
-[INFO] Player Chief Alan IV will start at position 54 19
+[INFO] Player Chief Song Taizhu will start at position 95 22
+[INFO] Player Chief Yik'in Chan K'awiil will start at position 26 33
+[INFO] Player Chief Vespasian will start at position 57 22
+[INFO] Player Chief Sonni Baru will start at position 54 32
 [INFO] Game Object Passed to Game Window!
 [INFO] Screen resolution is 1920x1080
 [INFO] Generating Map View...
@@ -451,10 +484,8 @@ MINIYACG Logger v1.0
 [INFO] Map View Generated!
 [INFO] Updating Map...
 [INFO] Map Updated!
-[INFO] Update took: 3176,175363 ms
+[INFO] Update took: 2643,643621 ms
 [INFO] Changing to Game Window!
-[INFO] Loading CSS...
-[INFO] Showing Dialog...
 [INFO] Closing Game Window!
 [INFO] Changing to Intro Window!
 [INFO] Exiting...

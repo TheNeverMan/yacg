@@ -924,7 +924,7 @@ Persia's color is aquamarine - one of the possible colors of the Acheamenid stan
 <city name="Aria"/>
 </civ>
 
-<civ name="Germany" r="0" g="0" b="0" personality="Authoritarian">
+<civ name="Germany" r="0" g="0" b="0" personality="Enterprising">
 <info>
 Germany is important european nation.
 It has been shaping politics of the continent from medieval era to this day.
@@ -1411,7 +1411,7 @@ Russian color is yellow from Russian Empire flag.
 <city name="Chita"/>
 </civ>
 
-<civ name="France" r="4" g="8" b="108" personality="Expansive">
+<civ name="France" r="4" g="8" b="108" personality="Enterprising">
 <info>
 France is an important european country. Not only it was a colonial superpower
 and it participated in both world wars and shaped world politics, but also ideas
@@ -1640,5 +1640,459 @@ Tongan color is blue from modern Tonga coat of arms.
 <replacement name="Monarchy" leader="Haʻa Tuʻi Tonga" state_name="Maritime Empire of"/>
 <replacement name="Theocracy" leader="Hikule'o" state_name="Holy Empire of"/>
 </civ>
+<civ name="Sikh" r="27" g="106" b="63" personality="Holy">
+<info>
+Sikh Empire was a religious state that emerged in 1799 in Subcontinent of India.
+It controlled terittories of Kashmir until eventually defeated in war with England.
+
+Sikh traits are Religious and Religious to represent the religious character of this state,
+but also religion freedom it gave.
+
+Sikh leaders include Maharajas and Vizirs that ruled it.
+Sikh color is green from Nishan Sahib introducted by Ranjit Singh - the founder of the empire.
+</info>
+<leader name="Ranjit Singh"/>
+<leader name="Dhian Singh Dogra"/>
+<leader name="Jamadar Khushal Singh"/>
+<leader name="Hira Singh Dogra"/>
+<leader name="Duleep Singh"/>
+<leader name="Sher Singh"/>
+<leader name="Nau Nihal Singh"/>
+<leader name="Kharak Singh"/>
+<leader name="Jind Kaur"/>
+<leader name="Chand Kaur"/>
+<trait name="R"/>
+<trait name="R"/>
+<city name="Lahore"/>
+<city name="Jammu"/>
+<city name="Peshwar"/>
+<city name="Multan"/>
+<city name="Shimla"/>
+<city name="Amritsar"/>
+<city name="Attock"/>
+<city name="Srinagar"/>
+<city name="Rawalpindi"/>
+<city name="Gujrat"/>
+<city name="Pind Dadan Khan"/>
+<city name="Jhang"/>
+<city name="Mukerian"/>
+<city name="Jallandar"/>
+<city name="Anandpur"/>
+<city name="Kasur"/>
+<city name="Kapurthala"/>
+<city name="Multan"/>
+<city name="Dera Ghazi Khan"/>
+<city name="Leiah"/>
+<city name="Mankera"/>
+<city name="Dera Ismail Khan"/>
+<city name="Leh"/>
+<city name="Ferozepur"/>
+<city name="Bahawalpur"/>
+<city name="Rupar"/>
+<city name="Malerkotla"/>
+<city name="Ludhiana"/>
+<city name="Faridkot"/>
+<city name="Bhatinda"/>
+<city name="Nabha"/>
+<city name="Sirhind"/>
+<city name="Chandigarh"/>
+<city name="Patiala"/>
+<city name="Kalsia"/>
+<city name="Kaital"/>
+<city name="Kamal"/>
+<city name="Saharanpur"/>
+<city name="Ambala"/>
+<city name="Logarh"/>
+<city name="Markanda"/>
+<city name="Ghaggar"/>
+<city name="Stulej"/>
+<city name="Beas"/>
+<city name="Jhelum"/>
+<city name="Chenab"/>
+<city name="Ravi"/>
+<city name="Talagang"/>
+<city name="Kahuta"/>
+<city name="Fatahabad"/>
+<replacement name="Monarchy" leader="Maharaja" state_name="Empire of"/>
+<replacement name="Republic" leader="Wazir" state_name="Empire of"/>
+</civ>
+<civ name="Ethiopia" r="165" g="90" b="68" personality="Holy">
+<info>
+Ethiopia is african country located in Horn of Africa.
+It has long history, originated in ancient era and survived to this day as democratic republic.
+
+Ethiopian traits are Religious and Agricultural to represent the Ethiopian Christian Church and
+the main economic factor of its economy.
+
+Ethiopian leaders include Emperors of Ethiopia and democratic leaders.
+Ethiopian color is brown, color of lion on the Empire of Ethiopia flag.
+</info>
+<leader name="Menelik II"/>
+<leader name="Haile Selassie"/>
+<leader name="Yekuno Amlak"/>
+<leader name="Tewodros II"/>
+<leader name="Mengistu Haile Mariam"/>
+<leader name="Yohannes IV"/>
+<leader name="Menelik I"/>
+<leader name="Yagbe'u Seyon"/>
+<leader name="Dawit I"/>
+<leader name="Meles Zenawi"/>
+<trait name="R"/>
+<trait name="A"/>
+<city name="Addis Ababa"/>
+<city name="Gondar"/>
+<city name="Mekelle"/>
+<city name="Adama"/>
+<city name="Awassa"/>
+<city name="Bahir Dar"/>
+<city name="Dire Dawa"/>
+<city name="Dessie"/>
+<city name="Jimma"/>
+<city name="Jijiga"/>
+<city name="Shashamane"/>
+<city name="Bishoftu"/>
+<city name="Sodo"/>
+<city name="Arba Minch"/>
+<city name="Hosaena"/>
+<city name="Harar"/>
+<city name="Dilla"/>
+<city name="Nekemte"/>
+<city name="Debre Birhan"/>
+<city name="Asella"/>
+<city name="Debre Mark'os"/>
+<city name="Kombolcha"/>
+<city name="Debre Tabor"/>
+<city name="Adigrat"/>
+<city name="Areka"/>
+<city name="Weldiya"/>
+<city name="Sebeta"/>
+<city name="Burayu"/>
+<city name="Shire"/>
+<city name="Ambo"/>
+<city name="Arsi Negele"/>
+<city name="Aksum"/>
+<city name="Gambela"/>
+<city name="Bale Robe"/>
+<city name="Butajia"/>
+<city name="Batu"/>
+<city name="Boditi"/>
+<city name="Adwa"/>
+<city name="Yirgalem"/>
+<city name="Waliso"/>
+<city name="Welkite"/>
+<city name="Gode"/>
+<city name="Meki"/>
+<city name="Negele Borana"/>
+<city name="Alaba Kulito"/>
+<city name="Alamata"/>
+<city name="Chiro"/>
+<city name="Tepi"/>
+<city name="Durame"/>
+<city name="Goba"/>
+<city name="Assosa"/>
+<city name="Gimbi"/>
+<city name="Wukro"/>
+<city name="Haramaya"/>
+<city name="Mizan Teferi"/>
+<city name="Sawla"/>
+<city name="Mojo"/>
+<city name="Dembi Dolo"/>
+<city name="Aleta Wendo"/>
+<city name="Metu"/>
+<city name="Mota"/>
+<city name="Fiche"/>
+<city name="Finote Selam"/>
+<city name="Bule Hora"/>
+<city name="Bonga"/>
+<city name="Kobo"/>
+<city name="Jinka"/>
+<city name="Dangila"/>
+<city name="Degehabur"/>
+<city name="Dimtu"/>
+<city name="Agaro"/>
+<replacement name="Democracy" state_name="Federal Democratic Republic of" leader="President"/>
+<replacement name="Monarchy" leader="Negusa Nagast" state_name="Empire of"/>
+<replacement name="Dictatorship" leader="Chairman" state_name="Dergue of"/>
+</civ>
+<civ name="Japan" r="255" g="255" b="255" personality="Authoritarian">
+<info>
+Japan is islandbased country in Asia. Although it is relatively small it
+is economic and technological superpower. It has been united under rule of
+emperor between 4th and 9th centuries and to this day remains a monarchy.
+
+Japanese traits are Militaristic and Religious to represent the power of Shogunate
+and class of Samurais.
+
+Japanese leaders include Shoguns, Emperors and Prime Ministers.
+Japanses color is white, present on its flag.
+</info>
+<trait name="M"/>
+<trait name="R"/>
+<leader name="Jimmu"/>
+<leader name="Kinmei"/>
+<leader name="Kanmu"/>
+<leader name="Rokujō"/>
+<leader name="Go-Daigo"/>
+<leader name="Nobunaga Oda"/>
+<leader name="Ieyasu Tokugawa"/>
+<leader name="Mutsuhito"/>
+<leader name="Hirohito"/>
+<leader name="Itō Hirobumi"/>
+<leader name="Hideki Tōjō"/>
+<leader name="Shinzō Abe"/>
+<city name="Tokyo"/>
+<city name="Jokohama"/>
+<city name="Osaka"/>
+<city name="Nagoja"/>
+<city name="Sapporo"/>
+<city name="Kobe"/>
+<city name="Fukuoka"/>
+<city name="Kioto"/>
+<city name="Kawasaki"/>
+<city name="Saitama"/>
+<city name="Hiroshima"/>
+<city name="Sendai"/>
+<city name="Kitakyushu"/>
+<city name="Chiba"/>
+<city name="Setagaya"/>
+<city name="Nerima"/>
+<city name="Shizuoka"/>
+<city name="Okayama"/>
+<city name="Kagoshima"/>
+<city name="Funabashi"/>
+<city name="Higashi-Osaka"/>
+<city name="Amagasaki"/>
+<city name="Hachioji"/>
+<city name="Matsudo"/>
+<city name="Himeji"/>
+<city name="Nagasaki"/>
+<city name="Matsuyama"/>
+<city name="Kanazawa"/>
+<city name="Kawaguchi"/>
+<city name="Ichikawa"/>
+<city name="Yokosuka"/>
+<city name="Nishinomiya"/>
+<city name="Urawa"/>
+<city name="Kurashiki"/>
+<city name="Gifu"/>
+<city name="Toyonaka"/>
+<city name="Oita"/>
+<city name="Wakayama"/>
+<city name="Hirakata"/>
+<city name="Omiya"/>
+<city name="Fukuyama"/>
+<city name="Takatsuki"/>
+<city name="Asahikawa"/>
+<city name="Iwari"/>
+<city name="Fujisawa"/>
+<city name="Nara"/>
+<city name="Machida"/>
+<city name="Nagano"/>
+<city name="Suita"/>
+<city name="Toyohashi"/>
+<city name="Toyota"/>
+<city name="Kochi"/>
+<city name="Hakodate"/>
+<city name="Takamatsu"/>
+<city name="Koriyama"/>
+<city name="Okazaki"/>
+<city name="Toyama"/>
+<city name="Naha"/>
+<city name="Kashiwa"/>
+<city name="Tokorozawa"/>
+<city name="Akita"/>
+<city name="Kawagoe"/>
+<city name="Miyazaki"/>
+<city name="Aomori"/>
+<city name="Kabukicho"/>
+<city name="Maebashi"/>
+<city name="Koshigaya"/>
+<city name="Yao"/>
+<city name="Fukushima"/>
+<city name="Yokkaichi"/>
+<city name="Akashi"/>
+<city name="Kasugai"/>
+<city name="Tokushima"/>
+<city name="Shimonoseki"/>
+<city name="Fukui"/>
+<city name="Ichinomiya"/>
+<city name="Otsu"/>
+<city name="Ichihara"/>
+<city name="Neyagawa"/>
+<city name="Ibaraki"/>
+<city name="Yamagata"/>
+<city name="Hiratsuka"/>
+<city name="Sasebo"/>
+<city name="Hachinohe"/>
+<city name="Kakogawa"/>
+<city name="Shimizu"/>
+<city name="Takasaki"/>
+<city name="Morioka"/>
+<city name="Mito"/>
+<city name="Kurume"/>
+<city name="Fuji"/>
+<city name="Kure"/>
+<city name="Numazu"/>
+<city name="Okinawa"/>
+<city name="Obihiro"/>
+<city name="Nemuro"/>
+<city name="Iwamizawa"/>
+<city name="Atsugi"/>
+<city name="Suzuka"/>
+<city name="Kōfu"/>
+<replacement name="Monarchy" state_name="Empire of" leader="Samrat"/>
+<replacement name="Democracy" leader="Prime Minister" state_name=""/>
+<replacement name="Despotism" leader="Daimyō" state_name="Clan of"/>
+<replacement name="Dictatorship" leader="Shogun" state_name="Shogunate of"/>
+</civ>
+<civ name="Macedonia" r="254" g="235" b="149" personality="Expansive">
+<info>
+Macedonia was a small ancient kingdom estabilished in 808 BC, located in modernday Greece.
+Under rule of Philip II is defeated its neighbours and under his son Alexander the Great
+for a brief moment in time it has been the greatest empire in the world.
+
+Macedonian traits are Expansive and Expansive, to represent massive epxansion under rule of Alexander.
+
+Macedonian leaders include kings of Macedonia.
+Macedonian color is light yellow - color of Vergina Sun.
+</info>
+<leader name="Alexander the Great"/>
+<leader name="Philip II"/>
+<leader name="Ptolemy I"/>
+<leader name="Cassander"/>
+<leader name="Perdiccas I"/>
+<leader name="Amyntas III"/>
+<leader name="Philip III"/>
+<leader name="Archelaus I"/>
+<leader name="Alexander I"/>
+<leader name="Perdiccas II"/>
+<trait name="X"/>
+<trait name="X"/>
+<city name="Pella"/>
+<city name="Aigai"/>
+<city name="Methoni"/>
+<city name="Amphipolis"/>
+<city name="Olynthus"/>
+<city name="Potidea"/>
+<city name="Dion"/>
+<city name="Pydna"/>
+<city name="Dodna"/>
+<city name="Ambracia"/>
+<city name="Thasos"/>
+<city name="Philippi"/>
+<city name="Abdera"/>
+<city name="Maronea"/>
+<city name="Alexandria"/>
+<city name="Alexandria Arachosia"/>
+<city name="Alexandria Ariana"/>
+<city name="Alexandria Bucephalous"/>
+<city name="Ai-Khanoum"/>
+<city name="Tyre"/>
+<city name="Qalatga Darband"/>
+<city name="Iskenderun"/>
+<city name="Gaza"/>
+<city name="Alexandria on the Caucasus"/>
+<city name="Stobi"/>
+<city name="Heraklea Lynkestis"/>
+<city name="Lychnidos"/>
+<city name="Scupi"/>
+<city name="Baragala"/>
+<city name="Therma"/>
+<city name="Olynthus"/>
+<city name="Rhaecelus"/>
+<city name="Strepsa"/>
+<city name="Torone"/>
+<city name="Osbe"/>
+<city name="Palaechorium"/>
+<city name="Ichnae"/>
+<city name="Moryllus"/>
+<city name="Doberus"/>
+<city name="Scione"/>
+<city name="Sane"/>
+<city name="Phylace"/>
+<city name="Heracleium"/>
+<city name="Europus"/>
+<city name="Bouneima"/>
+<city name="Chalastra"/>
+<city name="Amydon"/>
+<city name="Calindoia"/>
+<city name="Cissus"/>
+<city name="Anthemus"/>
+<replacement name="Monarchy" state_name="Kingdom of" leader="Basileus"/>
+</civ>
+<civ name="Iroquois" r="89" g="62" b="182" personality="Peaceful">
+<info>
+Iroquois or Haudenosaunee tribe is a North American native tribe.
+During colonization era Iroquois with their neighbours formed Iroquois Confederacy
+ - a state-like organization that lead to peace between tribes.
+
+Iroquois traits are Cultural and Nomadic, to represent the project of
+Great Law of Peace.
+
+Iroquois leaders include variuos chiefs.
+Iroquois color is purple from flag of the Confederacy.
+</info>
+<leader name="Hiawatha"/>
+<leader name="Jigonsaseh"/>
+<leader name="Tachnechdorus"/>
+<leader name="Deskaheh"/>
+<leader name="Thayendanegea"/>
+<leader name="Tadodaho"/>
+<trait name="D"/>
+<trait name="C"/>
+<city name="Onondaga"/>
+<city name="Cazenovia"/>
+<city name="Pompey"/>
+<city name="Delphi Falls"/>
+<city name="Manilus"/>
+<city name="Kahnawake"/>
+<city name="Kanesatake"/>
+<city name="Akwesasne"/>
+<city name="Thames Oneida"/>
+<city name="Wahta"/>
+<city name="Tyendinaga"/>
+<city name="Ganienkeh"/>
+<city name="Oneida"/>
+<city name="Kanatsiohareke"/>
+<city name="Tuscarora"/>
+<city name="Tonawanda"/>
+<city name="Seneca"/>
+<city name="Seneca-Cayuga"/>
+<city name="Hothahi:ionih"/>
+<city name="Ohgwai:ih"/>
+<city name="Hanya'dëñh"/>
+<city name="Odihnesi:ioh"/>
+<city name="De'odijinaindönda'"/>
+<city name="Hona'gaia'gih"/>
+<city name="Hodidáë'ö:ga:'"/>
+<city name="Degaiadahkwa'"/>
+<city name="Ohgönde:na'"/>
+<city name="Okwáho"/>
+<city name="A'nó:wara"/>
+<city name="Thayú:ni"/>
+<city name="Tawístawis"/>
+<city name="Hodígë'ge:ga:'"/>
+<city name="Hodihsw'ęgáiyo'"/>
+<city name="Honöta:yö:nih"/>
+<city name="Hadihnyagwái"/>
+<city name="Hodígë'ge:ga:'"/>
+<city name="A'no:wál"/>
+<city name="Ohkwá:ri"/>
+<city name="Ohkwá:li"/>
+<city name="Thayú:ni"/>
+<city name="Ráˀkwihs"/>
+<city name="Kà?wí:ñu"/>
+<city name="Rakinęhá•ha•ˀ"/>
+<city name="Akunęhukwatíha•ˀ"/>
+<city name="Θkwarì•nę"/>
+<city name="Honöta:yö:nih"/>
+<city name="Hadihnyagwái"/>
+<city name="Hodí:nyögwaiyo'"/>
+<city name="Hadínyahdë:h"/>
+<city name="Eel"/>
+<replacement name="Democracy" state_name="Confederation of" leader="Deganawidah"/>
+<replacement name="Tribe" state_name="Tribe of" leader="Hoyenah"/>
+</civ>
+
 </civs>
 </miniyacg>
