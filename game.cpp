@@ -300,13 +300,29 @@ void Game::Set_Autosave(bool a)
   autosave = a;
 }
 
+void Game::Remove_All_Missle_Units()
+{
+  for(auto& player : Players)
+  {
+    for(auto& unit : *player.Get_Owned_Units())
+    {
+      if(unit.Self.Has_Trait("missle"))
+      {
+        Get_Player_By_Id(Get_Map()->Get_Tile(unit.Coordinates.x,unit.Coordinates.y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
+        Get_Map()->Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y)->Remove_Unit_From_Tile();
+      }
+    }
+  }
+}
+
 bool Game::End_Player_Turn()
 {
+  Remove_All_Missle_Units();
   vector<int> income = Get_Map()->Get_Netto_Income_For_Player_By_Id(Get_Currently_Moving_Player_Id(), *Get_Currently_Moving_Player());
   Get_Currently_Moving_Player()->End_Turn(income);
   if(Get_Currently_Moving_Player()->Has_Researched_Border_Expand_Tech_Recently())
   {
-    Get_Map()->Recalculate_Borders_For_Player_By_Id(Get_Currently_Moving_Player_Id(), Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius());
+    Get_Map()->Recalculate_Borders_For_Player_By_Id(Get_Currently_Moving_Player_Id(), Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius(), *Get_Currently_Moving_Player());
   }
 
   Check_For_Dead_Players();
@@ -325,19 +341,14 @@ bool Game::End_Player_Turn()
   vector<Unit_On_Map> *u = Get_Currently_Moving_Player()->Get_Owned_Units();
   for(auto &var : *u)
   {
-    if(Get_Map()->Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Upgrade().Has_Trait("movement_buff"))
-    {
-      var.Self.Increase_Current_Movement(2);
-      if(Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("improve_movement_boost"))
-      {
-        var.Self.Increase_Current_Movement(2);
-      }
-    }
+    var.Self.Increase_Current_Movement(Get_Currently_Moving_Player()->Find_Upgrade_By_Name(Get_Map()->Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Upgrade()).How_Many_Times_Has_Trait("movementbonus"));
+    if(var.Self.Get_All_Arguments_For_Trait("class")[0] == "flying" && Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(var.Coordinates.x, var.Coordinates.y)).Has_Trait("renewflyingmovement"))
+      var.Self.Increase_Current_Movement(999);
   }
 
   if(currently_moving_player == First_Not_Eliminated_Player_Id())
     turn_counter++;
-  if(autosave)
+  if(autosave && !Is_Currently_Moving_Player_AI())
     Save_Game("autosave.sav");
   Start_Turn_Of_Currently_Moving_Player();
   return true;
@@ -368,55 +379,79 @@ Upgrade Game::Get_Upgrade_By_Name(string name)
   throw;
 }
 
+double Game::Get_Defense_Bonus_For_Tile_And_Player(int x, int y, int player_id)
+{
+  return Get_Map()->Get_Defense_Bonus_For_Tile(x, y) + (Get_Player_By_Id(player_id)->Get_Defense_Bonus_For_Upgrade(Get_Map()->Get_Tile(x,y).Get_Upgrade()) - 1.0);
+}
+
+array<int, 3> Game::Get_Units_Stats_For_Battle(int unit_x, int unit_y)
+{
+  Get_Player_By_Id(Get_Map()->Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_x, unit_y)->Remove_All_Movement();
+  Unit Stat_Unit = Get_Player_By_Id(Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_x, unit_y);
+  array<int, 3> out;
+  out[0] = Stat_Unit.Get_Attack_Power();
+  out[1] = Stat_Unit.Get_Defense_Power();
+  out[2] = Stat_Unit.Get_HP();
+  double unit_def_mod = 0.0;
+  if(!Stat_Unit.Has_Trait("doesnotrecievedefensivebonus"))
+    unit_def_mod = Get_Defense_Bonus_For_Tile_And_Player(unit_x, unit_y, Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id());
+
+  out[1] = static_cast<double>(out[1]) * unit_def_mod;
+
+  if(Get_Player_By_Id(Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id())->Get_Active_Goverment_Name() == "Fundamentalism")
+  {
+    out[1] = static_cast<double>(out[1]) * 0.9;
+    out[0] = static_cast<double>(out[0]) * 0.9;
+  }
+  Logger::Log_Info("Unit Debug");
+  Logger::Log_Info("Unit name: " + Stat_Unit.Get_Name());
+  Logger::Log_Info("Unit HP: " + to_string(out[2]));
+  Logger::Log_Info("Unit ATK: " + to_string(out[0]));
+  Logger::Log_Info("Unit DEF: " + to_string(out[1]) + " DEF Bonus " + to_string(unit_def_mod));
+  return out;
+}
+
+
+Unit Game::Get_Unit_By_Tile(int x, int y)
+{
+  return Get_Player_By_Id(Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y);
+}
+
+void Game::Plunder_Tile(int x, int y)
+{
+  Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Increase_Current_Movement(-1);
+  Get_Map()->Plunder_Tile(x,y);
+}
+
 void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
 {
-  Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_1_x, unit_1_y).Remove_All_Movement();
-  Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_2_x, unit_2_y).Remove_All_Movement();
-  int unit_1_atk, unit_1_def, unit_1_hp;
-  int unit_2_atk, unit_2_def, unit_2_hp;
-  unit_1_atk = Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_1_x, unit_1_y).Get_Attack_Power();
-  unit_1_def = Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_1_x, unit_1_y).Get_Defense_Power();
-  unit_1_hp = Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_1_x, unit_1_y).Get_HP();
+  Logger::Log_Info("Battle Debug");
+  array<int, 3> unit_1_stats = Get_Units_Stats_For_Battle(unit_1_x, unit_1_y);
+  array<int, 3> unit_2_stats = Get_Units_Stats_For_Battle(unit_2_x, unit_2_y);
 
-  unit_2_atk = Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_2_x, unit_2_y).Get_Attack_Power();
-  unit_2_def = Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_2_x, unit_2_y).Get_Defense_Power();
-  unit_2_hp = Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_2_x, unit_2_y).Get_HP();
+  if(Get_Unit_By_Tile(unit_1_x,unit_1_y).Get_All_Arguments_For_Trait("class")[0] == "flying")
+    unit_2_stats[0] = unit_2_stats[0] * Get_Unit_By_Tile(unit_2_x, unit_2_x).How_Many_Times_Has_Trait("fightflying");
 
-  //defense modifiers
-  double unit_1_def_mod, unit_2_def_mod;
-  unit_1_def_mod = Get_Map()->Get_Defense_Bonus_For_Tile(unit_1_x, unit_1_y);
-  unit_2_def_mod = Get_Map()->Get_Defense_Bonus_For_Tile(unit_2_x, unit_2_y);
+  if(Get_Unit_By_Tile(unit_2_x,unit_2_y).Get_All_Arguments_For_Trait("class")[0] == "flying")
+    unit_2_stats[0] = unit_2_stats[0] * Get_Unit_By_Tile(unit_1_x, unit_1_x).How_Many_Times_Has_Trait("fightflying");
 
-  if(Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Active_Goverment_Name() == "Fundamentalism")
-  {
-    unit_1_def = (double) unit_1_def * 0.9;
-    unit_1_atk = (double) unit_1_atk * 0.9;
-
-  }
-  if(Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Active_Goverment_Name() == "Fundamentalism")
-  {
-    unit_2_def = (double) unit_2_def * 0.9;
-    unit_2_atk = (double) unit_2_atk * 0.9;
-
-  }
-
-  unit_1_def = (double) unit_1_def * unit_1_def_mod;
-  unit_2_def = (double) unit_2_def * unit_2_def_mod;
-  unit_1_hp = unit_1_hp - ((double) 30 * ((double) unit_2_atk / (double) unit_1_def ));
-  unit_2_hp = unit_2_hp - ((double) 30 * ((double) unit_1_atk / (double) unit_2_def ));
-
-  Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Set_HP(unit_1_hp);
-  Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y)->Set_HP(unit_2_hp);
-
-  if(unit_1_hp <= 0)
+  unit_1_stats[2] = unit_1_stats[2] - ((double) 30 * ((double) unit_2_stats[0] / (double) unit_1_stats[1]));
+  unit_2_stats[2] = unit_2_stats[2] - ((double) 30 * ((double) unit_1_stats[0] / (double) unit_2_stats[1]));
+  Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Set_HP(unit_1_stats[2]);
+  Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y)->Set_HP(unit_2_stats[2]);
+  if(unit_1_stats[2] <= 0 || Get_Unit_By_Tile(unit_1_x,unit_1_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
     Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_1_x,unit_1_y);
     Get_Map()->Get_Tile_Pointer(unit_1_x,unit_1_y)->Remove_Unit_From_Tile();
+    if(Get_Unit_By_Tile(unit_2_x, unit_2_y).Has_Trait("steal") && unit_2_stats[2] > 0)
+      Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Give_One_Gold();
   }
-  if(unit_2_hp <= 0)
+  if(unit_2_stats[2] <= 0 || Get_Unit_By_Tile(unit_2_x,unit_2_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
     Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_2_x,unit_2_y);
     Get_Map()->Get_Tile_Pointer(unit_2_x,unit_2_y)->Remove_Unit_From_Tile();
+    if(Get_Unit_By_Tile(unit_1_x, unit_1_y).Has_Trait("steal") && unit_1_stats[2] > 0)
+      Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Give_One_Gold();
   }
 }
 
@@ -441,12 +476,12 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
   Move_Unit(unit_x, unit_y, dest_x, dest_y, movement_cost);
   if(unit_owner_id != tile_owner_id)
   {
-    if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade().Has_Trait("border_expand"))
+    if(Get_Map()->Get_Owner(dest_x, dest_y) != 0 && Get_Player_By_Id(Get_Map()->Get_Owner(dest_x, dest_y))->Find_Upgrade_By_Name(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade()).Has_Trait("borderexpand"))
     {
       is_map_update_necesary = true;
       Get_Map()->Change_Tile_Owner(dest_x, dest_y, unit_owner_id);
-      Get_Map()->Retake_Owner_In_Radius(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius());
-      if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade().Get_Name() == "City")
+      Get_Map()->Retake_Owner_In_Radius_From(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius(), tile_owner_id);
+      if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
       {
         string city_name = Get_Player_By_Id(tile_owner_id)->Lose_City_By_Coords(dest_x, dest_y);
         Get_Player_By_Id(unit_owner_id)->Build_City_On_Map_With_Name(dest_x, dest_y, city_name);
@@ -466,6 +501,46 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
 vector<Civ> Game::Get_All_Civs()
 {
   return Civs;
+}
+
+void Game::Detonate_Atomic_Bomb(int x, int y)
+{
+  Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
+  Disband_Unit(x,y);
+  if(Get_Map()->Get_Tile(x+1,y).Has_Unit())
+    Disband_Unit(x+1,y);
+  if(Get_Map()->Get_Tile(x+1,y-1).Has_Unit())
+    Disband_Unit(x+1,y-1);
+  if(Get_Map()->Get_Tile(x+1,y+1).Has_Unit())
+    Disband_Unit(x+1,y+1);
+  if(Get_Map()->Get_Tile(x-1,y).Has_Unit())
+    Disband_Unit(x-1,y);
+  if(Get_Map()->Get_Tile(x-1,y+1).Has_Unit())
+    Disband_Unit(x-1,y+1);
+  if(Get_Map()->Get_Tile(x-1,y-1).Has_Unit())
+    Disband_Unit(x-1,y-1);
+  if(Get_Map()->Get_Tile(x,y+1).Has_Unit())
+    Disband_Unit(x,y+1);
+  if(Get_Map()->Get_Tile(x,y-1).Has_Unit())
+    Disband_Unit(x,y-1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x, y)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x,y);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x+1, y)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x+1,y);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x+1, y-1)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x+1,y-1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x+1, y+1)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x+1,y+1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x-1, y)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x-1,y);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x-1, y-1)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x-1,y-1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x-1, y+1)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x-1,y+1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x, y-1)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x,y-1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x, y+1)).Has_Trait("cannotbeplundered"))
+    Get_Map()->Plunder_Tile(x,y+1);
 }
 
 string Game::Get_Current_Turn_By_Years()
@@ -771,4 +846,9 @@ void Game::Disband_Unit(int x, int y)
 vector<Civ> Game::Get_Players()
 {
   return Players;
+}
+
+Upgrade Game::Get_Upgrade_Of_Currently_Moving_Player(string upg_name)
+{
+  return Get_Currently_Moving_Player()->Find_Upgrade_By_Name(upg_name);
 }

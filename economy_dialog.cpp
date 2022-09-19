@@ -11,7 +11,7 @@ Economy_Dialog::Economy_Dialog(vector<int> p_i, Civ p) : Themed_Dialog("Finance 
   text = " Brutto Income " + to_string(Player_Income[0]);
   text = text + "\n Tile Maitenance -" + to_string(Player_Income[1]);
   text = text + "\n Unit Maitenance -" + to_string(Player.Get_Unit_Maitenance());
-  text = text + "\n Research Funds -" + to_string(static_cast<int>(Player_Income[0] * ((double) Player.Get_Research_Percent() / 100.0 )));
+  text = text + "\n Research Funds -" + to_string(static_cast<int>((Player_Income[0] - Player_Income[1] - Player.Get_Unit_Maitenance()) * ((double) Player.Get_Research_Percent() / 100.0 )));
   auto* Finance_Label = Gtk::make_managed<Gtk::Label>(text);
   Dialog_Box->pack_start(*Root_Box);
   Root_Box->pack_start(*Dialog_Root_Frame);

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="East Timor" r="218" g="41" b="28" personality="Peaceful">
+<info>
+East Timor is a country controlling eastern part of island named Timor. Western part is a part
+of Indonesia. In history it was controlled by small tribes like Bunak, Fataluku or Los Palos.
+In early XVI century Portugal colony was established on Timor. Portugese Governors were leading
+Timor until 1975 when after short time East Timor was annexed by Indonesia. From 1976 to 2002
+people of East Timor was fighting for their freedom and at the end this terrain got Independance.
+
+Timor trait is Nautical, to represent the importance of petroleum and coffee exports
+and maritime character of the country.
+
+Timor leaders include various leaders after independence was granted to East Timor.
+Timor color is red from East Timor flag.
+</info>
+<replacement name="Democracy" state_name="Democratic Republic of" leader="President"/>
+<replacement name="Dictatorship" state_name="" leader="Governor"/>
+<replacement name="Tribe" state_name="Tribe of" leader="Mau"/>
+<leader name="António de São Jacinto"/>
+<leader name="António Hornay"/>
+<leader name="Augusto César Cardoso de Carvalho"/>
+<leader name="José Celestino da Silva"/>
+<leader name="Teófilo Duarte"/>
+<leader name="William Leggatt"/>
+<leader name="Yuitsu Tsuchihashi"/>
+<leader name="Manuel de Abreu Ferreira de Carvalho"/>
+<leader name="Mário Lemos Pires"/>
+<leader name="Mário Viegas Carrascalão"/>
+<leader name="Sérgio Vieira de Mello"/>
+<leader name="Francisco Xavier do Amaral"/>
+<leader name="Nicolau dos Reis Lobato"/>
+<leader name="Xanana Gusmão"/>
+<leader name="José Ramos-Horta"/>
+<leader name="Francisco Guterres"/>
+<leader name="José Abílio Osório Soares"/>
+<leader name="José de Paiva Gomes"/>
+<trait name="N"/>
+<city name="Dili"/>
+<city name="Baucau"/>
+<city name="Pante Macassar"/>
+<city name="Ermera"/>
+<city name="Suai"/>
+<city name="Liquiçá"/>
+<city name="Viqueque"/>
+<city name="Manatuto"/>
+<city name="Aileu"/>
+<city name="Bucoli"/>
+<city name="Laga"/>
+<city name="Venilale"/>
+<city name="Atabae"/>
+<city name="Maliana"/>
+<city name="Lolotoe"/>
+<city name="Bobonaro"/>
+<city name="Gleno"/>
+<city name="Iliomar"/>
+<city name="Zumalai"/>
+<city name="Fohoren"/>
+<city name="Balibo"/>
+<city name="Metinaro"/>
+<city name="Lospalos"/>
+<city name="Tutuala"/>
+<city name="Laleia"/>
+<city name="Fatuberlio"/>
+<city name="Same"/>
+<city name="Passabe"/>
+<city name="Bazartete"/>
+<city name="Dare"/>
+<city name="Fatululik"/>
+<city name="Maubara"/>
+<city name="Nitibe"/>
+<city name="Citrana"/>
+<city name="Turiscai"/>
+<city name="Laclubar"/>
+<city name="Luro"/>
+<city name="Lautém"/>
+<city name="Fuiloro"/>
+<city name="Laivai"/>
+<city name="Ossu"/>
+<city name="Hatolina"/>
+<city name="Atsabe"/>
+<city name="Tilomar"/>
+<city name="Quelicai"/>
+<city name="Macadai de Baixo"/>
+<city name="Ainaro"/>
+<city name="Hato-Udo"/>
+<city name="Maubara"/>
+<city name="Baguia"/>
+</civ>
+</civs>
+</miniyacg>

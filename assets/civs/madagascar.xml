@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Madagascar" r="99" g="70" b="39" personality="Peaceful">
+<info>
+Madagascar is islandbased country in region of South Africa. Between 350 BC and 550 AD it was
+colonized by settlers coming from Borneo on cannoes and Bantu tribes from continent.
+This lead to unique cultural mix.
+
+Malgasy traits are Cultural and Cultural, to represent the ethnic mix of ancient Malgasy colonizers.
+
+Malgasy leaders include kings of Merina Kingdom and Republics of Madagascar leaders.
+Malgasy color is brown from Merina Kingdom's coat of arms.
+</info>
+<replacement name="Monarchy" leader="Andriana" state_name="Merina Kingdom of"/>
+<replacement name="Parliamentary Monarchy" leader="Resident-General" state_name="Goverment of"/>
+<replacement name="Communism" leader="President" state_name="Democratic Republic of"/>
+<leader name="Andriamanelo"/>
+<leader name="Jean Louis Marie André Soucadaux"/>
+<leader name="Philibert Tsiranana"/>
+<leader name="Gabriel Ramanantsoa"/>
+<leader name="Didier Ratsiraka"/>
+<leader name="Rainivoninahitriniony"/>
+<leader name="Rainiharo"/>
+<leader name="Rainilaiarivony"/>
+<leader name="Rainitsimbazafy"/>
+<leader name="Ralambo"/>
+<leader name="Andrianjaka"/>
+<leader name="Andriantsitakatrandriana"/>
+<leader name="Andriantsimitoviaminandriandehibe"/>
+<leader name="Andrianjaka Razakatsitakatrandriana"/>
+<leader name="Andriamasinavalona"/>
+<leader name="Andriantsimitoviaminiandriana Andriandrazaka"/>
+<leader name="Andriambelomasina"/>
+<leader name="Andrianjafy"/>
+<trait name="C"/>
+<trait name="C"/>
+<city name="Antananarivo"/>
+<city name="Toamasina"/>
+<city name="Antsirabe"/>
+<city name="Mahajanga"/>
+<city name="Fianarantsoa"/>
+<city name="Toliara"/>
+<city name="Antsiranana"/>
+<city name="Antanifotsy"/>
+<city name="Amparafaravola"/>
+<city name="Tôlanaro"/>
+<city name="Ambatondrazaka"/>
+<city name="Mananara Avaratra"/>
+<city name="Nosy Varika"/>
+<city name="Soavinandriana"/>
+<city name="Mahanoro"/>
+<city name="Manakara"/>
+<city name="Soanierana Ivongo"/>
+<city name="Faratsiho"/>
+<city name="Amboasary"/>
+<city name="Morondava"/>
+<city name="Vavatenina"/>
+<city name="Antalaha"/>
+<city name="Ikongo"/>
+<city name="Fandriana"/>
+<city name="Ambositra"/>
+<city name="Sambava"/>
+<city name="Ambanja"/>
+<city name="Betioky"/>
+<city name="Manjakandriana"/>
+<city name="Marovoay"/>
+<city name="Ambalavao"/>
+<city name="Mananjary"/>
+<city name="Tsiombe"/>
+<city name="Betafo"/>
+<city name="Ambatofinandrahana"/>
+<city name="Ambatolampy"/>
+<city name="Moramanga"/>
+<city name="Farafangana"/>
+<city name="Tsiroanomandidy"/>
+<city name="Ampanihy"/>
+<city name="Ankazoabo"/>
+<city name="Anosibe An'ala"/>
+<city name="Marolambo"/>
+<city name="Vangaindrano"/>
+<city name="Vohibinany"/>
+<city name="Antsirambazaha"/>
+<city name="Beloha"/>
+<city name="Belo Tsiribihina"/>
+<city name="Maroantsetra"/>
+<city name="Ambatoboeny"/>
+<city name="Sakaraha"/>
+<city name="Vondrozo"/>
+<city name="Andapa"/>
+<city name="Antsohihy"/>
+<city name="Arivonimamo"/>
+<city name="Fenoarivo Atsinanana"/>
+<city name="Manandriana"/>
+<city name="Miandrivazo"/>
+<city name="Andilamena"/>
+<city name="Anjozorobe"/>
+<city name="Beroroha"/>
+<city name="Fenoarivo"/>
+<city name="Ifanadiana"/>
+<city name="Ihosy"/>
+<city name="Bealanana"/>
+<city name="Ikalamavony"/>
+<city name="Tsaratanana"/>
+<city name="Ambilobe"/>
+<city name="Ankazobe"/>
+<city name="Ambatomainty"/>
+<city name="Ambenja"/>
+<city name="Ambohidratrimo"/>
+<city name="Ambohimahamasina"/>
+<city name="Ambohimahasoa"/>
+<city name="Analalava"/>
+<city name="Vohipeno"/>
+<city name="Vatomandry"/>
+<city name="Vohemar"/>
+<city name="Soalala"/>
+<city name="Morombe"/>
+<city name="Morafenobe"/>
+<city name="Mitsinjo"/>
+<city name="Midongy-Atsimo"/>
+<city name="Miarinarivo"/>
+<city name="Manja"/>
+<city name="Mandritsara"/>
+<city name="Mampikony"/>
+<city name="Maintirano"/>
+<city name="Andramasina"/>
+<city name="Antanambao Manampotsy"/>
+<city name="Antsalova"/>
+<city name="Befandriana-Avaratra"/>
+<city name="Befotaka"/>
+<city name="Bekily"/>
+<city name="Benenitra"/>
+<city name="Besalampy"/>
+<city name="Betroka"/>
+<city name="Iakora"/>
+<city name="Ivohibe"/>
+<city name="Kandreho"/>
+<city name="Maevatanana"/>
+<city name="Mahabo"/>
+</civ>
+</civs>
+</miniyacg>

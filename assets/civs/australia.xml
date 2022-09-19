@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Australia" r="0" g="0" b="139" personality="Expansive">
+<info>
+Australia is the biggest country in its region, it got colonized
+by England in XIX century. It still remains under formal rule of british
+crown.
+
+Australian traits are Nautical end Economic, to represent its colonial
+past.
+
+Australian leaders include its prime minister.
+Australian color is blue from its flag.
+</info>
+<replacement name="Democracy" state_name="Commonwealth of" leader="Prime Minister"/>
+<replacement name="Monarchy" state_name="Colony of" leader="Governor"/>
+<leader name="John Curtin"/>
+<leader name="Ben Chifley"/>
+<leader name="Alfred Deakin"/>
+<leader name="Gough Whitlam"/>
+<leader name="Robert Menzies"/>
+<leader name="Billy Hughes"/>
+<leader name="Bob Hawke"/>
+<leader name="Andrew Fisher"/>
+<leader name="Malcolm Fraser"/>
+<leader name="James Scullin"/>
+<trait name="N"/>
+<trait name="E"/>
+<city name="Canberra"/>
+<city name="Sydney"/>
+<city name="Melbourne"/>
+<city name="Brisbane"/>
+<city name="Perth"/>
+<city name="Adelaide"/>
+<city name="Hobart"/>
+<city name="Darwin"/>
+<city name="Sunshine Coast"/>
+<city name="Central Coast"/>
+<city name="Wollongong"/>
+<city name="Geelong"/>
+<city name="Townsville"/>
+<city name="Cairns"/>
+<city name="Toowoomba"/>
+<city name="Ballarat"/>
+<city name="Bendigo"/>
+<city name="Albury-Wodonga"/>
+<city name="Launceston"/>
+<city name="Mackay"/>
+<city name="Rockhampton"/>
+<city name="Melton"/>
+<city name="Bunbury"/>
+<city name="Coffs Harbour"/>
+<city name="Bundaberg"/>
+<city name="Wagga Wagga"/>
+<city name="Hervey Bay"/>
+<city name="Shepparton-Mooroopna"/>
+<city name="Mildura-Wentworth"/>
+<city name="Port Macquarie"/>
+<city name="Gladstone-Tannum Sands"/>
+<city name="Tamworth"/>
+<city name="Traralgon-Morwell"/>
+<city name="Warragul-Drouin"/>
+<city name="Orange"/>
+<city name="Busselton"/>
+<city name="Dubbo"/>
+<city name="Nowra-Bomaderry"/>
+<city name="Bathurst"/>
+<city name="Geraldton"/>
+<city name="Warrnambool"/>
+<city name="Albany"/>
+<city name="Devonport"/>
+<city name="Mount Gambier"/>
+<city name="Nelson Bay"/>
+<city name="Kalgoorlie-Boulder"/>
+<city name="Lismore"/>
+<city name="Victor"/>
+<city name="Maryborough"/>
+<city name="Burnie-Wynyard"/>
+<city name="Ballina"/>
+<city name="Morrisset-Cooranbong"/>
+<city name="Alice Springs"/>
+<city name="Taree"/>
+<city name="Goulburn"/>
+<city name="Bacchus Marsh"/>
+<city name="Armidale"/>
+<city name="Gisborne-Macedon"/>
+<city name="Gympie"/>
+<city name="Echyca-Moama"/>
+<city name="Whyalla"/>
+<city name="Forster-Tuncurry"/>
+<city name="Griffith"/>
+<city name="Sanctuary Point"/>
+<city name="Yeppoon"/>
+<city name="Wangaratta"/>
+<city name="Murray Bridge"/>
+<city name="Grafton"/>
+<city name="Camden Haven"/>
+<city name="Mount Isa"/>
+<city name="Karratha"/>
+<city name="Broken Hill"/>
+<city name="Ulladulla"/>
+<city name="Batemans Bay"/>
+<city name="Moe-Newborough"/>
+<city name="Horsham"/>
+<city name="Port Lincoln"/>
+<city name="Singleton"/>
+<city name="Yanchep"/>
+<city name="Baimsdale"/>
+<city name="Kempsey"/>
+<city name="Sale"/>
+<city name="Warwick"/>
+<city name="Port Hedland"/>
+<city name="Ulverstone"/>
+<city name="Emerald"/>
+<city name="Broome"/>
+<city name="Port Pirie"/>
+<city name="Port Augusta"/>
+</civ>
+</civs>
+</miniyacg>

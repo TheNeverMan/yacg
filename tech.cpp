@@ -29,6 +29,13 @@ int Tech::Get_Current_Cost()
   return current_cost;
 }
 
+int Tech::Is_Researched_And_How_Many_Times_Has_Trait_Name(string trait_name)
+{
+  if(is_researched)
+    return How_Many_Times_Has_Trait(trait_name);
+  return 0;
+}
+
 bool Tech::Is_Researched_And_Has_Trait(string trait_name)
 {
   bool out = is_researched && Has_Trait(trait_name);

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Vandals" r="106" g="0" b="0" personality="Expansive">
+<info>
+Vandals were germanic tribe from territory of Poland. Between 120 BC and 439 they have
+migrated to Northen Africa and estabilished a kingdom in the territory of Mauretania and Numidia.
+Later they have conquered Carthage and in 455 they have conquered and pillaged Rome.
+Despite their name and "barbaric pillagers of Rome" legend under their rule arts and science fluorished.
+Vandal Kingdom collapsed in 534.
+
+Vandalic traits are Nomadic and Scientific, to represent their migration from Poland to Africa and
+their patronage of science.
+
+Vandalic leaders include kings of Vandal Kingdom.
+Vandalic color is brown - background color from one of their possible flags. 
+</info>
+<leader name="Gaiseric"/>
+<leader name="Huneric"/>
+<leader name="Gunthamund"/>
+<leader name="Thrasamund"/>
+<leader name="Hilderic"/>
+<leader name="Gelimer"/>
+<leader name="Godigisel"/>
+<leader name="Gunderic"/>
+<trait name="D"/>
+<trait name="S"/>
+<city name="Hippo Regius"/>
+<city name="Carthage"/>
+<city name="Hippo Diarrhytus"/>
+<city name="Neapolis"/>
+<city name="Unzibira"/>
+<city name="Thapsus"/>
+<city name="Thaenae"/>
+<city name="Thysdrus"/>
+<city name="Thabraca"/>
+<city name="Leptiminus"/>
+<city name="Hadrumetum"/>
+<city name="Simitthus"/>
+<city name="Russicada"/>
+<city name="Meninx"/>
+<city name="Tamalleni"/>
+<city name="Capsa"/>
+<city name="Tbessa"/>
+<city name="Madauros"/>
+<city name="Chullu"/>
+<city name="Cirta"/>
+<city name="Zdif"/>
+<city name="Auzia"/>
+<city name="Saldae"/>
+<city name="Igilgili"/>
+<city name="Rusazus"/>
+<city name="Rusippisir"/>
+<city name="Iol"/>
+<city name="Gunugu"/>
+<city name="Cartena"/>
+<city name="Tigava"/>
+<city name="Quiza"/>
+<city name="Siga"/>
+<city name="Rusadir"/>
+<city name="Palma"/>
+<city name="Palermo"/>
+<city name="Caligari"/>
+<city name="Speloncato"/>
+<city name="Syracuse"/>
+<city name="Tingis"/>
+<city name="Volubilis"/>
+<city name="Leptis Magna"/>
+<city name="Sabratha"/>
+<city name="Oea"/>
+<city name="Pomaria"/>
+<city name="Oran"/>
+<city name="Portus Magnus"/>
+<city name="Cartenna"/>
+<city name="Caesarea"/>
+<city name="Tipasa"/>
+<city name="Zarai"/>
+<city name="Sitifis"/>
+<city name="Cuicul"/>
+<city name="Gemellae"/>
+<city name="Vescera"/>
+<city name="Thamugadi"/>
+<city name="Lambaesis"/>
+<city name="Ad Majores"/>
+<city name="Taparura"/>
+<city name="Thuburbo Majus"/>
+<city name="Curubis"/>
+<city name="Clupea"/>
+<city name="Maxula"/>
+<city name="Uttica"/>
+<city name="Thabraca"/>
+<city name="Bulla Regia"/>
+<city name="Sicca Veneria"/>
+<city name="Lares"/>
+<city name="Zama"/>
+<city name="Ammaedara"/>
+<city name="Theveste"/>
+</civ>
+</civs>
+</miniyacg>

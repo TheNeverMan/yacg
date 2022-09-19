@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="India" r="255" g="153" b="51" personality="Enterprising">
+<info>
+India is a country in South Asia. It is one of the most populous contries in the world. 
+It is also the biggest democratic republic in the world. Before 1947 it was british colony, it gained 
+independence in 1948 and became independent republic in 1950. 
+
+Indian traits are Economic and Economic, to represent the power of its rising economy.
+
+Indian leaders include its prime ministers and other leaders.
+Indian color is orange from its flag.
+</info>
+<replacement name="Democracy" leader="Prime Minister" state_name="Republic of"/>
+<replacement name="Monarchy" leader="Sultan" state_name="Delhi Sultanate of"/>
+<replacement name="Parliamentary Monarchy" leader="Viceroy" state_name="British Raj of"/>
+<leader name="Jawaharlal Nehru"/>
+<leader name="Mahatma Gandhi"/>
+<leader name="Indira Gandhi"/>
+<leader name="Manmohan Singh"/>
+<leader name="Rajeev Gandhi"/>
+<leader name="Morarji Desai"/>
+<leader name="Atal Bihari Vajpayee"/>
+<leader name="Lal Bahadur Shastri"/>
+<leader name="Charan Singh"/>
+<trait name="E"/>
+<trait name="E"/>
+<city name="New Delhi"/>
+<city name="Mumbai"/>
+<city name="Delhi"/>
+<city name="Bangalore"/>
+<city name="Hyderabad"/>
+<city name="Chennai"/>
+<city name="Kolkata"/>
+<city name="Jaipur"/>
+<city name="Lucknow"/>
+<city name="Bhopal"/>
+<city name="Patna"/>
+<city name="Srinagar"/>
+<city name="Ranchi"/>
+<city name="Raipur"/>
+<city name="Chandigarh"/>
+<city name="Bhubaneswar"/>
+<city name="Thiruvananthapuram"/>
+<city name="Ahmedabad"/>
+<city name="Surat"/>
+<city name="Pune"/>
+<city name="Karipur"/>
+<city name="Nagpur"/>
+<city name="Indore"/>
+<city name="Thane"/>
+<city name="Visakhapatnam"/>
+<city name="Pimpri-Chinchwad"/>
+<city name="Vadodara"/>
+<city name="Ghaziabad"/>
+<city name="Ludhiana"/>
+<city name="Agra"/>
+<city name="Nashik"/>
+<city name="Faridabad"/>
+<city name="Meerut"/>
+<city name="Rajkot"/>
+<city name="Kalyan-Dombivli"/>
+<city name="Vasai-Virar"/>
+<city name="Varanasi"/>
+<city name="Aurangabad"/>
+<city name="Dhanbad"/>
+<city name="Amritsar"/>
+<city name="Navi Mumbai"/>
+<city name="Allahabad"/>
+<city name="Howrah"/>
+<city name="Gwalior"/>
+<city name="Jabalpur"/>
+<city name="Coimbatore"/>
+<city name="Vijayawada"/>
+<city name="Jodhpur"/>
+<city name="Madurai"/>
+<city name="Kota"/>
+<city name="Guwahati"/>
+<city name="Solapur"/>
+<city name="Hubli-Dharwad"/>
+<city name="Mysore"/>
+<city name="Tiruchirappalli"/>
+<city name="Berailly"/>
+<city name="Aligarh"/>
+<city name="Tiruppur"/>
+<city name="Guragaon"/>
+<city name="Moradabad"/>
+<city name="Jalandhar"/>
+<city name="Salem"/>
+<city name="Warangal"/>
+<city name="Mira-Bhyandar"/>
+<city name="Jalgaon"/>
+<city name="Guntur"/>
+<city name="Bhiwandi"/>
+<city name="Saharanpur"/>
+<city name="Gorakhpur"/>
+<city name="Bikaner"/>
+<city name="Amravati"/>
+<city name="Noida"/>
+<city name="Jamshedpur"/>
+<city name="Bhilai"/>
+<city name="Cuttack"/>
+<city name="Firozabad"/>
+<city name="Kochi"/>
+<city name="Nellore"/>
+<city name="Bhavnagar"/>
+<city name="Cehradun"/>
+<city name="Durgapur"/>
+<city name="Asansol"/>
+<city name="Rourkela"/>
+<city name="Nanded"/>
+<city name="Kolhapur"/>
+<city name="Ajmer"/>
+<city name="Akola"/>
+<city name="Gulbarga"/>
+<city name="Jamnagar"/>
+<city name="Ujjain"/>
+<city name="Loni"/>
+<city name="Siliguri"/>
+<city name="Jhansi"/>
+<city name="Ulhasnagar"/>
+<city name="Jammu"/>
+<city name="Kupwad"/>
+<city name="Mangalore"/>
+<city name="Erode"/>
+<city name="Belgaum"/>
+<city name="Kurnool"/>
+<city name="Ambattur"/>
+<city name="Rajahmundry"/>
+<city name="Tirunelveli"/>
+<city name="Malegaon"/>
+<city name="Gaya"/>
+<city name="Udaipur"/>
+<city name="Karur"/>
+<city name="Kakinada"/>
+<city name="Davanagere"/>
+<city name="Kozhikode"/>
+<city name="Maheshtala"/>
+<city name="Rajpur Sonarpur"/>
+<city name="Bokaro"/>
+<city name="Dum Dum"/>
+<city name="Bellary"/>
+<city name="Patiala"/>
+<city name="Gopalpur"/>
+<city name="Agartala"/>
+<city name="Bhagalpur"/>
+<city name="Muzaffarnagar"/>
+</civ>
+</civs>
+</miniyacg>

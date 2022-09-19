@@ -1,0 +1,2731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="China"  r="254" g="206" b="27" personality="Authoritarian">
+<replacement name="Monarchy" leader="Emperor" state_name="Great Qing of"/>
+<info>
+China as a culture and military entity is
+one of the longest existing on Earth.
+It begun with creation of Chinese Empire
+(which although many times shattered) managed to
+survive to modern era, when it was replaced with Communist
+China.
+
+Chinese traits are Militaristic and Scientific - they represent
+Chinese ingeniuity (paper, gunpowder, kite, press have their origin in China)
+and military power as they were and are one of global superpowers.
+
+Chinese leaders include greatest emperors and chairmans of Chinese Communist Party.
+China's color is yellow - backgound color of Qing Dynasty flag.
+</info>
+<leader name="Qin Shi Huang"/>
+<leader name="Mao Zedong"/>
+<leader name="Han Wudi"/>
+<leader name="Tang Taizong"/>
+<leader name="Deng Xiaoping"/>
+<leader name="Sun Yat-sen"/>
+<leader name="Ming Chengzu"/>
+<leader name="Song Taizhu"/>
+<leader name="Tang Xuanzong"/>
+<leader name="Tang Taizong"/>
+<trait name="S"/>
+<trait name="M"/>
+<city name="Bejing"/>
+<city name="Shanghai"/>
+<city name="Guangzhou"/>
+<city name="Shenzen"/>
+<city name="Nanjing"/>
+<city name="Hong Kong"/>
+<city name="Chengdu"/>
+<city name="Chongqing"/>
+<city name="Hangzhou"/>
+<city name="Wuhan"/>
+<city name="Tianjin"/>
+<city name="Suzhou"/>
+<city name="Xi'an"/>
+<city name="Changshu"/>
+<city name="Sheyang"/>
+<city name="Qingdao"/>
+<city name="Zhengzhou"/>
+<city name="Dalian"/>
+<city name="Donyguan"/>
+<city name="Ningbo"/>
+<city name="Xiamen"/>
+<city name="Fuzhou"/>
+<city name="Wuxi"/>
+<city name="Hefei"/>
+<city name="Kunming"/>
+<city name="Harbin"/>
+<city name="Jinan"/>
+<city name="Foshan"/>
+<city name="Changchun"/>
+<city name="Wenzhou"/>
+<city name="Shijazhuang"/>
+<city name="Nanning"/>
+<city name="Changzhou"/>
+<city name="Quanzhou"/>
+<city name="Nanchang"/>
+<city name="Guiyang"/>
+<city name="Taiyuan"/>
+<city name="Yantai"/>
+<city name="Jiaxing"/>
+<city name="Nantong"/>
+<city name="Jinhua"/>
+<city name="Zhuhai"/>
+<city name="Huizhou"/>
+<city name="Xuzhou"/>
+<city name="Haikou"/>
+<city name="Urumqi"/>
+<city name="Shaozing"/>
+<city name="Zhongshan"/>
+<city name="Taizhou"/>
+<city name="Jiujiang"/>
+</civ>
+<civ name="Majapahit"  r="209" g="168" b="64" personality="Expansive">
+<replacement name="Theocracy" leader="Dharmmadhyaksa ring Kasewan" state_name="Holy Empire of"/>
+<replacement name="Republic" leader="Mahapatih" state_name="Republic of"/>
+<replacement name="Monarchy" leader="Chakravarti" state_name="Empire of"/>
+<trait name="N"/>
+<trait name="N"/>
+<info>
+Majapahit was a major maritime empire in
+the territory of modern day Indonesia. In fact
+it was the last major buddhist-hinduist empire in the region.
+Its territory covered the lands of Indonesia, Singapore, Malaysia
+Brunei and Thailand.
+
+Majaphit's traits are Nautical and Nautical that represent the islandbased
+character of the country.
+
+Majapahit's leaders include kings of Majapahit.
+Majaphit's color is gold - the color of Surya Majapahit, the symbol of Majapahit.
+</info>
+<leader name="Hayam Wuruk"/>
+<leader name="Gajah Mahda"/>
+<leader name="Raden Wijaya"/>
+<leader name ="Tribhuwana Wijayatunggadewi"/>
+<leader name="Wikramawardhana"/>
+<leader name="Jayanegara"/>
+<leader name="Suhita"/>
+<leader name="Kertawijaya"/>
+<leader name="Rajasawardhana"/>
+<leader name="Girishawardhana"/>
+<leader name="Suraprabhawa"/>
+<leader name="Girindrawardhana"/>
+<city name="Trowulan"/>
+<city name="Pajang"/>
+<city name="Kahuripan"/>
+<city name="Lasem"/>
+<city name="Lumajang"/>
+<city name="Tuban"/>
+<city name="Hajung Galuh"/>
+<city name="Tulwang"/>
+<city name="Kalapa"/>
+<city name="Pakuan"/>
+<city name="Galuh"/>
+<city name="Lwagajah"/>
+<city name="Bedahulu"/>
+<city name="Guran"/>
+<city name="Lombok"/>
+<city name="Saksak"/>
+<city name="Katingan"/>
+<city name="Banjar"/>
+<city name="Sampit"/>
+<city name="Solot"/>
+<city name="Berune"/>
+<city name="Luwu"/>
+<city name="Gowa"/>
+<city name="Salay"/>
+<city name="Makassar"/>
+<city name="Dompo"/>
+<city name="Bima"/>
+<city name="Sapi"/>
+<city name="Nagor"/>
+<city name="Keda"/>
+<city name="Jere"/>
+<city name="Kalanten"/>
+<city name="Tringgano"/>
+<city name="Dungun"/>
+<city name="Pahang"/>
+<city name="Kelang"/>
+<city name="Pakamuar"/>
+<city name="Tumasik"/>
+<city name="Lamuri"/>
+<city name="Samudra"/>
+<city name="Lwas"/>
+<city name="Parllak"/>
+<city name="Tumihang"/>
+<city name="Barus"/>
+<city name="Teba"/>
+<city name="Panai"/>
+<city name="Siyak"/>
+<city name="Niran"/>
+<city name="Kanjab"/>
+</civ>
+<civ name="Egypt"  r="194" g="57" b="20" personality="Holy">
+<info>
+Ancient Egypt is a state that survived 3000 years and developed massive cultural
+heritage that can be seen to this day - for example Pyramids. Egypt can be considered
+one of the first major emipres in the human history.
+
+Egypt's traits are Economic and Reliqious to represent the power it had to
+build great buildings and irrigate Nile.
+
+Egypt's leaders include pharaohs from all 3 ancient Egyptian kingdoms.
+Egypt's color is orange - the color of Red Crown.
+</info>
+<replacement name="Theocracy" leader="Pharaoh" state_name="Kingdom of"/>
+<leader name="Ramesses II"/>
+<leader name="Cleopatra VII"/>
+<leader name="Hatshepsut"/>
+<leader name="Thutmose III"/>
+<leader name="Tutankhamun"/>
+<leader name="Amenhotep III"/>
+<leader name="Akhenaten"/>
+<leader name="Djoser"/>
+<leader name="Khufu"/>
+<leader name="Snefru"/>
+<trait name="E"/>
+<trait name="R"/>
+<city name="Thebes"/>
+<city name="Memphis"/>
+<city name="Akhetaten"/>
+<city name="Pi-Ramesses"/>
+<city name="Herakleopolis"/>
+<city name="Elephantine"/>
+<city name="Aswan"/>
+<city name="Heliopolis"/>
+<city name="Abydos"/>
+<city name="Abu Simbel"/>
+<city name="Napata"/>
+<city name="Tunis"/>
+<city name="Avaris"/>
+<city name="Kadesh"/>
+<city name="Gaza"/>
+<city name="Byblos"/>
+<city name="Tyr"/>
+<city name="Sidon"/>
+<city name="Carchemish"/>
+<city name="Citium"/>
+<city name="Khem"/>
+<city name="Yamu"/>
+<city name="Raqote"/>
+<city name="Khito"/>
+<city name="Ptkheka"/>
+<city name="Zau"/>
+<city name="Per-Wadjet"/>
+<city name="Khasut"/>
+<city name="Timinhor"/>
+<city name="Piemro"/>
+<city name="Thonis"/>
+<city name="Menouthis"/>
+<city name="Pikuat"/>
+<city name="Per-Atum"/>
+<city name="Dejdu"/>
+<city name="Hut-hery-ib"/>
+<city name="Taremu"/>
+<city name="Setennu"/>
+<city name="Tjebnutjer"/>
+<city name="Pachnamu´nis"/>
+<city name="Iunu"/>
+<city name="Tjaru"/>
+<city name="Per-Amun"/>
+<city name="Weprehwy"/>
+<city name="Tamiat"/>
+<city name="Djedet"/>
+<city name="Semabehdet"/>
+<city name="Per-Bast"/>
+<city name="Djanet"/>
+<city name="Hut-waret"/>
+</civ>
+<civ name="England"  r="201" g="8" b="42" personality="Expansive">
+<info>
+England is a kingdom that was forged in early medieval age.
+It not only survived to this day, unified entire island, but also
+managed to create the biggest empire known to humankind.
+
+English traits are Militaristic and Nautical to represent the
+colonial power of England.
+
+English leaders include kings, queens and prime ministers of the monarchy.
+English color is red from English flag - the Union Jack.
+</info>
+<replacement name="Democracy" leader="Prime Minister" state_name="Kingdom of"/>
+<replacement name="Tribe" leader="Chief" state_name="Anglo-Saxon Tribes of"/>
+<trait name="M"/>
+<trait name="N"/>
+<leader name="Victoria"/>
+<leader name="Elizabeth"/>
+<leader name="Winston Churchill"/>
+<leader name="Henry V"/>
+<leader name="Richard I"/>
+<leader name="Edward I"/>
+<leader name="Edward VII"/>
+<leader name="George VI"/>
+<leader name="Arthur"/>
+<leader name="Henry VIII"/>
+<city name="London"/>
+<city name="Manchester"/>
+<city name="Birmingham"/>
+<city name="Liverpool"/>
+<city name="Glasgow"/>
+<city name="Edinburg"/>
+<city name="Cambridge"/>
+<city name="Shaffield"/>
+<city name="Brighton"/>
+<city name="Leeds"/>
+<city name="Bristol"/>
+<city name="Leicester"/>
+<city name="Coventry"/>
+<city name="Bradford"/>
+<city name="York"/>
+<city name="Nakefield"/>
+<city name="Nottingham"/>
+<city name="Newcastle Upon Tyre"/>
+<city name="Sunderland"/>
+<city name="Plymouth"/>
+<city name="Kingstom upon Hull"/>
+<city name="Wolverhampton"/>
+<city name="Stoke-on-Trent"/>
+<city name="Derby"/>
+<city name="Southampton"/>
+<city name="Salford"/>
+<city name="Westminster"/>
+<city name="Portsmouth"/>
+<city name="York"/>
+<city name="Peterborough"/>
+<city name="Southend-on-Sea"/>
+<city name="Chelmsford"/>
+<city name="Oxford"/>
+<city name="Canterbury"/>
+<city name="St. Albans"/>
+<city name="Preston"/>
+<city name="Lancaster"/>
+<city name="Norwich"/>
+<city name="Exeter"/>
+<city name="Cambridge"/>
+<city name="Gloucester"/>
+<city name="Winchester"/>
+<city name="Carlisle"/>
+<city name="Worcester"/>
+<city name="Durham"/>
+<city name="Lincoln"/>
+<city name="Chester"/>
+<city name="Bath"/>
+<city name="Hereford"/>
+<city name="Salisbury"/>
+</civ>
+<civ name="America" r="60" g="59" b="110" personality="Enlightened">
+<info>
+America or United States of America is one of the strongest modern empires.
+Its power emerged during world wars, when America shown itself as industrial,
+economical and scientific powerhouse, which later succeeded in defeating Soviet Union
+during Cold War.
+
+American traits are Scientific and Economic, they represent the economical and
+scientific power of America.
+
+American leaders include american presidents.
+American color is blue from american flag.
+</info>
+<replacement name="Democracy" leader="President" state_name="United States of"/>
+<trait name="E"/>
+<trait name="S"/>
+<leader name="Theodore Roosevelt"/>
+<leader name="Abraham Lincoln"/>
+<leader name="George Washington"/>
+<leader name="Franklin Roosevelt"/>
+<leader name="Thomas Jefferson"/>
+<leader name="Dwight Eisenhower"/>
+<leader name="Harry Truman"/>
+<leader name="John Kennedy"/>
+<leader name="Ronald Reagan"/>
+<leader name="Lyndon Johnson"/>
+<city name="Washington"/>
+<city name="New York"/>
+<city name="Los Angeles"/>
+<city name="Chicago"/>
+<city name="Houston"/>
+<city name="Miami"/>
+<city name="Dallas"/>
+<city name="Atlanta"/>
+<city name="Las Vegas"/>
+<city name="San Francisco"/>
+<city name="Phoenix"/>
+<city name="Philadelphia"/>
+<city name="San Diego"/>
+<city name="Oklahoma City"/>
+<city name="Austin"/>
+<city name="Seattle"/>
+<city name="Denver"/>
+<city name="Boston"/>
+<city name="Jacksonville"/>
+<city name="Indianapolis"/>
+<city name="Charlotte"/>
+<city name="Nachville"/>
+<city name="El Paso"/>
+<city name="Boston"/>
+<city name="Detroit"/>
+<city name="Portland"/>
+<city name="Louisville"/>
+<city name="Baltimore"/>
+<city name="Milwaukee"/>
+<city name="Fresno"/>
+<city name="Tucson"/>
+<city name="Sacramento"/>
+<city name="Mesa"/>
+<city name="Kansas City"/>
+<city name="Atlanta"/>
+<city name="Omaha"/>
+<city name="Colorado Sprigns"/>
+<city name="Raleigh"/>
+<city name="Virgina Beach"/>
+<city name="Miami"/>
+<city name="Oakland"/>
+<city name="Minneapolis"/>
+<city name="Tulsa"/>
+<city name="Bakersfield"/>
+<city name="Wichita"/>
+<city name="Arlington"/>
+<city name="Aurora"/>
+<city name="New Orleans"/>
+<city name="Cleveland"/>
+<city name="Anaheim"/>
+
+</civ>
+<civ name="Inca" r="1" g="138" b="44" personality="Holy">
+<info>
+Incan Empire was the biggest empire of South America
+before european colonization. Although its existence was short
+it made amazing achivements, like panandean road system
+or building of Macchu Picchu.
+
+Incan traits are Militaristic and Agricultural, they represent the power it held in the
+region and its unique terrace farming system.
+
+Incan leaders include Sapa Incas and resistance leaders.
+Incan color is green, one of the colors of rainbow on Sapa Inca banner.
+</info>
+<trait name="M"/>
+<trait name="A"/>
+<replacement name="Theocracy" leader="Sapa Inca" state_name="Empire of"/>
+<leader name="Manco Capac"/>
+<leader name="Atahualpa"/>
+<leader name="Pachacuti"/>
+<leader name="Huayna Capac"/>
+<leader name="Topa Inca Yupanqui"/>
+<leader name="Manco Inca Yupanqui"/>
+<leader name="Yáhuar Huácac"/>
+<leader name="Sayri Túpac"/>
+<leader name="Titu Cusi"/>
+<leader name="Túpac Amaru"/>
+<city name="Cuzco"/>
+<city name="Macchu Piccu"/>
+<city name="Choquequirao"/>
+<city name="Huamanga"/>
+<city name="Vitcos"/>
+<city name="Aypate"/>
+<city name="Huánuco Pampa"/>
+<city name="Vilca"/>
+<city name="Cota Cota"/>
+<city name="Espíritu Pampa"/>
+<city name="Corihuayrachina"/>
+<city name="Vilcabamba"/>
+<city name="Paititi"/>
+<city name="Tiwanaku"/>
+<city name="Ollantaytambo"/>
+<city name="Moray"/>
+<city name="Winay Wayna"/>
+<city name="Llactapata"/>
+<city name="Sacsayhuaman"/>
+<city name="Inca Pisac"/>
+<city name="Nazca"/>
+<city name="Pachamac"/>
+<city name="Quito"/>
+<city name="Rumiqullqa"/>
+<city name="Tucume"/>
+<city name="Saksaywaman"/>
+<city name="Inka Wasi"/>
+<city name="Ayacucho"/>
+<city name="Huancavelica"/>
+<city name="Inti Punku"/>
+<city name="Inti Watana"/>
+<city name="Llaqtapata"/>
+<city name="Machu Colca"/>
+<city name="Patallaqta"/>
+<city name="Nusta Hispana"/>
+<city name="Phuyupatamarka"/>
+<city name="Pinkuylluna"/>
+<city name="Puka Pukara"/>
+<city name="Qollmay"/>
+<city name="Quispiguanca"/>
+<city name="Qunchamarka"/>
+<city name="Quirkancha"/>
+<city name="Tarawasi"/>
+<city name="Tarmatampu"/>
+<city name="Tipon"/>
+<city name="Sayhuite"/>
+<city name="Wamanmarka"/>
+<city name="Willkaraqay"/>
+<city name="Puruchuco"/>
+<city name="Vilcashuaman"/>
+<city name="Pikllaqta"/>
+<city name="Pachakamaq"/>
+<city name="Wanuku Pampa"/>
+<replacement name="Tribe" leader="King" state_name="Kingdom of"/>
+</civ>
+<civ name="Babylon" r="120" g="120" b="120" personality="Enlightened">
+<info>
+Ancient Babylon or Babylonia was a state that emerged between rivers Euphrates and Tigris.
+Although it wasn't as big as other empires it made major scientific and cultural advances, such as
+one of the first writing systems, mathematical and astronomical discoveries, and building of Hanging Gardens.
+
+Babylonian traits are Scientific and Cultural, they represent the cultural impact of Babylonia.
+
+Babylonian leaders include kings from various dynasties.
+Babylonian color is grey.
+</info>
+<replacement name="Despotism" leader="šakkanakki Bābili" state_name="Kingdom of"/>
+<leader name="Hammurabi"/>
+<leader name="Nebuchadnezzar I"/>
+<leader name="Ea-gâmil"/>
+<leader name="Ammi-Saduqa"/>
+<leader name="Ilum-ma-ilī"/>
+<leader name="Sin-Muballit"/>
+<leader name="Ammi-Ditana"/>
+<leader name="Karaindash"/>
+<leader name="Marduk-shapik-zeri"/>
+<leader name="Adad-apla-iddina"/>
+<trait name="S"/>
+<trait name="C"/>
+<city name="Babilon"/>
+<city name="Kish"/>
+<city name="Sippar"/>
+<city name="Nippur"/>
+<city name="Isin"/>
+<city name="Larsa"/>
+<city name="Uruk"/>
+<city name="Lagash"/>
+<city name="Eshnunna"/>
+<city name="Eridu"/>
+<city name="Mari"/>
+<city name="Ur"/>
+<city name="Malgium"/>
+<city name="Rapiqum"/>
+<city name="Umma"/>
+<city name="Borsippa"/>
+<city name="Adab"/>
+<city name="Elam"/>
+<city name="Lullubi"/>
+<city name="Levant"/>
+<city name="Me-Turan"/>
+<city name="Tutub"/>
+<city name="Der"/>
+<city name="Urum"/>
+<city name="Kutha"/>
+<city name="Jemdet Nasr"/>
+<city name="Dilbat"/>
+<city name="Marad"/>
+<city name="Isin"/>
+<city name="Kisurra"/>
+<city name="Shuruppak"/>
+<city name="Bad-tibira"/>
+<city name="Zabalam"/>
+<city name="Umma"/>
+<city name="Girsu"/>
+<city name="Tell Zurghul"/>
+<city name="Tell Khaiber"/>
+<city name="Tulul al-Baqarat"/>
+<city name="Kuara"/>
+<city name="Ubaid"/>
+<city name="Akshak"/>
+<city name="Nagar"/>
+<city name="Urfa"/>
+<city name="Teil Taya"/>
+<city name="Balawat"/>
+<city name="Mumbaqat"/>
+<city name="Harran"/>
+<city name="Chagar Bazar"/>
+<city name="Al-Rawda"/>
+<city name="Shibaniba"/>
+</civ>
+<civ name="Congo" r="27" g="64" b="43" personality="Peaceful">
+<info>
+Congo in medieval age was inhabitated by many local tribes and in 1390
+they managed to create Kingdom of Kongo, which survived to 1914.
+Right now region of Congo is split between two republics. Mainly it is
+Democratic Republic of Congo, it is 11th biggest country in the world and
+it has many valuable ores and other mining valuables.
+
+Congolese traits are Cultural and Religious which represent
+cultural heritage of independent Kingdom of Kongo.
+
+Congolese leaders include DRC presidents, Brazzaville presidents and medieval kings.
+Congolese color is dark green that can be found on Kingdom of Kongo coat of arms.
+</info>
+<trait name="R"/>
+<trait name="C"/>
+<leader name="Lukeni lua Nimi"/>
+<leader name="Alfons I"/>
+<leader name="Joseph Kasa-Vubu"/>
+<leader name="Joseph Kabila"/>
+<leader name="João I"/>
+<leader name="Diogo I"/>
+<leader name="Alphonse Massamba-Débat"/>
+<leader name="Álvaro II"/>
+<leader name="Garcia II"/>
+<leader name="Pedro IV"/>
+<replacement name="Monarchy" leader="Manikongo" state_name="Kingdom of"/>
+<leader name="Republic" leader="Mfila Ntu" state_name="Republic of"/>
+<city name="Kinshasa"/>
+<city name="Lubumbashi"/>
+<city name="Mbuji-Mayi"/>
+<city name="Kananga"/>
+<city name="Kisangani"/>
+<city name="Bukavu"/>
+<city name="Tshikapa"/>
+<city name="Kolwezi"/>
+<city name="Likasi"/>
+<city name="Goma"/>
+<city name="Kikwit"/>
+<city name="Uvira"/>
+<city name="Bunia"/>
+<city name="Mbandaka"/>
+<city name="Matadi"/>
+<city name="Butembo"/>
+<city name="Kabinda"/>
+<city name="Mwene-Ditu"/>
+<city name="Boma"/>
+<city name="Kindu"/>
+<city name="Kamina"/>
+<city name="Gandajika"/>
+<city name="Bandundu"/>
+<city name="Gemena"/>
+<city name="Kipushi"/>
+<city name="Baraka"/>
+<city name="Bumba"/>
+<city name="Thysville"/>
+<city name="Beni"/>
+<city name="Kalemie"/>
+<city name="Muanda"/>
+<city name="Tshilenge"/>
+<city name="Lisala"/>
+<city name="Kisantu"/>
+<city name="Bukama"/>
+<city name="Ilebo"/>
+<city name="Kambove"/>
+<city name="Bakwa-Kalonji"/>
+<city name="Binga"/>
+<city name="Kongolo"/>
+<city name="Lodja"/>
+<city name="Katwa"/>
+<city name="Idiofa"/>
+<city name="Kalabo"/>
+<city name="Moba"/>
+<city name="Mulongo"/>
+<city name="Kaniama"/>
+<city name="Rutshuru"/>
+<city name="Manono"/>
+<city name="Miabi"/>
+</civ>
+<civ name="Rome" r="113" g="1" b="147" personality="Enterprising">
+<info>
+Ancient Rome is one of greatest ancient empires that ever existed.
+Born from Roman Republic (one of the first republics in the world) it spaned from
+british islands to Egypt. Its impact on Europe was very big, many current capitals were
+founded by romans.
+
+Roman traits are Economical and Expansive, they represent economical power of Rome
+and its maritime character.
+
+Roman leaders include roman emperors.
+Roman color is purple.
+</info>
+<trait name="E"/>
+<trait name="X"/>
+<leader name="Caesar"/>
+<leader name="Octavian Augustus"/>
+<leader name="Trajan"/>
+<leader name="Marcus Aurelius"/>
+<leader name="Hadrian"/>
+<leader name="Constantine"/>
+<leader name="Antoninus Pius"/>
+<leader name="Vespasian"/>
+<leader name="Claudius"/>
+<leader name="Tiberius"/>
+<city name="Rome"/>
+<city name="Antioch"/>
+<city name="Amorium"/>
+<city name="Milan"/>
+<city name="Ravenna"/>
+<city name="Capua"/>
+<city name="Ancyra"/>
+<city name="Nicomedia"/>
+<city name="Bostra"/>
+<city name="Pompeii"/>
+<city name="Cosa"/>
+<city name="Ariminum"/>
+<city name="Sopianae"/>
+<city name="Arrabona"/>
+<city name="Belum"/>
+<city name="Placentia"/>
+<city name="Scarbantia"/>
+<city name="Asculum"/>
+<city name="Tarravo"/>
+<city name="Bononia"/>
+<city name="Italica"/>
+<city name="Modoetia"/>
+<city name="Salernum"/>
+<city name="Forum Livii"/>
+<city name="Barium"/>
+<city name="Dyrrachium"/>
+<city name="Brixia"/>
+<city name="Mediolanum"/>
+<city name="Comum"/>
+<city name="Regium Lepidi"/>
+<city name="Aquileia"/>
+<city name="Ascrivium"/>
+<city name="Scalabis"/>
+<city name="Villa Euracini"/>
+<city name="Attalia"/>
+<city name="Patavium"/>
+<city name="Spalatum"/>
+<city name="Nicomedia"/>
+<city name="Nicaea"/>
+<city name="Palma"/>
+<city name="Massa"/>
+<city name="Pistoria"/>
+<city name="Confloenta"/>
+<city name="Gerunda"/>
+<city name="Pompaelo"/>
+<city name="Naissus"/>
+<city name="Vesontio"/>
+<city name="Novidunum"/>
+<city name="Lugdunum"/>
+<replacement name="Despotism" leader="King" state_name="Kingdom of"/>
+<replacement name="Monarchy" leader="Imperator" state_name="Empire of"/>
+</civ>
+<civ name="Mongolia" r="219" g="26" b="46" personality="Expansive">
+<info>
+Mongol Empire although short-lived was the largest contiguous empire in history.
+Mongols united by Genghis Khan conquered lands from Eastern Europe to China.
+
+Mongolia's traits are Nomadic and Militaristic, to represent the nomadic empire strength.
+
+Mongol leaders are medieval khans.
+Mongol color is brown that can be found on the modern-day Mongolia's flag.
+</info>
+<leader name="Genghis Khan"/>
+<leader name="Kubilai Khan"/>
+<leader name="Ogedei Khan"/>
+<leader name="Mongke Khan"/>
+<leader name="Hulagu Khan"/>
+<leader name="Temür Khan"/>
+<leader name="Külüg Khan"/>
+<leader name="Ayurbarwada Buyantu Khan"/>
+<leader name="Tolui"/>
+<leader name="Töregene Khatun"/>
+<trait name="D"/>
+<trait name="M"/>
+<city name="Quaraqorum"/>
+<city name="Avarga"/>
+<city name="Khan Baliq"/>
+<city name="Sarai"/>
+<city name="Sighna"/>
+<city name="Hsia"/>
+<city name="Ongiin Ord"/>
+<city name="Tenduk"/>
+<city name="Suurin"/>
+<city name="Tosokh"/>
+<city name="Shar Ord"/>
+<city name="Arlyn Balgas"/>
+<city name="Tsagaan Balgas"/>
+<city name="Khaidu Ord"/>
+<city name="Tataryn Kherem"/>
+<city name="Khokn Nuuriin Ord"/>
+<city name="Khogshin Teeliin Balgas"/>
+<city name="Choir"/>
+<city name="Ikh Khuree"/>
+<city name="Tsetserleg"/>
+<city name="Khovd"/>
+<city name="Ulaangom"/>
+<city name="Moron"/>
+<city name="Choibalsan"/>
+<city name="Uliastai"/>
+<city name="Zuun Kherem"/>
+<city name="Baruun Kherem"/>
+<city name="Bars Khot"/>
+<city name="Chin Tolgoin Balgas"/>
+<city name="Khar Bukhyn Balgas"/>
+<city name="Toba Khan Ord"/>
+<city name="Kharkhurem"/>
+<city name="Baibalyk"/>
+<city name="Khar Balgas"/>
+<city name="Khar Els"/>
+<city name="Bilge Khan Ord"/>
+<city name="Mume"/>
+<city name="Lungcheng"/>
+<city name="Shuvuutiin Gol Kherem"/>
+<city name="Tsenkher Gol Kherem"/>
+<city name="Bayanbulag Balgas"/>
+<city name="Terelj Hasar Balgas"/>
+<city name="Kherlen Tsagaan Aral"/>
+<city name="Lungzi"/>
+<city name="Lungtang"/>
+<city name="Tamsagbulag"/>
+<city name="Norovlin"/>
+<city name="Lungcheng"/>
+<city name="Luut"/>
+<city name="Orkhon"/>
+<replacement name="Despotism" leader="Khan" state_name="Khamag Confederacy of"/>
+<replacement name="Monarchy" leader="Great Khan" state_name="Khaganate of"/>
+</civ>
+<civ name="Brittany" r="0" g="0" b="0" personality="Peaceful">
+<info>
+Brittany is a historical kingdom in France (currently a region). Unified in 846 by
+Nominoe, it was independent until 1532 when it became part of France.
+
+Breton trait is Cultural, to represent the importance of ports in Nantes
+and the cultural independence from France.
+
+Breton leaders are various kings and dukes.
+Breton color is black - one of two colors on their flag.
+</info>
+<leader name="Nominoe"/>
+<leader name="Erispoe"/>
+<leader name="Alan II"/>
+<leader name="Anne"/>
+<leader name="Conan I"/>
+<leader name="Geoffrey I"/>
+<leader name="Alan IV"/>
+<leader name="John IV"/>
+<leader name="John II"/>
+<leader name="Alan I"/>
+<trait name="C"/>
+<city name="Rennes"/>
+<city name="Nantes"/>
+<city name="Brest"/>
+<city name="Lorient"/>
+<city name="Vannes"/>
+<city name="Quimper"/>
+<city name="Saint-Malo"/>
+<city name="Saint-Nazaire"/>
+<city name="Lannion"/>
+<city name="Saint-Brieuc"/>
+<city name="Lanester"/>
+<city name="Redon"/>
+<city name="Roscoff"/>
+<city name="Quiberon"/>
+<city name="Paimpol"/>
+<city name="Crozon"/>
+<city name="Montaigu"/>
+<city name="Avranches"/>
+<city name="Pontivy"/>
+<city name="Dinan"/>
+<city name="Concarneau‎"/>
+<city name="Trégunc‎"/>
+<city name="Vannes"/>
+<city name="Vitre"/>
+<city name="Pontivy"/>
+<city name="Loudeac"/>
+<city name="Guingamp"/>
+<city name="Erquy"/>
+<city name="Clisson"/>
+<city name="Pornic"/>
+<city name="Fougeres"/>
+<city name="Crozon"/>
+<city name="Benodet"/>
+<city name="Lannion"/>
+<city name="Paimpol"/>
+<city name="Perros-Guirec"/>
+<city name="Morlaix"/>
+<city name="Landerneau"/>
+<city name="Ploermel"/>
+<city name="Carnac"/>
+<city name="Quiberon"/>
+<city name="Cholet"/>
+<city name="Bressuire"/>
+<city name="Thouars"/>
+<city name="Prthenay"/>
+<city name="Evron"/>
+<city name="Mayenne"/>
+<city name="Laval"/>
+<city name="Cholet"/>
+<city name="Le Mans"/>
+<replacement name="Monarchy" leader="Duke" state_name="Duchy of"/>
+</civ>
+<civ name="Persia"  r="129" g="221" b="238" personality="Expansive">
+<replacement name="Despotism" leader="Shahanshah" state_name="Iranian empire of"/>
+<info>
+At one point home to 44% of all humans, the Acheamenid Persian empire
+was the largest empire by precentage of population in history.
+It's known for it's effective administration and releative benevolence compared to its predecesors.
+Although the Achaemenids were later conquered by Alexander the Great, subsequent Persian states,
+like the Parthian, Sasanian, Safavid and Afsharid empires, continued to rule parts of
+the middle east up to and beyond the islamic conquest of Persia.
+Persian culture, religion and philosophy influenced their neighbours, and to this day
+areas from eastern Turkey to central Asia belong to the Persian cultural sphere.
+
+Persian traits are Economic and Cultural - they represent
+the famous Persian royal roads that linked the empire of Cyrus the Great
+and the lasting cultural influence of the Persian empires
+
+Persian leaders include the rulers of the Acheamenid, Parthian, Sassanian and Safavid dynasties.
+Persia's color is aquamarine - one of the possible colors of the Acheamenid standard.
+</info>
+<leader name="Achaemenes"/>
+<leader name="Cyrus the Great"/>
+<leader name="Darius I"/>
+<leader name="Xerxes I"/>
+<leader name="Darius III"/>
+<leader name="Arsaces I"/>
+<leader name="Mithridates I"/>
+<leader name="Mithridates II"/>
+<leader name="Ardashir I"/>
+<leader name="Khosrow II"/>
+<leader name="Ismail I"/>
+<leader name="Abbas the Great"/>
+<leader name="Nader Shah"/>
+<trait name="E"/>
+<trait name="C"/>
+<city name="Pasargadae"/>
+<city name="Susa"/>
+<city name="Persepolis"/>
+<city name="Ecbatana"/>
+<city name="Arbela"/>
+<city name="Ganzak"/>
+<city name="Tushpa"/>
+<city name="Anshan"/>
+<city name="Rhages"/>
+<city name="Hecatompylos"/>
+<city name="Merv"/>
+<city name="Cyropolis"/>
+<city name="Bactra"/>
+<city name="Farah"/>
+<city name="Maracanda"/>
+<city name="Sindomana"/>
+<city name="Taxila"/>
+<city name="Pushkalavati"/>
+<city name="Halicarnassus"/>
+<city name="Ctesiphon"/>
+<city name="Hecatompylos"/>
+<city name="Mithradatkirt"/>
+<city name="Asaak"/>
+<city name="Gor"/>
+<city name="Stakhr"/>
+<city name="Amoy"/>
+<city name="Laodicea"/>
+<city name="Dinavar"/>
+<city name="Shiz"/>
+<city name="Bannazbur"/>
+<city name="P'aytakaran"/>
+<city name="Qustar"/>
+<city name="Aria"/>
+</civ>
+
+<civ name="Germany" r="0" g="0" b="0" personality="Enterprising">
+<info>
+Germany is important european nation.
+It has been shaping politics of the continent from medieval era to this day.
+
+German traits are Militaristic and Commercial to represent the industrial power of modern Germany
+and the heritage of Hansa.
+
+German leaders include Chancellors and Kaisers.
+German color is black a color that has many times appeared on their flag.
+</info>
+<trait name="M"/>
+<trait name="O"/>
+<leader name="Frederick William"/>
+<leader name="Albert"/>
+<leader name="William I"/>
+<leader name="Frederick I"/>
+<leader name="Frederick II"/>
+<leader name="Paul von Hindenburg"/>
+<leader name="Konrad Adenauer"/>
+<leader name="Otto von Bismarck"/>
+<leader name="Wilhem II"/>
+<leader name="Angela Merkel"/>
+<replacement name="Monarchy" state_name="German Reich of" leader="Kaiser"/>
+<replacement name="Democracy" state_name="Federal Republic of" leader="Chancellor"/>
+<replacement name="Dictatorship" state_name="Third Reich of" leader="Fuhrer"/>
+<replacement name="Republic" state_name="Republic of" leader="Chancellor"/>
+<city name="Berlin"/>
+<city name="Hamburg"/>
+<city name="Dresden"/>
+<city name="Munich"/>
+<city name="Cologne"/>
+<city name="Stuttgart"/>
+<city name="Dusseldorf"/>
+<city name="Essen"/>
+<city name="Dortmund"/>
+<city name="Leipzig"/>
+<city name="Bremen"/>
+<city name="Hanover"/>
+<city name="Nuremberg"/>
+<city name="Duisburg"/>
+<city name="Bochum"/>
+<city name="Wuppertal"/>
+<city name="Bielefeld"/>
+<city name="Bonn"/>
+<city name="Munster"/>
+<city name="Karlsruhe"/>
+<city name="Augsburg"/>
+<city name="Wiesbaden"/>
+<city name="Gelsenkirchen"/>
+<city name="Chemnitz"/>
+<city name="Aachen"/>
+<city name="Halle"/>
+<city name="Magdeburg"/>
+<city name="Krefeld"/>
+<city name="Lubeck"/>
+<city name="Mainz"/>
+<city name="Saarbrucken"/>
+<city name="Kassel"/>
+<city name="Hagen"/>
+<city name="Erfurt"/>
+<city name="Potsdam"/>
+<city name="Heidelberg"/>
+<city name="Neuss"/>
+<city name="Darmstadt"/>
+<city name="Wolfsburg"/>
+<city name="Ulm"/>
+<city name="Paderborn"/>
+<city name="Solingen"/>
+<city name="Leverkusen"/>
+<city name="Oldenburg"/>
+<city name="Herne"/>
+<city name="Fruth"/>
+<city name="Krefeld"/>
+<city name="Kiel"/>
+<city name="Rostock"/>
+<city name="Kassel"/>
+</civ>
+
+<civ name="Khmer" r="111" g="153" b="60" personality="Holy">
+<info>
+Khmer Empire was a major South Asian Empire that existed in 802-1431 period.
+It controled most of mainland Southeast Asia and constructed great temples such as Ankgor Wat.
+
+Khmer traits are Cultural and Expansive to represent major impact of the empire on
+the region.
+</info>
+<trait name="C"/>
+<trait name="X"/>
+<leader name="Jayavarman II"/>
+<leader name="Jayavarman VII"/>
+<leader name="Suryavarman II"/>
+<leader name="Indravarman I"/>
+<leader name="Yasovarman I"/>
+<leader name="Harshavarman I"/>
+<leader name="Ishanavarman II"/>
+<leader name="Udayadityavarman II"/>
+<leader name="Dharanindravarman I"/>
+<leader name="Tribhuvanadityavarman"/>
+<city name="Angkor"/>
+<city name="Mahendraparvata"/>
+<city name="Hariharalaya"/>
+<city name="Koh Ker"/>
+<city name="Yasodharapura"/>
+<city name="Angkor Wat"/>
+<city name="Bayon"/>
+<city name="Angkor Thom"/>
+<city name="Banteay Srei"/>
+<city name="Preah Rup"/>
+<city name="Ta Prohm"/>
+<city name="Preah Vihear"/>
+<city name="Prasat Neang Khmau"/>
+<city name="Prasat Linga"/>
+<city name="Beng Mealea"/>
+<city name="Kbal Spean"/>
+<city name="Banteay Samre"/>
+<city name="Tep Pranam"/>
+<city name="Banteay Kdei"/>
+<city name="Prasat Suor Prat"/>
+<city name="Baphuon"/>
+<city name="Ak Yum"/>
+<city name="Bakong"/>
+<city name="Phnom Dei"/>
+<city name="Kbal Spean"/>
+<city name="Bat Chum"/>
+<city name="Chau Say Tevoda"/>
+<city name="Mebon"/>
+<city name="Khleangs"/>
+<city name="Beng Mealea"/>
+<city name="Phnom Bok"/>
+<city name="Krol Ko"/>
+<city name="Lolei"/>
+<city name="Mangalartha"/>
+<city name="Neak Pean"/>
+<city name="Phimeanakas"/>
+<city name="Kutisvara"/>
+<city name="Phnom Bakheng"/>
+<city name="Phnom Krom"/>
+<city name="Prasat Baksei Chamkrong"/>
+<city name="Spean Thma"/>
+<city name="Srang Srah"/>
+<city name="Preah Pithu"/>
+<city name="Ta Keo"/>
+<city name="Ta Prohm Kei"/>
+<city name="Wat Athvea"/>
+<city name="Thommanon"/>
+<city name="Thma Bay Kaek"/>
+<city name="Ta Som"/>
+<city name="Ta Nei"/>
+<city name="Pre Rup"/>
+<replacement name="Despotism" state_name="Empire of" leader="Chakravartin"/>
+</civ>
+<civ name="Songhay" r="216" g="1" b="55" personality="Expansive">
+<info>
+The Songhay empire was the largest empire in West African history.
+It was able to amass great wealth due to trade across the Sahara and on the
+Niger river. Under the Songhay, the university of Timbuktu became well known
+as a centre of science trouought the muslim world.
+
+Songhay traits are Religious and Commercial to represent the trade impact on the
+empire and its religious-scientific character
+
+Songhay leaders include Songhay emperors
+Songhay color is red from Mali Emipre flag
+</info>
+<trait name="O"/>
+<trait name="R"/>
+<leader name="Sonni Ali"/>
+<leader name="Sonni Baru"/>
+<leader name="Askia Muhammad I"/>
+<leader name="Askia Musa"/>
+<leader name="Askia Mohammad Benkan"/>
+<leader name="Askia Isma'il"/>
+<leader name="Askia Ishaq I"/>
+<leader name="Askia Daoud"/>
+<leader name="Askia Muhammad II"/>
+<leader name="Muhammad Bani"/>
+<leader name="Askia Ishaq II"/>
+<city name="Gao"/>
+<city name="Timbuktu"/>
+<city name="Tadmekka"/>
+<city name="Oualata"/>
+<city name="Koumbi Saleh"/>
+<city name="Aoudaghost"/>
+<city name="Niani"/>
+<city name="Djenne"/>
+<city name="Bamba"/>
+<city name="Bamako"/>
+<city name="Arawan"/>
+<city name="Taghaza"/>
+<city name="Agadez"/>
+<city name="Gwandu"/>
+<city name="Argungu"/>
+<city name="Kebbi"/>
+<city name="Niamey"/>
+<city name="Torodi"/>
+<city name="Dori"/>
+<city name="Kukiya"/>
+<city name="Tondibi"/>
+<city name="Kayes"/>
+<city name="Wa"/>
+<city name="Takedda"/>
+<city name="Agadez"/>
+<replacement name="Monarchy" state_name="Empire of" leader="Emperor"/>
+</civ>
+<civ name="Maya" r="34" g="209" b="89" personality="Enlightened">
+<info>
+Mayan Civilizarion was on of the most important native cultures of America.
+It has never became a centralized empire, its famous for its astronomical and scientific advances.
+
+Mayan traits are Scientific and Scientific to represent their astronomical advances
+
+Mayan leader include various city-state leaders.
+Mayan color is green from on of mayan flags.
+</info>
+<trait name="S"/>
+<trait name="S"/>
+<leader name="Ucha'an K'an B'alam"/>
+<leader name="Lachan K'awiil Ajaw Bot"/>
+<leader name="Yuknoom Ch'een I"/>
+<leader name="Yajaw Te' K'inich II"/>
+<leader name="Kan II"/>
+<leader name="K'awiil Ek'"/>
+<leader name="Ucha'an K'in B'alam"/>
+<leader name="Yik'in Chan K'awiil"/>
+<leader name="Itzamnaaj Bahlam III"/>
+<leader name="Pacal The Great"/>
+<city name="Tikal"/>
+<city name="Palenque"/>
+<city name="Yaxchilan"/>
+<city name="Copan"/>
+<city name="Banampak"/>
+<city name="Dos Pilas"/>
+<city name="Calakmul"/>
+<city name="Rio Bec"/>
+<city name="Uaxactun"/>
+<city name="El Pilar"/>
+<city name="Caracol"/>
+<city name="Qʼumarkaj"/>
+<city name="Sayil"/>
+<city name="Coba"/>
+<city name="Seibal"/>
+<city name="Naranjo"/>
+<city name="El Baúl"/>
+<city name="Aguada Fénix"/>
+<city name="Becan"/>
+<city name="Chichen Itza"/>
+<city name="Chunchucmil"/>
+<city name="Comalcalco"/>
+<city name="Dzibilchaltun"/>
+<city name="Iximche"/>
+<city name="Ixkun"/>
+<city name="Kaminaljuyu"/>
+<city name="Quiriguá"/>
+<city name="San Bartolo"/>
+<city name="Oxkintok"/>
+<city name="Nakbe"/>
+<city name="Mayapan"/>
+<city name="Moral Reforma"/>
+<city name="Naachtun"/>
+<city name="Yaxha"/>
+<city name="Yaxchilan"/>
+<city name="Uxmal"/>
+<city name="Tulum"/>
+<city name="San Bartolo"/>
+<city name="Altun Ha"/>
+<city name="Ake"/>
+<city name="Chinkultic"/>
+<city name="Dzehkabtun"/>
+<city name="Ekʼ Balam"/>
+<city name="Nojpetén"/>
+<city name="Guaquitepec"/>
+<city name="Huntichmul"/>
+<city name="Lacanha"/>
+<city name="Machaquila"/>
+<city name="Xlapak"/>
+<city name="Xpuhil"/>
+</civ>
+<civ name="Poland" r="220" g="20" b="60" personality="Peaceful">
+<info>
+Poland is a central european nation that formed powerful kingdom in early medieval age.
+Later its power fell, but Poland survived to this day.
+
+Polish traits are Agricultural and Cultural to represent the historical importance of wheat farming
+and the polish tradition which survived years of occupation and wars.
+
+Polish leaders include kings, presidents and first secretaries.
+Polish color is red from polish flag.
+</info>
+<trait name="A"/>
+<trait name="C"/>
+<replacement name="Despotism" leader="Duke" state_name="Duchy of"/>
+<replacement name="Communism" leader="First Secretary" state_name="People's Republic of"/>
+<replacement name="Democracy" leader="President" state_name="Commonwealth of"/>
+<leader name="Lech Wałęsa"/>
+<leader name="Edward Gierek"/>
+<leader name="Józef Piłsudzki"/>
+<leader name="Stanisław August Poniatowski"/>
+<leader name="Jan III Sobieski"/>
+<leader name="Władysław III Waza"/>
+<leader name="Stefan Batory"/>
+<leader name="Kazimierz IV Jagiellończyk"/>
+<leader name="Władysław II Jagiełło"/>
+<leader name="Kazimierz III The Great"/>
+<leader name="Kazimierz I Odnowiciel"/>
+<leader name="Bolesław I Chrobry"/>
+<leader name="Mieszko I"/>
+<leader name="Lestek Piast"/>
+<leader name="Zygmunt II August"/>
+<city name="Warsaw"/>
+<city name="Cracow"/>
+<city name="Gdansk"/>
+<city name="Torun"/>
+<city name="Poznan"/>
+<city name="Lublin"/>
+<city name="Lodz"/>
+<city name="Bydgoszcz"/>
+<city name="Gdynia"/>
+<city name="Czestochowa"/>
+<city name="Radom"/>
+<city name="Sosnowiec"/>
+<city name="Kielce"/>
+<city name="Rzeszow"/>
+<city name="Tarnow"/>
+<city name="Gliwice"/>
+<city name="Gniezno"/>
+<city name="Zabrze"/>
+<city name="Olsztyn"/>
+<city name="Bytom"/>
+<city name="Rybnik"/>
+<city name="Tychy"/>
+<city name="Plock"/>
+<city name="Opole"/>
+<city name="Moszczona Panska"/>
+<city name="Siedlce"/>
+<city name="Gorzow Wielkopolski"/>
+<city name="Bialystok"/>
+<city name="Katowice"/>
+<city name="Nowy Sacz"/>
+<city name="Nysa"/>
+<city name="Elblag"/>
+<city name="Ustka"/>
+<city name="Walbrzych"/>
+<city name="Wloclawek"/>
+<city name="Chorzow"/>
+<city name="Grudziadz"/>
+<city name="Kalisz"/>
+<city name="Legnica"/>
+<city name="Raciborz"/>
+<city name="Inowroclaw"/>
+<city name="Zgierz"/>
+<city name="Swidnica"/>
+<city name="Glogow"/>
+<city name="Siemianowice Slaskie"/>
+<city name="Tczew"/>
+<city name="Stalowa Wola"/>
+<city name="Belchatow"/>
+<city name="Mielec"/>
+<city name="Piotrkow Trybunalski"/>
+<city name="Kedzierzyn-Kozle"/>
+<city name="Zdunska Wola"/>
+<city name="Krosno"/>
+<city name="Otwock"/>
+<city name="Zyrardow"/>
+<city name="Legionowo"/>
+<city name="Sopot"/>
+<city name="Kutno"/>
+<city name="Ciechanow"/>
+<city name="Radomsko"/>
+<city name="Sieradz"/>
+<city name="Boleslawiec"/>
+<city name="Wroclaw"/>
+<city name="Szczecin"/>
+<city name="Koszalin"/>
+<city name="Swinoujscie"/>
+<city name="Zielona Gora"/>
+<city name="Elk"/>
+<city name="Tomaszow Mazowiecki"/>
+<city name="Swietochlowice"/>
+<city name="Wejherowo"/>
+<city name="Skierniewice"/>
+<city name="Wodzislaw Slaski"/>
+<city name="Tarnobrzeg"/>
+<city name="Stargard"/>
+<city name="Starachowice"/>
+<city name="Suwalki"/>
+<city name="Chelm"/>
+<city name="Bialoleka"/>
+<city name="Lomza"/>
+<city name="Oswiecim"/>
+<city name="Nowa Sol"/>
+<city name="Skarzysko-Kamienna"/>
+<city name="Sieradz"/>
+<city name="Jaworzno"/>
+<city name="Bobolice"/>
+<city name="Deblin"/>
+<city name="Frombork"/>
+<city name="Gizycko"/>
+<city name="Ilawa"/>
+<city name="Kynica-Zdroj"/>
+<city name="Lututow"/>
+<city name="Opole"/>
+<city name="Sulejowek"/>
+<city name="Zamosc"/>
+<city name="Ustrzyki Dolne"/>
+<city name="Tarnopol"/>
+<city name="Minsk"/>
+<city name="Vilinus"/>
+<city name="Lviv"/>
+</civ>
+<civ name="Russia" r="255" g="205" b="1" personality="Authoritarian">
+<info>
+Russia is  one of the biggest empires on the planet.
+It always had a great impact on the politics.
+
+Russian traits are Militaristic and Militaristic to represent russian military.
+
+Russian leaders are tsars of Russian Empire.
+Russian color is yellow from Russian Empire flag.
+</info>
+<trait name="M"/>
+<trait name="M"/>
+<leader name="Ivan The Terrible"/>
+<leader name="Boris Godunov"/>
+<leader name="Michael I"/>
+<leader name="Peter the Great"/>
+<leader name="Elizabeth"/>
+<leader name="Catherine"/>
+<leader name="Alexander I"/>
+<leader name="Nicholas I"/>
+<leader name="Alexander II"/>
+<leader name="Nicholas II"/>
+<replacement name="Despotism" state_name="Grand Duchy of" leader="Grand Duke"/>
+<replacement name="Monarchy" state_name="Tsardom of" leader="Tsar"/>
+<replacement name="Communism" state_name="Soviet Republic of" leader="First Secretary"/>
+<city name="Moscow"/>
+<city name="Saint Petersburg"/>
+<city name="Novosibirsk"/>
+<city name="Yekaterinburg"/>
+<city name="Kazan"/>
+<city name="Nizhny Novogorod"/>
+<city name="Chelyabinsk"/>
+<city name="Samara"/>
+<city name="Omsk"/>
+<city name="Rostov-on-Don"/>
+<city name="Ufa"/>
+<city name="Krasnoyarsk"/>
+<city name="Voronezh"/>
+<city name="Perm"/>
+<city name="Volgograd"/>
+<city name="Krasnodar"/>
+<city name="Saratov"/>
+<city name="Tyumen"/>
+<city name="Tolyatti"/>
+<city name="Izhevsk"/>
+<city name="Barnaul"/>
+<city name="Ulyanovsk"/>
+<city name="Irkutsk"/>
+<city name="Khabarovsk"/>
+<city name="Makhachkala"/>
+<city name="Yaroslavl"/>
+<city name="Valdivostok"/>
+<city name="Orenburg"/>
+<city name="Tomsk"/>
+<city name="Kemerovo"/>
+<city name="Tomsk"/>
+<city name="Sevastopol"/>
+<city name="Stavropol"/>
+<city name="Ryazan"/>
+<city name="Penza"/>
+<city name="Lipetsk"/>
+<city name="Novokuznetsk"/>
+<city name="Cheboksary"/>
+<city name="Astrakhan"/>
+<city name="Tula"/>
+<city name="Kirov"/>
+<city name="Kursk"/>
+<city name="Ulan-Ude"/>
+<city name="Tver"/>
+<city name="Magnitogorsk"/>
+<city name="Bryansk"/>
+<city name="Ivanovo"/>
+<city name="Yakutsk"/>
+<city name="Belgorod"/>
+<city name="Chita"/>
+</civ>
+
+<civ name="France" r="4" g="8" b="108" personality="Enterprising">
+<info>
+France is an important european country. Not only it was a colonial superpower
+and it participated in both world wars and shaped world politics, but also ideas
+of freedom, equality and democracy have been born here.
+
+French traits are Cultural and Militaristic to represent the impact of First French Republic
+and military power of this former colonial power.
+
+French leaders are kings, emperors and presidents of France.
+French color is blue from its flag.
+</info>
+<trait name="C"/>
+<trait name="M"/>
+<leader name="Napolen Bonaparte"/>
+<leader name="Napoleon III"/>
+<leader name="Charles Le Gaulle"/>
+<leader name="Raymond Poincaré"/>
+<leader name="Chlodwig I"/>
+<leader name="Charlemagle"/>
+<leader name="Charles Martel"/>
+<leader name="Hugo Kapet"/>
+<leader name="Louis XII"/>
+<leader name="Francis I"/>
+<leader name="Henry IV The Great"/>
+<leader name="Louis XIV the Sun King"/>
+<leader name="Louis XVI"/>
+<leader name="Pepin the Short"/>
+<leader name="Emmanuel Macron"/>
+<leader name="Armand Fallières"/>
+<leader name="Louis XVIII"/>
+<leader name="Charles IX"/>
+<leader name="Philip II"/>
+<leader name="Charles the Bald"/>
+<city name="Paris"/>
+<city name="Marseille"/>
+<city name="Lyon"/>
+<city name="Toulouse"/>
+<city name="Nice"/>
+<city name="Montpellier"/>
+<city name="Strasbourg"/>
+<city name="Bordeaux"/>
+<city name="Lille"/>
+<city name="Reims"/>
+<city name="Toulon"/>
+<city name="Saint-Étienne"/>
+<city name="Le Havre"/>
+<city name="Grenoble"/>
+<city name="Dijon"/>
+<city name="Angers"/>
+<city name="Saint-Denis"/>
+<city name="Villeurbanne"/>
+<city name="Nîmes"/>
+<city name="Clermont-Ferrand"/>
+<city name="Le Mans"/>
+<city name="Tours"/>
+<city name="Amiens"/>
+<city name="Limoges"/>
+<city name="Annecy"/>
+<city name="Metz"/>
+<city name="Orléans"/>
+<city name="Saint-Denis"/>
+<city name="Rouen"/>
+<city name="Montreuil"/>
+<city name="Caen"/>
+<city name="Nancy"/>
+<city name="Poitiers"/>
+<city name="Dunkirk"/>
+<city name="Versailles"/>
+<city name="Cannes"/>
+<city name="Saint-Nazaire"/>
+<city name="Colombes"/>
+<city name="Avignon"/>
+<city name="Nanterre"/>
+<city name="Besançon"/>
+<city name="Lorient"/>
+<city name="Chambéry"/>
+<city name="Bayonne"/>
+<city name="Boulogne-Billancourt"/>
+<city name="Perpignan"/>
+<city name="Argenteuil"/>
+<city name="Vichy"/>
+<city name="Dieppe"/>
+<city name="Nantes"/>
+<replacement name="Democracy" leader="President" state_name="Republic of"/>
+<replacement name="Republic" leader="Consul" state_name="First Republic of"/>
+<replacement name="Despotism" leader="Emperor" state_name="Carolingian Empire of"/>
+<replacement name="Dictatorship" leader="His Excellency" state_name="Directory of"/>
+</civ>
+<civ name="Maurya" r="20" g="139" b="179" personality="Expansive">
+<info>
+Maurya Empire although relatively shortlived (it existed for 150 years) was
+one of the strongest powers that have ever existed in Indian Subcontinent.
+Chandragupts - its creator managed to unite most of Indian territory under his rule.
+
+Mauryan traits are Expanisve and Religious, Expansive because of the scale of conquests made by
+Chandragupta and Religious because Maurya Empire had major role in spreading Jainism in India.
+
+Mauryan leaders include its kings.
+Mauryan color is blue from one of its possible flags.
+</info>
+<trait name="X"/>
+<trait name="R"/>
+<leader name="Chandragupta"/>
+<leader name="Bindusara"/>
+<leader name="Ashoka"/>
+<leader name="Dasharatha"/>
+<leader name="Samprati"/>
+<leader name="Shalishuka"/>
+<leader name="Devavarman"/>
+<leader name="Shatadhanvan"/>
+<leader name="Brihadratha"/>
+<city name="Pataliputra"/>
+<city name="Taxila"/>
+<city name="Suvarnagiri"/>
+<city name="Ujjain"/>
+<city name="Tosali"/>
+<city name="Srinagar"/>
+<city name="Kandhar"/>
+<city name="Patala"/>
+<city name="Rajgriha"/>
+<city name="Mathura"/>
+<city name="Kausambi"/>
+<city name="Vidisha"/>
+<city name="Bharukaccha"/>
+<city name="Tamralipti"/>
+<city name="Pundravardhan"/>
+<city name="Tamralipti"/>
+<city name="Champa"/>
+<city name="Vaishali"/>
+<city name="Sarnath"/>
+<city name="Varanasi"/>
+<city name="Sankissa"/>
+<city name="Bairat"/>
+<city name="Lanipaka"/>
+<city name="Kaisi"/>
+<city name="Lumbini"/>
+<city name="Sannati"/>
+<city name="Amaravati"/>
+<city name="Sanchi"/>
+<city name="Girnar"/>
+<city name="Rampurwa"/>
+<city name="Tripuri"/>
+<city name="Brahmagiri"/>
+<city name="Mansehra"/>
+<city name="Nigali-Sagar"/>
+<city name="Sopara"/>
+<replacement name="Monarchy" state_name="Empire of" leader="Samrat"/>
+<replacement name="Republic" leader="Mantriparishad" state_name="Republic of"/>
+<replacement name="Despotism" leader="Kumara" state_name="Duchy of"/>
+</civ>
+
+<civ name="Tuʻi Tonga" r="12" g="65" b="154" personality="Peaceful">
+<info>
+Tui'Tongan Empire was longlived Oceanian maritime empire that lasted over 2000 years.
+Tongan people managed to sail thousands of kilometers over oceans and exchange goods, trade and spread their culture.
+It has been formed in 950 BC and collapsed in 1500 AD, it was of the most important empires in territory of Oceania.
+
+Tongan traits are Nautical and Cultural, they represent maritime character of the empire.
+
+Tongan leaders are various kings of the empire.
+Tongan color is blue from modern Tonga coat of arms.
+</info>
+<trait name="N"/>
+<trait name="C"/>
+<leader name="ʻAhoʻeitu"/>
+<leader name="Tuʻi Haʻatakalaua"/>
+<leader name="Momo"/>
+<leader name="Lolofakangalo"/>
+<leader name="Kauʻulufonua I"/>
+<leader name="Fangaʻoneʻone"/>
+<leader name="Maʻuhau"/>
+<leader name="Kaloa"/>
+<leader name="Uluakimata I"/>
+<leader name="Fatafehi"/>
+<city name="Muʻa"/>
+<city name="Mata'utu"/>
+<city name="Futuna"/>
+<city name="Alofi"/>
+<city name="Vanua Levu"/>
+<city name="Viti Levu"/>
+<city name="Lau-Inseln"/>
+<city name="Niue"/>
+<city name="Ha'apai"/>
+<city name="Tongatapu"/>
+<city name="Tafahi"/>
+<city name="Niuafo'ou"/>
+<city name="Upolu"/>
+<city name="Tutuila"/>
+<city name="Sava'i"/>
+<city name="Alofi"/>
+<city name="Tui Manu'a"/>
+<city name="Tui Fiti"/>
+<city name="Lapaha"/>
+<city name="'Uvea"/>
+<city name="Fatumanongi"/>
+<city name="Foa"/>
+<city name="Fotuhaʻa"/>
+<city name="Hakauata"/>
+<city name="Haʻano"/>
+<city name="Foʻi ʻoneʻone"/>
+<city name="Vai ko Paluki"/>
+<city name="Fetokopunga"/>
+<city name="Nukupule"/>
+<city name="Moʻungaʻone"/>
+<city name="Uonukuhahake"/>
+<city name="Fakahiku"/>
+<city name="Haʻafeva"/>
+<city name="Luanamo"/>
+<city name="Teaupa"/>
+<city name="Hakauata"/>
+<city name="Nukunamo"/>
+<city name="Kao"/>
+<city name="Limu"/>
+<city name="Lofanga"/>
+<city name="Niuafoʻou"/>
+<city name="Onoiki"/>
+<city name="Fonoifua"/>
+<city name="Mangoiki"/>
+<city name="Nomuka iki"/>
+<city name="Mangoiki"/>
+<city name="Tele-ki-Vavaʻu"/>
+<city name="Tonumeia"/>
+<city name="Puho'ava"/>
+<city name="Muifuiva"/>
+<replacement name="Despotism" leader="Tuʻi Kanokupolu" state_name="Chiefdom of"/>
+<replacement name="Monarchy" leader="Haʻa Tuʻi Tonga" state_name="Maritime Empire of"/>
+<replacement name="Theocracy" leader="Hikule'o" state_name="Holy Empire of"/>
+</civ>
+<civ name="Sikh" r="27" g="106" b="63" personality="Holy">
+<info>
+Sikh Empire was a religious state that emerged in 1799 in Subcontinent of India.
+It controlled terittories of Kashmir until eventually defeated in war with England.
+
+Sikh traits are Religious and Religious to represent the religious character of this state,
+but also religion freedom it gave.
+
+Sikh leaders include Maharajas and Vizirs that ruled it.
+Sikh color is green from Nishan Sahib introducted by Ranjit Singh - the founder of the empire.
+</info>
+<leader name="Ranjit Singh"/>
+<leader name="Dhian Singh Dogra"/>
+<leader name="Jamadar Khushal Singh"/>
+<leader name="Hira Singh Dogra"/>
+<leader name="Duleep Singh"/>
+<leader name="Sher Singh"/>
+<leader name="Nau Nihal Singh"/>
+<leader name="Kharak Singh"/>
+<leader name="Jind Kaur"/>
+<leader name="Chand Kaur"/>
+<trait name="R"/>
+<trait name="R"/>
+<city name="Lahore"/>
+<city name="Jammu"/>
+<city name="Peshwar"/>
+<city name="Multan"/>
+<city name="Shimla"/>
+<city name="Amritsar"/>
+<city name="Attock"/>
+<city name="Srinagar"/>
+<city name="Rawalpindi"/>
+<city name="Gujrat"/>
+<city name="Pind Dadan Khan"/>
+<city name="Jhang"/>
+<city name="Mukerian"/>
+<city name="Jallandar"/>
+<city name="Anandpur"/>
+<city name="Kasur"/>
+<city name="Kapurthala"/>
+<city name="Multan"/>
+<city name="Dera Ghazi Khan"/>
+<city name="Leiah"/>
+<city name="Mankera"/>
+<city name="Dera Ismail Khan"/>
+<city name="Leh"/>
+<city name="Ferozepur"/>
+<city name="Bahawalpur"/>
+<city name="Rupar"/>
+<city name="Malerkotla"/>
+<city name="Ludhiana"/>
+<city name="Faridkot"/>
+<city name="Bhatinda"/>
+<city name="Nabha"/>
+<city name="Sirhind"/>
+<city name="Chandigarh"/>
+<city name="Patiala"/>
+<city name="Kalsia"/>
+<city name="Kaital"/>
+<city name="Kamal"/>
+<city name="Saharanpur"/>
+<city name="Ambala"/>
+<city name="Logarh"/>
+<city name="Markanda"/>
+<city name="Ghaggar"/>
+<city name="Stulej"/>
+<city name="Beas"/>
+<city name="Jhelum"/>
+<city name="Chenab"/>
+<city name="Ravi"/>
+<city name="Talagang"/>
+<city name="Kahuta"/>
+<city name="Fatahabad"/>
+<replacement name="Monarchy" leader="Maharaja" state_name="Empire of"/>
+<replacement name="Republic" leader="Wazir" state_name="Empire of"/>
+</civ>
+<civ name="Ethiopia" r="165" g="90" b="68" personality="Holy">
+<info>
+Ethiopia is african country located in Horn of Africa.
+It has long history, originated in ancient era and survived to this day as democratic republic.
+
+Ethiopian traits are Religious and Agricultural to represent the Ethiopian Christian Church and
+the main economic factor of its economy.
+
+Ethiopian leaders include Emperors of Ethiopia and democratic leaders.
+Ethiopian color is brown, color of lion on the Empire of Ethiopia flag.
+</info>
+<leader name="Menelik II"/>
+<leader name="Haile Selassie"/>
+<leader name="Yekuno Amlak"/>
+<leader name="Tewodros II"/>
+<leader name="Mengistu Haile Mariam"/>
+<leader name="Yohannes IV"/>
+<leader name="Menelik I"/>
+<leader name="Yagbe'u Seyon"/>
+<leader name="Dawit I"/>
+<leader name="Meles Zenawi"/>
+<trait name="R"/>
+<trait name="A"/>
+<city name="Addis Ababa"/>
+<city name="Gondar"/>
+<city name="Mekelle"/>
+<city name="Adama"/>
+<city name="Awassa"/>
+<city name="Bahir Dar"/>
+<city name="Dire Dawa"/>
+<city name="Dessie"/>
+<city name="Jimma"/>
+<city name="Jijiga"/>
+<city name="Shashamane"/>
+<city name="Bishoftu"/>
+<city name="Sodo"/>
+<city name="Arba Minch"/>
+<city name="Hosaena"/>
+<city name="Harar"/>
+<city name="Dilla"/>
+<city name="Nekemte"/>
+<city name="Debre Birhan"/>
+<city name="Asella"/>
+<city name="Debre Mark'os"/>
+<city name="Kombolcha"/>
+<city name="Debre Tabor"/>
+<city name="Adigrat"/>
+<city name="Areka"/>
+<city name="Weldiya"/>
+<city name="Sebeta"/>
+<city name="Burayu"/>
+<city name="Shire"/>
+<city name="Ambo"/>
+<city name="Arsi Negele"/>
+<city name="Aksum"/>
+<city name="Gambela"/>
+<city name="Bale Robe"/>
+<city name="Butajia"/>
+<city name="Batu"/>
+<city name="Boditi"/>
+<city name="Adwa"/>
+<city name="Yirgalem"/>
+<city name="Waliso"/>
+<city name="Welkite"/>
+<city name="Gode"/>
+<city name="Meki"/>
+<city name="Negele Borana"/>
+<city name="Alaba Kulito"/>
+<city name="Alamata"/>
+<city name="Chiro"/>
+<city name="Tepi"/>
+<city name="Durame"/>
+<city name="Goba"/>
+<city name="Assosa"/>
+<city name="Gimbi"/>
+<city name="Wukro"/>
+<city name="Haramaya"/>
+<city name="Mizan Teferi"/>
+<city name="Sawla"/>
+<city name="Mojo"/>
+<city name="Dembi Dolo"/>
+<city name="Aleta Wendo"/>
+<city name="Metu"/>
+<city name="Mota"/>
+<city name="Fiche"/>
+<city name="Finote Selam"/>
+<city name="Bule Hora"/>
+<city name="Bonga"/>
+<city name="Kobo"/>
+<city name="Jinka"/>
+<city name="Dangila"/>
+<city name="Degehabur"/>
+<city name="Dimtu"/>
+<city name="Agaro"/>
+<replacement name="Democracy" state_name="Federal Democratic Republic of" leader="President"/>
+<replacement name="Monarchy" leader="Negusa Nagast" state_name="Empire of"/>
+<replacement name="Dictatorship" leader="Chairman" state_name="Dergue of"/>
+</civ>
+<civ name="Japan" r="255" g="255" b="255" personality="Authoritarian">
+<info>
+Japan is islandbased country in Asia. Although it is relatively small it
+is economic and technological superpower. It has been united under rule of
+emperor between 4th and 9th centuries and to this day remains a monarchy.
+
+Japanese traits are Militaristic and Religious to represent the power of Shogunate
+and class of Samurais.
+
+Japanese leaders include Shoguns, Emperors and Prime Ministers.
+Japanses color is white, present on its flag.
+</info>
+<trait name="M"/>
+<trait name="R"/>
+<leader name="Jimmu"/>
+<leader name="Kinmei"/>
+<leader name="Kanmu"/>
+<leader name="Rokujō"/>
+<leader name="Go-Daigo"/>
+<leader name="Nobunaga Oda"/>
+<leader name="Ieyasu Tokugawa"/>
+<leader name="Mutsuhito"/>
+<leader name="Hirohito"/>
+<leader name="Itō Hirobumi"/>
+<leader name="Hideki Tōjō"/>
+<leader name="Shinzō Abe"/>
+<city name="Tokyo"/>
+<city name="Jokohama"/>
+<city name="Osaka"/>
+<city name="Nagoja"/>
+<city name="Sapporo"/>
+<city name="Kobe"/>
+<city name="Fukuoka"/>
+<city name="Kioto"/>
+<city name="Kawasaki"/>
+<city name="Saitama"/>
+<city name="Hiroshima"/>
+<city name="Sendai"/>
+<city name="Kitakyushu"/>
+<city name="Chiba"/>
+<city name="Setagaya"/>
+<city name="Nerima"/>
+<city name="Shizuoka"/>
+<city name="Okayama"/>
+<city name="Kagoshima"/>
+<city name="Funabashi"/>
+<city name="Higashi-Osaka"/>
+<city name="Amagasaki"/>
+<city name="Hachioji"/>
+<city name="Matsudo"/>
+<city name="Himeji"/>
+<city name="Nagasaki"/>
+<city name="Matsuyama"/>
+<city name="Kanazawa"/>
+<city name="Kawaguchi"/>
+<city name="Ichikawa"/>
+<city name="Yokosuka"/>
+<city name="Nishinomiya"/>
+<city name="Urawa"/>
+<city name="Kurashiki"/>
+<city name="Gifu"/>
+<city name="Toyonaka"/>
+<city name="Oita"/>
+<city name="Wakayama"/>
+<city name="Hirakata"/>
+<city name="Omiya"/>
+<city name="Fukuyama"/>
+<city name="Takatsuki"/>
+<city name="Asahikawa"/>
+<city name="Iwari"/>
+<city name="Fujisawa"/>
+<city name="Nara"/>
+<city name="Machida"/>
+<city name="Nagano"/>
+<city name="Suita"/>
+<city name="Toyohashi"/>
+<city name="Toyota"/>
+<city name="Kochi"/>
+<city name="Hakodate"/>
+<city name="Takamatsu"/>
+<city name="Koriyama"/>
+<city name="Okazaki"/>
+<city name="Toyama"/>
+<city name="Naha"/>
+<city name="Kashiwa"/>
+<city name="Tokorozawa"/>
+<city name="Akita"/>
+<city name="Kawagoe"/>
+<city name="Miyazaki"/>
+<city name="Aomori"/>
+<city name="Kabukicho"/>
+<city name="Maebashi"/>
+<city name="Koshigaya"/>
+<city name="Yao"/>
+<city name="Fukushima"/>
+<city name="Yokkaichi"/>
+<city name="Akashi"/>
+<city name="Kasugai"/>
+<city name="Tokushima"/>
+<city name="Shimonoseki"/>
+<city name="Fukui"/>
+<city name="Ichinomiya"/>
+<city name="Otsu"/>
+<city name="Ichihara"/>
+<city name="Neyagawa"/>
+<city name="Ibaraki"/>
+<city name="Yamagata"/>
+<city name="Hiratsuka"/>
+<city name="Sasebo"/>
+<city name="Hachinohe"/>
+<city name="Kakogawa"/>
+<city name="Shimizu"/>
+<city name="Takasaki"/>
+<city name="Morioka"/>
+<city name="Mito"/>
+<city name="Kurume"/>
+<city name="Fuji"/>
+<city name="Kure"/>
+<city name="Numazu"/>
+<city name="Okinawa"/>
+<city name="Obihiro"/>
+<city name="Nemuro"/>
+<city name="Iwamizawa"/>
+<city name="Atsugi"/>
+<city name="Suzuka"/>
+<city name="Kōfu"/>
+<replacement name="Monarchy" state_name="Empire of" leader="Samrat"/>
+<replacement name="Democracy" leader="Prime Minister" state_name=""/>
+<replacement name="Despotism" leader="Daimyō" state_name="Clan of"/>
+<replacement name="Dictatorship" leader="Shogun" state_name="Shogunate of"/>
+</civ>
+<civ name="Macedonia" r="254" g="235" b="149" personality="Expansive">
+<info>
+Macedonia was a small ancient kingdom estabilished in 808 BC, located in modernday Greece.
+Under rule of Philip II is defeated its neighbours and under his son Alexander the Great
+for a brief moment in time it has been the greatest empire in the world.
+
+Macedonian traits are Expansive and Expansive, to represent massive epxansion under rule of Alexander.
+
+Macedonian leaders include kings of Macedonia.
+Macedonian color is light yellow - color of Vergina Sun.
+</info>
+<leader name="Alexander the Great"/>
+<leader name="Philip II"/>
+<leader name="Ptolemy I"/>
+<leader name="Cassander"/>
+<leader name="Perdiccas I"/>
+<leader name="Amyntas III"/>
+<leader name="Philip III"/>
+<leader name="Archelaus I"/>
+<leader name="Alexander I"/>
+<leader name="Perdiccas II"/>
+<trait name="X"/>
+<trait name="X"/>
+<city name="Pella"/>
+<city name="Aigai"/>
+<city name="Methoni"/>
+<city name="Amphipolis"/>
+<city name="Olynthus"/>
+<city name="Potidea"/>
+<city name="Dion"/>
+<city name="Pydna"/>
+<city name="Dodna"/>
+<city name="Ambracia"/>
+<city name="Thasos"/>
+<city name="Philippi"/>
+<city name="Abdera"/>
+<city name="Maronea"/>
+<city name="Alexandria"/>
+<city name="Alexandria Arachosia"/>
+<city name="Alexandria Ariana"/>
+<city name="Alexandria Bucephalous"/>
+<city name="Ai-Khanoum"/>
+<city name="Tyre"/>
+<city name="Qalatga Darband"/>
+<city name="Iskenderun"/>
+<city name="Gaza"/>
+<city name="Alexandria on the Caucasus"/>
+<city name="Stobi"/>
+<city name="Heraklea Lynkestis"/>
+<city name="Lychnidos"/>
+<city name="Scupi"/>
+<city name="Baragala"/>
+<city name="Therma"/>
+<city name="Olynthus"/>
+<city name="Rhaecelus"/>
+<city name="Strepsa"/>
+<city name="Torone"/>
+<city name="Osbe"/>
+<city name="Palaechorium"/>
+<city name="Ichnae"/>
+<city name="Moryllus"/>
+<city name="Doberus"/>
+<city name="Scione"/>
+<city name="Sane"/>
+<city name="Phylace"/>
+<city name="Heracleium"/>
+<city name="Europus"/>
+<city name="Bouneima"/>
+<city name="Chalastra"/>
+<city name="Amydon"/>
+<city name="Calindoia"/>
+<city name="Cissus"/>
+<city name="Anthemus"/>
+<replacement name="Monarchy" state_name="Kingdom of" leader="Basileus"/>
+</civ>
+<civ name="Iroquois" r="89" g="62" b="182" personality="Peaceful">
+<info>
+Iroquois or Haudenosaunee tribe is a North American native tribe.
+During colonization era Iroquois with their neighbours formed Iroquois Confederacy
+ - a state-like organization that lead to peace between tribes.
+
+Iroquois traits are Cultural and Nomadic, to represent the project of
+Great Law of Peace.
+
+Iroquois leaders include variuos chiefs.
+Iroquois color is purple from flag of the Confederacy.
+</info>
+<leader name="Hiawatha"/>
+<leader name="Jigonsaseh"/>
+<leader name="Tachnechdorus"/>
+<leader name="Deskaheh"/>
+<leader name="Thayendanegea"/>
+<leader name="Tadodaho"/>
+<trait name="D"/>
+<trait name="C"/>
+<city name="Onondaga"/>
+<city name="Cazenovia"/>
+<city name="Pompey"/>
+<city name="Delphi Falls"/>
+<city name="Manilus"/>
+<city name="Kahnawake"/>
+<city name="Kanesatake"/>
+<city name="Akwesasne"/>
+<city name="Thames Oneida"/>
+<city name="Wahta"/>
+<city name="Tyendinaga"/>
+<city name="Ganienkeh"/>
+<city name="Oneida"/>
+<city name="Kanatsiohareke"/>
+<city name="Tuscarora"/>
+<city name="Tonawanda"/>
+<city name="Seneca"/>
+<city name="Seneca-Cayuga"/>
+<city name="Hothahi:ionih"/>
+<city name="Ohgwai:ih"/>
+<city name="Hanya'dëñh"/>
+<city name="Odihnesi:ioh"/>
+<city name="De'odijinaindönda'"/>
+<city name="Hona'gaia'gih"/>
+<city name="Hodidáë'ö:ga:'"/>
+<city name="Degaiadahkwa'"/>
+<city name="Ohgönde:na'"/>
+<city name="Okwáho"/>
+<city name="A'nó:wara"/>
+<city name="Thayú:ni"/>
+<city name="Tawístawis"/>
+<city name="Hodígë'ge:ga:'"/>
+<city name="Hodihsw'ęgáiyo'"/>
+<city name="Honöta:yö:nih"/>
+<city name="Hadihnyagwái"/>
+<city name="Hodígë'ge:ga:'"/>
+<city name="A'no:wál"/>
+<city name="Ohkwá:ri"/>
+<city name="Ohkwá:li"/>
+<city name="Thayú:ni"/>
+<city name="Ráˀkwihs"/>
+<city name="Kà?wí:ñu"/>
+<city name="Rakinęhá•ha•ˀ"/>
+<city name="Akunęhukwatíha•ˀ"/>
+<city name="Θkwarì•nę"/>
+<city name="Honöta:yö:nih"/>
+<city name="Hadihnyagwái"/>
+<city name="Hodí:nyögwaiyo'"/>
+<city name="Hadínyahdë:h"/>
+<city name="Eel"/>
+<replacement name="Democracy" state_name="Confederation of" leader="Deganawidah"/>
+<replacement name="Tribe" state_name="Tribe of" leader="Hoyenah"/>
+</civ>
+
+<civ name="Spain" r="176" g="8" b="28" personality="Enterprising">
+<info>
+Spain as a united country was created in late XV century by Isabella I of Castille and Ferdinand II of Aragon.
+Before unification Spain was territory of wars between Muslims on the South and Catholics on the North.
+Most important Catholic countries were Leon and Castille (which later changed into Castille-Leon) and Aragon.
+After fall of muslim Caliphate and Taifas and later Unification of Castille and Aragon Spain wasn't controlled by
+Spanish dynasty for long because in early XVI century Habsburg family got crown of Spain. In the same time giant
+colonial Empire of Spain was created. After death of Charles II War of The Spanish Succession started and changed
+ruling dynasty to Bourbons who are ruling Spain with small breaks until today. While having king Spain is now
+constitutional monarchy and in time between Napoleonic Era to 70' of XX century there was two Republics and one dictatorship.
+
+Spanish traits are Commerical and Expansive to represent the power of its colonial empire, once greatest in the world.
+
+Spanish leaders include kings and democratic leaders.
+Spanish color is red from its actuall flag.
+</info>
+
+<leader name="Ferdinand I of León"/>
+<leader name="Charles I"/>
+<leader name="Isabella I of Castile"/>
+<leader name="Charles II"/>
+<leader name="Alfonso V of Aragon"/>
+<leader name="Joachim Murat"/>
+<leader name="Ferdinand VII"/>
+<leader name="Alfonso XIII"/>
+<leader name="Francisco Franco"/>
+<leader name="Juan Carlos I"/>
+<leader name="Niceto Alcalá-Zamora"/>
+<leader name="Manuel Azaña"/>
+<leader name="Felipe González"/>
+<leader name="Mariano Rajoy"/>
+<leader name="Alfonso III of Asturias"/>
+<leader name="Alfonso I the Catholic"/>
+<leader name="Ferdinand II of Aragon"/>
+<trait name="O"/>
+<trait name="X"/>
+<city name="Madrid"/>
+<city name="Barcelona"/>
+<city name="Valencia"/>
+<city name="Seville"/>
+<city name="Zaragoza"/>
+<city name="Málaga"/>
+<city name="Murcia"/>
+<city name="Bilbao"/>
+<city name="Alicante"/>
+<city name="Palma"/>
+<city name="Córdoba"/>
+<city name="Gijón"/>
+<city name="A Coruña"/>
+<city name="Oviedo"/>
+<city name="Valladolid"/>
+<city name="L'Hospitalet de Llobregat"/>
+<city name="Terrassa"/>
+<city name="Granada"/>
+<city name="Vigo"/>
+<city name="Las Palmas de Gran Canaria"/>
+<city name="Elche"/>
+<city name="Badalona"/>
+<city name="Pamplona"/>
+<city name="Burgos"/>
+<city name="Vitoria-Gasteiz"/>
+<city name="Cartagena"/>
+<city name="Sabadell"/>
+<city name="Badajoz"/>
+<city name="Huelva"/>
+<city name="Salamanca"/>
+<city name="Fuenlabrada"/>
+<city name="Jerez de la Frontera"/>
+<city name="Móstoles"/>
+<city name="Santa Cruz de Tenerife"/>
+<city name="Almería"/>
+<city name="Toledo"/>
+<city name="Leganés"/>
+<city name="Alcalá de Henares"/>
+<city name="Getafe"/>
+<city name="San Sebastián"/>
+<city name="Santander"/>
+<city name="Albacete"/>
+<city name="Logroño"/>
+<city name="Tarragona"/>
+<city name="Alcorcón"/>
+<city name="San Cristóbal de La Laguna"/>
+<city name="Lleida"/>
+<city name="Marbella"/>
+<city name="Castellón de la Plana"/>
+<city name="Dos Hermanas"/>
+<city name="Torrejón de Ardoz"/>
+<city name="León"/>
+<city name="Algeciras"/>
+<city name="Cádiz"/>
+<city name="Girona"/>
+<city name="Lugo"/>
+<city name="Santiago de Compostela"/>
+<city name="Lorca"/>
+<city name="Guadalajara"/>
+<city name="Ceuta"/>
+<city name="Pontevedra"/>
+<city name="Mijas"/>
+<city name="Parla"/>
+<city name="Torrejón de Ardoz"/>
+<city name="Mataró"/>
+<city name="Santa Coloma de Gramenet"/>
+<city name="Alcobendas"/>
+<city name="Jaén"/>
+<city name="Ourense"/>
+<city name="Reus"/>
+<city name="Telde"/>
+<city name="Barakaldo"/>
+<city name="Roquetas de Mar"/>
+<city name="Cáceres"/>
+<city name="Las Rozas de Madrid"/>
+<city name="San Fernando"/>
+<city name="Sant Cugat del Vallès"/>
+<city name="San Sebastián de los Reyes"/>
+<city name="Cornellà de Llobregat"/>
+<city name="El Puerto de Santa María"/>
+<city name="Rivas-Vaciamadrid"/>
+<city name="Melilla"/>
+<city name="Pozuelo de Alarcón"/>
+<city name="Chiclana de la Frontera"/>
+<city name="Sant Boi de Llobregat"/>
+<city name="El Ejido"/>
+<city name="Talavera de la Reina"/>
+<city name="Torrevieja"/>
+<city name="Torrent"/>
+<city name="Coslada"/>
+<city name="Vélez-Málaga"/>
+<city name="Arona"/>
+<city name="Fuengirola"/>
+<city name="Palencia"/>
+<city name="Avilés"/>
+<city name="Rubí"/>
+<city name="Manresa"/>
+<city name="Getxo"/>
+<city name="Orihuela"/>
+<city name="Alcalá de Guadaíra"/>
+<city name="Valdemoro"/>
+<replacement name="Dictatorship" leader="Caudillo" state_name="State of"/>
+<replacement name="Republic" leader="Prime Minister" state_name="Kingdom of"/>
+<replacement name="Monarchy" leader="King" state_name="Empire of"/>
+</civ>
+<civ name="Zulu" r="154" g="97" b="64" personality="Authoritarian">
+<info>
+Zulu are ethnic group in South Africa. In XIX century under the lead of Shaka
+they formed a powerful militaristic kingdom which fought with England and Boer Republics.
+In 1897 the kingdom finally got defeated by England.
+
+Zulu traits are Militaristic and Economic, to represent the power of Shaka's kingdom.
+
+Zulu leaders include Zulu Kingdom chiefs.
+Zulu color is brown - color of their traditional shields.
+</info>
+<leader name="Malandela kaLuzumana"/>
+<leader name="Zulu kaMalandela"/>
+<leader name="Phunga kaGumede"/>
+<leader name="Shaka Zulu"/>
+<leader name="Cetshwayo kaMpande"/>
+<leader name="Dingaan"/>
+<leader name="Misuzulu Zulu kaZwelithini"/>
+<leader name="Jama kaNdaba"/>
+<leader name="Senzangakhona kaJama"/>
+<leader name="Solomon kaDinuzulu"/>
+<trait name="M"/>
+<trait name="E"/>
+<city name="Ulundi"/>
+<city name="kwaBulawayo"/>
+<city name="umGungundlovu"/>
+<city name="Eshowe"/>
+<city name="kwaDukuza"/>
+<city name="Empangeni"/>
+<city name="Melmoth"/>
+<city name="oNdini"/>
+<city name="Nongoma"/>
+<city name="eThekwini"/>
+<city name="Eziqwaqweni"/>
+<city name="Hlobane"/>
+<city name="Khangela"/>
+<city name="Babanango"/>
+<city name="Mtunzini"/>
+<city name="Hluhluwe"/>
+<city name="Tugela"/>
+<city name="Durban"/>
+<city name="Pietermaritzburg"/>
+<city name="Vryheid"/>
+<city name="Richards Bay"/>
+<city name="Ladysmith"/>
+<city name="Mooi River"/>
+<city name="Paulpietersburg"/>
+<city name="Pongola"/>
+<city name="Nongoma"/>
+<city name="Tugela Ferry"/>
+<city name="Estcourt"/>
+<city name="Izingolweni"/>
+<city name="Kwangwanase"/>
+<city name="Hluhluwe"/>
+<city name="Mtubatuba"/>
+<city name="kwaNbonambi"/>
+<city name="Empangeni"/>
+<city name="Nkandla"/>
+<city name="Mandeni"/>
+<city name="Ndwedwe"/>
+<city name="Maphumulo"/>
+<city name="Ixopo"/>
+<city name="Umzimkhulu"/>
+<replacement name="Republic" leader="Premier" state_name="Province of"/>
+<replacement name="Monarchy" leader="President" state_name="Kingdom of"/>
+<replacement name="Tribe" leader="" state_name="Clan of"/>
+</civ>
+<civ name="Argentina" r="118" g="172" b="220" personality="Peaceful">
+<info>
+Argentina is second largest country in South America. In early XX century
+it was one of the richest countries on the planet, its GNP per capita was higher than in USA.
+The Great Depression however changed that and Argentinian economical situation never was that good again.
+Nontheless Argentina is important regional power.
+
+Argentinian traits are Religious and Nautical, to represent the importance of resource exports in GNP of
+Argentina and importance of religion (in fact pope Francias is from Argentina).
+
+Argentinian leaders include various leaders.
+Argentinian color is light blue from its flag.
+</info>
+<leader name="Gervasio Antonio de Posadas"/>
+<leader name="Cornelio Saavedra"/>
+<leader name="Bernardino Rivadavia"/>
+<leader name="Juan Manuel de Rosas"/>
+<leader name="Justo José de Urquiza"/>
+<leader name="Bartolomé Mitre"/>
+<leader name="Julio Argentino Roca"/>
+<leader name="Juan Perón"/>
+<leader name="Pedro Pablo Ramírez"/>
+<leader name="Pedro Eugenio Aramburu"/>
+<leader name="Juan Carlos Onganía"/>
+<leader name="Isabel Perón"/>
+<leader name="Jorge Rafael Videla"/>
+<leader name="Carlos Menem"/>
+<leader name="Alberto Fernández"/>
+<trait name="R"/>
+<trait name="N"/>
+<city name="Buenos Aires"/>
+<city name="Córdoba"/>
+<city name="Rosario"/>
+<city name="La Plata"/>
+<city name="Mar del Plata"/>
+<city name="San Miguel de Tucumán"/>
+<city name="Salta"/>
+<city name="Santa Fe de la Vera Cruz"/>
+<city name="Vicente López"/>
+<city name="Corrientes"/>
+<city name="Pilar"/>
+<city name="Bahía Blanca"/>
+<city name="Resistencia"/>
+<city name="Posadas"/>
+<city name="San Salvador de Jujuy"/>
+<city name="Santiago del Estero"/>
+<city name="Paraná"/>
+<city name="Merlo"/>
+<city name="Neuquén"/>
+<city name="Quilmes"/>
+<city name="Banfield"/>
+<city name="Formosa"/>
+<city name="José C. Paz"/>
+<city name="Lanús"/>
+<city name="Godoy Cruz"/>
+<city name="Las Heras"/>
+<city name="La Rioja"/>
+<city name="Gregorio de Laferrère"/>
+<city name="Comodoro Rivadavia"/>
+<city name="San Luis"/>
+<city name="Ituzaingó"/>
+<city name="Berazategui"/>
+<city name="González Catán"/>
+<city name="Ezeiza"/>
+<city name="San Fernando del Valle de Catamarca"/>
+<city name="San Miguel"/>
+<city name="Río Cuarto"/>
+<city name="Concordia"/>
+<city name="Moreno"/>
+<city name="San Fernando de la Buena Vista"/>
+<city name="Isidro Casanova"/>
+<city name="San Nicolás de los Arroyos"/>
+<city name="Florencio Varela"/>
+<city name="San Rafael"/>
+<city name="Tandil"/>
+<city name="Mendoza"/>
+<city name="Avellaneda"/>
+<city name="Lomas de Zamora"/>
+<city name="Temperley"/>
+<city name="Villa Mercedes"/>
+<city name="Olavarría"/>
+<city name="Monte Grande"/>
+<city name="Bernal"/>
+<city name="San Carlos de Bariloche"/>
+<city name="San Juan"/>
+<city name="Villa Krause"/>
+<city name="Maipú"/>
+<city name="La Banda"/>
+<city name="San Justo"/>
+<city name="Pergamino"/>
+<city name="Castelar"/>
+<city name="Rafael Castillo"/>
+<city name="Santa Rosa"/>
+<city name="Libertad"/>
+<city name="Ramos Mejía"/>
+<city name="Trelew"/>
+<city name="Luján"/>
+<city name="Río Gallegos"/>
+<city name="Caseros"/>
+<city name="Trujui"/>
+<city name="Morón"/>
+<city name="Rafaela"/>
+<city name="Virrey del Pino"/>
+<city name="Presidencia Roque Sáenz Peña"/>
+<city name="Parque San Martín"/>
+<city name="Berisso"/>
+<city name="Junín"/>
+<city name="Chimbas"/>
+<city name="Campana"/>
+<city name="Zárate"/>
+<city name="Burzaco"/>
+<city name="Grand Bourg"/>
+<city name="Monte Chingolo"/>
+<city name="Necochea"/>
+<city name="Rivadavia"/>
+<city name="Puerto Iguazú"/>
+<city name="General Roca"/>
+<city name="Remedios de Escalada"/>
+<city name="Puerto Madryn"/>
+<city name="Gualeguaychú"/>
+<city name="La Tablada"/>
+<city name="San Martín"/>
+<city name="Villa María"/>
+<city name="Cipolletti"/>
+<city name="San Ramón de la Nueva Orán"/>
+<city name="Florida Este"/>
+<city name="Ciudad Madero"/>
+<city name="Olivos"/>
+<city name="Venado Tuerto"/>
+<city name="San Pedro de Jujuy"/>
+<city name="El Palomar"/>
+<city name="Villa Gobernador Gálvez"/>
+<city name="Villa Luzuriaga"/>
+<city name="Boulogne Sur Mer"/>
+<city name="Ciudadela"/>
+<city name="Luján de Cuyo"/>
+<city name="Ezpeleta"/>
+<city name="Concepción del Uruguay"/>
+<city name="Goya"/>
+<city name="Reconquista"/>
+<city name="Bella Vista"/>
+<city name="Río Grande"/>
+<city name="Wilde"/>
+<city name="Martínez"/>
+<city name="Santo Tomé"/>
+<city name="Don Torcuato"/>
+<city name="Gerli"/>
+<city name="Banda del Río Salí"/>
+<city name="Oberá"/>
+<city name="General Rodríguez"/>
+<city name="Tartagal"/>
+<city name="Villa Tesei"/>
+<city name="Villa Carlos Paz"/>
+<city name="Ciudad Jardín El Libertador"/>
+<city name="San Francisco"/>
+<city name="Sarandí"/>
+<city name="Hurlingham"/>
+<city name="Villa Elvira"/>
+<city name="Stop it"/>
+<city name="Garín"/>
+<city name="Villa Domínico"/>
+<city name="Béccar"/>
+<city name="Punta Alta"/>
+<city name="Chivilcoy"/>
+<city name="Glew"/>
+<city name="Eldorado"/>
+<city name="El Palomar"/>
+<city name="Ushuaia"/>
+<city name="General Pico"/>
+<city name="Rafael Calzada"/>
+<city name="Mercedes"/>
+<city name="Azul"/>
+<city name="Belén de Escobar"/>
+<city name="Barranqueras"/>
+<city name="Ensenada"/>
+<city name="Los Hornos"/>
+<city name="Mariano Acosta"/>
+<city name="San Francisco Solano"/>
+<city name="Los Polvorines"/>
+<city name="Lomas del Mirador"/>
+<city name="Clorinda"/>
+<city name="Really stop"/>
+<city name="Viedma"/>
+<city name="Caleta Olivia"/>
+<city name="Bosques"/>
+<city name="Palpalá"/>
+<city name="Yerba Buena"/>
+<city name="Concepción"/>
+<city name="Villa Centenario"/>
+<city name="Ciudad Perico"/>
+<city name="Gobernador Julio A. Costa"/>
+<city name="William Morris"/>
+<city name="El Jagüel"/>
+<city name="Villa Mariano Mareno"/>
+<city name="Alta Gracia"/>
+<city name="Longchamps"/>
+<city name="San Pedro"/>
+<city name="bruh"/>
+<city name="Villa Constitución"/>
+<city name="Tres Arroyos"/>
+<city name="Garupá"/>
+<city name="Libertador General San Martín"/>
+<city name="Río Tercero"/>
+<city name="San Isidro"/>
+<city name="Villa Adelina"/>
+<city name="Villa de Mayo"/>
+<city name="General Pacheco"/>
+<city name="Paso de los Libres"/>
+<city name="San Lorenzo"/>
+<city name="Granadero Baigorria"/>
+<city name="Villa Fiorito"/>
+<city name="Lincoln"/>
+<city name="Paso del Rey"/>
+<city name="Llavallol"/>
+<city name="Villa Ángela"/>
+<city name="Tortuguitas"/>
+<city name="Claypole"/>
+<city name="Valentín Alsina"/>
+<city name="Apóstoles"/>
+<city name="José Mármol"/>
+<city name="Gualeguay"/>
+<city name="Esperanza"/>
+<city name="Tafí Viejo"/>
+<city name="Virreyes"/>
+<city name="Ingeniero Pablo Nogués"/>
+<city name="Alderetes"/>
+<city name="Chacabuco"/>
+<city name="Balcarce"/>
+<city name="Haedo"/>
+<city name="San Antonio de Padua"/>
+<city name="Juan José Castelli"/>
+<city name="Nueve de Julio"/>
+<city name="Dock Sud"/>
+<city name="Stanley"/>
+<city name="Munro"/>
+<city name="Cutral Có"/>
+<city name="Villa Ballester"/>
+<city name="Casilda"/>
+<city name="Curuzú Cuatiá"/>
+<city name="Bell Ville"/>
+<city name="Chilecito"/>
+<city name="Chascomús"/>
+<city name="Mercedes"/>
+<city name="Pontevedra"/>
+<city name="Trenque Lauquen"/>
+<city name="Bragado"/>
+<city name="Centenario"/>
+<city name="Aguilares"/>
+<city name="Villaguay"/>
+<city name="Chajarí"/>
+<city name="City Bell"/>
+<city name="Victoria"/>
+<city name="Plottier"/>
+<city name="Esquel"/>
+<city name="Termas de Río Hondo"/>
+<city name="Zapala"/>
+<city name="Comandante Fontana"/>
+<city name="General José de San Martín"/>
+<city name="Szczebrzeszyn"/>
+<city name="Jesús María"/>
+<city name="Pehuajó"/>
+<city name="General Güemes"/>
+<city name="Villa Udaondo"/>
+<city name="Lobos"/>
+<city name="Tigre"/>
+<city name="Cruz del Eje"/>
+<city name="Victoria"/>
+<city name="Villa Regina"/>
+<city name="Carlos Spegazzini"/>
+<city name="General Alvear"/>
+<city name="Villa Dolores"/>
+<city name="Miramar"/>
+<city name="Cañada de Gómez"/>
+<city name="Tunuyán"/>
+<city name="Gobernador Virasoro"/>
+<city name="Baradero"/>
+<city name="San José de Metán"/>
+<city name="Adrogué"/>
+<city name="Caucete"/>
+<city name="Charata"/>
+<city name="Tristán Suárez"/>
+<city name="Florida Oeste"/>
+<city name="Capitán Bermúdez"/>
+<city name="Las Breñas"/>
+<city name="Piñeiro"/>
+<city name="Frías"/>
+<city name="Arrecifes"/>
+<city name="Muñiz"/>
+<city name="Villa Martelli"/>
+<city name="Jardín América"/>
+<city name="Rawson"/>
+<city name="Quitilipi"/>
+<city name="Arroyo Seco"/>
+<city name="Embarcación"/>
+<city name="Malargüe"/>
+<city name="London"/>
+</civ>
+<civ name="Brazil" r="0" g="155" b="58" personality="Enterprising">
+<info>
+Brazil is the biggest country in South America. It has 9th strongest economy in
+the world. It is surely a major power in world politics.
+
+Brazilian traits are Economic and Commerical, to represent its power as "emerging economy".
+
+Brazilian leaders include emperors, kings and presidents of Brazil.
+Brazilian color is green - the background color of its flag.
+</info>
+<replacement name="Democracy" state_name="Federative Republic of" leader="President"/>
+<replacement name="Monarchy" state_name="Kingdom of" leader="Prince Regent"/>
+<replacement name="Parliamentary Monarchy" state_name="Empire of" leader="Emperor"/>
+<replacement name="Dictatorhsip" state_name="Republic of United States of" leader="President"/>
+<leader name="Pedro I"/>
+<leader name="Pedro II"/>
+<leader name="Getúlio Vargas"/>
+<leader name="Eurico Gaspar Dutra"/>
+<leader name="Emílio Garrastazu Médici"/>
+<leader name="Luis Inácio da Silva"/>
+<leader name="Juscelino Kubitschek"/>
+<leader name="Fernando Hernique Cardoso"/>
+<leader name="Ernesto Geisel"/>
+<leader name="Itamar Franco"/>
+<leader name="Fernando Collor de Mello"/>
+<leader name="Dilma Rousseff"/>
+<trait name="E"/>
+<trait name="O"/>
+<city name="Brasília"/>
+<city name="Rio de Janeiro"/>
+<city name="São Paulo"/>
+<city name="Salvador"/>
+<city name="Fortaleza"/>
+<city name="Belo Horizonte"/>
+<city name="Manaus"/>
+<city name="Curitiba"/>
+<city name="Recife"/>
+<city name="Goiânia"/>
+<city name="Belém"/>
+<city name="Porto Alegre"/>
+<city name="São Luís"/>
+<city name="Maceió"/>
+<city name="Guarulhos"/>
+<city name="Campinas"/>
+<city name="São Gonçalo"/>
+<city name="Duque de Caxias"/>
+<city name="Campo Grande"/>
+<city name="Natal"/>
+<city name="Teresina"/>
+<city name="João Pessoa"/>
+<city name="São Bernardo do Campo"/>
+<city name="Nova Iguaçu"/>
+<city name="São José dos Campos"/>
+<city name="Santo André"/>
+<city name="Ribeirão Preto"/>
+<city name="Jaboatão dos Guararapes"/>
+<city name="Uberlândia"/>
+<city name="Osasco"/>
+<city name="Cuiabá"/>
+<city name="Aracaju"/>
+<city name="Contagem"/>
+<city name="Sorocaba"/>
+<city name="Feira de Santana"/>
+<city name="Joinville"/>
+<city name="Aparecida de Goiânia"/>
+<city name="Londrina"/>
+<city name="Juiz de Fora"/>
+<city name="Porto Velho"/>
+<city name="Macapá"/>
+<city name="Florianópolis"/>
+<city name="Ananindeua"/>
+<city name="Serra"/>
+<city name="Caxias do Sul"/>
+<city name="Niterói"/>
+<city name="Belford Roxo"/>
+<city name="Campos dos Goytacazes"/>
+<city name="Vila Velha"/>
+<city name="Boa Vista"/>
+<city name="Rio Branco"/>
+<city name="Mauá"/>
+<city name="São João de Meriti"/>
+<city name="São José do Rio Preto"/>
+<city name="Mogi das Cruzes"/>
+<city name="Betim"/>
+<city name="Maringá"/>
+<city name="Santos"/>
+<city name="Diadema"/>
+<city name="Jundiaí"/>
+<city name="Montes Claros"/>
+<city name="Campina Grande"/>
+<city name="Piracicaba"/>
+<city name="Carapicuíba"/>
+<city name="Anápolis"/>
+<city name="Olinda"/>
+<city name="Vitória"/>
+<city name="Cariacica"/>
+<city name="Bauru"/>
+<city name="Itaquaquecetuba"/>
+<city name="São Vicente"/>
+<city name="Caruaru"/>
+<city name="Caucaia"/>
+<city name="Blumenau"/>
+<city name="Petrolina"/>
+<city name="Ponta Grossa"/>
+<city name="Franca"/>
+<city name="Canoas"/>
+<city name="Pelotas"/>
+<city name="Palmas"/>
+<city name="Vitória da Conquista"/>
+<city name="Ribeirão das Neves"/>
+<city name="Uberaba"/>
+<city name="Paulista"/>
+<city name="Praia Grande"/>
+<city name="Cascavel"/>
+<city name="São José dos Pinhais"/>
+<city name="Guarujá"/>
+<city name="Taubaté"/>
+<city name="Limeira"/>
+<city name="Camaçari"/>
+<city name="Santarém"/>
+<city name="Petrópolis"/>
+<city name="Mossoró"/>
+<city name="Suzano"/>
+<city name="Taboão da Serra"/>
+<city name="Várzea Grande"/>
+<city name="Sumaré"/>
+<city name="Marabá"/>
+<city name="Gravataí"/>
+</civ>
+</civs>
+</miniyacg>

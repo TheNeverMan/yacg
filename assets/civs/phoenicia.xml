@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Phoenicia" r="102" g="2" b="60" personality="Exploring">
+<info>
+Phoenicia was an ancient maritime empire located in territory of Lebanon.
+In around 10th phoenician traders have estabilished colonies and trade outposts all
+across Mediterranean Sea. Due to lack of strong military and territory Phoenicia in lost its power
+in 9th century to Assyria.
+
+Phoenician traits are Nautical and Commercial, to represent the wealth of first colonial empire in ancient
+world.
+
+Phoenician leaders include kings of major phoenician city-states.
+Phoenician color is purple - the only source of purple dye at the time was Tyre, phoenician capital.
+</info>
+<leader name="Hiram I"/>
+<leader name="Abishemu I"/>
+<leader name="Pygmalion"/>
+<leader name="Ahiram"/>
+<leader name="Abibaal"/>
+<leader name="Baal-Eser I"/>
+<leader name="Eshmunazar I"/>
+<leader name="Ithobaal"/>
+<leader name="Elibaal"/>
+<replacement name="Republic" leader="Sufete" state_name="City-state of"/>
+<trait name="N"/>
+<trait name="O"/>
+<city name="Tyre"/>
+<city name="Sidon"/>
+<city name="Gebal"/>
+<city name="Leptis Magna"/>
+<city name="Leptis Parva"/>
+<city name="Carthage"/>
+<city name="Uttica"/>
+<city name="Tangier"/>
+<city name="Baalbek"/>
+<city name="Arqa"/>
+<city name="Amia"/>
+<city name="Berut"/>
+<city name="Botrys"/>
+<city name="Tripoli"/>
+<city name="Sarepta"/>
+<city name="Ugarit"/>
+<city name="Latakia"/>
+<city name="Arvad"/>
+<city name="Tartus"/>
+<city name="Amrit"/>
+<city name="Achviz"/>
+<city name="Jaffa"/>
+<city name="Haifa"/>
+<city name="Michal"/>
+<city name="Dora"/>
+<city name="Acre"/>
+<city name="Reshef"/>
+<city name="Stratonos Pyrgos"/>
+<city name="Myriandus"/>
+<city name="Sam'al"/>
+<city name="Karatepe"/>
+<city name="Finike"/>
+<city name="Kition"/>
+<city name="Salamis"/>
+<city name="Ampi"/>
+<city name="Lapethos"/>
+<city name="Tammassos"/>
+<city name="Idalium"/>
+<city name="Tipaza"/>
+<city name="Russicada"/>
+<city name="Icosium"/>
+<city name="Oea"/>
+<city name="Sabratha"/>
+<city name="Lixus"/>
+<city name="Mogador"/>
+<city name="Mehidya"/>
+<city name="El-Jadida"/>
+<city name="Oualidia"/>
+<city name="Agadir"/>
+<city name="Cerne"/>
+<city name="Hippo Diarrhytus"/>
+<city name="Hadrumetum"/>
+<city name="Thapsus"/>
+<city name="Kerkouane"/>
+<city name="Zama Regia"/>
+<city name="Vaga"/>
+<city name="Nimes"/>
+<city name="Aleria"/>
+<city name="Motya"/>
+<city name="Soluntum"/>
+<city name="Lilybaeum"/>
+<city name="Lampas"/>
+<city name="Kosyra"/>
+<city name="Sulcis"/>
+<city name="Tharros"/>
+<city name="Olbia"/>
+<city name="Caligari"/>
+<city name="Palermo"/>
+<city name="Mdina"/>
+<city name="Rabat"/>
+<city name="Burmula"/>
+<city name="Cadiz"/>
+<city name="Cartagena"/>
+<city name="Kartuba"/>
+<city name="Almuñécar"/>
+<city name="Rusadir"/>
+<city name="La Fonteta"/>
+<city name="Trayamar"/>
+<city name="Abdera"/>
+<city name="Huelva"/>
+<city name="Ibiza"/>
+<city name="Lebrija"/>
+<city name="San Roque"/>
+</civ>
+</civs>
+</miniyacg>

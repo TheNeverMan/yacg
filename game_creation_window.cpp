@@ -15,9 +15,12 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Dialog_Map_Frame = Gtk::Frame("World Settings");
   Dialog_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   Map_UI_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
-  Dialog_Players_Frame = Gtk::Frame("Select Players");
+  Dialog_Players_Frame = Gtk::Frame("Select Your Civilization");
   Players_UI_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Main_Player_UI_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+  Root_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+  Map_Data_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
+  Other_Players_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Buttons_Frame = Gtk::Frame("Actions");
   Buttons_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Map_Path_Label = Gtk::Label(" ");
@@ -60,12 +63,12 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Y_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
   Y_Switch = Gtk::SpinButton(Y_Adjustment);
 
-  Continents_Label = Gtk::Label("Amount of Continents (To create interesting maps select values around 50-60):");
+  Continents_Label = Gtk::Label("Amount of Continents \n(To create interesting maps select values around 50-60):");
   Glib::RefPtr<Gtk::Adjustment> Continents_Adjustment;
   Continents_Adjustment = Gtk::Adjustment::create(10.0,0.0,1000.0,1.0,10,0.0);
   Continents_Switch = Gtk::SpinButton(Continents_Adjustment);
 
-  Water_Label = Gtk::Label("Amount of Water (To create balanced maps choose values around 60-70 to create landfilled pangea-like maps choose values higher than 500):");
+  Water_Label = Gtk::Label("Amount of Water \n(To create balanced maps choose values around 60-70\n to create landfilled pangea-like maps choose values higher than 500):");
   Glib::RefPtr<Gtk::Adjustment> Water_Adjustment;
   Water_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
   Water_Switch = Gtk::SpinButton(Water_Adjustment);
@@ -78,7 +81,10 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
 
   add(Dialog_Root_Box);
   Civs_Chooser_Combo.set_active(true);
-  Dialog_Root_Box.pack_start(Dialog_Map_Frame);
+  Dialog_Root_Box.pack_start(Root_Box);
+  Root_Box.pack_start(Map_Data_Box);
+  Root_Box.pack_start(Other_Players_Box);
+  Map_Data_Box.pack_start(Dialog_Map_Frame);
 //  Main_Scrolled_Window.add(Dialog_Map_Frame);
   Dialog_Map_Frame.add(Map_UI_Box);
   Map_UI_Box.pack_start(X_Label, Gtk::PACK_SHRINK);
@@ -89,23 +95,24 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Map_UI_Box.pack_start(Continents_Switch, Gtk::PACK_SHRINK);
   Map_UI_Box.pack_start(Water_Label, Gtk::PACK_SHRINK);
   Map_UI_Box.pack_start(Water_Switch, Gtk::PACK_SHRINK);
-  Dialog_Root_Box.pack_start(Dialog_Players_Frame, Gtk::PACK_SHRINK);
+  Map_Data_Box.pack_start(Dialog_Players_Frame, Gtk::PACK_SHRINK);
   Dialog_Players_Frame.add(Players_UI_Box);
   Players_UI_Box.pack_start(Main_Player_UI_Box, Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Color_Image, Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Chooser_Combo, Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Description_Frame, Gtk::PACK_SHRINK);
   Civs_Description_Frame.add(Civs_Description_Label);
-  Players_UI_Box.pack_start(Other_Players_Label, Gtk::PACK_SHRINK);
-  Players_UI_Box.pack_start(Players_Switch, Gtk::PACK_SHRINK);
-  Players_UI_Box.pack_start(Other_Human_Players_Label, Gtk::PACK_SHRINK);
-  Players_UI_Box.pack_start(Human_Players_Switch, Gtk::PACK_SHRINK);
-  Players_UI_Box.pack_start(Allow_Duplicate_Civs_Button, Gtk::PACK_SHRINK);
-  Players_UI_Box.pack_start(Civs_Frame, Gtk::PACK_SHRINK);
+  Other_Players_Box.pack_start(Other_Players_Label, Gtk::PACK_SHRINK);
+  Other_Players_Box.pack_start(Players_Switch, Gtk::PACK_SHRINK);
+  Other_Players_Box.pack_start(Other_Human_Players_Label, Gtk::PACK_SHRINK);
+  Other_Players_Box.pack_start(Human_Players_Switch, Gtk::PACK_SHRINK);
+  Other_Players_Box.pack_start(Allow_Duplicate_Civs_Button, Gtk::PACK_SHRINK);
+  Other_Players_Box.pack_start(Civs_Frame);
+  //Players_UI_Box.pack_start(Civs_Frame, Gtk::PACK_SHRINK);
   Civs_Frame.add(Civs_Scrolled_Window);
   Civs_Scrolled_Window.add(Civs_Box);
-  Dialog_Root_Box.pack_start(Map_Path_Label);
-  Dialog_Root_Box.pack_start(Randomize_Starting_Locations_Button);
+  Other_Players_Box.pack_start(Map_Path_Label);
+  Other_Players_Box.pack_start(Randomize_Starting_Locations_Button);
   Dialog_Root_Box.pack_start(Buttons_Frame);
   Buttons_Frame.add(Buttons_Box);
   Buttons_Box.pack_start(Quit_Button);

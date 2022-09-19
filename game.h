@@ -71,6 +71,10 @@ class Game : public XML_Serializable
     void Asign_Random_Starting_Position_For_Player(int player_id);
     void Assign_Random_Starting_Positions();
     void Assign_Starting_Positions_From_Data(map<string, array<int,2>> starting_positions);
+    array<int, 3> Get_Units_Stats_For_Battle(int unit_x, int unit_y);
+    double Get_Defense_Bonus_For_Tile_And_Player(int x, int y, int player_id);
+    Unit Get_Unit_By_Tile(int x, int y);
+    void Remove_All_Missle_Units();
   public:
     void Disband_Unit(int x, int y);
     Unit Get_Unit_By_Name(string name);
@@ -109,4 +113,7 @@ class Game : public XML_Serializable
     vector<Coords> Get_Tiles_To_Update();
     void Recruit_Unit(string u, int x, int y);
     int Get_Total_Cost_Of_Technology_By_Name(string name);
+    Upgrade Get_Upgrade_Of_Currently_Moving_Player(string upg_name);
+    void Plunder_Tile(int x, int y);
+    void Detonate_Atomic_Bomb(int x, int y);
 };

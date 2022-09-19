@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Turkey" r="227" g="10" b="23" personality="Expansive">
+<info>
+Turkey is country located on Anatolian Penisula. Modern Turkey had emerged
+from ruins of Ottoman Empire
+which fell after losing World War I. Before it has been global power,
+it controlled territories from Balkans to Egypt.
+
+Turkish traits are Militaristic and Expansive, to represent the size and power of Ottoman Empire.
+
+Turkish leaders include ottoman sultans, sultans of
+preottoman states and presidents of Republic of Turkey.
+Turkish color is red from Turkey flag.
+</info>
+<replacement name="Monarchy" leader="Sultan" state_name="Osman Sultanate of"/>
+<replacement name="Despotism" leader="Sultan" state_name="Sultanate of"/>
+<replacement name="Theocracy" leader="Caliph" state_name="Caliphate of"/>
+<replacement name="Horde" leader="Sultan" state_name="Seljuk Empire of"/>
+<replacement name="Republic" leader="Grand Vizier" state_name="Sultanate of"/>
+<replacement name="Democracy" leader="President" state_name="Republic of"/>
+<leader name="Mustafa Kemal Atatürk"/>
+<leader name="Tughril"/>
+<leader name="Suleiman ibn Qutalmish"/>
+<leader name="Mehmed II"/>
+<leader name="Suleiman the Magnificent"/>
+<leader name="Murad II"/>
+<leader name="Murad IV"/>
+<leader name="Selim I"/>
+<leader name="Osman I"/>
+<trait name="M"/>
+<trait name="X"/>
+<city name="Ankara"/>
+<city name="Istanbul"/>
+<city name="Izmir"/>
+<city name="Bursa"/>
+<city name="Edirne"/>
+<city name="Adana"/>
+<city name="Gaziantep"/>
+<city name="Konya"/>
+<city name="Antalya"/>
+<city name="Kayseri"/>
+<city name="Mersin"/>
+<city name="Eskişehir"/>
+<city name="Diyarbakır"/>
+<city name="Samsun"/>
+<city name="Denizli"/>
+<city name="Şanlıurfa"/>
+<city name="Adapazarı"/>
+<city name="Malatya"/>
+<city name="Kahramanmaraş"/>
+<city name="Erzurum"/>
+<city name="Van"/>
+<city name="Batman"/>
+<city name="Elâzığ"/>
+<city name="İzmit"/>
+<city name="Manisa"/>
+<city name="Sivas"/>
+<city name="Gebze"/>
+<city name="Balıkesir"/>
+<city name="Tarsus"/>
+<city name="Kütahya"/>
+<city name="Trabzon"/>
+<city name="Çorum"/>
+<city name="Çorlu"/>
+<city name="Adıyaman"/>
+<city name="Osmaniye"/>
+<city name="Kırıkkale"/>
+<city name="Antakya"/>
+<city name="Aydın"/>
+<city name="İskenderun"/>
+<city name="Uşak"/>
+<city name="Aksaray"/>
+<city name="Afyon"/>
+<city name="Isparta"/>
+<city name="İnegöl"/>
+<city name="Tekirdağ"/>
+<city name="Darıca"/>
+<city name="Ordu"/>
+<city name="Karaman"/>
+<city name="Gölcük"/>
+<city name="Siirt"/>
+<city name="Körfez"/>
+<city name="Kızıltepe"/>
+<city name="Düzce"/>
+<city name="Tokat"/>
+<city name="Bolu"/>
+<city name="Derince"/>
+<city name="Turgutlu"/>
+<city name="Bandırma"/>
+<city name="Nazilli"/>
+<city name="Kırşehir"/>
+<city name="Niğde"/>
+<city name="Zonguldak"/>
+<city name="Ceyhan"/>
+<city name="Karabük"/>
+<city name="Siverek"/>
+<city name="Akhisar"/>
+<city name="Lüleburgaz"/>
+<city name="Karadeniz Ereğli"/>
+<city name="Ağrı"/>
+<city name="Polatlı"/>
+<city name="Rize"/>
+<city name="Salihli"/>
+<city name="Ereğli"/>
+<city name="Cizre"/>
+<city name="Nizip"/>
+<city name="Çanakkale"/>
+<city name="Yalova"/>
+<city name="Alanya"/>
+<city name="Giresun"/>
+<city name="Viranşehir"/>
+<city name="Bingöl"/>
+<city name="Amasya"/>
+<city name="Kastamonu"/>
+<city name="Elbistan"/>
+<city name="Erzincan"/>
+<city name="Nevşehir"/>
+<city name="Nusaybin"/>
+<city name="Kartepe"/>
+<city name="Çayırova"/>
+<city name="Mardin"/>
+<city name="Manavgat"/>
+<city name="Bafra"/>
+<city name="Kilis"/>
+<city name="Kadirli"/>
+<city name="Kars"/>
+<city name="Iğdır"/>
+<city name="Ünye"/>
+<city name="Kozan"/>
+<city name="Soma"/>
+<city name="Silopi"/>
+<city name="Ödemiş"/>
+<city name="Muş"/>
+<city name="Burdur"/>
+<city name="Yozgat"/>
+<city name="Fethiye"/>
+<city name="Erciş"/>
+<city name="Çerkezköy"/>
+<city name="Dörtyol"/>
+<city name="Çankırı"/>
+<city name="Kırıkhan"/>
+<city name="Söke"/>
+<city name="Kırklareli"/>
+<city name="Hakkâri"/>
+<city name="Şırnak"/>
+<city name="Doğubayazıt"/>
+<city name="Başiskele"/>
+<city name="Kuşadası"/>
+<city name="Ergani"/>
+<city name="Tavşanlı"/>
+<city name="Muğla"/>
+</civ>
+</civs>
+</miniyacg>

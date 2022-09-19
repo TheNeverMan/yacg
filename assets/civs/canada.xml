@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Canada" r="213" g="43" b="30" personality="Peaceful">
+<info>
+Canada is country located in North America. It is second-largest country in the world. It belongs 
+to Commonwealth and King of United Kingdom is formal leader of Canada. It is highly developed country
+relying on internation trade networks as its main money source.
+
+Canadian traits are Commerical and Cultural, to represent the peaceful process of Patriation and 
+its trade based economy.
+
+Canadian leaders include canadian prime ministers.
+Canadian color is red from its flag.
+</info>
+<replacement name="Democracy" leader="Prime Minister" state_name=""/>
+<replacement name="Parliamentary Monarchy" leader="Governor General" state_name=""/>
+<leader name="Mary Simon"/>
+<leader name="William Lyon Mackenzie King"/>
+<leader name="Wilfrid Laurier"/>
+<leader name="John A. Macdonald"/>
+<leader name="Pierre Elliott Trudeau"/>
+<leader name="Lester B. Pearson"/>
+<leader name="Louis St. Laurent"/>
+<leader name="Jean Chretien"/>
+<leader name="Brian Mulroney"/>
+<leader name="Sir Robert Borden"/>
+<leader name="Justin Trudeau"/>
+<trait name="C"/>
+<trait name="O"/>
+<city name="Ottawa"/>
+<city name="Quebec City"/>
+<city name="Toronto"/>
+<city name="Winnipeg"/>
+<city name="Edmonton"/>
+<city name="Victoria"/>
+<city name="Fredericton"/>
+<city name="St. Jonh's"/>
+<city name="Halifax"/>
+<city name="Charlottetown"/>
+<city name="Regina"/>
+<city name="Yellowknife"/>
+<city name="Iqaluit"/>
+<city name="Whitehorse"/>
+<city name="Montreal"/>
+<city name="Calgary"/>
+<city name="Mississauga"/>
+<city name="Vancouver"/>
+<city name="Brampton"/>
+<city name="Hamilton"/>
+<city name="Surrey"/>
+<city name="Laval"/>
+<city name="London"/>
+<city name="Markham"/>
+<city name="Vaughan"/>
+<city name="Gatineau"/>
+<city name="Sasaktoon"/>
+<city name="Kitchener"/>
+<city name="Longueuil"/>
+<city name="Burnaby"/>
+<city name="Windsor"/>
+<city name="Oakville"/>
+<city name="Richmond"/>
+<city name="Richmond Hill"/>
+<city name="Burlington"/>
+<city name="Sherbrooke"/>
+<city name="Greater Sudbury"/>
+<city name="Abbotsford"/>
+<city name="Levis"/>
+<city name="Coquitlam"/>
+<city name="Barrie"/>
+<city name="Saguenay"/>
+<city name="Kelowna"/>
+<city name="Guelph"/>
+<city name="Trois-Rivieres"/>
+<city name="Whitby"/>
+<city name="Cambridge"/>
+<city name="St. Caharines"/>
+<city name="Milton"/>
+<city name="Langley"/>
+<city name="Kingston"/>
+<city name="Ajax"/>
+<city name="Waterloo"/>
+<city name="Terrebonne"/>
+<city name="Saanich"/>
+<city name="Thunder Bay"/>
+<city name="Delta"/>
+<city name="Brantford"/>
+<city name="Chatham-Kent"/>
+<city name="Clarington"/>
+<city name="Red Deer"/>
+<city name="Nanaimo"/>
+<city name="Strathcona County"/>
+<city name="Pickering"/>
+<city name="Lethbridge"/>
+<city name="Kamloops"/>
+<city name="Saint-Jean-sur-Richelieu"/>
+<city name="Niagara Falls"/>
+<city name="Cape Breton"/>
+<city name="Chiliwack"/>
+<city name="Brosssard"/>
+<city name="Maple Ridge"/>
+<city name="North Vancouver"/>
+<city name="Newmarket"/>
+<city name="Repentigny"/>
+<city name="Saint-Jerome"/>
+<city name="Moncton"/>
+<city name="Drummondville"/>
+<city name="Kawartha Lakes"/>
+<city name="New Westminster"/>
+<city name="Prince George"/>
+<city name="Caledon"/>
+<city name="Airdrie"/>
+<city name="Wood Buffalo"/>
+<city name="Sault Ste. Marie"/>
+<city name="Sarnia"/>
+<city name="Saint John"/>
+<city name="Granby"/>
+<city name="St. Albert"/>
+<city name="Norflok County"/>
+<city name="Grande Praire"/>
+<city name="Medicine Hat"/>
+<city name="Halton Hills"/>
+<city name="Aurora"/>
+<city name="Port Coquitlam"/>
+<city name="Mirabel"/>
+<city name="Blainville"/>
+<city name="North Vancouver"/>
+<city name="Saint-Hyacinthe"/>
+<city name="Welland"/>
+<city name="Belleville"/>
+<city name="North Bay"/>
+</civ>
+</civs>
+</miniyacg>

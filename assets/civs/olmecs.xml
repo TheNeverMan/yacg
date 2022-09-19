@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Olmecs" r="86" g="85" b="90" personality="Enlightened">
+<info>
+Olmecs were first major mesoamerican civilization dating between 1600 and 400 BC.
+They are known the most of building huge head sculptures and spreading their ritual ball game in the region.
+Little is known about them, their writing system has not been deciphered and there is no source describing their beliefs
+and religion.
+
+Olmec trait is Religious, to represent their art and ritual traditions which have later spread and influenced other mesoamerican
+civilzations.
+
+Olmec leaders are their gods - no list of Olmec leaders has been found.
+Olmec color is grey - the color of stone, which they have made their giant heads of.
+</info>
+<leader name="Werejaguar"/>
+<leader name="Olmec Dragon"/>
+<leader name="Rain Spirit"/>
+<leader name="Banded-eye God"/>
+<leader name="Feathered Serpent"/>
+<leader name="Maize deity"/>
+<leader name="Tezcatlipoca"/>
+<leader name="Nagual"/>
+<replacement name="Despotism" state_name="Altepetl" leader="Tlatloani"/>
+<trait name="R"/>
+<city name="La Venta"/>
+<city name="San Lorenzo"/>
+<city name="Tres Zapotes"/>
+<city name="Laguna de los Cerros"/>
+<city name="San Andres"/>
+<city name="Potrero Nuevo"/>
+<city name="El Azuzul"/>
+<city name="El Manati"/>
+<city name="Cascajal"/>
+<city name="Cobata"/>
+<city name="San Martin Pajapan"/>
+<city name="Arroyo Sonso"/>
+<city name="Las Limas"/>
+<city name="Llano del Jicaro"/>
+<city name="San Lorenzo Tenochtitlán"/>
+<city name="Tabasco"/>
+<city name="Soconusco"/>
+<city name="Coatzacoalcos"/>
+<city name="Teopantecuanitlan"/>
+<city name="Rancho la Cobata"/>
+<city name="San Martín Jilotepeque"/>
+<city name="Sierra de los Tuxtlas"/>
+<city name="Tlatilco"/>
+<city name="Tlapacoya"/>
+<city name="Chalcatzingo"/>
+<city name="Zazacatla"/>
+<city name="Toepantecuaitlan"/>
+<city name="Juxtlahuaca"/>
+<city name="Oxotitlan"/>
+<city name="San Bartolo"/>
+<city name="Takalik Abaj"/>
+<city name="La Democracia"/>
+<city name="Monte Albán"/>
+<city name="El Tajín"/>
+<city name="San Andrés"/>
+<city name="Xochipala"/>
+<city name="Etlatongo"/>
+<city name="San Jose Mogote"/>
+<city name="Tehuantepec"/>
+<city name="Ángel R. Cabada"/>
+<city name="Casa Blanca"/>
+<city name="La Joya"/>
+<city name="Las Bocas"/>
+<city name="Las Choapas"/>
+<city name="Takalik Abaj"/>
+</civ>
+</civs>
+</miniyacg>

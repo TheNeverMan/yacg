@@ -1,6 +1,6 @@
 #include "unit.h"
 
-Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, string t_p, vector<string> a_t) : Help_Object(n, i), Texture_Owner(t_p), Technology_Requirements_Owner(r)
+Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, string t_p, vector<string> a_t, vector<string> t_s, string o) : Help_Object(n, i), Texture_Owner(t_p), Technology_Requirements_Owner(r), Traits_Owner(t_s)
 {
   Allowed_Tiles = a_t;
   cost = c;
@@ -10,9 +10,10 @@ Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, str
   hp = 100;
   movement_points = m;
   current_movement_points = movement_points;
+  obsolete_unit_name = o;
 }
 
-Unit::Unit() : Help_Object(" ", " "), Texture_Owner(" "), Technology_Requirements_Owner(" ")
+Unit::Unit() : Help_Object(" ", " "), Texture_Owner(" "), Technology_Requirements_Owner(" "), Traits_Owner({"z"})
 {
     //in god we trust
 }
@@ -24,7 +25,14 @@ int Unit::Get_Maitenance()
 
 void Unit::Refresh_Movement_Points()
 {
-  current_movement_points = movement_points;
+  if(Get_All_Arguments_For_Trait("class")[0] == "flying")
+  {
+    current_movement_points++;
+    if(current_movement_points > movement_points)
+      current_movement_points = movement_points;
+  }
+  else
+    current_movement_points = movement_points;
 }
 
 bool Unit::Can_Move_On_Tile_By_Name(string name)
@@ -115,10 +123,11 @@ void Unit::Set_HP(int new_hp)
   hp = new_hp;
 }
 
-void Unit::Heal()
+void Unit::Heal(int howmuch = 0)
 {
   Decrease_Movement(2);
   hp = hp + 20;
+  hp = hp + howmuch;
   if(hp > 100)
     hp = 100;
 }
@@ -131,7 +140,7 @@ int Unit::Get_Manpower()
   return out;
 }
 
-Unit::Unit(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node)
+Unit::Unit(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node), Traits_Owner(Root_Node)
 {
   Deserialize(Root_Node);
 }
@@ -143,6 +152,7 @@ void Unit::Deserialize(xml_node<>* Root_Node)
   defense_power = stoi(Root_Node->first_attribute("defense_power")->value());
   movement_points = stoi(Root_Node->first_attribute("movement")->value());
   current_movement_points = stoi(Root_Node->first_attribute("current_movement")->value());
+  obsolete_unit_name = Root_Node->first_attribute("obsolete")->value();
   hp = stoi(Root_Node->first_attribute("hp")->value());
   maintenance = stoi(Root_Node->first_attribute("maitenance")->value());
   xml_node<>* Allowed_Tiles_Node = Root_Node->first_node("tiles");
@@ -152,11 +162,18 @@ void Unit::Deserialize(xml_node<>* Root_Node)
   }
 }
 
+string Unit::Get_Obsolete_Unit_Name()
+{
+  return obsolete_unit_name;
+}
+
 xml_node<>* Unit::Serialize(memory_pool<>* doc)
 {
   xml_node<> *Root_Node = doc->allocate_node(node_element, "unit");
   xml_attribute<> *Cost = doc->allocate_attribute("cost", doc->allocate_string(to_string(cost).c_str()));
   Root_Node->append_attribute(Cost);
+  xml_attribute<> *Obsolete = doc->allocate_attribute("obsolete", doc->allocate_string(obsolete_unit_name.c_str()));
+  Root_Node->append_attribute(Obsolete);
   xml_attribute<> *Maitenance = doc->allocate_attribute("maitenance", doc->allocate_string(to_string(maintenance).c_str()));
   Root_Node->append_attribute(Maitenance);
   xml_attribute<> *Attack = doc->allocate_attribute("attack_power", doc->allocate_string(to_string(attack_power).c_str()));

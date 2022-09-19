@@ -20,6 +20,8 @@
 #include "civs_dialog.h"
 #include "overview_dialog.h"
 #include "economy_dialog.h"
+#include "unit_info_dialog.h"
+#include "upgrade_info_dialog.h"
 #include "tech_dialog.h"
 #include "goverment_dialog.h"
 #include "newspaper_dialog.h"
@@ -78,6 +80,11 @@ class Game_Window : public Gtk::Window
     void Exit_To_Main_Menu();
     void Show_Help_Message();
     void Show_Themed_Dialog(string message);
+    void Show_Unit_Info_Dialog(Unit u);
+    void Show_Upgrade_Info_Dialog(Upgrade u);
+    void Plunder_Tile(int x, int y);
+    void Fix_Tile(int x, int y);
+    void Detonate_Atomic_Bomb(int x, int y);
   private:
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
@@ -116,4 +123,6 @@ class Game_Window : public Gtk::Window
     void Update_Tile(Gtk::Image *tile_image, int x, int y);
     array<int ,2> Get_Screen_Resolution();
     void Set_Tiles_Size_Automatically();
+    bool Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y);
+    bool Check_Must_Border_Trait_For_Upgrades(string upg_name, int x, int y);
 };

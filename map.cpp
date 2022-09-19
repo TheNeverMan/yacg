@@ -54,7 +54,7 @@ void Map::Change_Tile_Type(int x, int y, Tile t)
     Game_Map[x][y].Place = t;
 }
 
-void Map::Upgrade_Tile(int x, int y, Upgrade t_u)
+void Map::Upgrade_Tile(int x, int y, string t_u)
 {
   Game_Map[x][y].Place.Upgrade_Tile(t_u);
 }
@@ -139,6 +139,51 @@ void Map::Claim_Tiles_In_Radius(int x, int y, int owner, int radius)
     Claim_Tile(x+2,y+2,owner);
     Claim_Tile(x-2,y+2,owner);
   }
+  if(radius > 4)
+  {
+    Claim_Tile(x+3,y+1,owner);
+    Claim_Tile(x+3,y,owner);
+    Claim_Tile(x+3,y-1,owner);
+    Claim_Tile(x-3,y+1,owner);
+    Claim_Tile(x-3,y-1,owner);
+    Claim_Tile(x-3,y,owner);
+    Claim_Tile(x+1,y+3,owner);
+    Claim_Tile(x-1,y+3,owner);
+    Claim_Tile(x,y+3,owner);
+    Claim_Tile(x+1,y-3,owner);
+    Claim_Tile(x-1,y-3,owner);
+    Claim_Tile(x,y-3,owner);
+  }
+  if(radius > 5)
+  {
+    Claim_Tile(x+3,y+3,owner);
+    Claim_Tile(x+3,y+2,owner);
+    Claim_Tile(x+3,y-3,owner);
+    Claim_Tile(x+3,y-2,owner);
+    Claim_Tile(x-3,y-3,owner);
+    Claim_Tile(x-3,y-2,owner);
+    Claim_Tile(x-3,y+3,owner);
+    Claim_Tile(x-3,y+2,owner);
+    Claim_Tile(x-2,y+3,owner);
+    Claim_Tile(x-2,y-3,owner);
+    Claim_Tile(x+2,y-3,owner);
+    Claim_Tile(x+2,y+3,owner);
+  }
+  if(radius > 6)
+  {
+    Claim_Tile(x+4,y+1,owner);
+    Claim_Tile(x+4,y,owner);
+    Claim_Tile(x+4,y-1,owner);
+    Claim_Tile(x-4,y+1,owner);
+    Claim_Tile(x-4,y-1,owner);
+    Claim_Tile(x-4,y,owner);
+    Claim_Tile(x+1,y+4,owner);
+    Claim_Tile(x-1,y+4,owner);
+    Claim_Tile(x,y+4,owner);
+    Claim_Tile(x+1,y-4,owner);
+    Claim_Tile(x-1,y-4,owner);
+    Claim_Tile(x,y-4,owner);
+  }
 }
 
 void Map::Build_City(int x, int y, int owner,int radius)
@@ -152,10 +197,77 @@ int Map::Get_Owner(int x, int y)
   return Game_Map[x][y].owner;
 }
 
+int Map::Get_Buff_From_Tile(int x, int y, int owner, Civ player)
+{
+  if(Is_Tile_Out_Of_Bounds(x,y))
+    return 0;
+  if(!(Get_Owner(x,y) == owner))
+    return 0;
+  return player.Get_Upgrade_Buff_By_Name(Get_Tile(x,y).Get_Upgrade());
+}
+
+int Map::Calculate_Buff_For_Tile(int x, int y, int owner, Civ player)
+{
+  vector<int> out;
+  out.push_back(Get_Buff_From_Tile(x+1,y,owner,player));
+  out.push_back(Get_Buff_From_Tile(x+1,y+1,owner,player));
+  out.push_back(Get_Buff_From_Tile(x+1,y-1,owner,player));
+  out.push_back(Get_Buff_From_Tile(x-1,y+1,owner,player));
+  out.push_back(Get_Buff_From_Tile(x-1,y-1,owner,player));
+  out.push_back(Get_Buff_From_Tile(x-1,y,owner,player));
+  out.push_back(Get_Buff_From_Tile(x,y+1,owner,player));
+  out.push_back(Get_Buff_From_Tile(x,y-1,owner,player));
+  int rout = *max_element(out.begin(), out.end());
+  return rout;
+}
+
+string Map::Get_Upgrade(int x, int y)
+{
+  return Get_Tile(x,y).Get_Upgrade();
+}
+
+bool Map::Is_Tile_Upgraded(int x, int y)
+{
+  return Get_Tile(x,y).Get_Upgrade() == "none";
+}
+
+array<int, 2> Map::Calculate_Production_For_Tile(int x, int y, int id, Civ player)
+{
+  array<int, 2> out;
+  out[0] = 0;
+  out[1] = 0;
+  if(Is_Tile_Out_Of_Bounds(x,y))
+    return out;
+  if(Get_Owner(x, y) == id)
+  {
+    int prod = player.Get_Upgrade_Production_By_Name(Get_Tile(x, y).Get_Upgrade());
+    if(player.Find_Upgrade_By_Name(Get_Tile(x, y).Get_Upgrade()).Has_Trait("accumulateproduction"))
+    {
+      int accumulated_production = 0;
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x+1,y,id,player)[0];
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x+1,y-1,id,player)[0];
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x+1,y+1,id,player)[0];
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x-1,y,id,player)[0];
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x-1,y-1,id,player)[0];
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x-1,y+1,id,player)[0];
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x,y+1,id,player)[0];
+      accumulated_production = accumulated_production + Calculate_Production_For_Tile(x,y-1,id,player)[0];
+      prod = prod + (accumulated_production * player.Find_Upgrade_By_Name(Get_Tile(x, y).Get_Upgrade()).How_Many_Times_Has_Trait("accumulateproduction"));
+    }
+    int mait = player.Get_Upgrade_Maitenance_By_Name(Get_Tile(x, y).Get_Upgrade());
+    int buff = Calculate_Buff_For_Tile(x, y, id, player);
+    out[0] = out[0] + prod;
+    if(prod > 0)
+      out[0] = out[0] + buff;
+    out[1] = out[1] + mait;
+  }
+  return out;
+}
+
 vector<int> Map::Get_Netto_Income_For_Player_By_Id(int id, Civ player)
 {
   vector<int> out;
-  out.push_back(4);
+  out.push_back(10);
   out.push_back(0);
   int x = Get_X_Size();
   int y = Get_Y_Size();
@@ -165,32 +277,9 @@ vector<int> Map::Get_Netto_Income_For_Player_By_Id(int id, Civ player)
   {
     while(start_y < y)
     {
-      if(Get_Owner(start, start_y) == id)
-      {
-        int prod = Get_Tile(start, start_y).Get_Upgrade().Get_Production();
-        int mait =  Get_Tile(start, start_y).Get_Upgrade().Get_Maitenance();
-        if(prod > 0 && Get_Tile(start, start_y).Is_Buffed())
-        {
-          prod++;
-          prod = prod + player.How_Many_Times_Has_Trait("O");
-          if(player.Get_Active_Goverment_Name() == "Democracy")
-          {
-            prod++;
-          }
-        }
-        if(Get_Tile(start, start_y).Get_Upgrade().Get_Name() == "Farm")
-        {
-          prod = prod + player.How_Many_Times_Has_Trait("A");
-          if(player.Get_Active_Goverment_Name() == "Monarchy")
-            prod++;
-        }
-        if(Get_Tile(start, start_y).Get_Upgrade().Get_Name() == "City" && player.Get_Active_Goverment_Name() == "Theocracy")
-        {
-          mait = mait + 2;
-        }
-        out[0] = out[0] + prod;
-        out[1] = out[1] + mait;
-      }
+      array<int, 2> tile_prod = Calculate_Production_For_Tile(start, start_y, id, player);
+      out[0] = out[0] + tile_prod[0];
+      out[1] = out[1] + tile_prod[1];
       start_y++;
     }
     start++;
@@ -202,23 +291,23 @@ vector<int> Map::Get_Netto_Income_For_Player_By_Id(int id, Civ player)
 bool Map::Is_Upgrade_In_Radius_By_Name(string upg_name, int x, int y)
 {
   bool out = false;
-  if((!Is_Tile_Out_Of_Bounds(x+1,y)) && Get_Tile(x+1,y).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x+1,y)) && Get_Tile(x+1,y).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x+1,y-1)) && Get_Tile(x+1,y-1).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x+1,y-1)) && Get_Tile(x+1,y-1).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x-1,y+1)) && Get_Tile(x-1,y+1).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x-1,y+1)) && Get_Tile(x-1,y+1).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x-1,y-1)) && Get_Tile(x-1,y-1).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x-1,y-1)) && Get_Tile(x-1,y-1).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x,y-1)) && Get_Tile(x,y-1).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x,y-1)) && Get_Tile(x,y-1).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x-1,y)) && Get_Tile(x-1,y).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x-1,y)) && Get_Tile(x-1,y).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x,y+1)) && Get_Tile(x,y+1).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x,y+1)) && Get_Tile(x,y+1).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x+1,y+1)) && Get_Tile(x+1,y+1).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x+1,y+1)) && Get_Tile(x+1,y+1).Get_Upgrade() == upg_name)
     out = true;
-  if((!Is_Tile_Out_Of_Bounds(x,y)) && Get_Tile(x,y).Get_Upgrade().Get_Name() == upg_name)
+  if((!Is_Tile_Out_Of_Bounds(x,y)) && Get_Tile(x,y).Get_Upgrade() == upg_name)
     out = true;
   return out;
 }
@@ -228,7 +317,7 @@ Tile* Map::Get_Tile_Pointer(int x, int y)
   return &Game_Map[x][y].Place;
 }
 
-void Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius)
+void Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player)
 {
   int x = Get_X_Size();
   int y = Get_Y_Size();
@@ -240,7 +329,7 @@ void Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius)
       {
         if(Get_Owner(start, start_y) == owner)
         {
-          if(Get_Tile(start, start_y).Get_Upgrade().Has_Trait("border_expand"))
+          if(player.Find_Upgrade_By_Name(Get_Tile(start, start_y).Get_Upgrade()).Has_Trait("borderexpand"))
             Claim_Tiles_In_Radius(start, start_y, owner, radius);
         }
         start_y++;
@@ -251,19 +340,13 @@ void Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius)
 }
 void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 {
-  Game_Map[x][y].Place.Upgrade_Tile(upg);
-  if(upg.Has_Trait("economic_buff"))
-    {
-      Get_Tile_Pointer(x+1,y)->Buff_Tile();
-      Get_Tile_Pointer(x+1,y-1)->Buff_Tile();
-      Get_Tile_Pointer(x-1,y+1)->Buff_Tile();
-      Get_Tile_Pointer(x-1,y-1)->Buff_Tile();
-      Get_Tile_Pointer(x,y-1)->Buff_Tile();
-      Get_Tile_Pointer(x-1,y)->Buff_Tile();
-      Get_Tile_Pointer(x,y+1)->Buff_Tile();
-      Get_Tile_Pointer(x+1,y+1)->Buff_Tile();
-    }
-  if(upg.Has_Trait("border_expand"))
+  if(upg.Get_Name() == "plundered")
+  {
+    Get_Tile_Pointer(x,y)->Fix();
+    return;
+  }
+  Game_Map[x][y].Place.Upgrade_Tile(upg.Get_Name());
+  if(upg.Has_Trait("borderexpand"))
   {
     Claim_Tiles_In_Radius(x,y,owner,radius);
   }
@@ -282,6 +365,11 @@ vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_
     return out;
   }
   if(Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id() == Get_Tile(dest_x, dest_y).Get_Unit_Owner_Id())
+  {
+    out[0] = 0;
+    return out;
+  }
+  if(Get_Upgrade(dest_x, dest_y) == "City" && u.Has_Trait("cannottakecities"))
   {
     out[0] = 0;
     return out;
@@ -328,6 +416,8 @@ vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_
         return out;
       }
     }
+    if(Get_Upgrade(dest_x, dest_y) == "City" && u.Has_Trait("cannottakecities"))
+      break;
     if(Get_Tile(unit_x,unit_y).Has_Unit())
       break;
     if(!u.Can_Move_On_Tile_By_Name(Get_Tile(unit_x,unit_y).Get_Name()))
@@ -358,14 +448,119 @@ vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_
   return out;
 }
 
+bool Map::Can_Tile_Plundered(int x, int y)
+{
+  return Get_Tile(x,y).Get_Upgrade() != "plundered";
+}
+
+void Map::Plunder_Tile(int x, int y)
+{
+  Get_Tile_Pointer(x,y)->Plunder();
+}
+
 void Map::Retake_Tile(int x, int y, int owner)
 {
   if(x >= 0 && y >= 0)
     if(x < Get_X_Size() && y < Get_Y_Size())
     {
-      if(Get_Owner(x,y) != 0 && Get_Tile(x,y).Get_Upgrade().Get_Name() != "City")
+      if(Get_Owner(x,y) != 0 && Get_Tile(x,y).Get_Upgrade() != "City")
         Change_Tile_Owner(x,y,owner);
     }
+}
+
+void Map::Retake_Tile_From(int x, int y, int owner, int former_owner_id)
+{
+  if(x >= 0 && y >= 0)
+    if(x < Get_X_Size() && y < Get_Y_Size())
+    {
+      if(Get_Owner(x,y) == former_owner_id && Get_Tile(x,y).Get_Upgrade() != "City")
+        Change_Tile_Owner(x,y,owner);
+    }
+}
+
+void Map::Retake_Owner_In_Radius_From(int x, int y, int owner, int radius, int former_owner_id)
+{
+  if(radius > 0)
+  {
+    Retake_Tile_From(x-1,y,owner,former_owner_id);
+    Retake_Tile_From(x,y-1,owner,former_owner_id);
+    Retake_Tile_From(x+1,y,owner,former_owner_id);
+    Retake_Tile_From(x,y+1,owner,former_owner_id);
+  }
+  if(radius > 1)
+  {
+    Retake_Tile_From(x-1,y-1,owner,former_owner_id);
+    Retake_Tile_From(x-1,y+1,owner,former_owner_id);
+    Retake_Tile_From(x+1,y-1,owner,former_owner_id);
+    Retake_Tile_From(x+1,y+1,owner,former_owner_id);
+  }
+  if(radius > 2)
+  {
+    Retake_Tile_From(x-2,y,owner,former_owner_id);
+    Retake_Tile_From(x,y-2,owner,former_owner_id);
+    Retake_Tile_From(x+2,y,owner,former_owner_id);
+    Retake_Tile_From(x,y+2,owner,former_owner_id);
+  }
+  if(radius > 3)
+  {
+    Retake_Tile_From(x-2,y+1,owner,former_owner_id);
+    Retake_Tile_From(x+1,y-2,owner,former_owner_id);
+    Retake_Tile_From(x+2,y+1,owner,former_owner_id);
+    Retake_Tile_From(x+1,y+2,owner,former_owner_id);
+    Retake_Tile_From(x-2,y-1,owner,former_owner_id);
+    Retake_Tile_From(x-1,y-2,owner,former_owner_id);
+    Retake_Tile_From(x+2,y-1,owner,former_owner_id);
+    Retake_Tile_From(x-1,y+2,owner,former_owner_id);
+    Retake_Tile_From(x-2,y-2,owner,former_owner_id);
+    Retake_Tile_From(x+2,y-2,owner,former_owner_id);
+    Retake_Tile_From(x+2,y+2,owner,former_owner_id);
+    Retake_Tile_From(x-2,y+2,owner,former_owner_id);
+  }
+  if(radius > 4)
+  {
+    Retake_Tile_From(x+3,y+1,owner,former_owner_id);
+    Retake_Tile_From(x+3,y,owner,former_owner_id);
+    Retake_Tile_From(x+3,y-1,owner,former_owner_id);
+    Retake_Tile_From(x-3,y+1,owner,former_owner_id);
+    Retake_Tile_From(x-3,y-1,owner,former_owner_id);
+    Retake_Tile_From(x-3,y,owner,former_owner_id);
+    Retake_Tile_From(x+1,y+3,owner,former_owner_id);
+    Retake_Tile_From(x-1,y+3,owner,former_owner_id);
+    Retake_Tile_From(x,y+3,owner,former_owner_id);
+    Retake_Tile_From(x+1,y-3,owner,former_owner_id);
+    Retake_Tile_From(x-1,y-3,owner,former_owner_id);
+    Retake_Tile_From(x,y-3,owner,former_owner_id);
+  }
+  if(radius > 5)
+  {
+    Retake_Tile_From(x+3,y+3,owner,former_owner_id);
+    Retake_Tile_From(x+3,y+2,owner,former_owner_id);
+    Retake_Tile_From(x+3,y-3,owner,former_owner_id);
+    Retake_Tile_From(x+3,y-2,owner,former_owner_id);
+    Retake_Tile_From(x-3,y-3,owner,former_owner_id);
+    Retake_Tile_From(x-3,y-2,owner,former_owner_id);
+    Retake_Tile_From(x-3,y+3,owner,former_owner_id);
+    Retake_Tile_From(x-3,y+2,owner,former_owner_id);
+    Retake_Tile_From(x-2,y+3,owner,former_owner_id);
+    Retake_Tile_From(x-2,y-3,owner,former_owner_id);
+    Retake_Tile_From(x+2,y-3,owner,former_owner_id);
+    Retake_Tile_From(x+2,y+3,owner,former_owner_id);
+  }
+  if(radius > 6)
+  {
+    Retake_Tile_From(x+4,y+1,owner,former_owner_id);
+    Retake_Tile_From(x+4,y,owner,former_owner_id);
+    Retake_Tile_From(x+4,y-1,owner,former_owner_id);
+    Retake_Tile_From(x-4,y+1,owner,former_owner_id);
+    Retake_Tile_From(x-4,y-1,owner,former_owner_id);
+    Retake_Tile_From(x-4,y,owner,former_owner_id);
+    Retake_Tile_From(x+1,y+4,owner,former_owner_id);
+    Retake_Tile_From(x-1,y+4,owner,former_owner_id);
+    Retake_Tile_From(x,y+4,owner,former_owner_id);
+    Retake_Tile_From(x+1,y-4,owner,former_owner_id);
+    Retake_Tile_From(x-1,y-4,owner,former_owner_id);
+    Retake_Tile_From(x,y-4,owner,former_owner_id);
+  }
 }
 
 void Map::Retake_Owner_In_Radius(int x, int y, int owner, int radius)
@@ -406,6 +601,51 @@ void Map::Retake_Owner_In_Radius(int x, int y, int owner, int radius)
     Retake_Tile(x+2,y+2,owner);
     Retake_Tile(x-2,y+2,owner);
   }
+  if(radius > 4)
+  {
+    Retake_Tile(x+3,y+1,owner);
+    Retake_Tile(x+3,y,owner);
+    Retake_Tile(x+3,y-1,owner);
+    Retake_Tile(x-3,y+1,owner);
+    Retake_Tile(x-3,y-1,owner);
+    Retake_Tile(x-3,y,owner);
+    Retake_Tile(x+1,y+3,owner);
+    Retake_Tile(x-1,y+3,owner);
+    Retake_Tile(x,y+3,owner);
+    Retake_Tile(x+1,y-3,owner);
+    Retake_Tile(x-1,y-3,owner);
+    Retake_Tile(x,y-3,owner);
+  }
+  if(radius > 5)
+  {
+    Retake_Tile(x+3,y+3,owner);
+    Retake_Tile(x+3,y+2,owner);
+    Retake_Tile(x+3,y-3,owner);
+    Retake_Tile(x+3,y-2,owner);
+    Retake_Tile(x-3,y-3,owner);
+    Retake_Tile(x-3,y-2,owner);
+    Retake_Tile(x-3,y+3,owner);
+    Retake_Tile(x-3,y+2,owner);
+    Retake_Tile(x-2,y+3,owner);
+    Retake_Tile(x-2,y-3,owner);
+    Retake_Tile(x+2,y-3,owner);
+    Retake_Tile(x+2,y+3,owner);
+  }
+  if(radius > 6)
+  {
+    Retake_Tile(x+4,y+1,owner);
+    Retake_Tile(x+4,y,owner);
+    Retake_Tile(x+4,y-1,owner);
+    Retake_Tile(x-4,y+1,owner);
+    Retake_Tile(x-4,y-1,owner);
+    Retake_Tile(x-4,y,owner);
+    Retake_Tile(x+1,y+4,owner);
+    Retake_Tile(x-1,y+4,owner);
+    Retake_Tile(x,y+4,owner);
+    Retake_Tile(x+1,y-4,owner);
+    Retake_Tile(x-1,y-4,owner);
+    Retake_Tile(x,y-4,owner);
+  }
 }
 
 void Map::Unclaim_All_Player_Tiles(int player)
@@ -430,14 +670,8 @@ void Map::Unclaim_All_Player_Tiles(int player)
 double Map::Get_Defense_Bonus_For_Tile(int x, int y)
 {
   double out = 1.0;
-  if(Get_Tile(x,y).Has_Trait("minor_def_bonus"))
-    out = out + 0.1;
-  if(Get_Tile(x,y).Has_Trait("major_def_bonus"))
-    out = out + 0.2;
-  if(Get_Tile(x,y).Get_Upgrade().Has_Trait("minor_def_bonus"))
-    out = out + 0.1;
-  if(Get_Tile(x,y).Get_Upgrade().Has_Trait("major_def_bonus"))
-    out = out + 0.2;
+  out = out + (static_cast<double>(Get_Tile(x,y).How_Many_Times_Has_Trait("minordefbonus")) / 10.0);
+  out = out + (static_cast<double>(Get_Tile(x,y).How_Many_Times_Has_Trait("majordefbonus") * 2) / 10.0);
   return out;
 }
 
@@ -539,7 +773,7 @@ vector<int> Map::Find_Owned_Tile_For_Upgrade(int owner_id, string upg_name)
     {
       if(Get_Owner(start, start_y) == owner_id)
       {
-        if(u.Is_Tile_Allowed_By_Name(Get_Tile(start, start_y).Get_Name()) && Get_Tile(start, start_y).Get_Upgrade().Get_Name() == "none")
+        if(u.Is_Tile_Allowed_By_Name(Get_Tile(start, start_y).Get_Name()) && Get_Tile(start, start_y).Get_Upgrade() == "none")
         {
           out[0] = start;
           out[1] = start_y;
@@ -672,7 +906,7 @@ array<int, 2> Map::Find_In_One_Direction_To_Enemy_City_Or_Unit(int owner, int x,
   out[1] = y;
   if(Is_Tile_Out_Of_Bounds(x,y))
     return {10000, 100000};
-  if(owner != Get_Owner(x,y) && Get_Tile(x,y).Get_Upgrade().Get_Name() == "City")
+  if(owner != Get_Owner(x,y) && Get_Tile(x,y).Get_Upgrade() == "City")
     return out;
   if(Get_Tile(x,y).Has_Unit() && Get_Tile(x,y).Get_Unit_Owner_Id() != owner)
     return out;

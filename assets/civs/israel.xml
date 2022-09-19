@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Israel" r="0" g="56" b="184" personality="Enterprising">
+<info>
+Israel is a country in Western Asia. Israel existed in its current location as
+Kingdoms of Judah and Isreal from 9th century BC. Later both kingdoms collapsed and
+Israel was part of Assyrian, then Babylionian the Persian and finally Roman Empire.
+Modern Israel was founded in 1948 and remains with conflict with its arab neighbours.
+
+Israeli traits are Nomadic and Commercial, to represent the biblical story of Exodus
+and escape from Egyptian slavery.
+
+Israeli leaders include kings of Israel and Judah, biblical leaders and prime
+ministers of modern Israel.
+Israeli color is dark blue from its flag.
+</info>
+<replacement name="Democracy" leader="Prime Minister" state_name="State of"/>
+<replacement name="Monarchy" leader="Melekh Yisra'el" state_name="Kingdom of"/>
+<replacement name="Theocracy" leader="Ha-Kohen" state_name="Kingdom of"/>
+<replacement name="Tribe" leader="Patriarch" state_name="Twelve Tribes of"/>
+<leader name="David"/>
+<leader name="Solomon"/>
+<leader name="Rehoboam"/>
+<leader name="Asa"/>
+<leader name="Aaron"/>
+<leader name="Jacob"/>
+<leader name="Joshua"/>
+<leader name="Moses"/>
+<leader name="David Ben-Gurion"/>
+<leader name="Menachem Begin"/>
+<leader name="Yitzhak Rabin"/>
+<trait name="O"/>
+<trait name="D"/>
+<city name="Jerusalem"/>
+<city name="Tel Aviv-Yafo"/>
+<city name="Haifa"/>
+<city name="Rishon LeZion"/>
+<city name="Petah Tikva"/>
+<city name="Ashdod"/>
+<city name="Netanya"/>
+<city name="Beersheba"/>
+<city name="Bnei Brak"/>
+<city name="Holon"/>
+<city name="Ramat Gan"/>
+<city name="Aschkelon"/>
+<city name="Rehovot"/>
+<city name="Bat Yam"/>
+<city name="Beit Shemesh"/>
+<city name="Kfar Saba"/>
+<city name="Herzliya"/>
+<city name="Hadera"/>
+<city name="Modi'in-Maccabim-Re'ut"/>
+<city name="Nazareth"/>
+<city name="Lod"/>
+<city name="Ramla"/>
+<city name="Ra'anana"/>
+<city name="Rahat"/>
+<city name="Hod HaSharon"/>
+<city name="Rosh HaAyin"/>
+<city name="Givatayim"/>
+<city name="Kiryat Ata"/>
+<city name="Nahariya"/>
+<city name="Kiryat Gat"/>
+<city name="Umm Al-Fahm"/>
+<city name="Afula"/>
+<city name="Eilat"/>
+<city name="Ness Ziona"/>
+<city name="Acre"/>
+<city name="El'ad"/>
+<city name="Yavne"/>
+<city name="Ramat HaSharon"/>
+<city name="Karmiel"/>
+<city name="Tiberias"/>
+<city name="Tayibe"/>
+<city name="Kirvat"/>
+<city name="Kiryat Motzkin"/>
+<city name="Shefa-'Amr"/>
+<city name="Nof HaGalil"/>
+<city name="Kiryat Ono"/>
+<city name="Kiryat Bialik"/>
+<city name="Kiryat Am"/>
+<city name="Netivot"/>
+<city name="Or Yehuda"/>
+<city name="Safed"/>
+<city name="Dimona"/>
+<city name="Tamra"/>
+<city name="Sakhnin"/>
+<city name="Ofakim"/>
+<city name="Baqa al-Gharbiyye"/>
+<city name="Yehud-Monosson"/>
+<city name="Sderot"/>
+<city name="Arad"/>
+<city name="Giv'at Shumer"/>
+<city name="Tira"/>
+<city name="Arraba"/>
+<city name="Migdal HaEmek"/>
+<city name="Kfar Yona"/>
+<city name="Nesher"/>
+<city name="Kafr Qasim"/>
+<city name="Kiryat Malakhi"/>
+<city name="Yokneam Illit"/>
+<city name="Qalansawe"/>
+<city name="Tirat Carmel"/>
+<city name="Kiryat Shmona"/>
+<city name="Ma'alot-Tarshiha"/>
+<city name="Or Akiva"/>
+<city name="Beit She'an"/>
+</civ>
+</civs>
+</miniyacg>

@@ -12,6 +12,7 @@
 #include "traits_owner.h"
 #include "tech.h"
 #include "unit.h"
+#include "upgrade.h"
 #include "gov.h"
 #include "logger.h"
 
@@ -47,7 +48,7 @@ struct Owned_City //????
 class Civ : public Help_Object, public Traits_Owner
 {
   public:
-    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p);
+    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us);
     string Get_Leader_Name();
     string Get_Full_Name();
     void Assign_Id(int i);
@@ -73,7 +74,7 @@ class Civ : public Help_Object, public Traits_Owner
     void Set_Research_Funds_Percentage(int new_val);
     bool Has_Tech_Been_Researched_By_Name(string tech_name);
     bool Has_Tech_Been_Researched_By_Trait(string trait_name);
-    void Build_Upgrade(int cost);
+    void Build_Upgrade(string upg_name);
     string Get_Active_Goverment_Name();
     int Get_Upgrade_Border_Radius();
     int32_t Get_Civ_Color();
@@ -102,12 +103,21 @@ class Civ : public Help_Object, public Traits_Owner
     void Deserialize(xml_node<>* Root_Node);
     Civ(xml_node<>* Root_Node);
     void Set_Research_Tech_By_Trait(string trait);
+    bool Has_Enough_Gold_To_Build_Upgrade(string upg_name);
+    Upgrade Find_Upgrade_By_Name(string upg_name);
+    int Get_Upgrade_Production_By_Name(string upg_name);
+    int Get_Upgrade_Maitenance_By_Name(string upg_name);
+    int Get_Upgrade_Buff_By_Name(string name);
+    double Get_Defense_Bonus_For_Upgrade(string upg_name);
+    void Give_One_Gold();
+    bool Is_Unit_Obsolete(string unit_name);
   private:
     map<string, vector<string>> Goverment_Name_Replacements;
     bool recent_expand = false;
     int research_percent;
     int city_name_index;
     int points;
+    int points_from_technologies;
     string leader;
     string personality;
     string tech_in_research;
@@ -125,10 +135,13 @@ class Civ : public Help_Object, public Traits_Owner
     vector<Tech> Tech_Tree;
     vector<Unit> Unit_Templates;
     vector<Unit_On_Map> Units_Owned;
+    vector<Upgrade> Upgrades;
     string Get_State_Name();
     string Get_Leader_Title();
     void Calculate_Score();
     int Calculate_Unit_Maitenance();
     void Do_Traits();
     void Do_Trait(string trait_name);
+    bool Is_Unit_Unlocked(string unit_name);
+    void Do_Traits_Of_Researched_Tech();
 };

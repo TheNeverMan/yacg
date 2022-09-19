@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Göktürks" r="93" g="184" b="238" personality="Expansive">
+<info>
+Göktürks were a nomadic confederation of Turkic people in medieval Asia. In 552 they have estabilished
+First Turkic Khagante which spanned from Manchuria to Black Sea. Later after First Khaganate splitted in two parts,
+they have estabilished Second Turkic Khaganate, Uyghur Khaganate and Kyrgyz Khagante. They have been dominant
+power in area of mainland Asia.
+
+Türk traits are Nomadic and Expansive, to represent size of their asian khaganates.
+
+Türk leaders include qaghans of First, Eastern and Western Turkic Khaganates.
+Türk color is light blue, from possible flag of First Turkic Khaganate.
+</info>
+<replacement name="Horde" leader="Qaghan" state_name="Turkic Khaganate"/>
+<replacement name="Republic" leader="Aqsaqal" state_name="Kurultai of"/>
+<leader name="Tumen"/>
+<leader name="Keluo"/>
+<leader name="Yandou"/>
+<leader name="Anluo"/>
+<leader name="Chuluohou"/>
+<leader name="Yongyulü"/>
+<leader name="Shetu"/>
+<leader name="Daluobian"/>
+<leader name="Dianjue"/>
+<trait name="D"/>
+<trait name="X"/>
+<city name="Suyab"/>
+<city name="Ötüken"/>
+<city name="Navekat"/>
+<city name="Talas"/>
+<city name="Balasagun"/>
+<city name="Yarγan Yurtï"/>
+<city name="Ordu Baliq"/>
+<city name="Khagan-Kimek Imekia"/>
+<city name="Yangikent"/>
+<city name="Kashgar"/>
+<city name="Samarkand"/>
+<city name="Kabul"/>
+<city name="Ulytau"/>
+<city name="Khujand"/>
+<city name="Kesh"/>
+<city name="Bukhara"/>
+<city name="Urgench"/>
+<city name="Yarkand"/>
+<city name="Khotan"/>
+<city name="Niya"/>
+<city name="Kroran"/>
+<city name="Agni"/>
+<city name="Kucha"/>
+<city name="Bolgar"/>
+<city name="Itil"/>
+<city name="Chiwa"/>
+<city name="Samkarsh"/>
+<city name="Sarkel"/>
+<city name="Kerch"/>
+<city name="Khiva"/>
+<city name="Kokand"/>
+<city name="Ishimbay"/>
+<city name="Emba"/>
+<city name="Bechbaliq"/>
+<city name="Turpan"/>
+<city name="Yining"/>
+<city name="Aksu"/>
+<city name="Suyab"/>
+<city name="Hotan"/>
+<city name="Balch"/>
+<city name="Bagram"/>
+<city name="Tolis"/>
+<city name="Jetisu"/>
+<city name="Hami"/>
+<city name="Cent"/>
+<city name="Otrar"/>
+<city name="Unnehir"/>
+<city name="Talas"/>
+<city name="Turfan"/>
+<city name="Gobi Colu"/>
+<city name="Karasar"/>
+<city name="Yarkent"/>
+<city name="Hotan"/>
+<city name="Fergana"/>
+<city name="Kuca"/>
+<city name="Orkhon"/>
+<city name="Ergenekon"/>
+<city name="Tumen"/>
+<city name="Özgön"/>
+<city name="Koshoy Korgon"/>
+<city name="Shakh Fazil"/>
+<city name="Shyrdakbek"/>
+<city name="Manakeldy"/>
+<city name="Kochkor"/>
+<city name="Barskoon"/>
+<city name="Khan Dobo"/>
+<city name="Tosor"/>
+<city name="Burana"/>
+<city name="Ak Beshim"/>
+<city name="Krasnaya Rechka"/>
+<city name="Uzgen"/>
+<city name="Shorobashat"/>
+<city name="Safid Bulan"/>
+<city name="Manas Ordo"/>
+</civ>
+</civs>
+</miniyacg>

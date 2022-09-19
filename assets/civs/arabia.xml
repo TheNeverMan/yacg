@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Arabia" r="31" g="95" b="31" personality="Enlightened">
+<info>
+Arabia or Arabian Caliphates were 3 major caliphates estabilished after death of prophet Muhammad.
+They conquered and united Arabian Penisula and then expanded to Egypt and Middle East. At greatest
+extent Umayyad Caliphate had controlled territory spanning from Spain to India.
+
+Arabian traits are Religious and Scientific, to represent the Golden Age of Islam under Abbasid Caliphate
+and general religious character of empire.
+
+Arabian leaders include caliphs of Rashidun, Umayyad and Abbasid caliphates.
+Arabian color is dark green, blend of colors of three caliphates: black, white and green.
+</info>
+<replacement name="Despotism" leader="Prophet" state_name="Islamic Medina of"/>
+<replacement name="Theocracy" leader="Caliph" state_name="Caliphate of"/>
+<replacement name="Fundamentalism" leader="Caliph" state_name="Caliphate of"/>
+<leader name="Muhammad"/>
+<leader name="As-Saffah"/>
+<leader name="Mu'awiya I"/>
+<leader name="Abu Bakr"/>
+<leader name="Ali ibn Abu Talib"/>
+<leader name="Abu Sufyan"/>
+<leader name="Umar ibn al-Khattab"/>
+<leader name="Uthman"/>
+<leader name="Mu’awiya"/>
+<leader name="Harun ar-Rashid"/>
+<leader name="Abd al-Malik"/>
+<leader name="Hasan ibn Ali"/>
+<leader name="Hazrat Omer Farooq"/>
+<trait name="R"/>
+<trait name="S"/>
+<city name="Baghdad"/>
+<city name="Mekka"/>
+<city name="Damascus"/>
+<city name="Medina"/>
+<city name="Kufa"/>
+<city name="Harran"/>
+<city name="Anbar"/>
+<city name="Raqqa"/>
+<city name="Merv"/>
+<city name="Zubala"/>
+<city name="Samarra"/>
+<city name="Abadan"/>
+<city name="Qatif"/>
+<city name="Zabid"/>
+<city name="Aden"/>
+<city name="Tabuk"/>
+<city name="Aqaba"/>
+<city name="Basra"/>
+<city name="Genaba"/>
+<city name="Ahvaz"/>
+<city name="Tikrit"/>
+<city name="Haditha"/>
+<city name="al-Qarqisiya"/>
+<city name="Tadmor"/>
+<city name="Beirut"/>
+<city name="Aleppo"/>
+<city name="al-Rumiyyah"/>
+<city name="Arrjan"/>
+<city name="Shiraz"/>
+<city name="Fasa"/>
+<city name="Siraf"/>
+<city name="Isfahan"/>
+<city name="Kashan"/>
+<city name="Nihawand"/>
+<city name="Damietta"/>
+<city name="Manbij"/>
+<city name="Tarsus"/>
+<city name="Mosul"/>
+<city name="Malatya"/>
+<city name="Bitlis"/>
+<city name="Ardabil"/>
+<city name="Amol"/>
+<city name="Rayy"/>
+<city name="Abhar"/>
+<city name="Fustat"/>
+<city name="Faiyum"/>
+<city name="Asyut"/>
+<city name="Aswan"/>
+<city name="Akhmim"/>
+<city name="El Ashmunein"/>
+<city name="Qus"/>
+<city name="Tunis"/>
+<city name="Kairouan"/>
+<city name="Sfax"/>
+<city name="Tripoli"/>
+<city name="Misrata"/>
+<city name="Sirte"/>
+<city name="Barca"/>
+<city name="Aden"/>
+<city name="Dibba"/>
+<city name="Sohar"/>
+<city name="Muskat"/>
+<city name="Hormuz"/>
+<city name="Jiruft"/>
+<city name="Bardasir"/>
+<city name="Tis"/>
+<city name="Baku"/>
+<city name="Derbend"/>
+<city name="Kars"/>
+<city name="Barda"/>
+<city name="Amol"/>
+<city name="Yazd"/>
+<city name="Fannazbur"/>
+<city name="Zaranj"/>
+<city name="Quzdar"/>
+<city name="Daybal"/>
+<city name="Herat"/>
+<city name="Bust"/>
+<city name="Balkh"/>
+<city name="Damaghan"/>
+<city name="Gorgan"/>
+<city name="Nasa"/>
+<city name="Nishapur"/>
+<city name="Marw"/>
+<city name="Marw al-Rudh"/>
+<city name="Kabul"/>
+<city name="Siwi"/>
+<city name="Karachi"/>
+<city name="Mansura"/>
+<city name="Aror"/>
+<city name="Multan"/>
+<city name="Ramla"/>
+<city name="Hilt"/>
+<city name="Suhar"/>
+<city name="Qatif"/>
+<city name="Najran"/>
+<city name="Al-Shihr"/>
+<city name="Al-Janad"/>
+<city name="Tobna"/>
+<city name="Qafsa"/>
+<city name="Gabes"/>
+<city name="Raqqada"/>
+<city name="Horns"/>
+<city name="Churchania"/>
+<city name="Ajsikaz"/>
+<city name="Isbijab"/>
+<city name="Hulbok"/>
+<city name="Kath"/>
+<city name="Bujara"/>
+<city name="Dinawar"/>
+<city name="Nebavend"/>
+<city name="Yambu"/>
+<city name="Eilat"/>
+<city name="Ghanzi"/>
+<city name="Bost"/>
+<city name="Arrur"/>
+<city name="Barn"/>
+<city name="Darabguid"/>
+<city name="Tobna"/>
+<city name="Quligala"/>
+</civ>
+</civs>
+</miniyacg>

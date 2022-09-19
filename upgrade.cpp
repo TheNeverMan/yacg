@@ -92,3 +92,9 @@ xml_node<>* Upgrade::Serialize(memory_pool<>* doc)
   Root_Node->append_node(Serialize_Technologies(doc));
   return Root_Node;
 }
+
+
+void Upgrade::Reduce_Cost_By_One()
+{
+  cost--;
+}

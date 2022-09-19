@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Sweden" r="0" g="106" b="167" personality="Expansive">
+<info>
+Sweden is a nordic country in Europe. It exists as kingdom since XI centrury.
+Although in medieval age it was local superpower and was fighting its neighbours such as Russia and Poland,
+after Battle of Poltava Swedish Empire got dissolved and Sweden never regained its power.
+
+Swedish traits are Nautical and Expansive, to represent Viking's expansion in Europe and beyond.
+
+Swedish leaders include kings of Kingdom of Sweden.
+Swedish color is blue from its flag.
+</info>
+<replacement name="Democracy" state_name="Republic of" leader="President"/>
+<replacement name="Monarchy" state_name="Empire of" leader="King"/>
+<replacement name="Parliamentary Monarchy" state_name="Kingdom of" leader="King"/>
+<replacement name="Tribal" state_name="Jarldom of" leader="Jarl"/>
+<leader name="Eric the Victorious"/>
+<leader name="Inge the Elder"/>
+<leader name="Eric IX"/>
+<leader name="Magnus IV"/>
+<leader name="Gustav I Vasa"/>
+<leader name="John III"/>
+<leader name="Gustavus Adolphus"/>
+<leader name="Charles XII"/>
+<leader name="Charles X Gustav"/>
+<leader name="Fredrik I"/>
+<leader name="Gustav III"/>
+<leader name="Karl XIII"/>
+<leader name="Karl XIV Johan"/>
+<leader name="Gustaf V"/>
+<leader name="Carl XVI Gustaf"/>
+<leader name="Per Albin Hansson"/>
+<leader name="Stefan Löfven"/>
+<leader name="Fredrik Wester"/>
+<trait name="N"/>
+<trait name="X"/>
+<city name="Stockholm"/>
+<city name="Gothenburg"/>
+<city name="Malmö"/>
+<city name="Uppsala"/>
+<city name="Upplands Väsby"/>
+<city name="Västerås"/>
+<city name="Örebro"/>
+<city name="Linköping"/>
+<city name="Helsingborg"/>
+<city name="Jönköping"/>
+<city name="Norrköping"/>
+<city name="Lund"/>
+<city name="Umeå"/>
+<city name="Gävle"/>
+<city name="Södertälje"/>
+<city name="Borås"/>
+<city name="Halmstad"/>
+<city name="Växjö"/>
+<city name="Eskilstuna"/>
+<city name="Karlstad"/>
+<city name="Sundsvall"/>
+<city name="Östersund"/>
+<city name="Trollhättan"/>
+<city name="Luleå"/>
+<city name="Lidingö"/>
+<city name="Borlänge"/>
+<city name="Tumba"/>
+<city name="Kalmar"/>
+<city name="Kristianstad"/>
+<city name="Skövde"/>
+<city name="Falun"/>
+<city name="Karlskrona"/>
+<city name="Skellefteå"/>
+<city name="Varberg"/>
+<city name="Uddevalla"/>
+<city name="Åkersberga"/>
+<city name="Nyköping"/>
+<city name="Landskrona"/>
+<city name="Örnsköldsvik"/>
+<city name="Motala"/>
+<city name="Vallentuna"/>
+<city name="Trelleborg"/>
+<city name="Märsta"/>
+<city name="Ängelholm"/>
+<city name="Lerum"/>
+<city name="Falkenberg"/>
+<city name="Alingsås"/>
+<city name="Karlskoga"/>
+<city name="Enköping"/>
+<city name="Visby"/>
+<city name="Katrineholm"/>
+<city name="Gustavsberg"/>
+<city name="Vänersborg"/>
+<city name="Lidköping"/>
+<city name="Piteå"/>
+<city name="Västervik"/>
+<city name="Karlshamn"/>
+<city name="Sandviken"/>
+<city name="Sollentuna"/>
+<city name="Kungälv"/>
+</civ>
+</civs>
+</miniyacg>

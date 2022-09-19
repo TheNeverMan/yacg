@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Portugal" r="0" g="81" b="151" personality="Exploring">
+<info>
+Portugal is Iberian country that has land border only with Spain.  In 15th and 16th
+centuries Portugal has founded world first colonial empire by estabilishing colonies in
+newly discovered Brazil and by controling the spice trade. In 18th its power eventually declined.
+
+Portugese traits are Commercial and Commercial, to represent the importance and power of first
+maritime, colonial empire.
+
+Portugese leaders include kings of Kingdom of Portugal and later democratic leaders.
+Portugese color is blue from Kingdom of Portugal's flag.
+</info>
+<leader name="Manuel de Arriaga"/>
+<leader name="Manuel I"/>
+<leader name="Afonso I"/>
+<leader name="John I"/>
+<leader name="John II"/>
+<leader name="Denis"/>
+<leader name="John IV"/>
+<leader name="Óscar Carmona"/>
+<leader name="Américo Tomás"/>
+<leader name="Carlos I"/>
+<trait name="O"/>
+<trait name="O"/>
+<city name="Lisboa"/>
+<city name="Porto"/>
+<city name="Coimbra"/>
+<city name="Vila Nova de Gaia"/>
+<city name="Amadora"/>
+<city name="Braga"/>
+<city name="Funchal"/>
+<city name="Queluz"/>
+<city name="Sintra"/>
+<city name="Setúbal"/>
+<city name="Almada"/>
+<city name="Agualva-Cacém"/>
+<city name="Sintra"/>
+<city name="Gondomar"/>
+<city name="Leiria"/>
+<city name="Rio Tinto"/>
+<city name="Barreiro"/>
+<city name="Viseu"/>
+<city name="Odivelas"/>
+<city name="Aveiro"/>
+<city name="Póvoa de Varzim"/>
+<city name="Amora"/>
+<city name="Seixal"/>
+<city name="Portimão"/>
+<city name="Évora"/>
+<city name="Faro"/>
+<city name="Matosinhos"/>
+<city name="Montijo"/>
+<city name="Póvoa de Santa Iria"/>
+<city name="Maia"/>
+<city name="Ermesinde"/>
+<city name="Alverca do Ribatejo"/>
+<city name="Castelo Branco"/>
+<city name="Marinha Grande"/>
+<city name="Guimarães"/>
+<city name="Vila do Conde"/>
+<city name="Figueira da Foz"/>
+<city name="Caldas da Rainha"/>
+<city name="Ponta Delgada"/>
+<city name="Santarém"/>
+<city name="Ovar"/>
+<city name="São Mamede de Infesta"/>
+<city name="Torres Vedras"/>
+<city name="Guarda"/>
+<city name="Valongo"/>
+<city name="Viana do Castelo"/>
+<city name="Loulé"/>
+<city name="Sacavém"/>
+<city name="Quarteira"/>
+<city name="Vila Real"/>
+<city name="Beja"/>
+<city name="Caniço"/>
+<city name="Lagos"/>
+<city name="Vila Nova de Famalicão"/>
+<city name="Bragança"/>
+<city name="São João da Madeira"/>
+<city name="Trofa"/>
+<city name="Senhora da Hora"/>
+<city name="Oliveira de Azeméis"/>
+<city name="Santo Tirso"/>
+<city name="Paredes"/>
+<city name="Entroncamento"/>
+<city name="Santa Maria da Feira"/>
+<city name="Vila Franca de Xira"/>
+<city name="Covilhã"/>
+<city name="Samora Correia"/>
+<city name="Felgueiras"/>
+<city name="Chaves"/>
+<city name="Tomar"/>
+<city name="Pombal"/>
+<city name="Ílhavo"/>
+<city name="Câmara de Lobos"/>
+<city name="Abrantes"/>
+<city name="Torres Novas"/>
+<city name="Valbom"/>
+<city name="Penafiel"/>
+<city name="Gafanha da Nazaré"/>
+<city name="Fafe"/>
+<city name="Tavira"/>
+<city name="Barcelos"/>
+<city name="Alfena"/>
+<city name="Elvas"/>
+<city name="Portalegre"/>
+<city name="Loures"/>
+<city name="Olhão"/>
+<city name="Costa da Caparica"/>
+<city name="Águeda"/>
+<city name="Paços de Ferreira"/>
+<city name="Fátima"/>
+<city name="Peniche"/>
+<city name="Sines"/>
+<city name="Lousã"/>
+<city name="Ribeira Grande"/>
+<city name="Fundão"/>
+<city name="Rio Maior"/>
+<city name="Almeirim"/>
+<city name="Cartaxo"/>
+<city name="Esposende"/>
+<city name="Lamego"/>
+<city name="Angra do Heroísmo"/>
+<city name="Esmoriz"/>
+<city name="Vila Real de Santo António"/>
+<city name="Amarante"/>
+<city name="Mirandela"/>
+<city name="Almancil"/>
+<city name="Marco de Canaveses"/>
+<city name="Vizela"/>
+<city name="Albergaria-a-Velha"/>
+<city name="São João de Ver"/>
+<city name="Montemor-o-Novo"/>
+</civ>
+</civs>
+</miniyacg>

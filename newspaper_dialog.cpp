@@ -2,6 +2,7 @@
 
 Newspaper_Dialog::Newspaper_Dialog(vector<string> events) : Themed_Dialog("Newspaper")
 {
+  reverse(events.begin(), events.end());
   Gtk::Box *Dialog_Box = get_content_area();
   auto* Dialog_Root_Frame = Gtk::make_managed<Gtk::Frame>("Events");
   auto* Dialog_Scrolled_Window = Gtk::make_managed<Gtk::ScrolledWindow>();

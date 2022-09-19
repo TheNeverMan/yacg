@@ -100,6 +100,8 @@ void Intro_Window::Quit_Button_Clicked()
 void Intro_Window::Load_Game_Button_Clicked()
 {
   Gtk::FileChooserDialog Load_Game_File_Chooser_Dialog("Please choose a file", Gtk::FILE_CHOOSER_ACTION_OPEN);
+  Load_Game_File_Chooser_Dialog.set_select_multiple(false);
+  Load_Game_File_Chooser_Dialog.set_create_folders(false);
   Load_Game_File_Chooser_Dialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
   Load_Game_File_Chooser_Dialog.add_button("_Open", Gtk::RESPONSE_OK);
   int result = Load_Game_File_Chooser_Dialog.run();

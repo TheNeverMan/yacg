@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Rus" r="1" g="91" b="187" personality="Expansive">
+<info>
+Kievan Rus was a state existing from 879 and 1240. It was one of the biggest
+european states ever existing and its territory spanned from Black Sea to Karelia.
+It was first major protorussian state, today Ukraine, Russia and Belarus claim to
+have ancestors in Kievan Rus.
+
+Ruthenian traits are Scientific and Commercial, to represent the importance of river
+traderoutes in the Rus and its overall power, its ruler Yaroslav the Wise wrote first
+russian legal code.
+
+Ruthenian leaders include Grand Princes of Kiev.
+Ruthenian color is light blue from modern ukrainian flag as Kievan Rus had no flag.
+</info>
+<replacement name="Monarchy" leader="Grand Prince of Kiev" state_name=""/>
+<leader name="Vladimir I the Great"/>
+<leader name="Yaroslav I the Wise"/>
+<leader name="Oleg the Seer"/>
+<leader name="Igor I"/>
+<leader name="St. Olga"/>
+<leader name="Sviatoslav I"/>
+<leader name="Yaropolk I"/>
+<leader name="Kyi"/>
+<leader name="Iziaslav I"/>
+<leader name="Mstislav I the Great"/>
+<trait name="S"/>
+<trait name="O"/>
+<city name="Kiev"/>
+<city name="Novogrod"/>
+<city name="Turov"/>
+<city name="Pereyslavl"/>
+<city name="Riazan"/>
+<city name="Polotsk"/>
+<city name="Vladimir"/>
+<city name="Smolensk"/>
+<city name="Chernigov"/>
+<city name="Terebovl"/>
+<city name="Volodimir"/>
+<city name="Berestye"/>
+<city name="Cherven"/>
+<city name="Kursk"/>
+<city name="Novogorod-Seversky"/>
+<city name="Sarkel"/>
+<city name="Tmutarakan"/>
+<city name="Minsk"/>
+<city name="Toropets"/>
+<city name="Vitebsk"/>
+<city name="Gertiske"/>
+<city name="Pskov"/>
+<city name="Yuryev"/>
+<city name="Rostov"/>
+<city name="Suzdal"/>
+<city name="Murom"/>
+<city name="Ryazan"/>
+<city name="Kanev"/>
+<city name="Vyshgorod"/>
+<city name="Vruchi"/>
+<city name="Terebovl"/>
+<city name="Belgorod"/>
+<city name="Galich"/>
+<city name="Peremyshl"/>
+<city name="Lutsk"/>
+<city name="Berestie"/>
+<city name="Dorogobuzh"/>
+<city name="Putivl"/>
+<city name="Ljubich"/>
+<city name="Trubchevsk"/>
+<city name="Novgorod Severski"/>
+<city name="Kozelsk"/>
+<city name="Pronsk"/>
+<city name="Pinsk"/>
+<city name="Grodno"/>
+<city name="Toropets"/>
+<city name="Moscu"/>
+<city name="Tver"/>
+<city name="Yuriev"/>
+<city name="Torzhok"/>
+<city name="Uglich"/>
+<city name="Beloozero"/>
+<city name="Ladoga"/>
+<city name="Revel"/>
+<city name="Tartu"/>
+<city name="Kolomna"/>
+<city name="Tver"/>
+<city name="Ustiug"/>
+<city name="Nizhni Novgorod"/>
+<city name="Vruchiy"/>
+<city name="Gorodsk"/>
+<city name="Malyn"/>
+<city name="Iskorosten"/>
+<city name="Oleshky"/>
+<city name="Sarkel"/>
+<city name="Novgorod-Seversk"/>
+<city name="Omby"/>
+<city name="Chernigov"/>
+<city name="Bilhorod"/>
+<city name="Putyvl"/>
+<city name="Rylsk"/>
+<city name="Chachersk"/>
+<city name="Homel"/>
+<city name="Karachev"/>
+<city name="Kozelsk"/>
+<city name="Liubech"/>
+<city name="Mezetsk"/>
+<city name="Novosil"/>
+<city name="Rechytsia"/>
+<city name="Propoisk"/>
+<city name="Oster"/>
+<city name="Oryol"/>
+<city name="Mglin"/>
+<city name="Briansk"/>
+<city name="Trubetsk"/>
+<city name="Yelets"/>
+<city name="Pinsk"/>
+<city name="Rylsk"/>
+<city name="Starodub"/>
+<city name="Vyr"/>
+<city name="Turov"/>
+<city name="Slutsk-Kopyl"/>
+<city name="Dubrovytsia"/>
+<city name="Kletsk"/>
+<city name="Kholm"/>
+<city name="Belz"/>
+<city name="Terebovila"/>
+</civ>
+</civs>
+</miniyacg>

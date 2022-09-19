@@ -36,7 +36,8 @@ You can't build if you don't have enough actions or gold, or if tile isn't suita
 Units
 
 When you research techs you will get access to different units. Recruit them in cities.
-After you recruit a unit you can move them around on the map. To do so click on the tile with unit, click on "Select Unit" and then click on the tile you want your unit to be moved to. If the unit does not have enough movement points to move on this tile a
+After you recruit a unit you can move them around on the map. To do so click on the tile with unit, click on "Select Unit"
+and then click on the tile you want your unit to be moved to. If the unit does not have enough movement points to move on this tile a
 message will appear at the bottom of the screen.
 
 Each unit has movement points and each tile has its movement cost

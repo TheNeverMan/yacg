@@ -37,7 +37,7 @@ bool AI::Build_Random_Producing_Upgrade()
           if(out[0] == -1)
             return false;
           Main_Game->Get_Map()->Build_Upgrade(upg, out[0], out[1], Main_Game->Get_Currently_Moving_Player_Id(), Main_Game->Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius());
-          Main_Game->Get_Currently_Moving_Player()->Build_Upgrade(upg.Get_Cost());
+          Main_Game->Get_Currently_Moving_Player()->Build_Upgrade(upg.Get_Name());
           return true;
         }
       }
@@ -96,7 +96,7 @@ void AI::Move_All_Units_Not_In_Cities_To_Enemy()
   vector<Unit_On_Map> units = *Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units();
   for(auto &unit : units)
   {
-    if(Main_Game->Get_Map()->Get_Tile_Pointer(unit.Coordinates.x, unit.Coordinates.y)->Get_Upgrade().Get_Name() != "City")
+    if(Main_Game->Get_Map()->Get_Tile_Pointer(unit.Coordinates.x, unit.Coordinates.y)->Get_Upgrade() != "City")
       Move_Unit_Towards_Enemy(unit.Coordinates.x, unit.Coordinates.y, unit.Self);
   }
 }
@@ -106,7 +106,7 @@ void AI::Move_All_Units_Not_In_Cities_Away_From_Borders()
   vector<Unit_On_Map> units = *Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units();
   for(auto &unit : units)
   {
-    if(Main_Game->Get_Map()->Get_Tile_Pointer(unit.Coordinates.x, unit.Coordinates.y)->Get_Upgrade().Get_Name() != "City")
+    if(Main_Game->Get_Map()->Get_Tile_Pointer(unit.Coordinates.x, unit.Coordinates.y)->Get_Upgrade() != "City")
       Move_Unit_Away_From_Borders(unit);
   }
 }

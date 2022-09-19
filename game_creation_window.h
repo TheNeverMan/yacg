@@ -44,6 +44,9 @@ class Game_Creation_Window : public Gtk::Window
     Gtk::Frame Dialog_Players_Frame;
     Gtk::Box Players_UI_Box;
     Gtk::Box Main_Player_UI_Box;
+    Gtk::Box Map_Data_Box;
+    Gtk::Box Other_Players_Box;
+    Gtk::Box Root_Box;
     Gtk::ComboBoxText Civs_Chooser_Combo;
     Gtk::Image Civs_Color_Image;
     Gtk::Frame Civs_Description_Frame;

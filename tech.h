@@ -21,6 +21,7 @@ class Tech : public Help_Object, public XML_Serializable, public Traits_Owner, p
     Tech(string n, int c, vector<string> p, string h_t, string t_p, vector<string> t);
     Tech(xml_node<>* Root_Node);
     bool Is_Researched_And_Has_Trait(string trait_name);
+    int Is_Researched_And_How_Many_Times_Has_Trait_Name(string trait_name);
     xml_node<>* Serialize(memory_pool<>* doc);
     void Deserialize(xml_node<>* Root_Node);
   private:

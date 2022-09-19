@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Aztecs" r="98" g="133" b="96" personality="Authoritarian">
+<info>
+Aztecs were a mesoamerican culture that existed between 1300 and 1521.
+They weren't organized in a centralized empire, but they have formed their Empire
+from confederation of city-states. Aztecs have been conquered by spanish colonizers
+and then after a shortlived rebelion they have never managed to restore their country.
+
+Aztec traits are Expansive and Agricultural, to represent the rising power of
+Alliance of Three and unique lake farming system called Chinampa.
+
+Aztec leaders include tlatloanis of Tenochtitlan.
+Aztec color is dark lime green, main color of glyph of Tenochtitlan.
+</info>
+<replacement name="Monarchy" leader="Huey Tlatoani" state_name="Empire of"/>
+<replacement name="Theocracy" leader="Quetzalocatl" state_name="Huitzilopochtli Cult of"/>
+<replacement name="Despotism" leader="Tlatloani" state_name="Tenochtitlan Altepetl of"/>
+<leader name="Moctezuma II"/>
+<leader name="Tlapalizquixochtzin"/>
+<leader name="Cuitláhuac"/>
+<leader name="Ahuitzotl"/>
+<leader name="Tizoc"/>
+<leader name="Axayacatl"/>
+<leader name="Tenoch"/>
+<leader name="Itzcoatl"/>
+<leader name="Moctezuma I"/>
+<leader name="Atotoztli II"/>
+<trait name="A"/>
+<trait name="X"/>
+<city name="Tenochtitlan"/>
+<city name="Teotihuacan"/>
+<city name="Chalco"/>
+<city name="Xochimilco"/>
+<city name="Tlacopan"/>
+<city name="Azcapotzalco"/>
+<city name="Xaltocan"/>
+<city name="Zumpango"/>
+<city name="Tlaxcala"/>
+<city name="Cholula"/>
+<city name="Tlatelolco"/>
+<city name="Colhuacan"/>
+<city name="Xoconochco"/>
+<city name="Coixtlahuaca"/>
+<city name="Taxco"/>
+<city name="Tepecoacuilco"/>
+<city name="Oztoman"/>
+<city name="Yohualtepec"/>
+<city name="Atotonilco"/>
+<city name="Metztitlan"/>
+<city name="Tocnpan"/>
+<city name="Tepeyacac"/>
+<city name="Teotitlan"/>
+<city name="Tetzapotitlan"/>
+<city name="Tlapacoyan"/>
+<city name="Tlatlahquitepec"/>
+<city name="Cuauhtochco"/>
+<city name="Cuetlaxtlan"/>
+<city name="Tochtepec"/>
+<city name="Coixtlahuacan"/>
+<city name="Coyolapan"/>
+<city name="Tlachquiauhco"/>
+<city name="Tlapan"/>
+<city name="Quiyauhteopan"/>
+<city name="Tehuantepec"/>
+<city name="Xoconochco"/>
+<city name="Atzlan"/>
+<city name="Yopitzinco"/>
+<city name="Oxtlipa"/>
+<city name="Tzintzuntzan"/>
+<city name="Tziuhcoac"/>
+<city name="Cihuatlan"/>
+<city name="Tututepec"/>
+<city name="Acozac"/>
+<city name="Teotlalpan"/>
+<city name="Texcoco"/>
+<city name="Xalapa"/>
+<city name="Texcotzingo"/>
+<city name="Tepetlaoztoc"/>
+<city name="Tetzcoco"/>
+<city name="Xaltocan"/>
+<city name="Xochimilco"/>
+<city name="Tecaxic"/>
+<city name="Tenayuca"/>
+<city name="Teopanzolco"/>
+<city name="Tepetlaoztoc"/>
+<city name="Otompan"/>
+<city name="Acatitlan"/>
+<city name="Malinalco"/>
+<city name="Mixcoac"/>
+<city name="Tepozteco"/>
+<city name="Chapultepec"/>
+<city name="Calixtlahuaca"/>
+</civ>
+</civs>
+</miniyacg>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Māori" r="169" g="127" b="127" personality="Exploring">
+<info>
+Māori are native tribes of New Zealand. They have migrated from East Polynesia between 1320
+and 1350.
+
+Māori traits are Nomadic and Nautical, to represent their travel and migration to Aotearoa.
+
+Māori leaders include various Rangatiras.
+Māori color is mix of Tino rangatiratanga colors all together.
+</info>
+<replacement name="Tribe" leader="Kaumātua" state_name="Whanau of"/>
+<replacement name="Despotism" leader="Tohunga" state_name="Hapu of"/>
+<replacement name="Monarchy" leader="Rangatira" state_name="Iwi of"/>
+<replacement name="Theocracy" leader="Ariki" state_name="Iwi of"/>
+<replacement name="Parliamentary Monarchy" leader="Te Kīngi" state_name="Kīngitanga Kingdom of"/>
+<leader name="Kupe"/>
+<leader name="Pōtatau Te Wherowhero"/>
+<leader name="Tāwhiao"/>
+<leader name="Mahuta Tāwhiao"/>
+<leader name="Te Rata"/>
+<leader name="Korokī Mahuta"/>
+<leader name="Te Atairangikaahu"/>
+<leader name="Tūheitia Paki"/>
+<leader name="Ihaia Te Kirikumara"/>
+<leader name="Hōne Heke"/>
+<leader name="Marupō"/>
+<leader name="Ruhe"/>
+<leader name="Tāmati Wāka Nene"/>
+<leader name="Ngāpuhi"/>
+<trait name="D"/>
+<trait name="N"/>
+<city name="Aotearoa"/>
+<city name="Kahutara"/>
+<city name="Horouta"/>
+<city name="Te Arawa"/>
+<city name="Kāraerae"/>
+<city name="Mahangaatuamatua"/>
+<city name="Āraiteuru"/>
+<city name="Māhuhu-ki-te-rangi"/>
+<city name="Motumotuahi"/>
+<city name="Ngātokimatawhaorua"/>
+<city name="Nuku-tai-memeha"/>
+<city name="Nukutere"/>
+<city name="Ōtūrereao"/>
+<city name="Riukākara"/>
+<city name="Pangatoru"/>
+<city name="Aotea"/>
+<city name="Hīnakipākau-o-te-rupe"/>
+<city name="Kurahaupō"/>
+<city name="Ōkoki"/>
+<city name="Moekākara"/>
+<city name="Matahourua"/>
+<city name="Mataatua"/>
+<city name="Arautauta"/>
+<city name="Māmari"/>
+<city name="Mānuka"/>
+<city name="Arahura"/>
+<city name="Tahatuna"/>
+<city name="Tainui"/>
+<city name="Tauira"/>
+<city name="Te Aratauwhāiti"/>
+<city name="Te Hoiere"/>
+<city name="Te Kōhatuwhenua"/>
+<city name="Te Paepae-ki-Rarotonga"/>
+<city name="Te Rangimātoru"/>
+<city name="Te Rīrino"/>
+<city name="Te Wakatūwhenua"/>
+<city name="Tokomaru"/>
+<city name="Tōtara-i-kāria"/>
+<city name="Tūwhenua"/>
+<city name="Tūnui-ā-rangi"/>
+<city name="Tūwhenua"/>
+<city name="Uruaokapuarangi"/>
+<city name="Waipapa"/>
+<city name="Tinana"/>
+<city name="Tūnui-ā-rangi"/>
+<city name="Te Wakaringaringa"/>
+<city name="Te Rangiuamutu"/>
+<city name="Te Aratāwhao"/>
+<city name="Tāwhirirangi"/>
+<city name="Tākitimu"/>
+<city name="Taikōria"/>
+<city name="Ruakaramea"/>
+<city name="Waitangi"/>
+<city name="Ngāpuhi"/>
+<city name="Ngāti Porou"/>
+<city name="Ngāi Tahu"/>
+<city name="Waikato"/>
+<city name="Ngāti Tūwharetoa"/>
+<city name="Tūhoe"/>
+<city name="Ngāti Maniapoto"/>
+<city name="Ngāti Kahungunu ki Te Wairoa"/>
+<city name="Ngāti Awa"/>
+<city name="Ngāti Whātua"/>
+<city name="Te Rarawa"/>
+<city name="Ngāti Raukawa"/>
+<city name="Te Atiawa"/>
+<city name="Te Whānau-a-Apanui"/>
+<city name="Whakatōhea"/>
+<city name="Ngāi Te Rangi"/>
+<city name="Te Ati Haunui-a-Pāpārangi"/>
+<city name="Te Aupōuri"/>
+<city name="Ngāti Kahu"/>
+<city name="Ngāti Kahungunu ki Heretaunga"/>
+<city name="Ngāti Ranginui"/>
+<city name="Taranaki"/>
+<city name="Ngāti Ruanui"/>
+<city name="Ngāti Raukawa"/>
+<city name="Ngāti Kahungunu ki Wairarapa"/>
+<city name="Ngāti Wai"/>
+<city name="Te Aitanga-a-Māhaki"/>
+<city name="Ngā Rauru"/>
+<city name="Ngāti Hauā"/>
+<city name="Ngāti Kurī"/>
+<city name="Ngāti Pāoa"/>
+<city name="Ngāti Maru"/>
+<city name="Ngāruahine"/>
+<city name="Ngāi Tai"/>
+<city name="Ngāti Tamaterā"/>
+<city name="Ngāti Whakaue"/>
+<city name="Muaūpoko"/>
+<city name="Ngāti Kahungunu ki Te Whanganui-a-Orotu"/>
+<city name="Ngāti Toarangatira"/>
+<city name="Rongowhakaata"/>
+<city name="Tūhourangi"/>
+<city name="Kāti Māmoe"/>
+<city name="Ngāti Pikiao"/>
+<city name="Rongomaiwahine"/>
+<city name="Rangitāne"/>
+<city name="Ngāti Kuia"/>
+<city name="Ngāi Tāmanuhiri"/>
+<city name="Ngāti Apa"/>
+<city name="Ngāti Hauiti"/>
+<city name="Te Roroa"/>
+<city name="Ngāti Manawa"/>
+<city name="Ngāti Hako"/>
+<city name="Ngāti Kahu ki Whaingaroa"/>
+<city name="Te Waipounamu"/>
+<city name="Ngāti Tama Kopiri"/>
+<city name="Ngāti Tahu – Ngāti Whaoa"/>
+<city name="Ngāti Tama"/>
+<city name="Te Whanganui-a-Tara"/>
+<city name="Ngāti Koata"/>
+<city name="Te Uri-o-Hau"/>
+<city name="Ngāti Mutunga"/>
+<city name="Ngāti Rangitihi"/>
+<city name="Ngāti Rangiwewehi"/>
+<city name="Tapuika"/>
+<city name="Ngāti Pūkenga"/>
+<city name="Ngāti Rārua"/>
+<city name="Ngāti Whare"/>
+<city name="Waitaha"/>
+<city name="Ngāti Hāua"/>
+<city name="Taranaki"/>
+<city name="Ngāti Porou ki Hauraki"/>
+<city name="Ngāti Kahungunu ki Tamatea"/>
+<city name="Moriori"/>
+<city name="Ngāi Takoto"/>
+<city name="Waitaha"/>
+<city name="Pakakohi"/>
+<city name="Ngāti Whanaunga"/>
+<city name="Ngāti Tama"/>
+<city name="Ngāti Apa ki te Rā Tō"/>
+<city name="Ngāti Hei"/>
+<city name="Te Atiawa ki Whakarongotai"/>
+<city name="Ngāti Tara Tokanui"/>
+<city name="Ngāti Pūkenga ki Waiau"/>
+<city name="Tangāhoe"/>
+<city name="Ngāti Kahungunu ki Tamakinui a Rua"/>
+<city name="Te Kawerau ā Maki"/>
+<city name="Ngāi Tai ki Tāmaki"/>
+<city name="Ngāti Rangiteaorere"/>
+<city name="Uenuku-Kōpako"/>
+<city name="Ngāti Toarangatira"/>
+<city name="Tarāwhai"/>
+<city name="Ngāti Rāhiri Tumutumu"/>
+<city name="Te Patukirikiri"/>
+<city name="Ngāti Hinerangi"/>
+<city name="Ngāti Pāhauwera"/>
+<city name="Ngāti Rākaipaaka"/>
+<city name="Ngāti Rangi"/>
+<city name="Ngāti Tama ki Te Upoko o Te Ika"/>
+<city name="Ngāti Kauwhata"/>
+<city name="Ngāti Tūmatakōkiri"/>
+</civ>
+</civs>
+</miniyacg>

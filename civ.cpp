@@ -1,6 +1,6 @@
 #include "civ.h"
 
-Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p) : Traits_Owner(t), Help_Object(n,c_i)
+Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us) : Traits_Owner(t), Help_Object(n,c_i)
 {
   srand(time(NULL));
   Goverment_Name_Replacements = g_n_r;
@@ -15,7 +15,9 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   leader = Leaders[leader_id];
   Leaders.erase(Leaders.begin() + leader_id);
   max_actions = 0;
+  Upgrades = us;
   current_actions = 1;
+  points_from_technologies = 0;
   City_Names = c_n;
   Tech_Tree = t_t;
   //cout << "cos" << endl;
@@ -77,6 +79,11 @@ void Civ::Assign_Id(int i)
   id = i;
 }
 
+void Civ::Give_One_Gold()
+{
+  gold++;
+}
+
 int Civ::Get_Id()
 {
   return id;
@@ -123,14 +130,38 @@ array<int, 2> Civ::Get_Capital_Location()
   return out;
 }
 
-void Civ::Build_Upgrade(int cost)
+Upgrade Civ::Find_Upgrade_By_Name(string upg_name)
 {
-  gold = gold - cost;
-  gold = gold + How_Many_Times_Has_Trait("E");
+  auto it = find_if(Upgrades.begin(), Upgrades.end(), [&upg_name](Upgrade& upg)
+  {
+    if(upg.Get_Name() == upg_name)
+      return true;
+    return false;
+  });
+  if(it != Upgrades.end())
+    return *it;
+  else
+    Logger::Log_Error("Upgrade not found! " + upg_name);
+  throw;
+}
+
+void Civ::Build_Upgrade(string upg_name)
+{
+  int cost = Find_Upgrade_By_Name(upg_name).Get_Cost();
+  cost = cost - How_Many_Times_Has_Trait("E");
   if(Active_Goverment.Get_Name() == "Republic")
-    gold++;
+    cost--;
   if(Active_Goverment.Get_Name() == "Communism")
-    gold--;
+    cost++;
+  if(upg_name == "City" && Get_Active_Goverment_Name() == "Theocracy")
+  {
+    cost = cost - 10;
+  }
+  if(upg_name == "Farm" && Get_Active_Goverment_Name() == "Monarchy")
+  {
+    cost = cost + 2;
+  }
+  gold = gold - cost;
   current_actions--;
 }
 
@@ -184,9 +215,55 @@ void Civ::Remove_Unit_By_Coords(int x, int y)
   //fuuuck;
 }
 
+int Civ::Get_Upgrade_Production_By_Name(string upg_name)
+{
+  int out = Find_Upgrade_By_Name(upg_name).Get_Production();
+  if(upg_name == "Farm")
+  {
+    out = out + How_Many_Times_Has_Trait("A");
+    if(Get_Active_Goverment_Name() == "Monarchy")
+      out++;
+  }
+  return out;
+}
+
+int Civ::Get_Upgrade_Maitenance_By_Name(string upg_name)
+{
+  int out = Find_Upgrade_By_Name(upg_name).Get_Maitenance();
+  if(upg_name == "Farm")
+  {
+    if(upg_name == "City" && Get_Active_Goverment_Name() == "Theocracy")
+    {
+      out = out + 2;
+    }
+  }
+  return out;
+}
+
+int Civ::Get_Upgrade_Buff_By_Name(string upg_name)
+{
+  int out = Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("economybonus");
+  out = out * (How_Many_Times_Has_Trait("O") + 1);
+  if(Get_Active_Goverment_Name() == "Democracy")
+  {
+    out = out * 2;
+  }
+  return out;
+}
+
+double Civ::Get_Defense_Bonus_For_Upgrade(string upg_name)
+{
+  double out = 1.0;
+  out = out + (static_cast<double>(Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("minordefbonus")) / 10.0);
+  out = out + (static_cast<double>(Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("minordefbonus") * 2) / 10.0);
+  out = out - (static_cast<double>(Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("fightdebuff") * 3) / 10.0);
+  return out;
+}
+
 void Civ::Calculate_Score()
 {
   points = 0;
+  points = points + points_from_technologies;
   points = Cities.size() * 10;
   points = points + Calculate_Unit_Maitenance();
   for(auto &tech : Tech_Tree)
@@ -239,7 +316,7 @@ int Civ::Calculate_Unit_Maitenance()
   }
   if(Active_Goverment.Get_Name() == "Dictatorship")
     out = out * 0.75;
-  if(Active_Goverment.Get_Name() == "Democracy")
+  if(Active_Goverment.Get_Name() == "Democracy" || Get_Active_Goverment_Name() == "Parliamentary Monarchy")
     out = out * 1.25;
   return out;
 }
@@ -247,6 +324,37 @@ int Civ::Calculate_Unit_Maitenance()
 int Civ::Get_Research_Percent()
 {
   return research_percent;
+}
+
+void Civ::Do_Traits_Of_Researched_Tech()
+{
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseborder"))
+    recent_expand = true;
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("embarkment"))
+  {
+    for(auto &unit : Unit_Templates)
+    {
+      if(!unit.Can_Move_On_Tile_By_Name("Sea"))
+        unit.Allow_Moving_On_Tile_By_Name("Sea");
+    }
+    for(auto &unit : Units_Owned)
+    {
+      if(!unit.Self.Can_Move_On_Tile_By_Name("Sea"))
+        unit.Self.Allow_Moving_On_Tile_By_Name("Sea");
+    }
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseresearchfunds"))
+    tech_money_modifier = tech_money_modifier + 0.05;
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("givepoints"))
+    points_from_technologies = points_from_technologies + stoi(Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("givepoints")[0]);
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceallupgradescost"))
+    for_each(Upgrades.begin(), Upgrades.end(), [](Upgrade& u){u.Reduce_Cost_By_One();});
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("giveallunits"))
+  {
+    string trait = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("giveallunits")[0];
+    for_each(Unit_Templates.begin(), Unit_Templates.end(), [&trait](Unit& u){u.Give_Trait(trait);});
+    for_each(Units_Owned.begin(), Units_Owned.end(), [&trait](Unit_On_Map& u){u.Self.Give_Trait(trait);});
+  }
 }
 
 void Civ::End_Turn(vector<int> income)
@@ -269,21 +377,7 @@ void Civ::End_Turn(vector<int> income)
       research_fund = (double) research_fund * (double) 0.80;
     plus = plus - research_fund;
     Get_Currently_Researched_Tech()->Research_Tech((int)research_fund * tech_money_modifier);
-    if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("expand_borders"))
-      recent_expand = true;
-    if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("embarkment"))
-    {
-      for(auto &unit : Unit_Templates)
-      {
-        if(!unit.Can_Move_On_Tile_By_Name("Sea"))
-          unit.Allow_Moving_On_Tile_By_Name("Sea");
-      }
-      for(auto &unit : Units_Owned)
-      {
-        if(!unit.Self.Can_Move_On_Tile_By_Name("Sea"))
-          unit.Self.Allow_Moving_On_Tile_By_Name("Sea");
-      }
-    }
+    Do_Traits_Of_Researched_Tech();
     gold = gold + plus;
   }
   else
@@ -302,12 +396,28 @@ void Civ::Refresh_Unit_Movement_Points()
   for(auto &unit : Units_Owned)
   {
     unit.Self.Refresh_Movement_Points();
+    if(Get_Active_Goverment_Name() == "Horder")
+      unit.Self.Increase_Current_Movement(1);
   }
 }
 
 void Civ::Start_Turn()
 {
   current_actions = max_actions;
+}
+
+bool Civ::Is_Unit_Unlocked(string unit_name)
+{
+  if(unit_name == " ")
+    return false;
+  Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](Unit& i_u){return unit_name == i_u.Get_Name();});
+  return Has_Tech_Been_Researched_By_Name(u.Get_First_Requirement());
+}
+
+bool Civ::Is_Unit_Obsolete(string unit_name)
+{
+  Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](Unit& i_u){return unit_name == i_u.Get_Name();});
+  return Is_Unit_Unlocked(u.Get_Obsolete_Unit_Name());
 }
 
 bool Civ::Has_Tech_Been_Researched_By_Name(string tech_name)
@@ -412,9 +522,24 @@ void Civ::Do_Trait(string trait_name)
 
 }
 
+bool Civ::Has_Enough_Gold_To_Build_Upgrade(string upg_name)
+{
+  for(auto& var : Upgrades)
+  {
+    if(var.Get_Name() == upg_name)
+    {
+      if(var.Get_Cost() <= gold)
+        return true;
+      return false;
+    }
+  }
+  Logger::Log_Error("Upgrade not found! " + upg_name);
+  return false;
+}
+
 void Civ::Do_Traits()
 {
-  for(auto &var : Get_Traits())
+  for(auto &var : Get_Trait_Names())
   {
     Do_Trait(var);
   }
@@ -425,10 +550,11 @@ int Civ::Get_Upgrade_Border_Radius()
   int out = 2;
   for(auto &var : Tech_Tree)
   {
-    if(var.Is_Researched_And_Has_Trait("expand_borders"))
-      out++;
+    out = out + var.Is_Researched_And_How_Many_Times_Has_Trait_Name("increaseborder");
   }
   out = out + How_Many_Times_Has_Trait("X");
+  if(Get_Active_Goverment_Name() == "Horde")
+    out--;
   return out;
 }
 
@@ -596,6 +722,7 @@ void Civ::Deserialize(xml_node<>* Root_Node)
   research_percent = stoi(Root_Node->first_attribute("research_percent")->value());
   city_name_index = stoi(Root_Node->first_attribute("city_name_index")->value());
   points = stoi(Root_Node->first_attribute("points")->value());
+  points_from_technologies = stoi(Root_Node->first_attribute("points_from_tech")->value());
   leader = Root_Node->first_attribute("leader")->value();
   personality = Root_Node->first_attribute("personality")->value();
   tech_in_research = Root_Node->first_attribute("tech_in_research")->value();
@@ -638,6 +765,13 @@ void Civ::Deserialize(xml_node<>* Root_Node)
   {
     Tech tmp(Technology_Node);
     Tech_Tree.push_back(tmp);
+  }
+
+  xml_node<>* Upgrades_Node = Root_Node->first_node("upgrades");
+  for(xml_node<> *Upgrade_Node = Upgrades_Node->first_node("upgrade"); Upgrade_Node; Upgrade_Node = Upgrade_Node->next_sibling("upgrade"))
+  {
+    Upgrade tmp(Upgrade_Node);
+    Upgrades.push_back(tmp);
   }
 
   xml_node<>* Owned_Cities_Node = Root_Node->first_node("owned_cities");
@@ -683,8 +817,10 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   Root_Node->append_attribute(Research_Percent);
   xml_attribute<> *City_Name = doc->allocate_attribute("city_name_index", doc->allocate_string(to_string(city_name_index).c_str()));
   Root_Node->append_attribute(City_Name);
-  xml_attribute<> *Points = doc->allocate_attribute("points", doc->allocate_string(to_string(points).c_str()));
+  xml_attribute<> *Points = doc->allocate_attribute("points_from_tech", doc->allocate_string(to_string(points_from_technologies).c_str()));
   Root_Node->append_attribute(Points);
+  xml_attribute<> *Points_From_Tech = doc->allocate_attribute("points", doc->allocate_string(to_string(points).c_str()));
+  Root_Node->append_attribute(Points_From_Tech);
   xml_attribute<> *Tech_In_Research = doc->allocate_attribute("tech_in_research", doc->allocate_string(tech_in_research.c_str()));
   Root_Node->append_attribute(Tech_In_Research);
   xml_attribute<> *Gold = doc->allocate_attribute("gold", doc->allocate_string(to_string(gold).c_str()));
@@ -728,6 +864,12 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
     Govs_Node->append_node(iterated_gov.Serialize(doc));
   });
 
+  xml_node<> *Upgrades_Node = doc->allocate_node(node_element, "upgrades");
+
+  for_each(Upgrades.begin(), Upgrades.end(), [&](Upgrade& iterated_upgrade)
+  {
+    Upgrades_Node->append_node(iterated_upgrade.Serialize(doc));
+  });
 
   xml_node<> *Technologies_Node = doc->allocate_node(node_element, "techs");
   xml_node<> *Units_Node = doc->allocate_node(node_element, "units");
@@ -791,6 +933,7 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   Root_Node->append_node(City_Names_Node);
   Root_Node->append_node(Serialize_Traits(doc));
   Root_Node->append_node(Owned_Units_Node);
+  Root_Node->append_node(Upgrades_Node);
   Root_Node->append_node(Leaders_Node);
   Root_Node->append_node(Goverment_Name_Replacements_Node);
   Root_Node->append_node(Technologies_Node);

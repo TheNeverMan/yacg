@@ -2,41 +2,44 @@
 
 #include<iostream>
 
-Tile::Tile(int m_c, string n, string t_p, vector<string> t) : Tile_Upgrade(0,0,0," ", "none", "Dummy"), Traits_Owner(t), Help_Object(n, " "), Texture_Owner(t_p)
+Tile::Tile(int m_c, string n, string t_p, vector<string> t) : Traits_Owner(t), Help_Object(n, " "), Texture_Owner(t_p)
 {
   has_unit = false;
   unit_owner_id = 0;
   movement_cost = m_c;
+  upgrade = "none";
+  is_plundered = false;
 }
 
-void Tile::Upgrade_Tile(Upgrade t_u)
+void Tile::Upgrade_Tile(string t_u)
 {
-  Tile_Upgrade = t_u;
+  upgrade = t_u;
 }
 
-Tile::Tile() : Tile_Upgrade(0,0,0," ", "none", "Dummy"), Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(" ")
+Tile::Tile() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(" ")
 {
   vector<string> t;
   has_unit = false;
+  upgrade = "none";
   unit_owner_id = 0;
+  is_plundered = false;
 }
 
-Upgrade Tile::Get_Upgrade()
+string Tile::Get_Upgrade()
 {
-  return Tile_Upgrade;
+  if(is_plundered)
+    return "plundered";
+  return upgrade;
 }
 
-string Tile::Get_Upgrade_Texture_Path()
+void Tile::Plunder()
 {
-  return Tile_Upgrade.Get_Texture_Path();
+  is_plundered = true;
 }
 
-vector<string> Tile::Get_Textures_Path()
+void Tile::Fix()
 {
-  vector<string> out;
-  out.push_back(Get_Texture_Path());
-  out.push_back(Get_Upgrade_Texture_Path());
-  return out;
+  is_plundered = false;
 }
 
 bool Tile::Has_Unit()
@@ -76,7 +79,7 @@ int Tile::Get_Movement_Cost()
   return movement_cost;
 }
 
-Tile::Tile(xml_node<>* Root_Node) : Tile_Upgrade(Root_Node->first_node("upgrade")), Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node)
+Tile::Tile(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node)
 {
   Deserialize(Root_Node);
 }
@@ -87,8 +90,8 @@ void Tile::Deserialize(xml_node<>* Root_Node)
   has_unit = (bool) stoi(Root_Node->first_attribute("has_unit")->value());
   is_buffed = (bool) stoi(Root_Node->first_attribute("is_buffed")->value());
   unit_owner_id = stoi(Root_Node->first_attribute("unit_owner_id")->value());
+  is_plundered = (bool) stoi(Root_Node->first_attribute("is_plundered")->value());
 }
-
 
 xml_node<>* Tile::Serialize(memory_pool<>* doc)
 {
@@ -97,16 +100,14 @@ xml_node<>* Tile::Serialize(memory_pool<>* doc)
   Root_Node->append_attribute(Cost);
   xml_attribute<> *Has_Unit = doc->allocate_attribute("has_unit", doc->allocate_string(to_string(has_unit).c_str()));
   Root_Node->append_attribute(Has_Unit);
+  xml_attribute<> *Is_Plundered = doc->allocate_attribute("is_plundered", doc->allocate_string(to_string(is_plundered).c_str()));
+  Root_Node->append_attribute(Is_Plundered);
   xml_attribute<> *Is_Buffed = doc->allocate_attribute("is_buffed", doc->allocate_string(to_string(is_buffed).c_str()));
   Root_Node->append_attribute(Is_Buffed);
   xml_attribute<> *Unit_Owner = doc->allocate_attribute("unit_owner_id", doc->allocate_string(to_string(unit_owner_id).c_str()));
   Root_Node->append_attribute(Unit_Owner);
-
-  xml_node<> *Upgrade_Node = Tile_Upgrade.Serialize(doc);
-
   Root_Node->append_node(Serialize_Traits(doc));
   Root_Node->append_node(Serialize_Textures(doc));
-  Root_Node->append_node(Upgrade_Node);
   Root_Node->append_node(Serialize_Help(doc));
   return Root_Node;
 }
