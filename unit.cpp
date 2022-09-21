@@ -23,6 +23,11 @@ int Unit::Get_Maitenance()
   return maintenance;
 }
 
+void Unit::Reduce_Maitenance_By_One()
+{
+  maintenance--;
+}
+
 void Unit::Refresh_Movement_Points()
 {
   if(Get_All_Arguments_For_Trait("class")[0] == "flying")
@@ -128,6 +133,7 @@ void Unit::Heal(int howmuch = 0)
   Decrease_Movement(2);
   hp = hp + 20;
   hp = hp + howmuch;
+  hp = hp + How_Many_Times_Has_Trait("healincrease") * 20;
   if(hp > 100)
     hp = 100;
 }
@@ -199,5 +205,6 @@ xml_node<>* Unit::Serialize(memory_pool<>* doc)
   Root_Node->append_node(Serialize_Help(doc));
   Root_Node->append_node(Serialize_Textures(doc));
   Root_Node->append_node(Serialize_Technologies(doc));
+  Root_Node->append_node(Serialize_Traits(doc));
   return Root_Node;
 }

@@ -44,6 +44,7 @@ class Unit : public Help_Object, public XML_Serializable, public Texture_Owner, 
     void Decrease_Movement(int val);
     void Refresh_Movement_Points();
     int Get_Manpower();
+    void Reduce_Maitenance_By_One();
     void Increase_Attack_By_One();
     void Increase_Movement_By_One();
     void Increase_Current_Movement(int val);

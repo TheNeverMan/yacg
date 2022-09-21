@@ -33,7 +33,7 @@ Trait::Trait(string raw_trait)
 
 Trait::Trait(xml_node<>* Root_Node)
 {
-  string trait_name= Root_Node->value();
+  trait_name = Root_Node->first_attribute("name")->value();
   for(xml_node<> *Argument_Node = Root_Node->first_node("argument"); Argument_Node; Argument_Node = Argument_Node->next_sibling("argument"))
   {
     Arguments.push_back(Argument_Node->value());
@@ -42,8 +42,9 @@ Trait::Trait(xml_node<>* Root_Node)
 
 xml_node<>* Trait::Serialize_Trait(memory_pool<>* doc)
 {
-  xml_node<> *Trait_Node = doc->allocate_node(node_element, "trait", doc->allocate_string(trait_name.c_str()));
-
+  xml_node<> *Trait_Node = doc->allocate_node(node_element, "trait");
+  xml_attribute<> *Name_Node = doc->allocate_attribute("name", doc->allocate_string(trait_name.c_str()));
+  Trait_Node->append_attribute(Name_Node);
   for_each(Arguments.begin(), Arguments.end(), [&](string trait)
   {
     xml_node<>* t_node = doc->allocate_node(node_element, "argument", doc->allocate_string(trait.c_str()));

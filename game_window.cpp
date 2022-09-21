@@ -193,6 +193,13 @@ bool Game_Window::Check_Must_Border_Trait_For_Upgrades(string upg_name, int x, i
   return out;
 }
 
+void Game_Window::Update_Tiles_From_Game()
+{
+  vector<array<int, 2>> Tiles_To_Update = Main_Game.Get_Tiles_To_Update();
+  for(auto &tile : Tiles_To_Update)
+    Update_Tile_By_Coords_Only(tile[0], tile[1]);
+}
+
 void Game_Window::Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, int owner)
 {
   if(!Main_Game.Get_Currently_Moving_Player()->Has_Enough_Gold_To_Build_Upgrade(upg_name))
@@ -223,12 +230,12 @@ void Game_Window::Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, i
   if(upg_name == "City")
   {
     Main_Game.Build_City(x,y,owner, radius);
-    Update_Map();
   }
   else
   {
-    Main_Game.Get_Map()->Build_Upgrade(Main_Game.Get_Upgrade_By_Name(upg_name), x, y, owner, radius);
+    Main_Game.Build_Upgrade(upg_name, x, y, owner);
   }
+  Update_Tiles_From_Game();
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
@@ -428,7 +435,7 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
     Action_Buttons_Box.pack_start(*button);
     Main_Provider.Add_CSS(button);
   }
-  for(auto &upgrade : Main_Game.Get_Upgrades())
+  for(auto &upgrade : *Main_Game.Get_Currently_Moving_Player()->Get_Upgrades())
   {
     if(Main_Game.Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(upgrade.Get_First_Requirement()) && upgrade.Is_Tile_Allowed_By_Name(Main_Game.Get_Map()->Get_Tile(x,y).Get_Name()) && (Main_Game.Get_Map()->Is_Tile_Upgraded(x,y)))
     {
@@ -477,6 +484,10 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
 
 void Game_Window::Update_Action_Buttons(int x, int y)
 {
+  if(Main_Game.Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockforeign"))
+    Show_Civs_Button.set_sensitive(true);
+  else
+    Show_Civs_Button.set_sensitive(false);
   Clear_Action_Buttons();
   if(Main_Game.Get_Currently_Moving_Player()->Get_Max_Actions() == Main_Game.Get_Currently_Moving_Player()->Get_Current_Actions())
     Manage_Goverments_Button.set_sensitive(true);
@@ -599,6 +610,14 @@ void Game_Window::Update_Economy_Label()
   Economy_Label.set_text(text);
 }
 
+string Game_Window::Get_Current_Turn_By_Years()
+{
+  string out = Main_Game.Get_Current_Turn_By_Years();
+  if(Main_Game.Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockdate"))
+    return out;
+  return "Unknown Year";
+}
+
 void Game_Window::Update_Capital_Label()
 {
   string capital_label_text = "Your Capital is located at ";
@@ -610,7 +629,7 @@ void Game_Window::Update_Capital_Label()
 
 void Game_Window::Update_Map_Frame()
 {
-  Map_Frame.set_label("Map of " + Main_Game.Get_Currently_Moving_Player()->Get_Full_Name() + " " + Main_Game.Get_Current_Turn_By_Years());
+  Map_Frame.set_label("Map of " + Main_Game.Get_Currently_Moving_Player()->Get_Full_Name() + " " + Get_Current_Turn_By_Years());
 }
 
 void Game_Window::Update_Labels()
@@ -653,10 +672,10 @@ void Game_Window::End_Turn()
     Logger::Log_Info("Turn took: " + to_string(chrono::duration<double, milli>(timer_diff).count()) + " ms" );
     if(!out)
       Player_Has_Lost_Game();
+    Update_Tiles_From_Game();
     Update_Labels();
     Update_Action_Buttons(last_clicked_x, last_clicked_y);
-    Update_Map();
-
+    //Update_Map();
   }
 }
 

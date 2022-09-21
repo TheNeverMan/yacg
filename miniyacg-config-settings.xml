@@ -1,7 +1,7 @@
 <miniyacg>
 	<settings>
-		<autosave>1</autosave>
-		<autoresize>1</autoresize>
+		<autosave>0</autosave>
+		<autoresize>0</autoresize>
 		<tile_size>32</tile_size>
 	</settings>
 </miniyacg>

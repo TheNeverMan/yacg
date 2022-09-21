@@ -105,6 +105,7 @@ class Civ : public Help_Object, public Traits_Owner
     void Set_Research_Tech_By_Trait(string trait);
     bool Has_Enough_Gold_To_Build_Upgrade(string upg_name);
     Upgrade Find_Upgrade_By_Name(string upg_name);
+    vector<Upgrade>* Get_Upgrades();
     int Get_Upgrade_Production_By_Name(string upg_name);
     int Get_Upgrade_Maitenance_By_Name(string upg_name);
     int Get_Upgrade_Buff_By_Name(string name);

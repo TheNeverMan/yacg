@@ -26,6 +26,7 @@
 #include "logger.h"
 #include "xml_serializable.h"
 #include "help_object.h"
+#include "radius_generator.h"
 #include "ai.h"
 #include "newspaper.h"
 #include "xml_data_loader.h"
@@ -41,6 +42,7 @@ class Game : public XML_Serializable
     vector<int> Eliminated_Players_List;
     vector<Tile> Tiles;
     vector<Tech> Technologies;
+    Radius_Generator Main_Radius_Generator;
     vector<Unit> Units;
     vector<Civ> Civs;
     vector<Civ> Players;
@@ -53,6 +55,7 @@ class Game : public XML_Serializable
     Newspaper Main_Newspaper;
     int currently_moving_player;
     int turn_counter;
+    vector<array<int, 2>> Tiles_To_Update;
     void XML_Load_Data();
     void Do_AI_Actions_For_Currently_Moving_Player();
     bool Is_Currently_Moving_Player_AI();
@@ -63,7 +66,6 @@ class Game : public XML_Serializable
     int First_Not_Eliminated_Player_Id();
     bool Is_Player_AI(int player_id);
     bool All_Humans_Are_Eliminated();
-    vector<Coords> Tiles_To_Update;
     void Add_Player_By_Name(string name, bool is_ai);
     void Generate_Map(Map_Generator_Data User_Data, bool load_starting_positions);
     void Add_Players(vector<tuple<string, bool>> players);
@@ -110,10 +112,11 @@ class Game : public XML_Serializable
     uint32_t Get_Border_Color_By_Player_Id(int id);
     void Change_Goverment_For_Currently_Moving_Player_By_Name(string name);
     void Build_City(int x, int y, int owner, int radius);
-    vector<Coords> Get_Tiles_To_Update();
+    vector<array<int, 2>> Get_Tiles_To_Update();
     void Recruit_Unit(string u, int x, int y);
     int Get_Total_Cost_Of_Technology_By_Name(string name);
     Upgrade Get_Upgrade_Of_Currently_Moving_Player(string upg_name);
     void Plunder_Tile(int x, int y);
     void Detonate_Atomic_Bomb(int x, int y);
+    void Build_Upgrade(string name, int x, int y, int player_id);
 };

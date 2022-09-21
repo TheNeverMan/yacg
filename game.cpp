@@ -36,12 +36,25 @@ void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positio
   //Game_Map.Print_Map_In_ASCII();
 }
 
+void Game::Build_Upgrade(string name, int x, int y, int player_id)
+{
+  Upgrade u = Get_Player_By_Id(player_id)->Find_Upgrade_By_Name(name);
+  int radius = Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius();
+  if(name == "City")
+    Game_Map.Build_City(x,y,player_id,radius);
+  else
+    Game_Map.Build_Upgrade(u, x, y, player_id, radius);
+  if(u.How_Many_Times_Has_Trait("borderexpand") == 0)
+    radius = 0;
+  vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
+  Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
+}
+
 void Game::Assing_Starting_Position_For_Player(int player_id, int x, int y)
 {
   Get_Player_By_Id(player_id)->Assign_Id(player_id);
   Logger::Log_Info("Player " + Get_Player_By_Id(player_id)->Get_Leader_Name() + " will start at position " + to_string(x) + " " + to_string(y) );
-  Get_Player_By_Id(player_id)->Build_City_On_Map(x,y);
-  Game_Map.Build_City(x,y, player_id, Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius());
+  Build_City(x,y,player_id,Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius());
 }
 
 void Game::Asign_Random_Starting_Position_For_Player(int player_id)
@@ -120,7 +133,7 @@ void Game::Add_Players(vector<tuple<string, bool>> players)
   Logger::Log_Info("Players added!" );
 }
 
-Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions)
+Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions) : Main_Radius_Generator(Map_Data.size_x, Map_Data.size_y)
 {
   srand(time(0));
   turn_counter = 1;
@@ -138,7 +151,7 @@ Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> play
   }
 }
 
-Game::Game()
+Game::Game() : Main_Radius_Generator(0,0)
 {
   //in gond we truts
 }
@@ -214,9 +227,9 @@ bool Game::Is_Currently_Moving_Player_AI()
   return Is_Player_AI(Get_Currently_Moving_Player_Id());
 }
 
-vector<Coords> Game::Get_Tiles_To_Update()
+vector<array<int, 2>> Game::Get_Tiles_To_Update()
 {
-  vector<Coords> out = Tiles_To_Update;
+  vector<array<int, 2>> out = Tiles_To_Update;
   Tiles_To_Update.clear();
   return out;
 }
@@ -472,6 +485,9 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
 {
   int unit_owner_id = Get_Map()->Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id();
   int tile_owner_id = Get_Map()->Get_Owner(dest_x, dest_y);
+  Tiles_To_Update.push_back({unit_x, unit_y});
+  Tiles_To_Update.push_back({dest_x, dest_y});
+  Tiles_To_Update.push_back({enemy_unit_x, enemy_unit_y});
   bool is_map_update_necesary = false;
   Move_Unit(unit_x, unit_y, dest_x, dest_y, movement_cost);
   if(unit_owner_id != tile_owner_id)
@@ -556,7 +572,7 @@ string Game::Get_Current_Turn_By_Years()
   return out;
 }
 
-Game::Game(xml_node<>* Root_Node) : Game_Map(Root_Node->first_node("map"))
+Game::Game(xml_node<>* Root_Node) : Game_Map(Root_Node->first_node("map")), Main_Radius_Generator(Get_Map()->Get_X_Size(), Get_Map()->Get_Y_Size())
 {
   Logger::Log_Info("Deserializing Game...");
   Deserialize(Root_Node);
@@ -808,7 +824,8 @@ void Game::Change_Goverment_For_Currently_Moving_Player_By_Name(string name)
 
 void Game::Build_City(int x, int y, int owner, int radius)
 {
-  Get_Map()->Build_City(x,y,owner, radius);
+  string name = "City";
+  Build_Upgrade(name, x, y, owner);
   Get_Player_By_Id(owner)->Build_City_On_Map(x,y);
   string message = Get_Player_By_Id(owner)->Get_Full_Name() + " has settled new city of " + Get_Player_By_Id(owner)->Get_City_Name_By_Coordinates(x,y);
   Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
