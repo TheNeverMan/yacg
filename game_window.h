@@ -125,4 +125,6 @@ class Game_Window : public Gtk::Window
     void Set_Tiles_Size_Automatically();
     bool Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y);
     bool Check_Must_Border_Trait_For_Upgrades(string upg_name, int x, int y);
+    string Get_Current_Turn_By_Years();
+    void Update_Tiles_From_Game();
 };

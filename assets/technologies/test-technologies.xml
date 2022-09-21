@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<technologies>
+<technology name="Agriculture" cost="1" info="" texture="assets/textures/techs/agriculture-tech-texture.png">
+</technology>
+<technology name="Chiefdom" cost="1" info="Unlocks Despotism goverment."  texture="assets/textures/techs/chiefdom-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="military"/>
+</technology>
+<technology name="Pottery" cost="1" info="Leads to Bricks" texture="assets/textures/techs/pottery-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Animal Husbandry" cost="1" info="Unlocks Pasture upgrade." texture="assets/textures/techs/animalhusbandry-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="economic"/>
+</technology>
+<technology name="Hunting" cost="1" info="Unlocks Hunters unit." texture="assets/textures/techs/hunting-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="military"/>
+</technology>
+<technology name="Sailing" cost="1" info="Unlocks Fishing Boat upgrade." texture="assets/textures/techs/sailing-tech-texture.png">
+<requirement name="Agriculture"/>
+<trait name="naval"/>
+</technology>
+<technology name="Religion" cost="1" info="Unlocks Despotism goverment." texture="assets/textures/techs/religion-tech-texture.png">
+<requirement name="Chiefdom"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Warriors" cost="1" info="Unlocks Warriors unit." texture="assets/textures/techs/warriors-tech-texture.png">
+<requirement name="Chiefdom"/>
+<trait name="military"/>
+</technology>
+<technology name="Art" cost="1" info="" texture="assets/textures/techs/art-tech-texture.png">
+<requirement name="Pottery"/>
+</technology>
+<technology name="Bricks" cost="1" info="Unlocks City upgrade." texture="assets/textures/techs/bricks-tech-texture.png">
+<requirement name="Pottery"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Trade" cost="1" info="Gives Road upgrade trade bonus." texture="assets/textures/techs/trade-tech-texture.png">
+<requirement name="Animal Husbandry"/>
+<trait name="economic"/>
+<trait name="giveupgradetrait_Road_economybonus"/>
+</technology>
+<technology name="Archery" cost="1" info="Unlocks Archers unit." texture="assets/textures/techs/archery-tech-texture.png">
+<requirement name="Animal Husbandry"/>
+<requirement name="Hunting"/>
+<trait name="military"/>
+</technology>
+<technology name="Wheel" cost="1" info="Gives Road upgrade movement bonus." texture="assets/textures/techs/wheel-tech-texture.png">
+<requirement name="Animal Husbandry"/>
+<trait name="economic"/>
+<trait name="giveupgradetrait_Road_movementbonus"/>
+</technology>
+<technology name="Astronomy" cost="1" info="Unlocks Galley unit." texture="assets/textures/techs/astronomy-tech-texture.png">
+<requirement name="Sailing"/>
+<trait name="naval"/>
+</technology>
+<technology name="Calendar" cost="1" info="Shows ingame year." texture="assets/textures/techs/calendar-tech-texture.png">
+<requirement name="Astronomy"/>
+<trait name="unlockdate"/>
+</technology>
+<technology name="Philosophy" cost="1" info="Unlocks Republic goverment." texture="assets/textures/techs/philosophy-tech-texture.png">
+<requirement name="Religion"/>
+<trait name="economic"/>
+</technology>
+<technology name="Slavery" cost="1" info="Gives all your units Steal trait." texture="assets/textures/techs/slavery-tech-texture.png">
+<requirement name="Warriors"/>
+<trait name="military"/>
+<trait name="giveallunits_steal"/>
+</technology>
+<technology name="Horsemanship" cost="1" info="Unlocks Horsemen unit." texture="assets/textures/techs/horsemanship-tech-texture.png">
+<requirement name="Warriors"/>
+<requirement name="Animal Husbandry"/>
+<trait name="military"/>
+</technology>
+<technology name="Roads" cost="1" info="Unlocks Road upgrade." texture="assets/textures/techs/roads-tech-texture.png">
+<requirement name="Wheel"/>
+<requirement name="Bricks"/>
+<trait name="economic"/>
+</technology>
+<technology name="Writing" cost="1" info="Shows Foreign Ministry." texture="assets/textures/techs/writing-tech-texture.png">
+<requirement name="Wheel"/>
+<requirement name="Pottery"/>
+<trait name="unlockforeign"/>
+</technology>
+<technology name="Mining" cost="1" info="Unlocks Mine upgrade." texture="assets/textures/techs/mining-tech-texture.png">
+<requirement name="Trade"/>
+<trait name="economic"/>
+</technology>
+<technology name="Navigation" cost="1" info="Allows unit embarkment." texture="assets/textures/techs/navigation-tech-texture.png">
+<requirement name="Astronomy"/>
+<trait name="naval"/>
+<trait name="embarkment"/>
+</technology>
+<technology name="Mathematics" cost="1" info="Unlocks Catapults unit" texture="assets/textures/techs/mathematics-tech-texture.png">
+<requirement name="Philosophy"/>
+<trait name="military"/>
+</technology>
+<technology name="Assimilation" cost="1" info="Allows assimilation of other cultures." texture="assets/textures/techs/assimilation-tech-texture.png">
+<requirement name="Slavery"/>
+<trait name="military"/>
+<trait name="assimilation"/>
+</technology>
+<technology name="Caste System" cost="1" info="Increases your borders radius." texture="assets/textures/techs/castesystem-tech-texture.png">
+<requirement name="Slavery"/>
+<trait name="expanse"/>
+<trait name="increaseborder"/>
+</technology>
+<technology name="Chariot" cost="1" info="Unlocks Chariot unit." texture="assets/textures/techs/chariot-tech-texture.png">
+<requirement name="Wheel"/>
+<requirement name="Horsemanship"/>
+<trait name="military"/>
+</technology>
+<technology name="Trade Routes" cost="1" info="Improves Roads economic effects." texture="assets/textures/techs/traderoutes-tech-texture.png">
+<trait name="economic"/>
+<requirement name="Roads"/>
+<requirement name="Trade"/>
+<trait name="giveupgradetrait_Road_economybonus"/>
+</technology>
+<technology name="Bronze Casting" cost="1" info="Unlocks Spearmen unit." texture="assets/textures/techs/bronzecasting-tech-texture.png">
+<requirement name="Mining"/>
+<trait name="military"/>
+</technology>
+<technology name="Horde" cost="1" info="Unlocks Khanate goverment and Horse Archers unit." texture="assets/textures/techs/horde-tech-texture.png">
+<requirement name="Archery"/>
+<requirement name="Horsemanship"/>
+<trait name="military"/>
+</technology>
+<technology name="Crane" cost="1" info="Unlocks Castle upgrade." texture="assets/textures/techs/crane-tech-texture.png">
+<requirement name="Mathematics"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Construction" cost="1" info="Reduces building cost of all upgrades by one." texture="assets/textures/techs/construction-tech-texture.png">
+<requirement name="Mathematics"/>
+<trait name="economic"/>
+<trait name="reduceallupgradescost"/>
+</technology>
+<technology name="Alchemy" cost="1" info="Leads to Gunpowder" texture="assets/textures/techs/alchemy-tech-texture.png">
+<requirement name="Mathematics"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Feudalism" cost="1" info="Unlocks Monarchy goverment and Pikemen unit." texture="assets/textures/techs/feudalism-tech-texture.png">
+<requirement name="Chariot"/>
+<requirement name="Caste System"/>
+<trait name="increaseborder"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Currency" cost="1" info="" texture="assets/textures/techs/currency-tech-texture.png">
+<requirement name="Trade Routes"/>
+<trait name="economic"/>
+</technology>
+<technology name="Iron Casting" cost="1" info="Unlocks Swordsmen unit." texture="assets/textures/techs/ironcasting-tech-texture.png">
+<requirement name="Bronze Casting"/>
+<trait name="military"/>
+</technology>
+<technology name="Ports" cost="1" info="Unlocks Port upgrade." texture="assets/textures/techs/ports-tech-texture.png">
+<requirement name="Navigation"/>
+<trait name="naval"/>
+</technology>
+<technology name="Quarries" cost="1" info="Improves Mine gold production by one." texture="assets/textures/techs/quarries-tech-texture.png">
+<requirement name="Crane"/>
+<trait name="economic"/>
+<trait name="increaseupgradeproduction_Mine"/>
+</technology>
+<technology name="Siege Machines" cost="1" info="Unlocks Trebuchet unit." texture="assets/textures/techs/siegemachines-tech-texture.png">
+<requirement name="Crane"/>
+<trait name="military"/>
+</technology>
+<technology name="Mills" cost="1" info="Unlocks Mill upgrade." texture="assets/textures/techs/mills-tech-texture.png">
+<requirement name="Construction"/>
+<trait name="economic"/>
+</technology>
+<technology name="Gunpowder" cost="1" info="Unlocks Fire Lances unit." texture="assets/textures/techs/gunpowder-tech-texture.png">
+<requirement name="Alchemy"/>
+<trait name="military"/>
+</technology>
+<technology name="Metallurgy" cost="1" info="Leads to various advanced technologies." texture="assets/textures/techs/metallurgy-tech-texture.png">
+<requirement name="Alchemy"/>
+<requirement name="Iron Casting"/>
+<trait name="military"/>
+</technology>
+<technology name="Plough" cost="1" info="Improves Farm gold production by one." texture="assets/textures/techs/plough-tech-texture.png">
+<requirement name="Construction"/>
+<requirement name="Chariot"/>
+<trait name="economic"/>
+<trait name="increaseupgradeproduction_Farm"/>
+</technology>
+<technology name="Sea Shipping" cost="1" info="Unlocks Frigate unit." texture="assets/textures/techs/seashipping-tech-texture.png">
+<requirement name="Ports"/>
+<trait name="naval"/>
+</technology>
+<technology name="Compass" cost="1" info="Unlocks Caravel unit." texture="assets/textures/techs/compass-tech-texture.png">
+<requirement name="Mathematics"/>
+<requirement name="Navigation"/>
+<trait name="naval"/>
+</technology>
+<technology name="Temples" cost="1" info="Unlocks Temple upgrade." texture="assets/textures/techs/temples-tech-texture.png">
+<requirement name="Quarries"/>
+<requirement name="Art"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Bombards" cost="1" info="Unlocks Bombard unit." texture="assets/textures/techs/bombards-tech-texture.png">
+<requirement name="Gunpowder"/>
+<trait name="military"/>
+</technology>
+<technology name="Mechanisms" cost="1" info="Improves Road movement bonus by one." texture="assets/textures/techs/mechanisms-tech-texture.png">
+<requirement name="Construction"/>
+<requirement name="Metallurgy"/>
+<trait name="giveupgradetrait_Road_movementbonus"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Monks" cost="1" info="Increases research funds by 5 percent." texture="assets/textures/techs/monks-tech-texture.png">
+<requirement name="Temples"/>
+<requirement name="Writing"/>
+<trait name="economic"/>
+<trait name="increaseresearchfunds"/>
+</technology>
+<technology name="Steel" cost="1" info="Unlocks Heavy Swordsmen unit." texture="assets/textures/techs/steel-tech-texture.png">
+<requirement name="Metallurgy"/>
+<trait name="military"/>
+</technology>
+<technology name="Knighthood" cost="1" info="Unlocks Knight unit." texture="assets/textures/techs/knighthood-tech-texture.png">
+<requirement name="Feudalism"/>
+<requirement name="Steel"/>
+<trait name="military"/>
+</technology>
+<technology name="Crusades" cost="1" info="Unlocks Crusaders unit and Fundamentalism goverment." texture="assets/textures/techs/crusades-tech-texture.png">
+<requirement name="Monks"/>
+<requirement name="Knighthood"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Crossbow" cost="1" info="Unlocks Crossbowmen unit." texture="assets/textures/techs/crossbow-tech-texture.png">
+<requirement name="Mechanisms"/>
+<requirement name="Archery"/>
+<trait name="military"/>
+</technology>
+<technology name="Printing Press" cost="1" info="Leads to important goverment techs." texture="assets/textures/techs/printingpress-tech-texture.png">
+<requirement name="Alchemy"/>
+<requirement name="Monks"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Heliocentrism" cost="1" info="Increases your ships movement by two." texture="assets/textures/techs/heliocentrism-tech-texture.png">
+<requirement name="Compass"/>
+<trait name="expanse"/>
+<trait name="increasenavalunitsmovement"/>
+<trait name="increasenavalunitsmovement"/>
+</technology>
+<technology name="Rationalism" cost="1" info="Increases your border radius." texture="assets/textures/techs/rationalism-tech-texture.png">
+<requirement name="Heliocentrism"/>
+<trait name="expanse"/>
+<trait name="increaseborder"/>
+</technology>
+<technology name="Musket" cost="1" info="Unlocks Musketeers unit." texture="assets/textures/techs/musket-tech-texture.png">
+<requirement name="Bombards"/>
+<requirement name="Metallurgy"/>
+<trait name="military"/>
+</technology>
+<technology name="Newspapers" cost="1" info="Leads to Freedom of Speech" texture="assets/textures/techs/newspapers-tech-texture.png">
+<requirement name="Printing Press"/>
+<trait name="economic"/>
+<trait name="stability"/>
+</technology>
+<technology name="Steam Engine" cost="1" info="Leads to various important techs" texture="assets/textures/techs/steamengine-tech-texture.png">
+<requirement name="Rationalism"/>
+<trait name="economic"/>
+</technology>
+<technology name="Colonialism" cost="1" info="Increases Assimilation speed." texture="assets/textures/techs/colonialism-tech-texture.png">
+<requirement name="Rationalism"/>
+<requirement name="Assimilation"/>
+<trait name="expanse"/>
+<trait name="assimilation"/>
+</technology>
+<technology name="Biology" cost="1" info="Leads to Hospitals" texture="assets/textures/techs/biology-tech-texture.png">
+<requirement name="Monks"/>
+<trait name="economic"/>
+</technology>
+<technology name="Hospitals" cost="1" info="Unlocks Hospitals" texture="assets/textures/techs/hospitals-tech-texture.png">
+<requirement name="Biology"/>
+<trait name="military"/>
+</technology>
+<technology name="Chemistry" cost="1" info="Improves Mine gold production by one" texture="assets/textures/techs/chemistry-tech-texture.png">
+<requirement name="Biology"/>
+<trait name="increaseupgradeproduction_Mine"/>
+<trait name="economic"/>
+</technology>
+<technology name="Constitution" cost="1" info="Leads to important goverments." texture="assets/textures/techs/constitution-tech-texture.png">
+<requirement name="Rationalism"/>
+<trait name="economic"/>
+</technology>
+<technology name="University" cost="1" info="Increases research funds by 5 percent." texture="assets/textures/techs/agriculture-tech-texture.png">
+<requirement name="Rationalism"/>
+<trait name="increaseresearchfunds"/>
+<trait name="economic"/>
+</technology>
+<technology name="Fertilizers" cost="1" info="Increases Farm production by one." texture="assets/textures/techs/fertilizers-tech-texture.png">
+<requirement name="Chemistry"/>
+<trait name="economic"/>
+<trait name="increaseupgradeproduction_Farm"/>
+</technology>
+<technology name="Medicine" cost="1" info="Reduce City building cost by 5." texture="assets/textures/techs/medicine-tech-texture.png">
+<requirement name="Chemistry"/>
+<trait name="expanse"/>
+<trait name="reduceupgradebuildcost_City"/>
+<trait name="reduceupgradebuildcost_City"/>
+<trait name="reduceupgradebuildcost_City"/>
+<trait name="reduceupgradebuildcost_City"/>
+<trait name="reduceupgradebuildcost_City"/>
+</technology>
+<technology name="Parliamentary Monarchy" cost="1" info="Unlocks Parliamentary Monarchy goverment" texture="assets/textures/techs/parliamentarymonarchy-tech-texture.png">
+<requirement name="Constitution"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Freedom of Speech" cost="1" info="Unlocks Democracy goverment." texture="assets/textures/techs/freedomofspeech-tech-texture.png">
+<requirement name="Constitution"/>
+<trait name="economic"/>
+</technology>
+<technology name="Public Education" cost="1" info="Increases research funds by 5 percent." texture="assets/textures/techs/publiceducation-tech-texture.png">
+<requirement name="University"/>
+<trait name="increaseresearchfunds"/>
+<trait name="economic"/>
+</technology>
+<technology name="Military Schooling" cost="1" info="Unlocks Uhlans unit." texture="assets/textures/techs/militaryschooling-tech-texture.png">
+<requirement name="University"/>
+<trait name="military"/>
+</technology>
+<technology name="Cannons" cost="1" info="Unlocks Cannons unit." texture="assets/textures/techs/cannons-tech-texture.png">
+<requirement name="Musket"/>
+<trait name="military"/>
+</technology>
+<technology name="Ideology" cost="1" info="Unlocks Communism goverment." texture="assets/textures/techs/ideology-tech-texture.png">
+<requirement name="Industrialization"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Industrialization" cost="1" info="Unlocks Factory upgrade." texture="assets/textures/techs/industrialization-tech-texture.png">
+<requirement name="Steam Engine"/>
+<trait name="economic"/>
+</technology>
+<technology name="Balloons" cost="1" info="Unlocks Zeppelin unit." texture="assets/textures/techs/balloons-tech-texture.png">
+<requirement name="Steam Engine"/>
+<trait name="military"/>
+</technology>
+<technology name="Dry Dock" cost="1" info="Increases heal rate of naval units." texture="assets/textures/techs/drydock-tech-texture.png">
+<requirement name="Industrialization"/>
+<requirement name="Sea Shipping"/>
+<trait name="increasenavalhealrate"/>
+<trait name="naval"/>
+</technology>
+<technology name="Vaccines" cost="1" info="Increases heal rate of land units." texture="assets/textures/techs/vaccines-tech-texture.png">
+<requirement name="Medicine"/>
+<trait name="military"/>
+<trait name="increaselandhealrate"/>
+</technology>
+<technology name="Fascism" cost="1" info="Unlocks Dictatorship goverment." texture="assets/textures/techs/fascism-tech-texture.png">
+<requirement name="Military Schooling"/>
+<requirement name="Ideology"/>
+<trait name="military"/>
+</technology>
+<technology name="Citadel" cost="1" info="Unlocks Citadel upgrade." texture="assets/textures/techs/citadel-tech-texture.png">
+<requirement name="Military Schooling"/>
+<trait name="military"/>
+</technology>
+<technology name="Threading" cost="1" info="Unlocks Line Infantry" texture="assets/textures/techs/threading-tech-texture.png">
+<requirement name="Musket"/>
+<requirement name="Industrialization"/>
+<trait name="military"/>
+</technology>
+<technology name="Industrial Steel" cost="1" info="Reduces all upgrades building cost by one." texture="assets/textures/techs/industrialsteel-tech-texture.png">
+<requirement name="Industrialization"/>
+<trait name="economic"/>
+<trait name="reduceallupgradescost"/>
+</technology>
+<technology name="Capitalism" cost="1" info="Increases your assimilation speed." texture="assets/textures/techs/capitalism-tech-texture.png">
+<requirement name="Industrialization"/>
+<requirement name="Colonialism"/>
+<trait name="assimilation"/>
+<trait name="economic"/>
+</technology>
+<technology name="Oil" cost="1" info="Unlocks Oil Well upgrade." texture="assets/textures/techs/oil-tech-texture.png">
+<requirement name="Industrialization"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Nuclear Fission" cost="1" info="Leads to Atomic Bomb." texture="assets/textures/techs/nuclearfission-tech-texture.png">
+<requirement name="Industrialization"/>
+<requirement name="Chemistry"/>
+<trait name="military"/>
+</technology>
+<technology name="Steamships" cost="1" info="Unlocks Steamship unit." texture="assets/textures/techs/steamships-tech-texture.png">
+<requirement name="Dry Dock"/>
+<requirement name="Steam Engine"/>
+<trait name="naval"/>
+</technology>
+<technology name="Antibiotic" cost="1" info="Reduces City maitenance by one." texture="assets/textures/techs/antibiotic-tech-texture.png">
+<requirement name="Vaccines"/>
+<trait name="economic"/>
+<trait name="reduceupgrademaitenancecost_City"/>
+</technology>
+<technology name="Barbed Wire" cost="1" info="Unlocks Entrenchment upgrade." texture="assets/textures/techs/barbedwire-tech-texture.png">
+<requirement name="Citadel"/>
+<trait name="military"/>
+</technology>
+<technology name="Cavalary" cost="1" info="Unlocks Cavalry unit." texture="assets/textures/techs/cavalary-tech-texture.png">
+<requirement name="Military Schooling"/>
+<requirement name="Threading"/>
+<trait name="military"/>
+</technology>
+<technology name="Maxim Gun" cost="1" info="Unlocks Maxim Gun unit." texture="assets/textures/techs/maximgun-tech-texture.png">
+<requirement name="Threading"/>
+<trait name="military"/>
+</technology>
+<technology name="Electricity" cost="1" info="Unlocks Power Plant upgrade." texture="assets/textures/techs/electricity-tech-texture.png">
+<requirement name="Industrial Steel"/>
+<trait name="economic"/>
+</technology>
+<technology name="Railroad" cost="1" info="Unlocks Railroad upgrade." texture="assets/textures/techs/railroad-tech-texture.png">
+<requirement name="Industrial Steel"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Combustion Engine" cost="1" info="Unlocks Destroyer unit." texture="assets/textures/techs/combustionengine-tech-texture.png">
+<requirement name="Oil"/>
+<trait name="naval"/>
+<trait name="military"/>
+</technology>
+<technology name="Plastics" cost="1" info="Reduces all units maitenance by one." texture="assets/textures/techs/plastics-tech-texture.png">
+<requirement name="Oil"/>
+<requirement name="Chemistry"/>
+<trait name="military"/>
+<trait name="reduceallunitsmaitenancecost"/>
+</technology>
+<technology name="Battleships" cost="1" info="Unlocks Battleship unit." texture="assets/textures/techs/battleships-tech-texture.png">
+<requirement name="Steamships"/>
+<requirement name="Combustion Engine"/>
+<trait name="naval"/>
+</technology>
+<technology name="Submarine" cost="1" info="Unlocks Submarine unit." texture="assets/textures/techs/submarine-tech-texture.png">
+<requirement name="Plastics"/>
+<trait name="naval"/>
+</technology>
+<technology name="Infantry" cost="1" info="Unlocks Infantry unit." texture="assets/textures/techs/infantry-tech-texture.png">
+<requirement name="Threading"/>
+<trait name="military"/>
+</technology>
+<technology name="Machine Gun" cost="1" info="Unlocks Machine Gun unit." texture="assets/textures/techs/machinegun-tech-texture.png">
+<requirement name="Maxim Gun"/>
+<trait name="military"/>
+</technology>
+<technology name="Telegraph" cost="1" info="Increases Road movement bonus by one." texture="assets/textures/techs/telegraph-tech-texture.png">
+<requirement name="Electricity"/>
+<trait name="giveupgradetrait_Road_movementbonus"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Car" cost="1" info="Increases Road movement bonus by one." texture="assets/textures/techs/car-tech-texture.png">
+<requirement name="Railroad"/>
+<requirement name="Combustion Engine"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Flight" cost="1" info="Unlocks Biplane unit and Airport upgrade." texture="assets/textures/techs/plane-tech-texture.png">
+<requirement name="Balloons"/>
+<requirement name="Combustion Engine"/>
+<trait name="military"/>
+</technology>
+<technology name="Mechanized Infantry" cost="1" info="Unlocks Mechanized Infantry unit." texture="assets/textures/techs/mechanizedinfantry-tech-texture.png">
+<requirement name="Armoured Car"/>
+<requirement name="Machine Gun"/>
+<trait name="military"/>
+</technology>
+<technology name="Armoured Car" cost="1" info="Unlocks Armoured Car unit." texture="assets/textures/techs/armouredcar-tech-texture.png">
+<requirement name="Car"/>
+<trait name="military"/>
+</technology>
+<technology name="Tank" cost="1" info="Unlocks Tank unit." texture="assets/textures/techs/tank-tech-texture.png">
+<requirement name="Armoured Car"/>
+<requirement name="Machine Gun"/>
+<trait name="military"/>
+</technology>
+<technology name="Tractor" cost="1" info="Increases Farm production by one." texture="assets/textures/techs/tractor-tech-texture.png">
+<requirement name="Car"/>
+<trait name="economic"/>
+<trait name="increaseupgradeproduction_Farm"/>
+</technology>
+<technology name="Atomic bomb" cost="1" info="Unlocks Atomic Bomb unit." texture="assets/textures/techs/atomicbomb-tech-texture.png">
+<requirement name="Bomber"/>
+<requirement name="Nuclear Fission"/>
+<trait name="military"/>
+</technology>
+<technology name="Bomber" cost="1" info="Unlocks Bomber unit." texture="assets/textures/techs/bomber-tech-texture.png">
+<requirement name="Flight"/>
+<trait name="military"/>
+</technology>
+<technology name="Fighter" cost="1" info="Unlocks Fighter unit." texture="assets/textures/techs/fighter-tech-texture.png">
+<requirement name="Flight"/>
+<trait name="military"/>
+</technology>
+<technology name="Radio" cost="1" info="Increases stability in your empire." texture="assets/textures/techs/radio-tech-texture.png">
+<requirement name="Telegraph"/>
+<trait name="expanse"/>
+<trait name="stability"/>
+</technology>
+<technology name="Radar" cost="1" info="Unlocks Anti Air Gun unit." texture="assets/textures/techs/radar-tech-texture.png">
+<requirement name="Radio"/>
+<requirement name="Flight"/>
+<trait name="military"/>
+</technology>
+<technology name="Telephone" cost="1" info="Increases your border radius." texture="assets/textures/techs/telephone-tech-texture.png">
+<requirement name="Radio"/>
+<trait name="expanse"/>
+<trait name="increaseborder"/>
+</technology>
+<technology name="Reactive Armor" cost="1" info="Unlocks Modern Armour" texture="assets/textures/techs/reactivearmor-tech-texture.png">
+<requirement name="Tank"/>
+<requirement name="Computers"/>
+<trait name="military"/>
+</technology>
+<technology name="Computers" cost="1" info="Leads to many important technologies." texture="assets/textures/techs/computers-tech-texture.png">
+<requirement name="Telephone"/>
+<requirement name="Radar"/>
+<trait name="economic"/>
+</technology>
+<technology name="Nuclear Submarine" cost="1" info="Unlocks Nuclear Submarine unit." texture="assets/textures/techs/nuclearsubmarine-tech-texture.png">
+<requirement name="Atomic Bomb"/>
+<requirement name="Submarine"/>
+<trait name="naval"/>
+</technology>
+<technology name="Jet Engine" cost="1" info="Increases all flying units movement by one." texture="assets/textures/techs/jetengine-tech-texture.png">
+<requirement name="Fighter"/>
+<trait name="military"/>
+<trait name="increaseunitmovementspeed_Biplane"/>
+<trait name="increaseunitmovementspeed_Fighter"/>
+<trait name="increaseunitmovementspeed_Bomber"/>
+</technology>
+<technology name="DNA Modification" cost="1" info="Improves Pasture production by two." texture="assets/textures/techs/dnamodification-tech-texture.png">
+<requirement name="Vaccines"/>
+<trait name="economic"/>
+</technology>
+<technology name="Spaceflight" cost="1" info="Gives 200 points." texture="assets/textures/techs/spaceflights-tech-texture.png">
+<requirement name="Computers"/>
+<requirement name="Rocketry"/>
+<trait name="givepoints_300"/>
+</technology>
+<technology name="Rocketry" cost="1" info="Leads to many important technologies." texture="assets/textures/techs/rocketry-tech-texture.png">
+<requirement name="Jet Engine"/>
+<trait name="military"/>
+</technology>
+<technology name="Jetfighter" cost="1" info="Unlocks Jetfighter unit." texture="assets/textures/techs/jetfighter-tech-texture.png">
+<requirement name="Jet Engine"/>
+<trait name="military"/>
+</technology>
+<technology name="Stealth Technology" cost="1" info="Unlocks Stealh Bomber unit." texture="assets/textures/techs/stealthtechnology-tech-texture.png">
+<requirement name="Radar"/>
+<requirement name="Rocketry"/>
+<trait name="military"/>
+</technology>
+<technology name="Modern Infantry" cost="1" info="Unlocks Modern Infantry unit." texture="assets/textures/techs/moderninfantry-tech-texture.png">
+<requirement name="Reactive Armor"/>
+<requirement name="Mechanized Infantry"/>
+<trait name="military"/>
+</technology>
+<technology name="Satelites" cost="1" info="Increases movement of all your units by one." texture="assets/textures/techs/satelites-tech-texture.png">
+<requirement name="Spaceflight"/>
+<trait name="military"/>
+<trait name="increaseallunitsmovementspeed"/>
+</technology>
+<technology name="Guided Missle" cost="1" info="Unlocks Guided Missle unit." texture="assets/textures/techs/guidedmissle-tech-texture.png">
+<requirement name="Rocketry"/>
+<requirement name="Computers"/>
+<trait name="military"/>
+</technology>
+<technology name="Nuclear Plant" cost="1" info="Unlocks Nuclear Powerplant upgrade." texture="assets/textures/techs/nuclearpowerplant-tech-texture.png">
+<requirement name="Atomic Bomb"/>
+<trait name="economic"/>
+</technology>
+<technology name="GMO Farming" cost="1" info="Increases Farm production by one." texture="assets/textures/techs/gmo-tech-texture.png">
+<requirement name="DNA Modification"/>
+<trait name="economic"/>
+<trait name="increaseupgradeproduction_Farm"/>
+</technology>
+<technology name="Advanced Medicine" cost="1" info="Reduces City maitenance by one." texture="assets/textures/techs/advancedmedicine-tech-texture.png">
+<requirement name="DNA Modification"/>
+<trait name="economic"/>
+<trait name="reduceupgrademaitenancecost_City"/>
+</technology>
+<technology name="Commandos" cost="1" info="Unlocks Commando unit." texture="assets/textures/techs/commando-tech-texture.png">
+<requirement name="Mechanized Infantry"/>
+<requirement name="Satelites"/>
+<trait name="military"/>
+</technology>
+<technology name="Internet" cost="1" info="Increases your border radius." texture="assets/textures/techs/internet-tech-texture.png">
+<requirement name="Satelites"/>
+<requirement name="Advanced Anti Air"/>
+<trait name="increaseborder"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Advanced Anti Air" cost="1" info="Unlocks Mobile SAM unit." texture="assets/textures/techs/advancedantiair-tech-texture.png">
+<requirement name="Guided Missle"/>
+<trait name="military"/>
+</technology>
+<technology name="ICBM Missle" cost="1" info="Unlocks ICBM Missle unit." texture="assets/textures/techs/icbm-tech-texture.png">
+<requirement name="Guided Missle"/>
+<requirement name="Atomic Bomb"/>
+<trait name="military"/>
+</technology>
+<technology name="Rocket Artillery" cost="1" info="Unlocks Rocket Aritllery unit." texture="assets/textures/techs/rocketartillery-tech-texture.png">
+<requirement name="Guided Missle"/>
+<trait name="military"/>
+</technology>
+<technology name="Ecology" cost="1" info="Unlocks Wind Power Plant." texture="assets/textures/techs/ecology-tech-texture.png">
+<requirement name="Nuclear Plant"/>
+<requirement name="GMO Farming"/>
+<trait name="economic"/>
+</technology>
+<technology name="Social Media" cost="1" info="Increases your assimilation speed." texture="assets/textures/techs/socialmedia-tech-texture.png">
+<requirement name="Internet"/>
+<requirement name="Capitalism"/>
+<trait name="assimilation"/>
+<trait name="expanse"/>
+</technology>
+<technology name="Machine Learning" cost="1" info="Leads to future technologies." texture="assets/textures/techs/machinelearning-tech-texture.png">
+<requirement name="Internet"/>
+<trait name="economic"/>
+</technology>
+<technology name="Drones" cost="1" info="Unlocks Drones unit." texture="assets/textures/techs/drones-tech-texture.png">
+<requirement name="Machine Learning"/>
+<trait name="military"/>
+</technology>
+<technology name="Thermonuclear Energy" cost="1" info="Unlocks Thermonuclear Plant." texture="assets/textures/techs/thermonuclearplant-tech-texture.png">
+<requirement name="Machine Learning"/>
+<requirement name="Nuclear Plant"/>
+<trait name="economic"/>
+</technology>
+<technology name="Robotics" cost="1" info="Reduces cost of building upgrades by one." texture="assets/textures/techs/robotics-tech-texture.png">
+<requirement name="Machine Learning"/>
+<trait name="economic"/>
+<trait name="reduceallupgradescost"/>
+</technology>
+<technology name="Space Exploration" cost="1" info="Gives 700 points." texture="assets/textures/techs/spaceexploration-tech-texture.png">
+<requirement name="Robotics"/>
+<requirement name="Spaceflight"/>
+<trait name="givepoints_1000"/>
+</technology>
+<technology name="Automated Factory" cost="39000" info="Unlocks Atomated Factory upgrade." texture="assets/textures/techs/automatedfactory-tech-texture.png">
+<requirement name="Robotics"/>
+<trait name="economic"/>
+</technology>
+</technologies>
+</miniyacg>

@@ -71,6 +71,8 @@ void Intro_Window::Settings_Button_Clicked()
   Gtk::CheckButton Autoresize_Button = Gtk::CheckButton("Autoresize tile textures when playing on small maps to avoid tiles being spaced.");
   Gtk::Label Tile_Size_Label = Gtk::Label("Choose size of tile texture (if you play in high resolution on small maps there may be visible empty spaces between map textures if they are too small):");
   Glib::RefPtr<Gtk::Adjustment> Tile_Size_Adjustment;
+  Autosave_Button.set_active(Main_Settings_Manager.Get_Autosave_Value());
+  Autoresize_Button.set_active(Main_Settings_Manager.Get_Autoresize_Tiles_Value());
   Tile_Size_Adjustment = Gtk::Adjustment::create(Main_Settings_Manager.Get_Tile_Size_Value(),0.0,512.0,1.0,10,0.0);
   Gtk::SpinButton Tile_Size_Switch(Tile_Size_Adjustment);
   Dialog_Box->add(Dialog_Settings_Frame);

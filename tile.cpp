@@ -88,7 +88,7 @@ void Tile::Deserialize(xml_node<>* Root_Node)
 {
   movement_cost = stoi(Root_Node->first_attribute("cost")->value());
   has_unit = (bool) stoi(Root_Node->first_attribute("has_unit")->value());
-  is_buffed = (bool) stoi(Root_Node->first_attribute("is_buffed")->value());
+  upgrade = Root_Node->first_attribute("upgrade")->value();
   unit_owner_id = stoi(Root_Node->first_attribute("unit_owner_id")->value());
   is_plundered = (bool) stoi(Root_Node->first_attribute("is_plundered")->value());
 }
@@ -102,8 +102,8 @@ xml_node<>* Tile::Serialize(memory_pool<>* doc)
   Root_Node->append_attribute(Has_Unit);
   xml_attribute<> *Is_Plundered = doc->allocate_attribute("is_plundered", doc->allocate_string(to_string(is_plundered).c_str()));
   Root_Node->append_attribute(Is_Plundered);
-  xml_attribute<> *Is_Buffed = doc->allocate_attribute("is_buffed", doc->allocate_string(to_string(is_buffed).c_str()));
-  Root_Node->append_attribute(Is_Buffed);
+  xml_attribute<> *Upgrade_Name = doc->allocate_attribute("upgrade", doc->allocate_string(upgrade.c_str()));
+  Root_Node->append_attribute(Upgrade_Name);
   xml_attribute<> *Unit_Owner = doc->allocate_attribute("unit_owner_id", doc->allocate_string(to_string(unit_owner_id).c_str()));
   Root_Node->append_attribute(Unit_Owner);
   Root_Node->append_node(Serialize_Traits(doc));

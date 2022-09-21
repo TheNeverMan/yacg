@@ -20,7 +20,7 @@
 <trait name="allowflyingunitsheal"/>
 <trait name="renewflyingmovement"/>
 </upgrade>
-<upgrade name="Farm" cost="50" mait="0" prod="10" info="Famr info text" requirement="Oil" texture="assets/textures/upgrades/oilwell-upgrade-texture.png" avoid="0">
+<upgrade name="Oil Well" cost="50" mait="0" prod="10" info="Famr info text" requirement="Oil" texture="assets/textures/upgrades/oilwell-upgrade-texture.png" avoid="0">
 <tile name="Desert"/>
 <tile name="Ice"/>
 <trait name="removable"/>

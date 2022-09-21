@@ -94,7 +94,17 @@ xml_node<>* Upgrade::Serialize(memory_pool<>* doc)
 }
 
 
-void Upgrade::Reduce_Cost_By_One()
+void Upgrade::Reduce_Cost(int how_much)
 {
-  cost--;
+  cost = cost - how_much;
+}
+
+void Upgrade::Reduce_Maitenance(int how_much)
+{
+  maitenance = maitenance - how_much;
+}
+
+void Upgrade::Increase_Production_By_One()
+{
+  production++;
 }

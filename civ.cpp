@@ -348,12 +348,79 @@ void Civ::Do_Traits_Of_Researched_Tech()
   if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("givepoints"))
     points_from_technologies = points_from_technologies + stoi(Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("givepoints")[0]);
   if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceallupgradescost"))
-    for_each(Upgrades.begin(), Upgrades.end(), [](Upgrade& u){u.Reduce_Cost_By_One();});
+    for_each(Upgrades.begin(), Upgrades.end(), [](Upgrade& u){u.Reduce_Cost(1);});
   if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("giveallunits"))
   {
     string trait = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("giveallunits")[0];
     for_each(Unit_Templates.begin(), Unit_Templates.end(), [&trait](Unit& u){u.Give_Trait(trait);});
     for_each(Units_Owned.begin(), Units_Owned.end(), [&trait](Unit_On_Map& u){u.Self.Give_Trait(trait);});
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceallunitsmaitenancecost"))
+  {
+    for_each(Unit_Templates.begin(), Unit_Templates.end(), [](Unit& u){u.Reduce_Maitenance_By_One();});
+    for_each(Units_Owned.begin(), Units_Owned.end(), [](Unit_On_Map& u){u.Self.Reduce_Maitenance_By_One();});
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseallunitsmovementspeed"))
+  {
+    for_each(Unit_Templates.begin(), Unit_Templates.end(), [](Unit& u){u.Increase_Movement_By_One();});
+    for_each(Units_Owned.begin(), Units_Owned.end(), [](Unit_On_Map& u){u.Self.Increase_Movement_By_One();});
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increasenavalunitsmovement"))
+  {
+    std::vector<Unit>::iterator iter = Unit_Templates.begin();
+    while ((iter = std::find_if(iter, Unit_Templates.end(), [](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] == "naval";})) != Unit_Templates.end())
+    {
+      iter->Increase_Movement_By_One();
+      iter->Increase_Movement_By_One();
+      iter++;
+    }
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceupgradebuildcost"))
+  {
+    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("reduceupgradebuildcost")[0];
+    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Reduce_Cost(Get_Currently_Researched_Tech()->How_Many_Times_Has_Trait("reduceupgradebuildcost"));
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceupgrademaitenancecost"))
+  {
+    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("reduceupgrademaitenancecost")[0];
+    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Reduce_Maitenance(Get_Currently_Researched_Tech()->How_Many_Times_Has_Trait("reduceupgrademaitenancecost"));
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseupgradeproduction"))
+  {
+    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("increaseupgradeproduction")[0];
+    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Increase_Production_By_One();
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseunitmovementspeed"))
+  {
+    for_each(Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("increaseunitmovementspeed").begin(), Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("increaseunitmovementspeed").end(), [&](string& unit_name)
+    {
+      find_if(Unit_Templates.begin(), Unit_Templates.end(), [unit_name](Unit& u){return u.Get_Name() == unit_name;})->Increase_Movement_By_One();
+      find_if(Units_Owned.begin(), Units_Owned.end(), [unit_name](Unit_On_Map& u){return u.Self.Get_Name() == unit_name;})->Self.Increase_Movement_By_One();
+    });
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("giveupgradetrait"))
+  {
+    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("giveupgradetrait")[0];
+    string trait = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("giveupgradetrait")[1];
+    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return u.Get_Name() == name;})->Give_Trait(trait);
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increasenavalhealrate"))
+  {
+    std::vector<Unit>::iterator iter = Unit_Templates.begin();
+    while ((iter = std::find_if(iter, Unit_Templates.end(), [](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] == "naval";})) != Unit_Templates.end())
+    {
+      iter->Give_Trait("healincrease");
+      iter++;
+    }
+  }
+  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaselandhealrate"))
+  {
+    std::vector<Unit>::iterator iter = Unit_Templates.begin();
+    while ((iter = std::find_if(iter, Unit_Templates.end(), [](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] != "naval";})) != Unit_Templates.end())
+    {
+      iter->Give_Trait("healincrease");
+      iter++;
+    }
   }
 }
 
@@ -412,6 +479,11 @@ bool Civ::Is_Unit_Unlocked(string unit_name)
     return false;
   Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](Unit& i_u){return unit_name == i_u.Get_Name();});
   return Has_Tech_Been_Researched_By_Name(u.Get_First_Requirement());
+}
+
+vector<Upgrade>* Civ::Get_Upgrades()
+{
+  return &Upgrades;
 }
 
 bool Civ::Is_Unit_Obsolete(string unit_name)

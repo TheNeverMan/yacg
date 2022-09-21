@@ -277,7 +277,9 @@ vector<int> Map::Get_Netto_Income_For_Player_By_Id(int id, Civ player)
   {
     while(start_y < y)
     {
-      array<int, 2> tile_prod = Calculate_Production_For_Tile(start, start_y, id, player);
+      array<int, 2> tile_prod {0,0};
+      if(Get_Owner(start,start_y) == id && (Get_Upgrade(start,start_y) != "none" || Get_Upgrade(start,start_y) != "plundered"))
+        tile_prod = Calculate_Production_For_Tile(start, start_y, id, player);
       out[0] = out[0] + tile_prod[0];
       out[1] = out[1] + tile_prod[1];
       start_y++;
