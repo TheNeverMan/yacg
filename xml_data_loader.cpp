@@ -65,6 +65,41 @@ vector<Tile> XML_Data_Loader::Load_Tiles_From_File(string path)
   return out;
 }
 
+vector<string> XML_Data_Loader::Load_Tips_From_File(string path)
+{
+  Logger::Log_Info("Loading XML Tips Data From " + path);
+  vector<string> out;
+  xml_document<> doc;
+  vector<char> buffer = Load_File(path);
+  doc.parse<0>(&buffer[0]);
+  xml_node<>* Root_Node = doc.first_node();
+  if(Root_Node == nullptr)
+  {
+    Logger::Log_Error("Loading Tips Data failed!");
+    return out;
+  }
+  xml_node<>* tips_node = Root_Node->first_node("tips");
+  for(xml_node<> * tip_node = tips_node->first_node("tip"); tip_node; tip_node = tip_node->next_sibling("tip"))
+  {
+    string tip = tip_node->value();
+    out.push_back(tip);
+  }
+  return out;
+}
+
+vector<string> XML_Data_Loader::Load_Tips()
+{
+  Logger::Log_Info("Loading XML Tips Data..." );
+  vector<string> out;
+  for(auto& file : Get_Files_In_Directory("tips"))
+  {
+    vector<string> tmp = Load_Tips_From_File(file.path());
+    out.insert( out.end(), tmp.begin(), tmp.end() );
+  }
+  Logger::Log_Info("XML Tips Data Loaded!" );
+  return out;
+}
+
 vector<string> XML_Data_Loader::Load_Traits_From_Root_Node(xml_node<>* Root_Node)
 {
   vector<string> out;

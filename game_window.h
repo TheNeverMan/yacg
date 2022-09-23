@@ -25,6 +25,7 @@
 #include "tech_dialog.h"
 #include "goverment_dialog.h"
 #include "newspaper_dialog.h"
+#include "tips_manager.h"
 
 class Window_Manager;
 
@@ -59,6 +60,8 @@ class Game_Window : public Gtk::Window
     Gtk::Button Newspaper_Button;
     Gtk::Button Quit_Button;
     Gtk::Button Help_Button;
+    Gtk::Button Random_Tip_Button;
+    Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
     vector<Gtk::Box*> Map_Images;
     Gtk::Label ProgressBar_Label;
@@ -85,11 +88,14 @@ class Game_Window : public Gtk::Window
     void Plunder_Tile(int x, int y);
     void Fix_Tile(int x, int y);
     void Detonate_Atomic_Bomb(int x, int y);
+    void Show_Random_Tip();
+    void Show_Tip();
   private:
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
     bool is_delete_of_game_necessary= false;
     Map_Generator_Data Map_Data;
+    Tips_Manager Main_Tips_Manager;
     void Update_Action_Buttons(int x, int y);
     void Update_Unit_Action_Buttons(int x, int y);
     void Update_Tile_Action_Buttons(int x, int y);

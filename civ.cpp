@@ -8,7 +8,7 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   Active_Goverment = Goverments[0];
   city_name_index = 0;
   id = 0;
-  gold = 20;
+  gold = 45;
   research_percent = 50;
   Leaders = l;
   int leader_id = rand() % Leaders.size();
@@ -16,7 +16,7 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   Leaders.erase(Leaders.begin() + leader_id);
   max_actions = 0;
   Upgrades = us;
-  current_actions = 1;
+  current_actions = 2;
   points_from_technologies = 0;
   City_Names = c_n;
   Tech_Tree = t_t;
@@ -639,6 +639,8 @@ bool Civ::Has_Researched_Border_Expand_Tech_Recently()
 
 string Civ::Get_Capital_Name()
 {
+  if(Cities.size() == 0)
+    return "exile";
   return Cities[0].name;
 }
 

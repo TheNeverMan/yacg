@@ -18,16 +18,30 @@ Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry")
   {
     auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     auto *image = Gtk::make_managed<Gtk::Image>();
-    auto *label = Gtk::make_managed<Gtk::Label>(player.Get_Full_Name() + " (" + player.Get_Leader_Name() + ") " + " ID: " + to_string(index) + " Points: " + to_string(player.Get_Score()) + " Army Size: " + to_string(player.Get_Army_Manpower()) + " Population: " + to_string(player.Get_Population()));
+    auto *Name_Label = Gtk::make_managed<Gtk::Label>(player.Get_Full_Name() + " (" + player.Get_Leader_Name() + ") " + " ID: " + to_string(index));
+    auto *Points_Label = Gtk::make_managed<Gtk::Label>(" Points: " + to_string(player.Get_Score()));
+    auto *Army_Label = Gtk::make_managed<Gtk::Label>(" Army Size: " + to_string(player.Get_Army_Manpower()));
+    auto *Population_Label = Gtk::make_managed<Gtk::Label>(" Population: " + to_string(player.Get_Population()));
+    auto *Capital_Label = Gtk::make_managed<Gtk::Label>(" Capital: " + player.Get_Capital_Name());
+
+
     Glib::RefPtr<Gdk::Pixbuf> color_pix;
     color_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
     color_pix->fill(player.Get_Civ_Color());
     image->set(color_pix);
     box->pack_start(*image, Gtk::PACK_SHRINK);
-    box->pack_start(*label);
+    box->pack_start(*Name_Label);
+    box->pack_start(*Points_Label);
+    box->pack_start(*Army_Label);
+    box->pack_start(*Population_Label);
+    box->pack_start(*Capital_Label);
     Main_Provider.Add_CSS(box);
     Main_Provider.Add_CSS(image);
-    Main_Provider.Add_CSS(label);
+    Main_Provider.Add_CSS(Name_Label);
+    Main_Provider.Add_CSS(Points_Label);
+    Main_Provider.Add_CSS(Army_Label);
+    Main_Provider.Add_CSS(Population_Label);
+    Main_Provider.Add_CSS(Points_Label);
     Civs_List_Box->pack_start(*box);
     index++;
   }

@@ -15,6 +15,7 @@ Settings_Manager::Settings_Manager(string p_t_f)
     Logger::Log_Warning("Falling back to default values!");
     autosave = false;
     tile_size = 32;
+    show_random_tip_on_startup = true;
   }
   file.close();
 }
@@ -35,7 +36,8 @@ void Settings_Manager::Load_Data_From_XML()
   doc.parse<0>(&buffer[0]);
   xml_node<> *Settings_Node = doc.first_node()->first_node("settings");
   autosave = static_cast<bool>(stoi(Settings_Node->first_node("autosave")->value()));
-  autoresize = autosave = static_cast<bool>(stoi(Settings_Node->first_node("autoresize")->value()));
+  autoresize = static_cast<bool>(stoi(Settings_Node->first_node("autoresize")->value()));
+  show_random_tip_on_startup = static_cast<bool>(stoi(Settings_Node->first_node("startup_tip")->value()));
   tile_size = stoi(Settings_Node->first_node("tile_size")->value());
   Logger::Log_Info("XML Settings Data Loaded!" );
 }
@@ -51,6 +53,8 @@ void Settings_Manager::Write_To_File()
   Settings_Node->append_node(Autosave_Node);
   xml_node<>* Autoresize_Node = doc.allocate_node(node_element, "autoresize", doc.allocate_string(to_string(autoresize).c_str()));
   Settings_Node->append_node(Autoresize_Node);
+  xml_node<>* Startup_Tip_Node = doc.allocate_node(node_element, "startup_tip", doc.allocate_string(to_string(show_random_tip_on_startup).c_str()));
+  Settings_Node->append_node(Startup_Tip_Node);
   xml_node<>* Tile_Size_Node = doc.allocate_node(node_element, "tile_size", doc.allocate_string(to_string(tile_size).c_str()));
   Settings_Node->append_node(Tile_Size_Node);
   doc.append_node(Root_Node);
@@ -73,6 +77,17 @@ void Settings_Manager::Set_Autosave_Value(bool a)
 {
   autosave = a;
 }
+
+bool Settings_Manager::Get_Random_Tip_On_Startup_Value()
+{
+  return show_random_tip_on_startup;
+}
+
+void Settings_Manager::Set_Random_Tip_On_Startup_Value(bool a)
+{
+  show_random_tip_on_startup = a;
+}
+
 
 void Settings_Manager::Set_Tile_Size_Value(int t_s)
 {

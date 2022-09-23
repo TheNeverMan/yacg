@@ -65,7 +65,7 @@ class Map : public XML_Serializable
     void Claim_Tiles_In_Radius(int x, int y, int owner, int radius);
     void Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player);
     Tile* Get_Tile_Pointer(int x, int y);
-    void Unclaim_All_Player_Tiles(int player);
+    vector<array<int, 2>> Unclaim_All_Player_Tiles(int player);
     vector<int> Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_x, int dest_y, Unit u);
     vector<int> Find_Owned_Tile_For_Upgrade(int owner_id, string upg_name);
     int Count_Tiles_Owned_By_Player(int owner, string tile_name);

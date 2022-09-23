@@ -226,7 +226,6 @@ void Game_Window::Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, i
   }
   string message = upg_name + " built sucessfully!";
   int radius = Main_Game.Get_Player_By_Id(owner)->Get_Upgrade_Border_Radius();
-  Main_Game.Get_Player_By_Id(owner)->Build_Upgrade(upg_name);
   if(upg_name == "City")
   {
     Main_Game.Build_City(x,y,owner, radius);
@@ -906,6 +905,16 @@ void Game_Window::Show_Help_Message()
   dialog.run();
 }
 
+void Game_Window::Show_Random_Tip()
+{
+  Main_Tips_Manager.Show_Random_Tip();
+}
+
+void Game_Window::Show_Tip()
+{
+  Main_Tips_Manager.Show_Tip_In_Order();
+}
+
 void Game_Window::Initialize_GTK()
 {
   Last_Clicked_Tile = nullptr;
@@ -937,6 +946,8 @@ void Game_Window::Initialize_GTK()
   Load_Button = Gtk::Button("Load Game");
   Quit_Button = Gtk::Button("Exit To Main Menu");
   Help_Button = Gtk::Button("Help");
+  Random_Tip_Button = Gtk::Button("Random Tip");
+  Tip_Button = Gtk::Button("Tip");
   Map_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   UI_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   End_Turn_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
@@ -966,6 +977,8 @@ void Game_Window::Initialize_GTK()
   UI_Root_Box.pack_start(Save_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Load_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Quit_Button, Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start(Tip_Button, Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start(Random_Tip_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Help_Button, Gtk::PACK_SHRINK);
   Map_Root_Box.pack_start(Map_Frame);
   Map_Root_Box.pack_start(ProgressBar_Label, Gtk::PACK_SHRINK);
@@ -984,6 +997,8 @@ void Game_Window::Initialize_GTK()
   Newspaper_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Newspaper_Clicked) );
   Quit_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Exit_To_Main_Menu) );
   Help_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Help_Message) );
+  Random_Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Random_Tip) );
+  Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Tip) );
   Main_Provider.Add_CSS(this);
   Main_Provider.Add_CSS(&End_Turn_Button);
   Main_Provider.Add_CSS(&Map_Update_Button);
@@ -997,6 +1012,8 @@ void Game_Window::Initialize_GTK()
   Main_Provider.Add_CSS(&Newspaper_Button);
   Main_Provider.Add_CSS(&Quit_Button);
   Main_Provider.Add_CSS(&Help_Button);
+  Main_Provider.Add_CSS(&Tip_Button);
+  Main_Provider.Add_CSS(&Random_Tip_Button);
   Set_Tiles_Size_Automatically();
   Generate_Map_View();
   show_all_children();
@@ -1005,7 +1022,8 @@ void Game_Window::Initialize_GTK()
   Update_Map();
   Update_Labels();
   Show_Intro_Message();
-
+  if(Main_Settings_Manager.Get_Random_Tip_On_Startup_Value())
+    Main_Tips_Manager.Show_Random_Tip();
 }
 
 void Game_Window::Set_Tiles_Size_Automatically()

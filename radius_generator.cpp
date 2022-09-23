@@ -6,6 +6,17 @@ Radius_Generator::Radius_Generator(int x, int y)
   y_size = y;
 }
 
+Radius_Generator::Radius_Generator()
+{
+
+}
+
+void Radius_Generator::Set_Size(int x, int y)
+{
+  x_size = x;
+  y_size = y;
+}
+
 bool Radius_Generator::Is_Out_Of_Bounds(int x, int y)
 {
   if(x >= x_size || y >= y_size)

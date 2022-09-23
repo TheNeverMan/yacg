@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Pueblo" r="255" g="216" b="0" personality="Enterprising">
+<info>
+Puebloans or Pueblo Indians are Native American tribes group in the Southwestern
+USA. They are commonly know for building pueblo settlements and maize cultivating.
+In 1680 they have led rebellion againt spanish conquistadors.
+
+Puebloan traits are Agricultural and Economic, to represent unique type of pueblo
+settlements.
+
+Puebloan leaders include leaders of Pueblo Revolt.
+Pueblo color is yellow from New Mexico flag.
+</info>
+<leader name="Tupi"/>
+<leader name="Emory Sekaquaptewa"/>
+<leader name="Popé"/>
+<leader name="Galisteo"/>
+<leader name="Walatowa"/>
+<leader name="Nambé"/>
+<leader name="Ku-htihth"/>
+<leader name="Powhogeh"/>
+<leader name="Ohkay"/>
+<leader name="San Lazaro"/>
+<leader name="Khapo"/>
+<leader name="Kewa"/>
+<leader name="Teotho"/>
+<leader name="Tehsugeh"/>
+<leader name="Luis Tupatu"/>
+<trait name="A"/>
+<trait name="E"/>
+<city name="Ohkay Owingeh"/>
+<city name="Cochiti"/>
+<city name="Galisteo"/>
+<city name="Jemez"/>
+<city name="Picuris"/>
+<city name="Ciervo Blanco"/>
+<city name="San Juan"/>
+<city name="Nambe"/>
+<city name="Santo Domingo"/>
+<city name="Taos"/>
+<city name="Tesuque"/>
+<city name="Astialakwa"/>
+<city name="Acoma"/>
+<city name="Hopi"/>
+<city name="Zuni"/>
+<city name="Laguna"/>
+<city name="Santa Ana"/>
+<city name="Zia"/>
+<city name="Kewa"/>
+<city name="San Felipe"/>
+<city name="Santa Clara"/>
+<city name="Pojoaque"/>
+<city name="Sandia"/>
+<city name="Isleta"/>
+<city name="San Ildefonso"/>
+<city name="Ysleta der Sur"/>
+<city name="Tigua"/>
+<city name="Piro"/>
+<city name="Firecracker Pueblo"/>
+<city name="Tompiro"/>
+<city name="Tiwa"/>
+<city name="Keres"/>
+<city name="Acacagua"/>
+<city name="Mogollon"/>
+<city name="Tano"/>
+<city name="Atica"/>
+<city name="Aychini"/>
+<city name="Baguacat"/>
+<city name="Bandelier"/>
+<city name="Campos"/>
+<city name="Caceres"/>
+<city name="Heshotathluptsina"/>
+<city name="Wijiji"/>
+<city name="Wachte"/>
+<city name="Arroyo Hondo"/>
+<city name="Upper Arroyo Hondo"/>
+<city name="Una Vida"/>
+<city name="Tyuonyi"/>
+<city name="Casa Montezuma"/>
+<city name="Tsirege"/>
+<city name="Tsin Kletzin"/>
+<city name="Casa Blanca"/>
+<city name="Tsankawi"/>
+<city name="Castildavid"/>
+<city name="Casa del Eco"/>
+<city name="Tonque"/>
+<city name="Tom's Rock"/>
+<city name="Alameda"/>
+<city name="Tijeras"/>
+<city name="Teypana"/>
+<city name="Burnt Corn"/>
+<city name="Tarque"/>
+<city name="Starkweather"/>
+<city name="Apache Creek"/>
+<city name="Senecu"/>
+<city name="Santiago"/>
+<city name="San Rafael de los Gentiles"/>
+<city name="San Pascual"/>
+<city name="San Marcos"/>
+<city name="Salmon Ruins"/>
+<city name="Robledo Mountain"/>
+<city name="Abó"/>
+<city name="San Lazaro"/>
+<city name="San Cristobal"/>
+<city name="Quarai"/>
+<city name="Puye"/>
+<city name="Pueblo Viejo "/>
+<city name="Pintado"/>
+<city name="Pueblo Pardo"/>
+<city name="Pueblo Largo"/>
+<city name="Chipiinuinge"/>
+<city name="Canador Peak"/>
+<city name="Crumbled House"/>
+<city name="Goesling Ranch"/>
+<city name="Pueblo de los Muertos"/>
+<city name="Pueblo Galisteo"/>
+<city name="Gallo Cliff Dwelling"/>
+<city name="Halfway House Outlier"/>
+<city name="Hawikuh"/>
+<city name="Kechipbowa"/>
+<city name="Pueblo Caja del Rio"/>
+<city name="Gila"/>
+<city name="Great Kivas"/>
+<city name="Puaray"/>
+<city name="Embree"/>
+<city name="Pueblo del Arroyo"/>
+<city name="Cox Ranch"/>
+<city name="Hungo Pavi"/>
+<city name="Pueblo Alto"/>
+<city name="Kin Cheops"/>
+<city name="Pueblo de la Parida"/>
+<city name="Kin Kletso"/>
+<city name="Pueblo Bonito"/>
+<city name="Gran Quivira"/>
+<city name="Pueblo de los Silos"/>
+<city name="Houiri"/>
+<city name="Kin Klizhin"/>
+<city name="Cristone"/>
+<city name="Kin Nahasbas"/>
+<city name="Pueblo Blanco"/>
+<city name="Kintyel"/>
+<city name="Kin Ya'a"/>
+<city name="Pueblo de los Jumanos"/>
+<city name="Kuaua"/>
+<city name="Kyaki:ma"/>
+<city name="La Cienega"/>
+<city name="Pueblo del Alto"/>
+<city name="Las Madres"/>
+<city name="East Community"/>
+<city name="Pueblo del Encierro"/>
+</civ>
+</civs>
+</miniyacg>

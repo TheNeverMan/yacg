@@ -29,6 +29,7 @@ class XML_Data_Loader
     vector<Upgrade> Load_Upgrades_From_File(string path);
     vector<Tech> Load_Techs_From_File(string path);
     vector<string> Load_Traits_From_Root_Node(xml_node<>* Root_Node);
+    vector<string> Load_Tips_From_File(string path);
   public:
     XML_Data_Loader(string p_t_x);
     vector<Civ> Load_Civs();
@@ -37,4 +38,5 @@ class XML_Data_Loader
     vector<Unit> Load_Units();
     vector<Upgrade> Load_Upgrades();
     vector<Tech> Load_Techs();
+    vector<string> Load_Tips();
 };

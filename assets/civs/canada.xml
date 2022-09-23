@@ -3,11 +3,11 @@
 <civs>
 <civ name="Canada" r="213" g="43" b="30" personality="Peaceful">
 <info>
-Canada is country located in North America. It is second-largest country in the world. It belongs 
+Canada is country located in North America. It is second-largest country in the world. It belongs
 to Commonwealth and King of United Kingdom is formal leader of Canada. It is highly developed country
 relying on internation trade networks as its main money source.
 
-Canadian traits are Commerical and Cultural, to represent the peaceful process of Patriation and 
+Canadian trait is Commerical, to represent the peaceful process of Patriation and
 its trade based economy.
 
 Canadian leaders include canadian prime ministers.
@@ -26,7 +26,6 @@ Canadian color is red from its flag.
 <leader name="Brian Mulroney"/>
 <leader name="Sir Robert Borden"/>
 <leader name="Justin Trudeau"/>
-<trait name="C"/>
 <trait name="O"/>
 <city name="Ottawa"/>
 <city name="Quebec City"/>

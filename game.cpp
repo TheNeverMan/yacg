@@ -47,6 +47,7 @@ void Game::Build_Upgrade(string name, int x, int y, int player_id)
   if(u.How_Many_Times_Has_Trait("borderexpand") == 0)
     radius = 0;
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
+  Get_Player_By_Id(player_id)->Build_Upgrade(name);
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
 }
 
@@ -203,12 +204,14 @@ void Game::Check_For_Dead_Players()
     {
       //remove player
       Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!");
-      Get_Map()->Unclaim_All_Player_Tiles(index);
+      vector<array<int, 2>> tmp = Get_Map()->Unclaim_All_Player_Tiles(index);
+      Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       vector<Unit_On_Map> *units = Get_Player_By_Id(index)->Get_Owned_Units();
       for(auto &unit : *units)
       {
         Get_Map()->Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y)->Remove_Unit_From_Tile();
         Get_Player_By_Id(index)->Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
+        Tiles_To_Update.push_back({unit.Coordinates.x, unit.Coordinates.y});
       }
       Eliminated_Players_List.push_back(index);
     }
@@ -238,6 +241,7 @@ void Game::Recruit_Unit(string u, int x, int y)
 {
   Get_Map()->Get_Tile_Pointer(x,y)->Put_Unit_On_Tile(Get_Currently_Moving_Player_Id());
   Get_Currently_Moving_Player()->Recruit_Unit_By_Name(u,x,y);
+  Tiles_To_Update.push_back({x,y});
 }
 
 
@@ -323,6 +327,7 @@ void Game::Remove_All_Missle_Units()
       {
         Get_Player_By_Id(Get_Map()->Get_Tile(unit.Coordinates.x,unit.Coordinates.y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
         Get_Map()->Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y)->Remove_Unit_From_Tile();
+        Tiles_To_Update.push_back({unit.Coordinates.x, unit.Coordinates.y});
       }
     }
   }
@@ -364,6 +369,8 @@ bool Game::End_Player_Turn()
   if(autosave && !Is_Currently_Moving_Player_AI())
     Save_Game("autosave.sav");
   Start_Turn_Of_Currently_Moving_Player();
+  if(All_Humans_Are_Eliminated())
+    return false;
   return true;
 }
 
@@ -434,6 +441,7 @@ void Game::Plunder_Tile(int x, int y)
 {
   Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Increase_Current_Movement(-1);
   Get_Map()->Plunder_Tile(x,y);
+  Tiles_To_Update.push_back({x,y});
 }
 
 void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
@@ -496,12 +504,26 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
     {
       is_map_update_necesary = true;
       Get_Map()->Change_Tile_Owner(dest_x, dest_y, unit_owner_id);
+      vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(dest_x, dest_y, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius());
       Get_Map()->Retake_Owner_In_Radius_From(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius(), tile_owner_id);
+      Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
       {
+        string message;
+        bool capital = false;
+        if(Get_Player_By_Id(tile_owner_id)->Get_City_Name_By_Coordinates(dest_x, dest_y) == Get_Player_By_Id(tile_owner_id)->Get_Capital_Name())
+        {
+          message = "Capital of " + Get_Player_By_Id(tile_owner_id)->Get_Full_Name() + " has been conquered! Goverment moves to ";
+          capital = true;
+        }
+        else
+        {
+          message = Get_Player_By_Id(unit_owner_id)->Get_Full_Name() + " has conquered " + Get_Player_By_Id(tile_owner_id)->Get_City_Name_By_Coordinates(dest_x, dest_y);
+        }
         string city_name = Get_Player_By_Id(tile_owner_id)->Lose_City_By_Coords(dest_x, dest_y);
         Get_Player_By_Id(unit_owner_id)->Build_City_On_Map_With_Name(dest_x, dest_y, city_name);
-        string message = Get_Player_By_Id(unit_owner_id)->Get_Full_Name() + " has conquered " + city_name;
+        if(capital)
+          message = message + Get_Player_By_Id(tile_owner_id)->Get_Capital_Name();
         Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
         Logger::Log_Info(message + " X: " + to_string(dest_x) + " Y: " + to_string(dest_y));
       }
@@ -523,6 +545,8 @@ void Game::Detonate_Atomic_Bomb(int x, int y)
 {
   Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
   Disband_Unit(x,y);
+  vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);
+  Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
   if(Get_Map()->Get_Tile(x+1,y).Has_Unit())
     Disband_Unit(x+1,y);
   if(Get_Map()->Get_Tile(x+1,y-1).Has_Unit())
@@ -572,8 +596,9 @@ string Game::Get_Current_Turn_By_Years()
   return out;
 }
 
-Game::Game(xml_node<>* Root_Node) : Game_Map(Root_Node->first_node("map")), Main_Radius_Generator(Get_Map()->Get_X_Size(), Get_Map()->Get_Y_Size())
+Game::Game(xml_node<>* Root_Node) : Game_Map(Root_Node->first_node("map"))
 {
+  Main_Radius_Generator.Set_Size(Get_Map()->Get_X_Size(), Get_Map()->Get_Y_Size());
   Logger::Log_Info("Deserializing Game...");
   Deserialize(Root_Node);
 }
@@ -858,6 +883,7 @@ void Game::Disband_Unit(int x, int y)
 {
   Get_Map()->Get_Tile_Pointer(x,y)->Remove_Unit_From_Tile();
   Get_Currently_Moving_Player()->Remove_Unit_By_Coords(x,y);
+  Tiles_To_Update.push_back({x,y});
 }
 
 vector<Civ> Game::Get_Players()

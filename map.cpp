@@ -650,23 +650,28 @@ void Map::Retake_Owner_In_Radius(int x, int y, int owner, int radius)
   }
 }
 
-void Map::Unclaim_All_Player_Tiles(int player)
+vector<array<int, 2>> Map::Unclaim_All_Player_Tiles(int player)
 {
   int x = Get_X_Size();
   int y = Get_Y_Size();
   int start = 0;
+  vector<array<int, 2>> out;
   int start_y = 0;
   while(start < x)
   {
     while(start_y < y)
     {
       if(Get_Owner(start, start_y) == player)
+      {
         Change_Tile_Owner(start, start_y, 0);
+        out.push_back({start, start_y});
+      }
       start_y++;
     }
     start++;
     start_y = 0;
   }
+  return out;
 }
 
 double Map::Get_Defense_Bonus_For_Tile(int x, int y)

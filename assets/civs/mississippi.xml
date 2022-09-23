@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Mississippi" r="209" g="12" b="41" personality="Enterprising">
+<info>
+Mississippian Culture is native north american culture that existed from 1600 BC to
+1450 AD. It emerged in Mississippian River Valley, but then expanded to surrounding
+territories and divided into different subgroups. It is known the most for building
+of huge platform mounds. Not much else in known about this culture.
+
+Mississippian traits are Agricultural and Agricultural, to represent its enormous
+platform mounds.
+
+Mississippian leaders include Natchez chiefs.
+Mississippian color is red from Natchez Tribe flag.
+</info>
+  <replacement name="Tribe" leader="Paramount Chief" state_name="Culture of"/>
+  <leader name="Birdman"/>
+  <leader name="Obalalkabiche"/>
+  <leader name="Yak-stalchil"/>
+  <leader name="Bras Piqué"/>
+  <leader name="White Woman"/>
+  <trait name="A"/>
+  <trait name="A"/>
+  <city name="Cahokia"/>
+  <city name="Kincaid"/>
+  <city name="Angel Mounds"/>
+  <city name="Moundville"/>
+  <city name="Parkin"/>
+  <city name="Etowah"/>
+  <city name="Ocmulgee"/>
+  <city name="Spiro"/>
+  <city name="Annis"/>
+  <city name="Tolu"/>
+  <city name="Towosahgy"/>
+  <city name="Wickliffe"/>
+  <city name="Chucalissa"/>
+  <city name="Shiloh"/>
+  <city name="Obion"/>
+  <city name="Sponemann"/>
+  <city name="Florence"/>
+  <city name="Mound Bottom"/>
+  <city name="Castalian Springs"/>
+  <city name="Sellars"/>
+  <city name="Corbin"/>
+  <city name="Citico"/>
+  <city name="Town Creek"/>
+  <city name="Nacooches"/>
+  <city name="Rembert"/>
+  <city name="Irene"/>
+  <city name="Hobbs Island"/>
+  <city name="Bessemer"/>
+  <city name="Bottle Creek"/>
+  <city name="Fort Walton"/>
+  <city name="Lake Jackson"/>
+  <city name="Letchworth"/>
+  <city name="Manson's Plantation"/>
+  <city name="Menard-Hodges"/>
+  <city name="Winterville"/>
+  <city name="Holly Bluff"/>
+  <city name="Emerald"/>
+  <city name="Medora"/>
+  <city name="Battle Mound"/>
+  <city name="Belcher"/>
+  <city name="Gahagan"/>
+  <city name="Caddoan Mounds"/>
+  <city name="Fox Farm"/>
+  <city name="Clay Mound"/>
+  <city name="Feurt"/>
+  <city name="Baum"/>
+  <city name="Sunwatch"/>
+  <city name="Hobson"/>
+  <city name="Dickson"/>
+  <city name="Atzalan"/>
+  <city name="Carajou Point"/>
+  <city name="Mills Village"/>
+  <city name="Cloverdale"/>
+  <city name="Pacaha"/>
+  <city name="Casqui"/>
+  <city name="Joara"/>
+  <city name="Adams"/>
+  <city name="Annis"/>
+  <city name="Adamson"/>
+  <city name="Wilbanks"/>
+  <city name="Welborn"/>
+  <city name="Ware Mounds"/>
+  <city name="Twin Mounds"/>
+  <city name="Taskigi"/>
+  <city name="Talley Mounds"/>
+  <city name="Turk"/>
+  <city name="Swallow Bluff"/>
+  <city name="Summerour Mound"/>
+  <city name="Sugarloaf"/>
+  <city name="Starr"/>
+  <city name="Slack Farm"/>
+  <city name="Sixtoe Mound"/>
+  <city name="Rowlandton Mound"/>
+  <city name="Riverview Mounds"/>
+  <city name="Punk Rock Shelter"/>
+  <city name="Battle Mound"/>
+  <city name="Beasley"/>
+  <city name="Beaverdam Creek"/>
+  <city name="Bell Field Mound"/>
+  <city name="Boyd Mounds"/>
+  <city name="Brentwood"/>
+  <city name="Brick Church Mound"/>
+  <city name="Bussell Island"/>
+  <city name="Caddoan Mounds"/>
+  <city name="Campbell"/>
+  <city name="Chucalissa"/>
+  <city name="Cloverdale"/>
+  <city name="Denmark Mound"/>
+  <city name="Castalian Springs"/>
+  <city name="Chauga"/>
+  <city name="Crystal River"/>
+  <city name="Dyar"/>
+  <city name="Eaker"/>
+  <city name="Emmons"/>
+  <city name="Fewkes"/>
+  <city name="Garden Creek"/>
+  <city name="Hoojah Branch"/>
+  <city name="Hovey Lake-Klein"/>
+  <city name="Jaketown"/>
+  <city name="Jere Shine"/>
+  <city name="Joe Bell"/>
+  <city name="Jordan Mounds"/>
+  <city name="King's Site"/>
+  <city name="Lamar Mounds"/>
+  <city name="Letchworth Mounds"/>
+  <city name="Lake Jackson Mounds"/>
+  <city name="Liddell Site"/>
+  <city name="Little Egypt"/>
+  <city name="Long Swamp"/>
+  <city name="Mangum"/>
+  <city name="Mandeville"/>
+  <city name="Marshall Site"/>
+  <city name="Menard-Hodges Site"/>
+  <city name="Mound Bottom"/>
+  <city name="Mitchell Site"/>
+  <city name="Nikwasi"/>
+  <city name="Moundville"/>
+  <city name="Murphy Mound"/>
+  <city name="Nacoochee"/>
+  <city name="Murphy"/>
+  </civ>
+</civs>
+</miniyacg>

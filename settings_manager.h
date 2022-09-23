@@ -17,12 +17,15 @@ class Settings_Manager
     int tile_size;
     string path_to_file;
     bool autoresize;
+    bool show_random_tip_on_startup;
     void Load_Data_From_XML();
   public:
     Settings_Manager(string p_t_f);
     Settings_Manager();
     bool Get_Autosave_Value();
     bool Get_Autoresize_Tiles_Value();
+    bool Get_Random_Tip_On_Startup_Value();
+    void Set_Random_Tip_On_Startup_Value(bool s);
     void Set_Autoresize_Tiles_Value(bool a);
     int Get_Tile_Size_Value();
     void Set_Autosave_Value(bool a);

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <technologies>
-<technology name="Agriculture" cost="1" info="" texture="assets/textures/techs/agriculture-tech-texture.png">
+<technology name="Agriculture" cost="0" info="" texture="assets/textures/techs/agriculture-tech-texture.png">
 </technology>
 <technology name="Chiefdom" cost="1" info="Unlocks Despotism goverment."  texture="assets/textures/techs/chiefdom-tech-texture.png">
 <requirement name="Agriculture"/>

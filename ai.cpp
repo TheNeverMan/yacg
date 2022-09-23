@@ -36,8 +36,7 @@ bool AI::Build_Random_Producing_Upgrade()
           vector<int> out = Main_Game->Get_Map()->Find_Owned_Tile_For_Upgrade(Main_Game->Get_Currently_Moving_Player_Id(), upg.Get_Name());
           if(out[0] == -1)
             return false;
-          Main_Game->Get_Map()->Build_Upgrade(upg, out[0], out[1], Main_Game->Get_Currently_Moving_Player_Id(), Main_Game->Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius());
-          Main_Game->Get_Currently_Moving_Player()->Build_Upgrade(upg.Get_Name());
+          Main_Game->Build_Upgrade(upg.Get_Name(), out[0], out[1], Main_Game->Get_Currently_Moving_Player_Id());
           return true;
         }
       }
@@ -195,7 +194,7 @@ void AI::Change_Goverment_To_More_Advanced_One()
     }
     index++;
   }
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Active_Goverment_Name() != govs[chosen_gov].Get_Name())
+  if(Main_Game->Get_Currently_Moving_Player()->Get_Active_Goverment_Name() != govs[chosen_gov].Get_Name() && govs[chosen_gov].Get_Name() != "Tribe")
     Main_Game->Change_Goverment_For_Currently_Moving_Player_By_Name(govs[chosen_gov].Get_Name());
 }
 

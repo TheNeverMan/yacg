@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Venice" r="170" g="0" b="0" personality="Enterprising">
+<info>
+Venice or Most Serene Republic of Venice was italian city-state that exitsten from
+697 to 1797. During it existence it had controlled different territories besides its
+capital. It was maritime trade oriented country which grew to european trade
+superpower.
+
+Venetian traits are Scientific and Expansive, to represent its trading power and its
+Enlightement legacy.
+
+Venetian leaders include Doges of Venice.
+Venetian color is red from flag of Venetian Republic.
+</info>
+  <replacement name="Republic" leader="Doge" state_name="Most Serene Republic of"/>
+  <leader name="Paolo Lucio Anafesto"/>
+  <leader name="Orso Ipato"/>
+  <leader name="Marcello Tegalliano"/>
+  <leader name="Domenico Leoni"/>
+  <leader name="Teodato Ipato"/>
+  <leader name="Orso II Participazio"/>
+  <leader name="Enrico Dandolo"/>
+  <leader name="Domenico Morosini"/>
+  <leader name="Francesco Foscari"/>
+  <leader name="Ludovico Manin"/>
+  <trait name="S"/>
+  <trait name="E"/>
+  <city name="Venice"/>
+  <city name="Trieste"/>
+  <city name="Muggia"/>
+  <city name="Capodistria"/>
+  <city name="Isola"/>
+  <city name="Pirano"/>
+  <city name="Umago"/>
+  <city name="Montona d'Istria"/>
+  <city name="Cittanova d'Istria"/>
+  <city name="Parenzo"/>
+  <city name="Rovigno"/>
+  <city name="San Lorenso"/>
+  <city name="Valle"/>
+  <city name="Dignano"/>
+  <city name="Pola"/>
+  <city name="Albona"/>
+  <city name="Fianona"/>
+  <city name="Pisino"/>
+  <city name="Fiume"/>
+  <city name="Cherso"/>
+  <city name="Lussino"/>
+  <city name="Veglia"/>
+  <city name="Arbe"/>
+  <city name="Pago"/>
+  <city name="Novegradi"/>
+  <city name="Nona"/>
+  <city name="Zara"/>
+  <city name="Zaravecia"/>
+  <city name="Aurana"/>
+  <city name="Ugliano"/>
+  <city name="Sebenego"/>
+  <city name="Trau"/>
+  <city name="Spalato"/>
+  <city name="Clissa"/>
+  <city name="Almissa"/>
+  <city name="Lissa"/>
+  <city name="Brazza"/>
+  <city name="Macarsca"/>
+  <city name="Lesina"/>
+  <city name="Curzola"/>
+  <city name="Obrovazzo"/>
+  <city name="Bencovazzo"/>
+  <city name="Scardona"/>
+  <city name="Verlicca"/>
+  <city name="Signo"/>
+  <city name="Tenin"/>
+  <city name="Imoschi"/>
+  <city name="Vergorazzo"/>
+  <city name="Porto Narenta"/>
+  <city name="Ragus"/>
+  <city name="Castelnuovo"/>
+  <city name="Risano"/>
+  <city name="Cattaro"/>
+  <city name="Perasto"/>
+  <city name="Santo Stefano"/>
+  <city name="Budua"/>
+  <city name="Spizza"/>
+  <city name="Antivari"/>
+  <city name="Dulcigno"/>
+  <city name="Scutari"/>
+  <city name="Drivasto"/>
+  <city name="Alessio"/>
+  <city name="Durazzo"/>
+  <city name="Canina"/>
+  <city name="Valona"/>
+  <city name="Butrinto"/>
+  <city name="Trani"/>
+  <city name="Mola di Bari"/>
+  <city name="Polignano a Mare"/>
+  <city name="Monopoli"/>
+  <city name="Otranto"/>
+  <city name="Gallipoli"/>
+  <city name="Brindisi"/>
+  <city name="Passo"/>
+  <city name="Corfu"/>
+  <city name="Parga"/>
+  <city name="Prevesa"/>
+  <city name="Arta"/>
+  <city name="Vonizza"/>
+  <city name="Santa Maura"/>
+  <city name="Cefalonia"/>
+  <city name="Itaca"/>
+  <city name="Zante"/>
+  <city name="Lepanto"/>
+  <city name="Salona"/>
+  <city name="Morea"/>
+  <city name="Patraso"/>
+  <city name="Navarino"/>
+  <city name="Modone"/>
+  <city name="Corone"/>
+  <city name="Braccio della Maina"/>
+  <city name="Malvasia"/>
+  <city name="Argo"/>
+  <city name="Napoli di Romana"/>
+  <city name="Cergio"/>
+  <city name="Cergiotto"/>
+  <city name="La Canea"/>
+  <city name="Retimo"/>
+  <city name="Sitia"/>
+  <city name="Suda"/>
+  </civ>
+</civs>
+</miniyacg>
