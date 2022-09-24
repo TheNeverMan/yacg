@@ -13,12 +13,14 @@
 #include "xml_serializable.h"
 #include "logger.h"
 #include "civ.h"
+#include "radius_generator.h"
 
 using namespace std;
 
 class Map : public XML_Serializable
 {
   private:
+    Radius_Generator Main_Radius_Generator;
     vector<vector<Owned_Tile>> Game_Map;
     vector<Tile> Tiles;
     vector<Upgrade> Upgrades;
@@ -63,7 +65,7 @@ class Map : public XML_Serializable
     double Get_Defense_Bonus_For_Tile(int x, int y);
     void Claim_Tile(int x, int y, int owner);
     void Claim_Tiles_In_Radius(int x, int y, int owner, int radius);
-    void Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player);
+    vector<array<int,2>> Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player);
     Tile* Get_Tile_Pointer(int x, int y);
     vector<array<int, 2>> Unclaim_All_Player_Tiles(int player);
     vector<int> Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_x, int dest_y, Unit u);

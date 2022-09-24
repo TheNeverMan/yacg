@@ -1022,6 +1022,15 @@ void Game_Window::Initialize_GTK()
   Update_Map();
   Update_Labels();
   Show_Intro_Message();
+  if(Main_Game.Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockforeign"))
+    Show_Civs_Button.set_sensitive(true);
+  else
+    Show_Civs_Button.set_sensitive(false);
+  Clear_Action_Buttons();
+  if(Main_Game.Get_Currently_Moving_Player()->Get_Max_Actions() == Main_Game.Get_Currently_Moving_Player()->Get_Current_Actions())
+    Manage_Goverments_Button.set_sensitive(true);
+  else
+    Manage_Goverments_Button.set_sensitive(false);
   if(Main_Settings_Manager.Get_Random_Tip_On_Startup_Value())
     Main_Tips_Manager.Show_Random_Tip();
 }

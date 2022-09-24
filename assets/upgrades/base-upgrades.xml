@@ -20,6 +20,13 @@
 <trait name="allowflyingunitsheal"/>
 <trait name="renewflyingmovement"/>
 </upgrade>
+<upgrade name="Missle Silo" cost="60" mait="13" prod="0" info="Famr info text" requirement="Atomic Bomb" texture="assets/textures/upgrades/misslesilo-upgrade-texture.png" avoid="0">
+<tile name="Land"/>
+<trait name="removable"/>
+<trait name="recruit_missle"/>
+<trait name="allowflyingunitsheal"/>
+<trait name="renewflyingmovement"/>
+</upgrade>
 <upgrade name="Oil Well" cost="50" mait="0" prod="10" info="Famr info text" requirement="Oil" texture="assets/textures/upgrades/oilwell-upgrade-texture.png" avoid="0">
 <tile name="Desert"/>
 <tile name="Ice"/>

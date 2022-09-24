@@ -35,7 +35,7 @@ bool AI::Build_Random_Producing_Upgrade()
         {
           vector<int> out = Main_Game->Get_Map()->Find_Owned_Tile_For_Upgrade(Main_Game->Get_Currently_Moving_Player_Id(), upg.Get_Name());
           if(out[0] == -1)
-            return false;
+            continue;
           Main_Game->Build_Upgrade(upg.Get_Name(), out[0], out[1], Main_Game->Get_Currently_Moving_Player_Id());
           return true;
         }
@@ -154,7 +154,7 @@ void AI::Move_All_Units_Not_In_Cities_Away_From_Borders()
 void AI::Move_Unit_Away_From_Borders(Unit_On_Map unit)
 {
 
-  vector<int> out = Main_Game->Get_Map()->Find_Direction_Away_From_Borders(Main_Game->Get_Currently_Moving_Player_Id(), unit.Coordinates.x, unit.Coordinates.y, unit.Self.Get_Current_Actions(), unit.Self);
+  vector<int> out = Main_Game->Get_Map()->Find_Direction_To_Settle_City(Main_Game->Get_Currently_Moving_Player_Id(), unit.Coordinates.x, unit.Coordinates.y, unit.Self);
   if(out[0] == 1)
     Main_Game->Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(unit.Coordinates.x, unit.Coordinates.y, out[2], out[3], out[1], (bool) out[4], out[5], out[6]);
 
@@ -355,7 +355,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
   }
   Data.expanse_parameter = Data.expanse_parameter + expanse_increase;
   int expanse_parameter = Data.expanse_parameter;
-  int economy_goal = 15; //gold per city
+  int economy_goal = 18; //gold per city
   int military_goal = 2; //units per city
   int tech_goal = 2; //techs per city
   int naval_goal = 1; //units per 5 water tiles
@@ -383,9 +383,13 @@ AI_Data AI::Process_Turn(AI_Data Data)
   economy_parameter = economy_goal - Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count;
   technologic_parameter = tech_goal - Main_Game->Get_Currently_Moving_Player()->Get_Number_Of_Researched_Techs() / city_count;
   technologic_parameter = technologic_parameter * 5;
+  if(technologic_parameter < 0)
+    technologic_parameter = 2;
   military_parameter = military_goal - Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size() / city_count;
   military_parameter = military_parameter * 3;
-  naval_parameter = Main_Game->Get_Map()->Count_Tiles_Owned_By_Player(Main_Game->Get_Currently_Moving_Player_Id(), "Sea") / (Main_Game->Get_Currently_Moving_Player()->Get_Number_Of_Naval_Units() + 1);
+  naval_parameter = Main_Game->Get_Map()->Count_Tiles_Owned_By_Player(Main_Game->Get_Currently_Moving_Player_Id(), "Sea") / (Main_Game->Get_Map()->Count_Tiles_Owned_By_Player(Main_Game->Get_Currently_Moving_Player_Id(), "Land") + 1);
+  if(personality == "Exploring")
+    naval_parameter *= 2;
   int tech_class = Find_Biggest_Parameter({economy_parameter, military_parameter, naval_parameter, expanse_parameter});
   Change_Goverment_If_Necessary();
   technologic_parameter = Change_Technology_Goal(technologic_parameter, tech_class);
@@ -428,7 +432,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
       {
         naval_parameter = 0;
         bool loop = true;
-        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(naval_goal <= static_cast<int>(Main_Game->Get_Map()->Count_Tiles_Owned_By_Player(Main_Game->Get_Currently_Moving_Player_Id(), "Sea") / (Main_Game->Get_Currently_Moving_Player()->Get_Number_Of_Naval_Units() + 1)) && loop))
+        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(military_goal <= static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size() / city_count)) && loop)
         {
           if(economy_goal <= Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count)
             Build_Naval_Producing_Upgrades();
@@ -473,6 +477,6 @@ AI_Data AI::Process_Turn(AI_Data Data)
     Move_All_Units_Not_In_Cities_To_Enemy();
   }
 
-  Main_Game->Get_Currently_Moving_Player()->Set_Research_Funds_Percentage((double) technologic_parameter * 7.0);
+  Main_Game->Get_Currently_Moving_Player()->Set_Research_Funds_Percentage((double) technologic_parameter * 7.0 + 10);
   return Data;
 }

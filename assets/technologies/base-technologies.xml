@@ -22,6 +22,7 @@
 <technology name="Sailing" cost="50" info="Unlocks Fishing Boat upgrade." texture="assets/textures/techs/sailing-tech-texture.png">
 <requirement name="Agriculture"/>
 <trait name="naval"/>
+<trait name="expanse"/>
 </technology>
 <technology name="Religion" cost="90" info="Unlocks Despotism goverment." texture="assets/textures/techs/religion-tech-texture.png">
 <requirement name="Chiefdom"/>

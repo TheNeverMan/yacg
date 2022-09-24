@@ -9,6 +9,7 @@ Map::Map(vector<Tile> t, vector<Upgrade> u)
 
 void Map::Set_Size(int x, int y)
 {
+  Main_Radius_Generator.Set_Size(x,y);
   int start = 0;
   while(start < x)
   {
@@ -103,87 +104,9 @@ void Map::Claim_Tile(int x, int y, int owner)
 
 void Map::Claim_Tiles_In_Radius(int x, int y, int owner, int radius)
 {
-  if(radius > 0)
-  {
-    Claim_Tile(x-1,y,owner);
-    Claim_Tile(x,y-1,owner);
-    Claim_Tile(x+1,y,owner);
-    Claim_Tile(x,y+1,owner);
-  }
-  if(radius > 1)
-  {
-    Claim_Tile(x-1,y-1,owner);
-    Claim_Tile(x-1,y+1,owner);
-    Claim_Tile(x+1,y-1,owner);
-    Claim_Tile(x+1,y+1,owner);
-  }
-  if(radius > 2)
-  {
-    Claim_Tile(x-2,y,owner);
-    Claim_Tile(x,y-2,owner);
-    Claim_Tile(x+2,y,owner);
-    Claim_Tile(x,y+2,owner);
-  }
-  if(radius > 3)
-  {
-    Claim_Tile(x-2,y+1,owner);
-    Claim_Tile(x+1,y-2,owner);
-    Claim_Tile(x+2,y+1,owner);
-    Claim_Tile(x+1,y+2,owner);
-    Claim_Tile(x-2,y-1,owner);
-    Claim_Tile(x-1,y-2,owner);
-    Claim_Tile(x+2,y-1,owner);
-    Claim_Tile(x-1,y+2,owner);
-    Claim_Tile(x-2,y-2,owner);
-    Claim_Tile(x+2,y-2,owner);
-    Claim_Tile(x+2,y+2,owner);
-    Claim_Tile(x-2,y+2,owner);
-  }
-  if(radius > 4)
-  {
-    Claim_Tile(x+3,y+1,owner);
-    Claim_Tile(x+3,y,owner);
-    Claim_Tile(x+3,y-1,owner);
-    Claim_Tile(x-3,y+1,owner);
-    Claim_Tile(x-3,y-1,owner);
-    Claim_Tile(x-3,y,owner);
-    Claim_Tile(x+1,y+3,owner);
-    Claim_Tile(x-1,y+3,owner);
-    Claim_Tile(x,y+3,owner);
-    Claim_Tile(x+1,y-3,owner);
-    Claim_Tile(x-1,y-3,owner);
-    Claim_Tile(x,y-3,owner);
-  }
-  if(radius > 5)
-  {
-    Claim_Tile(x+3,y+3,owner);
-    Claim_Tile(x+3,y+2,owner);
-    Claim_Tile(x+3,y-3,owner);
-    Claim_Tile(x+3,y-2,owner);
-    Claim_Tile(x-3,y-3,owner);
-    Claim_Tile(x-3,y-2,owner);
-    Claim_Tile(x-3,y+3,owner);
-    Claim_Tile(x-3,y+2,owner);
-    Claim_Tile(x-2,y+3,owner);
-    Claim_Tile(x-2,y-3,owner);
-    Claim_Tile(x+2,y-3,owner);
-    Claim_Tile(x+2,y+3,owner);
-  }
-  if(radius > 6)
-  {
-    Claim_Tile(x+4,y+1,owner);
-    Claim_Tile(x+4,y,owner);
-    Claim_Tile(x+4,y-1,owner);
-    Claim_Tile(x-4,y+1,owner);
-    Claim_Tile(x-4,y-1,owner);
-    Claim_Tile(x-4,y,owner);
-    Claim_Tile(x+1,y+4,owner);
-    Claim_Tile(x-1,y+4,owner);
-    Claim_Tile(x,y+4,owner);
-    Claim_Tile(x+1,y-4,owner);
-    Claim_Tile(x-1,y-4,owner);
-    Claim_Tile(x,y-4,owner);
-  }
+  vector<array<int, 2>> Tiles_To_Claim = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
+  for(auto& Tile : Tiles_To_Claim)
+    Claim_Tile(Tile[0],Tile[1],owner);
 }
 
 void Map::Build_City(int x, int y, int owner,int radius)
@@ -319,12 +242,13 @@ Tile* Map::Get_Tile_Pointer(int x, int y)
   return &Game_Map[x][y].Place;
 }
 
-void Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player)
+vector<array<int,2>> Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player)
 {
   int x = Get_X_Size();
   int y = Get_Y_Size();
   int start = 0;
   int start_y = 0;
+  vector<array<int,2>> out;
   while(start < x)
   {
       while(start_y < y)
@@ -332,13 +256,18 @@ void Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player
         if(Get_Owner(start, start_y) == owner)
         {
           if(player.Find_Upgrade_By_Name(Get_Tile(start, start_y).Get_Upgrade()).Has_Trait("borderexpand"))
+          {
+            vector<array<int,2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(start, start_y, radius);
+            out.insert(out.end(), tmp.begin(), tmp.end());
             Claim_Tiles_In_Radius(start, start_y, owner, radius);
+          }
         }
         start_y++;
       }
       start_y = 0;
       start++;
   }
+  return out;
 }
 void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 {
@@ -482,172 +411,16 @@ void Map::Retake_Tile_From(int x, int y, int owner, int former_owner_id)
 
 void Map::Retake_Owner_In_Radius_From(int x, int y, int owner, int radius, int former_owner_id)
 {
-  if(radius > 0)
-  {
-    Retake_Tile_From(x-1,y,owner,former_owner_id);
-    Retake_Tile_From(x,y-1,owner,former_owner_id);
-    Retake_Tile_From(x+1,y,owner,former_owner_id);
-    Retake_Tile_From(x,y+1,owner,former_owner_id);
-  }
-  if(radius > 1)
-  {
-    Retake_Tile_From(x-1,y-1,owner,former_owner_id);
-    Retake_Tile_From(x-1,y+1,owner,former_owner_id);
-    Retake_Tile_From(x+1,y-1,owner,former_owner_id);
-    Retake_Tile_From(x+1,y+1,owner,former_owner_id);
-  }
-  if(radius > 2)
-  {
-    Retake_Tile_From(x-2,y,owner,former_owner_id);
-    Retake_Tile_From(x,y-2,owner,former_owner_id);
-    Retake_Tile_From(x+2,y,owner,former_owner_id);
-    Retake_Tile_From(x,y+2,owner,former_owner_id);
-  }
-  if(radius > 3)
-  {
-    Retake_Tile_From(x-2,y+1,owner,former_owner_id);
-    Retake_Tile_From(x+1,y-2,owner,former_owner_id);
-    Retake_Tile_From(x+2,y+1,owner,former_owner_id);
-    Retake_Tile_From(x+1,y+2,owner,former_owner_id);
-    Retake_Tile_From(x-2,y-1,owner,former_owner_id);
-    Retake_Tile_From(x-1,y-2,owner,former_owner_id);
-    Retake_Tile_From(x+2,y-1,owner,former_owner_id);
-    Retake_Tile_From(x-1,y+2,owner,former_owner_id);
-    Retake_Tile_From(x-2,y-2,owner,former_owner_id);
-    Retake_Tile_From(x+2,y-2,owner,former_owner_id);
-    Retake_Tile_From(x+2,y+2,owner,former_owner_id);
-    Retake_Tile_From(x-2,y+2,owner,former_owner_id);
-  }
-  if(radius > 4)
-  {
-    Retake_Tile_From(x+3,y+1,owner,former_owner_id);
-    Retake_Tile_From(x+3,y,owner,former_owner_id);
-    Retake_Tile_From(x+3,y-1,owner,former_owner_id);
-    Retake_Tile_From(x-3,y+1,owner,former_owner_id);
-    Retake_Tile_From(x-3,y-1,owner,former_owner_id);
-    Retake_Tile_From(x-3,y,owner,former_owner_id);
-    Retake_Tile_From(x+1,y+3,owner,former_owner_id);
-    Retake_Tile_From(x-1,y+3,owner,former_owner_id);
-    Retake_Tile_From(x,y+3,owner,former_owner_id);
-    Retake_Tile_From(x+1,y-3,owner,former_owner_id);
-    Retake_Tile_From(x-1,y-3,owner,former_owner_id);
-    Retake_Tile_From(x,y-3,owner,former_owner_id);
-  }
-  if(radius > 5)
-  {
-    Retake_Tile_From(x+3,y+3,owner,former_owner_id);
-    Retake_Tile_From(x+3,y+2,owner,former_owner_id);
-    Retake_Tile_From(x+3,y-3,owner,former_owner_id);
-    Retake_Tile_From(x+3,y-2,owner,former_owner_id);
-    Retake_Tile_From(x-3,y-3,owner,former_owner_id);
-    Retake_Tile_From(x-3,y-2,owner,former_owner_id);
-    Retake_Tile_From(x-3,y+3,owner,former_owner_id);
-    Retake_Tile_From(x-3,y+2,owner,former_owner_id);
-    Retake_Tile_From(x-2,y+3,owner,former_owner_id);
-    Retake_Tile_From(x-2,y-3,owner,former_owner_id);
-    Retake_Tile_From(x+2,y-3,owner,former_owner_id);
-    Retake_Tile_From(x+2,y+3,owner,former_owner_id);
-  }
-  if(radius > 6)
-  {
-    Retake_Tile_From(x+4,y+1,owner,former_owner_id);
-    Retake_Tile_From(x+4,y,owner,former_owner_id);
-    Retake_Tile_From(x+4,y-1,owner,former_owner_id);
-    Retake_Tile_From(x-4,y+1,owner,former_owner_id);
-    Retake_Tile_From(x-4,y-1,owner,former_owner_id);
-    Retake_Tile_From(x-4,y,owner,former_owner_id);
-    Retake_Tile_From(x+1,y+4,owner,former_owner_id);
-    Retake_Tile_From(x-1,y+4,owner,former_owner_id);
-    Retake_Tile_From(x,y+4,owner,former_owner_id);
-    Retake_Tile_From(x+1,y-4,owner,former_owner_id);
-    Retake_Tile_From(x-1,y-4,owner,former_owner_id);
-    Retake_Tile_From(x,y-4,owner,former_owner_id);
-  }
+  vector<array<int, 2>> Tiles_To_Retake_Owner = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
+  for(auto& Tile : Tiles_To_Retake_Owner)
+    Retake_Tile_From(Tile[0],Tile[1],owner,former_owner_id);
 }
 
 void Map::Retake_Owner_In_Radius(int x, int y, int owner, int radius)
 {
-  if(radius > 0)
-  {
-    Retake_Tile(x-1,y,owner);
-    Retake_Tile(x,y-1,owner);
-    Retake_Tile(x+1,y,owner);
-    Retake_Tile(x,y+1,owner);
-  }
-  if(radius > 1)
-  {
-    Retake_Tile(x-1,y-1,owner);
-    Retake_Tile(x-1,y+1,owner);
-    Retake_Tile(x+1,y-1,owner);
-    Retake_Tile(x+1,y+1,owner);
-  }
-  if(radius > 2)
-  {
-    Retake_Tile(x-2,y,owner);
-    Retake_Tile(x,y-2,owner);
-    Retake_Tile(x+2,y,owner);
-    Retake_Tile(x,y+2,owner);
-  }
-  if(radius > 3)
-  {
-    Retake_Tile(x-2,y+1,owner);
-    Retake_Tile(x+1,y-2,owner);
-    Retake_Tile(x+2,y+1,owner);
-    Retake_Tile(x+1,y+2,owner);
-    Retake_Tile(x-2,y-1,owner);
-    Retake_Tile(x-1,y-2,owner);
-    Retake_Tile(x+2,y-1,owner);
-    Retake_Tile(x-1,y+2,owner);
-    Retake_Tile(x-2,y-2,owner);
-    Retake_Tile(x+2,y-2,owner);
-    Retake_Tile(x+2,y+2,owner);
-    Retake_Tile(x-2,y+2,owner);
-  }
-  if(radius > 4)
-  {
-    Retake_Tile(x+3,y+1,owner);
-    Retake_Tile(x+3,y,owner);
-    Retake_Tile(x+3,y-1,owner);
-    Retake_Tile(x-3,y+1,owner);
-    Retake_Tile(x-3,y-1,owner);
-    Retake_Tile(x-3,y,owner);
-    Retake_Tile(x+1,y+3,owner);
-    Retake_Tile(x-1,y+3,owner);
-    Retake_Tile(x,y+3,owner);
-    Retake_Tile(x+1,y-3,owner);
-    Retake_Tile(x-1,y-3,owner);
-    Retake_Tile(x,y-3,owner);
-  }
-  if(radius > 5)
-  {
-    Retake_Tile(x+3,y+3,owner);
-    Retake_Tile(x+3,y+2,owner);
-    Retake_Tile(x+3,y-3,owner);
-    Retake_Tile(x+3,y-2,owner);
-    Retake_Tile(x-3,y-3,owner);
-    Retake_Tile(x-3,y-2,owner);
-    Retake_Tile(x-3,y+3,owner);
-    Retake_Tile(x-3,y+2,owner);
-    Retake_Tile(x-2,y+3,owner);
-    Retake_Tile(x-2,y-3,owner);
-    Retake_Tile(x+2,y-3,owner);
-    Retake_Tile(x+2,y+3,owner);
-  }
-  if(radius > 6)
-  {
-    Retake_Tile(x+4,y+1,owner);
-    Retake_Tile(x+4,y,owner);
-    Retake_Tile(x+4,y-1,owner);
-    Retake_Tile(x-4,y+1,owner);
-    Retake_Tile(x-4,y-1,owner);
-    Retake_Tile(x-4,y,owner);
-    Retake_Tile(x+1,y+4,owner);
-    Retake_Tile(x-1,y+4,owner);
-    Retake_Tile(x,y+4,owner);
-    Retake_Tile(x+1,y-4,owner);
-    Retake_Tile(x-1,y-4,owner);
-    Retake_Tile(x,y-4,owner);
-  }
+  vector<array<int, 2>> Tiles_To_Retake = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
+  for(auto& Tile : Tiles_To_Retake)
+    Retake_Tile(Tile[0],Tile[1],owner);
 }
 
 vector<array<int, 2>> Map::Unclaim_All_Player_Tiles(int player)
@@ -864,7 +637,6 @@ vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, i
   int x_border = x + (unit_movement * x_dir);
   int y_border = y + (unit_movement * y_dir);
   int y_base = y;
-
   while(x != x_border)
   {
     if(Is_Tile_Out_Of_Bounds(x,y))
@@ -875,7 +647,7 @@ vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, i
         break;
       if(Get_Owner(x,y) == owner && u.Can_Move_On_Tile_By_Name(Get_Tile(x,y).Get_Name()) && (tile_type == "any" || tile_type == Get_Tile(x,y).Get_Name()))
         out.push_back({x,y});
-      y = y_base;
+      y = y + y_dir;
     }
     x = x + x_dir;
     y = y_base;
@@ -932,7 +704,7 @@ vector<array<int, 2>> Map::Find_In_One_Direction_To_Enemy_City_Or_Unit(int owner
         break;
       if(((Get_Tile(x,y).Has_Unit() && Get_Tile(x,y).Get_Unit_Owner_Id() != owner) || (owner != Get_Owner(x,y) && Get_Tile(x,y).Get_Upgrade() == "City")) && u.Can_Move_On_Tile_By_Name(Get_Tile(x,y).Get_Name()))
         out.push_back({x,y});
-      y = y_base;
+      y = y + y_dir;
     }
     x = x + x_dir;
     y = y_base;
@@ -948,11 +720,11 @@ vector<int> Map::Find_Direction_To_Enemy_City_Or_Unit(int unit_owner_id, int x, 
   vector<array<int, 2>> points;
   vector<array<int, 2>> tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
   points.insert(points.end(), tmp.begin(), tmp.end());
-  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
+  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, -1, u);
   points.insert(points.end(), tmp.begin(), tmp.end());
-  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
+  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, -1, 1, u);
   points.insert(points.end(), tmp.begin(), tmp.end());
-  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
+  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, -1, -1, u);
   points.insert(points.end(), tmp.begin(), tmp.end());
   array<int, 2> closest_point = Get_Closest_Point(x, y, points);
   return Check_If_Path_For_Unit_Exists(x,y,closest_point[0], closest_point[1], u);

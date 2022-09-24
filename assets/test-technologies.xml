@@ -56,6 +56,7 @@
 <technology name="Astronomy" cost="1" info="Unlocks Galley unit." texture="assets/textures/techs/astronomy-tech-texture.png">
 <requirement name="Sailing"/>
 <trait name="naval"/>
+<trait name="expanse"/>
 </technology>
 <technology name="Calendar" cost="1" info="Shows ingame year." texture="assets/textures/techs/calendar-tech-texture.png">
 <requirement name="Astronomy"/>

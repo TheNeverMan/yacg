@@ -366,7 +366,6 @@ void Game_Creation_Window::Add_Players_From_Vector(vector<string> Players_To_Add
       {
         int random = rand() % Civilizations.size();
         string n = Civilizations[random].Get_Raw_Name();
-        cout << n << endl;
         Players.push_back({n, Is_AI});
         if(! Allow_Duplicate_Civs_Button.get_active())
           Civilizations.erase(Civilizations.begin() + random);

@@ -144,7 +144,7 @@ Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> play
   Logger::Log_Info("XML Data Loaded!" );
   Add_Players(players);
   Generate_Map(Map_Data, load_starting_positions);
-
+  Main_Radius_Generator.Set_Size(Get_Map()->Get_X_Size(), Get_Map()->Get_Y_Size());
   autosave = a;
   for(auto &player : Players)
   {
@@ -340,7 +340,8 @@ bool Game::End_Player_Turn()
   Get_Currently_Moving_Player()->End_Turn(income);
   if(Get_Currently_Moving_Player()->Has_Researched_Border_Expand_Tech_Recently())
   {
-    Get_Map()->Recalculate_Borders_For_Player_By_Id(Get_Currently_Moving_Player_Id(), Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius(), *Get_Currently_Moving_Player());
+    vector<array<int,2>> tmp = Get_Map()->Recalculate_Borders_For_Player_By_Id(Get_Currently_Moving_Player_Id(), Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius(), *Get_Currently_Moving_Player());
+    Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
   }
 
   Check_For_Dead_Players();
