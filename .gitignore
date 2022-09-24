@@ -2,3 +2,4 @@
 *.o
 miniyacg-config-settings.xml
 yacg
+*.log

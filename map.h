@@ -23,8 +23,8 @@ class Map : public XML_Serializable
     vector<Tile> Tiles;
     vector<Upgrade> Upgrades;
     Upgrade Find_Upgrade_By_Name_In_Vector(string n, vector<Upgrade> u);
-    array<int, 2> Find_Closest_Tile_Owned_By_One_Direction(int owner, int x, int y, int depth, int x_dir, int y_dir, Unit u);
-    array<int, 2> Find_In_One_Direction_To_Enemy_City_Or_Unit(int owner, int x, int y, int depth, int x_dir, int y_dir, Unit u);
+    vector<array<int, 2>> Find_Closest_Tile_Owned_By_One_Direction(int owner, int x, int y, int x_dir, int y_dir, Unit u, string tile_type);
+    vector<array<int, 2>> Find_In_One_Direction_To_Enemy_City_Or_Unit(int owner, int x, int y, int x_dir, int y_dir, Unit u);
     int Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y);
     array<int, 2> Get_Closest_Point(int x, int y, vector<array<int ,2>> points);
     bool Is_Tile_Out_Of_Bounds(int x, int y);
@@ -69,7 +69,9 @@ class Map : public XML_Serializable
     vector<int> Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_x, int dest_y, Unit u);
     vector<int> Find_Owned_Tile_For_Upgrade(int owner_id, string upg_name);
     int Count_Tiles_Owned_By_Player(int owner, string tile_name);
-    array<int, 2> Find_Closest_Tile_Owned_By(int owner, int x, int y, int depth, Unit u);
+    array<int, 2> Find_Closest_Tile_Owned_By(int owner, int x, int y, Unit u, string tile_type);
     vector<int> Find_Direction_Away_From_Borders(int owner, int x, int y, int movement_points, Unit u);
     vector<int> Find_Direction_To_Enemy_City_Or_Unit(int unit_owner_id, int x, int y, int movement_points, Unit u);
+    vector<array<int, 2>> Find_All_Upgrade_Locations(int owner, string upg_name);
+    vector<int> Find_Direction_To_Settle_City(int owner, int x, int y, Unit u);
 };

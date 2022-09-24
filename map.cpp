@@ -855,93 +855,126 @@ bool Map::Is_Tile_Out_Of_Bounds(int x, int y)
   return false;
 }
 
-array<int ,2> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, int x, int y, int depth, int x_dir, int y_dir, Unit u)
+vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, int x, int y, int x_dir, int y_dir, Unit u, string tile_type)
 {
-  depth--;
-  array<int, 2> out;
-  out[0] = x;
-  out[1] = y;
-  if(depth <= 0)
-    return {10000, 10000};
+  vector<array<int, 2>> out;
+  int unit_movement = u.Get_Current_Actions();
   if(Is_Tile_Out_Of_Bounds(x,y))
-    return {10000, 100000};
-  if(! u.Can_Move_On_Tile_By_Name(Get_Tile(x,y).Get_Name()))
-    return {10000, 10000};
-  if(owner == Get_Owner(x,y))
     return out;
-  vector<array<int, 2>> points;
-  if(x_dir != 0)
-    points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x+x_dir, y, depth, x_dir, y_dir, u));
-  if(y_dir != 0)
-    points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x, y+y_dir, depth, x_dir, y_dir, u));
-  return Get_Closest_Point(x, y, points);
+  int x_border = x + (unit_movement * x_dir);
+  int y_border = y + (unit_movement * y_dir);
+  int y_base = y;
+
+  while(x != x_border)
+  {
+    if(Is_Tile_Out_Of_Bounds(x,y))
+      break;
+    while(y != y_border)
+    {
+      if(Is_Tile_Out_Of_Bounds(x,y))
+        break;
+      if(Get_Owner(x,y) == owner && u.Can_Move_On_Tile_By_Name(Get_Tile(x,y).Get_Name()) && (tile_type == "any" || tile_type == Get_Tile(x,y).Get_Name()))
+        out.push_back({x,y});
+      y = y_base;
+    }
+    x = x + x_dir;
+    y = y_base;
+  }
+  return out;
 }
 
-array<int, 2> Map::Find_Closest_Tile_Owned_By(int owner, int x, int y, int depth, Unit u)
+array<int, 2> Map::Find_Closest_Tile_Owned_By(int owner, int x, int y, Unit u, string tile_type = "any")
 {
   array<int, 2> out;
   out[0] = x;
   out[1] = y;
-  if(Is_Tile_Out_Of_Bounds(x,y))
-    return {10000, 100000};
-
-  if(owner == Get_Owner(x,y))
-    return out;
   vector<array<int, 2>> points;
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x+1, y+1, depth, 1, 1, u));
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x-1, y-1, depth, -1, -1, u));
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x-1, y+1, depth, -1, 1, u));
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x+1, y-1, depth, 1, -1, u));
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x+1, y, depth, 1, 0, u));
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x-1, y, depth, -1, 0, u));
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x, y+1, depth, 0, 1, u));
-  points.push_back(Find_Closest_Tile_Owned_By_One_Direction(owner, x, y-1, depth, 0, -1, u));
+  vector<array<int, 2>> tmp = Find_Closest_Tile_Owned_By_One_Direction(owner, x, y, 1, 1, u, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction(owner,x,y,-1,1,u, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction(owner,x,y,1,-1,u, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction(owner,x,y,-1,-1,u, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
   return Get_Closest_Point(x, y, points);
 }
 
 vector<int> Map::Find_Direction_Away_From_Borders(int owner, int x, int y, int movement_points, Unit u)
 {
-  array<int, 2> neutral_tile = Find_Closest_Tile_Owned_By(0, x, y, 10, u);
+  array<int, 2> neutral_tile = Find_Closest_Tile_Owned_By(0, x, y, u);
   return Check_If_Path_For_Unit_Exists(x,y,neutral_tile[0], neutral_tile[1], u);
 }
 
-array<int, 2> Map::Find_In_One_Direction_To_Enemy_City_Or_Unit(int owner, int x, int y, int depth, int x_dir, int y_dir, Unit u)
+vector<int> Map::Find_Direction_To_Settle_City(int owner, int x, int y, Unit u)
 {
-  depth--;
-  array<int, 2> out;
-  out[0] = x;
-  out[1] = y;
-  if(Is_Tile_Out_Of_Bounds(x,y))
-    return {10000, 100000};
-  if(owner != Get_Owner(x,y) && Get_Tile(x,y).Get_Upgrade() == "City")
-    return out;
-  if(Get_Tile(x,y).Has_Unit() && Get_Tile(x,y).Get_Unit_Owner_Id() != owner)
-    return out;
-  if(depth <= 0)
-      return out;
+  array<int, 2> neutral_tile = Find_Closest_Tile_Owned_By(0, x, y, u, "Land");
+  return Check_If_Path_For_Unit_Exists(x,y,neutral_tile[0], neutral_tile[1], u);
+}
 
-  vector<array<int, 2>> points;
-  if(x_dir != 0)
-    points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(owner, x+x_dir, y, depth, x_dir, y_dir, u));
-  if(y_dir != 0)
-    points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(owner, x, y+y_dir, depth, x_dir, y_dir, u));
-  return Get_Closest_Point(x,y,points);
+vector<array<int, 2>> Map::Find_In_One_Direction_To_Enemy_City_Or_Unit(int owner, int x, int y, int x_dir, int y_dir, Unit u)
+{
+  vector<array<int, 2>> out;
+  int unit_movement = u.Get_Current_Actions();
+  if(Is_Tile_Out_Of_Bounds(x,y))
+    return out;
+  int x_border = x + (unit_movement * x_dir);
+  int y_border = y + (unit_movement * y_dir);
+  int y_base = y;
+
+  while(x != x_border)
+  {
+    if(Is_Tile_Out_Of_Bounds(x,y))
+      break;
+    while(y != y_border)
+    {
+      if(Is_Tile_Out_Of_Bounds(x,y))
+        break;
+      if(((Get_Tile(x,y).Has_Unit() && Get_Tile(x,y).Get_Unit_Owner_Id() != owner) || (owner != Get_Owner(x,y) && Get_Tile(x,y).Get_Upgrade() == "City")) && u.Can_Move_On_Tile_By_Name(Get_Tile(x,y).Get_Name()))
+        out.push_back({x,y});
+      y = y_base;
+    }
+    x = x + x_dir;
+    y = y_base;
+  }
+  return out;
 }
 
 vector<int> Map::Find_Direction_To_Enemy_City_Or_Unit(int unit_owner_id, int x, int y, int movement_points, Unit u)
 {
-  int depth = 7;
-
+  array<int, 2> out;
+  out[0] = x;
+  out[1] = y;
   vector<array<int, 2>> points;
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x+1, y+1, depth, 1, 1, u));
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x-1, y-1, depth, -1, -1, u));
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x-1, y+1, depth, -1, 1, u));
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x+1, y-1, depth, 1, -1, u));
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x+1, y, depth, 1, 0, u));
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x-1, y, depth, -1, 0, u));
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y+1, depth, 0, 1, u));
-  points.push_back(Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y-1, depth, 0, -1, u));
-
+  vector<array<int, 2>> tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_In_One_Direction_To_Enemy_City_Or_Unit(unit_owner_id, x, y, 1, 1, u);
+  points.insert(points.end(), tmp.begin(), tmp.end());
   array<int, 2> closest_point = Get_Closest_Point(x, y, points);
   return Check_If_Path_For_Unit_Exists(x,y,closest_point[0], closest_point[1], u);
+}
+
+vector<array<int, 2>> Map::Find_All_Upgrade_Locations(int owner, string upg_name)
+{
+  vector<array<int, 2>> out;
+  int start = 0;
+  int start_y = 0;
+  int x = Get_X_Size();
+  int y = Get_Y_Size();
+  while(start < x)
+  {
+    while(start_y < y)
+    {
+      if(Get_Upgrade(start, start_y) == upg_name && Get_Owner(start, start_y) == owner)
+        out.push_back({start, start_y});
+      start_y++;
+    }
+    start_y = 0;
+    start++;
+  }
+  return out;
 }

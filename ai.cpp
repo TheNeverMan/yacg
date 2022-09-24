@@ -45,6 +45,47 @@ bool AI::Build_Random_Producing_Upgrade()
   return false;
 }
 
+void AI::Build_Naval_Producing_Upgrades()
+{
+  for(auto &upg : Main_Game->Get_Upgrades())
+  {
+    if(upg.Get_Production() != 0 && upg.Is_Tile_Allowed_By_Name("Sea"))
+    {
+      if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(upg.Get_First_Requirement()))
+      {
+        if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= upg.Get_Cost())
+        {
+          vector<int> out = Main_Game->Get_Map()->Find_Owned_Tile_For_Upgrade(Main_Game->Get_Currently_Moving_Player_Id(), upg.Get_Name());
+          if(out[0] == -1)
+            return;
+          Main_Game->Build_Upgrade(upg.Get_Name(), out[0], out[1], Main_Game->Get_Currently_Moving_Player_Id());
+          return;
+        }
+      }
+    }
+  }
+}
+
+void AI::Build_Naval_Recruitment_Upgrades()
+{
+  for(auto &upg : Main_Game->Get_Upgrades())
+  {
+    if(upg.Is_Tile_Allowed_By_Name("Sea") && upg.Has_Trait("recruit"))
+    {
+      if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(upg.Get_First_Requirement()))
+      {
+        if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= upg.Get_Cost())
+        {
+          vector<int> out = Main_Game->Get_Map()->Find_Owned_Tile_For_Upgrade(Main_Game->Get_Currently_Moving_Player_Id(), upg.Get_Name());
+          if(out[0] == -1)
+            return;
+          Main_Game->Build_Upgrade(upg.Get_Name(), out[0], out[1], Main_Game->Get_Currently_Moving_Player_Id());
+          return;
+        }
+      }
+    }
+  }
+}
 
 int AI::Find_Biggest_Parameter(std::vector<int> input)
 {
@@ -179,6 +220,49 @@ bool AI::Recruit_Unit_In_City()
   return false;
 }
 
+bool AI::Recruit_Unit_By_Class_And_Coords(int x, int y, string unit_class)
+{
+  if(!Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
+    return false;
+  vector<Unit> units = Main_Game->Get_Currently_Moving_Player()->Get_Units();
+  reverse(units.begin(), units.end());
+  std::vector<Unit>::iterator iter = units.begin();
+  while ((iter = std::find_if(iter, units.end(), [unit_class](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] == unit_class;})) != units.end())
+  {
+    if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= iter->Get_Cost())
+    {
+      Main_Game->Recruit_Unit(iter->Get_Name(), x, y);
+      return true;
+    }
+
+    iter++;
+  }
+  return false;
+}
+
+bool AI::Recruit_Naval_Units()
+{
+  vector<Upgrade> upgrades = Main_Game->Get_Upgrades();
+
+  for(auto& upg : upgrades)
+  {
+    if(upg.Has_Trait("recruit") && (upg.Get_All_Arguments_For_Trait("recruit")[0] == "naval" || upg.Get_All_Arguments_For_Trait("recruit")[0] == "weaknaval"))
+    {
+      vector<array<int, 2>> tiles_with_upgrade = Main_Game->Get_Map()->Find_All_Upgrade_Locations(Main_Game->Get_Currently_Moving_Player_Id(), upg.Get_Name());
+      for(auto &tile : tiles_with_upgrade)
+      {
+        if(Main_Game->Get_Map()->Get_Tile(tile[0],tile[1]).Has_Unit())
+          continue;
+        bool out = Recruit_Unit_By_Class_And_Coords(tile[0], tile[1], upg.Get_All_Arguments_For_Trait("recruit")[0]);
+        if(!out)
+          break;
+      }
+    }
+  }
+
+  return false;
+}
+
 void AI::Change_Goverment_To_More_Advanced_One()
 {
   vector<Gov> govs = Main_Game->Get_Currently_Moving_Player()->Get_Possible_Goverments();
@@ -257,6 +341,7 @@ double AI::Change_Technology_Goal(double technologic_parameter, int tech_class)
 AI_Data AI::Process_Turn(AI_Data Data)
 {
   Logger::Log_Info("Starting AI Turn of " + Main_Game->Get_Currently_Moving_Player()->Get_Name());
+  Logger::Log_Info("AI Debug");
   string personality = " ";
   personality = Main_Game->Get_Currently_Moving_Player()->Get_Personality();
   int economy_parameter = 0;
@@ -273,7 +358,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
   int economy_goal = 15; //gold per city
   int military_goal = 2; //units per city
   int tech_goal = 2; //techs per city
-  //int naval_goal = 1; //units per 5 water tiles
+  int naval_goal = 1; //units per 5 water tiles
   int city_count = Main_Game->Get_Currently_Moving_Player()->Get_Number_Of_Cities_Owned();
   if(personality == "Authoritarian")
     military_goal = 4;
@@ -281,7 +366,11 @@ AI_Data AI::Process_Turn(AI_Data Data)
     economy_goal = 25;
   if(personality == "Enlightened")
     tech_goal = 4;
+  if(personality == "Exploring")
+    naval_goal = 2;
 
+  Logger::Log_Info("Personality: " + personality);
+  Logger::Log_Info("Gold: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Gold()));
   if(Is_Income_For_Currently_Moving_Player_Is_Negative())
   {
     while(! Is_Income_For_Currently_Moving_Player_Is_Negative() && Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
@@ -300,6 +389,13 @@ AI_Data AI::Process_Turn(AI_Data Data)
   int tech_class = Find_Biggest_Parameter({economy_parameter, military_parameter, naval_parameter, expanse_parameter});
   Change_Goverment_If_Necessary();
   technologic_parameter = Change_Technology_Goal(technologic_parameter, tech_class);
+  Logger::Log_Info("Economic Parameter: " + to_string(economy_parameter));
+  Logger::Log_Info("Technologic Parameter: " + to_string(technologic_parameter));
+  Logger::Log_Info("Military Parameter: " + to_string(military_parameter));
+  Logger::Log_Info("Naval Parameter: " + to_string(naval_parameter));
+  Logger::Log_Info("Expanse Parameter: " + to_string(expanse_parameter));
+  Logger::Log_Info("Technology Researched: " + Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Name());
+  Logger::Log_Info("Research Funds: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent()));
   while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
   {
     //cout << "Turn" << endl;
@@ -312,7 +408,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
       {
         economy_parameter = 0;
         bool loop = true;
-        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(economy_goal == Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count) && loop)
+        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(economy_goal <= Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count) && loop)
         {
           loop = Build_Random_Producing_Upgrade();
         }
@@ -322,7 +418,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
       {
         military_parameter = 0;
         bool loop = true;
-        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(military_goal == static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size() / city_count)) && loop)
+        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(military_goal <= static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size() / city_count)) && loop)
         {
           loop = Recruit_Unit_In_City();
         }
@@ -331,6 +427,15 @@ AI_Data AI::Process_Turn(AI_Data Data)
       case 2:
       {
         naval_parameter = 0;
+        bool loop = true;
+        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(naval_goal <= static_cast<int>(Main_Game->Get_Map()->Count_Tiles_Owned_By_Player(Main_Game->Get_Currently_Moving_Player_Id(), "Sea") / (Main_Game->Get_Currently_Moving_Player()->Get_Number_Of_Naval_Units() + 1)) && loop))
+        {
+          if(economy_goal <= Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count)
+            Build_Naval_Producing_Upgrades();
+          else
+            Build_Naval_Recruitment_Upgrades();
+          loop = Recruit_Naval_Units();
+        }
         break;
       }
       case 3:

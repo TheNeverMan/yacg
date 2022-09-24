@@ -283,7 +283,7 @@ vector<Gov> XML_Data_Loader::Load_Govs_From_File(string path)
     return out;
   }
   xml_node<>* govs_node = Root_Node->first_node("goverments");
-  for(xml_node<> * gov_node = govs_node->first_node("goverment"); gov_node; gov_node = gov_node->next_sibling())
+  for(xml_node<> * gov_node = govs_node->first_node("goverment"); gov_node; gov_node = gov_node->next_sibling("goverment"))
   {
     string n = gov_node->first_attribute("name")->value();
     string i = gov_node->first_attribute("info")->value();
@@ -291,8 +291,9 @@ vector<Gov> XML_Data_Loader::Load_Govs_From_File(string path)
     string t_p = gov_node->first_attribute("texture")->value();
     string l_t = gov_node->first_attribute("title")->value();
     string s_n = gov_node->first_attribute("state_name")->value();
-    Gov tmp(n, l_t, s_n, t_r, i, t_p);
-    out.push_back(tmp);
+    vector<string> traits = Load_Traits_From_Root_Node(gov_node);
+    Gov tmp_gov(n, l_t, s_n, t_r, i, t_p, traits);
+    out.push_back(tmp_gov);
   }
   return out;
 }

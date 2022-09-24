@@ -1,14 +1,19 @@
 #include "gov.h"
 
-Gov::Gov(string n, string l_t, string s_n, string t_r, string i, string t_p) : Help_Object(n, i), Texture_Owner(t_p), Technology_Requirements_Owner(t_r)
+Gov::Gov(string n, string l_t, string s_n, string t_r, string i, string t_p, vector<string> t) : Traits_Owner(t), Help_Object(n, i), Texture_Owner(t_p), Technology_Requirements_Owner(t_r)
 {
   leader_title = l_t;
   state_name = s_n;
 }
 
-Gov::Gov() : Help_Object(" ", " "), Texture_Owner(" "), Technology_Requirements_Owner(" ")
+Gov::Gov() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(" "), Technology_Requirements_Owner(" ")
 {
 
+}
+
+Gov::~Gov()
+{
+  
 }
 
 string Gov::Get_Leader_Title()
@@ -21,7 +26,7 @@ string Gov::Get_State_Name()
   return state_name;
 }
 
-Gov::Gov(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node)
+Gov::Gov(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node)
 {
   Deserialize(Root_Node);
 }

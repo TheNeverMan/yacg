@@ -2,6 +2,7 @@
 <miniyacg>
 <goverments>
 <goverment name="Tribe" title="Chief" state_name="Tribe of" requirement="Agriculture" info="yes" texture="assets/textures/goverments/tribe-goverment-texture.png">
+<trait name="x"/>
 </goverment>
 <goverment name="Monarchy" title="King" state_name="Kingdom of" requirement="Feudalism" info="Monarchy is very advanced form of Despotism.
 In monarchy the ruler - king is elected by his blood rather than power.

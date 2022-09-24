@@ -29,6 +29,10 @@ class AI
     void Move_All_Units_Not_In_Cities_To_Enemy();
     void Move_Unit_Towards_Enemy(int x, int y, Unit u);
     void Change_Goverment_If_Necessary();
+    void Build_Naval_Producing_Upgrades();
+    void Build_Naval_Recruitment_Upgrades();
+    bool Recruit_Naval_Units();
+    bool Recruit_Unit_By_Class_And_Coords(int x, int y, string unit_class);
     array<int, 2> Get_Random_Player_Capital_Location();
     void Change_Goverment_To_More_Advanced_One();
     double Change_Technology_Goal(double technologic_parameter, int tech_class);

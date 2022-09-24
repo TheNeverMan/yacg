@@ -11,6 +11,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 all: default
 default: $(OBJECTS)
 	g++ $(CFLAGS_LINUX) -o yacg $^ $(LIBS)
+	rm -rf *.o
 
 clean:
 	rm -rf *.o
