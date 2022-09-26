@@ -648,6 +648,16 @@ void Game_Window::Player_Has_Lost_Game()
   Main_Manager->Show_Intro_Window(); //intro window
 }
 
+void Game_Window::Player_Has_Won_Game(int player_id)
+{
+  string name = Main_Game.Get_Player_By_Id(player_id)->Get_Full_Name();
+  Logger::Log_Info(name + " has won the game!");
+  Themed_Dialog Dialog(name + " has won the game and defeated all enemies!", "End the Game");
+  Dialog.Show();
+  Logger::Log_Info("Closing Main Window...");
+  Main_Manager->Show_Intro_Window(); //intro window
+}
+
 void Game_Window::End_Turn()
 {
   Deselect_Unit();
@@ -669,8 +679,10 @@ void Game_Window::End_Turn()
     auto timer_end = chrono::steady_clock::now();
     auto timer_diff = timer_end - timer_start;
     Logger::Log_Info("Turn took: " + to_string(chrono::duration<double, milli>(timer_diff).count()) + " ms" );
-    if(!out)
+    if(out == 0)
       Player_Has_Lost_Game();
+    if(out >= 1)
+      Player_Has_Won_Game(out);
     Update_Tiles_From_Game();
     Update_Labels();
     Update_Action_Buttons(last_clicked_x, last_clicked_y);
@@ -1053,12 +1065,12 @@ void Game_Window::Set_Tiles_Size_Automatically()
   }
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;
   Main_Settings_Manager = m_s_m;
-  Main_Game = Game(Main_Settings_Manager.Get_Autosave_Value(), Map_Data, players, load_starting_positions);
+  Main_Game = Game(Main_Settings_Manager.Get_Autosave_Value(), Map_Data, players, load_starting_positions, spectator_mode);
   Initialize_GTK();
 }
 
@@ -1071,7 +1083,7 @@ array<int ,2> Game_Window::Get_Screen_Resolution()
   return out;
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;

@@ -19,7 +19,26 @@ bool AI::Is_Income_For_Currently_Moving_Player_Is_Negative()
 }
 
 
+int AI::Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y)
+{
+  int out = sqrt((abs((p_x - g_x)^2)) + abs(((p_y - g_y)^2)));
+  return out;
+}
 
+array<int ,2> AI::Get_Closest_Point(int x, int y, vector<array<int ,2>> points)
+{
+  map<int, array<int, 2>> out;
+  for_each(points.begin(), points.end(), [&](array<int, 2> point)
+  {
+    out[Calculate_Distance_Between_Points(x,y,point[0],point[1])] = point;
+  });
+  for(auto &var : out)
+  {
+    return var.second;
+  }
+  Logger::Log_Error("No points in Get_Closest_Point");
+  return {0,0};
+}
 
 
 
@@ -124,7 +143,7 @@ void AI::Settle_City_With_Unit()
   vector<Unit_On_Map> units = *Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units();
   for(auto &var : units)
   {
-    if(!(Main_Game->Get_Map()->Is_Upgrade_In_Radius_By_Name("City", var.Coordinates.x, var.Coordinates.y)) && Main_Game->Get_Upgrade_By_Name("City").Is_Tile_Allowed_By_Name(Main_Game->Get_Map()->Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Name()) && Main_Game->Get_Map()->Get_Owner(var.Coordinates.x, var.Coordinates.y) == 0)
+    if(!(Main_Game->Get_Map()->Is_Upgrade_In_Radius_By_Name("City", var.Coordinates.x, var.Coordinates.y)) && Main_Game->Get_Upgrade_By_Name("City").Is_Tile_Allowed_By_Name(Main_Game->Get_Map()->Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Name()) && Main_Game->Get_Map()->Get_Owner(var.Coordinates.x, var.Coordinates.y) == 0 && Main_Game->Get_Currently_Moving_Player()->Get_Gold() > 25)
     {
       Main_Game->Build_City(var.Coordinates.x, var.Coordinates.y, Main_Game->Get_Currently_Moving_Player_Id(), Main_Game->Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius());
     }
@@ -160,26 +179,31 @@ void AI::Move_Unit_Away_From_Borders(Unit_On_Map unit)
 
 }
 
-array<int ,2> AI::Get_Random_Player_Capital_Location()
+array<int ,2> AI::Get_Closest_Player_Capital_Location()
 {
-  bool loop = true;
-  while(loop)
+  vector<array<int,2>> capitals;
+  int index = 1;
+  while(index <= Main_Game->Get_Amount_Of_Players())
   {
-    int random = rand() % Main_Game->Get_Amount_Of_Players();
-    if(random == 0)
-      continue;
-    if(!Main_Game->Is_Player_Eliminated(random))
+    if(index == Main_Game->Get_Currently_Moving_Player_Id())
     {
-      return Main_Game->Get_Player_By_Id(random)->Get_Capital_Location();
+      index++;
+      continue;
     }
+    if(!Main_Game->Is_Player_Eliminated(index))
+    {
+      capitals.push_back(Main_Game->Get_Player_By_Id(index)->Get_Capital_Location());
+    }
+    index++;
   }
-  return {0,0};
+  array<int, 2> cap = Get_Closest_Point(static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[0]), static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[1]), capitals);
+//  cout << cap[0] << " " << cap[1];
+  return cap;
 }
-
 void AI::Move_Unit_Towards_Enemy(int x, int y, Unit u)
 {
   vector<int> out = Main_Game->Get_Map()->Find_Direction_To_Enemy_City_Or_Unit(Main_Game->Get_Currently_Moving_Player_Id(), x, y, u.Get_Current_Actions(), u);
-  array<int, 2> capital = Get_Random_Player_Capital_Location();
+  array<int, 2> capital = Get_Closest_Player_Capital_Location();
   vector<int> path_to_capital = Main_Game->Get_Map()->Check_If_Path_For_Unit_Exists(x, y, capital[0], capital[1], u);
   if(rand() % 2 == 0 && out[0] == 1)
   {
@@ -247,6 +271,29 @@ bool AI::Recruit_Naval_Units()
   for(auto& upg : upgrades)
   {
     if(upg.Has_Trait("recruit") && (upg.Get_All_Arguments_For_Trait("recruit")[0] == "naval" || upg.Get_All_Arguments_For_Trait("recruit")[0] == "weaknaval"))
+    {
+      vector<array<int, 2>> tiles_with_upgrade = Main_Game->Get_Map()->Find_All_Upgrade_Locations(Main_Game->Get_Currently_Moving_Player_Id(), upg.Get_Name());
+      for(auto &tile : tiles_with_upgrade)
+      {
+        if(Main_Game->Get_Map()->Get_Tile(tile[0],tile[1]).Has_Unit())
+          continue;
+        bool out = Recruit_Unit_By_Class_And_Coords(tile[0], tile[1], upg.Get_All_Arguments_For_Trait("recruit")[0]);
+        if(!out)
+          break;
+      }
+    }
+  }
+
+  return false;
+}
+
+bool AI::Recruit_Non_Infantry_Unit()
+{
+  vector<Upgrade> upgrades = Main_Game->Get_Upgrades();
+
+  for(auto& upg : upgrades)
+  {
+    if(upg.Has_Trait("recruit") && (upg.Get_All_Arguments_For_Trait("recruit")[0] != "naval" && upg.Get_All_Arguments_For_Trait("recruit")[0] != "weaknaval" && upg.Get_All_Arguments_For_Trait("recruit")[0] != "infantry"))
     {
       vector<array<int, 2>> tiles_with_upgrade = Main_Game->Get_Map()->Find_All_Upgrade_Locations(Main_Game->Get_Currently_Moving_Player_Id(), upg.Get_Name());
       for(auto &tile : tiles_with_upgrade)
@@ -338,6 +385,16 @@ double AI::Change_Technology_Goal(double technologic_parameter, int tech_class)
   return technologic_parameter;
 }
 
+void AI::Heal_Units_In_Cities()
+{
+  vector<Owned_City> cities = Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities();
+  for(auto &city : cities)
+  {
+    if(Main_Game->Get_Map()->Get_Tile(city.Coordinates.x, city.Coordinates.y).Has_Unit())
+      Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(city.Coordinates.x, city.Coordinates.y)->Heal(0);
+  }
+}
+
 AI_Data AI::Process_Turn(AI_Data Data)
 {
   Logger::Log_Info("Starting AI Turn of " + Main_Game->Get_Currently_Moving_Player()->Get_Name());
@@ -358,7 +415,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
   int economy_goal = 18; //gold per city
   int military_goal = 2; //units per city
   int tech_goal = 2; //techs per city
-  int naval_goal = 1; //units per 5 water tiles
+  //int naval_goal = 1; //units per 5 water tiles
   int city_count = Main_Game->Get_Currently_Moving_Player()->Get_Number_Of_Cities_Owned();
   if(personality == "Authoritarian")
     military_goal = 4;
@@ -366,8 +423,6 @@ AI_Data AI::Process_Turn(AI_Data Data)
     economy_goal = 25;
   if(personality == "Enlightened")
     tech_goal = 4;
-  if(personality == "Exploring")
-    naval_goal = 2;
 
   Logger::Log_Info("Personality: " + personality);
   Logger::Log_Info("Gold: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Gold()));
@@ -422,9 +477,13 @@ AI_Data AI::Process_Turn(AI_Data Data)
       {
         military_parameter = 0;
         bool loop = true;
+        bool recruit_non_inf = true;
         while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(military_goal <= static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size() / city_count)) && loop)
         {
-          loop = Recruit_Unit_In_City();
+          if(rand() % 2 == 0 && recruit_non_inf)
+            recruit_non_inf = Recruit_Non_Infantry_Unit();
+          else
+            loop = Recruit_Unit_In_City();
         }
         break;
       }
@@ -478,5 +537,9 @@ AI_Data AI::Process_Turn(AI_Data Data)
   }
 
   Main_Game->Get_Currently_Moving_Player()->Set_Research_Funds_Percentage((double) technologic_parameter * 7.0 + 10);
+  Heal_Units_In_Cities();
+  if(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
+    while(Build_Random_Producing_Upgrade()){}
+
   return Data;
 }

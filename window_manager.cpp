@@ -13,19 +13,19 @@ void Window_Manager::Create_Intro_Window()
   Start_Window = make_shared<Intro_Window>(this);
 }
 
-void Window_Manager::Create_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
+void Window_Manager::Create_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode)
 {
-  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, Map_Data, players, false);
+  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, Map_Data, players, false, spectator_mode);
 }
 
-void Window_Manager::Create_Game_Window_Load_Starting_Positions_From_File(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
+void Window_Manager::Create_Game_Window_Load_Starting_Positions_From_File(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode)
 {
-  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, Map_Data, players, true);
+  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, Map_Data, players, true, spectator_mode);
 }
 
-void Window_Manager::Create_Game_Window_From_File(Settings_Manager m_s_m, string path)
+void Window_Manager::Create_Game_Window_From_File(Settings_Manager m_s_m, string path, bool spectator_mode)
 {
-  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, path);
+  Main_Game_Window = make_shared<Game_Window>(this, m_s_m, path, spectator_mode);
 }
 
 void Window_Manager::Create_Game_Creation_Window(Settings_Manager m_s_m)
@@ -62,21 +62,21 @@ void Window_Manager::Show_Game_Creation_Window(Settings_Manager m_s_m)
   Switch_Current_Window(4);
 }
 
-void Window_Manager::Show_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
+void Window_Manager::Show_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode)
 {
-  Create_Game_Window(m_s_m, Map_Data, players);
+  Create_Game_Window(m_s_m, Map_Data, players, spectator_mode);
   Switch_Current_Window(3);
 }
 
-void Window_Manager::Show_Game_Window_Load_Starting_Positions(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players)
+void Window_Manager::Show_Game_Window_Load_Starting_Positions(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode)
 {
-  Create_Game_Window_Load_Starting_Positions_From_File(m_s_m, Map_Data, players);
+  Create_Game_Window_Load_Starting_Positions_From_File(m_s_m, Map_Data, players, spectator_mode);
   Switch_Current_Window(3);
 }
 
-void Window_Manager::Show_Game_Window_Load_From_File(Settings_Manager m_s_m, string path)
+void Window_Manager::Show_Game_Window_Load_From_File(Settings_Manager m_s_m, string path, bool spectator_mode)
 {
-  Create_Game_Window_From_File(m_s_m, path);
+  Create_Game_Window_From_File(m_s_m, path, spectator_mode);
   Switch_Current_Window(3);
 }
 

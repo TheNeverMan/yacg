@@ -46,6 +46,7 @@ int Map::Get_Y_Size()
 
 void Map::Change_Tile_Owner(int x, int y, int id)
 {
+  if(!Is_Tile_Out_Of_Bounds(x,y))
   Game_Map[x][y].owner = id;
 }
 
@@ -111,7 +112,7 @@ void Map::Claim_Tiles_In_Radius(int x, int y, int owner, int radius)
 
 void Map::Build_City(int x, int y, int owner,int radius)
 {
-  Claim_Tile(x,y,owner);
+  Change_Tile_Owner(x,y,owner);
   Build_Upgrade(Find_Upgrade_By_Name_In_Vector("City", Upgrades), x, y, owner, radius);
 }
 
@@ -271,6 +272,8 @@ vector<array<int,2>> Map::Recalculate_Borders_For_Player_By_Id(int owner, int ra
 }
 void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 {
+  if(Is_Tile_Out_Of_Bounds(x,y))
+    return;
   if(upg.Get_Name() == "plundered")
   {
     Get_Tile_Pointer(x,y)->Fix();

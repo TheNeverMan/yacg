@@ -32,8 +32,8 @@ class Window_Manager;
 class Game_Window : public Gtk::Window
 {
   public:
-    Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ");
-    Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool load_starting_positions);
+    Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path, bool spectator_mode);
+    Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool load_starting_positions, bool spectator_mode);
     ~Game_Window();
   protected:
     Game_CSS_Provider Main_Provider;
@@ -133,4 +133,5 @@ class Game_Window : public Gtk::Window
     bool Check_Must_Border_Trait_For_Upgrades(string upg_name, int x, int y);
     string Get_Current_Turn_By_Years();
     void Update_Tiles_From_Game();
+    void Player_Has_Won_Game(int player_id);
 };

@@ -19,16 +19,16 @@ public:
     int Run();
     void Close_Game();
     void Show_Intro_Window();
-    void Show_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players);
-    void Show_Game_Window_Load_Starting_Positions(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players);
-    void Show_Game_Window_Load_From_File(Settings_Manager m_s_m, string path);
+    void Show_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode);
+    void Show_Game_Window_Load_Starting_Positions(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode);
+    void Show_Game_Window_Load_From_File(Settings_Manager m_s_m, string path, bool spectator_mode);
     void Show_Game_Creation_Window(Settings_Manager m_s_m);
 private:
     void Create_Game_Creation_Window(Settings_Manager m_s_m);
     void Create_Intro_Window();
-    void Create_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players);
-    void Create_Game_Window_Load_Starting_Positions_From_File(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players);
-    void Create_Game_Window_From_File(Settings_Manager m_s_m, string path);
+    void Create_Game_Window(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode);
+    void Create_Game_Window_Load_Starting_Positions_From_File(Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool spectator_mode);
+    void Create_Game_Window_From_File(Settings_Manager m_s_m, string path, bool spectator_mode);
     void Switch_Current_Window(int specifier);
 private:
     Glib::RefPtr<Gtk::Application> Main_Application;

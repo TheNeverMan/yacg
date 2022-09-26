@@ -124,7 +124,7 @@ void Intro_Window::Load_Game_Button_Clicked()
      string path = Load_Game_File_Chooser_Dialog.get_filename();
      Logger::Log_Info("Path to load is " + path );
      Main_Settings_Manager.Write_To_File();
-     Main_Manager->Show_Game_Window_Load_From_File(Main_Settings_Manager, path);
+     Main_Manager->Show_Game_Window_Load_From_File(Main_Settings_Manager, path, false);
      break;
    }
    default:
@@ -138,7 +138,7 @@ void Intro_Window::Load_Game_Button_Clicked()
 void Intro_Window::Load_Autosave_Button_Clicked()
 {
   Logger::Log_Info("Loading Autosave...");
-  Main_Manager->Show_Game_Window_Load_From_File(Main_Settings_Manager, "autosave.sav");
+  Main_Manager->Show_Game_Window_Load_From_File(Main_Settings_Manager, "autosave.sav", false);
 }
 void Intro_Window::About_Button_Clicked()
 {

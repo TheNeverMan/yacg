@@ -130,6 +130,8 @@ void Unit::Set_HP(int new_hp)
 
 void Unit::Heal(int howmuch = 0)
 {
+  if(current_movement_points < 2)
+    return;
   Decrease_Movement(2);
   hp = hp + 20;
   hp = hp + howmuch;

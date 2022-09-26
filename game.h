@@ -38,6 +38,7 @@ using namespace std;
 class Game : public XML_Serializable
 {
   private:
+    bool spectator_mode;
     bool autosave;
     vector<int> Eliminated_Players_List;
     vector<Tile> Tiles;
@@ -77,6 +78,7 @@ class Game : public XML_Serializable
     double Get_Defense_Bonus_For_Tile_And_Player(int x, int y, int player_id);
     Unit Get_Unit_By_Tile(int x, int y);
     void Remove_All_Missle_Units();
+    bool Is_Only_One_Player_Alive();
   public:
     void Disband_Unit(int x, int y);
     Unit Get_Unit_By_Name(string name);
@@ -87,7 +89,7 @@ class Game : public XML_Serializable
     xml_node<>*  Serialize(memory_pool<>* doc);
     string Get_Current_Turn_By_Years();
     bool Is_Map_Update_Required();
-    Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions);
+    Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode);
     Game();
     Game(xml_node<>* Root_Node);
     void Deserialize(xml_node<>* Root_Node);
@@ -95,7 +97,7 @@ class Game : public XML_Serializable
     bool Save_Game(string path);
     tuple<bool, Game*> Load_Game(string path);
     int Get_Turn();
-    bool End_Player_Turn();
+    int End_Player_Turn();
     void Confirm_Pass_To_Game_Window();
     vector<Civ> Get_Players();
     Civ *Get_Player_By_Id(int id);
@@ -119,4 +121,5 @@ class Game : public XML_Serializable
     void Plunder_Tile(int x, int y);
     void Detonate_Atomic_Bomb(int x, int y);
     void Build_Upgrade(string name, int x, int y, int player_id);
+    int Get_Only_Living_Player_Id();
 };

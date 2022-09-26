@@ -8,8 +8,8 @@ Game_CSS_Provider::Game_CSS_Provider()
   {
     Main_Provider->load_from_path(assets_directory_path + "style.css");
   }
-  catch(Gtk::CssProviderError e)
+  catch(Gtk::CssProviderError* e)
   {
-    Logger::Log_Error(e.what());
+    Logger::Log_Error(e->what());
   }
 }

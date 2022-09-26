@@ -33,9 +33,13 @@ class AI
     void Build_Naval_Recruitment_Upgrades();
     bool Recruit_Naval_Units();
     bool Recruit_Unit_By_Class_And_Coords(int x, int y, string unit_class);
-    array<int, 2> Get_Random_Player_Capital_Location();
+    array<int, 2> Get_Closest_Player_Capital_Location();
     void Change_Goverment_To_More_Advanced_One();
     double Change_Technology_Goal(double technologic_parameter, int tech_class);
+    int Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y);
+    array<int,2> Get_Closest_Point(int x, int y, vector<array<int, 2>> points);
+    void Heal_Units_In_Cities();
+    bool Recruit_Non_Infantry_Unit();
   public:
     AI_Data Process_Turn(AI_Data Data);
     AI(Game *m_g);

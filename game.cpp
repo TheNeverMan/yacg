@@ -63,6 +63,11 @@ void Game::Asign_Random_Starting_Position_For_Player(int player_id)
     int x = 0;
     int y = 0;
     bool loop = true;
+    if(player_id == 1 && spectator_mode)
+    {
+      Assing_Starting_Position_For_Player(player_id, 9999, 9999);
+      return;
+    }
     while(loop)
     {
       x = rand() % Game_Map.Get_X_Size();
@@ -78,6 +83,11 @@ void Game::Asign_Random_Starting_Position_For_Player(int player_id)
 void Game::Assign_Starting_Positions_From_Data(map<string, array<int, 2>> starting_positions)
 {
   int player_id = 1;
+  if(player_id == 1 && spectator_mode)
+  {
+    Assing_Starting_Position_For_Player(player_id, 9999, 9999);
+    player_id++;
+  }
   for(auto &player : Players)
   {
     if(starting_positions.count(player.Get_Raw_Name()))
@@ -134,9 +144,10 @@ void Game::Add_Players(vector<tuple<string, bool>> players)
   Logger::Log_Info("Players added!" );
 }
 
-Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions) : Main_Radius_Generator(Map_Data.size_x, Map_Data.size_y)
+Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : Main_Radius_Generator(Map_Data.size_x, Map_Data.size_y)
 {
   srand(time(0));
+  this->spectator_mode = spectator_mode;
   turn_counter = 1;
   Logger::Log_Info("Starting XML Data Loading...");
   Logger::Log_Warning("TO DO: Safety, If code crashes here check XML!" );
@@ -300,7 +311,7 @@ bool Game::Is_Currently_Moving_Player_Eliminated()
 
 bool Game::All_Humans_Are_Eliminated()
 {
-  Logger::Log_Warning("Checking for alive humans! Turn off when AI only");
+  //Logger::Log_Warning("Checking for alive humans! Turn off when AI only");
   bool out = true;
   int index = 1; //fucking neutrals
   while(index <= static_cast<int>(Players.size()))
@@ -310,6 +321,37 @@ bool Game::All_Humans_Are_Eliminated()
     index++;
   }
   return out;
+}
+
+bool Game::Is_Only_One_Player_Alive()
+{
+  int player_count = 0;
+  int index = 1; //fucking neutrals
+  while(index <= static_cast<int>(Players.size()))
+  {
+    if((! Is_Player_Eliminated(index)))
+      player_count++;
+    index++;
+  }
+  if(player_count == 1)
+    return true;
+  return false;
+}
+
+int Game::Get_Only_Living_Player_Id()
+{
+  if(!Is_Only_One_Player_Alive())
+    return Get_Currently_Moving_Player_Id();
+
+  int index = 1; //fucking neutrals
+  while(index <= static_cast<int>(Players.size()))
+  {
+    if((! Is_Player_Eliminated(index)))
+      return index;
+    index++;
+  }
+  Logger::Log_Error("One player is alive but no one was found!");
+  return 1;
 }
 
 void Game::Set_Autosave(bool a)
@@ -333,7 +375,7 @@ void Game::Remove_All_Missle_Units()
   }
 }
 
-bool Game::End_Player_Turn()
+int Game::End_Player_Turn()
 {
   Remove_All_Missle_Units();
   vector<int> income = Get_Map()->Get_Netto_Income_For_Player_By_Id(Get_Currently_Moving_Player_Id(), *Get_Currently_Moving_Player());
@@ -354,7 +396,7 @@ bool Game::End_Player_Turn()
   while(Is_Currently_Moving_Player_Eliminated());
 
   if(All_Humans_Are_Eliminated())
-    return false;
+    return 0;
 
   Get_Currently_Moving_Player()->Refresh_Unit_Movement_Points();
   vector<Unit_On_Map> *u = Get_Currently_Moving_Player()->Get_Owned_Units();
@@ -371,8 +413,10 @@ bool Game::End_Player_Turn()
     Save_Game("autosave.sav");
   Start_Turn_Of_Currently_Moving_Player();
   if(All_Humans_Are_Eliminated())
-    return false;
-  return true;
+    return 0;
+  if(Is_Only_One_Player_Alive())
+    return Get_Only_Living_Player_Id();
+  return -1;
 }
 
 Civ* Game::Get_Currently_Moving_Player()
@@ -465,14 +509,14 @@ void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
   {
     Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_1_x,unit_1_y);
     Get_Map()->Get_Tile_Pointer(unit_1_x,unit_1_y)->Remove_Unit_From_Tile();
-    if(Get_Unit_By_Tile(unit_2_x, unit_2_y).Has_Trait("steal") && unit_2_stats[2] > 0)
+    if(unit_2_stats[2] > 0 && Get_Unit_By_Tile(unit_2_x, unit_2_y).Has_Trait("steal"))
       Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Give_One_Gold();
   }
   if(unit_2_stats[2] <= 0 || Get_Unit_By_Tile(unit_2_x,unit_2_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
     Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_2_x,unit_2_y);
     Get_Map()->Get_Tile_Pointer(unit_2_x,unit_2_y)->Remove_Unit_From_Tile();
-    if(Get_Unit_By_Tile(unit_1_x, unit_1_y).Has_Trait("steal") && unit_1_stats[2] > 0)
+    if(unit_1_stats[2] > 0 && Get_Unit_By_Tile(unit_1_x, unit_1_y).Has_Trait("steal"))
       Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Give_One_Gold();
   }
 }

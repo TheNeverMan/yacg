@@ -16,6 +16,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Dialog_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   Map_UI_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Dialog_Players_Frame = Gtk::Frame("Select Your Civilization");
+  Spectator_Mode_Button = Gtk::CheckButton("Spectator Mode (Observe AI Gameplay)");
   Players_UI_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Main_Player_UI_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Root_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
@@ -107,6 +108,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Other_Players_Box.pack_start(Other_Human_Players_Label, Gtk::PACK_SHRINK);
   Other_Players_Box.pack_start(Human_Players_Switch, Gtk::PACK_SHRINK);
   Other_Players_Box.pack_start(Allow_Duplicate_Civs_Button, Gtk::PACK_SHRINK);
+  Other_Players_Box.pack_start(Spectator_Mode_Button, Gtk::PACK_SHRINK);
   Other_Players_Box.pack_start(Civs_Frame);
   //Players_UI_Box.pack_start(Civs_Frame, Gtk::PACK_SHRINK);
   Civs_Frame.add(Civs_Scrolled_Window);
@@ -399,22 +401,23 @@ void Game_Creation_Window::Play_Button_Clicked()
       index++;
     }
   }
+  reverse(Human_Players.begin(), Human_Players.end());
   Add_Players_From_Vector(Human_Players, false);
   Add_Players_From_Vector(AI_Players, true);
   if(Map_Data.map_path == " ")
   {
-    Main_Manager->Show_Game_Window(Main_Settings_Manager, Map_Data, Players);
+    Main_Manager->Show_Game_Window(Main_Settings_Manager, Map_Data, Players, Spectator_Mode_Button.get_active());
     return;
   }
   else
   {
     if(Randomize_Starting_Locations_Button.get_active())
     {
-      Main_Manager->Show_Game_Window(Main_Settings_Manager, Map_Data, Players);
+      Main_Manager->Show_Game_Window(Main_Settings_Manager, Map_Data, Players, Spectator_Mode_Button.get_active());
     }
     else
     {
-      Main_Manager->Show_Game_Window_Load_Starting_Positions(Main_Settings_Manager, Map_Data, Players);
+      Main_Manager->Show_Game_Window_Load_Starting_Positions(Main_Settings_Manager, Map_Data, Players, Spectator_Mode_Button.get_active());
     }
   }
 }

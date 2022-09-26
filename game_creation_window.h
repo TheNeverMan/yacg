@@ -2,6 +2,7 @@
 #include<gtkmm.h>
 #include<vector>
 #include<tuple>
+#include<algorithm>
 #include<vector>
 #include<string>
 #include<random>
@@ -53,6 +54,7 @@ class Game_Creation_Window : public Gtk::Window
     Gtk::Label Civs_Description_Label;
     Gtk::CheckButton Allow_Duplicate_Civs_Button;
     Gtk::CheckButton Randomize_Starting_Locations_Button;
+    Gtk::CheckButton Spectator_Mode_Button;
     Gtk::SpinButton Players_Switch;
     Gtk::SpinButton Human_Players_Switch;
     Gtk::Label Other_Human_Players_Label;

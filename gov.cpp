@@ -13,7 +13,7 @@ Gov::Gov() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(" "), Tec
 
 Gov::~Gov()
 {
-  
+
 }
 
 string Gov::Get_Leader_Title()
@@ -47,5 +47,6 @@ xml_node<>* Gov::Serialize(memory_pool<>* doc)
   Root_Node->append_node(Serialize_Help(doc));
   Root_Node->append_node(Serialize_Textures(doc));
   Root_Node->append_node(Serialize_Technologies(doc));
+  Root_Node->append_node(Serialize_Traits(doc));
   return Root_Node;
 }
