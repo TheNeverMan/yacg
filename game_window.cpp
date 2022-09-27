@@ -746,6 +746,7 @@ void Game_Window::Save_Game()
   Save_Saver_Dialog Dialog;
   Dialog.Show();
   string path = Dialog.Get_File_Path();
+  path = path + ".sav";
   bool return_value = Main_Game.Save_Game(path);
   if(return_value)
     ProgressBar_Label.set_text("Game saved to " + path);

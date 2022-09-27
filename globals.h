@@ -6,7 +6,7 @@ using namespace std;
 //version of the game
 const int version_major = 1;
 const int version_minor = 1;
-const int version_build = 71;
+const int version_build = 72;
 const string codename="TECH_TREE";
 const string assets_directory_path = "assets/";
 const string path_delimeter = "/";
