@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Carthage" r="255" g="255" b="0" personality="Expansive">
+<info>
+Carthage was an ancient city founded by phoenicians in 814 BC. Later it became very powerful
+and seceded from Phoenicia. It was a major kingdom that dominated the Mediterranen Sea, however
+in 146 BC it lost rivalry with Rome and city got razed.
+
+Carthaginian trait is Expansive, to represent its power and war with romans.
+
+Carthaginian leaders include kings of Carthage.
+Carthaginian color is yellow - most likely a color of Tanit symbol.
+</info>
+  <replacement name="Republic" leader="Shophet" state_name="Republic of"/>
+  <leader name="Dido"/>
+  <leader name="Hanno I"/>
+  <leader name="Malchus I"/>
+  <leader name="Mago I"/>
+  <leader name="Hasdrubal I"/>
+  <leader name="Halmicar I"/>
+  <leader name="Hanno II"/>
+  <leader name="Hannibal"/>
+  <leader name="Gisco"/>
+  <leader name="Bomilcar"/>
+  <leader name="Hilmico I"/>
+  <trait name="E"/>
+  <city name="Carthage"/>
+  <city name="Utica"/>
+  <city name="Tanit"/>
+  <city name="Carthago Nova"/>
+  <city name="Tangier"/>
+  <city name="Olisipo"/>
+  <city name="Ruscurru"/>
+  <city name="Rusaddir"/>
+  <city name="Agadir"/>
+  <city name="Cadiz"/>
+  <city name="Mliet"/>
+  <city name="Motya"/>
+  <city name="Mutuw"/>
+  <city name="Hadrumetum"/>
+  <city name="Leptis Parva"/>
+  <city name="Thapsus"/>
+  <city name="Kerkouane"/>
+  <city name="Zema Regia"/>
+  <city name="Vaga"/>
+  <city name="Cerne"/>
+  <city name="Oualidia"/>
+  <city name="El-Jadida"/>
+  <city name="Mehidya"/>
+  <city name="Tangier"/>
+  <city name="Mogador"/>
+  <city name="Lixus"/>
+  <city name="Oea"/>
+  <city name="Sabratha"/>
+  <city name="Leptis Magna"/>
+  <city name="Icosium"/>
+  <city name="Russicada"/>
+  <city name="Tipaza"/>
+  <city name="Cannae"/>
+  <city name="Nora"/>
+  <city name="Tophet"/>
+  <city name="Trebbia"/>
+  <city name="Tharros"/>
+  <city name="Trasimene"/>
+  </civ>
+</civs>
+</miniyacg>

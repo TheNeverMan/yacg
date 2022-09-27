@@ -86,10 +86,15 @@ void Game::Assign_Starting_Positions_From_Data(map<string, array<int, 2>> starti
   if(player_id == 1 && spectator_mode)
   {
     Assing_Starting_Position_For_Player(player_id, 9999, 9999);
-    player_id++;
+    //player_id++;
   }
   for(auto &player : Players)
   {
+    if(spectator_mode && player_id == 1)
+    {
+      player_id++;
+      continue;
+    }
     if(starting_positions.count(player.Get_Raw_Name()))
     {
       int x = starting_positions[player.Get_Raw_Name()][0];

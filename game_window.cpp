@@ -674,7 +674,7 @@ void Game_Window::End_Turn()
   else
   {
     auto timer_start = chrono::steady_clock::now();
-    bool out = Main_Game.End_Player_Turn();
+    int out = Main_Game.End_Player_Turn();
     Logger::Log_Info("Turn finished!" );
     auto timer_end = chrono::steady_clock::now();
     auto timer_diff = timer_end - timer_start;
@@ -743,33 +743,14 @@ bool Game_Window::Is_Unit_Selected()
 
 void Game_Window::Save_Game()
 {
-  Gtk::FileChooserDialog Save_Game_File_Chooser_Dialog("Please choose a file", Gtk::FILE_CHOOSER_ACTION_SAVE);
-  Save_Game_File_Chooser_Dialog.set_select_multiple(false);
-  Save_Game_File_Chooser_Dialog.set_create_folders(false);
-  Save_Game_File_Chooser_Dialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-  Save_Game_File_Chooser_Dialog.add_button("_Open", Gtk::RESPONSE_OK);
-  int result = Save_Game_File_Chooser_Dialog.run();
-
- //Handle the response:
- switch(result)
- {
-   case(Gtk::RESPONSE_OK):
-   {
-     string path = Save_Game_File_Chooser_Dialog.get_filename();
-     Logger::Log_Info("Path to save is " + path );
-     bool return_value = Main_Game.Save_Game(path);
-     if(return_value)
-      ProgressBar_Label.set_text("Game saved to " + path);
-    else
-      ProgressBar_Label.set_text("Saving game failed!");
-     break;
-   }
-   default:
-   {
-     Logger::Log_Error("Unexpected button clicked." );
-     break;
-   }
- }
+  Save_Saver_Dialog Dialog;
+  Dialog.Show();
+  string path = Dialog.Get_File_Path();
+  bool return_value = Main_Game.Save_Game(path);
+  if(return_value)
+    ProgressBar_Label.set_text("Game saved to " + path);
+  else
+    ProgressBar_Label.set_text("Saving game failed!");
 }
 
 void Game_Window::Clear_Map_Images()
@@ -796,45 +777,29 @@ void Game_Window::Clear_Map_Images()
 
 void Game_Window::Load_Game()
 {
-  Gtk::FileChooserDialog Load_Game_File_Chooser_Dialog("Please choose a file", Gtk::FILE_CHOOSER_ACTION_OPEN);
-  Load_Game_File_Chooser_Dialog.set_select_multiple(false);
-  Load_Game_File_Chooser_Dialog.set_create_folders(false);
-  Load_Game_File_Chooser_Dialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-  Load_Game_File_Chooser_Dialog.add_button("_Open", Gtk::RESPONSE_OK);
-  int result = Load_Game_File_Chooser_Dialog.run();
-
- //Handle the response:
- switch(result)
- {
-   case(Gtk::RESPONSE_OK):
-   {
-     string path = Load_Game_File_Chooser_Dialog.get_filename();
-     Logger::Log_Info("Path to load is " + path );
-     tuple<bool, Game*> return_value = Main_Game.Load_Game(path);
-     if(get<0>(return_value))
-     {
-       ProgressBar_Label.set_text("Game loaded from " + path);
-       Main_Game = *get<1>(return_value);
-       Main_Game.Set_Autosave(Main_Settings_Manager.Get_Autosave_Value());
-       Clear_Map_Images();
-       Map_Scrolled_Window.remove();
-       Generate_Map_View();
-       Update_Labels();
-       Update_Action_Buttons(last_clicked_x, last_clicked_y);
-       Update_Map();
-     }
-     else
-     {
-       ProgressBar_Label.set_text("Game loading failed");
-     }
-     break;
-   }
-   default:
-   {
-    Logger::Log_Error("Unexpected button clicked." );
-     break;
-   }
- }
+  Save_Loader_Dialog Dialog;
+  Dialog.Show();
+  string path = Dialog.Get_File_Path();
+  if(path == " ")
+    return;
+  Logger::Log_Info("Path to load is " + path );
+  tuple<bool, Game*> return_value = Main_Game.Load_Game(path);
+  if(get<0>(return_value))
+  {
+    ProgressBar_Label.set_text("Game loaded from " + path);
+    Main_Game = *get<1>(return_value);
+    Main_Game.Set_Autosave(Main_Settings_Manager.Get_Autosave_Value());
+    Clear_Map_Images();
+    Map_Scrolled_Window.remove();
+    Generate_Map_View();
+    Update_Labels();
+    Update_Action_Buttons(last_clicked_x, last_clicked_y);
+    Update_Map();
+  }
+  else
+  {
+    ProgressBar_Label.set_text("Game loading failed");
+  }
 }
 
 void Game_Window::Show_Newspaper_Clicked()

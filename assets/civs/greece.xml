@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Athens" r="203" g="133" b="81" personality="Enlightened">
+<info>
+Athens were a major ancient greek city-state. In 478 BC it has founded Delian League which has
+united most of the current Greece territory. Athens are home of democracy and greek culture which
+are both fundaments of modern european culture.
+
+Athenian traits are Scientific and Nautical, to represent the fluorishing of philosophy and
+science in antiquity.
+
+Athenian leaders include strategos and other ancient politicians.
+Athenian color is light brown - color of ancient vases.
+</info>
+  <replacement name="Tribe" leader="Basileus" state_name="Phyle of"/>
+  <replacement name="Republic" leader="Archon" state_name="Polis of"/>
+  <replacement name="Despotism" leader="Tyrant" state_name="Tyrrany of"/>
+  <replacement name="Monarchy" leader="Strategos" state_name="Polis of"/>
+  <leader name="Cleisthenes"/>
+  <leader name="Pericles"/>
+  <leader name="Themistocles"/>
+  <leader name="Aristides"/>
+  <leader name="Cimon"/>
+  <leader name="Pisistratus"/>
+  <leader name="Hippias"/>
+  <leader name="Militiades"/>
+  <leader name="Ephialtes"/>
+  <leader name="Thrasybulus"/>
+  <trait name="S"/>
+  <trait name="N"/>
+  <city name="Athens"/>
+  <city name="Salamis"/>
+  <city name="Eretria"/>
+  <city name="Karystos"/>
+  <city name="Andros"/>
+  <city name="Naxos"/>
+  <city name="Chalcis"/>
+  <city name="Oreos"/>
+  <city name="Skyros"/>
+  <city name="Mende"/>
+  <city name="Methone"/>
+  <city name="Torone"/>
+  <city name="Potidaea"/>
+  <city name="Stageira"/>
+  <city name="Olynthus"/>
+  <city name="Eion"/>
+  <city name="Amphipolis"/>
+  <city name="Abdera"/>
+  <city name="Thasos"/>
+  <city name="Lemnos"/>
+  <city name="Imbros"/>
+  <city name="Maroneia"/>
+  <city name="Lampsacus"/>
+  <city name="Assos"/>
+  <city name="Mytlene"/>
+  <city name="Kymi"/>
+  <city name="Phocaea"/>
+  <city name="Chios"/>
+  <city name="Erythrae"/>
+  <city name="Clazomenae"/>
+  <city name="Ephesus"/>
+  <city name="Priene"/>
+  <city name="Miletus"/>
+  <city name="Iasos"/>
+  <city name="Halicarnassus"/>
+  <city name="Cnidus"/>
+  <city name="Rhodes"/>
+  <city name="Kameiros"/>
+  <city name="Lindos"/>
+  <city name="Perinthos"/>
+  <city name="Cyzicus"/>
+  <city name="Proconnesus"/>
+  <city name="Astakos"/>
+  <city name="Lampasacus"/>
+  <city name="Aegina"/>
+  <city name="Carystus"/>
+  <city name="Anaphe"/>
+  <city name="Keos"/>
+  <city name="Styra"/>
+  <city name="Keria Keros"/>
+  <city name="Pholeganros"/>
+  <city name="Rineia"/>
+  <city name="Poseideion"/>
+  <city name="Tenos"/>
+  <city name="Kimolos"/>
+  <city name="Syros"/>
+  <city name="Biakrioi"/>
+  <city name="Ios"/>
+  <city name="Melos"/>
+  <city name="Mykonos"/>
+  <city name="Sikinos"/>
+  <city name="Belbina"/>
+  <city name="Hephaestia"/>
+  <city name="Thera"/>
+  <city name="Andros"/>
+  <city name="Imbros"/>
+  <city name="Seriphos"/>
+  <city name="Kythnos"/>
+  <city name="Myrina"/>
+  <city name="Grynches"/>
+  <city name="Ionikos"/>
+  <city name="Sifnos"/>
+  <city name="Astyrenoi"/>
+  <city name="Amorgioi"/>
+  <city name="Nisyrioi"/>
+  <city name="Paros"/>
+  <city name="Oinaioi"/>
+  <city name="Thermaioi"/>
+  <city name="Kodapes"/>
+  <city name="Myessos"/>
+  <city name="Pitane"/>
+  <city name="Boutheia"/>
+  <city name="Chalkeatai"/>
+  <city name="Notion"/>
+  <city name="Cheronnesioi"/>
+  <city name="Amynandes"/>
+  <city name="Kyrbissos"/>
+  <city name="Diosiritai"/>
+  <city name="Killares"/>
+  <city name="Pygeles"/>
+  <city name="Klaundes"/>
+  <city name="Airaies"/>
+  <city name="Kasolabes"/>
+  <city name="Myrina"/>
+  <city name="Karbasyandes"/>
+  <city name="Teos"/>
+  <city name="Isindioi"/>
+  <city name="Lebedus"/>
+  <city name="Idymes"/>
+  <city name="Phocaea"/>
+  <city name="Hyblisses"/>
+  <city name="Colophon"/>
+  <city name="Hier para Sidymeas"/>
+  <city name="Polichnitai"/>
+  <city name="Heraioi"/>
+  <city name="Maiandrioi"/>
+  <city name="Gargares"/>
+  <city name="Erines"/>
+  <city name="Cyme"/>
+  <city name="Priene"/>
+  <city name="Edries Messes"/>
+  <city name="Pteleosioi"/>
+  <city name="Plasades"/>
+  <city name="Pasandes"/>
+  <city name="Oranietai"/>
+  <city name="Marathesioi"/>
+  <city name="Lepsimandes"/>
+  <city name="Kyromes"/>
+  <city name="Krosa"/>
+  <city name="Koioi"/>
+  </civ>
+</civs>
+</miniyacg>

@@ -5,6 +5,7 @@
 #include "window_manager.h"
 #include "game_css_provider.h"
 #include "settings_manager.h"
+#include "save_loader_dialog.h"
 
 class Window_Manager;
 

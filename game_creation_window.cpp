@@ -146,29 +146,13 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
 
 void Game_Creation_Window::Show_Map_Selection_Dialog()
 {
-  Gtk::FileChooserDialog Load_Game_File_Chooser_Dialog("Please choose a map file", Gtk::FILE_CHOOSER_ACTION_OPEN);
-  Load_Game_File_Chooser_Dialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-  Load_Game_File_Chooser_Dialog.add_button("_Open", Gtk::RESPONSE_OK);
-  int result = Load_Game_File_Chooser_Dialog.run();
-
- //Handle the response:
- switch(result)
- {
-   case(Gtk::RESPONSE_OK):
-   {
-     string path = Load_Game_File_Chooser_Dialog.get_filename();
-     Map_Data.map_path = path;
-     Map_Button.set_label("Unload map");
-     Randomize_Starting_Locations_Button.show();
-     Map_Path_Label.set_text("Map loaded from " + path);
-     break;
-   }
-   default:
-   {
-    Logger::Log_Error("Unexpected button clicked." );
-     break;
-   }
- }
+  Map_Loader_Dialog Dialog;
+  Dialog.Show();
+  string path = Dialog.Get_File_Path();
+  Map_Data.map_path = path;
+  Map_Button.set_label("Unload map");
+  Randomize_Starting_Locations_Button.show();
+  Map_Path_Label.set_text("Map loaded from " + path);
 }
 
 void Game_Creation_Window::Map_Button_Clicked()

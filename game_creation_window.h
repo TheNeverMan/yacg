@@ -12,6 +12,7 @@
 #include "game_css_provider.h"
 #include "settings_manager.h"
 #include "logger.h"
+#include "map_loader_dialog.h"
 #include "civ.h"
 #include "xml_data_loader.h"
 

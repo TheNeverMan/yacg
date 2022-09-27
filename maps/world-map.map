@@ -26,7 +26,7 @@
 <starting_position name="Iroquois" x="28" y="20"/>
 <starting_position name="Sikh" x="79" y="23"/>
 <starting_position name="Ethiopia" x="68" y="36"/>
-<starting_position name="Macedonia" x="62" y="23"/>
+<starting_position name="Macedonia" x="63" y="23"/>
 <starting_position name="Spain" x="53" y="23"/>
 <starting_position name="Zulu" x="65" y="48"/>
 <starting_position name="Argentina" x="36" y="51"/>
@@ -36,15 +36,24 @@
 <starting_position name="Portugal" x="52" y="22"/>
 <starting_position name="Sweden" x="59" y="14"/>
 <starting_position name="Olmecs" x="23" y="31"/>
-<starting_position name="Vandals" x="56" y="25"/>
+<starting_position name="Vandals" x="55" y="25"/>
 <starting_position name="Phoenicia" x="66" y="25"/>
-<starting_postion name="Arabia" x="70" y="26"/>
+<starting_position name="Arabia" x="70" y="26"/>
 <starting_position name="Göktürks" x="82" y="17"/>
 <starting_position name="Turkey" x="65" y="23"/>
 <starting_position name="India" x="79" y="27"/>
 <starting_position name="Canada" x="27" y="18"/>
 <starting_position name="Australia" x="104" y="47"/>
 <starting_position name="East Timor" x="94" y="41"/>
+<starting_position name="Numidia" x="56" y="25"/>
+<starting_position name="Carthage" x="57" y="25"/>
+<starting_position name="Athens" x="61" y="23"/>
+<starting_position name="Israel" x="66" y="24"/>
+<starting_position name="Venice" x="59" y="21"/>
+<starting_position name="Rus" x="65" y="19"/>
+<starting_position name="Mississippi" x="25" y="22"/>
+<starting_position name="Pueblo" x="21" y="24"/>
+<starting_position name="Aztecs" x="22" y="29"/>
 </starting_positions>
 <replacements>
 <replacement char="s" name="Sea"/>

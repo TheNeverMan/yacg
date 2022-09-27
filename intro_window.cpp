@@ -109,30 +109,11 @@ void Intro_Window::Quit_Button_Clicked()
 
 void Intro_Window::Load_Game_Button_Clicked()
 {
-  Gtk::FileChooserDialog Load_Game_File_Chooser_Dialog("Please choose a file", Gtk::FILE_CHOOSER_ACTION_OPEN);
-  Load_Game_File_Chooser_Dialog.set_select_multiple(false);
-  Load_Game_File_Chooser_Dialog.set_create_folders(false);
-  Load_Game_File_Chooser_Dialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-  Load_Game_File_Chooser_Dialog.add_button("_Open", Gtk::RESPONSE_OK);
-  int result = Load_Game_File_Chooser_Dialog.run();
-
- //Handle the response:
- switch(result)
- {
-   case(Gtk::RESPONSE_OK):
-   {
-     string path = Load_Game_File_Chooser_Dialog.get_filename();
-     Logger::Log_Info("Path to load is " + path );
-     Main_Settings_Manager.Write_To_File();
-     Main_Manager->Show_Game_Window_Load_From_File(Main_Settings_Manager, path, false);
-     break;
-   }
-   default:
-   {
-    Logger::Log_Error("Unexpected button clicked." );
-     break;
-   }
- }
+  Save_Loader_Dialog Dialog;
+  Dialog.Show();
+  string path = Dialog.Get_File_Path();
+  if(path != " ")
+    Main_Manager->Show_Game_Window_Load_From_File(Main_Settings_Manager, path, false);
 }
 
 void Intro_Window::Load_Autosave_Button_Clicked()

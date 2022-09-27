@@ -26,6 +26,8 @@
 #include "goverment_dialog.h"
 #include "newspaper_dialog.h"
 #include "tips_manager.h"
+#include "save_loader_dialog.h"
+#include "save_saver_dialog.h"
 
 class Window_Manager;
 

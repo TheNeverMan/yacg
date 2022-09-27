@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Numidia" r="153" g="204" b="51" personality="Holy">
+<info>
+Numidia was ancient berberic kingdom which existed from 202 to 40 BC. It firstly emerged as berber
+tribe confederacy united by Masinissa. By participating in Second Punic War on roman side, he united
+whole numidian territory under his rule. Later Numidia lost its independence and became roman province.
+
+Numidian traits are Religious and Nomadic, to represent nomadic character of Berbers and their later
+dervish folklore.
+
+Numidian leaders include kings of Numidia.
+Numidian color is green from Berber flag.    
+</info>
+  <replacement name="Tribe" leader="King" state_name="Massylii of"/>
+  <leader name="Masinissa"/>
+  <leader name="Syphax"/>
+  <leader name="Zelalsen"/>
+  <leader name="Gala"/>
+  <leader name="Ozalces"/>
+  <leader name="Capussa"/>
+  <leader name="Lacumazes"/>
+  <leader name="Vermina"/>
+  <leader name="Archobarzane"/>
+  <leader name="Micipsa"/>
+  <leader name="Gulussa"/>
+  <leader name="Mastanabal"/>
+  <leader name="Hiempsal"/>
+  <leader name="Adherbal"/>
+  <leader name="Jugurtha"/>
+  <leader name="Gauda"/>
+  <leader name="Hiarbas"/>
+  <trait name="D"/>
+  <trait name="R"/>
+  <city name="Cirta"/>
+  <city name="Skikda"/>
+  <city name="Hippo"/>
+  <city name="Theveste"/>
+  <city name="Lambaesis"/>
+  <city name="Siga"/>
+  <city name="Quiza"/>
+  <city name="Tigava"/>
+  <city name="Cartena"/>
+  <city name="Gunugu"/>
+  <city name="Iol"/>
+  <city name="Auzia"/>
+  <city name="Rusazus"/>
+  <city name="Saldae"/>
+  <city name="Zdif"/>
+  <city name="Rusippisir"/>
+  <city name="Igilgili"/>
+  <city name="Chullu"/>
+  <city name="Tacapae"/>
+  <city name="Sabratha"/>
+  <city name="Meninx"/>
+  <city name="Madauros"/>
+  <city name="Capsa"/>
+  <city name="Tamalleni"/>
+  <city name="Thabutis"/>
+  <city name="Nepte"/>
+  <city name="Thusur"/>
+  <city name="Capsa"/>
+  <city name="Ammaedera"/>
+  <city name="Zama"/>
+  <city name="Sicca"/>
+  <city name="Bulla"/>
+  <city name="Culcul"/>
+  <city name="Tabe"/>
+  <city name="Sitifi"/>
+  <city name="Thubura"/>
+  <city name="Rusazu"/>
+  <city name="Immnium"/>
+  <city name="Ieosium"/>
+  <city name="Auzea"/>
+  <city name="Tingis"/>
+  <city name="Abila"/>
+  <city name="Zilis"/>
+  <city name="Lirus"/>
+  <city name="Banasa"/>
+  <city name="Sala"/>
+  <city name="Volubitis"/>
+  <city name="Gilda"/>
+  <city name="Giloa"/>
+  <city name="Henchir Dibba"/>
+  <city name="Certenna"/>
+  <city name="Zabe"/>
+  <city name="Bocconia"/>
+  <city name="Zerta"/>
+  <city name="Ksar El Kelb"/>
+  <city name="Betagbara"/>
+  <city name="Henchir Gourai"/>
+  <city name="Zattara"/>
+  <city name="Ain Garb"/>
+  <city name="Belesasa"/>
+  <city name="Ksar Sbehi"/>
+  <city name="Zarai"/>
+  <city name="Fussala"/>
+  <city name="Barica"/>
+  <city name="Kherbet Fraim"/>
+  <city name="Merkeb Talha"/>
+  <city name="Fessee"/>
+  <city name="Bamaccora"/>
+  <city name="Fata"/>
+  <city name="Henchir Residis"/>
+  <city name="Dusa"/>
+  <city name="Baia"/>
+  <city name="Ain Zana"/>
+  <city name="Kherbet Ouled Arif"/>
+  <city name="Djemila"/>
+  <city name="Bagai"/>
+  <city name="Ain Tine"/>
+  <city name="Vescera"/>
+  <city name="Khenchela"/>
+  <city name="Badiae"/>
+  <city name="Gueramoussa"/>
+  <city name="Verrona"/>
+  <city name="EL Kentour"/>
+  <city name="Babra"/>
+  <city name="Ain Hadjar Allah"/>
+  <city name="Velefi"/>
+  <city name="Henchir El Harmel"/>
+  <city name="Azura"/>
+  <city name="Guebeur Bou Aoun"/>
+  <city name="Vegesela"/>
+  <city name="Oum Kif"/>
+  <city name="Augurus"/>
+  <city name="Ksar Galaba"/>
+  <city name="Vatarba"/>
+  <city name="Oum El Bouaghi"/>
+  <city name="Arsacal"/>
+  <city name="Cataqua"/>
+  <city name="Vagrauta"/>
+  <city name="Ain Moughmel"/>
+  <city name="Arae"/>
+  <city name="Khamissa"/>
+  <city name="Vageata"/>
+  <city name="N'Gaous"/>
+  <city name="Mexmeia"/>
+  <city name="Musti"/>
+  <city name="Vagada"/>
+  <city name="Beni Barbar"/>
+  <city name="Ain Zoul"/>
+  <city name="Capsus"/>
+  <city name="Vadesi"/>
+  <city name="Calama"/>
+  <city name="Aquae"/>
+  <city name="El Milia"/>
+  <city name="Vaga"/>
+  <city name="Caesarea"/>
+  <city name="Ampora"/>
+  <city name="Burca"/>
+  <city name="Ubazza"/>
+  <city name="Buffada"/>
+  <city name="Alba"/>
+  </civ>
+</civs>
+</miniyacg>

@@ -43,7 +43,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="class_horsemen" cost="15" atk="5" def="3" move="3" mait="3" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="class_horsemanship" texture="assets/textures/units/class_horseman-unit-texture.png" obsolete="Knights">
+<unit name="Horsemen" cost="15" atk="5" def="3" move="3" mait="3" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="class_horsemanship" texture="assets/textures/units/horseman-unit-texture.png" obsolete="Knights">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -52,7 +52,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Horse Archers" cost="20" atk="6" def="2" move="4" mait="4" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Horde" texture="assets/textures/units/class_horsearcher-unit-texture.png" obsolete="Uhlans">
+<unit name="Horse Archers" cost="20" atk="6" def="2" move="4" mait="4" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Horde" texture="assets/textures/units/horsearcher-unit-texture.png" obsolete="Uhlans">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -120,7 +120,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Musketeers" cost="70" atk="11" def="11" move="2" mait="14" is_naval="0" is_land="1" info="people with strong stick" requirement="Musket" texture="assets/textures/units/musketeer-unit-texture.png" obsolete="Line class_infantry">
+<unit name="Musketeers" cost="70" atk="11" def="11" move="2" mait="14" is_naval="0" is_land="1" info="people with strong stick" requirement="Musket" texture="assets/textures/units/musketeer-unit-texture.png" obsolete="Line Infantry">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -225,7 +225,7 @@
 <trait name="class_naval"/>
 <trait name="plunder"/>
 </unit>
-<unit name="Line Infantry" cost="80" atk="13" def="14" move="2" mait="13" is_naval="0" is_land="1" info="people with gun" requirement="Threading" texture="assets/textures/units/lineclass_infantry-unit-texture.png" obsolete="class_infantry">
+<unit name="Line Infantry" cost="80" atk="13" def="14" move="2" mait="13" is_naval="0" is_land="1" info="people with gun" requirement="Threading" texture="assets/textures/units/lineinfantry-unit-texture.png" obsolete="Infantry">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -235,7 +235,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Infantry" cost="100" atk="17" def="18" move="2" mait="18" is_naval="0" is_land="1" info="people with gun" requirement="class_infantry" texture="assets/textures/units/class_infantry-unit-texture.png" obsolete="Mechanized class_infantry">
+<unit name="Infantry" cost="100" atk="17" def="18" move="2" mait="18" is_naval="0" is_land="1" info="people with gun" requirement="class_infantry" texture="assets/textures/units/infantry-unit-texture.png" obsolete="Mechanized Infantry">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -245,7 +245,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Mechanized Infantry" cost="130" atk="24" def="23" move="3" mait="23" is_naval="0" is_land="1" info="people with gun" requirement="class_infantry" texture="assets/textures/units/mechanizedclass_infantry-unit-texture.png" obsolete="Modern class_infantry">
+<unit name="Mechanized Infantry" cost="130" atk="24" def="23" move="3" mait="23" is_naval="0" is_land="1" info="people with gun" requirement="class_infantry" texture="assets/textures/units/mechanizedinfantry-unit-texture.png" obsolete="Modern Infantry">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -287,7 +287,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Modern Infantry" cost="270" atk="38" def="39" move="4" mait="43" is_naval="0" is_land="1" info="people with gun" requirement="Modern class_infantry" texture="assets/textures/units/mechanizedclass_infantry-unit-texture.png" obsolete=" ">
+<unit name="Modern Infantry" cost="270" atk="38" def="39" move="4" mait="43" is_naval="0" is_land="1" info="people with gun" requirement="Modern class_infantry" texture="assets/textures/units/moderninfantry-unit-texture.png" obsolete=" ">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
