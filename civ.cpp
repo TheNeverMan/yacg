@@ -92,7 +92,7 @@ int Civ::Get_Id()
 void Civ::Build_City_On_Map(int x, int y)
 {
   Owned_City tmp;
-  max_actions++;
+  //max_actions++;
   tmp.Coordinates.x = x;
   tmp.Coordinates.y = y;
   tmp.name = City_Names[city_name_index % City_Names.size()];
@@ -148,6 +148,7 @@ Upgrade Civ::Find_Upgrade_By_Name(string upg_name)
 void Civ::Build_Upgrade(string upg_name)
 {
   int cost = Find_Upgrade_By_Name(upg_name).Get_Cost();
+  max_actions = max_actions + Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("giveaction");
   cost = cost - How_Many_Times_Has_Trait("E");
   if(Active_Goverment.Get_Name() == "Republic")
     cost--;
