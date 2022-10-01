@@ -637,7 +637,7 @@ string Game::Get_Current_Turn_By_Years()
 {
   string out;
   int starting_year = -4000;
-  int current_year = starting_year + (turn_counter * 25);
+  int current_year = starting_year + (turn_counter * 15);
   out = out + to_string(current_year);
   if(current_year < 0)
     out = out + " BC";
