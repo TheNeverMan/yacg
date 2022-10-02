@@ -23,7 +23,7 @@ class AI
     void Settle_City_With_Unit();
     bool Can_Settle_City_With_Unit();
     int Find_Biggest_Parameter(vector<int> input);
-    bool Build_Random_Producing_Upgrade();
+    int Build_Random_Producing_Upgrade();
     bool Is_Income_For_Currently_Moving_Player_Is_Negative();
     void Move_All_Units_Not_In_Cities_Away_From_Borders();
     void Move_All_Units_Not_In_Cities_To_Enemy();
@@ -40,6 +40,7 @@ class AI
     array<int,2> Get_Closest_Point(int x, int y, vector<array<int, 2>> points);
     void Heal_Units_In_Cities();
     bool Recruit_Non_Infantry_Unit();
+    int Get_Currently_Moving_Player_Finances();
   public:
     AI_Data Process_Turn(AI_Data Data);
     AI(Game *m_g);

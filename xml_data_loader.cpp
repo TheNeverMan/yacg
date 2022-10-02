@@ -93,7 +93,7 @@ vector<string> XML_Data_Loader::Load_Tips()
   vector<string> out;
   for(auto& file : Get_Files_In_Directory("tips"))
   {
-    vector<string> tmp = Load_Tips_From_File(file.path());
+    vector<string> tmp = Load_Tips_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
   Logger::Log_Info("XML Tips Data Loaded!" );
@@ -116,7 +116,7 @@ vector<Tile> XML_Data_Loader::Load_Tiles()
   vector<Tile> out;
   for(auto& file : Get_Files_In_Directory("tiles"))
   {
-    vector<Tile> tmp = Load_Tiles_From_File(file.path());
+    vector<Tile> tmp = Load_Tiles_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
   Logger::Log_Info("XML Tile Data Loaded!" );
@@ -162,7 +162,7 @@ vector<Tech> XML_Data_Loader::Load_Techs()
   vector<Tech> out;
   for(auto& file : Get_Files_In_Directory("technologies"))
   {
-    vector<Tech> tmp = Load_Techs_From_File(file.path());
+    vector<Tech> tmp = Load_Techs_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
   Logger::Log_Info("XML Tech Data Loaded!" );
@@ -213,7 +213,7 @@ vector<Unit> XML_Data_Loader::Load_Units()
   vector<Unit> out;
   for(auto& file : Get_Files_In_Directory("units"))
   {
-    vector<Unit> tmp = Load_Units_From_File(file.path());
+    vector<Unit> tmp = Load_Units_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
   Logger::Log_Info("XML Tech Units Loaded!" );
@@ -262,7 +262,7 @@ vector<Upgrade> XML_Data_Loader::Load_Upgrades()
   vector<Upgrade> out;
   for(auto& file : Get_Files_In_Directory("upgrades"))
   {
-    vector<Upgrade> tmp = Load_Upgrades_From_File(file.path());
+    vector<Upgrade> tmp = Load_Upgrades_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
   Logger::Log_Info("XML Tech Upgrades Loaded!" );
@@ -304,7 +304,7 @@ vector<Gov> XML_Data_Loader::Load_Govs()
   vector<Gov> out;
   for(auto& file : Get_Files_In_Directory("govs"))
   {
-    vector<Gov> tmp = Load_Govs_From_File(file.path());
+    vector<Gov> tmp = Load_Govs_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
   Logger::Log_Info("XML Tech Goverments Loaded!" );
@@ -361,7 +361,7 @@ vector<Civ> XML_Data_Loader::Load_Civs()
   vector<Civ> out;
   for(auto& file : Get_Files_In_Directory("civs"))
   {
-    vector<Civ> tmp = Load_Civs_From_File(file.path());
+    vector<Civ> tmp = Load_Civs_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
   Logger::Log_Info("XML Tech Civs Loaded!" );

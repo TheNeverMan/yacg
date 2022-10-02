@@ -7,15 +7,20 @@ AI::AI(Game *m_g)
 
 bool AI::Is_Income_For_Currently_Moving_Player_Is_Negative()
 {
+  if(Get_Currently_Moving_Player_Finances() <= 0)
+    return true;
+  return false;
+}
+
+int AI::Get_Currently_Moving_Player_Finances()
+{
   vector<int> income = Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player());
   int plus = income[0];
   int minus = income[1];
   int unit_minus = Main_Game->Get_Currently_Moving_Player()->Get_Unit_Maitenance();
   plus = plus - minus;
   plus = plus - unit_minus;
-  if(plus > 0)
-    return false;
-  return true;
+  return plus;
 }
 
 
@@ -42,7 +47,7 @@ array<int ,2> AI::Get_Closest_Point(int x, int y, vector<array<int ,2>> points)
 
 
 
-bool AI::Build_Random_Producing_Upgrade()
+int AI::Build_Random_Producing_Upgrade()
 {
   for(auto &upg : Main_Game->Get_Upgrades())
   {
@@ -56,12 +61,12 @@ bool AI::Build_Random_Producing_Upgrade()
           if(out[0] == -1)
             continue;
           Main_Game->Build_Upgrade(upg.Get_Name(), out[0], out[1], Main_Game->Get_Currently_Moving_Player_Id());
-          return true;
+          return upg.Get_Production();
         }
       }
     }
   }
-  return false;
+  return 0;
 }
 
 void AI::Build_Naval_Producing_Upgrades()
@@ -426,16 +431,22 @@ AI_Data AI::Process_Turn(AI_Data Data)
 
   Logger::Log_Info("Personality: " + personality);
   Logger::Log_Info("Gold: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Gold()));
-  if(Is_Income_For_Currently_Moving_Player_Is_Negative())
+  int player_finances = Get_Currently_Moving_Player_Finances();
+  if(Is_Income_For_Currently_Moving_Player_Is_Negative() || Main_Game->Get_Currently_Moving_Player()->Get_Gold() < 0)
   {
-    while(! Is_Income_For_Currently_Moving_Player_Is_Negative() && Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
+    while(!(player_finances <= 0) && Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
     {
-      if(!Build_Random_Producing_Upgrade())
-        Main_Game->Get_Currently_Moving_Player()->Disband_First_Unit();
+      int upgrade_production = Build_Random_Producing_Upgrade();
+      if(upgrade_production == 0)
+        break;
+//if(upgrade_production == 0)
+        //Main_Game->Get_Currently_Moving_Player()->Disband_First_Unit();
+      //else
+      player_finances = player_finances + upgrade_production;
     }
   }
-
-  economy_parameter = economy_goal - Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count;
+  int player_finances_only_income = Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0];
+  economy_parameter = economy_goal - player_finances_only_income / city_count;
   technologic_parameter = tech_goal - Main_Game->Get_Currently_Moving_Player()->Get_Number_Of_Researched_Techs() / city_count;
   technologic_parameter = technologic_parameter * 5;
   if(technologic_parameter < 0)
@@ -467,9 +478,11 @@ AI_Data AI::Process_Turn(AI_Data Data)
       {
         economy_parameter = 0;
         bool loop = true;
-        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(economy_goal <= Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count) && loop)
+        while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(economy_goal <= player_finances_only_income / city_count) && loop)
         {
-          loop = Build_Random_Producing_Upgrade();
+          int upgrade_production = Build_Random_Producing_Upgrade();
+          loop = static_cast<bool>(upgrade_production);
+          player_finances_only_income += upgrade_production;
         }
         break;
       }
@@ -493,7 +506,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
         bool loop = true;
         while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(military_goal <= static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size() / city_count)) && loop)
         {
-          if(economy_goal <= Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player())[0] / city_count)
+          if(economy_goal <= player_finances_only_income / city_count)
             Build_Naval_Producing_Upgrades();
           else
             Build_Naval_Recruitment_Upgrades();
