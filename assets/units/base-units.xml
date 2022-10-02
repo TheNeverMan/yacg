@@ -43,7 +43,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Horsemen" cost="15" atk="5" def="3" move="3" mait="3" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="class_horsemanship" texture="assets/textures/units/horseman-unit-texture.png" obsolete="Knights">
+<unit name="Horsemen" cost="15" atk="5" def="3" move="3" mait="3" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Horsemanship" texture="assets/textures/units/horseman-unit-texture.png" obsolete="Knights">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -129,7 +129,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Zepellin" cost="120" atk="13" def="13" move="3" mait="20" is_naval="0" is_land="1" info="people with strong stick" requirement="Balloons" texture="assets/textures/units/zepellin-unit-texture.png" obsolete="Biplane">
+<unit name="Zepellin" cost="120" atk="13" def="13" move="3" mait="20" is_naval="0" is_land="1" info="people with strong stick" requirement="Balloons" texture="assets/textures/units/zeppelin-unit-texture.png" obsolete="Biplane">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -213,7 +213,7 @@
 <trait name="fightflying"/>
 <trait name="plunder"/>
 </unit>
-<unit name="Maxim Gun" cost="90" atk="14" def="10" move="2" mait="14" is_naval="0" is_land="1" info="people with stone launcher" requirement="Maxim gun" texture="assets/textures/units/gatlinggun-unit-texture.png" obsolete="Machine Gun">
+<unit name="Maxim Gun" cost="90" atk="14" def="10" move="2" mait="14" is_naval="0" is_land="1" info="people with stone launcher" requirement="Maxim Gun" texture="assets/textures/units/gatlinggun-unit-texture.png" obsolete="Machine Gun">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -235,7 +235,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Infantry" cost="100" atk="17" def="18" move="2" mait="18" is_naval="0" is_land="1" info="people with gun" requirement="class_infantry" texture="assets/textures/units/infantry-unit-texture.png" obsolete="Mechanized Infantry">
+<unit name="Infantry" cost="100" atk="17" def="18" move="2" mait="18" is_naval="0" is_land="1" info="people with gun" requirement="Infantry" texture="assets/textures/units/infantry-unit-texture.png" obsolete="Mechanized Infantry">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -245,7 +245,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Mechanized Infantry" cost="130" atk="24" def="23" move="3" mait="23" is_naval="0" is_land="1" info="people with gun" requirement="class_infantry" texture="assets/textures/units/mechanizedinfantry-unit-texture.png" obsolete="Modern Infantry">
+<unit name="Mechanized Infantry" cost="130" atk="24" def="23" move="3" mait="23" is_naval="0" is_land="1" info="people with gun" requirement="Mechanized Infantry" texture="assets/textures/units/mechanizedinfantry-unit-texture.png" obsolete="Modern Infantry">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -266,7 +266,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Tanks" cost="150" atk="28" def="24" move="4" mait="30" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Tanks" texture="assets/textures/units/tank-unit-texture.png" obsolete="Modern Armour">
+<unit name="Tanks" cost="150" atk="28" def="24" move="4" mait="30" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Tank" texture="assets/textures/units/tank-unit-texture.png" obsolete="Modern Armour">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -287,7 +287,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Modern Infantry" cost="270" atk="38" def="39" move="4" mait="43" is_naval="0" is_land="1" info="people with gun" requirement="Modern class_infantry" texture="assets/textures/units/moderninfantry-unit-texture.png" obsolete=" ">
+<unit name="Modern Infantry" cost="270" atk="38" def="39" move="4" mait="43" is_naval="0" is_land="1" info="people with gun" requirement="Modern Infantry" texture="assets/textures/units/moderninfantry-unit-texture.png" obsolete=" ">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -319,7 +319,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Artillery" cost="140" atk="32" def="15" move="2" mait="28" is_naval="0" is_land="1" info="people with big gun" requirement="Tanks" texture="assets/textures/units/artillery-unit-texture.png" obsolete="Rocket Artillery">
+<unit name="Artillery" cost="140" atk="32" def="15" move="2" mait="28" is_naval="0" is_land="1" info="people with big gun" requirement="Tank" texture="assets/textures/units/artillery-unit-texture.png" obsolete="Rocket Artillery">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -357,7 +357,7 @@
 <trait name="fightflying"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Machine Gun" cost="130" atk="27" def="20" move="1" mait="25" is_naval="0" is_land="1" info="people with stone launcher" requirement="Machine gun" texture="assets/textures/units/machinegun-unit-texture.png" obsolete=" ">
+<unit name="Machine Gun" cost="130" atk="27" def="20" move="1" mait="25" is_naval="0" is_land="1" info="people with stone launcher" requirement="Machine Gun" texture="assets/textures/units/machinegun-unit-texture.png" obsolete=" ">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -433,7 +433,7 @@
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>
 </unit>
-<unit name="Jetfighter" cost="350" atk="32" def="25" move="11" mait="45" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Jetfighter" texture="assets/textures/units/fighter-unit-texture.png" obsolete=" ">
+<unit name="Jetfighter" cost="350" atk="32" def="25" move="11" mait="45" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Jetfighter" texture="assets/textures/units/jetfighter-unit-texture.png" obsolete=" ">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>

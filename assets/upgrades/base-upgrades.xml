@@ -133,7 +133,7 @@
 <trait name="accumulateproduction"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Nuclear Powerplant" cost="90" mait="20" prod="0" info="city info text" requirement="Nuclear Plant" texture="assets/textures/upgrades/nuclearpowerstation-upgrade-texture.png" avoid="0">
+<upgrade name="Nuclear Powerplant" cost="90" mait="20" prod="0" info="city info text" requirement="Nuclear Plant" texture="assets/textures/upgrades/atomicpowerstation-upgrade-texture.png" avoid="0">
 <tile name="Land"/>
 <trait name="avoid_Powerplant"/>
 <trait name="avoid_Nuclear Powerplant"/>
@@ -158,7 +158,7 @@
 <trait name="accumulateproduction"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Wind Powerplant" cost="120" mait="15" prod="0" info="city info text" requirement="Ecology" texture="assets/textures/upgrades/windpowerstation-upgrade-texture.png" avoid="0">
+<upgrade name="Wind Powerplant" cost="120" mait="15" prod="0" info="city info text" requirement="Ecology" texture="assets/textures/upgrades/ecologicpowerstation-upgrade-texture.png" avoid="0">
 <tile name="Sea"/>
 <trait name="avoid_Powerplant"/>
 <trait name="avoid_Nuclear Powerplant"/>
@@ -187,7 +187,7 @@
 <trait name = "majordefbonus"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Military Base" cost="100" mait="22" prod="0" info="city info text" requirement="Mechanized Infantry" texture="assets/textures/upgrades/militarybaseupgrade-texture.png" avoid="0">
+<upgrade name="Military Base" cost="100" mait="22" prod="0" info="city info text" requirement="Mechanized Infantry" texture="assets/textures/upgrades/militarybase-upgrade-texture.png" avoid="0">
 <tile name="Land"/>
 <tile name="Mountain"/>
 <trait name="recruit_armored"/>

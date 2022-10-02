@@ -290,7 +290,7 @@
 <requirement name="Rationalism"/>
 <trait name="economic"/>
 </technology>
-<technology name="University" cost="1400" info="Increases research funds by 5 percent." texture="assets/textures/techs/agriculture-tech-texture.png">
+<technology name="University" cost="1400" info="Increases research funds by 5 percent." texture="assets/textures/techs/university-tech-texture.png">
 <requirement name="Rationalism"/>
 <trait name="increaseresearchfunds"/>
 <trait name="economic"/>
@@ -485,11 +485,11 @@
 <requirement name="Nuclear Fission"/>
 <trait name="military"/>
 </technology>
-<technology name="Bomber" cost="7500" info="Unlocks Bomber unit." texture="assets/textures/techs/bomber-tech-texture.png">
+<technology name="Bomber" cost="7500" info="Unlocks Bomber unit." texture="assets/textures/techs/bombers-tech-texture.png">
 <requirement name="Flight"/>
 <trait name="military"/>
 </technology>
-<technology name="Fighter" cost="7500" info="Unlocks Fighter unit." texture="assets/textures/techs/fighter-tech-texture.png">
+<technology name="Fighter" cost="7500" info="Unlocks Fighter unit." texture="assets/textures/techs/fighters-tech-texture.png">
 <requirement name="Flight"/>
 <trait name="military"/>
 </technology>
@@ -543,7 +543,7 @@
 <requirement name="Jet Engine"/>
 <trait name="military"/>
 </technology>
-<technology name="Jetfighter" cost="15000" info="Unlocks Jetfighter unit." texture="assets/textures/techs/jetfighter-tech-texture.png">
+<technology name="Jetfighter" cost="15000" info="Unlocks Jetfighter unit." texture="assets/textures/techs/jetfighters-tech-texture.png">
 <requirement name="Jet Engine"/>
 <trait name="military"/>
 </technology>
@@ -624,7 +624,7 @@
 <requirement name="Machine Learning"/>
 <trait name="military"/>
 </technology>
-<technology name="Thermonuclear Energy" cost="36000" info="Unlocks Thermonuclear Plant." texture="assets/textures/techs/thermonuclearplant-tech-texture.png">
+<technology name="Thermonuclear Energy" cost="36000" info="Unlocks Thermonuclear Plant." texture="assets/textures/techs/thermonuclearenergy-tech-texture.png">
 <requirement name="Machine Learning"/>
 <requirement name="Nuclear Plant"/>
 <trait name="economic"/>
@@ -639,7 +639,7 @@
 <requirement name="Spaceflight"/>
 <trait name="givepoints_1000"/>
 </technology>
-<technology name="Automated Factory" cost="39000" info="Unlocks Atomated Factory upgrade." texture="assets/textures/techs/automatedfactory-tech-texture.png">
+<technology name="Automated Factory" cost="39000" info="Unlocks Atomated Factory upgrade." texture="assets/textures/techs/automatedfactories-tech-texture.png">
 <requirement name="Robotics"/>
 <trait name="economic"/>
 </technology>
