@@ -58,7 +58,7 @@ Khanates usually pay little attention to building infrastructure, but increase t
 Under Khanate your units have one more movement, but your border radius is reduced by one.">
 <trait name="expanse"/>
 </goverment>
-<goverment name="Parliamentary Monarchy" title="Prime Minister" state_name="Kingdom of" requirement="Parliamentary Monarchy" texture="assets/textures/goverments/communism-goverment-texture.png" info="Parliamentary Monarchy is a form of monarchy
+<goverment name="Parliamentary Monarchy" title="Prime Minister" state_name="Kingdom of" requirement="Parliamentary Monarchy" texture="assets/textures/goverments/parliamentarymonarchy-goverment-texture.png" info="Parliamentary Monarchy is a form of monarchy
 where king only holds decorative role and actual ruling is done by parliament.
 
 Under Parliamentary Monarchy stability of your empire will be increased, but maintenance of your army will cost 25% more gold">

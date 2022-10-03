@@ -256,7 +256,7 @@
 <trait name="defense"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Armoured Car" cost="110" atk="19" def="17" move="3" mait="20" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Armoured Car" texture="assets/textures/units/armouredcar-unit-texture.png" obsolete="Tank">
+<unit name="Armoured Car" cost="110" atk="19" def="17" move="3" mait="20" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Armoured Car" texture="assets/textures/units/armouredcar-unit-texture.png" obsolete="Tanks">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -418,7 +418,7 @@
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>
 </unit>
-<unit name="Fighter" cost="170" atk="21" def="17" move="7" mait="34" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Fighter" texture="assets/textures/units/fighter-unit-texture.png" obsolete="Jet Fighter">
+<unit name="Fighter" cost="170" atk="21" def="17" move="7" mait="34" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Fighter" texture="assets/textures/units/fighter-unit-texture.png" obsolete="Jetfighter">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -461,7 +461,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Bomber" cost="180" atk="30" def="19" move="6" mait="36" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Bomber" texture="assets/textures/units/bomber-unit-texture.png" obsolete="Stealh Bomber">
+<unit name="Bomber" cost="180" atk="30" def="19" move="6" mait="36" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Bomber" texture="assets/textures/units/bomber-unit-texture.png" obsolete="Stealth Bomber">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Sea"/>
