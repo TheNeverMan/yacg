@@ -17,22 +17,15 @@ void Game_Window::Generate_Map_View()
   Map_Scrolled_Window.add(*root);
   while(start < x)
   {
-    auto *tmp = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL, 0);
-    root->pack_start(*tmp, Gtk::PACK_SHRINK);
-    Map_Images.push_back(tmp);
+    auto *Vertical_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL, 0);
+    root->pack_start(*Vertical_Box, Gtk::PACK_SHRINK);
     while(start_y < y)
     {
-      auto *event_box = Gtk::make_managed<Gtk::EventBox>();
-      auto *i = Gtk::make_managed<Gtk::Image>(assets_directory_path + "textures" + path_delimeter + "tiles" + path_delimeter + "land-tile-texture.png");
-      tmp->pack_start(*event_box, Gtk::PACK_SHRINK);
-      event_box->add(*i);
-      event_box->set_events(Gdk::BUTTON_PRESS_MASK);
-      vector<int> coords;
-      coords.push_back(start);
-      coords.push_back(start_y);
-      event_box->signal_button_press_event().connect(sigc::bind<vector<int>>(sigc::mem_fun(*this, &Game_Window::Tile_Clicked), coords, i));
-      i->set_hexpand(true);
-      i->set_vexpand(true);
+      auto tmp = make_shared<Gtk_Tile>(assets_directory_path + "textures" + path_delimeter + "tiles" + path_delimeter + "land-tile-texture.png", Main_Settings_Manager.Get_Tile_Size_Value());
+      Vertical_Box->pack_start(*(tmp->Get_Event_Box()), Gtk::PACK_SHRINK);
+      vector<int> coords {start, start_y};
+      tmp->Get_Event_Box()->signal_button_press_event().connect(sigc::bind<vector<int>>(sigc::mem_fun(*this, &Game_Window::Tile_Clicked), coords, tmp->Get_Image()));
+      Map_Images.push_back(tmp);
       start_y++;
     }
     start_y = 0;
@@ -43,71 +36,25 @@ void Game_Window::Generate_Map_View()
   Logger::Log_Info("Map View Generated!" );
 }
 
-void Game_Window::Update_Tile(Gtk::Image *tile_image, int x, int y)
+void Game_Window::Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y)
 {
-  string texture = Main_Game.Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
-  Glib::RefPtr<Gdk::Pixbuf> tile_pix; //guide
-  Glib::RefPtr<Gdk::Pixbuf> upgrade_pix;
-  Glib::RefPtr<Gdk::Pixbuf> finished_pix;
-  Glib::RefPtr<Gdk::Pixbuf> border_pix;
-  Glib::RefPtr<Gdk::Pixbuf> unit_pix;
-  Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
-  int tile_size = 32;
-  int true_tile_size = Main_Settings_Manager.Get_Tile_Size_Value();
-  scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
-  //fetching unit texture from tile.Get_Textures_Path() is currently not supported
+  if(!(Tile_Pointer->Has_City_Set()) && Main_Game.Get_Map()->Get_Upgrade(x,y) == "City")
+  {
+    Tile_Pointer->Set_City_Name(Main_Game.Get_Player_By_Id(Main_Game.Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
+  }
+  string tile_texture = Main_Game.Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
+  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
   if(Main_Game.Get_Map()->Get_Tile(x,y).Has_Unit())
-  {
-    unit_pix = Gdk::Pixbuf::create_from_file(Main_Game.Get_Player_By_Id(Main_Game.Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path());
-  }
-  else
-  {
-    unit_pix = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png");
-  }
-  tile_pix = Gdk::Pixbuf::create_from_file(texture);
-  //Logger::Log_Info(textures[0] );
-  upgrade_pix = Gdk::Pixbuf::create_from_file(Main_Game.Get_Upgrade_By_Name(Main_Game.Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path());
-  finished_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
-  border_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
-  int border_alpha = 60;
-  border_alpha = 120;
-  border_pix->fill(Main_Game.Get_Border_Color_By_Player_Id(Main_Game.Get_Map()->Get_Owner(x, y)));
-  tile_pix->copy_area(0,0,32,32,finished_pix,0,0);
-  upgrade_pix->composite(finished_pix,0,0,32,32,0,0,1,1,Gdk::INTERP_NEAREST,255);
-  unit_pix->composite(finished_pix,0,0,32,32,0,0,1,1,Gdk::INTERP_NEAREST,255);
-  border_pix->composite(finished_pix,0,0,32,32,0.0,0.0,1.0,1.0,Gdk::INTERP_NEAREST,border_alpha);
-  finished_pix->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) tile_size), ((double) true_tile_size / (double) tile_size), Gdk::INTERP_BILINEAR);
-  tile_image->set(scaled_pix);
-  tile_image->set_size_request(true_tile_size, true_tile_size);
+    unit_texture = Main_Game.Get_Player_By_Id(Main_Game.Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
+
+  string upgrade_texture = Main_Game.Get_Upgrade_By_Name(Main_Game.Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path();
+  guint32 border_color = Main_Game.Get_Border_Color_By_Player_Id(Main_Game.Get_Map()->Get_Owner(x, y));
+  Tile_Pointer->Update_Texture(tile_texture, unit_texture, upgrade_texture, border_color);
 }
 
 void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
 {
-  int start = 0;
-  int start_y = 0;
-  for(auto &box : Map_Images)
-  {
-    if(start == x)
-    {
-      auto children = box->get_children();
-      for(auto &event_box : children)
-      {
-        Gtk::EventBox *e = dynamic_cast<Gtk::EventBox*>(event_box);
-        auto event_cont = e->get_children();
-        for(auto &image : event_cont)
-        {
-          if(start_y == y)
-          {
-            Gtk::Image *i = dynamic_cast<Gtk::Image*>(image);
-            Update_Tile(i,start,start_y);
-          }
-          start_y++;
-        }
-      }
-    }
-    start++;
-    start_y = 0;
-  }
+  Update_Tile(Map_Images[y + (x * Main_Game.Get_Map()->Get_Y_Size())],x,y);
 }
 
 void Game_Window::Update_Map()
@@ -117,20 +64,14 @@ void Game_Window::Update_Map()
   Logger::Log_Info("Updating Map..." );
   int start = 0;
   int start_y = 0;
-  for(auto &box : Map_Images)
+  int x = Main_Game.Get_Map()->Get_X_Size();
+  int y = Main_Game.Get_Map()->Get_Y_Size();
+  while(start < x)
   {
-    auto children = box->get_children();
-    for(auto &event_box : children)
+    while(start_y < y)
     {
-      Gtk::EventBox *e = dynamic_cast<Gtk::EventBox*>(event_box);
-      auto event_cont = e->get_children();
-      for(auto &image : event_cont)
-      {
-        Gtk::Image *i = dynamic_cast<Gtk::Image*>(image);
-        Update_Tile(i,start,start_y);
-        start_y++;
-      }
-
+      Update_Tile_By_Coords_Only(start,start_y);
+      start_y++;
     }
     start++;
     start_y = 0;
@@ -268,7 +209,7 @@ void Game_Window::Recruit_Unit(string u, int x, int y)
   message = "Unit " + u + " recruited!";
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
-  Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
+  Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
   ProgressBar_Label.set_text(message);
 }
 
@@ -288,7 +229,7 @@ void Game_Window::Disband_Unit(int x, int y)
   }
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
-  Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
+  Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
   ProgressBar_Label.set_text(message);
 }
 
@@ -309,7 +250,7 @@ void Game_Window::Heal_Unit(int x, int y)
   }
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
-  Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
+  Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
   ProgressBar_Label.set_text(message);
 }
 
@@ -330,7 +271,7 @@ void Game_Window::Plunder_Tile(int x, int y)
   }
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
-  Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
+  Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
   ProgressBar_Label.set_text(message);
 }
 
@@ -351,7 +292,7 @@ void Game_Window::Detonate_Atomic_Bomb(int x, int y)
   Update_Map();
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
-  Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
+  Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
   ProgressBar_Label.set_text(message);
 }
 
@@ -542,10 +483,10 @@ void Game_Window::Update_Tile_Information_Label(int x, int y)
 
 bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img)
 {
-  if(Last_Clicked_Tile != nullptr)
-  {
-    Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
-  }
+  //if(Last_Clicked_Tile != nullptr)
+
+    Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
+
   Update_Tile_Information_Label(coords[0],coords[1]);
   Update_Action_Buttons(coords[0],coords[1]);
   if(Is_Unit_Selected())
@@ -558,10 +499,10 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
       if(update_map)
         Update_Map();
       Update_Labels();
-      Last_Clicked_Tile = img;
+      //Last_Clicked_Tile = img;
       last_clicked_x = coords[0];
       last_clicked_y = coords[1];
-      Update_Tile(Last_Clicked_Tile, last_clicked_x, last_clicked_y);
+      Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
       Update_Tile_Information_Label(coords[0],coords[1]);
       Update_Tile_By_Coords_Only(out[2], out[3]);
@@ -571,12 +512,12 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     {
       ProgressBar_Label.set_text("You can't move unit here!");
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
-      Update_Tile(img, coords[0], coords[1]);
+      Update_Tile_By_Coords_Only(coords[0], coords[1]);
     }
   }
   else
   {
-    Last_Clicked_Tile = img;
+    //Last_Clicked_Tile = img;
     last_clicked_x = coords[0];
     last_clicked_y = coords[1];
     Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
@@ -756,23 +697,6 @@ void Game_Window::Save_Game()
 
 void Game_Window::Clear_Map_Images()
 {
-  for(auto &box : Map_Images)
-  {
-    auto children = box->get_children();
-    for( auto &var : children)
-    {
-      auto eventbox = dynamic_cast<Gtk::EventBox*>(var);
-      auto images = eventbox->get_children();
-      for(auto &image : images)
-      {
-        image->hide();
-        eventbox->remove();
-      }
-      var->hide();
-      box->remove(*var);
-    }
-    box->hide();
-  }
   Map_Images.clear();
 }
 

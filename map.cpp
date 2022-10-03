@@ -179,7 +179,9 @@ array<int, 2> Map::Calculate_Production_For_Tile(int x, int y, int id, Civ playe
       prod = prod + (accumulated_production * player.Find_Upgrade_By_Name(Get_Tile(x, y).Get_Upgrade()).How_Many_Times_Has_Trait("accumulateproduction"));
     }
     int mait = player.Get_Upgrade_Maitenance_By_Name(Get_Tile(x, y).Get_Upgrade());
-    int buff = Calculate_Buff_For_Tile(x, y, id, player);
+    int buff = 0;
+    if(Get_Tile(x,y).Is_Buffed())
+      buff = Calculate_Buff_For_Tile(x, y, id, player);
     out[0] = out[0] + prod;
     if(prod > 0)
       out[0] = out[0] + buff;
@@ -270,6 +272,13 @@ vector<array<int,2>> Map::Recalculate_Borders_For_Player_By_Id(int owner, int ra
   }
   return out;
 }
+void Map::Buff_Tiles_In_Radius(int x, int y, int radius)
+{
+  vector<array<int, 2>> Tiles_To_Buff = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
+  Tiles_To_Buff.erase(Tiles_To_Buff.begin());
+  for(auto& Tile : Tiles_To_Buff)
+    Get_Tile_Pointer(Tile[0], Tile[1])->Buff_Tile();
+}
 void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 {
   if(Is_Tile_Out_Of_Bounds(x,y))
@@ -279,11 +288,16 @@ void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
     Get_Tile_Pointer(x,y)->Fix();
     return;
   }
+  if(upg.Has_Trait("economybonus") && !(Get_Tile(x+1,y).Is_Buffed()))
+  {
+    Buff_Tiles_In_Radius(x,y,2);
+  }
   Game_Map[x][y].Place.Upgrade_Tile(upg.Get_Name());
   if(upg.Has_Trait("borderexpand"))
   {
     Claim_Tiles_In_Radius(x,y,owner,radius);
   }
+
 }
 
 vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_x, int dest_y, Unit u)

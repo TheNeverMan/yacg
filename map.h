@@ -33,6 +33,8 @@ class Map : public XML_Serializable
     int Calculate_Buff_For_Tile(int x, int y, int owner, Civ player);
     int Get_Buff_From_Tile(int x, int y, int owner, Civ player);
     array<int, 2> Calculate_Production_For_Tile(int x, int y, int id, Civ player);
+    void Buff_Tiles_In_Radius(int x, int y, int radius);
+    void Debuff_Tiles_In_Radius(int x, int y, int radius);
   public:
     xml_node<>* Serialize(memory_pool<>* doc);
     Map(vector<Tile> t, vector<Upgrade> u);

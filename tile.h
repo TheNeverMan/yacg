@@ -18,7 +18,7 @@ class Tile : public Help_Object, public XML_Serializable, public Traits_Owner, p
     string name;
     string upgrade;
     bool has_unit;
-    bool is_buffed = false;
+    int is_buffed = 0;
     bool is_plundered;
     int unit_owner_id;
   public:
@@ -32,6 +32,7 @@ class Tile : public Help_Object, public XML_Serializable, public Traits_Owner, p
     string Get_Upgrade();
     bool Has_Unit();
     void Buff_Tile();
+    void Debuff_Tile();
     bool Is_Buffed();
     void Put_Unit_On_Tile(int owner);
     void Remove_Unit_From_Tile();

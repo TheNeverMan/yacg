@@ -28,6 +28,7 @@
 #include "tips_manager.h"
 #include "save_loader_dialog.h"
 #include "save_saver_dialog.h"
+#include "gtk_tile.h"
 
 class Window_Manager;
 
@@ -65,7 +66,7 @@ class Game_Window : public Gtk::Window
     Gtk::Button Random_Tip_Button;
     Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
-    vector<Gtk::Box*> Map_Images;
+    vector<shared_ptr<Gtk_Tile>> Map_Images;
     Gtk::Label ProgressBar_Label;
     void Save_Game();
     void Load_Game();
@@ -126,9 +127,9 @@ class Game_Window : public Gtk::Window
     int selected_unit_y;
     int other_players_player_count;
     string main_player_civ_name;
-    Gtk::Image *Last_Clicked_Tile;
+    Gtk_Tile *Last_Clicked_Tile;
     void Initialize_GTK();
-    void Update_Tile(Gtk::Image *tile_image, int x, int y);
+    void Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y);
     array<int ,2> Get_Screen_Resolution();
     void Set_Tiles_Size_Automatically();
     bool Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y);
