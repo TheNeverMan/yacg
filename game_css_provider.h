@@ -18,4 +18,10 @@ class Game_CSS_Provider
       auto ctx = Object->get_style_context();
       ctx->add_provider(Main_Provider, 800);
     }
+    template<typename Gtk_Object> void Add_CSS_With_Class(Gtk_Object *Object, string class_name)
+    {
+      auto ctx = Object->get_style_context();
+      ctx->add_class(class_name);
+      ctx->add_provider(Main_Provider, 800);
+    }
 };

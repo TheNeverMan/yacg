@@ -5,6 +5,7 @@
 #include<string>
 
 #include "logger.h"
+#include "game_css_provider.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Gtk_Tile
     Gtk::Image Tile_Image;
     Gtk::Overlay City_Name_Overlay;
     Gtk::Label City_Name_Label;
+    Game_CSS_Provider Main_Provider;
     int tile_size;
     bool has_city;
   public:

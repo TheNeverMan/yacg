@@ -37,6 +37,8 @@ void Gtk_Tile::Set_City_Name(string city_name)
   City_Name_Overlay.add_overlay(static_cast<Gtk::Widget&>(ref));
   City_Name_Overlay.set_overlay_pass_through(static_cast<Gtk::Widget&>(ref), false);
   //City_Name_Overlay.set_size_request(City_Name_Label.get_width(), tile_size);
+  string class_name = "small_label";
+  Main_Provider.Add_CSS_With_Class(&City_Name_Label, class_name);
   City_Name_Label.show();
 }
 

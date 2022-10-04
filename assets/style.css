@@ -18,3 +18,8 @@ dialog
   font: 18px "Connection II";
   color: #ffffff;
 }
+
+.small_label
+{
+  font: 10px "Connection II";
+}
