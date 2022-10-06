@@ -125,7 +125,7 @@ void Intro_Window::About_Button_Clicked()
 {
   Gtk::Dialog dialog("About");
   dialog.add_button("Ok", 0);
-  string message = "TheNeverMan - coding & game idea \n Spykli - game idea & civs \n Kamix - textures \n Alex_Alex - civilizations \n fiStach - textures & tech tree \n Github - github.com/theneverman/yacg \n Discord - https://discord.gg/MBxsNUzJGZ";
+  string message = "TheNeverMan - coding & game idea \n Spykli - game idea & civs \n Kamix - textures \n Alex_Alex - civilizations \n fiStach - textures & tech tree \n Flag Textures License Info: \n Flags of currrently existing states have no license and are public domain. \n Other flags have Creative Commons License versions 1.0, 2.5, 3.0, 4.0. \n Github - github.com/theneverman/yacg \n Discord - https://discord.gg/MBxsNUzJGZ";
   Gtk::Label Dialog_Label = Gtk::Label(message);
   Gtk::Box *Dialog_Box = dialog.get_content_area();
   Dialog_Box->pack_start(Dialog_Label);

@@ -332,6 +332,7 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
     int g = stoi(civ_node->first_attribute("g")->value());
     int b = stoi(civ_node->first_attribute("b")->value());
     string p = civ_node->first_attribute("personality")->value();
+    string t_p = civ_node->first_attribute("flag")->value();
     vector<string> cities;
     vector<string> traits = Load_Traits_From_Root_Node(civ_node);
     vector<string> leaders;
@@ -349,7 +350,7 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
       g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("leader")->value());
       g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("state_name")->value());
     }
-    Civ tmp(n, leaders, h_t, cities, Technologies, Units, r, g, b, traits, Goverments, g_n_r, p, Upgrades);
+    Civ tmp(n, leaders, h_t, cities, Technologies, Units, r, g, b, traits, Goverments, g_n_r, p, Upgrades, t_p);
     out.push_back(tmp);
   }
   return out;

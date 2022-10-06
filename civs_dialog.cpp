@@ -24,11 +24,7 @@ Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry")
     auto *Population_Label = Gtk::make_managed<Gtk::Label>(" Population: " + to_string(player.Get_Population()));
     auto *Capital_Label = Gtk::make_managed<Gtk::Label>(" Capital: " + player.Get_Capital_Name());
 
-
-    Glib::RefPtr<Gdk::Pixbuf> color_pix;
-    color_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
-    color_pix->fill(player.Get_Civ_Color());
-    image->set(color_pix);
+    image->set(player.Get_Texture_Path());
     box->pack_start(*image, Gtk::PACK_SHRINK);
     box->pack_start(*Name_Label);
     box->pack_start(*Points_Label);

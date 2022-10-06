@@ -1,4 +1,5 @@
 #include "texture_owner.h"
+#include "globals.h"
 
 string Texture_Owner::Get_Texture_Path()
 {
@@ -7,7 +8,15 @@ string Texture_Owner::Get_Texture_Path()
 
 Texture_Owner::Texture_Owner(string t_p)
 {
-  texture_path = t_p;
+  namespace fs = std::filesystem;
+  fs::path f{ t_p };
+  if (fs::exists(f))
+    texture_path = t_p;
+  else
+    {
+      Logger::Log_Warning("Texture " + t_p + " not found! Setting to broken-texture.png");
+      texture_path = assets_directory_path + "textures" + path_delimeter + "broken-texture.png";
+    }
 }
 
 Texture_Owner::Texture_Owner(xml_node<>* Root_Node)

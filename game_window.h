@@ -52,6 +52,7 @@ class Game_Window : public Gtk::Window
     Gtk::Button End_Turn_Button;
     Gtk::Label Economy_Label;
     Gtk::Label Tile_Information_Label;
+    Gtk::Image Tile_Flag_Image;
     Gtk::Button Map_Update_Button;
     Gtk::Button Manage_Economy_Button;
     Gtk::Button Manage_Techs_Button;
@@ -137,4 +138,6 @@ class Game_Window : public Gtk::Window
     string Get_Current_Turn_By_Years();
     void Update_Tiles_From_Game();
     void Player_Has_Won_Game(int player_id);
+    void Reset_Tile_Flag_Label();
+    void Update_Tile_Flag();
 };

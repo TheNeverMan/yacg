@@ -212,11 +212,10 @@ void Game_Creation_Window::Update_Other_Player_Civ(int index, bool is_ai, Gtk::I
     return;
   }
   Glib::RefPtr<Gdk::Pixbuf> color_pix;
-  color_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
+  //color_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
   if(selected_civ_name != "Random Civilization")
   {
-    color_pix->fill(selected_civ->Get_Civ_Color());
-    image->set(color_pix);
+    image->set(selected_civ->Get_Texture_Path());
   }
   else
   {
@@ -423,8 +422,5 @@ void Game_Creation_Window::Change_Main_Player_Civ()
     return;
   }
   Civs_Description_Label.set_text(selected_civ->Info());
-  Glib::RefPtr<Gdk::Pixbuf> color_pix;
-  color_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 70, 70);
-  color_pix->fill(selected_civ->Get_Civ_Color());
-  Civs_Color_Image.set(color_pix);
+  Civs_Color_Image.set(selected_civ->Get_Texture_Path());
 }

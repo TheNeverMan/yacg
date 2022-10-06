@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Göktürks" r="93" g="184" b="238" personality="Expansive">
+<civ name="Göktürks" r="93" g="184" b="238" personality="Expansive" flag="assets/textures/flags/gokturks-flag.png">
 <info>
 Göktürks were a nomadic confederation of Turkic people in medieval Asia. In 552 they have estabilished
 First Turkic Khagante which spanned from Manchuria to Black Sea. Later after First Khaganate splitted in two parts,

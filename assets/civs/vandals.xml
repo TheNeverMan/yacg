@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Vandals" r="106" g="0" b="0" personality="Expansive">
+<civ name="Vandals" r="106" g="0" b="0" personality="Expansive" flag="assets/textures/flags/vandals-flag.png">
 <info>
 Vandals were germanic tribe from territory of Poland. Between 120 BC and 439 they have
 migrated to Northen Africa and estabilished a kingdom in the territory of Mauretania and Numidia.
@@ -13,7 +13,7 @@ Vandalic traits are Nomadic and Scientific, to represent their migration from Po
 their patronage of science.
 
 Vandalic leaders include kings of Vandal Kingdom.
-Vandalic color is brown - background color from one of their possible flags. 
+Vandalic color is brown - background color from one of their possible flags.
 </info>
 <leader name="Gaiseric"/>
 <leader name="Huneric"/>

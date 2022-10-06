@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="East Timor" r="218" g="41" b="28" personality="Peaceful">
+<civ name="East Timor" r="218" g="41" b="28" personality="Peaceful" flag="assets/textures/flags/easttimor-flag.png">
 <info>
 East Timor is a country controlling eastern part of island named Timor. Western part is a part
 of Indonesia. In history it was controlled by small tribes like Bunak, Fataluku or Los Palos.

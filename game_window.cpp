@@ -5,6 +5,11 @@ Game_Window::~Game_Window()
   //gtkmm guide
 }
 
+void Game_Window::Reset_Tile_Flag_Label()
+{
+  Tile_Flag_Image.set(assets_directory_path + "textures" + path_delimeter + "flags" + path_delimeter + "neutral-flag.png");
+}
+
 void Game_Window::Generate_Map_View()
 {
   Logger::Log_Info("Generating Map View..." );
@@ -481,14 +486,25 @@ void Game_Window::Update_Tile_Information_Label(int x, int y)
   Tile_Information_Label.set_text(text);
 }
 
+void Game_Window::Update_Tile_Flag()
+{
+  Reset_Tile_Flag_Label();
+  if(Main_Game.Get_Map()->Get_Tile(last_clicked_x, last_clicked_y).Has_Unit())
+  {
+    Tile_Flag_Image.set(Main_Game.Get_Player_By_Id(Main_Game.Get_Map()->Get_Tile(last_clicked_x,last_clicked_y).Get_Unit_Owner_Id())->Get_Texture_Path());
+    return;
+  }
+  if(Main_Game.Get_Map()->Get_Owner(last_clicked_x,last_clicked_y) != 0)
+    Tile_Flag_Image.set(Main_Game.Get_Player_By_Id(Main_Game.Get_Map()->Get_Owner(last_clicked_x,last_clicked_y))->Get_Texture_Path());
+}
+
 bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img)
 {
   //if(Last_Clicked_Tile != nullptr)
-
-    Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-
+  Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
   Update_Tile_Information_Label(coords[0],coords[1]);
   Update_Action_Buttons(coords[0],coords[1]);
+  Update_Tile_Flag();
   if(Is_Unit_Selected())
   {
     string message = " ";
@@ -532,6 +548,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     img->set(tile_image);
   }
   Update_Action_Buttons(coords[0],coords[1]);
+  Update_Tile_Flag();
   return true;
 }
 
@@ -578,6 +595,7 @@ void Game_Window::Update_Labels()
   Update_Capital_Label();
   Update_Map_Frame();
   Update_Tile_Information_Label(last_clicked_x, last_clicked_y);
+  Update_Tile_Flag();
 }
 
 void Game_Window::Player_Has_Lost_Game()
@@ -846,6 +864,8 @@ void Game_Window::Initialize_GTK()
   Manage_Goverments_Button = Gtk::Button("Revolution!");
   Save_Button = Gtk::Button("Save Game");
   Load_Button = Gtk::Button("Load Game");
+  Tile_Flag_Image = Gtk::Image();
+  Reset_Tile_Flag_Label();
   Quit_Button = Gtk::Button("Exit To Main Menu");
   Help_Button = Gtk::Button("Help");
   Random_Tip_Button = Gtk::Button("Random Tip");
@@ -867,6 +887,7 @@ void Game_Window::Initialize_GTK()
   End_Turn_Box.pack_start(End_Turn_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Economy_Label, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Tile_Information_Label, Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start(Tile_Flag_Image, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Manage_Techs_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Manage_Economy_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Show_Civs_Button, Gtk::PACK_SHRINK);

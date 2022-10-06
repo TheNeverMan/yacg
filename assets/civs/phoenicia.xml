@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Phoenicia" r="102" g="2" b="60" personality="Exploring">
+<civ name="Phoenicia" r="102" g="2" b="60" personality="Exploring" flag="assets/textures/flags/phoenicia-flag.png">
 <info>
 Phoenicia was an ancient maritime empire located in territory of Lebanon.
 In around 10th phoenician traders have estabilished colonies and trade outposts all

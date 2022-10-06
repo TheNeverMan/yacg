@@ -1,6 +1,6 @@
 #include "civ.h"
 
-Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us) : Traits_Owner(t), Help_Object(n,c_i)
+Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p) : Traits_Owner(t), Help_Object(n,c_i), Texture_Owner(t_p)
 {
   srand(time(NULL));
   Goverment_Name_Replacements = g_n_r;
@@ -786,7 +786,7 @@ int Civ::Get_Population()
   return out;
 }
 
-Civ::Civ(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node)
+Civ::Civ(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node)
 {
   Deserialize(Root_Node);
 }
@@ -1007,6 +1007,7 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   Root_Node->append_node(Serialize_Help(doc));
   Root_Node->append_node(City_Names_Node);
   Root_Node->append_node(Serialize_Traits(doc));
+  Root_Node->append_node(Serialize_Textures(doc));
   Root_Node->append_node(Owned_Units_Node);
   Root_Node->append_node(Upgrades_Node);
   Root_Node->append_node(Leaders_Node);

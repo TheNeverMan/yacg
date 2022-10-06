@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Madagascar" r="99" g="70" b="39" personality="Peaceful">
+<civ name="Madagascar" r="99" g="70" b="39" personality="Peaceful" flag="assets/textures/flags/madagascar-flag.png">
 <info>
 Madagascar is islandbased country in region of South Africa. Between 350 BC and 550 AD it was
 colonized by settlers coming from Borneo on cannoes and Bantu tribes from continent.

@@ -1,7 +1,9 @@
 #pragma once
 #include<string>
+#include<filesystem>
 
 #include "xml_serializable.h"
+#include "logger.h"
 
 using namespace std;
 

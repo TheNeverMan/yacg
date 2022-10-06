@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Numidia" r="153" g="204" b="51" personality="Holy">
+  <civ name="Numidia" r="153" g="204" b="51" personality="Holy" flag="assets/textures/flags/numidia-flag.png">
 <info>
 Numidia was ancient berberic kingdom which existed from 202 to 40 BC. It firstly emerged as berber
 tribe confederacy united by Masinissa. By participating in Second Punic War on roman side, he united
@@ -11,7 +11,7 @@ Numidian traits are Religious and Nomadic, to represent nomadic character of Ber
 dervish folklore.
 
 Numidian leaders include kings of Numidia.
-Numidian color is green from Berber flag.    
+Numidian color is green from Berber flag.
 </info>
   <replacement name="Tribe" leader="King" state_name="Massylii of"/>
   <leader name="Masinissa"/>
