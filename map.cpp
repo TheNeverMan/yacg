@@ -105,6 +105,7 @@ void Map::Claim_Tile(int x, int y, int owner)
 
 void Map::Claim_Tiles_In_Radius(int x, int y, int owner, int radius)
 {
+  Main_Radius_Generator.Set_Size(Get_X_Size(), Get_Y_Size());
   vector<array<int, 2>> Tiles_To_Claim = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
   for(auto& Tile : Tiles_To_Claim)
     Claim_Tile(Tile[0],Tile[1],owner);
@@ -281,6 +282,7 @@ void Map::Buff_Tiles_In_Radius(int x, int y, int radius)
 }
 void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 {
+  //cout << radius << endl;
   if(Is_Tile_Out_Of_Bounds(x,y))
     return;
   if(upg.Get_Name() == "plundered")

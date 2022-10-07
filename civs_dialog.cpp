@@ -18,6 +18,11 @@ Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry")
   {
     auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     auto *image = Gtk::make_managed<Gtk::Image>();
+    auto *color_image = Gtk::make_managed<Gtk::Image>();
+    Glib::RefPtr<Gdk::Pixbuf> color_pix;
+    color_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 48, 48);
+    color_pix->fill(player.Get_Civ_Color());
+    color_image->set(color_pix);
     auto *Name_Label = Gtk::make_managed<Gtk::Label>(player.Get_Full_Name() + " (" + player.Get_Leader_Name() + ") " + " ID: " + to_string(index));
     auto *Points_Label = Gtk::make_managed<Gtk::Label>(" Points: " + to_string(player.Get_Score()));
     auto *Army_Label = Gtk::make_managed<Gtk::Label>(" Army Size: " + to_string(player.Get_Army_Manpower()));
@@ -26,6 +31,7 @@ Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry")
 
     image->set(player.Get_Texture_Path());
     box->pack_start(*image, Gtk::PACK_SHRINK);
+    box->pack_start(*color_image);
     box->pack_start(*Name_Label);
     box->pack_start(*Points_Label);
     box->pack_start(*Army_Label);
