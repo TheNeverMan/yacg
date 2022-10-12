@@ -9,8 +9,8 @@ void File_Path::Validate_Path()
 {
   string linux_path_delimeter = "/";
   string windows_path_delimeter = "\\";
-  replace(file_path.begin(), file_path.end(), linux_path_delimeter, path_delimeter);
-  replace(file_path.begin(), file_path.end(), windows_path_delimeter, path_delimeter);
+  replace(file_path.begin(), file_path.end(), *linux_path_delimeter.c_str(), *path_delimeter.c_str());
+  replace(file_path.begin(), file_path.end(), *windows_path_delimeter.c_str(), *path_delimeter.c_str());
 }
 
 File_Path::File_Path(string f_p)

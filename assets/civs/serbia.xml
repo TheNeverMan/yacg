@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Serbia" r="198" g="54" b="60" personality="Authoritarian" flag="assets/textures/flags/serbia-flag.png">
+  <info>
+  </info>
+  <replacement name="Democracy" leader="President" state_name="Republic of"/>
+  <replacement name="Despotism" leader="King" state_name="Kingdom of"/>
+  <replacement name="Monarchy" leader="Autokrator" state_name="Empire of"/>
+  <replacement name="Tribe" leader="Grand Zupan" state_name="Grand Principality of"/>
+  <replacement name="Parliamentary Monarchy" leader="King" state_name="Yugoslavian Kingdom of"/>
+  <trait name="P"/>
+  <trait name="E"/>
+  <leader name="Slobodan Milosevic"/>
+  <leader name="Aleksandar Vucic"/>
+  <leader name="Josip Broz Tito"/>
+  <leader name="Stefan Dušan"/>
+  <leader name="Stefan Uroš V"/>
+  <leader name="Lazar Hrebeljanović"/>
+  <leader name="Stefan Nemanjić"/>
+  <leader name="Milan I"/>
+  <leader name="Peter I"/>
+  <leader name="Alexander I"/>
+  <city name="Belgrade"/>
+  <city name="Novi Sad"/>
+  <city name="Nis"/>
+  <city name="Kragujevac"/>
+  <city name="Leskovac"/>
+  <city name="Subotica"/>
+  <city name="Krusevac"/>
+  <city name="Kraljevo"/>
+  <city name="Pancevo"/>
+  <city name="Zrenjanin"/>
+  <city name="Sabac"/>
+  <city name="Cacak"/>
+  <city name="Smederevo"/>
+  <city name="Valjevo"/>
+  <city name="Vranje"/>
+  <city name="Uzice"/>
+  <city name="Sombor"/>
+  <city name="Pozarevac"/>
+  <city name="Pirot"/>
+  <city name="Zajecar"/>
+  <city name="Kikinda"/>
+  <city name="Sremska Mitrovica"/>
+  <city name="Jagodina"/>
+  <city name="Vrsac"/>
+  <city name="Bor"/>
+  <city name="Ruma"/>
+  <city name="Backa Palanka"/>
+  <city name="Prokuplje"/>
+  <city name="Indija"/>
+  <city name="Paracin"/>
+  <city name="Arandelovac"/>
+  <city name="Gornji Milanovac"/>
+  <city name="Vrbas"/>
+  <city name="Becej"/>
+  <city name="Smederevska Palanka"/>
+  <city name="Temerin"/>
+  <city name="Loznica"/>
+  <city name="Cuprija"/>
+  <city name="Senta"/>
+  <city name="Stara Pazova"/>
+  <city name="Knjazevac"/>
+  <city name="Aleksinac"/>
+  <city name="Kula"/>
+  <city name="Apatin"/>
+  <city name="Negotin"/>
+  <city name="Velika Plana"/>
+  <city name="Vlasotince"/>
+  <city name="Ada"/>
+  <city name="Trstenik"/>
+  <city name="Priboj"/>
+  <city name="Sid"/>
+  <city name="Bujanovac"/>
+  <city name="Backa Topola"/>
+  <city name="Sjenica"/>
+  <city name="Kovin"/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  <city name=""/>
+  </civ>
+
+</civs>
+</miniyacg>

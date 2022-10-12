@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Greenland" r="200" g="16" b="46" personality="Exploring" flag="assets/textures/flags/greenland-flag.png">
+  <info>
+  </info>
+  <replacement name="Parliamentary Monarchy" leader="High Commissioner" state_name=""/>
+  <replacement name="Democracy" leader="Premier" state_name=""/>
+  <trait name="S"/>
+  <leader name="Jonathan Motzfeldt"/>
+  <leader name="Lars-Emil Johansen"/>
+  <leader name="Hans Enoksen"/>
+  <leader name="Kuupik Kleist"/>
+  <leader name="Aleqa Hammond"/>
+  <leader name="Kim Kielsen"/>
+  <leader name="Múte Bourup Egede"/>
+  <city name="Nuuk"/>
+  <city name="Sisimiut"/>
+  <city name="Ilulissat"/>
+  <city name="Qaqortoq"/>
+  <city name="Aasiaat"/>
+  <city name="Maniitsoq"/>
+  <city name="Tasiilaq"/>
+  <city name="Uummannaq"/>
+  <city name="Narsaq"/>
+  <city name="Paamiut"/>
+  <city name="Nanortalik"/>
+  <city name="Upernavik"/>
+  <city name="Qasigiannguit"/>
+  <city name="Qeqertarsuaq"/>
+  <city name="Qaanaaq"/>
+  <city name="Kangaatsiaq"/>
+  <city name="Kangerlussuaq"/>
+  <city name="Kullorsuaq"/>
+  <city name="Ittoqqortoormiit"/>
+  <city name="Kangaamiut"/>
+  <city name="Tasiusaq"/>
+  <city name="Saattut"/>
+  <city name="Kuummiit"/>
+  <city name="Ikerasak"/>
+  <city name="Niaqomaarsuk"/>
+  <city name="Kulusuk"/>
+  <city name="Nuussuaq"/>
+  <city name="Upernavik Kujalleq"/>
+  <city name="Attu"/>
+  <city name="Atammik"/>
+  <city name="Sermiligaaq"/>
+  <city name="Innaarsuit"/>
+  <city name="Qaarsut"/>
+  <city name="Qeqertarsuatsiaat"/>
+  <city name="Alluitsup Paa"/>
+  <city name="Ukkusissat"/>
+  <city name="Saqqaq"/>
+  <city name="Kangersuatsiaq"/>
+  <city name="Narsarsuaq"/>
+  <city name="Qeqertaq"/>
+  <city name="Aappilattoq"/>
+  <city name="Ikerasaarsuk"/>
+  <city name="Sarfannguit"/>
+  <city name="Tiilerilaaq"/>
+  <city name="Narsarmijit"/>
+  <city name="Itilleq"/>
+  <city name="Napasoq"/>
+  <city name="Ikamiut"/>
+  <city name="Qassiarsuk"/>
+  <city name="Iginniasrfik"/>
+  <city name="Akunnaaq"/>
+  <city name="Savissivik"/>
+  <city name="Kitsissuarsuit"/>
+  <city name="Tasiusaq"/>
+  <city name="Isertoq"/>
+  <city name="Nutaarmiut"/>
+  <city name="Ilimanaq"/>
+  <city name="Kapisillit"/>
+  <city name="Naajaat"/>
+  <city name="Ammassivik"/>
+  <city name="Siorapaluk"/>
+  <city name="Niaqornat"/>
+  <city name="Oqaatsut"/>
+  <city name="Igaliku"/>
+  <city name="Qeqertat"/>
+  <city name="Saarloq"/>
+  <city name="Qassimiut"/>
+  <city name="Kangerluk"/>
+  <city name="Nuugaatsiaq"/>
+  </civ>
+</civs>
+</miniyacg>

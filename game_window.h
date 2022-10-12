@@ -3,12 +3,14 @@
 #include<vector>
 #include<iostream>
 #include<fstream>
-#include<gtkmm.h>
 #include<vector>
 #include<memory> //guide
 #include<chrono> //benchmarking
 #include<tuple>
 #include<map>
+#include<thread>
+#include</usr/include/gtkmm-3.0/gtkmm.h>
+
 
 #include "game.h"
 #include "globals.h"
@@ -26,11 +28,14 @@
 #include "goverment_dialog.h"
 #include "newspaper_dialog.h"
 #include "tips_manager.h"
+#include "magic_thread_communicator.h"
 #include "save_loader_dialog.h"
 #include "save_saver_dialog.h"
 #include "gtk_tile.h"
 
 class Window_Manager;
+class Game;
+class Magic_Thread_Communicator;
 
 class Game_Window : public Gtk::Window
 {
@@ -38,7 +43,9 @@ class Game_Window : public Gtk::Window
     Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path, bool spectator_mode);
     Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool load_starting_positions, bool spectator_mode);
     ~Game_Window();
+    void Notify_Game_Window_About_Turn();
   protected:
+    bool is_everythin_disabled = false;
     Game_CSS_Provider Main_Provider;
     Gtk::Box Root_Box;
     Gtk::Box Map_Root_Box;
@@ -94,6 +101,7 @@ class Game_Window : public Gtk::Window
     void Detonate_Atomic_Bomb(int x, int y);
     void Show_Random_Tip();
     void Show_Tip();
+    void Update_End_Turn_Labels();
   private:
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
@@ -118,7 +126,7 @@ class Game_Window : public Gtk::Window
     void Update_Tile_By_Coords_Only(int x, int y);
     void Player_Has_Lost_Game();
     void Show_Intro_Message();
-    Game Main_Game;
+    Game* Main_Game;
     void Generate_Map_View();
     void Update_Map();
     int last_clicked_x;
@@ -140,4 +148,9 @@ class Game_Window : public Gtk::Window
     void Player_Has_Won_Game(int player_id);
     void Reset_Tile_Flag_Label();
     void Update_Tile_Flag();
+    void Disable_All_Buttons();
+    void Enable_All_Buttons();
+    Glib::Dispatcher End_Turn_Dispatcher;
+    thread* End_Turn_Thread;
+    shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
 };

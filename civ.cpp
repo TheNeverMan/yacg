@@ -592,6 +592,17 @@ void Civ::Do_Trait(string trait_name)
       var.Increase_Movement_By_One();
   }
 
+  if(trait_name == "V")
+  {
+    for(auto& var : Unit_Templates)
+    {
+      if(var.Get_All_Arguments_For_Trait("class")[0] == "infantry")
+      {
+        var.Allow_Moving_On_Tile_By_Name("Ice");
+        var.Allow_Moving_On_Tile_By_Name("Desert");
+      }
+    }
+  }
 
 }
 

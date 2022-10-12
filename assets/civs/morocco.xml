@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Morocco" r="0" g="98" b="51" personality="Enterprising" flag="assets/textures/flags/morocco-flag.png">
+  <info>
+  </info>
+  <replacement name="Monarchy" leader="Emir" state_name="Emirate of"/>
+  <replacement name="Despotism" leader="Sultan" state_name="Sultanante of"/>
+  <replacement name="Theocracy" leader="Caliph" state_name="Caliphate of"/>
+  <replacement name="Fundamentalism" leader="Mahdi" state_name="Caliphate of"/>
+  <trait name="R"/>
+  <trait name="P"/>
+  <leader name="Mohammed VI"/>
+  <leader name="Idris ibn Abdallah"/>
+  <leader name="Al-Rashid ibn Sharif"/>
+  <leader name="Ahmad al-Mansur"/>
+  <leader name="Yahya ibn Umar"/>
+  <leader name="Ishaq ibn Ali"/>
+  <leader name="Ali ibn Yusuf"/>
+  <leader name="Abd al-Mu'min"/>
+  <leader name="Hassan II"/>
+  <leader name="Muhammad V"/>
+  <city name="Rabat"/>
+  <city name="Marrakesh"/>
+  <city name="Casablanca"/>
+  <city name="Tangier"/>
+  <city name="Oujda"/>
+  <city name="Agadir"/>
+  <city name="Meknes"/>
+  <city name="Fes"/>
+  <city name="Ouarzazat"/>
+  <city name="Safi"/>
+  <city name="Tarfaya"/>
+  <city name="Mohammedia"/>
+  <city name="Bou Arfa"/>
+  <city name="Tetouan"/>
+  <city name="Melilla"/>
+  <city name="Kenitra"/>
+  <city name="Sale"/>
+  <city name="Temara"/>
+  <city name="Khouribga"/>
+  <city name="El Jadida"/>
+  <city name="Beni Mellal"/>
+  <city name="Ait Melloul"/>
+  <city name="Nador"/>
+  <city name="Dar Bouazza"/>
+  <city name="Taza"/>
+  <city name="Settat"/>
+  <city name="Berrechid"/>
+  <city name="Khemisset"/>
+  <city name="Inezgane"/>
+  <city name="Ksar El Kebir"/>
+  <city name="Larache"/>
+  <city name="Guelmim"/>
+  <city name="Khenifra"/>
+  <city name="Berkane"/>
+  <city name="Taourirt"/>
+  <city name="Bouskoura"/>
+  <city name="Fquih Ben Salah"/>
+  <city name="Dcheira El Jihadia"/>
+  <city name="Oued Zem"/>
+  <city name="El Kelaa Des Sraghna"/>
+  <city name="Sidi Slimane"/>
+  <city name="Errachidia"/>
+  <city name="Guercif"/>
+  <city name="Oulad Teima"/>
+  <city name="Ben Guerir"/>
+  <city name="Tifelt"/>
+  <city name="Lqliaa"/>
+  <city name="Taroudant"/>
+  <city name="Sefrou"/>
+  <city name="Essaouira"/>
+  <city name="Fnideq"/>
+  <city name="Sidi Kacem"/>
+  <city name="Tiznit"/>
+  <city name="Tan Tan"/>
+  <city name="Souk El Arbaa"/>
+  <city name="Youssoufia"/>
+  <city name="Lahraouyine"/>
+  <city name="Martil"/>
+  <city name="Ain Horrouda"/>
+  <city name="Suq as-Sabt Awlad an-Nama"/>
+  <city name="Skhirat"/>
+  <city name="Ouazzane"/>
+  <city name="Benslimane"/>
+  <city name="Al Hoceima"/>
+  <city name="Beni Ansar"/>
+  <city name="M'diq"/>
+  <city name="Sidi Bennour"/>
+  <city name="Midelt"/>
+  <city name="Azrou"/>
+  <city name="Drargua"/>
+  </civ>
+</civs>
+</miniyacg>

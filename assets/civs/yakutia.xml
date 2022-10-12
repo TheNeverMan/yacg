@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Yakutia" r="17" g="153" b="255" personality="Expansive" flag="assets/textures/flags/yakutia-flag.png">
+<info>
+Yakutia or Sakha Republic is a part of Federation of Russia.  It is biggest republic in Russian Federation
+and biggest administrative subdivision in the world. In the 17th century Russia has defeated the Khnate of
+Sybir and incorporated Yakutia into its territory. When Soviet Union has fallen, Republic os Sakha has been founded.
+
+Yakut traits are Surviving and Cultural, to represent the harsh weather conditions of this region and 
+culture of its native inhabitants.
+
+Yakut leaders include leaders of Republic of Sakha and khans of Khanate of Sybir.
+Yakut color is cyan from flag of Republic of Sakha.
+</info>
+  <trait name="V"/>
+  <trait name="C"/>
+  <leader name="Mikhail Nikolayev"/>
+  <leader name="Vyacheslav Shtyrov"/>
+  <leader name="Yegor Borisov"/>
+  <leader name="Aysen Nikolayev"/>
+  <leader name="Egor Larionov"/>
+  <leader name="Vladimir Filippov"/>
+  <leader name="Nikolay Solomov"/>
+  <leader name="Nurgun Timofeyev"/>
+  <leader name="Vitaly Basygysov"/>
+  <leader name="Tygyn Darkhan"/>
+  <replacement name="Democracy" leader="Head" state_name="Sakha Republic of"/>
+  <replacement name="Horde" leader="Khan" state_name="Sibir Khanate of"/>
+  <city name="Yakutsk"/>
+  <city name="Neryungri"/>
+  <city name="Mirny"/>
+  <city name="Lensk"/>
+  <city name="Aldan"/>
+  <city name="Aykhal"/>
+  <city name="Udachny"/>
+  <city name="Vilyuysk"/>
+  <city name="Nyurba"/>
+  <city name="Suntar"/>
+  <city name="Tommot"/>
+  <city name="Neryungri"/>
+  <city name="Pokrovsk"/>
+  <city name="Srednekolmysk"/>
+  <city name="Verkhoyansk"/>
+  <city name="Syagannakh"/>
+  <city name="Suturuokha"/>
+  <city name="Abyy"/>
+  <city name="Druzhina"/>
+  <city name="Dyosku"/>
+  <city name="Kuberganya"/>
+  <city name="Keng Kyuyol"/>
+  <city name="Yefremovo"/>
+  <city name="Yllymakh"/>
+  <city name="Bolshoy Nimnyr"/>
+  <city name="Chagda"/>
+  <city name="Yakokut"/>
+  <city name="Yakokit"/>
+  <city name="Khatystyr"/>
+  <city name="Kutana"/>
+  <city name="Verkhnyaya Amga"/>
+  <city name="Orochen"/>
+  <city name="Ugoyan"/>
+  <city name="Ulu"/>
+  <city name="Uoray"/>
+  <city name="Verkhny Kuranakh"/>
+  <city name="Vorontsovo"/>
+  <city name="Rosskoye Ustye"/>
+  <city name="Chkalov"/>
+  <city name="Nyachalakh"/>
+  <city name="Olenegorsk"/>
+  <city name="Oytung"/>
+  <city name="Abaga"/>
+  <city name="Myandigi"/>
+  <city name="Altantsy"/>
+  <city name="Amga"/>
+  <city name="Onnyos"/>
+  <city name="Betyuntsy"/>
+  <city name="Pokrovka"/>
+  <city name="Bolugur"/>
+  <city name="Promkombinat"/>
+  <city name="Bulun"/>
+  <city name="Satagay"/>
+  <city name="Chakyr"/>
+  <city name="Serge Bes"/>
+  <city name="Chapchyglan"/>
+  <city name="Emissy"/>
+  <city name="Tegyulte"/>
+  <city name="Mikhaylovka"/>
+  <city name="Uoray"/>
+  <city name="Yuryung Khaya"/>
+  <city name="Ebelyakh"/>
+  <city name="Saskylakh"/>
+  <city name="Nayba"/>
+  <city name="Bykovsky"/>
+  <city name="Chekurovka"/>
+  <city name="Siktyakh"/>
+  <city name="Kazachye"/>
+  <city name="Sklad"/>
+  <city name="Kyusyur"/>
+  <city name="Taymylyr"/>
+  <city name="Namy"/>
+  <city name="Ust Olenyok"/>
+  <city name="Arylakh"/>
+  <city name="Maralayy"/>
+  <city name="Berya"/>
+  <city name="Myandiye"/>
+  <city name="Churapcha"/>
+  <city name="Myndagay"/>
+  <city name="Chyappara"/>
+  <city name="Myryla"/>
+  <city name="Diring"/>
+  <city name="Ogusur"/>
+  <city name="Tolon"/>
+  <city name="Dyabyla"/>
+  <city name="Dyarla"/>
+  <city name="Ulakhan Ebya"/>
+  <city name="Khakhyyakh"/>
+  <city name="Uorga"/>
+  <city name="Kharbala"/>
+  <city name="Kilyanki"/>
+  <city name="Usun Kyuyol"/>
+  <city name="Vasily Alasa"/>
+  <city name="Kyndal"/>
+  <city name="Yuryakh"/>
+  <city name="Kystyk Kugda"/>
+  <city name="Lebiya"/>
+  <city name="Aly"/>
+  <city name="Batagay Alyta"/>
+  <city name="Dzhargalakh"/>
+  <city name="Kustur"/>
+  <city name="Asyma"/>
+  <city name="Kyuyorelyakh"/>
+  <city name="Berdigestyakh"/>
+  <city name="Magaras"/>
+  <city name="May"/>
+  <city name="Orto Surt"/>
+  <city name="Dikimdya"/>
+  <city name="Ebya"/>
+  <city name="Tysagachchy"/>
+  <city name="Yert"/>
+  <city name="Kharyyalakh"/>
+  <city name="Keptin"/>
+  <city name="Oy"/>
+  <city name="Nokhoroy"/>
+  <city name="Sinsk"/>
+  <city name="Isit"/>
+  <city name="Tumul"/>
+  <city name="Kerydom"/>
+  <city name="Tumul"/>
+  </civ>
+</civs>
+</miniyacg>
