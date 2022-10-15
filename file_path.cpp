@@ -17,11 +17,16 @@ File_Path::File_Path(string f_p)
 {
   file_path = f_p;
   Validate_Path();
+  Set_Fallback_File_Path("assets/no-file.txt");
+  Test_File_Existence();
 }
 
 File_Path::File_Path()
 {
-  file_path = " ";
+  file_path = "assets/no-file.txt";
+  Validate_Path();
+  Set_Fallback_File_Path("assets/no-file.txt");
+  Test_File_Existence();
 }
 
 
@@ -29,4 +34,24 @@ void File_Path::Set_File_Path(string f_p)
 {
   file_path = f_p;
   Validate_Path();
+  Test_File_Existence();
+}
+
+void File_Path::Test_File_Existence()
+{
+  fstream File(file_path);
+  if(!File.is_open())
+  {
+    Logger::Log_Warning("File " + file_path + " not found! Setting to " + fallback_file_path);
+    file_path = fallback_file_path;
+  }
+}
+
+void File_Path::Set_Fallback_File_Path(string f_f_p)
+{
+  string linux_path_delimeter = "/";
+  string windows_path_delimeter = "\\";
+  replace(f_f_p.begin(), f_f_p.end(), *linux_path_delimeter.c_str(), *path_delimeter.c_str());
+  replace(f_f_p.begin(), f_f_p.end(), *windows_path_delimeter.c_str(), *path_delimeter.c_str());
+  fallback_file_path = f_f_p;
 }

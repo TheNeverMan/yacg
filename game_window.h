@@ -67,6 +67,10 @@ class Game_Window : public Gtk::Window
     Gtk::Button Manage_Goverments_Button;
     Gtk::Button Civ_Overview_Button;
     Gtk::Button Save_Button;
+    Gtk::Frame Zoom_Frame;
+    Gtk::Box Zoom_Box;
+    Gtk::Button Zoom_In_Button;
+    Gtk::Button Zoom_Out_Button;
     Gtk::Button Load_Button;
     Gtk::Button Newspaper_Button;
     Gtk::Button Quit_Button;
@@ -102,12 +106,15 @@ class Game_Window : public Gtk::Window
     void Show_Random_Tip();
     void Show_Tip();
     void Update_End_Turn_Labels();
+    void Zoom_Out();
+    void Zoom_In();
   private:
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
     bool is_delete_of_game_necessary= false;
     Map_Generator_Data Map_Data;
     Tips_Manager Main_Tips_Manager;
+    int minimum_tile_size = 0;
     void Update_Action_Buttons(int x, int y);
     void Update_Unit_Action_Buttons(int x, int y);
     void Update_Tile_Action_Buttons(int x, int y);

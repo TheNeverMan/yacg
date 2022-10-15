@@ -1,8 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
   <civ name="Serbia" r="198" g="54" b="60" personality="Authoritarian" flag="assets/textures/flags/serbia-flag.png">
   <info>
+  Serbia is located in Balkans. Historically it has been born when Kingdom of Serbia in 1217 obtained recognition.
+  Later in 1346 it has became Serbian Empire and reached its maximum territorial extent. However later Serbia 
+  has been conquered by Ottomans and time was filled with uprising and revolts. Finally after the uprising in 1817
+  Principality of Serbia has been created and later transformed into Kingdom of Serbia. It after First World War transformed
+  into Yugoslavia. After Second World War socialist state of Yugoslavia has been created and then dissolved in bloody
+  civil war in 1992. After dissolution of Yugoslavia modern Republic of Serbia has been estabilished.
+  
+  Serbian traits are Patriotic and Expansive, to represent the regional power of Serbia.
+  
+  Serbian leaders, include various leaders.
+  Serbian color is red from its current flag.
   </info>
   <replacement name="Democracy" leader="President" state_name="Republic of"/>
   <replacement name="Despotism" leader="King" state_name="Kingdom of"/>
@@ -10,12 +21,12 @@
   <replacement name="Tribe" leader="Grand Zupan" state_name="Grand Principality of"/>
   <replacement name="Parliamentary Monarchy" leader="King" state_name="Yugoslavian Kingdom of"/>
   <trait name="P"/>
-  <trait name="E"/>
+  <trait name="X"/>
   <leader name="Slobodan Milosevic"/>
   <leader name="Aleksandar Vucic"/>
   <leader name="Josip Broz Tito"/>
   <leader name="Stefan Dušan"/>
-  <leader name="Stefan Uroš V"/>
+  <leader name="Stefan Uroš IV"/>
   <leader name="Lazar Hrebeljanović"/>
   <leader name="Stefan Nemanjić"/>
   <leader name="Milan I"/>
@@ -76,72 +87,71 @@
   <city name="Backa Topola"/>
   <city name="Sjenica"/>
   <city name="Kovin"/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
-  <city name=""/>
+  <city name="Bačka Topola"/>
+  <city name="Ivanjica"/>
+  <city name="Knjaževac"/>
+  <city name="Petrovac na Mlavi"/>
+  <city name="Tutin"/>
+  <city name="Ćuprija"/>
+  <city name="Odžaci"/>
+  <city name="Vlasotince"/>
+  <city name="Požega"/>
+  <city name="Ub"/>
+  <city name="Apatin"/>
+  <city name="Bogatić"/>
+  <city name="Temerin"/>
+  <city name="Vrnjačka Banja"/>
+  <city name="Priboj"/>
+  <city name="Aleksandrovac"/>
+  <city name="Sjenica"/>
+  <city name="Žabalj"/>
+  <city name="Bajina Bašta"/>
+  <city name="Kanjiža"/>
+  <city name="Kovačica"/>
+  <city name="Raška"/>
+  <city name="Novi Bečej"/>
+  <city name="Svilajnac"/>
+  <city name="Senta"/>
+  <city name="Despotovac"/>
+  <city name="Topola"/>
+  <city name="Lebane"/>
+  <city name="Lučani"/>
+  <city name="Vladičin Han"/>
+  <city name="Kladovo"/>
+  <city name="Surdulica"/>
+  <city name="Alibunar"/>
+  <city name="Pećinci"/>
+  <city name="Kuršumlija"/>
+  <city name="Arilje"/>
+  <city name="Majdanpek"/>
+  <city name="Doljevac"/>
+  <city name="Varvarin"/>
+  <city name="Veliko Gradište"/>
+  <city name="Vladimirci"/>
+  <city name="Bela Crkva"/>
+  <city name="Krupanj"/>
+  <city name="Ada"/>
+  <city name="Žitište"/>
+  <city name="Nova Varoš"/>
+  <city name="Žitorađa"/>
+  <city name="Srbobran"/>
+  <city name="Brus"/>
+  <city name="Sokobanja"/>
+  <city name="Titel"/>
+  <city name="Beočin"/>
+  <city name="Kučevo"/>
+  <city name="Lajkovac"/>
+  <city name="Čajetina"/>
+  <city name="Ljubovija"/>
+  <city name="Bač"/>
+  <city name="Mionica"/>
+  <city name="Svrljig"/>
+  <city name="Knić"/>
+  <city name="Merošina"/>
+  <city name="Bački Petrovac"/>
+  <city name="Sečanj"/>
+  <city name="Koceljeva"/>
+  <city name="Boljevac"/>
   </civ>
-
 </civs>
 </miniyacg>

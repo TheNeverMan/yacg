@@ -1,13 +1,19 @@
 #pragma once
 #include<string>
 #include<algorithm>
+#include<fstream>
 
 #include "globals.h"
+#include "logger.h"
 
 using namespace std;
 
 class File_Path
 {
+  protected:
+    void Set_Fallback_File_Path(string f_f_p);
+    string fallback_file_path;
+    void Test_File_Existence();
   private:
     string file_path;
     void Validate_Path();

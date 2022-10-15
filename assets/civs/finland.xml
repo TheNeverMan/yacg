@@ -1,13 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
   <civ name="Finland" r="0" g="47" b="108" personality="Peaceful" flag="assets/textures/flags/finland-flag.png">
   <info>
+  Finland is a nordic country that borders Russia. Historicaly it was part of Kingdom of Sweden and then when
+  its power declined Tsardom of Russia. It gained independence in 1917. Finland is famous for Winter War when
+  the young republic got attacked by bordering Soviet Union. The superpower could not over power the finns and
+  independence of Finland was saved.
+  
+  Finnish traits are Patriotic and Surviving, to represent the Winter War and harsh climate of Finland.
+  
+  Finnish leaders include various leaders from independent Finland.
+  Finnish color is dark blue from its flag.
   </info>
   <replacement name="Democracy" leader="President" state_name="Republic of"/>
   <replacement name="Monarchy" leader="Vice Chairman" state_name="Grand Duchy of"/>
   <trait name="P"/>
-  <trait name="S"/>
+  <trait name="V"/>
   <leader name="Kyösti Kallio"/>
   <leader name="Carl Gustaf Emil Mannerheim"/>
   <leader name="Carl Erik Mannerheim"/>

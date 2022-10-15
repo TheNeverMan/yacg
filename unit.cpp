@@ -13,7 +13,7 @@ Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, str
   obsolete_unit_name = o;
 }
 
-Unit::Unit() : Help_Object(" ", " "), Texture_Owner(" "), Technology_Requirements_Owner(" "), Traits_Owner({"z"})
+Unit::Unit() : Help_Object(" ", " "), Texture_Owner(), Technology_Requirements_Owner(" "), Traits_Owner({"z"})
 {
     //in god we trust
 }

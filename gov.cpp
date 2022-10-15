@@ -6,14 +6,14 @@ Gov::Gov(string n, string l_t, string s_n, string t_r, string i, string t_p, vec
   state_name = s_n;
 }
 
-Gov::Gov() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(" "), Technology_Requirements_Owner(" ")
+Gov::Gov() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(), Technology_Requirements_Owner(" ")
 {
 
 }
 
 Gov::~Gov()
 {
-
+  //scanf("%s\n", );
 }
 
 string Gov::Get_Leader_Title()

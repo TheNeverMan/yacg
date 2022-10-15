@@ -4,11 +4,13 @@ Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry")
 {
   Players = p;
   Gtk::Box *Dialog_Box = get_content_area();
+  auto* Explanation_Label = Gtk::make_managed<Gtk::Label>("Here is information about every civilization currently in the game. \n Each civilization has score in points which measures its overall performance.");
   auto* Dialog_Root_Frame = Gtk::make_managed<Gtk::Frame>("Civilizations");
   auto *Dialog_Scrolled_Window = Gtk::make_managed<Gtk::ScrolledWindow>();
   Dialog_Scrolled_Window->set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
   Dialog_Scrolled_Window->set_min_content_height(300);
   auto* Civs_List_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL,2);
+  Dialog_Box->pack_start(*Explanation_Label);
   Dialog_Box->pack_start(*Dialog_Root_Frame);
   Dialog_Root_Frame->add(*Dialog_Scrolled_Window);
   Dialog_Scrolled_Window->add(*Civs_List_Box);

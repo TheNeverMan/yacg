@@ -20,6 +20,8 @@ class Gtk_Tile
     int tile_size;
     bool has_city;
   public:
+    void Increase_Tile_Size(int val);
+    void Decrease_Tile_Size(int val);
     Gtk_Tile(string texture_path, int t_s);
     Gtk::Widget* Get_Event_Box();
     Gtk::Image* Get_Image();

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Chechnya" r="43" g="115" b="56" personality="Authoritarian" flag="assets/textures/flags/chechnya-flag.png">
+  <info>
+  Chechnya is region in North Caucasus. Currently it is part of Russian Federation as Republic of Chechnya.
+  Chechnya is famous for its struggle to independence against Russia. In 1991 when Soviet Union dissolved 
+  chechens have declared Chechnya independent republic however in 1994 russian armed forces invaded it.
+  After two years of bloody war chechen partisan militias defeated invaders armed with tanks and helicopters,
+  however in 1999 Russia attacked again this time defeating young republic. Then a totalitarian regime was 
+  installed in Chechnya making it a prison state.
+  
+  Chechen traits are Patriotic and Militaristic, to represent the power of jigits and patriotic effort of creating
+  and defending independent Chechnya.
+  
+  Chechen leader include various partisan commanders and other leaders.
+  Chechen color is green from flag of Chechen Republic of Ichkeria,
+  </info>
+  <replacement name="Republic" leader="President" state_name="Republic of Ichkeria of"/>
+  <replacement name="Dictatorship" leader="President" state_name="Republic of"/>
+  <replacement name="Fundamentalism" leader="Emir" state_name="Caucasian Emirate of"/>
+  <trait name="P"/>
+  <trait name="M"/>
+  <leader name="Doku Umarow"/>
+  <leader name="Aslan Maschadow"/>
+  <leader name="Shamil Basayev"/>
+  <leader name="Zelimkhan Yandarbiyev"/>
+  <leader name="Dzokhar Dudayev"/>
+  <leader name="Abdul-Halim Sadulayev"/>
+  <leader name="Szejk Mansur"/>
+  <leader name="Imam Szamil"/>
+  <leader name="Ramzan Kadyrov"/>
+  <leader name="Akhmat Kadyrov"/>
+  <leader name="Akhmed Zakayev"/>
+  <leader name="Supyan Abdullayev"/>
+  <city name="Grozny"/>
+  <city name="Urus-Martan"/>
+  <city name="Shali"/>
+  <city name="Gudermes"/>
+  <city name="Argun"/>
+  <city name="Kurchaloy"/>
+  <city name="Achkhoy-Martan"/>
+  <city name="Tsotsi-Yurt"/>
+  <city name="Goyty"/>
+  <city name="Bachi-Yurt"/>
+  <city name="Avtury"/>
+  <city name="Katar-Yurt"/>
+  <city name="Geldagana"/>
+  <city name="Mairtup"/>
+  <city name="Gekhi"/>
+  <city name="Samashki"/>
+  <city name="Alleroi"/>
+  <city name="Germenchuk"/>
+  <city name="Shelkovskaya"/>
+  <city name="Alkhan-Kala"/>
+  <city name="Stare Atagi"/>
+  <city name="Mesker-Yurt"/>
+  <city name="Znamenskoye"/>
+  <city name="Sernowodskoje"/>
+  <city name="Assinovskaya"/>
+  <city name="Oiskhara"/>
+  <city name="Chervlyonnaya"/>
+  <city name="Burunskoye"/>
+  <city name="Sharoi"/>
+  <city name="Bekum-Kale"/>
+  <city name="Samashki"/>
+  <city name="Khoi"/>
+  <city name="Nozhay-Yurt"/>
+  <city name="Benoy"/>
+  <city name="Naurskaya"/>
+  <city name="Khambi-Irze"/>
+  <city name="Shaami-Yurt"/>
+  <city name="Yandi"/>
+  <city name="Zakan-Yurt"/>
+  <city name="Valerik"/>
+  <city name="Stary Achkhoy"/>
+  <city name="Novy Sharoy"/>
+  <city name="Khankala"/>
+  <city name="Itum-Kale"/>
+  <city name="Enikala"/>
+  <city name="Davydenko"/>
+  <city name="Yalkhara"/>
+  <city name="Aka-Bass"/>
+  <city name="Tolstoy-Yurt"/>
+  <city name="Goragorsky"/>
+  <city name="Znamenskoye"/>
+  <city name="Meskety"/>
+  <city name="Chernokozovo"/>
+  <city name="Akhmat-Yurt"/>
+  <city name="Regita"/>
+  <city name="Niki-Khita"/>
+  <city name="Koren-Benoy"/>
+  <city name="Mayrtup"/>
+  <city name="Dzhigurty"/>
+  <city name="Bamut"/>
+  <city name="Novye Atagi"/>
+  <city name="Khimoy"/>
+  <city name="Dzhaglargi"/>
+  <city name="Avtury"/>
+  <city name="Borzoy"/>
+  <city name="Shatoy"/>
+  <city name="Roshni-Chu"/>
+  <city name="Agishbatoy"/>
+  <city name="Belgatoy"/>
+  <city name="Dargo"/>
+  <city name="Elistanzhi"/>
+  <city name="Dutsin-Khutor"/>
+  <city name="Guni"/>
+  <city name="Ersenoy"/>
+  <city name="Kharachoy"/>
+  <city name="Dyshne-Vedeno"/>
+  <city name="Gezinchu"/>
+  <city name="Makhkety"/>
+  <city name="Eshilkhatoy"/>
+  <city name="Zelamkhin-Kotar"/>
+  <city name="Tsa-Vedeno"/>
+  <city name="Khattuni"/>
+  <city name="Marzoy-Mokhk"/>
+  <city name="Vedeno"/>
+  <city name="Tevzana"/>
+  <city name="Mekhkadettan-Irze"/>
+  <city name="Verkhatoy"/>
+  <city name="Tazen-Kala"/>
+  <city name="Nizhny Kurchali"/>
+  <city name="Mesedoy"/>
+  <city name="Verkhny Tsa-Vedeno"/>
+  <city name="Shirdi-Mokhk"/>
+  <city name="Selmentauzen"/>
+  <city name="Verkhny Kurchali"/>
+  <city name="Sredny Kurchali"/>
+  <city name="Roshni-Chu"/>
+</civ>
+</civs>
+</miniyacg>

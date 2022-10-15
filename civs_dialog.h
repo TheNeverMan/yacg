@@ -5,6 +5,7 @@
 
 #include "themed_dialog.h"
 #include "civ.h"
+#include "globals.h"
 
 using namespace std;
 

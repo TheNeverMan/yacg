@@ -1,9 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
   <civ name="Morocco" r="0" g="98" b="51" personality="Enterprising" flag="assets/textures/flags/morocco-flag.png">
   <info>
-  </info>
+  Morocco or Kingdom of Morocco is a muslim country in Maghreb. It is existing since 788 when first moroccan dynasty was 
+  estabilished, later it became regional power when dynasties of Almoravid and Almohad were in power. In 1912 Spain and France
+  divided Morocco into protectorates. After Second World War Morocco regained independence and stayed stable country.
+  
+  Moroccan traits are Religious and Patriotic, to represent role of moroccan king as religious leader and the 
+  relatively high stability of this decolonized country.
+  
+  Moroccan leaders include kings of Morocco from various dynasties.
+  Moroccan color is green from its current flag.
+</info>
   <replacement name="Monarchy" leader="Emir" state_name="Emirate of"/>
   <replacement name="Despotism" leader="Sultan" state_name="Sultanante of"/>
   <replacement name="Theocracy" leader="Caliph" state_name="Caliphate of"/>

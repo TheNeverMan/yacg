@@ -16,7 +16,7 @@ void Tile::Upgrade_Tile(string t_u)
   upgrade = t_u;
 }
 
-Tile::Tile() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(" ")
+Tile::Tile() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner()
 {
   vector<string> t;
   has_unit = false;

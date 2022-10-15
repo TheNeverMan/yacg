@@ -901,6 +901,23 @@ void Game_Window::Update_End_Turn_Labels()
   }
 }
 
+void Game_Window::Zoom_In()
+{
+  Main_Settings_Manager.Set_Tile_Size_Value(Main_Settings_Manager.Get_Tile_Size_Value() + 4);
+  for_each(Map_Images.begin(), Map_Images.end(), [](shared_ptr<Gtk_Tile> g){g->Increase_Tile_Size(4);});
+  Update_Map();
+}
+
+void Game_Window::Zoom_Out()
+{
+  if(Main_Settings_Manager.Get_Tile_Size_Value() > minimum_tile_size)
+  {
+    Main_Settings_Manager.Set_Tile_Size_Value(Main_Settings_Manager.Get_Tile_Size_Value() - 4);
+    for_each(Map_Images.begin(), Map_Images.end(), [](shared_ptr<Gtk_Tile> g){g->Decrease_Tile_Size(4);});
+    Update_Map();
+  }
+}
+
 void Game_Window::Initialize_GTK()
 {
   Last_Clicked_Tile = nullptr;
@@ -930,6 +947,10 @@ void Game_Window::Initialize_GTK()
   Manage_Goverments_Button = Gtk::Button("Revolution!");
   Save_Button = Gtk::Button("Save Game");
   Load_Button = Gtk::Button("Load Game");
+  Zoom_In_Button = Gtk::Button("Zoom In");
+  Zoom_Out_Button = Gtk::Button("Zoom Out");
+  Zoom_Frame = Gtk::Frame("Zoom");
+  Zoom_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Tile_Flag_Image = Gtk::Image();
   Reset_Tile_Flag_Label();
   Quit_Button = Gtk::Button("Exit To Main Menu");
@@ -961,6 +982,10 @@ void Game_Window::Initialize_GTK()
   UI_Root_Box.pack_start(Civ_Overview_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Newspaper_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Action_Buttons_Frame, Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start(Zoom_Frame, Gtk::PACK_SHRINK);
+  Zoom_Frame.add(Zoom_Box);
+  Zoom_Box.pack_start(Zoom_In_Button);
+  Zoom_Box.pack_start(Zoom_Out_Button);
   Action_Buttons_Frame.add(Action_Buttons_Box);
   UI_Root_Box.pack_start(End_Turn_Box, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Save_Button, Gtk::PACK_SHRINK);
@@ -989,6 +1014,8 @@ void Game_Window::Initialize_GTK()
   Random_Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Random_Tip) );
   Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Tip) );
   End_Turn_Dispatcher.connect(sigc::mem_fun(*this, &Game_Window::Update_End_Turn_Labels));
+  Zoom_In_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_In));
+  Zoom_Out_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_Out));
   Main_Provider.Add_CSS(this);
   Main_Provider.Add_CSS(&End_Turn_Button);
   Main_Provider.Add_CSS(&Map_Update_Button);
@@ -1004,6 +1031,8 @@ void Game_Window::Initialize_GTK()
   Main_Provider.Add_CSS(&Help_Button);
   Main_Provider.Add_CSS(&Tip_Button);
   Main_Provider.Add_CSS(&Random_Tip_Button);
+  Main_Provider.Add_CSS(&Zoom_In_Button);
+  Main_Provider.Add_CSS(&Zoom_Out_Button);
   Set_Tiles_Size_Automatically();
   Generate_Map_View();
   show_all_children();
@@ -1031,12 +1060,13 @@ void Game_Window::Set_Tiles_Size_Automatically()
   Logger::Log_Info("Screen resolution is " + to_string(Resolution[0]) + "x" + to_string(Resolution[1]));
   int tiles_in_x = Main_Game->Get_Map()->Get_X_Size() * Main_Settings_Manager.Get_Tile_Size_Value();
   int tiles_in_y = Main_Game->Get_Map()->Get_Y_Size() * Main_Settings_Manager.Get_Tile_Size_Value();
+  int new_tile_size = Resolution[0] / Main_Game->Get_Map()->Get_X_Size();
+  minimum_tile_size = new_tile_size;
   if(tiles_in_x < Resolution[0] || tiles_in_y < Resolution[1])
   {
     Logger::Log_Warning("Map may not be big enough to fit on screen...");
     if(Main_Settings_Manager.Get_Autoresize_Tiles_Value())
     {
-      int new_tile_size = Resolution[0] / Main_Game->Get_Map()->Get_X_Size();
       Logger::Log_Info("Resizing tile size to " + to_string(new_tile_size));
       Main_Settings_Manager.Set_Tile_Size_Value(new_tile_size);
     }

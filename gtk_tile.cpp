@@ -67,3 +67,13 @@ void Gtk_Tile::Update_Texture(string tile_texture, string unit_texture, string u
   Tile_Image.set(scaled_pix);
   Tile_Image.set_size_request(tile_size, tile_size);
 }
+
+void Gtk_Tile::Increase_Tile_Size(int val)
+{
+  tile_size = tile_size + 4;
+}
+
+void Gtk_Tile::Decrease_Tile_Size(int val)
+{
+  tile_size = tile_size - 4;
+}
