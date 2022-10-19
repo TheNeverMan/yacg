@@ -1,6 +1,7 @@
 #pragma once
 #include<gtkmm.h>
 #include<string>
+#include<memory>
 
 #include "globals.h"
 #include "logger.h"
@@ -14,6 +15,11 @@ class Game_CSS_Provider
   public:
     Game_CSS_Provider();
     template<typename Gtk_Object> void Add_CSS(Gtk_Object *Object)
+    {
+      auto ctx = Object->get_style_context();
+      ctx->add_provider(Main_Provider, 800);
+    }
+    template<typename Gtk_Object> void Add_CSS(shared_ptr<Gtk_Object> Object)
     {
       auto ctx = Object->get_style_context();
       ctx->add_provider(Main_Provider, 800);

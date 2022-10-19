@@ -916,6 +916,10 @@ void Game_Window::Zoom_Out()
     for_each(Map_Images.begin(), Map_Images.end(), [](shared_ptr<Gtk_Tile> g){g->Decrease_Tile_Size(4);});
     Update_Map();
   }
+  else
+  {
+    Logger::Log_Warning("Tile size is already minimum! Not resizing");
+  }
 }
 
 void Game_Window::Initialize_GTK()
