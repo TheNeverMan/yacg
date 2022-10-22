@@ -13,7 +13,7 @@
 
 
 #include "game.h"
-#include "globals.h"
+#include "assets_path.h"
 #include "window_manager.h"
 #include "logger.h"
 #include "game_css_provider.h"
@@ -32,6 +32,7 @@
 #include "save_loader_dialog.h"
 #include "save_saver_dialog.h"
 #include "gtk_tile.h"
+#include "scaled_gtk_image.h"
 
 class Window_Manager;
 class Game;
@@ -59,7 +60,7 @@ class Game_Window : public Gtk::Window
     Gtk::Button End_Turn_Button;
     Gtk::Label Economy_Label;
     Gtk::Label Tile_Information_Label;
-    Gtk::Image Tile_Flag_Image;
+    Scaled_Gtk_Image Tile_Flag_Image;
     Gtk::Button Map_Update_Button;
     Gtk::Button Manage_Economy_Button;
     Gtk::Button Manage_Techs_Button;

@@ -1,5 +1,5 @@
 #include "upgrade.h"
-#include "globals.h"
+#include "assets_path.h"
 
 Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t, vector<string> a_t, string t_p, bool avoid, std::vector<string> t) : Traits_Owner(t), Help_Object(n, h_t), Texture_Owner(t_p), Technology_Requirements_Owner(r_t)
 {
@@ -10,7 +10,7 @@ Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t, vector<s
   does_avoid_same_type_upgrades = avoid;
 }
 
-Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t) : Traits_Owner({"unbuildable"}), Help_Object(n, h_t), Texture_Owner("assets" + path_delimeter + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png"), Technology_Requirements_Owner(r_t)
+Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t) : Traits_Owner({"unbuildable"}), Help_Object(n, h_t), Texture_Owner("assets" + path_delimeter + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.svg"), Technology_Requirements_Owner(r_t)
 {
   cost = c;
   production = p;

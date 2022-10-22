@@ -5,7 +5,7 @@
 
 #include "themed_dialog.h"
 #include "civ.h"
-#include "globals.h"
+#include "assets_path.h"
 #include "image_path.h"
 #include "scaled_gtk_image.h"
 

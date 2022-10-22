@@ -5,7 +5,7 @@
 #include "newspaper.h"
 #include "scaled_gtk_image.h"
 #include "themed_dialog.h"
-#include "globals.h"
+#include "assets_path.h"
 
 class Newspaper_Dialog : public Themed_Dialog
 {

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Serbia" r="198" g="54" b="60" personality="Authoritarian" flag="assets/textures/flags/serbia-flag.png">
+  <civ name="Serbia" r="198" g="54" b="60" personality="Authoritarian" flag="assets/textures/flags/serbia-flag.svg">
   <info>
   Serbia is located in Balkans. Historically it has been born when Kingdom of Serbia in 1217 obtained recognition.
-  Later in 1346 it has became Serbian Empire and reached its maximum territorial extent. However later Serbia 
+  Later in 1346 it has became Serbian Empire and reached its maximum territorial extent. However later Serbia
   has been conquered by Ottomans and time was filled with uprising and revolts. Finally after the uprising in 1817
   Principality of Serbia has been created and later transformed into Kingdom of Serbia. It after First World War transformed
   into Yugoslavia. After Second World War socialist state of Yugoslavia has been created and then dissolved in bloody
   civil war in 1992. After dissolution of Yugoslavia modern Republic of Serbia has been estabilished.
-  
+
   Serbian traits are Patriotic and Expansive, to represent the regional power of Serbia.
-  
+
   Serbian leaders, include various leaders.
   Serbian color is red from its current flag.
   </info>

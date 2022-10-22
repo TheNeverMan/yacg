@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Chechnya" r="43" g="115" b="56" personality="Authoritarian" flag="assets/textures/flags/chechnya-flag.png">
+  <civ name="Chechnya" r="43" g="115" b="56" personality="Authoritarian" flag="assets/textures/flags/chechnya-flag.svg">
   <info>
   Chechnya is region in North Caucasus. Currently it is part of Russian Federation as Republic of Chechnya.
-  Chechnya is famous for its struggle to independence against Russia. In 1991 when Soviet Union dissolved 
+  Chechnya is famous for its struggle to independence against Russia. In 1991 when Soviet Union dissolved
   chechens have declared Chechnya independent republic however in 1994 russian armed forces invaded it.
   After two years of bloody war chechen partisan militias defeated invaders armed with tanks and helicopters,
-  however in 1999 Russia attacked again this time defeating young republic. Then a totalitarian regime was 
+  however in 1999 Russia attacked again this time defeating young republic. Then a totalitarian regime was
   installed in Chechnya making it a prison state.
-  
+
   Chechen traits are Patriotic and Militaristic, to represent the power of jigits and patriotic effort of creating
   and defending independent Chechnya.
-  
+
   Chechen leader include various partisan commanders and other leaders.
   Chechen color is green from flag of Chechen Republic of Ichkeria,
   </info>

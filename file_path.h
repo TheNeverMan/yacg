@@ -3,7 +3,7 @@
 #include<algorithm>
 #include<fstream>
 
-#include "globals.h"
+#include "assets_path.h"
 #include "logger.h"
 
 using namespace std;

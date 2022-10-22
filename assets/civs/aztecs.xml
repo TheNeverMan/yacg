@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Aztecs" r="98" g="133" b="96" personality="Authoritarian" flag="assets/textures/flags/aztecs-flag.png">
+<civ name="Aztecs" r="98" g="133" b="96" personality="Authoritarian" flag="assets/textures/flags/aztecs-flag.svg">
 <info>
 Aztecs were a mesoamerican culture that existed between 1300 and 1521.
 They weren't organized in a centralized empire, but they have formed their Empire

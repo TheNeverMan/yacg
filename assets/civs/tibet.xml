@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Tibet" r="53" g="142" b="80" personality="Holy" flag="assets/textures/flags/tibet-flag.png">
+  <civ name="Tibet" r="53" g="142" b="80" personality="Holy" flag="assets/textures/flags/tibet-flag.svg">
   <info>
-  Tibet is a region in East Asia, currenlty in borders of China. Historically many great empires have 
+  Tibet is a region in East Asia, currenlty in borders of China. Historically many great empires have
   emerged from this plateau like Tibetan Empire. Later most of its territory got conquered by Chinese Empire.
-  After Second World War during civil war in China, Tibet gained de facto independence and estabilished religious 
-  state ruled by Dalai Lama. However in 1952 army of PRC has conquered it again and tibetan people faced 
+  After Second World War during civil war in China, Tibet gained de facto independence and estabilished religious
+  state ruled by Dalai Lama. However in 1952 army of PRC has conquered it again and tibetan people faced
   many repressions.
-  
+
   Tibetan traits are Religious and Patriotic, to represent the importance of buddhism and Dalai Lama in
   tibetan culture and strong opposition against chinese repressions.
-  
+
   Tibetan leaders include leaders of Tibetan Empire and independent Tibet in modern era.
   Tibetan color is lime green, color of furs of monsters from Central Tibetan Administration flag.
   </info>

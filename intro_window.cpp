@@ -1,5 +1,5 @@
 #include "intro_window.h"
-#include "globals.h"
+#include "assets_path.h"
 
 Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyacg-config-settings.xml")
 {

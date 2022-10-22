@@ -6,6 +6,7 @@
 
 #include "logger.h"
 #include "game_css_provider.h"
+#include "image_path.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class Gtk_Tile
     Game_CSS_Provider Main_Provider;
     int tile_size;
     bool has_city;
+    Glib::RefPtr<Gdk::Pixbuf> Create_Scaled_Pixbuf(string p, int x, int y);
   public:
     void Increase_Tile_Size(int val);
     void Decrease_Tile_Size(int val);

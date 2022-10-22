@@ -1,5 +1,5 @@
 #include "tips_dialog.h"
-#include "globals.h"
+#include "assets_path.h"
 
 Tips_Dialog::Tips_Dialog(string tip) : Themed_Dialog("Tip")
 {

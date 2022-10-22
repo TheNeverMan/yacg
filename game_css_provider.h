@@ -3,7 +3,7 @@
 #include<string>
 #include<memory>
 
-#include "globals.h"
+#include "assets_path.h"
 #include "logger.h"
 
 using namespace std;

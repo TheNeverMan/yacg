@@ -2,6 +2,7 @@
 
 Gtk_Tile::Gtk_Tile(string texture_path, int t_s) : Tile_Image(texture_path)
 {
+  cout << "." << endl;
   tile_size = t_s;
   Tile_Event_Box.add(Tile_Image);
   Tile_Event_Box.add_events(Gdk::BUTTON_PRESS_MASK);
@@ -42,28 +43,38 @@ void Gtk_Tile::Set_City_Name(string city_name)
   City_Name_Label.show();
 }
 
+Glib::RefPtr<Gdk::Pixbuf> Gtk_Tile::Create_Scaled_Pixbuf(string p, int x, int y)
+{
+  Image_Path Path(p);
+  Glib::RefPtr<Gdk::Pixbuf> out = Gdk::Pixbuf::create_from_file(Path.Get_File_Path());
+  double x_proportion = 0;
+  double y_proportion = 0;
+  x_proportion = static_cast<double>(x) / static_cast<double>(out->get_width());
+  y_proportion = static_cast<double>(y)  / static_cast<double>(out->get_height());
+  out->scale(out, 0, 0, out->get_width(), out->get_height(), 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST);
+  return out;
+}
+
 void Gtk_Tile::Update_Texture(string tile_texture, string unit_texture, string upgrade_texture, guint32 border_color)
 {
-  Glib::RefPtr<Gdk::Pixbuf> tile_pix; //guide
-  Glib::RefPtr<Gdk::Pixbuf> upgrade_pix;
+  cout << "." << endl;
+  Glib::RefPtr<Gdk::Pixbuf> tile_pix = Create_Scaled_Pixbuf(tile_texture, tile_size, tile_size);
+  Glib::RefPtr<Gdk::Pixbuf> upgrade_pix = Create_Scaled_Pixbuf(upgrade_texture, tile_size, tile_size);;
   Glib::RefPtr<Gdk::Pixbuf> finished_pix;
   Glib::RefPtr<Gdk::Pixbuf> border_pix;
-  Glib::RefPtr<Gdk::Pixbuf> unit_pix;
+  Glib::RefPtr<Gdk::Pixbuf> unit_pix = Create_Scaled_Pixbuf(unit_texture, tile_size, tile_size);;
   Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
 
   scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
-  tile_pix = Gdk::Pixbuf::create_from_file(tile_texture);
-  unit_pix = Gdk::Pixbuf::create_from_file(unit_texture);
-  upgrade_pix = Gdk::Pixbuf::create_from_file(upgrade_texture);
-  finished_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
-  border_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 32, 32);
+  finished_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
+  border_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
   int border_alpha = 120;
   border_pix->fill(border_color);
-  tile_pix->copy_area(0,0,32,32,finished_pix,0,0);
-  upgrade_pix->composite(finished_pix,0,0,32,32,0,0,1,1,Gdk::INTERP_NEAREST,255);
-  unit_pix->composite(finished_pix,0,0,32,32,0,0,1,1,Gdk::INTERP_NEAREST,255);
-  border_pix->composite(finished_pix,0,0,32,32,0.0,0.0,1.0,1.0,Gdk::INTERP_NEAREST,border_alpha);
-  finished_pix->scale(scaled_pix, 0, 0, tile_size, tile_size, 0, 0, ((double) tile_size / (double) 32), ((double) tile_size / (double) 32), Gdk::INTERP_BILINEAR);
+  tile_pix->copy_area(0,0,tile_size,tile_size,finished_pix,0,0);
+  upgrade_pix->composite(finished_pix,0,0,tile_size,tile_size,0,0,1,1,Gdk::INTERP_NEAREST,255);
+  unit_pix->composite(finished_pix,0,0,tile_size,tile_size,0,0,1,1,Gdk::INTERP_NEAREST,255);
+  border_pix->composite(finished_pix,0,0,tile_size,tile_size,0.0,0.0,1.0,1.0,Gdk::INTERP_NEAREST,border_alpha);
+  finished_pix->scale(scaled_pix, 0, 0, tile_size, tile_size, 0, 0, ((double) tile_size / (double) tile_size), ((double) tile_size / (double) tile_size), Gdk::INTERP_BILINEAR);
   Tile_Image.set(scaled_pix);
   Tile_Image.set_size_request(tile_size, tile_size);
 }

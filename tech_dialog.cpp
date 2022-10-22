@@ -1,6 +1,6 @@
 #include "tech_dialog.h"
 
-Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), Selected_Tech(*Player.Get_Currently_Researched_Tech()), Explanation_Image(assets_directory_path + "textures/dialogs/tech-dialog-texture.png", 64, 64)
+Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), Selected_Tech(*Player.Get_Currently_Researched_Tech()), Explanation_Image(assets_directory_path + "textures/dialogs/tech-dialog-texture.svg", 64, 64)
 {
   add_button("Apply", 0);
   Gtk::Box *Dialog_Box = get_content_area();

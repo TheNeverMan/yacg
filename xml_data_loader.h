@@ -12,7 +12,7 @@
 #include "tech.h"
 #include "xml_serializable.h"
 #include "logger.h"
-#include "globals.h"
+#include "assets_path.h"
 
 using namespace std;
 

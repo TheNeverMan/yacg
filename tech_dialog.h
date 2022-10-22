@@ -9,7 +9,7 @@
 #include "civ.h"
 #include "tech.h"
 #include "scaled_gtk_image.h"
-#include "globals.h"
+#include "assets_path.h"
 
 using namespace std;
 

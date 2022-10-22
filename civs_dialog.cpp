@@ -1,6 +1,6 @@
 #include "civs_dialog.h"
 
-Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry"), Explanation_Image(assets_directory_path + "textures/dialogs/civs-dialog-texture.png", 70, 70)
+Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry"), Explanation_Image(assets_directory_path + "textures/dialogs/civs-dialog-texture.svg", 70, 70)
 {
   Players = p;
   Gtk::Box *Dialog_Box = get_content_area();

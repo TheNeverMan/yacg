@@ -1,50 +1,50 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <upgrades>
-<upgrade name="Pasture" cost="7" mait="0" prod="3" info="Famr info text" requirement="Animal Husbandry" texture="assets/textures/upgrades/pasture-upgrade-texture.png" avoid="0">
+<upgrade name="Pasture" cost="7" mait="0" prod="3" info="Famr info text" requirement="Animal Husbandry" texture="assets/textures/upgrades/pasture-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Desert"/>
 <trait name="removable"/>
 <trait name="recruit_horse"/>
 </upgrade>
-<upgrade name="Farm" cost="5" mait="0" prod="2" info="Famr info text" requirement="Agriculture" texture="assets/textures/upgrades/farm-upgrade-texture.png" avoid="0">
+<upgrade name="Farm" cost="5" mait="0" prod="2" info="Famr info text" requirement="Agriculture" texture="assets/textures/upgrades/farm-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="plundered" cost="8" mait="0" prod="0" info="Famr info text" requirement=" " texture="assets/textures/upgrades/plundered-upgrade-texture.png" avoid="0">
+<upgrade name="plundered" cost="8" mait="0" prod="0" info="Famr info text" requirement=" " texture="assets/textures/upgrades/plundered-upgrade-texture.svg" avoid="0">
 </upgrade>
-<upgrade name="Airport" cost="45" mait="9" prod="0" info="Famr info text" requirement="Flight" texture="assets/textures/upgrades/airport-upgrade-texture.png" avoid="0">
+<upgrade name="Airport" cost="45" mait="9" prod="0" info="Famr info text" requirement="Flight" texture="assets/textures/upgrades/airport-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="removable"/>
 <trait name="recruit_flying"/>
 <trait name="allowflyingunitsheal"/>
 <trait name="renewflyingmovement"/>
 </upgrade>
-<upgrade name="Missle Silo" cost="60" mait="13" prod="0" info="Famr info text" requirement="Atomic Bomb" texture="assets/textures/upgrades/misslesilo-upgrade-texture.png" avoid="0">
+<upgrade name="Missle Silo" cost="60" mait="13" prod="0" info="Famr info text" requirement="Atomic Bomb" texture="assets/textures/upgrades/misslesilo-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="removable"/>
 <trait name="recruit_missle"/>
 <trait name="allowflyingunitsheal"/>
 <trait name="renewflyingmovement"/>
 </upgrade>
-<upgrade name="Oil Well" cost="50" mait="0" prod="10" info="Famr info text" requirement="Oil" texture="assets/textures/upgrades/oilwell-upgrade-texture.png" avoid="0">
+<upgrade name="Oil Well" cost="50" mait="0" prod="10" info="Famr info text" requirement="Oil" texture="assets/textures/upgrades/oilwell-upgrade-texture.svg" avoid="0">
 <tile name="Desert"/>
 <tile name="Ice"/>
 <trait name="removable"/>
 <trait name="avoid_Oil Well"/>
 </upgrade>
-<upgrade name="Mill" cost="25" mait="0" prod="10" info="Famr info text" requirement="Mills" texture="assets/textures/upgrades/mill-upgrade-texture.png" avoid="0">
+<upgrade name="Mill" cost="25" mait="0" prod="10" info="Famr info text" requirement="Mills" texture="assets/textures/upgrades/mill-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="removable"/>
 <trait name="avoid_City"/>
 <trait name="avoid_Mill"/>
 <trait name="mustborder_Farm"/>
 </upgrade>
-<upgrade name="Mine" cost="10" mait="0" prod="5" info="Quarry info mtest" requirement="Mining" texture="assets/textures/upgrades/mine-upgrade-texture.png" avoid="0">
+<upgrade name="Mine" cost="10" mait="0" prod="5" info="Quarry info mtest" requirement="Mining" texture="assets/textures/upgrades/mine-upgrade-texture.svg" avoid="0">
 <tile name="Mountain"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Road" cost="5" mait="2" prod="0" info="Raod text info" requirement="Roads" texture="assets/textures/upgrades/road-upgrade-texture.png" avoid="0">
+<upgrade name="Road" cost="5" mait="2" prod="0" info="Raod text info" requirement="Roads" texture="assets/textures/upgrades/road-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Forest"/>
 <tile name="Ice"/>
@@ -55,7 +55,7 @@
 <trait name="mustborder_Railroad"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Railroad" cost="15" mait="3" prod="0" info="Raod text info" requirement="Railroad" texture="assets/textures/upgrades/railroad-upgrade-texture.png" avoid="0">
+<upgrade name="Railroad" cost="15" mait="3" prod="0" info="Raod text info" requirement="Railroad" texture="assets/textures/upgrades/railroad-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Forest"/>
 <tile name="Ice"/>
@@ -71,18 +71,18 @@
 <trait name="mustborder_Railroad"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Fishing Boat" cost="8" mait="0" prod="3" info="gifhing boat info text" requirement="Sailing" texture="assets/textures/upgrades/boat-upgrade-texture.png" avoid="0">
+<upgrade name="Fishing Boat" cost="8" mait="0" prod="3" info="gifhing boat info text" requirement="Sailing" texture="assets/textures/upgrades/boat-upgrade-texture.svg" avoid="0">
 <tile name="Sea"/>
 <trait name="removable"/>
 <trait name="recruit_weaknaval"/>
 </upgrade>
-<upgrade name="Port" cost="25" mait="8" prod="0" info="gifhing boat info text" requirement="Ports" texture="assets/textures/upgrades/port-upgrade-texture.png" avoid="0">
+<upgrade name="Port" cost="25" mait="8" prod="0" info="gifhing boat info text" requirement="Ports" texture="assets/textures/upgrades/port-upgrade-texture.svg" avoid="0">
 <tile name="Sea"/>
 <trait name="removable"/>
 <trait name="recruit_naval"/>
 <trait name="increasehealrate"/>
 </upgrade>
-<upgrade name="City" cost="25" mait="5" prod="0" info="city info text" requirement="Bricks" texture="assets/textures/upgrades/city-upgrade-texture.png" avoid="1">
+<upgrade name="City" cost="25" mait="5" prod="0" info="city info text" requirement="Bricks" texture="assets/textures/upgrades/city-upgrade-texture.svg" avoid="1">
 <tile name="Land"/>
 <trait name="borderexpand"/>
 <trait name="recruit_infantry"/>
@@ -91,19 +91,19 @@
 <trait name="giveaction"/>
 <trait name="cannotbeplundered"/>
 </upgrade>
-<upgrade name="Temple" cost="40" mait="9" prod="0" info="city info text" requirement="Temples" texture="assets/textures/upgrades/temple-upgrade-texture.png" avoid="0">
+<upgrade name="Temple" cost="40" mait="9" prod="0" info="city info text" requirement="Temples" texture="assets/textures/upgrades/temple-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Mountain"/>
 <trait name = "mustborder_City"/>
 <trait name="avoid_Temple"/>
 <trait name="giveaction"/>
 </upgrade>
-<upgrade name="Hospital" cost="55" mait="10" prod="0" info="city info text" requirement="Hospitals" texture="assets/textures/upgrades/hospital-upgrade-texture.png" avoid="0">
+<upgrade name="Hospital" cost="55" mait="10" prod="0" info="city info text" requirement="Hospitals" texture="assets/textures/upgrades/hospital-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="increasehealrate"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Factory" cost="70" mait="0" prod="15" info="city info text" requirement="Industrialization" texture="assets/textures/upgrades/factory-upgrade-texture.png" avoid="0">
+<upgrade name="Factory" cost="70" mait="0" prod="15" info="city info text" requirement="Industrialization" texture="assets/textures/upgrades/factory-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="recruit_armored"/>
 <trait name="avoid_Factory"/>
@@ -111,7 +111,7 @@
 <trait name="avoid_City"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Automated Factory" cost="120" mait="0" prod="30" info="city info text" requirement="Robotics" texture="assets/textures/upgrades/automatedfactory-upgrade-texture.png" avoid="0">
+<upgrade name="Automated Factory" cost="120" mait="0" prod="30" info="city info text" requirement="Robotics" texture="assets/textures/upgrades/automatedfactory-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="recruit_armored"/>
 <trait name="recruit_electrionic"/>
@@ -122,7 +122,7 @@
 <trait name="avoid_City"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Powerplant" cost="50" mait="12" prod="0" info="city info text" requirement="Electricity" texture="assets/textures/upgrades/powerstation-upgrade-texture.png" avoid="0">
+<upgrade name="Powerplant" cost="50" mait="12" prod="0" info="city info text" requirement="Electricity" texture="assets/textures/upgrades/powerstation-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="avoid_Powerplant"/>
 <trait name="avoid_Nuclear Powerplant"/>
@@ -133,7 +133,7 @@
 <trait name="accumulateproduction"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Nuclear Powerplant" cost="90" mait="20" prod="0" info="city info text" requirement="Nuclear Plant" texture="assets/textures/upgrades/atomicpowerstation-upgrade-texture.png" avoid="0">
+<upgrade name="Nuclear Powerplant" cost="90" mait="20" prod="0" info="city info text" requirement="Nuclear Plant" texture="assets/textures/upgrades/atomicpowerstation-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="avoid_Powerplant"/>
 <trait name="avoid_Nuclear Powerplant"/>
@@ -145,7 +145,7 @@
 <trait name="accumulateproduction"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Thermonuclear Powerplant" cost="200" mait="30" prod="0" info="city info text" requirement="Thermonuclear Energy" texture="assets/textures/upgrades/thermonuclearpowerstation-upgrade-texture.png" avoid="0">
+<upgrade name="Thermonuclear Powerplant" cost="200" mait="30" prod="0" info="city info text" requirement="Thermonuclear Energy" texture="assets/textures/upgrades/thermonuclearpowerstation-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <trait name="avoid_Powerplant"/>
 <trait name="avoid_Nuclear Powerplant"/>
@@ -158,7 +158,7 @@
 <trait name="accumulateproduction"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Wind Powerplant" cost="120" mait="15" prod="0" info="city info text" requirement="Ecology" texture="assets/textures/upgrades/ecologicpowerstation-upgrade-texture.png" avoid="0">
+<upgrade name="Wind Powerplant" cost="120" mait="15" prod="0" info="city info text" requirement="Ecology" texture="assets/textures/upgrades/ecologicpowerstation-upgrade-texture.svg" avoid="0">
 <tile name="Sea"/>
 <trait name="avoid_Powerplant"/>
 <trait name="avoid_Nuclear Powerplant"/>
@@ -170,7 +170,7 @@
 <trait name="accumulateproduction"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Castle" cost="20" mait="7" prod="0" info="city info text" requirement="Crane" texture="assets/textures/upgrades/castle-upgrade-texture.png" avoid="0">
+<upgrade name="Castle" cost="20" mait="7" prod="0" info="city info text" requirement="Crane" texture="assets/textures/upgrades/castle-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Mountain"/>
 <trait name = "majordefbonus"/>
@@ -178,7 +178,7 @@
 <trait name = "majordefbonus"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Citadel" cost="50" mait="12" prod="0" info="city info text" requirement="Citadel" texture="assets/textures/upgrades/citadel-upgrade-texture.png" avoid="0">
+<upgrade name="Citadel" cost="50" mait="12" prod="0" info="city info text" requirement="Citadel" texture="assets/textures/upgrades/citadel-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Mountain"/>
 <trait name = "majordefbonus"/>
@@ -187,7 +187,7 @@
 <trait name = "majordefbonus"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Military Base" cost="100" mait="22" prod="0" info="city info text" requirement="Mechanized Infantry" texture="assets/textures/upgrades/militarybase-upgrade-texture.png" avoid="0">
+<upgrade name="Military Base" cost="100" mait="22" prod="0" info="city info text" requirement="Mechanized Infantry" texture="assets/textures/upgrades/militarybase-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Mountain"/>
 <trait name="recruit_armored"/>
@@ -198,7 +198,7 @@
 <trait name = "majordefbonus"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="Entrenchment" cost="35" mait="3" prod="0" info="city info text" requirement="Barbed Wire" texture="assets/textures/upgrades/entrenchment-upgrade-texture.png" avoid="0">
+<upgrade name="Entrenchment" cost="35" mait="3" prod="0" info="city info text" requirement="Barbed Wire" texture="assets/textures/upgrades/entrenchment-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Mountain"/>
 <tile name="Forest"/>
@@ -206,7 +206,7 @@
 <trait name="movementdebuff"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="none" cost="0" mait="0" prod="0" info="none ijnfpd texrd" requirement="Dummy" texture="assets/textures/upgrades/none-upgrade-texture.png" avoid="0">
+<upgrade name="none" cost="0" mait="0" prod="0" info="none ijnfpd texrd" requirement="Dummy" texture="assets/textures/upgrades/none-upgrade-texture.svg" avoid="0">
 <tile name="Land"/>
 <tile name="Sea"/>
 <tile name="Mountain"/>

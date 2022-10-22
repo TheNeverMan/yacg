@@ -1,6 +1,6 @@
 #include "newspaper_dialog.h"
 
-Newspaper_Dialog::Newspaper_Dialog(vector<string> events) : Themed_Dialog("Newspaper"), Explanation_Image(assets_directory_path + "textures/dialogs/newspaper-dialog-texture.png", 64, 64)
+Newspaper_Dialog::Newspaper_Dialog(vector<string> events) : Themed_Dialog("Newspaper"), Explanation_Image(assets_directory_path + "textures/dialogs/newspaper-dialog-texture.svg", 64, 64)
 {
   reverse(events.begin(), events.end());
   Gtk::Box *Dialog_Box = get_content_area();

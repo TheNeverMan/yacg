@@ -1,5 +1,5 @@
 #include "texture_owner.h"
-#include "globals.h"
+#include "assets_path.h"
 
 string Texture_Owner::Get_Texture_Path()
 {

@@ -8,7 +8,7 @@ Game_Window::~Game_Window()
 
 void Game_Window::Reset_Tile_Flag_Label()
 {
-  Tile_Flag_Image.set(assets_directory_path + "textures" + path_delimeter + "flags" + path_delimeter + "neutral-flag.png");
+  Tile_Flag_Image.Change_Path(assets_directory_path + "textures/flags/neutral-flag.svg");
 }
 
 void Game_Window::Generate_Map_View()
@@ -27,7 +27,7 @@ void Game_Window::Generate_Map_View()
     root->pack_start(*Vertical_Box, Gtk::PACK_SHRINK);
     while(start_y < y)
     {
-      auto tmp = make_shared<Gtk_Tile>(assets_directory_path + "textures" + path_delimeter + "tiles" + path_delimeter + "land-tile-texture.png", Main_Settings_Manager.Get_Tile_Size_Value());
+      auto tmp = make_shared<Gtk_Tile>(assets_directory_path + "textures" + path_delimeter + "tiles" + path_delimeter + "land-tile-texture.svg", Main_Settings_Manager.Get_Tile_Size_Value());
       Vertical_Box->pack_start(*(tmp->Get_Event_Box()), Gtk::PACK_SHRINK);
       vector<int> coords {start, start_y};
       tmp->Get_Event_Box()->signal_button_press_event().connect(sigc::bind<vector<int>>(sigc::mem_fun(*this, &Game_Window::Tile_Clicked), coords, tmp->Get_Image()));
@@ -49,7 +49,7 @@ void Game_Window::Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y)
     Tile_Pointer->Set_City_Name(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
   }
   string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
-  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
+  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.svg";
   if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
     unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
 
@@ -493,11 +493,11 @@ void Game_Window::Update_Tile_Flag()
   Reset_Tile_Flag_Label();
   if(Main_Game->Get_Map()->Get_Tile(last_clicked_x, last_clicked_y).Has_Unit())
   {
-    Tile_Flag_Image.set(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(last_clicked_x,last_clicked_y).Get_Unit_Owner_Id())->Get_Texture_Path());
+    Tile_Flag_Image.Change_Path(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(last_clicked_x,last_clicked_y).Get_Unit_Owner_Id())->Get_Texture_Path());
     return;
   }
   if(Main_Game->Get_Map()->Get_Owner(last_clicked_x,last_clicked_y) != 0)
-    Tile_Flag_Image.set(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(last_clicked_x,last_clicked_y))->Get_Texture_Path());
+    Tile_Flag_Image.Change_Path(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(last_clicked_x,last_clicked_y))->Get_Texture_Path());
 }
 
 bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img)
@@ -537,17 +537,15 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
   }
   else
   {
-    //Last_Clicked_Tile = img;
     last_clicked_x = coords[0];
     last_clicked_y = coords[1];
     Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
     Glib::RefPtr<Gdk::Pixbuf> selection_texture;
     Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
-    int tile_size = 32;//Main_Settings_Manager.Get_Tile_Size_Value();
-    selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "selection-texture.png");
+    selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "selection-texture.svg");
     int true_tile_size = Main_Settings_Manager.Get_Tile_Size_Value();
     scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
-    selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) tile_size), ((double) true_tile_size / (double) tile_size), Gdk::INTERP_BILINEAR);
+    selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
     scaled_pix->composite(tile_image,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
     img->set(tile_image);
   }
@@ -955,7 +953,7 @@ void Game_Window::Initialize_GTK()
   Zoom_Out_Button = Gtk::Button("Zoom Out");
   Zoom_Frame = Gtk::Frame("Zoom");
   Zoom_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
-  Tile_Flag_Image = Gtk::Image();
+  Tile_Flag_Image.Change_Path(assets_directory_path + "textures/flags/neutral-flag.svg");
   Reset_Tile_Flag_Label();
   Quit_Button = Gtk::Button("Exit To Main Menu");
   Help_Button = Gtk::Button("Help");
@@ -978,7 +976,7 @@ void Game_Window::Initialize_GTK()
   End_Turn_Box.pack_start(End_Turn_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Economy_Label, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Tile_Information_Label, Gtk::PACK_SHRINK);
-  UI_Root_Box.pack_start(Tile_Flag_Image, Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start(*(Tile_Flag_Image.Get_Gtk_Image()), Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Manage_Techs_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Manage_Economy_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Show_Civs_Button, Gtk::PACK_SHRINK);
@@ -1077,7 +1075,7 @@ void Game_Window::Set_Tiles_Size_Automatically()
   }
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;
@@ -1095,7 +1093,7 @@ array<int ,2> Game_Window::Get_Screen_Resolution()
   return out;
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Venice" r="170" g="0" b="0" personality="Enterprising" flag="assets/textures/flags/venice-flag.png">
+  <civ name="Venice" r="170" g="0" b="0" personality="Enterprising" flag="assets/textures/flags/venice-flag.svg">
 <info>
 Venice or Most Serene Republic of Venice was italian city-state that exitsten from
 697 to 1797. During it existence it had controlled different territories besides its
