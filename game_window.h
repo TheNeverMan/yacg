@@ -33,6 +33,7 @@
 #include "save_saver_dialog.h"
 #include "gtk_tile.h"
 #include "scaled_gtk_image.h"
+#include "tutorial_dialog.h"
 #include "gtk_game_map.h"
 #include "magic_map_generation_thread_communicator.h"
 #include "map_generation_dialog.h"
@@ -66,7 +67,7 @@ class Game_Window : public Gtk::Window
     Gtk::Label Economy_Label;
     Gtk::Label Tile_Information_Label;
     Scaled_Gtk_Image Tile_Flag_Image;
-    Gtk::Button Map_Update_Button;
+  //  Gtk::Button Map_Update_Button;
     Gtk::Button Manage_Economy_Button;
     Gtk::Button Manage_Techs_Button;
     Gtk::Button Show_Civs_Button;
@@ -82,7 +83,7 @@ class Game_Window : public Gtk::Window
     Gtk::Button Quit_Button;
     Gtk::Button Help_Button;
     Gtk::Button Random_Tip_Button;
-    Gtk::Button Tip_Button;
+  //  Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
     shared_ptr<Gtk_Game_Map> Map_Images;
     Gtk::Label ProgressBar_Label;
@@ -166,6 +167,7 @@ class Game_Window : public Gtk::Window
     Glib::Dispatcher End_Turn_Dispatcher;
     thread* End_Turn_Thread;
     thread* Map_Generation_Thread;
+    void Show_Tutorial();
     shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
     shared_ptr<Magic_Map_Generation_Thread_Communicator> Map_Generation_Thread_Portal_Pointer;
 };

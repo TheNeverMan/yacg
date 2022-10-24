@@ -84,7 +84,7 @@ void Gtk_Game_Map::Generate_Map(Game* Main_Game, Magic_Map_Generation_Thread_Com
         }
         if(tiles_processed % percent == 0)
         {
-          cout << start << " " << start_y << " " << percent << endl;
+          //cout << start << " " << start_y << " " << percent << endl;
           Thread_Portal->Notify_Dialog();
 
         }

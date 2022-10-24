@@ -27,6 +27,8 @@ class Settings_Manager
     bool Get_Random_Tip_On_Startup_Value();
     void Set_Random_Tip_On_Startup_Value(bool s);
     void Set_Autoresize_Tiles_Value(bool a);
+    bool Check_If_Game_Is_Launched_First_Time();
+    void Launch_Game_First_Time();
     int Get_Tile_Size_Value();
     void Set_Autosave_Value(bool a);
     void Set_Tile_Size_Value(int t_s);

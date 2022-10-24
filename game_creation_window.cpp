@@ -142,6 +142,11 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Change_Main_Player_Civ();
   show_all_children();
   Randomize_Starting_Locations_Button.hide();
+  if(Main_Settings_Manager.Check_If_Game_Is_Launched_First_Time())
+  {
+    Tutorial_Dialog Dialog(assets_directory_path + "textures/tutorial/sdfsdf", assets_directory_path + "tutorial/game-creation-tutorial.txt");
+    Dialog.Show();
+  }
 }
 
 void Game_Creation_Window::Show_Map_Selection_Dialog()

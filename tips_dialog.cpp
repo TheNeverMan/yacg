@@ -4,6 +4,7 @@
 Tips_Dialog::Tips_Dialog(string tip) : Themed_Dialog("Tip")
 {
   Gtk::Box *Dialog_Box = get_content_area();
+  add_button("Got it!", 0);
   auto* Dialog_Root_Frame = Gtk::make_managed<Gtk::Frame>("Tip");
   auto* Dialog_Root_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL,2);
   string message = tip;

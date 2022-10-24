@@ -413,7 +413,7 @@ void Game::Remove_All_Missle_Units()
 
 int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
 {
-  int out = 0;
+  int out = -1;
   {
     is_in_thread = true;
     if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
@@ -452,8 +452,6 @@ int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
 
     if(currently_moving_player == First_Not_Eliminated_Player_Id())
       turn_counter++;
-    if(autosave && !Is_Currently_Moving_Player_AI())
-      Save_Game("autosave.sav");
     Start_Turn_Of_Currently_Moving_Player(Thread_Portal);
     out = -1;
     if(All_Humans_Are_Eliminated())
@@ -770,7 +768,7 @@ void Game::Deserialize(xml_node<>* Root_Node)
   for(xml_node<> *Color_Node = Player_Border_Colors_Node->first_node("color"); Color_Node; Color_Node = Color_Node->next_sibling("color"))
   {
     uint32_t tmp = static_cast<uint32_t>(stoul(Color_Node->first_attribute("value")->value()));
-    Logger::Log_Warning(Color_Node->first_attribute("value")->value());
+  //  Logger::Log_Warning(Color_Node->first_attribute("value")->value());
     Player_Border_Colors.push_back(tmp);
   }
 

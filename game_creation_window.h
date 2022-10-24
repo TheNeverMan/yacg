@@ -18,6 +18,7 @@
 #include "xml_data_loader.h"
 #include "assets_path.h"
 #include "scaled_gtk_image.h"
+#include "tutorial_dialog.h"
 
 using namespace std;
 

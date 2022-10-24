@@ -650,7 +650,7 @@ void Game_Window::Player_Has_Won_Game(int player_id)
 void Game_Window::Disable_All_Buttons()
 {
   End_Turn_Button.set_sensitive(false);
-  Map_Update_Button.set_sensitive(false);
+//  Map_Update_Button.set_sensitive(false);
   Manage_Economy_Button.set_sensitive(false);
   Manage_Techs_Button.set_sensitive(false);
   Show_Civs_Button.set_sensitive(false);
@@ -662,13 +662,13 @@ void Game_Window::Disable_All_Buttons()
   Quit_Button.set_sensitive(false);
   Help_Button.set_sensitive(false);
   Random_Tip_Button.set_sensitive(false);
-  Tip_Button.set_sensitive(false);
+  //Tip_Button.set_sensitive(false);
 }
 
 void Game_Window::Enable_All_Buttons()
 {
   End_Turn_Button.set_sensitive(true);
-  Map_Update_Button.set_sensitive(true);
+//  Map_Update_Button.set_sensitive(true);
   Manage_Economy_Button.set_sensitive(true);
   Manage_Techs_Button.set_sensitive(true);
   Show_Civs_Button.set_sensitive(true);
@@ -680,7 +680,7 @@ void Game_Window::Enable_All_Buttons()
   Quit_Button.set_sensitive(true);
   Help_Button.set_sensitive(true);
   Random_Tip_Button.set_sensitive(true);
-  Tip_Button.set_sensitive(true);
+//  Tip_Button.set_sensitive(true);
 }
 
 void Game_Window::End_Turn()
@@ -920,6 +920,8 @@ void Game_Window::Update_End_Turn_Labels()
       Player_Has_Lost_Game();
     if(Thread_Portal_Pointer->Get_Turn_Outcome() >= 1)
       Player_Has_Won_Game(Thread_Portal_Pointer->Get_Turn_Outcome());
+    if(Main_Settings_Manager.Get_Autosave_Value())
+      Main_Game->Save_Game("autosave.sav");
   }
   else
   {
@@ -947,6 +949,31 @@ void Game_Window::Zoom_Out()
   }
 }
 
+void Game_Window::Show_Tutorial()
+{
+  Logger::Log_Info("Game is launched first time! Showing tutorial...");
+  /*
+  Tutorial has 5 parts
+  1. General (ending turn, techonologies, actions, goal)
+  2. Economy (research funds, upgrades, maitenance)
+  3. Units (expansion, combat, city taking, )
+  4. Goverments
+  5. other, (foreign ministry, newspaper, overview)
+  */
+  string tutorial_text = assets_directory_path + "tutorial/";
+  string tutorial_image = assets_directory_path + "textures/tutorial/";
+  Tutorial_Dialog General_Tutorial(tutorial_image + "general-tutorial.png", tutorial_text + "general-tutorial.txt");
+  Tutorial_Dialog Economy_Tutorial(tutorial_image + "economy-tutorial.png", tutorial_text + "economy-tutorial.txt");
+  Tutorial_Dialog Units_Tutorial(tutorial_image + "units-tutorial.png", tutorial_text + "units-tutorial.txt");
+  Tutorial_Dialog Goverments_Tutorial(tutorial_image + "goverments-tutorial.png", tutorial_text + "goverments-tutorial.txt");
+  Tutorial_Dialog Other_Tutorial(tutorial_image + "other-tutorial.png", tutorial_text + "other-tutorial.txt");
+  General_Tutorial.Show();
+  Economy_Tutorial.Show();
+  Units_Tutorial.Show();
+  Goverments_Tutorial.Show();
+  Other_Tutorial.Show();
+}
+
 void Game_Window::Initialize_GTK()
 {
   Last_Clicked_Tile = nullptr;
@@ -966,7 +993,7 @@ void Game_Window::Initialize_GTK()
   ProgressBar_Label = Gtk::Label(" ");
   Tile_Information_Label = Gtk::Label(" ");
   Economy_Label = Gtk::Label(" ");
-  Map_Update_Button = Gtk::Button("Update Map");
+//  Map_Update_Button = Gtk::Button("Update Map");
   Show_Civs_Button = Gtk::Button("Foregin Ministry");
   End_Turn_Button = Gtk::Button("End Turn");
   Civ_Overview_Button = Gtk::Button("Overview");
@@ -985,7 +1012,7 @@ void Game_Window::Initialize_GTK()
   Quit_Button = Gtk::Button("Exit To Main Menu");
   Help_Button = Gtk::Button("Help");
   Random_Tip_Button = Gtk::Button("Random Tip");
-  Tip_Button = Gtk::Button("Tip");
+//  Tip_Button = Gtk::Button("Tip");
   Map_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   UI_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   End_Turn_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
@@ -999,7 +1026,7 @@ void Game_Window::Initialize_GTK()
   Root_Box.pack_start(Map_Root_Box);
   Root_Box.pack_start(UI_Frame, Gtk::PACK_SHRINK);
   UI_Frame.add(UI_Root_Box);
-  End_Turn_Box.pack_start(Map_Update_Button, Gtk::PACK_SHRINK);
+//  End_Turn_Box.pack_start(Map_Update_Button, Gtk::PACK_SHRINK);
   End_Turn_Box.pack_start(End_Turn_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Economy_Label, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Tile_Information_Label, Gtk::PACK_SHRINK);
@@ -1020,15 +1047,15 @@ void Game_Window::Initialize_GTK()
   UI_Root_Box.pack_start(Save_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Load_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Quit_Button, Gtk::PACK_SHRINK);
-  UI_Root_Box.pack_start(Tip_Button, Gtk::PACK_SHRINK);
+//  UI_Root_Box.pack_start(Tip_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Random_Tip_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Help_Button, Gtk::PACK_SHRINK);
   Map_Root_Box.pack_start(Map_Frame);
   Map_Root_Box.pack_start(ProgressBar_Label, Gtk::PACK_SHRINK);
   Map_Root_Box.pack_start(Capital_Label, Gtk::PACK_SHRINK);
   Map_Frame.add(Map_Scrolled_Window);
-  Main_Game->Confirm_Pass_To_Game_Window();
-  Map_Update_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Test) );
+//  Main_Game->Confirm_Pass_To_Game_Window();
+//  Map_Update_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Test) );
   Show_Civs_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Show_Civs_Clicked));
   End_Turn_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::End_Turn));
   Manage_Techs_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Manage_Techs_Clicked));
@@ -1041,13 +1068,13 @@ void Game_Window::Initialize_GTK()
   Quit_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Exit_To_Main_Menu) );
   Help_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Help_Message) );
   Random_Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Random_Tip) );
-  Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Tip) );
+//  Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Tip) );
   End_Turn_Dispatcher.connect(sigc::mem_fun(*this, &Game_Window::Update_End_Turn_Labels));
   Zoom_In_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_In));
   Zoom_Out_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_Out));
   Main_Provider.Add_CSS(this);
   Main_Provider.Add_CSS(&End_Turn_Button);
-  Main_Provider.Add_CSS(&Map_Update_Button);
+  //Main_Provider.Add_CSS(&Map_Update_Button);
   Main_Provider.Add_CSS(&Manage_Economy_Button);
   Main_Provider.Add_CSS(&Manage_Techs_Button);
   Main_Provider.Add_CSS(&Show_Civs_Button);
@@ -1058,7 +1085,7 @@ void Game_Window::Initialize_GTK()
   Main_Provider.Add_CSS(&Newspaper_Button);
   Main_Provider.Add_CSS(&Quit_Button);
   Main_Provider.Add_CSS(&Help_Button);
-  Main_Provider.Add_CSS(&Tip_Button);
+//  Main_Provider.Add_CSS(&Tip_Button);
   Main_Provider.Add_CSS(&Random_Tip_Button);
   Main_Provider.Add_CSS(&Zoom_In_Button);
   Main_Provider.Add_CSS(&Zoom_Out_Button);
@@ -1066,8 +1093,8 @@ void Game_Window::Initialize_GTK()
   Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map()->Get_X_Size(), Main_Game->Get_Map()->Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
   Generate_Map_View();
   show_all_children();
-  Map_Update_Button.hide();
-  Tip_Button.hide();
+//  Map_Update_Button.hide();
+  //Tip_Button.hide();
   set_default_size(800,800);
   maximize();
   Update_Map();
@@ -1084,6 +1111,11 @@ void Game_Window::Initialize_GTK()
     Manage_Goverments_Button.set_sensitive(false);
   if(Main_Settings_Manager.Get_Random_Tip_On_Startup_Value())
     Main_Tips_Manager.Show_Random_Tip();
+//Map_Update_Button.hide();
+//  Tip_Button.hide();
+  if(Main_Settings_Manager.Check_If_Game_Is_Launched_First_Time())
+    Show_Tutorial();
+  Main_Settings_Manager.Launch_Game_First_Time();
 }
 
 void Game_Window::Set_Tiles_Size_Automatically()
