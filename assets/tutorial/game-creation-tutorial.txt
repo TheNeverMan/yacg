@@ -7,4 +7,6 @@ configure everything you want:
 -choose your civilization you want to play
 -choose number of AI or human opponents
 Also instead of generating random map you can load prebuilt
-maps from file.
+maps from file. Each civilization has two traits which determine
+its strength and good sides, you can read about that in civilization
+description.

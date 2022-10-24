@@ -1,0 +1,7 @@
+Some technologies when you research them grant you access to goverment.
+Goverment give empire-wide bonuses, but also have cons. You can check
+your current goverment when you click "Overview" button under "Goverment"
+entry. You can change your goverment by clicking "Revolution!" button and
+selecting one option. Keep in mind that you can only change goverment when
+you have full actions and by doing so your actions get zeroed, so you must
+wait till next turn to build upgrades or recruit units.

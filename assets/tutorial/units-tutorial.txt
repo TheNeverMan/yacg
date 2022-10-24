@@ -1,0 +1,14 @@
+Units are your army, they are necessary for defending
+your lands, attacking and taking cities. You can recruit
+units in cities and other upgrades that have "recruit" trait.
+Keep in mind that recruiting units costs actions and units
+require maitenance, so if you are running low on gold disband
+some of them. You can move units by clicking on them and then
+on a tile nearby. Units have their own movement points, which
+are consumed by plundering, healing, moving and attacking, also
+not every unit can move on every tile eg. deserts are inaccessible
+for most of early game units. Units can fight if they are bordering
+each other. If you want to attack with unit select it and then
+click on enemy unit. Every unit has 100 HP, it goes down during
+combat and if it hits zero unit dies. Units can capture enemy
+cities by moving on them. Capture all enemy cities to win.

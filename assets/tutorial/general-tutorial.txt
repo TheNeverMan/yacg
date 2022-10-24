@@ -1,0 +1,9 @@
+YACG is turn-based strategy game.
+This means that actions you do are divided into turns.
+Each turn you will earn gold depending on state of your economy,
+all your units will have their movement points refreshed and all
+your empire actions from cities will be refreshed too.
+Cities play key role in the game, if you lose all your cities you
+will lose the game. Cities provide you actions and increase your
+country by expanding your borders. Also you can recruit units in
+cities.
