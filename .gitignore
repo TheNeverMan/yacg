@@ -4,3 +4,4 @@ miniyacg-config-settings.xml
 yacg
 *.log
 saves/*
+do_not_show_tutorial

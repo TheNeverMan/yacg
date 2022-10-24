@@ -1,5 +1,6 @@
 #pragma once
 #include<fstream>
+#include<sstream>
 
 #include "file_path.h"
 

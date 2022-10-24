@@ -16,12 +16,9 @@ string Text_Path::Get_File_Content()
 {
   string out = "";
   fstream File(Get_File_Path(), ios::in);
-  while(!File.eof())
-  {
-    string tmp;
-    File >> tmp;
-    out = out + tmp + " ";
-  }
+  std::ostringstream sstr;
+  sstr << File.rdbuf();
+  out = sstr.str();
   File.close();
   return out;
 }

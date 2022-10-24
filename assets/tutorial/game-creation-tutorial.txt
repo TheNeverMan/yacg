@@ -1,1 +1,10 @@
 Welcome to Yet Another Civilization Game!
+Its a turn-based game about building empires and fighting
+other civilizations. After you close this message, a game
+creation window will be shown. There you will be able to
+configure everything you want:
+-word map size, amount of oceans and continents
+-choose your civilization you want to play
+-choose number of AI or human opponents
+Also instead of generating random map you can load prebuilt
+maps from file.
