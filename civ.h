@@ -14,6 +14,7 @@
 #include "unit.h"
 #include "upgrade.h"
 #include "gov.h"
+#include "texture_owner.h"
 #include "logger.h"
 
 using namespace std;
@@ -45,10 +46,10 @@ struct Owned_City //????
   bool is_expanded = false;
 };
 
-class Civ : public Help_Object, public Traits_Owner
+class Civ : public Help_Object, public Traits_Owner, public Texture_Owner
 {
   public:
-    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us);
+    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p);
     string Get_Leader_Name();
     string Get_Full_Name();
     void Assign_Id(int i);

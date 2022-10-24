@@ -16,7 +16,7 @@ void Tile::Upgrade_Tile(string t_u)
   upgrade = t_u;
 }
 
-Tile::Tile() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner(" ")
+Tile::Tile() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner()
 {
   vector<string> t;
   has_unit = false;
@@ -54,12 +54,14 @@ int Tile::Get_Unit_Owner_Id()
 
 void Tile::Buff_Tile()
 {
-  is_buffed = true;
+  is_buffed++;
 }
 
 bool Tile::Is_Buffed()
 {
-  return is_buffed;
+  if(is_buffed > 0)
+    return true;
+  return false;
 }
 
 void Tile::Remove_Unit_From_Tile()
@@ -79,6 +81,11 @@ int Tile::Get_Movement_Cost()
   return movement_cost;
 }
 
+void Tile::Debuff_Tile()
+{
+  is_buffed--;
+}
+
 Tile::Tile(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node)
 {
   Deserialize(Root_Node);
@@ -90,7 +97,7 @@ void Tile::Deserialize(xml_node<>* Root_Node)
   has_unit = (bool) stoi(Root_Node->first_attribute("has_unit")->value());
   upgrade = Root_Node->first_attribute("upgrade")->value();
   unit_owner_id = stoi(Root_Node->first_attribute("unit_owner_id")->value());
-  is_plundered = (bool) stoi(Root_Node->first_attribute("is_plundered")->value());
+  is_plundered =  stoi(Root_Node->first_attribute("is_plundered")->value());
 }
 
 xml_node<>* Tile::Serialize(memory_pool<>* doc)

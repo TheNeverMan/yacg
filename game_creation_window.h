@@ -2,6 +2,7 @@
 #include<gtkmm.h>
 #include<vector>
 #include<tuple>
+#include<memory>
 #include<algorithm>
 #include<vector>
 #include<string>
@@ -15,6 +16,9 @@
 #include "map_loader_dialog.h"
 #include "civ.h"
 #include "xml_data_loader.h"
+#include "assets_path.h"
+#include "scaled_gtk_image.h"
+#include "tutorial_dialog.h"
 
 using namespace std;
 
@@ -50,7 +54,7 @@ class Game_Creation_Window : public Gtk::Window
     Gtk::Box Other_Players_Box;
     Gtk::Box Root_Box;
     Gtk::ComboBoxText Civs_Chooser_Combo;
-    Gtk::Image Civs_Color_Image;
+    Scaled_Gtk_Image Civs_Color_Image;
     Gtk::Frame Civs_Description_Frame;
     Gtk::Label Civs_Description_Label;
     Gtk::CheckButton Allow_Duplicate_Civs_Button;
@@ -86,7 +90,7 @@ class Game_Creation_Window : public Gtk::Window
     void Add_AI_Player();
     void Add_Human_Player();
     void Add_Players_From_Vector(vector<string> Players_To_Add, bool Is_AI);
-    void Update_Other_Player_Civ(int index, bool is_ai, Gtk::Image* image, Gtk::ComboBoxText* text);
+    void Update_Other_Player_Civ(int index, bool is_ai, shared_ptr<Scaled_Gtk_Image> image, Gtk::ComboBoxText* text);
   public:
     Game_Creation_Window(Window_Manager* m_m, Settings_Manager m_s_m);
 };

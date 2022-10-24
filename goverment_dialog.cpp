@@ -19,7 +19,7 @@ Goverment_Dialog::Goverment_Dialog(Civ p) : Themed_Dialog("Change Goverment"), P
   }
   for(auto &gov : govs)
   {
-    if(gov.Get_Name() != Player.Get_Active_Goverment_Name())
+    if(gov.Get_Name() != Player.Get_Active_Goverment_Name() && gov.Get_Name() != "Tribe")
     {
       auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
       auto *image = Gtk::make_managed<Gtk::Image>(gov.Get_Texture_Path());

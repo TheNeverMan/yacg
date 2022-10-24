@@ -10,8 +10,11 @@
 #include<fstream>
 #include<map>
 #include<tuple>
+#include<mutex>
+#include<thread>
 #include<memory>
 
+//#include "magic_thread_communicator.h"
 #include "tile.h"
 #include "tech.h"
 #include "unit.h"
@@ -28,9 +31,12 @@
 #include "help_object.h"
 #include "radius_generator.h"
 #include "ai.h"
+#include "magic_thread_communicator.h"
 #include "newspaper.h"
 #include "xml_data_loader.h"
 #include "ai_data.h"
+
+class Magic_Thread_Communicator;
 
 using namespace rapidxml;
 using namespace std;
@@ -38,6 +44,8 @@ using namespace std;
 class Game : public XML_Serializable
 {
   private:
+    bool is_in_thread = false;
+    mutex Main_Mutex;
     bool spectator_mode;
     bool autosave;
     vector<int> Eliminated_Players_List;
@@ -58,11 +66,10 @@ class Game : public XML_Serializable
     int turn_counter;
     vector<array<int, 2>> Tiles_To_Update;
     void XML_Load_Data();
-    void Do_AI_Actions_For_Currently_Moving_Player();
-    bool Is_Currently_Moving_Player_AI();
+    void Do_AI_Actions_For_Currently_Moving_Player(Magic_Thread_Communicator *Thread_Portal);
     void Move_Unit(int unit_x, int unit_y, int dest_x, int dest_y, int cost);
     void Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y);
-    void Start_Turn_Of_Currently_Moving_Player();
+    void Start_Turn_Of_Currently_Moving_Player(Magic_Thread_Communicator *Thread_Portal);
     bool Is_Currently_Moving_Player_Eliminated();
     int First_Not_Eliminated_Player_Id();
     bool Is_Player_AI(int player_id);
@@ -80,6 +87,7 @@ class Game : public XML_Serializable
     void Remove_All_Missle_Units();
     bool Is_Only_One_Player_Alive();
   public:
+    bool Is_Currently_Moving_Player_AI();
     void Disband_Unit(int x, int y);
     Unit Get_Unit_By_Name(string name);
     void Set_Autosave(bool a);
@@ -97,7 +105,7 @@ class Game : public XML_Serializable
     bool Save_Game(string path);
     tuple<bool, Game*> Load_Game(string path);
     int Get_Turn();
-    int End_Player_Turn();
+    int End_Player_Turn(Magic_Thread_Communicator* Thread_Portal);
     void Confirm_Pass_To_Game_Window();
     vector<Civ> Get_Players();
     Civ *Get_Player_By_Id(int id);

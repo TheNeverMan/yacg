@@ -1,6 +1,6 @@
 #include "civ.h"
 
-Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us) : Traits_Owner(t), Help_Object(n,c_i)
+Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p) : Traits_Owner(t), Help_Object(n,c_i), Texture_Owner(t_p)
 {
   srand(time(NULL));
   Goverment_Name_Replacements = g_n_r;
@@ -20,7 +20,7 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   points_from_technologies = 0;
   City_Names = c_n;
   Tech_Tree = t_t;
-  //cout << "cos" << endl;
+  ////cout << "cos" << endl;
   tech_in_research = "Agriculture";
   Unit_Templates = u_t;
   int32_t red = r;
@@ -298,7 +298,7 @@ int Civ::Get_Current_Actions()
 Tech* Civ::Get_Currently_Researched_Tech()
 {
   //Set_Research_Tech_By_Name("s");
-  //cout << "tech ine reseasrh " << tech_in_research << endl;
+  ////cout << "tech ine reseasrh " << tech_in_research << endl;
   for(auto &tech : Tech_Tree)
   {
     if(tech.Get_Name() == tech_in_research)
@@ -540,7 +540,7 @@ void Civ::Set_Research_Tech_By_Name(string tech_name)
   tech_in_research = tech_name;
   if(Active_Goverment.Get_Name() == "Republic")
     current_actions--;
-//  cout << "tech: " << tech_in_research << endl;
+//  //cout << "tech: " << tech_in_research << endl;
 }
 
 void Civ::Set_Research_Funds_Percentage(int new_val)
@@ -592,6 +592,17 @@ void Civ::Do_Trait(string trait_name)
       var.Increase_Movement_By_One();
   }
 
+  if(trait_name == "V")
+  {
+    for(auto& var : Unit_Templates)
+    {
+      if(var.Get_All_Arguments_For_Trait("class")[0] == "infantry")
+      {
+        var.Allow_Moving_On_Tile_By_Name("Ice");
+        var.Allow_Moving_On_Tile_By_Name("Desert");
+      }
+    }
+  }
 
 }
 
@@ -786,7 +797,7 @@ int Civ::Get_Population()
   return out;
 }
 
-Civ::Civ(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node)
+Civ::Civ(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node)
 {
   Deserialize(Root_Node);
 }
@@ -1007,6 +1018,7 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   Root_Node->append_node(Serialize_Help(doc));
   Root_Node->append_node(City_Names_Node);
   Root_Node->append_node(Serialize_Traits(doc));
+  Root_Node->append_node(Serialize_Textures(doc));
   Root_Node->append_node(Owned_Units_Node);
   Root_Node->append_node(Upgrades_Node);
   Root_Node->append_node(Leaders_Node);

@@ -14,7 +14,22 @@ box *
 
 dialog
 {
-  background-image: url("window-background.png");
+  background-image: url("dialog-background.png");
   font: 18px "Connection II";
   color: #ffffff;
+}
+
+.small_label
+{
+  font: 10px "Connection II";
+}
+
+.medium_label
+{
+  font: 13px "Connection II";
+}
+
+.big_label
+{
+  font: 22px "Connection II";
 }

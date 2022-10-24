@@ -25,12 +25,16 @@ string Unit_Info_Dialog::Get_Trait_Info()
   return out;
 }
 
-Unit_Info_Dialog::Unit_Info_Dialog(Unit u) : Described_Unit(u), Themed_Dialog("Unit")
+Unit_Info_Dialog::Unit_Info_Dialog(Unit u) : Described_Unit(u), Themed_Dialog("Unit"), Described_Unit_Image(u.Get_Texture_Path(), 96, 96)
 {
   Gtk::Box *Dialog_Box = get_content_area();
   auto* Dialog_Root_Frame = Gtk::make_managed<Gtk::Frame>("Unit Informations");
   auto* Dialog_Root_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL,2);
+  string allowed_tiles;
+  vector<string> Allowed_Tiles = u.Get_Allowed_Tiles();
+  for_each(Allowed_Tiles.begin(), Allowed_Tiles.end(), [&](string &tile){allowed_tiles = allowed_tiles + tile + ", ";});
   string message = "Recruit " + Described_Unit.Get_Name();
+  message = message + "\n Allowed Tiles: " + allowed_tiles;
   message = message + "\n Cost \t" + to_string(Described_Unit.Get_Cost());
   message = message + "\n Maintenace \t" + to_string(Described_Unit.Get_Maitenance());
   message = message + "\n Attack Power \t" + to_string(Described_Unit.Get_Attack_Power());
@@ -38,15 +42,9 @@ Unit_Info_Dialog::Unit_Info_Dialog(Unit u) : Described_Unit(u), Themed_Dialog("U
   message = message + "\n Movement Points \t" + to_string(Described_Unit.Get_Current_Actions());
   message + message + "\n Obsolete with \t" + Described_Unit.Get_Obsolete_Unit_Name();
   message = message + Get_Trait_Info();
-  Glib::RefPtr<Gdk::Pixbuf> unit_pix;
-  Glib::RefPtr<Gdk::Pixbuf> finished_pix;
-  finished_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 64, 64);
-  unit_pix = Gdk::Pixbuf::create_from_file(Described_Unit.Get_Texture_Path());
-  unit_pix->scale(finished_pix, 0, 0, 64, 64, 0, 0, 2, 2, Gdk::INTERP_BILINEAR);
-  auto* Described_Unit_Image = Gtk::make_managed<Gtk::Image>(finished_pix);
   auto* Described_Unit_Label = Gtk::make_managed<Gtk::Label>(message);
   Dialog_Box->pack_start(*Dialog_Root_Frame);
   Dialog_Root_Frame->add(*Dialog_Root_Box);
-  Dialog_Root_Box->pack_start(*Described_Unit_Image);
+  Dialog_Root_Box->pack_start(*(Described_Unit_Image.Get_Gtk_Image()));
   Dialog_Root_Box->pack_start(*Described_Unit_Label);
 }

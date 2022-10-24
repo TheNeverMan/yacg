@@ -1,0 +1,10 @@
+The main currency of the game is gold.
+You can check your current gold balance and actions amount in top right corner.
+Also you can see detailed report if you click "Finance Ministry" button.
+Each turn gold producing upgrades that are in your borders will produce gold, but
+all gold consuming upgrades and units will then consume their respective amount.
+You can check how much upgrade consumes or produces if you click "?" button near
+"Build xxx" or "Recruit xxx" button. Building upgrades and recruiting units
+consumes one action, every city you have gives you one more action - after every turn
+they get refreshed. You can build upgrades by clicking on one of tiles you own, and
+then clicking "Build xxx" under Actions category on the right.

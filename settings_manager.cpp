@@ -26,6 +26,24 @@ Settings_Manager::Settings_Manager()
   tile_size = 32;
 }
 
+void Settings_Manager::Launch_Game_First_Time()
+{
+  Logger::Log_Info("Creating Tutorial flag");
+  ofstream File("do_not_show_tutorial");
+  File << "true";
+  File.close();
+}
+
+bool Settings_Manager::Check_If_Game_Is_Launched_First_Time()
+{
+  bool out = true;
+  fstream File("do_not_show_tutorial");
+  if(File.is_open())
+    out = false;
+  File.close();
+  return out;
+}
+
 void Settings_Manager::Load_Data_From_XML()
 {
   ifstream file (path_to_file);

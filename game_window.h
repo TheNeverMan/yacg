@@ -3,15 +3,17 @@
 #include<vector>
 #include<iostream>
 #include<fstream>
-#include<gtkmm.h>
 #include<vector>
 #include<memory> //guide
 #include<chrono> //benchmarking
 #include<tuple>
 #include<map>
+#include<thread>
+#include</usr/include/gtkmm-3.0/gtkmm.h>
+
 
 #include "game.h"
-#include "globals.h"
+#include "assets_path.h"
 #include "window_manager.h"
 #include "logger.h"
 #include "game_css_provider.h"
@@ -26,10 +28,21 @@
 #include "goverment_dialog.h"
 #include "newspaper_dialog.h"
 #include "tips_manager.h"
+#include "magic_thread_communicator.h"
 #include "save_loader_dialog.h"
 #include "save_saver_dialog.h"
+#include "gtk_tile.h"
+#include "scaled_gtk_image.h"
+#include "tutorial_dialog.h"
+#include "gtk_game_map.h"
+#include "magic_map_generation_thread_communicator.h"
+#include "map_generation_dialog.h"
 
 class Window_Manager;
+class Game;
+class Magic_Thread_Communicator;
+class Magic_Map_Generation_Thread_Communicator;
+class Gtk_Game_Map;
 
 class Game_Window : public Gtk::Window
 {
@@ -37,7 +50,9 @@ class Game_Window : public Gtk::Window
     Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path, bool spectator_mode);
     Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>>  players, bool load_starting_positions, bool spectator_mode);
     ~Game_Window();
+    void Notify_Game_Window_About_Turn();
   protected:
+    bool is_everythin_disabled = false;
     Game_CSS_Provider Main_Provider;
     Gtk::Box Root_Box;
     Gtk::Box Map_Root_Box;
@@ -51,21 +66,26 @@ class Game_Window : public Gtk::Window
     Gtk::Button End_Turn_Button;
     Gtk::Label Economy_Label;
     Gtk::Label Tile_Information_Label;
-    Gtk::Button Map_Update_Button;
+    Scaled_Gtk_Image Tile_Flag_Image;
+  //  Gtk::Button Map_Update_Button;
     Gtk::Button Manage_Economy_Button;
     Gtk::Button Manage_Techs_Button;
     Gtk::Button Show_Civs_Button;
     Gtk::Button Manage_Goverments_Button;
     Gtk::Button Civ_Overview_Button;
     Gtk::Button Save_Button;
+    Gtk::Frame Zoom_Frame;
+    Gtk::Box Zoom_Box;
+    Gtk::Button Zoom_In_Button;
+    Gtk::Button Zoom_Out_Button;
     Gtk::Button Load_Button;
     Gtk::Button Newspaper_Button;
     Gtk::Button Quit_Button;
     Gtk::Button Help_Button;
     Gtk::Button Random_Tip_Button;
-    Gtk::Button Tip_Button;
+  //  Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
-    vector<Gtk::Box*> Map_Images;
+    shared_ptr<Gtk_Game_Map> Map_Images;
     Gtk::Label ProgressBar_Label;
     void Save_Game();
     void Load_Game();
@@ -92,12 +112,16 @@ class Game_Window : public Gtk::Window
     void Detonate_Atomic_Bomb(int x, int y);
     void Show_Random_Tip();
     void Show_Tip();
+    void Update_End_Turn_Labels();
+    void Zoom_Out();
+    void Zoom_In();
   private:
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
     bool is_delete_of_game_necessary= false;
     Map_Generator_Data Map_Data;
     Tips_Manager Main_Tips_Manager;
+    int minimum_tile_size = 0;
     void Update_Action_Buttons(int x, int y);
     void Update_Unit_Action_Buttons(int x, int y);
     void Update_Tile_Action_Buttons(int x, int y);
@@ -116,7 +140,7 @@ class Game_Window : public Gtk::Window
     void Update_Tile_By_Coords_Only(int x, int y);
     void Player_Has_Lost_Game();
     void Show_Intro_Message();
-    Game Main_Game;
+    Game* Main_Game;
     void Generate_Map_View();
     void Update_Map();
     int last_clicked_x;
@@ -126,9 +150,9 @@ class Game_Window : public Gtk::Window
     int selected_unit_y;
     int other_players_player_count;
     string main_player_civ_name;
-    Gtk::Image *Last_Clicked_Tile;
+    Gtk_Tile *Last_Clicked_Tile;
     void Initialize_GTK();
-    void Update_Tile(Gtk::Image *tile_image, int x, int y);
+    void Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y);
     array<int ,2> Get_Screen_Resolution();
     void Set_Tiles_Size_Automatically();
     bool Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y);
@@ -136,4 +160,14 @@ class Game_Window : public Gtk::Window
     string Get_Current_Turn_By_Years();
     void Update_Tiles_From_Game();
     void Player_Has_Won_Game(int player_id);
+    void Reset_Tile_Flag_Label();
+    void Update_Tile_Flag();
+    void Disable_All_Buttons();
+    void Enable_All_Buttons();
+    Glib::Dispatcher End_Turn_Dispatcher;
+    thread* End_Turn_Thread;
+    thread* Map_Generation_Thread;
+    void Show_Tutorial();
+    shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
+    shared_ptr<Magic_Map_Generation_Thread_Communicator> Map_Generation_Thread_Portal_Pointer;
 };

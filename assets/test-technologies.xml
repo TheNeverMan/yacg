@@ -335,7 +335,7 @@
 <trait name="expanse"/>
 </technology>
 <technology name="Industrialization" cost="1" info="Unlocks Factory upgrade." texture="assets/textures/techs/industrialization-tech-texture.png">
-<requirement name="Steam Engine"/>
+<requirement name="Agriculture"/>
 <trait name="economic"/>
 </technology>
 <technology name="Balloons" cost="1" info="Unlocks Zeppelin unit." texture="assets/textures/techs/balloons-tech-texture.png">
@@ -457,8 +457,7 @@
 <trait name="expanse"/>
 </technology>
 <technology name="Flight" cost="1" info="Unlocks Biplane unit and Airport upgrade." texture="assets/textures/techs/plane-tech-texture.png">
-<requirement name="Balloons"/>
-<requirement name="Combustion Engine"/>
+<requirement name="Agriculture"/>
 <trait name="military"/>
 </technology>
 <technology name="Mechanized Infantry" cost="1" info="Unlocks Mechanized Infantry unit." texture="assets/textures/techs/mechanizedinfantry-tech-texture.png">
@@ -467,7 +466,7 @@
 <trait name="military"/>
 </technology>
 <technology name="Armoured Car" cost="1" info="Unlocks Armoured Car unit." texture="assets/textures/techs/armouredcar-tech-texture.png">
-<requirement name="Car"/>
+<requirement name="Agriculture"/>
 <trait name="military"/>
 </technology>
 <technology name="Tank" cost="1" info="Unlocks Tank unit." texture="assets/textures/techs/tank-tech-texture.png">
@@ -514,8 +513,7 @@
 <trait name="military"/>
 </technology>
 <technology name="Computers" cost="1" info="Leads to many important technologies." texture="assets/textures/techs/computers-tech-texture.png">
-<requirement name="Telephone"/>
-<requirement name="Radar"/>
+<requirement name="Agriculture"/>
 <trait name="economic"/>
 </technology>
 <technology name="Nuclear Submarine" cost="1" info="Unlocks Nuclear Submarine unit." texture="assets/textures/techs/nuclearsubmarine-tech-texture.png">
@@ -535,8 +533,7 @@
 <trait name="economic"/>
 </technology>
 <technology name="Spaceflight" cost="1" info="Gives 200 points." texture="assets/textures/techs/spaceflights-tech-texture.png">
-<requirement name="Computers"/>
-<requirement name="Rocketry"/>
+<requirement name="Agriculture"/>
 <trait name="givepoints_300"/>
 </technology>
 <technology name="Rocketry" cost="1" info="Leads to many important technologies." texture="assets/textures/techs/rocketry-tech-texture.png">
@@ -635,8 +632,7 @@
 <trait name="reduceallupgradescost"/>
 </technology>
 <technology name="Space Exploration" cost="1" info="Gives 700 points." texture="assets/textures/techs/spaceexploration-tech-texture.png">
-<requirement name="Robotics"/>
-<requirement name="Spaceflight"/>
+<requirement name="Agriculture"/>
 <trait name="givepoints_1000"/>
 </technology>
 <technology name="Automated Factory" cost="39000" info="Unlocks Atomated Factory upgrade." texture="assets/textures/techs/automatedfactory-tech-texture.png">

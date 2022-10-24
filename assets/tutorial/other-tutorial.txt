@@ -1,0 +1,10 @@
+Researching technologies is key aspect of the game.
+You can manage all research-related aspects in "Science Ministry" and
+you can see your currently researched technology and research progress
+in top right corner. Your empire researches one tech at a time and each
+technology has its respective cost, technologies get progressively more
+expensive to research as the game progresses. Each turn some percent of
+your income is substracted from remaining cost of researched technology
+if remaining cost hits zero the technology is researched and new things
+unlocked. You can check how much you spend on research in "Finance Ministry"
+and you can change the percentage in "Science Ministry".

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Mississippi" r="209" g="12" b="41" personality="Enterprising">
+<civ name="Mississippi" r="209" g="12" b="41" personality="Enterprising" flag="assets/textures/flags/mississippi-flag.svg">
 <info>
 Mississippian Culture is native north american culture that existed from 1600 BC to
 1450 AD. It emerged in Mississippian River Valley, but then expanded to surrounding

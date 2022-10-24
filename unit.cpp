@@ -13,7 +13,7 @@ Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, str
   obsolete_unit_name = o;
 }
 
-Unit::Unit() : Help_Object(" ", " "), Texture_Owner(" "), Technology_Requirements_Owner(" "), Traits_Owner({"z"})
+Unit::Unit() : Help_Object(" ", " "), Texture_Owner(), Technology_Requirements_Owner(" "), Traits_Owner({"z"})
 {
     //in god we trust
 }
@@ -146,6 +146,11 @@ int Unit::Get_Manpower()
   out = (attack_power + defense_power) / 2 * 100;
   out = out * hp / 100;
   return out;
+}
+
+vector<string> Unit::Get_Allowed_Tiles()
+{
+  return Allowed_Tiles;
 }
 
 Unit::Unit(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node), Traits_Owner(Root_Node)

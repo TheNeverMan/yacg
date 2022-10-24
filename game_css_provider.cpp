@@ -2,7 +2,7 @@
 
 Game_CSS_Provider::Game_CSS_Provider()
 {
-  Logger::Log_Info("Loading CSS...");
+//  Logger::Log_Info("Loading CSS...");
   Main_Provider = Gtk::CssProvider::create();
   try
   {

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="China"  r="254" g="206" b="27" personality="Authoritarian">
+<civ name="China"  r="254" g="206" b="27" flag="assets/textures/flags/china-flag.svg" personality="Authoritarian">
 <replacement name="Monarchy" leader="Emperor" state_name="Great Qing of"/>
 <info>
 China as a culture and military entity is
@@ -81,7 +81,7 @@ China's color is yellow - backgound color of Qing Dynasty flag.
 <city name="Taizhou"/>
 <city name="Jiujiang"/>
 </civ>
-<civ name="Majapahit"  r="209" g="168" b="64" personality="Expansive">
+<civ name="Majapahit"  r="209" g="168" b="64" flag="assets/textures/flags/majapahit-flag.svg" personality="Expansive">
 <replacement name="Theocracy" leader="Dharmmadhyaksa ring Kasewan" state_name="Holy Empire of"/>
 <replacement name="Republic" leader="Mahapatih" state_name="Republic of"/>
 <replacement name="Monarchy" leader="Chakravarti" state_name="Empire of"/>
@@ -162,7 +162,7 @@ Majaphit's color is gold - the color of Surya Majapahit, the symbol of Majapahit
 <city name="Niran"/>
 <city name="Kanjab"/>
 </civ>
-<civ name="Egypt"  r="194" g="57" b="20" personality="Holy">
+<civ name="Egypt"  r="194" g="57" b="20" flag="assets/textures/flags/egypt-flag.svg" personality="Holy">
 <info>
 Ancient Egypt is a state that survived 3000 years and developed massive cultural
 heritage that can be seen to this day - for example Pyramids. Egypt can be considered
@@ -238,7 +238,7 @@ Egypt's color is orange - the color of Red Crown.
 <city name="Djanet"/>
 <city name="Hut-waret"/>
 </civ>
-<civ name="England"  r="201" g="8" b="42" personality="Expansive">
+<civ name="England"  r="201" g="8" b="42" flag="assets/textures/flags/england-flag.svg" personality="Expansive">
 <info>
 England is a kingdom that was forged in early medieval age.
 It not only survived to this day, unified entire island, but also
@@ -315,7 +315,7 @@ English color is red from English flag - the Union Jack.
 <city name="Hereford"/>
 <city name="Salisbury"/>
 </civ>
-<civ name="America" r="60" g="59" b="110" personality="Enlightened">
+<civ name="America" r="60" g="59" b="110" flag="assets/textures/flags/america-flag.svg" personality="Enlightened">
 <info>
 America or United States of America is one of the strongest modern empires.
 Its power emerged during world wars, when America shown itself as industrial,
@@ -393,7 +393,7 @@ American color is blue from american flag.
 <city name="Anaheim"/>
 
 </civ>
-<civ name="Inca" r="1" g="138" b="44" personality="Holy">
+<civ name="Inca" r="1" g="138" b="44" flag="assets/textures/flags/inca-flag.svg" personality="Holy">
 <info>
 Incan Empire was the biggest empire of South America
 before european colonization. Although its existence was short
@@ -474,7 +474,7 @@ Incan color is green, one of the colors of rainbow on Sapa Inca banner.
 <city name="Wanuku Pampa"/>
 <replacement name="Tribe" leader="King" state_name="Kingdom of"/>
 </civ>
-<civ name="Babylon" r="120" g="120" b="120" personality="Enlightened">
+<civ name="Babylon" r="120" g="120" b="120" flag="assets/textures/flags/babylon-flag.svg" personality="Enlightened">
 <info>
 Ancient Babylon or Babylonia was a state that emerged between rivers Euphrates and Tigris.
 Although it wasn't as big as other empires it made major scientific and cultural advances, such as
@@ -549,7 +549,7 @@ Babylonian color is grey.
 <city name="Al-Rawda"/>
 <city name="Shibaniba"/>
 </civ>
-<civ name="Congo" r="27" g="64" b="43" personality="Peaceful">
+<civ name="Congo" r="27" g="64" b="43" flag="assets/textures/flags/congo-flag.svg" personality="Peaceful">
 <info>
 Congo in medieval age was inhabitated by many local tribes and in 1390
 they managed to create Kingdom of Kongo, which survived to 1914.
@@ -628,7 +628,7 @@ Congolese color is dark green that can be found on Kingdom of Kongo coat of arms
 <city name="Manono"/>
 <city name="Miabi"/>
 </civ>
-<civ name="Rome" r="113" g="1" b="147" personality="Enterprising">
+<civ name="Rome" r="113" g="1" b="147" flag="assets/textures/flags/rome-flag.svg" personality="Enterprising">
 <info>
 Ancient Rome is one of greatest ancient empires that ever existed.
 Born from Roman Republic (one of the first republics in the world) it spaned from
@@ -705,7 +705,7 @@ Roman color is purple.
 <replacement name="Despotism" leader="King" state_name="Kingdom of"/>
 <replacement name="Monarchy" leader="Imperator" state_name="Empire of"/>
 </civ>
-<civ name="Mongolia" r="219" g="26" b="46" personality="Expansive">
+<civ name="Mongolia" r="219" g="26" b="46" flag="assets/textures/flags/mongolia-flag.svg" personality="Expansive">
 <info>
 Mongol Empire although short-lived was the largest contiguous empire in history.
 Mongols united by Genghis Khan conquered lands from Eastern Europe to China.
@@ -780,7 +780,7 @@ Mongol color is brown that can be found on the modern-day Mongolia's flag.
 <replacement name="Despotism" leader="Khan" state_name="Khamag Confederacy of"/>
 <replacement name="Monarchy" leader="Great Khan" state_name="Khaganate of"/>
 </civ>
-<civ name="Brittany" r="0" g="0" b="0" personality="Peaceful">
+<civ name="Brittany" r="0" g="0" b="0" flag="assets/textures/flags/brittany-flag.svg" personality="Peaceful">
 <info>
 Brittany is a historical kingdom in France (currently a region). Unified in 846 by
 Nominoe, it was independent until 1532 when it became part of France.
@@ -854,7 +854,7 @@ Breton color is black - one of two colors on their flag.
 <city name="Le Mans"/>
 <replacement name="Monarchy" leader="Duke" state_name="Duchy of"/>
 </civ>
-<civ name="Persia"  r="129" g="221" b="238" personality="Expansive">
+<civ name="Persia"  r="129" g="221" b="238" flag="assets/textures/flags/persia-flag.svg" personality="Expansive">
 <replacement name="Despotism" leader="Shahanshah" state_name="Iranian empire of"/>
 <info>
 At one point home to 44% of all humans, the Acheamenid Persian empire
@@ -923,7 +923,7 @@ Persia's color is aquamarine - one of the possible colors of the Acheamenid stan
 <city name="Aria"/>
 </civ>
 
-<civ name="Germany" r="0" g="0" b="0" personality="Enterprising">
+<civ name="Germany" r="0" g="0" b="0" flag="assets/textures/flags/germany-flag.svg" personality="Enterprising">
 <info>
 Germany is important european nation.
 It has been shaping politics of the continent from medieval era to this day.
@@ -1002,7 +1002,7 @@ German color is black a color that has many times appeared on their flag.
 <city name="Kassel"/>
 </civ>
 
-<civ name="Khmer" r="111" g="153" b="60" personality="Holy">
+<civ name="Khmer" r="111" g="153" b="60" flag="assets/textures/flags/khmer-flag.svg" personality="Holy">
 <info>
 Khmer Empire was a major South Asian Empire that existed in 802-1431 period.
 It controled most of mainland Southeast Asia and constructed great temples such as Ankgor Wat.
@@ -1075,7 +1075,7 @@ the region.
 <city name="Pre Rup"/>
 <replacement name="Despotism" state_name="Empire of" leader="Chakravartin"/>
 </civ>
-<civ name="Songhay" r="216" g="1" b="55" personality="Expansive">
+<civ name="Songhay" r="216" g="1" b="55" flag="assets/textures/flags/songhay-flag.svg" personality="Expansive">
 <info>
 The Songhay empire was the largest empire in West African history.
 It was able to amass great wealth due to trade across the Sahara and on the
@@ -1128,7 +1128,7 @@ Songhay color is red from Mali Emipre flag
 <city name="Agadez"/>
 <replacement name="Monarchy" state_name="Empire of" leader="Emperor"/>
 </civ>
-<civ name="Maya" r="34" g="209" b="89" personality="Enlightened">
+<civ name="Maya" r="34" g="209" b="89" flag="assets/textures/flags/maya-flag.svg" personality="Enlightened">
 <info>
 Mayan Civilizarion was on of the most important native cultures of America.
 It has never became a centralized empire, its famous for its astronomical and scientific advances.
@@ -1201,7 +1201,7 @@ Mayan color is green from on of mayan flags.
 <city name="Xlapak"/>
 <city name="Xpuhil"/>
 </civ>
-<civ name="Poland" r="220" g="20" b="60" personality="Peaceful">
+<civ name="Poland" r="220" g="20" b="60" flag="assets/textures/flags/poland-flag.svg" personality="Peaceful">
 <info>
 Poland is a central european nation that formed powerful kingdom in early medieval age.
 Later its power fell, but Poland survived to this day.
@@ -1333,7 +1333,7 @@ Polish color is red from polish flag.
 <city name="Vilinus"/>
 <city name="Lviv"/>
 </civ>
-<civ name="Russia" r="255" g="205" b="1" personality="Authoritarian">
+<civ name="Russia" r="255" g="205" b="1" flag="assets/textures/flags/russia-flag.svg" personality="Authoritarian">
 <info>
 Russia is  one of the biggest empires on the planet.
 It always had a great impact on the politics.
@@ -1410,7 +1410,7 @@ Russian color is yellow from Russian Empire flag.
 <city name="Chita"/>
 </civ>
 
-<civ name="France" r="4" g="8" b="108" personality="Enterprising">
+<civ name="France" r="4" g="8" b="108" flag="assets/textures/flags/france-flag.svg" personality="Enterprising">
 <info>
 France is an important european country. Not only it was a colonial superpower
 and it participated in both world wars and shaped world politics, but also ideas
@@ -1499,7 +1499,7 @@ French color is blue from its flag.
 <replacement name="Despotism" leader="Emperor" state_name="Carolingian Empire of"/>
 <replacement name="Dictatorship" leader="His Excellency" state_name="Directory of"/>
 </civ>
-<civ name="Maurya" r="20" g="139" b="179" personality="Expansive">
+<civ name="Maurya" r="20" g="139" b="179" flag="assets/textures/flags/maurya-flag.svg" personality="Expansive">
 <info>
 Maurya Empire although relatively shortlived (it existed for 150 years) was
 one of the strongest powers that have ever existed in Indian Subcontinent.
@@ -1562,7 +1562,7 @@ Mauryan color is blue from one of its possible flags.
 <replacement name="Despotism" leader="Kumara" state_name="Duchy of"/>
 </civ>
 
-<civ name="Tuʻi Tonga" r="12" g="65" b="154" personality="Exploring">
+<civ name="Tuʻi Tonga" r="12" g="65" b="154" flag="assets/textures/flags/tuitonga-flag.svg" personality="Exploring">
 <info>
 Tui'Tongan Empire was longlived Oceanian maritime empire that lasted over 2000 years.
 Tongan people managed to sail thousands of kilometers over oceans and exchange goods, trade and spread their culture.
@@ -1639,7 +1639,7 @@ Tongan color is blue from modern Tonga coat of arms.
 <replacement name="Monarchy" leader="Haʻa Tuʻi Tonga" state_name="Maritime Empire of"/>
 <replacement name="Theocracy" leader="Hikule'o" state_name="Holy Empire of"/>
 </civ>
-<civ name="Sikh" r="27" g="106" b="63" personality="Holy">
+<civ name="Sikh" r="27" g="106" b="63" flag="assets/textures/flags/sikh-flag.svg" personality="Holy">
 <info>
 Sikh Empire was a religious state that emerged in 1799 in Subcontinent of India.
 It controlled terittories of Kashmir until eventually defeated in war with England.
@@ -1715,7 +1715,7 @@ Sikh color is green from Nishan Sahib introducted by Ranjit Singh - the founder 
 <replacement name="Monarchy" leader="Maharaja" state_name="Empire of"/>
 <replacement name="Republic" leader="Wazir" state_name="Empire of"/>
 </civ>
-<civ name="Ethiopia" r="165" g="90" b="68" personality="Holy">
+<civ name="Ethiopia" r="165" g="90" b="68" flag="assets/textures/flags/ethiopia-flag.svg" personality="Holy">
 <info>
 Ethiopia is african country located in Horn of Africa.
 It has long history, originated in ancient era and survived to this day as democratic republic.
@@ -1813,7 +1813,7 @@ Ethiopian color is brown, color of lion on the Empire of Ethiopia flag.
 <replacement name="Monarchy" leader="Negusa Nagast" state_name="Empire of"/>
 <replacement name="Dictatorship" leader="Chairman" state_name="Dergue of"/>
 </civ>
-<civ name="Japan" r="255" g="255" b="255" personality="Authoritarian">
+<civ name="Japan" r="255" g="255" b="255" flag="assets/textures/flags/japan-flag.svg" personality="Authoritarian">
 <info>
 Japan is islandbased country in Asia. Although it is relatively small it
 is economic and technological superpower. It has been united under rule of
@@ -1944,7 +1944,7 @@ Japanses color is white, present on its flag.
 <replacement name="Despotism" leader="Daimyō" state_name="Clan of"/>
 <replacement name="Dictatorship" leader="Shogun" state_name="Shogunate of"/>
 </civ>
-<civ name="Macedonia" r="254" g="235" b="149" personality="Expansive">
+<civ name="Macedonia" r="254" g="235" b="149" flag="assets/textures/flags/macedonia-flag.svg" personality="Expansive">
 <info>
 Macedonia was a small ancient kingdom estabilished in 808 BC, located in modernday Greece.
 Under rule of Philip II is defeated its neighbours and under his son Alexander the Great
@@ -2019,7 +2019,7 @@ Macedonian color is light yellow - color of Vergina Sun.
 <city name="Anthemus"/>
 <replacement name="Monarchy" state_name="Kingdom of" leader="Basileus"/>
 </civ>
-<civ name="Iroquois" r="89" g="62" b="182" personality="Peaceful">
+<civ name="Iroquois" r="89" g="62" b="182" flag="assets/textures/flags/iroquois-flag.svg" personality="Peaceful">
 <info>
 Iroquois or Haudenosaunee tribe is a North American native tribe.
 During colonization era Iroquois with their neighbours formed Iroquois Confederacy
@@ -2093,7 +2093,7 @@ Iroquois color is purple from flag of the Confederacy.
 <replacement name="Tribe" state_name="Tribe of" leader="Hoyenah"/>
 </civ>
 
-<civ name="Spain" r="176" g="8" b="28" personality="Enterprising">
+<civ name="Spain" r="176" g="8" b="28" flag="assets/textures/flags/spain-flag.svg" personality="Enterprising">
 <info>
 Spain as a united country was created in late XV century by Isabella I of Castille and Ferdinand II of Aragon.
 Before unification Spain was territory of wars between Muslims on the South and Catholics on the North.
@@ -2234,7 +2234,7 @@ Spanish color is red from its actuall flag.
 <replacement name="Republic" leader="Prime Minister" state_name="Kingdom of"/>
 <replacement name="Monarchy" leader="King" state_name="Empire of"/>
 </civ>
-<civ name="Zulu" r="154" g="97" b="64" personality="Authoritarian">
+<civ name="Zulu" r="154" g="97" b="64" flag="assets/textures/flags/zulu-flag.svg" personality="Authoritarian">
 <info>
 Zulu are ethnic group in South Africa. In XIX century under the lead of Shaka
 they formed a powerful militaristic kingdom which fought with England and Boer Republics.
@@ -2301,7 +2301,7 @@ Zulu color is brown - color of their traditional shields.
 <replacement name="Monarchy" leader="President" state_name="Kingdom of"/>
 <replacement name="Tribe" leader="" state_name="Clan of"/>
 </civ>
-<civ name="Argentina" r="118" g="172" b="220" personality="Peaceful">
+<civ name="Argentina" r="118" g="172" b="220" flag="assets/textures/flags/argentina-flag.svg" personality="Peaceful">
 <info>
 Argentina is second largest country in South America. In early XX century
 it was one of the richest countries on the planet, its GNP per capita was higher than in USA.
@@ -2598,7 +2598,7 @@ Argentinian color is light blue from its flag.
 <city name="Malargüe"/>
 <city name="London"/>
 </civ>
-<civ name="Brazil" r="0" g="155" b="58" personality="Enterprising">
+<civ name="Brazil" r="0" g="155" b="58" flag="assets/textures/flags/brazil-flag.svg" personality="Enterprising">
 <info>
 Brazil is the biggest country in South America. It has 9th strongest economy in
 the world. It is surely a major power in world politics.

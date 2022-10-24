@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Israel" r="0" g="56" b="184" personality="Enterprising">
+<civ name="Israel" r="0" g="56" b="184" personality="Enterprising" flag="assets/textures/flags/israel-flag.svg">
 <info>
 Israel is a country in Western Asia. Israel existed in its current location as
 Kingdoms of Judah and Isreal from 9th century BC. Later both kingdoms collapsed and

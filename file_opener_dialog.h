@@ -2,7 +2,7 @@
 #include<gtkmm.h>
 #include<string>
 
-#include "globals.h"
+#include "assets_path.h"
 #include "logger.h"
 
 using namespace std;

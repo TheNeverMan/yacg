@@ -1,5 +1,5 @@
 #include "upgrade.h"
-#include "globals.h"
+#include "assets_path.h"
 
 Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t, vector<string> a_t, string t_p, bool avoid, std::vector<string> t) : Traits_Owner(t), Help_Object(n, h_t), Texture_Owner(t_p), Technology_Requirements_Owner(r_t)
 {
@@ -43,6 +43,11 @@ bool Upgrade::Is_Tile_Allowed_By_Name(string tile_name)
 bool Upgrade::Does_Avoid_Same_Type_Upgrades()
 {
   return Has_Trait("must_avoid");
+}
+
+vector<string> Upgrade::Get_Allowed_Tiles()
+{
+  return Allowed_Tiles;
 }
 
 void Upgrade::Decrease_Cost_By_One()
