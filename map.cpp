@@ -282,7 +282,7 @@ void Map::Buff_Tiles_In_Radius(int x, int y, int radius)
 }
 void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 {
-  //cout << radius << endl;
+  ////cout << radius << endl;
   if(Is_Tile_Out_Of_Bounds(x,y))
     return;
   if(upg.Get_Name() == "plundered")

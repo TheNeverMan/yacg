@@ -92,14 +92,14 @@
  Yet another test feeds RapidXml with over 1000 test files from W3C compliance suite, and verifies that correct results are obtained. There are also additional tests that verify each API function separately, and test that various parsing modes work as expected.</para></sect2><sect2><h3 id="namespacerapidxml_1acknowledgements">1.8 Acknowledgements</h3><para>I would like to thank Arseny Kapoulkine for his work on <a href="http://code.google.com/p/pugixml">pugixml</a>, which was an inspiration for this project. Additional thanks go to Kristen Wegner for creating <a href="http://www.codeproject.com/soap/pugxml.asp">pugxml</a>, from which pugixml was derived. Janusz Wohlfeil kindly ran RapidXml speed tests on hardware that I did not have access to, allowing me to expand performance comparison table.</para></sect2></sect1><sect1><h2 id="namespacerapidxml_1two_minute_tutorial">2. Two Minute Tutorial</h2><sect2><h3 id="namespacerapidxml_1parsing">2.1 Parsing</h3><para>The following code causes RapidXml to parse a zero-terminated string named <code>text</code>: <pre>using namespace rapidxml;
 xml_document&lt;&gt; doc;    // character type defaults to char
 doc.parse&lt;0&gt;(text);    // 0 means default parse flags
-</pre><code>doc</code> object is now a root of DOM tree containing representation of the parsed XML. Because all RapidXml interface is contained inside namespace <code>rapidxml</code>, users must either bring contents of this namespace into scope, or fully qualify all the names. Class <a href="#classrapidxml_1_1xml__document" kindref="compound">xml_document</a> represents a root of the DOM hierarchy. By means of public inheritance, it is also an <a href="#classrapidxml_1_1xml__node" kindref="compound">xml_node</a> and a <a href="#classrapidxml_1_1memory__pool" kindref="compound">memory_pool</a>. Template parameter of <a href="#classrapidxml_1_1xml__document_8338ce6042e7b04d5a42144fb446b69c_18338ce6042e7b04d5a42144fb446b69c" kindref="member">xml_document::parse()</a> function is used to specify parsing flags, with which you can fine-tune behaviour of the parser. Note that flags must be a compile-time constant.</para></sect2><sect2><h3 id="namespacerapidxml_1accessing_dom_tree">2.2 Accessing The DOM Tree</h3><para>To access the DOM tree, use methods of <a href="#classrapidxml_1_1xml__node" kindref="compound">xml_node</a> and <a href="#classrapidxml_1_1xml__attribute" kindref="compound">xml_attribute</a> classes: <pre>cout &lt;&lt; &quot;Name of my first node is: &quot; &lt;&lt; doc.first_node()-&gt;name() &lt;&lt; &quot;\n&quot;;
+</pre><code>doc</code> object is now a root of DOM tree containing representation of the parsed XML. Because all RapidXml interface is contained inside namespace <code>rapidxml</code>, users must either bring contents of this namespace into scope, or fully qualify all the names. Class <a href="#classrapidxml_1_1xml__document" kindref="compound">xml_document</a> represents a root of the DOM hierarchy. By means of public inheritance, it is also an <a href="#classrapidxml_1_1xml__node" kindref="compound">xml_node</a> and a <a href="#classrapidxml_1_1memory__pool" kindref="compound">memory_pool</a>. Template parameter of <a href="#classrapidxml_1_1xml__document_8338ce6042e7b04d5a42144fb446b69c_18338ce6042e7b04d5a42144fb446b69c" kindref="member">xml_document::parse()</a> function is used to specify parsing flags, with which you can fine-tune behaviour of the parser. Note that flags must be a compile-time constant.</para></sect2><sect2><h3 id="namespacerapidxml_1accessing_dom_tree">2.2 Accessing The DOM Tree</h3><para>To access the DOM tree, use methods of <a href="#classrapidxml_1_1xml__node" kindref="compound">xml_node</a> and <a href="#classrapidxml_1_1xml__attribute" kindref="compound">xml_attribute</a> classes: <pre>//cout &lt;&lt; &quot;Name of my first node is: &quot; &lt;&lt; doc.first_node()-&gt;name() &lt;&lt; &quot;\n&quot;;
 xml_node&lt;&gt; *node = doc.first_node(&quot;foobar&quot;);
-cout &lt;&lt; &quot;Node foobar has value &quot; &lt;&lt; node-&gt;value() &lt;&lt; &quot;\n&quot;;
+//cout &lt;&lt; &quot;Node foobar has value &quot; &lt;&lt; node-&gt;value() &lt;&lt; &quot;\n&quot;;
 for (xml_attribute&lt;&gt; *attr = node-&gt;first_attribute();
      attr; attr = attr-&gt;next_attribute())
 {
-    cout &lt;&lt; &quot;Node foobar has attribute &quot; &lt;&lt; attr-&gt;name() &lt;&lt; &quot; &quot;;
-    cout &lt;&lt; &quot;with value &quot; &lt;&lt; attr-&gt;value() &lt;&lt; &quot;\n&quot;;
+    //cout &lt;&lt; &quot;Node foobar has attribute &quot; &lt;&lt; attr-&gt;name() &lt;&lt; &quot; &quot;;
+    //cout &lt;&lt; &quot;with value &quot; &lt;&lt; attr-&gt;value() &lt;&lt; &quot;\n&quot;;
 }
 </pre></para></sect2><sect2><h3 id="namespacerapidxml_1modifying_dom_tree">2.3 Modifying The DOM Tree</h3><para>DOM tree produced by the parser is fully modifiable. Nodes and attributes can be added/removed, and their contents changed. The below example creates a HTML document, whose sole contents is a link to google.com website: <pre>xml_document&lt;&gt; doc;
 xml_node&lt;&gt; *node = doc.allocate_node(node_element, &quot;a&quot;, &quot;Google&quot;);
@@ -114,10 +114,10 @@ xml_document&lt;&gt; doc;    // character type defaults to char
 // ... some code to fill the document
 
 // Print to stream using operator &lt;&lt;
-std::cout &lt;&lt; doc;   
+std:://cout &lt;&lt; doc;   
 
 // Print to stream using print function, specifying printing flags
-print(std::cout, doc, 0);   // 0 means default printing flags
+print(std:://cout, doc, 0);   // 0 means default printing flags
 
 // Print to string using output iterator
 std::string s;
@@ -313,7 +313,7 @@ void free(void *pointer); </code><br/></para><h4>Parameters</h4><dl><dt class="p
  A very simple definition might look like that: <preformatted>
         void rapidxml::parse_error_handler(const char *what, void *where)
         {
-            std::cout &lt;&lt; &quot;Parse error: &quot; &lt;&lt; what &lt;&lt; &quot;\n&quot;;
+            std:://cout &lt;&lt; &quot;Parse error: &quot; &lt;&lt; what &lt;&lt; &quot;\n&quot;;
             std::abort();
         }
         </preformatted></para><h4>Parameters</h4><dl><dt class="parameter-name">what</dt><dd class="parameter-def">Human readable description of the error. </dd></dl><dl><dt class="parameter-name">where</dt><dd class="parameter-def">Pointer to character data where error was detected. </dd></dl><p/><h3 class="reference-header" id="namespacerapidxml_b94d570fc4c4ab2423813cd0243326b1_1b94d570fc4c4ab2423813cd0243326b1">function print</h3><h4>Synopsis</h4><code class="synopsis">OutIt rapidxml::print(OutIt out, const xml_node&lt; Ch &gt; &amp;node, int flags=0);

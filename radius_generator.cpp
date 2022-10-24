@@ -37,7 +37,7 @@ void Radius_Generator::Add_Tile_If_Not_Out_Of_Bounds(int x, int y, vector<array<
 vector<array<int, 2>> Radius_Generator::Get_Radius_For_Coords(int x, int y, int radius)
 {
   vector<array<int, 2>> out;
-  //cout << "Size: " << x_size << " " << y_size << endl;
+  ////cout << "Size: " << x_size << " " << y_size << endl;
   Add_Tile_If_Not_Out_Of_Bounds(x,y,&out);
   if(radius > 0)
   {

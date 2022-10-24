@@ -26,9 +26,9 @@ Trait::Trait(string raw_trait)
     }
     Arguments.push_back(raw_trait);
   }
-  //cout << "Trait: " << trait_name << " Arguments: ";
-//  for_each(Arguments.begin(), Arguments.end(), [](string &s){cout << s << ", "; });
-  //cout << endl;
+  ////cout << "Trait: " << trait_name << " Arguments: ";
+//  for_each(Arguments.begin(), Arguments.end(), [](string &s){//cout << s << ", "; });
+  ////cout << endl;
 }
 
 Trait::Trait(xml_node<>* Root_Node)

@@ -33,10 +33,15 @@
 #include "save_saver_dialog.h"
 #include "gtk_tile.h"
 #include "scaled_gtk_image.h"
+#include "gtk_game_map.h"
+#include "magic_map_generation_thread_communicator.h"
+#include "map_generation_dialog.h"
 
 class Window_Manager;
 class Game;
 class Magic_Thread_Communicator;
+class Magic_Map_Generation_Thread_Communicator;
+class Gtk_Game_Map;
 
 class Game_Window : public Gtk::Window
 {
@@ -79,7 +84,7 @@ class Game_Window : public Gtk::Window
     Gtk::Button Random_Tip_Button;
     Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
-    vector<shared_ptr<Gtk_Tile>> Map_Images;
+    shared_ptr<Gtk_Game_Map> Map_Images;
     Gtk::Label ProgressBar_Label;
     void Save_Game();
     void Load_Game();
@@ -160,5 +165,7 @@ class Game_Window : public Gtk::Window
     void Enable_All_Buttons();
     Glib::Dispatcher End_Turn_Dispatcher;
     thread* End_Turn_Thread;
+    thread* Map_Generation_Thread;
     shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
+    shared_ptr<Magic_Map_Generation_Thread_Communicator> Map_Generation_Thread_Portal_Pointer;
 };

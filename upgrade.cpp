@@ -10,7 +10,7 @@ Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t, vector<s
   does_avoid_same_type_upgrades = avoid;
 }
 
-Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t) : Traits_Owner({"unbuildable"}), Help_Object(n, h_t), Texture_Owner("assets" + path_delimeter + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.svg"), Technology_Requirements_Owner(r_t)
+Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t) : Traits_Owner({"unbuildable"}), Help_Object(n, h_t), Texture_Owner("assets" + path_delimeter + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png"), Technology_Requirements_Owner(r_t)
 {
   cost = c;
   production = p;
@@ -43,6 +43,11 @@ bool Upgrade::Is_Tile_Allowed_By_Name(string tile_name)
 bool Upgrade::Does_Avoid_Same_Type_Upgrades()
 {
   return Has_Trait("must_avoid");
+}
+
+vector<string> Upgrade::Get_Allowed_Tiles()
+{
+  return Allowed_Tiles;
 }
 
 void Upgrade::Decrease_Cost_By_One()

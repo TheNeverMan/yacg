@@ -20,8 +20,7 @@ void Scaled_Gtk_Image::Resize_Image(int s_x, int s_y)
   double y_proportion = 0;
   x_proportion = static_cast<double>(s_x) / static_cast<double>(Image_Pixbuf->get_width());
   y_proportion = static_cast<double>(s_y)  / static_cast<double>(Image_Pixbuf->get_height());
-  Image_Pixbuf->scale(Image_Pixbuf, 0, 0, Image_Pixbuf->get_width(), Image_Pixbuf->get_height(), 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST);
-  Image_Pixbuf->copy_area(0,0,s_x,s_y,Finished_Pixbuf,0,0);
+  Image_Pixbuf->scale(Finished_Pixbuf, 0, 0, s_x, s_y, 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST);
 
   Main_Image.set(Finished_Pixbuf);
   size_x = s_x;

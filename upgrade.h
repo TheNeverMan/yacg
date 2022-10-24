@@ -28,6 +28,7 @@ class Upgrade : public Help_Object, public XML_Serializable, public Traits_Owner
     void Deserialize(xml_node<>* Root_Node);
     void Reduce_Maitenance(int how_much);
     void Increase_Production_By_One();
+    vector<string> Get_Allowed_Tiles();
   private:
     int cost;
     int production;

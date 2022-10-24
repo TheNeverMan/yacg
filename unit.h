@@ -48,6 +48,7 @@ class Unit : public Help_Object, public XML_Serializable, public Texture_Owner, 
     void Increase_Attack_By_One();
     void Increase_Movement_By_One();
     void Increase_Current_Movement(int val);
+    vector<string> Get_Allowed_Tiles();
     void Allow_Moving_On_Tile_By_Name(string name);
     Unit(string n, int c, int a, int d, int m, int ma, string i, string r, string t_p, vector<string> a_t, vector<string> t_s, string o);
     Unit();

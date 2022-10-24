@@ -138,7 +138,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Main_Provider.Add_CSS(&Quit_Button);
   Main_Provider.Add_CSS(&Map_Button);
   Main_Provider.Add_CSS(&Civs_Box);
-
+  Main_Provider.Add_CSS_With_Class(&Civs_Description_Label, "medium_label");
   Change_Main_Player_Civ();
   show_all_children();
   Randomize_Starting_Locations_Button.hide();

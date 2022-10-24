@@ -45,6 +45,7 @@ void Civs_Dialog::Update_Players()
       continue;
     }
     auto *image = Gtk::make_managed<Gtk::Image>();
+    Scaled_Pixbuf tmp(player.Get_Texture_Path(), 96, 48);
     auto *color_image = Gtk::make_managed<Gtk::Image>();
     Glib::RefPtr<Gdk::Pixbuf> color_pix;
     color_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 48, 48);
@@ -57,7 +58,7 @@ void Civs_Dialog::Update_Players()
     auto *Population_Label = Gtk::make_managed<Gtk::Label>(" Population: " + to_string(player.Get_Population()));
     auto *Capital_Label = Gtk::make_managed<Gtk::Label>(" Capital: " + player.Get_Capital_Name());
     rows++;
-    image->set(player.Get_Texture_Path());
+    image->set(tmp.Get_Pixbuf());
     image->set_margin_end(3);
     Civs_List_Box.attach(*image, 0,index-1);
     Civs_List_Box.attach(*color_image, 1,index-1);

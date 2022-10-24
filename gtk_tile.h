@@ -7,27 +7,28 @@
 #include "logger.h"
 #include "game_css_provider.h"
 #include "image_path.h"
+#include "scaled_pixbuf.h"
 
 using namespace std;
 
-class Gtk_Tile
+class Gtk_Tile : public Gtk::Overlay
 {
   private:
+    vector<Scaled_Pixbuf> Pixbufs;
     Gtk::EventBox Tile_Event_Box;
     Gtk::Image Tile_Image;
-    Gtk::Overlay City_Name_Overlay;
     Gtk::Label City_Name_Label;
     Game_CSS_Provider Main_Provider;
     int tile_size;
     bool has_city;
-    Glib::RefPtr<Gdk::Pixbuf> Create_Scaled_Pixbuf(string p, int x, int y);
   public:
-    void Increase_Tile_Size(int val);
-    void Decrease_Tile_Size(int val);
-    Gtk_Tile(string texture_path, int t_s);
+    void Increase_Tile_Size();
+    void Decrease_Tile_Size();
+    Gtk_Tile(vector<string> Textures, guint32 border_color, int t_s);
+    Gtk_Tile(int layers, int t_s);
     Gtk::Widget* Get_Event_Box();
     Gtk::Image* Get_Image();
-    void Update_Texture(string tile_texture, string unit_texture, string upgrade_texture, guint32 border_color);
+    void Update_Texture(vector<string> Textures, guint32 border_color);
     bool Has_City_Set();
     void Set_City_Name(string city_name);
 };

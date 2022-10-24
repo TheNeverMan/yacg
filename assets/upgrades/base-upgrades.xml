@@ -206,7 +206,7 @@
 <trait name="movementdebuff"/>
 <trait name="removable"/>
 </upgrade>
-<upgrade name="none" cost="0" mait="0" prod="0" info="none ijnfpd texrd" requirement="Dummy" texture="assets/textures/upgrades/none-upgrade-texture.svg" avoid="0">
+<upgrade name="none" cost="0" mait="0" prod="0" info="none ijnfpd texrd" requirement="Dummy" texture="assets/textures/upgrades/none-upgrade-texture.png" avoid="0">
 <tile name="Land"/>
 <tile name="Sea"/>
 <tile name="Mountain"/>

@@ -19,7 +19,7 @@
 <trait name="attack"/>
 <trait name="defense"/>
 </unit>
-<unit name="Scouts" cost="5" atk="1" def="2" move="2" mait="1" is_naval="0" is_land="1" info="people with stick" requirement="Agriculture" texture="assets/textures/units/scout-unit-texture.png" obsolete="Warriors">
+<unit name="S//couts" cost="5" atk="1" def="2" move="2" mait="1" is_naval="0" is_land="1" info="people with stick" requirement="Agriculture" texture="assets/textures/units/s//cout-unit-texture.png" obsolete="Warriors">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>

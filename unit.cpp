@@ -148,6 +148,11 @@ int Unit::Get_Manpower()
   return out;
 }
 
+vector<string> Unit::Get_Allowed_Tiles()
+{
+  return Allowed_Tiles;
+}
+
 Unit::Unit(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node), Traits_Owner(Root_Node)
 {
   Deserialize(Root_Node);

@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char  *argv[])
 {
-	cout << Display_Version() << endl;
+	//cout << Display_Version() << endl;
 	Window_Manager Main_Manager(argc, argv);
 	return Main_Manager.Run();
 }

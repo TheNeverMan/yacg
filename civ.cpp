@@ -20,7 +20,7 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   points_from_technologies = 0;
   City_Names = c_n;
   Tech_Tree = t_t;
-  //cout << "cos" << endl;
+  ////cout << "cos" << endl;
   tech_in_research = "Agriculture";
   Unit_Templates = u_t;
   int32_t red = r;
@@ -298,7 +298,7 @@ int Civ::Get_Current_Actions()
 Tech* Civ::Get_Currently_Researched_Tech()
 {
   //Set_Research_Tech_By_Name("s");
-  //cout << "tech ine reseasrh " << tech_in_research << endl;
+  ////cout << "tech ine reseasrh " << tech_in_research << endl;
   for(auto &tech : Tech_Tree)
   {
     if(tech.Get_Name() == tech_in_research)
@@ -540,7 +540,7 @@ void Civ::Set_Research_Tech_By_Name(string tech_name)
   tech_in_research = tech_name;
   if(Active_Goverment.Get_Name() == "Republic")
     current_actions--;
-//  cout << "tech: " << tech_in_research << endl;
+//  //cout << "tech: " << tech_in_research << endl;
 }
 
 void Civ::Set_Research_Funds_Percentage(int new_val)

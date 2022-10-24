@@ -13,6 +13,7 @@ void Game_Window::Reset_Tile_Flag_Label()
 
 void Game_Window::Generate_Map_View()
 {
+  auto timer_start = chrono::steady_clock::now();
   Logger::Log_Info("Generating Map View..." );
   int x = Main_Game->Get_Map()->Get_X_Size();
   int y = Main_Game->Get_Map()->Get_Y_Size();
@@ -21,17 +22,33 @@ void Game_Window::Generate_Map_View()
   Logger::Log_Info("Map Size is " + to_string(x) + " " + to_string(y) );
   auto *root = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 0);
   Map_Scrolled_Window.add(*root);
+  Map_Generation_Dialog Dialog;
+  Map_Generation_Thread_Portal_Pointer = make_shared<Magic_Map_Generation_Thread_Communicator>(&Dialog, Map_Images);
+  Map_Generation_Thread = new std::thread(
+    [this]
+    {
+      Map_Generation_Thread_Portal_Pointer->Do_Task(Main_Game);
+    });
+  Dialog.Show();
+  using namespace std::this_thread; // sleep_for, sleep_until
+  using namespace std::chrono; // nanoseconds, system_clock, seconds
+
+  sleep(1);
+  Logger::Log_Info("Map View Generated!" );
+  auto timer_end = chrono::steady_clock::now();
+  auto timer_diff = timer_end - timer_start;
+  Logger::Log_Info("Generation took: " + to_string(chrono::duration<double, milli>(timer_diff).count()) + " ms" );
+
   while(start < x)
   {
     auto *Vertical_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL, 0);
     root->pack_start(*Vertical_Box, Gtk::PACK_SHRINK);
     while(start_y < y)
     {
-      auto tmp = make_shared<Gtk_Tile>(assets_directory_path + "textures" + path_delimeter + "tiles" + path_delimeter + "land-tile-texture.svg", Main_Settings_Manager.Get_Tile_Size_Value());
-      Vertical_Box->pack_start(*(tmp->Get_Event_Box()), Gtk::PACK_SHRINK);
+
+      Vertical_Box->pack_start(*(Map_Images->Get_Gtk_Tile(start, start_y)), Gtk::PACK_SHRINK);
       vector<int> coords {start, start_y};
-      tmp->Get_Event_Box()->signal_button_press_event().connect(sigc::bind<vector<int>>(sigc::mem_fun(*this, &Game_Window::Tile_Clicked), coords, tmp->Get_Image()));
-      Map_Images.push_back(tmp);
+      Map_Images->Get_Gtk_Tile(start, start_y)->Get_Event_Box()->signal_button_press_event().connect(sigc::bind<vector<int>>(sigc::mem_fun(*this, &Game_Window::Tile_Clicked), coords, Map_Images->Get_Gtk_Tile(start, start_y)->Get_Image()));
       start_y++;
     }
     start_y = 0;
@@ -39,7 +56,7 @@ void Game_Window::Generate_Map_View()
   }
 
   show_all_children();
-  Logger::Log_Info("Map View Generated!" );
+
 }
 
 void Game_Window::Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y)
@@ -49,18 +66,29 @@ void Game_Window::Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y)
     Tile_Pointer->Set_City_Name(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
   }
   string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
-  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.svg";
+  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
   if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
     unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
 
   string upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path();
   guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map()->Get_Owner(x, y));
-  Tile_Pointer->Update_Texture(tile_texture, unit_texture, upgrade_texture, border_color);
+  Tile_Pointer->Update_Texture({tile_texture, upgrade_texture, unit_texture}, border_color);
 }
 
 void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
 {
-  Update_Tile(Map_Images[y + (x * Main_Game->Get_Map()->Get_Y_Size())],x,y);
+  if(!(Map_Images->Get_Gtk_Tile(x,y)->Has_City_Set()) && Main_Game->Get_Map()->Get_Upgrade(x,y) == "City")
+  {
+    Map_Images->Get_Gtk_Tile(x,y)->Set_City_Name(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
+  }
+  string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
+  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
+  if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
+    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
+
+  string upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path();
+  guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map()->Get_Owner(x, y));
+  Map_Images->Update_Tile({tile_texture, upgrade_texture, unit_texture}, border_color, x, y);
 }
 
 void Game_Window::Update_Map()
@@ -717,6 +745,7 @@ void Game_Window::Select_Unit(int x, int y)
   selected_unit_x = x;
   selected_unit_y = y;
   Update_Action_Buttons(x,y);
+  ProgressBar_Label.set_text("Click on tile to move unit!");
 }
 
 void Game_Window::Deselect_Unit()
@@ -747,7 +776,7 @@ void Game_Window::Save_Game()
 
 void Game_Window::Clear_Map_Images()
 {
-  Map_Images.clear();
+  Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map()->Get_X_Size(), Main_Game->Get_Map()->Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
 }
 
 void Game_Window::Load_Game()
@@ -902,8 +931,7 @@ void Game_Window::Update_End_Turn_Labels()
 void Game_Window::Zoom_In()
 {
   Main_Settings_Manager.Set_Tile_Size_Value(Main_Settings_Manager.Get_Tile_Size_Value() + 4);
-  for_each(Map_Images.begin(), Map_Images.end(), [](shared_ptr<Gtk_Tile> g){g->Increase_Tile_Size(4);});
-  Update_Map();
+  Map_Images->Zoom_In();
 }
 
 void Game_Window::Zoom_Out()
@@ -911,8 +939,7 @@ void Game_Window::Zoom_Out()
   if(Main_Settings_Manager.Get_Tile_Size_Value() > minimum_tile_size)
   {
     Main_Settings_Manager.Set_Tile_Size_Value(Main_Settings_Manager.Get_Tile_Size_Value() - 4);
-    for_each(Map_Images.begin(), Map_Images.end(), [](shared_ptr<Gtk_Tile> g){g->Decrease_Tile_Size(4);});
-    Update_Map();
+    Map_Images->Zoom_Out();
   }
   else
   {
@@ -1036,8 +1063,11 @@ void Game_Window::Initialize_GTK()
   Main_Provider.Add_CSS(&Zoom_In_Button);
   Main_Provider.Add_CSS(&Zoom_Out_Button);
   Set_Tiles_Size_Automatically();
+  Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map()->Get_X_Size(), Main_Game->Get_Map()->Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
   Generate_Map_View();
   show_all_children();
+  Map_Update_Button.hide();
+  Tip_Button.hide();
   set_default_size(800,800);
   maximize();
   Update_Map();
@@ -1093,7 +1123,7 @@ array<int ,2> Game_Window::Get_Screen_Resolution()
   return out;
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Map_Generation_Thread(nullptr)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;

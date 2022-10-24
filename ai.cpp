@@ -202,7 +202,7 @@ array<int ,2> AI::Get_Closest_Player_Capital_Location()
     index++;
   }
   array<int, 2> cap = Get_Closest_Point(static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[0]), static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[1]), capitals);
-//  cout << cap[0] << " " << cap[1];
+//  //cout << cap[0] << " " << cap[1];
   return cap;
 }
 void AI::Move_Unit_Towards_Enemy(int x, int y, Unit u)
@@ -468,7 +468,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
   Logger::Log_Info("Research Funds: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent()));
   while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
   {
-    //cout << "Turn" << endl;
+    ////cout << "Turn" << endl;
     int index = Find_Biggest_Parameter({economy_parameter, military_parameter, naval_parameter, expanse_parameter});
     if(economy_parameter <= 0 && military_parameter <= 0 && expanse_parameter <= 0 && naval_parameter <= 0)
       break;

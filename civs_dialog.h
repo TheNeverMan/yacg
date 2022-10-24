@@ -1,12 +1,14 @@
 #pragma once
 #include<gtkmm.h>
 #include<vector>
+#include<memory>
 #include<string>
 
 #include "themed_dialog.h"
 #include "civ.h"
 #include "assets_path.h"
 #include "image_path.h"
+#include "scaled_pixbuf.h"
 #include "scaled_gtk_image.h"
 
 using namespace std;
