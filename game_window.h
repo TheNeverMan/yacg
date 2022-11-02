@@ -9,7 +9,7 @@
 #include<tuple>
 #include<map>
 #include<thread>
-#include</usr/include/gtkmm-3.0/gtkmm.h>
+#include<gtkmm.h>
 
 
 #include "game.h"

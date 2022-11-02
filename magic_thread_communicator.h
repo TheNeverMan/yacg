@@ -1,7 +1,7 @@
 #pragma once
 #include<thread>
 #include<mutex>
-#include</usr/include/gtkmm-3.0/gtkmm.h>
+#include<gtkmm.h>
 
 #include "game.h"
 #include "game_window.h"

@@ -33,7 +33,8 @@ void Game_Window::Generate_Map_View()
   using namespace std::this_thread; // sleep_for, sleep_until
   using namespace std::chrono; // nanoseconds, system_clock, seconds
 
-  sleep(1);
+  std::chrono::milliseconds m;
+  std::this_thread::sleep_for(m);
   Logger::Log_Info("Map View Generated!" );
   auto timer_end = chrono::steady_clock::now();
   auto timer_diff = timer_end - timer_start;

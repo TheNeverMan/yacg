@@ -14,7 +14,7 @@ default: $(OBJECTS)
 	$(CC_LINUX) $(CFLAGS_LINUX) -o yacg $^ $(LIBS)
 	rm -rf *.o
 
-windows: $(OBJECTS)
+windows:
 	$(CC_WINDOWS) $(CFLAGS_WINDOWS) *.cpp -o yacg $(LIBS)
 
 clean:

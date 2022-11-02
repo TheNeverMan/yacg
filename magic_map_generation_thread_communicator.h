@@ -3,7 +3,7 @@
 #include<memory>
 #include<mutex>
 #include<iostream>
-#include</usr/include/gtkmm-3.0/gtkmm.h>
+#include<gtkmm.h>
 
 #include "map_generation_dialog.h"
 #include "gtk_game_map.h"
