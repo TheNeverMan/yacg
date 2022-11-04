@@ -1,7 +1,7 @@
-CFLAGS_LINUX = -pipe -O0 -ggdb -Wall -Wno-reorder -std=c++17
+CFLAGS_LINUX = -pipe -ldl -lpthread -lm -O0 -ggdb -Wall -Wno-reorder -std=c++17
 CFLAGS_WINDOWS = -Wl,-subsystem,windows -ggdb -Wall -std=c++17
 LIBS = `pkg-config gtkmm-3.0 --cflags --libs`
-CC_LINUX = ccache g++
+CC_LINUX = ccache clang++
 CC_WINDOWS = g++
 SOURCES = $(wildcard *.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
