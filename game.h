@@ -35,6 +35,7 @@
 #include "newspaper.h"
 #include "xml_data_loader.h"
 #include "ai_data.h"
+#include "sound_manager.h"
 
 class Magic_Thread_Communicator;
 
@@ -48,6 +49,7 @@ class Game : public XML_Serializable
     mutex Main_Mutex;
     bool spectator_mode;
     bool autosave;
+    Sound_Manager Main_Sound_Manager;
     vector<int> Eliminated_Players_List;
     vector<Tile> Tiles;
     vector<Tech> Technologies;

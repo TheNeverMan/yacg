@@ -6,7 +6,7 @@ string Texture_Owner::Get_Texture_Path()
   return Texture_Path.Get_File_Path();
 }
 
-Texture_Owner::Texture_Owner(string t_p = "assets/textures/broken-texture.png") : Texture_Path(t_p)
+Texture_Owner::Texture_Owner(string t_p) : Texture_Path(t_p)
 {
 
 }

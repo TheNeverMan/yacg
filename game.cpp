@@ -41,6 +41,7 @@ void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positio
 
 void Game::Build_Upgrade(string name, int x, int y, int player_id)
 {
+  Main_Sound_Manager.Play_Sound("assets/sounds/upgrade-audio.wav");
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Upgrade u = Get_Player_By_Id(player_id)->Find_Upgrade_By_Name(name);
   int radius = Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius();

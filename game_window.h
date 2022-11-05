@@ -37,6 +37,7 @@
 #include "gtk_game_map.h"
 #include "magic_map_generation_thread_communicator.h"
 #include "map_generation_dialog.h"
+#include "sound_manager.h"
 
 class Window_Manager;
 class Game;
@@ -121,6 +122,7 @@ class Game_Window : public Gtk::Window
     bool is_delete_of_game_necessary= false;
     Map_Generator_Data Map_Data;
     Tips_Manager Main_Tips_Manager;
+    //Sound_Manager Main_Sound_Manager;
     int minimum_tile_size = 0;
     void Update_Action_Buttons(int x, int y);
     void Update_Unit_Action_Buttons(int x, int y);

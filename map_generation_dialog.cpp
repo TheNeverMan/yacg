@@ -25,10 +25,10 @@ void Map_Generation_Dialog::Pulse_Fraction()
 {
   double fraction = Main_Progress_Bar.get_fraction() + 0.01;
   Main_Progress_Bar.set_fraction(fraction);
-  //cout << fraction << endl;
-  if(fraction > 0.99)
+  cout << fraction << endl;
+  if(fraction >= 0.99)
   {
-    //cout << "close" << endl;
+    cout << "close" << endl;
     close();
   }
 }

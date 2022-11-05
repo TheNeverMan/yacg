@@ -1,6 +1,6 @@
 #include "unit.h"
 
-Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, string t_p, vector<string> a_t, vector<string> t_s, string o) : Help_Object(n, i), Texture_Owner(t_p), Technology_Requirements_Owner(r), Traits_Owner(t_s)
+Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, string t_p, vector<string> a_t, vector<string> t_s, string o, string s_p) : Help_Object(n, i), Texture_Owner(t_p), Technology_Requirements_Owner(r), Traits_Owner(t_s), Audio_Owner(s_p)
 {
   Allowed_Tiles = a_t;
   cost = c;
@@ -13,7 +13,7 @@ Unit::Unit(string n, int c, int a, int d, int m, int ma, string i, string r, str
   obsolete_unit_name = o;
 }
 
-Unit::Unit() : Help_Object(" ", " "), Texture_Owner(), Technology_Requirements_Owner(" "), Traits_Owner({"z"})
+Unit::Unit() : Help_Object(" ", " "), Texture_Owner(), Technology_Requirements_Owner(" "), Traits_Owner({"z"}), Audio_Owner()
 {
     //in god we trust
 }
@@ -153,7 +153,7 @@ vector<string> Unit::Get_Allowed_Tiles()
   return Allowed_Tiles;
 }
 
-Unit::Unit(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node), Traits_Owner(Root_Node)
+Unit::Unit(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_Node), Technology_Requirements_Owner(Root_Node), Traits_Owner(Root_Node), Audio_Owner(Root_Node)
 {
   Deserialize(Root_Node);
 }
@@ -213,5 +213,6 @@ xml_node<>* Unit::Serialize(memory_pool<>* doc)
   Root_Node->append_node(Serialize_Textures(doc));
   Root_Node->append_node(Serialize_Technologies(doc));
   Root_Node->append_node(Serialize_Traits(doc));
+  Root_Node->append_node(Serialize_Audio(doc));
   return Root_Node;
 }

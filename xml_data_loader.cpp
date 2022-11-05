@@ -194,6 +194,7 @@ vector<Unit> XML_Data_Loader::Load_Units_From_File(string path)
     string r = unit_node->first_attribute("requirement")->value();
     string h_t = unit_node->first_attribute("info")->value();
     string t_p = unit_node->first_attribute("texture")->value();
+    string s_p = unit_node->first_attribute("audio")->value();
     string obsolete = unit_node->first_attribute("obsolete")->value();
     vector<string> a_t;
     vector<string> traits = Load_Traits_From_Root_Node(unit_node);
@@ -201,7 +202,7 @@ vector<Unit> XML_Data_Loader::Load_Units_From_File(string path)
     {
       a_t.push_back(tile_node->first_attribute("name")->value());
     }
-    Unit tmp(n, c, a, d, m, ma, h_t, r, t_p, a_t, traits, obsolete);
+    Unit tmp(n, c, a, d, m, ma, h_t, r, t_p, a_t, traits, obsolete, s_p);
     out.push_back(tmp);
   }
   return out;

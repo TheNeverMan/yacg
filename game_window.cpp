@@ -30,11 +30,7 @@ void Game_Window::Generate_Map_View()
       Map_Generation_Thread_Portal_Pointer->Do_Task(Main_Game);
     });
   Dialog.Show();
-  using namespace std::this_thread; // sleep_for, sleep_until
-  using namespace std::chrono; // nanoseconds, system_clock, seconds
-
-  std::chrono::milliseconds m;
-  std::this_thread::sleep_for(m);
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000));  
   Logger::Log_Info("Map View Generated!" );
   auto timer_end = chrono::steady_clock::now();
   auto timer_diff = timer_end - timer_start;
