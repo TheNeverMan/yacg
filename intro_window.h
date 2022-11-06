@@ -35,6 +35,7 @@ class Intro_Window : public Gtk::Window
     void Change_Tile_Size_Value(Gtk::SpinButton* Tile_Size_Button);
     void Change_Autosave_Value(Gtk::CheckButton* Autosave_Button);
     void Change_Autoresize_Value(Gtk::CheckButton* Autoresize_Button);
+    void Change_Mute_Value(Gtk::CheckButton* Mute_Button);
   public:
     Intro_Window(Window_Manager* m_m);
 };

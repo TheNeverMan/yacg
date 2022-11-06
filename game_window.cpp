@@ -30,7 +30,7 @@ void Game_Window::Generate_Map_View()
       Map_Generation_Thread_Portal_Pointer->Do_Task(Main_Game);
     });
   Dialog.Show();
-  std::this_thread::sleep_for(std::chrono::milliseconds(1000));  
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   Logger::Log_Info("Map View Generated!" );
   auto timer_end = chrono::steady_clock::now();
   auto timer_diff = timer_end - timer_start;
@@ -127,12 +127,14 @@ void Game_Window::Test()
 
 void Game_Window::Show_Not_Enough_Actions_Message()
 {
+  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
   string message = "You don't have enough actions to do that!";
   ProgressBar_Label.set_text(message);
 }
 
 void Game_Window::Show_Not_Enough_Gold_Message()
 {
+  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
   string message = "You don't have enough gold to do that!";
   ProgressBar_Label.set_text(message);
 }
@@ -273,9 +275,11 @@ void Game_Window::Heal_Unit(int x, int y)
     {
       Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Heal(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x,y)).How_Many_Times_Has_Trait("increasehealrate") * 10);
       message = "Unit healed!";
+      Main_Sound_Manager.Play_Sound("assets/sounds/heal-audio.wav");
     }
     else
     {
+      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
       message = message + "\n Your unit doesn't have enough actions to do that!";
     }
   }
@@ -297,6 +301,7 @@ void Game_Window::Plunder_Tile(int x, int y)
     }
     else
     {
+      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
       message = message + "\n Your unit doesn't have enough actions to do that!";
     }
   }
@@ -555,6 +560,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     }
     else
     {
+      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
       ProgressBar_Label.set_text("You can't move unit here!");
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
       Update_Tile_By_Coords_Only(coords[0], coords[1]);
@@ -562,6 +568,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
   }
   else
   {
+    Main_Sound_Manager.Play_Sound("assets/sounds/tileclicked-audio.wav");
     last_clicked_x = coords[0];
     last_clicked_y = coords[1];
     Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
@@ -683,6 +690,7 @@ void Game_Window::Enable_All_Buttons()
 void Game_Window::End_Turn()
 {
   Deselect_Unit();
+  Main_Sound_Manager.Play_Sound("assets/sounds/endturn-audio.wav");
   //Logger::Log_Info(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() );
   bool are_all_techs_researched = false;
   if(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() == 0)
@@ -738,6 +746,7 @@ void Game_Window::Manage_Economy_Clicked()
 
 void Game_Window::Select_Unit(int x, int y)
 {
+  Main_Sound_Manager.Play_Sound("assets/sounds/unitselected-audio.wav");
   is_unit_selected = true;
   selected_unit_x = x;
   selected_unit_y = y;

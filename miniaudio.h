@@ -17856,27 +17856,27 @@ static void ma_device__on_notification(ma_device_notification notification)
     }
 }
 
-void ma_device__on_notification_started(ma_device* pDevice)
+static void ma_device__on_notification_started(ma_device* pDevice)
 {
     ma_device__on_notification(ma_device_notification_init(pDevice, ma_device_notification_type_started));
 }
 
-void ma_device__on_notification_stopped(ma_device* pDevice)
+static void ma_device__on_notification_stopped(ma_device* pDevice)
 {
     ma_device__on_notification(ma_device_notification_init(pDevice, ma_device_notification_type_stopped));
 }
 
-void ma_device__on_notification_rerouted(ma_device* pDevice)
+static void ma_device__on_notification_rerouted(ma_device* pDevice)
 {
     ma_device__on_notification(ma_device_notification_init(pDevice, ma_device_notification_type_rerouted));
 }
 
-void ma_device__on_notification_interruption_began(ma_device* pDevice)
+static void ma_device__on_notification_interruption_began(ma_device* pDevice)
 {
     ma_device__on_notification(ma_device_notification_init(pDevice, ma_device_notification_type_interruption_began));
 }
 
-void ma_device__on_notification_interruption_ended(ma_device* pDevice)
+static void ma_device__on_notification_interruption_ended(ma_device* pDevice)
 {
     ma_device__on_notification(ma_device_notification_init(pDevice, ma_device_notification_type_interruption_ended));
 }

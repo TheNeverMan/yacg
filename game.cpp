@@ -41,8 +41,9 @@ void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positio
 
 void Game::Build_Upgrade(string name, int x, int y, int player_id)
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/upgrade-audio.wav");
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  if(!is_in_thread)
+  Main_Sound_Manager.Play_Sound("assets/sounds/upgrade-audio.wav");
   Upgrade u = Get_Player_By_Id(player_id)->Find_Upgrade_By_Name(name);
   int radius = Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius();
   if(name == "City")
@@ -546,6 +547,7 @@ Unit Game::Get_Unit_By_Tile(int x, int y)
 void Game::Plunder_Tile(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Main_Sound_Manager.Play_Sound("assets/sounds/plunder-audio.wav");
   Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Increase_Current_Movement(-1);
   Get_Map()->Plunder_Tile(x,y);
   Tiles_To_Update.push_back({x,y});
@@ -568,6 +570,8 @@ void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
   unit_2_stats[2] = unit_2_stats[2] - ((double) 30 * ((double) unit_1_stats[0] / (double) unit_2_stats[1]));
   Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Set_HP(unit_1_stats[2]);
   Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y)->Set_HP(unit_2_stats[2]);
+  if(!is_in_thread)
+  Main_Sound_Manager.Play_Sound(Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Get_Audio_Path());
   if(unit_1_stats[2] <= 0 || Get_Unit_By_Tile(unit_1_x,unit_1_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
     Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_1_x,unit_1_y);
@@ -591,6 +595,8 @@ void Game::Move_Unit(int unit_x, int unit_y, int dest_x, int dest_y, int cost)
   Get_Player_By_Id(player_id)->Move_Unit_To_By_Coords(unit_x, unit_y, dest_x, dest_y, cost);
   Get_Map()->Get_Tile_Pointer(unit_x, unit_y)->Remove_Unit_From_Tile();
   Get_Map()->Get_Tile_Pointer(dest_x, dest_y)->Put_Unit_On_Tile(player_id);
+  if(!is_in_thread)
+  Main_Sound_Manager.Play_Sound("assets/sounds/unitmove-audio.wav");
 }
 
 bool Game::Has_Currently_Moving_Player_Any_Actions_Left()
@@ -620,6 +626,8 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
       {
+      //  if(!is_in_thread)
+        Main_Sound_Manager.Play_Sound("assets/sounds/citycapture-audio.wav");
         string message;
         bool capital = false;
         if(Get_Player_By_Id(tile_owner_id)->Get_City_Name_By_Coordinates(dest_x, dest_y) == Get_Player_By_Id(tile_owner_id)->Get_Capital_Name())
@@ -656,6 +664,7 @@ vector<Civ> Game::Get_All_Civs()
 void Game::Detonate_Atomic_Bomb(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Main_Sound_Manager.Play_Sound("assets/sounds/atomicexplosion-audio.wav");
   Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
   Disband_Unit(x,y);
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);

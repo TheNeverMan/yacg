@@ -16,6 +16,8 @@ Settings_Manager::Settings_Manager(string p_t_f)
     autosave = false;
     tile_size = 32;
     show_random_tip_on_startup = true;
+    mute = false;
+    autoresize = true;
   }
   file.close();
 }
@@ -24,6 +26,16 @@ Settings_Manager::Settings_Manager()
 {
   autosave = false;
   tile_size = 32;
+}
+
+bool Settings_Manager::Is_Game_Muted()
+{
+  return mute;
+}
+
+void Settings_Manager::Set_Mute_Value(bool m)
+{
+  mute = m;
 }
 
 void Settings_Manager::Launch_Game_First_Time()
@@ -57,6 +69,7 @@ void Settings_Manager::Load_Data_From_XML()
   autoresize = static_cast<bool>(stoi(Settings_Node->first_node("autoresize")->value()));
   show_random_tip_on_startup = static_cast<bool>(stoi(Settings_Node->first_node("startup_tip")->value()));
   tile_size = stoi(Settings_Node->first_node("tile_size")->value());
+  mute = static_cast<bool>(stoi(Settings_Node->first_node("mute")->value()));
   Logger::Log_Info("XML Settings Data Loaded!" );
 }
 
@@ -75,6 +88,8 @@ void Settings_Manager::Write_To_File()
   Settings_Node->append_node(Startup_Tip_Node);
   xml_node<>* Tile_Size_Node = doc.allocate_node(node_element, "tile_size", doc.allocate_string(to_string(tile_size).c_str()));
   Settings_Node->append_node(Tile_Size_Node);
+  xml_node<>* Mute_Node = doc.allocate_node(node_element, "mute", doc.allocate_string(to_string(mute).c_str()));
+  Settings_Node->append_node(Mute_Node);
   doc.append_node(Root_Node);
   std::string s;
   rapidxml::print(std::back_inserter(s), doc, 0);
