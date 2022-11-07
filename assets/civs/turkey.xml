@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Turkey" r="227" g="10" b="23" personality="Expansive" flag="assets/textures/flags/turkey-flag.svg">
+<civ name="Turkey" r="227" g="10" b="23" personality="Expansive" flag="assets/textures/flags/turkey-flag.svg" audio="assets/sounds/themes/russian-theme.wav">
 <info>
 Turkey is country located on Anatolian Penisula. Modern Turkey had emerged
 from ruins of Ottoman Empire

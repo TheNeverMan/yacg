@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Yakutia" r="17" g="153" b="255" personality="Expansive" flag="assets/textures/flags/yakutia-flag.svg">
+  <civ name="Yakutia" r="17" g="153" b="255" personality="Expansive" flag="assets/textures/flags/yakutia-flag.svg" audio="assets/sounds/themes/russian-theme.wav">
 <info>
 Yakutia or Sakha Republic is a part of Federation of Russia.  It is biggest republic in Russian Federation
 and biggest administrative subdivision in the world. In the 17th century Russia has defeated the Khnate of

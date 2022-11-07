@@ -1,17 +1,11 @@
 #include "intro_window.h"
 #include "assets_path.h"
 
-Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyacg-config-settings.xml")
+Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyacg-config-settings.xml"), Play_Button("Play!"), Quit_Button("Exit"), About_Button("About"), Settings_Button("Settings"), Load_Game_Button("Load Game"), Load_Autosave_Button("Load Autosave")
 {
   auto provider = Gtk::CssProvider::create();
   Main_Manager = m_m;
   UI_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 10);
-  Play_Button = Gtk::Button("Play!");
-  Quit_Button = Gtk::Button("Exit");
-  About_Button = Gtk::Button("About");
-  Load_Game_Button = Gtk::Button("Load Game");
-  Settings_Button = Gtk::Button("Settings");
-  Load_Autosave_Button = Gtk::Button("Load Autosave");
   Version_Label = Gtk::Label(Display_Version());
   Logo = Gtk::Image(assets_directory_path + "logo.png");
   add(UI_Root_Box);
@@ -23,13 +17,7 @@ Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyac
   UI_Root_Box.pack_start(About_Button);
   UI_Root_Box.pack_start(Quit_Button);
   UI_Root_Box.pack_start(Version_Label);
-  Main_Provider.Add_CSS(&Play_Button);
-  Main_Provider.Add_CSS(&Load_Game_Button);
-  Main_Provider.Add_CSS(&Settings_Button);
-  Main_Provider.Add_CSS(&About_Button);
   Main_Provider.Add_CSS(&Version_Label);
-  Main_Provider.Add_CSS(&Quit_Button);
-  Main_Provider.Add_CSS(&Load_Autosave_Button);
   Main_Provider.Add_CSS(this);
 
   Play_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::Play_Button_Clicked) );

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Numidia" r="153" g="204" b="51" personality="Holy" flag="assets/textures/flags/numidia-flag.svg">
+  <civ name="Numidia" r="153" g="204" b="51" personality="Holy" flag="assets/textures/flags/numidia-flag.svg" audio="assets/sounds/themes/russian-theme.wav">
 <info>
 Numidia was ancient berberic kingdom which existed from 202 to 40 BC. It firstly emerged as berber
 tribe confederacy united by Masinissa. By participating in Second Punic War on roman side, he united

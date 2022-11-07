@@ -1,6 +1,6 @@
 #include "game_creation_window.h"
 
-Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager m_s_m) : Civs_Color_Image(96, 48)
+Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager m_s_m) : Civs_Color_Image(96, 48), Play_Button("Play!"), Quit_Button("Exit to Main Menu"), Map_Button("Load Map From File")
 {
   Map_Data.continents_number = 10;
   Map_Data.size_x = 50;
@@ -25,9 +25,6 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Buttons_Frame = Gtk::Frame("Actions");
   Buttons_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Map_Path_Label = Gtk::Label(" ");
-  Play_Button = Gtk::Button("Play");
-  Quit_Button = Gtk::Button("Exit to Main Menu");
-  Map_Button = Gtk::Button("Load Map from File");
   Civs_Scrolled_Window = Gtk::ScrolledWindow();
   Civs_Scrolled_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
   Main_Scrolled_Window = Gtk::ScrolledWindow();
@@ -134,9 +131,6 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Players_Switch.signal_value_changed().connect(sigc::mem_fun(*this, &Game_Creation_Window::Change_AI_Players_Number));
   Map_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Creation_Window::Map_Button_Clicked));
 
-  Main_Provider.Add_CSS(&Play_Button);
-  Main_Provider.Add_CSS(&Quit_Button);
-  Main_Provider.Add_CSS(&Map_Button);
   Main_Provider.Add_CSS(&Civs_Box);
   Main_Provider.Add_CSS_With_Class(&Civs_Description_Label, "medium_label");
   Change_Main_Player_Civ();

@@ -8,8 +8,10 @@
 #include "themed_dialog.h"
 #include "civ.h"
 #include "tech.h"
+#include "sound_button.h"
 #include "scaled_gtk_image.h"
 #include "assets_path.h"
+#include "slaved_sound_button.h"
 
 using namespace std;
 
@@ -18,6 +20,7 @@ class Tech_Dialog : public Themed_Dialog
   private:
     vector<shared_ptr<Scaled_Gtk_Image>> Tech_Images;
     Civ Player;
+    Sound_Manager Click_Sound_Manager;
     Tech Selected_Tech;
     int research_funds_percent;
     Gtk::Box Root_Box;

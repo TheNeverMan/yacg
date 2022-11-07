@@ -18,7 +18,7 @@ Map_Generation_Dialog::Map_Generation_Dialog() : Themed_Dialog("Please Wait...")
   Explanation_Box.pack_start(Explanation_Label);
   Main_Provider.Add_CSS_With_Class(&Explanation_Label, "big_label");
   Event_Dispatcher.connect(sigc::mem_fun(*this, &Map_Generation_Dialog::Pulse_Fraction));
-
+  Close_Button.set_sensitive(false);
 }
 
 void Map_Generation_Dialog::Pulse_Fraction()
@@ -28,7 +28,7 @@ void Map_Generation_Dialog::Pulse_Fraction()
 //  cout << fraction << endl;
   if(fraction >= 0.99)
   {
-  //  cout << "close" << endl;
+    Close_Button.set_sensitive(true);
     close();
   }
 }

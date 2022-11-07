@@ -980,6 +980,13 @@ void Game_Window::Show_Tutorial()
   Other_Tutorial.Show();
 }
 
+bool Game_Window::Loop_Background_Music()
+{
+  Logger::Log_Info("Looping Background Theme...");
+  Background_Sound_Manager.Play_Sound(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
+  return true;
+}
+
 void Game_Window::Initialize_GTK()
 {
   Last_Clicked_Tile = nullptr;
@@ -1000,23 +1007,11 @@ void Game_Window::Initialize_GTK()
   Tile_Information_Label = Gtk::Label(" ");
   Economy_Label = Gtk::Label(" ");
 //  Map_Update_Button = Gtk::Button("Update Map");
-  Show_Civs_Button = Gtk::Button("Foregin Ministry");
   End_Turn_Button = Gtk::Button("End Turn");
-  Civ_Overview_Button = Gtk::Button("Overview");
-  Manage_Techs_Button = Gtk::Button("Science Ministry");
-  Manage_Economy_Button = Gtk::Button("Finance Ministry");
-  Newspaper_Button = Gtk::Button("Newspaper");
-  Manage_Goverments_Button = Gtk::Button("Revolution!");
-  Save_Button = Gtk::Button("Save Game");
-  Load_Button = Gtk::Button("Load Game");
-  Zoom_In_Button = Gtk::Button("Zoom In");
-  Zoom_Out_Button = Gtk::Button("Zoom Out");
   Zoom_Frame = Gtk::Frame("Zoom");
   Zoom_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Tile_Flag_Image.Change_Path(assets_directory_path + "textures/flags/neutral-flag.svg");
   Reset_Tile_Flag_Label();
-  Quit_Button = Gtk::Button("Exit To Main Menu");
-  Help_Button = Gtk::Button("Help");
   Random_Tip_Button = Gtk::Button("Random Tip");
 //  Tip_Button = Gtk::Button("Tip");
   Map_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
@@ -1074,33 +1069,16 @@ void Game_Window::Initialize_GTK()
   Quit_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Exit_To_Main_Menu) );
   Help_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Help_Message) );
   Random_Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Random_Tip) );
-//  Tip_Button.signal_clicked().connect( sigc::mem_fun(*this, &Game_Window::Show_Tip) );
   End_Turn_Dispatcher.connect(sigc::mem_fun(*this, &Game_Window::Update_End_Turn_Labels));
   Zoom_In_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_In));
   Zoom_Out_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_Out));
   Main_Provider.Add_CSS(this);
   Main_Provider.Add_CSS(&End_Turn_Button);
-  //Main_Provider.Add_CSS(&Map_Update_Button);
-  Main_Provider.Add_CSS(&Manage_Economy_Button);
-  Main_Provider.Add_CSS(&Manage_Techs_Button);
-  Main_Provider.Add_CSS(&Show_Civs_Button);
-  Main_Provider.Add_CSS(&Manage_Goverments_Button);
-  Main_Provider.Add_CSS(&Civ_Overview_Button);
-  Main_Provider.Add_CSS(&Save_Button);
-  Main_Provider.Add_CSS(&Load_Button);
-  Main_Provider.Add_CSS(&Newspaper_Button);
-  Main_Provider.Add_CSS(&Quit_Button);
-  Main_Provider.Add_CSS(&Help_Button);
-//  Main_Provider.Add_CSS(&Tip_Button);
   Main_Provider.Add_CSS(&Random_Tip_Button);
-  Main_Provider.Add_CSS(&Zoom_In_Button);
-  Main_Provider.Add_CSS(&Zoom_Out_Button);
   Set_Tiles_Size_Automatically();
   Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map()->Get_X_Size(), Main_Game->Get_Map()->Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
   Generate_Map_View();
   show_all_children();
-//  Map_Update_Button.hide();
-  //Tip_Button.hide();
   set_default_size(800,800);
   maximize();
   Update_Map();
@@ -1122,6 +1100,11 @@ void Game_Window::Initialize_GTK()
   if(Main_Settings_Manager.Check_If_Game_Is_Launched_First_Time())
     Show_Tutorial();
   Main_Settings_Manager.Launch_Game_First_Time();
+  Main_Sound_Manager.Set_Background_Song(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
+  Loop_Background_Music();
+  sigc::slot<bool> Background_Music_Loop_Slot = sigc::mem_fun(*this, &Game_Window::Loop_Background_Music);
+// This is where we connect the slot to the Glib::signal_timeout()
+  Background_Music_Loop_Connection = Glib::signal_timeout().connect(Background_Music_Loop_Slot, 60000);
 }
 
 void Game_Window::Set_Tiles_Size_Automatically()
@@ -1143,7 +1126,7 @@ void Game_Window::Set_Tiles_Size_Automatically()
   }
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Show_Civs_Button("Foregin Ministry"), Manage_Techs_Button("Science Ministry"), Civ_Overview_Button("Overview"), Manage_Economy_Button("Finance Ministry"), Newspaper_Button("Newspaper"), Manage_Goverments_Button("Revolution"), Save_Button("Save Game"), Load_Button("Load Game"), Zoom_In_Button("Zoom In"), Zoom_Out_Button("Zoom Out"), Help_Button("Help"), Quit_Button("Exit to Main Menu")
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;
@@ -1161,7 +1144,7 @@ array<int ,2> Game_Window::Get_Screen_Resolution()
   return out;
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Map_Generation_Thread(nullptr)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Map_Generation_Thread(nullptr), Show_Civs_Button("Foregin Ministry"), Manage_Techs_Button("Science Ministry"), Civ_Overview_Button("Overview"), Manage_Economy_Button("Finance Ministry"), Newspaper_Button("Newspaper"), Manage_Goverments_Button("Revolution"), Save_Button("Save Game"), Load_Button("Load Game"), Zoom_In_Button("Zoom In"), Zoom_Out_Button("Zoom Out"), Help_Button("Help"), Quit_Button("Exit to Main Menu")
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;

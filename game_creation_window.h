@@ -19,6 +19,8 @@
 #include "assets_path.h"
 #include "scaled_gtk_image.h"
 #include "tutorial_dialog.h"
+#include "sound_button.h"
+#include "apply_button.h"
 
 using namespace std;
 
@@ -42,9 +44,9 @@ class Game_Creation_Window : public Gtk::Window
     Gtk::Box Dialog_Root_Box;
     Gtk::Box Map_UI_Box;
     Gtk::Box Buttons_Box;
-    Gtk::Button Play_Button;
-    Gtk::Button Quit_Button;
-    Gtk::Button Map_Button;
+    Apply_Button Play_Button;
+    Sound_Button Quit_Button;
+    Sound_Button Map_Button;
     Gtk::Frame Buttons_Frame;
     Gtk::Label Map_Path_Label;
     Gtk::Frame Dialog_Players_Frame;

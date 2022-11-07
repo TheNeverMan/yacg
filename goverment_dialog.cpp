@@ -3,7 +3,7 @@
 Goverment_Dialog::Goverment_Dialog(Civ p) : Themed_Dialog("Change Goverment"), Player(p), Selected_Goverment(Player.Get_Active_Goverment_Name())
 {
   Gtk::Box *Dialog_Box = get_content_area();
-  add_button("Revolt!", 0);
+  Close_Button.set_label("Revolt!");
   auto* Root_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL, 2);
   auto* Dialog_Root_Frame = Gtk::make_managed<Gtk::Frame>("Unlocked Goverments");
   auto* Gov_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL,2);

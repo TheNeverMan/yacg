@@ -38,6 +38,8 @@
 #include "magic_map_generation_thread_communicator.h"
 #include "map_generation_dialog.h"
 #include "sound_manager.h"
+#include "apply_button.h"
+#include "sound_button.h"
 
 class Window_Manager;
 class Game;
@@ -69,20 +71,20 @@ class Game_Window : public Gtk::Window
     Gtk::Label Tile_Information_Label;
     Scaled_Gtk_Image Tile_Flag_Image;
   //  Gtk::Button Map_Update_Button;
-    Gtk::Button Manage_Economy_Button;
-    Gtk::Button Manage_Techs_Button;
-    Gtk::Button Show_Civs_Button;
-    Gtk::Button Manage_Goverments_Button;
-    Gtk::Button Civ_Overview_Button;
-    Gtk::Button Save_Button;
+    Sound_Button Manage_Economy_Button;
+    Sound_Button Manage_Techs_Button;
+    Sound_Button Show_Civs_Button;
+    Sound_Button Manage_Goverments_Button;
+    Sound_Button Civ_Overview_Button;
+    Sound_Button Save_Button;
     Gtk::Frame Zoom_Frame;
     Gtk::Box Zoom_Box;
-    Gtk::Button Zoom_In_Button;
-    Gtk::Button Zoom_Out_Button;
-    Gtk::Button Load_Button;
-    Gtk::Button Newspaper_Button;
-    Gtk::Button Quit_Button;
-    Gtk::Button Help_Button;
+    Sound_Button Zoom_In_Button;
+    Sound_Button Zoom_Out_Button;
+    Sound_Button Load_Button;
+    Sound_Button Newspaper_Button;
+    Sound_Button Quit_Button;
+    Sound_Button Help_Button;
     Gtk::Button Random_Tip_Button;
   //  Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
@@ -170,6 +172,9 @@ class Game_Window : public Gtk::Window
     thread* End_Turn_Thread;
     thread* Map_Generation_Thread;
     void Show_Tutorial();
+    bool Loop_Background_Music();
+    Sound_Manager Background_Sound_Manager;
     shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
     shared_ptr<Magic_Map_Generation_Thread_Communicator> Map_Generation_Thread_Portal_Pointer;
+    sigc::connection Background_Music_Loop_Connection;
 };

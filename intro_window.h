@@ -6,6 +6,7 @@
 #include "game_css_provider.h"
 #include "settings_manager.h"
 #include "save_loader_dialog.h"
+#include "apply_button.h"
 
 class Window_Manager;
 
@@ -16,13 +17,13 @@ class Intro_Window : public Gtk::Window
     Game_CSS_Provider Main_Provider;
     Settings_Manager Main_Settings_Manager;
   protected:
-    Gtk::Button Play_Button;
+    Apply_Button Play_Button;
     Gtk::Box UI_Root_Box;
-    Gtk::Button Quit_Button;
-    Gtk::Button Settings_Button;
-    Gtk::Button About_Button;
-    Gtk::Button Load_Game_Button;
-    Gtk::Button Load_Autosave_Button;
+    Apply_Button Quit_Button;
+    Apply_Button Settings_Button;
+    Apply_Button About_Button;
+    Apply_Button Load_Game_Button;
+    Apply_Button Load_Autosave_Button;
     Gtk::Image Logo;
     Gtk::Label Version_Label;
     void Play_Button_Clicked();

@@ -12,6 +12,17 @@ void Data_Callback(ma_device* pDevice, void* pOutput, const void* pInput, ma_uin
   (void)pInput;
 }
 
+void Sound_Manager::Set_Background_Song(string song)
+{
+  Background_Song.Set_File_Path(song);
+}
+
+void Sound_Manager::Play_Background_Song()
+{
+
+}
+
+
 Sound_Manager::Sound_Manager()
 {
   Settings_Manager Main_Settings_Manager("miniyacg-config-settings.xml");
@@ -28,7 +39,7 @@ Sound_Manager::Sound_Manager()
   deviceConfig.sampleRate        = decoder.outputSampleRate;
   deviceConfig.dataCallback      = static_cast<void (*)(ma_device *, void *, const void *, unsigned int)>(&Data_Callback);
   deviceConfig.pUserData         = NULL;
-  if (ma_device_init(NULL, &deviceConfig, &device) != MA_SUCCESS)
+  if ((ma_device_init(NULL, &deviceConfig, &device) != MA_SUCCESS) && (ma_device_init(NULL, &deviceConfig, &Background_Device) != MA_SUCCESS))
   {
       Logger::Log_Error("Failed to open playback device.");
       return;

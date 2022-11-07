@@ -24,9 +24,14 @@ class Sound_Manager
     ma_decoder decoder;
     ma_device device;
     bool mute;
+    ma_decoder Background_Loop;
+    ma_device Background_Device;
+    Audio_Path Background_Song;
   public:
     //void Data_Callback(ma_device* pDevice, void* pOutput, const void* pInput, ma_uint32 frameCount);
     void Play_Sound(string s_p);
     Sound_Manager();
     ~Sound_Manager();
+    void Set_Background_Song(string song);
+    void Play_Background_Song();
 };

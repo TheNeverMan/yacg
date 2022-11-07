@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Pueblo" r="255" g="216" b="0" personality="Enterprising" flag="assets/textures/flags/pueblo-flag.svg">
+<civ name="Pueblo" r="255" g="216" b="0" personality="Enterprising" flag="assets/textures/flags/pueblo-flag.svg" audio="assets/sounds/themes/russian-theme.wav">
 <info>
 Puebloans or Pueblo Indians are Native American tribes group in the Southwestern
 USA. They are commonly know for building pueblo settlements and maize cultivating.
