@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Portugal" r="0" g="81" b="151" personality="Exploring" flag="assets/textures/flags/portugal-flag.svg" audio="assets/sounds/themes/russian-theme.wav">
+<civ name="Portugal" r="0" g="81" b="151" personality="Exploring" flag="assets/textures/flags/portugal-flag.svg" audio="assets/sounds/themes/european-theme.wav">
 <info>
 Portugal is Iberian country that has land border only with Spain.  In 15th and 16th
 centuries Portugal has founded world first colonial empire by estabilishing colonies in

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Morocco" r="0" g="98" b="51" personality="Enterprising" flag="assets/textures/flags/morocco-flag.svg" audio="assets/sounds/themes/russian-theme.wav">
+  <civ name="Morocco" r="0" g="98" b="51" personality="Enterprising" flag="assets/textures/flags/morocco-flag.svg" audio="assets/sounds/themes/arabian-theme.wav">
   <info>
   Morocco or Kingdom of Morocco is a muslim country in Maghreb. It is existing since 788 when first moroccan dynasty was
   estabilished, later it became regional power when dynasties of Almoravid and Almohad were in power. In 1912 Spain and France
