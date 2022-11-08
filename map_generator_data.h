@@ -3,7 +3,10 @@
 #include<map>
 #include<array>
 
-using namespace std;
+using std::string;
+using std::map;
+using std::array;
+
 struct Map_Generator_Data
 {
   int continents_number;
