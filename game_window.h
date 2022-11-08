@@ -40,6 +40,8 @@
 #include "apply_button.h"
 #include "sound_button.h"
 
+using namespace std::chrono;
+using std::milli;
 using std::string;
 using std::map;
 using std::vector;

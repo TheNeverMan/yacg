@@ -13,7 +13,7 @@ void Game_Window::Reset_Tile_Flag_Label()
 
 void Game_Window::Generate_Map_View()
 {
-  auto timer_start = chrono::steady_clock::now();
+  auto timer_start = std::chrono::steady_clock::now();
   Logger::Log_Info("Generating Map View..." );
   int x = Main_Game->Get_Map()->Get_X_Size();
   int y = Main_Game->Get_Map()->Get_Y_Size();
@@ -32,9 +32,9 @@ void Game_Window::Generate_Map_View()
   Dialog.Show();
   std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   Logger::Log_Info("Map View Generated!" );
-  auto timer_end = chrono::steady_clock::now();
+  auto timer_end =std::chrono::steady_clock::now();
   auto timer_diff = timer_end - timer_start;
-  Logger::Log_Info("Generation took: " + to_string(chrono::duration<double, milli>(timer_diff).count()) + " ms" );
+  Logger::Log_Info("Generation took: " + to_string(std::chrono::duration<double, milli>(timer_diff).count()) + " ms" );
 
   while(start < x)
   {
@@ -91,7 +91,7 @@ void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
 void Game_Window::Update_Map()
 {
   unsigned long long tiles = Main_Game->Get_Map()->Get_X_Size() * Main_Game->Get_Map()->Get_Y_Size();
-  auto timer_start = chrono::steady_clock::now();
+  auto timer_start =std::chrono::steady_clock::now();
   Logger::Log_Info("Updating Map..." );
   int start = 0;
   int start_y = 0;
@@ -108,12 +108,12 @@ void Game_Window::Update_Map()
     start_y = 0;
   }
   Logger::Log_Info("Map Updated!" );
-  auto timer_end = chrono::steady_clock::now();
+  auto timer_end =std::chrono::steady_clock::now();
   auto timer_diff = timer_end - timer_start;
-  Logger::Log_Info("Update took: " + to_string(chrono::duration<double, milli>(timer_diff).count()) + " ms" );
+  Logger::Log_Info("Update took: " + to_string(std::chrono::duration<double, milli>(timer_diff).count()) + " ms" );
   string text = "Map Updated!\n";
   text = text + "Update took: ";
-  text = text + to_string(chrono::duration<double, milli>(timer_diff).count());
+  text = text + to_string(std::chrono::duration<double, milli>(timer_diff).count());
   text = text + " ms (";
   text = text + to_string(tiles);
   text = text + " tiles)";

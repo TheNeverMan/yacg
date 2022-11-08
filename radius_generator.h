@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
 #include<array>
+#include<string>
 
 using std::string;
 using std::vector;

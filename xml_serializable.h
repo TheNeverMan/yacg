@@ -1,5 +1,6 @@
 #pragma once
 #include<algorithm>
+#include<string>
 
 #include "rapidxml-1.13/rapidxml.hpp"
 
