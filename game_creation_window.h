@@ -25,8 +25,11 @@
 using std::string;
 using std::vector;
 using std::tuple;
+using std::make_tuple;
+using std::get;
 using std::array;
 using std::shared_ptr;
+using std::make_shared;
 
 class Game_Creation_Window : public Gtk::Window
 {

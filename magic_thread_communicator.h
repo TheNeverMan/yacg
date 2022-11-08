@@ -11,6 +11,7 @@ class Game_Window;
 
 using std::thread;
 using std::mutex;
+using std::lock_guard;
 
 class Magic_Thread_Communicator
 {

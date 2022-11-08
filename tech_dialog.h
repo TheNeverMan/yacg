@@ -15,10 +15,11 @@
 
 using std::string;
 using std::tuple;
+using std::make_tuple;
+using std::get;
 using std::shared_ptr;
 using std::make_shared;
 using std::vector;
-using std::get;
 
 class Tech_Dialog : public Themed_Dialog
 {

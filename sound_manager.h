@@ -18,6 +18,8 @@
 
 using std::string;
 using std::tuple;
+using std::make_tuple;
+using std::get;
 using std::vector;
 
 class Sound_Manager

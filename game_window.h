@@ -46,6 +46,9 @@ using std::vector;
 using std::fstream;
 using std::shared_ptr;
 using std::tuple;
+using std::make_tuple;
+using std::get;
+using std::make_shared;
 using std::map;
 using std::thread;
 

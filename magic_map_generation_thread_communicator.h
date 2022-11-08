@@ -15,6 +15,7 @@ class Game;
 
 using std::thread;
 using std::mutex;
+using std::lock_guard;
 using std::shared_ptr;
 
 class Magic_Map_Generation_Thread_Communicator

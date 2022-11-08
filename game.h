@@ -41,10 +41,15 @@ using namespace rapidxml;
 using std::string;
 using std::mutex;
 using std::vector;
+using std::lock_guard;
 using std::map;
+using std::stoul;
 using std::thread;
 using std::shared_ptr;
 using std::tuple;
+using std::make_tuple;
+using std::get;
+using std::make_shared;
 using std::fstream;
 
 class Magic_Thread_Communicator;
