@@ -4,7 +4,9 @@
 
 #include "file_path.h"
 
-using namespace std;
+using std::string;
+using std::fstream;
+using std::stringstream;
 
 class Text_Path : public File_Path
 {

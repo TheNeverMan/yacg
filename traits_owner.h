@@ -6,7 +6,8 @@
 #include "xml_serializable.h"
 #include "trait.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Traits_Owner
 {

@@ -6,7 +6,7 @@
 #include "logger.h"
 #include "audio_path.h"
 
-using namespace std;
+using std::string;
 
 class Audio_Owner
 {

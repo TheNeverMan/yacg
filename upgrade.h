@@ -9,7 +9,8 @@
 #include "texture_owner.h"
 #include "technology_requirements_owner.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Upgrade : public Help_Object, public XML_Serializable, public Traits_Owner, public Texture_Owner, public Technology_Requirements_Owner
 {

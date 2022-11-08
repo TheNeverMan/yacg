@@ -6,7 +6,7 @@
 #include "upgrade.h"
 #include "scaled_gtk_image.h"
 
-using namespace std;
+using std::string;
 
 class Upgrade_Info_Dialog : public Themed_Dialog
 {

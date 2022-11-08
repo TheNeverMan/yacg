@@ -37,10 +37,17 @@
 #include "ai_data.h"
 #include "sound_manager.h"
 
-class Magic_Thread_Communicator;
-
 using namespace rapidxml;
-using namespace std;
+using std::string;
+using std::mutex;
+using std::vector;
+using std::map;
+using std::thread;
+using std::shared_ptr;
+using std::tuple;
+using std::fstream;
+
+class Magic_Thread_Communicator;
 
 class Game : public XML_Serializable
 {

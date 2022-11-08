@@ -6,9 +6,9 @@ XML_Data_Loader::XML_Data_Loader(string p_t_x)
   Logger::Log_Info("Initializing XML Loader with path " + path_to_xml);
 }
 
-filesystem::directory_iterator XML_Data_Loader::Get_Files_In_Directory(string path)
+std::filesystem::directory_iterator XML_Data_Loader::Get_Files_In_Directory(string path)
 {
-  return filesystem::directory_iterator(assets_directory_path + path);
+  return std::filesystem::directory_iterator(assets_directory_path + path);
 }
 
 vector<char> XML_Data_Loader::Load_File(string path)
@@ -22,7 +22,7 @@ vector<char> XML_Data_Loader::Load_File(string path)
     {
       Logger::Log_Error("Loading file failed");
     }
-    vector<char> out((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    vector<char> out((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     out.push_back('\0');
     file.close();
     return out;

@@ -6,7 +6,8 @@
 #include "civ.h"
 #include "themed_dialog.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Goverment_Dialog : public Themed_Dialog
 {

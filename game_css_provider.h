@@ -6,7 +6,8 @@
 #include "assets_path.h"
 #include "logger.h"
 
-using namespace std;
+using std::string;
+using std::shared_ptr;
 
 class Game_CSS_Provider
 {

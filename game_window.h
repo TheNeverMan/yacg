@@ -11,7 +11,6 @@
 #include<thread>
 #include<gtkmm.h>
 
-
 #include "game.h"
 #include "assets_path.h"
 #include "window_manager.h"
@@ -40,6 +39,15 @@
 #include "sound_manager.h"
 #include "apply_button.h"
 #include "sound_button.h"
+
+using std::string;
+using std::map;
+using std::vector;
+using std::fstream;
+using std::shared_ptr;
+using std::tuple;
+using std::map;
+using std::thread;
 
 class Window_Manager;
 class Game;

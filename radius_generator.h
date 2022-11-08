@@ -2,7 +2,9 @@
 #include<vector>
 #include<array>
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::array;
 
 class Radius_Generator
 {

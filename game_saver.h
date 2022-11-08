@@ -8,8 +8,9 @@
 #include "rapidxml-1.13/rapidxml_print.hpp"
 #include "logger.h"
 
-using namespace rapidxml;
-using namespace std;
+using std::string;
+using std::tuple;
+using std::fstream;
 
 class Game;
 

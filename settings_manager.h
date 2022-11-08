@@ -7,8 +7,15 @@
 #include "rapidxml-1.13/rapidxml_print.hpp"
 #include "logger.h"
 
-using namespace std;
 using namespace rapidxml;
+using std::string;
+using std::fstream;
+using std::vector;
+using std::ifstream;
+using std::ofstream;
+using std::to_string;
+using std::istreambuf_iterator;
+using std::stoi;
 
 class Settings_Manager
 {

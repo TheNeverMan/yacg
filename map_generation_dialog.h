@@ -6,7 +6,8 @@
 #include "themed_dialog.h"
 #include "scaled_gtk_image.h"
 
-using namespace std;
+using std::string;
+using std::thread;
 
 class Map_Generation_Dialog : public Themed_Dialog
 {

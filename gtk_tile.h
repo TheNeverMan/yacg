@@ -9,7 +9,9 @@
 #include "image_path.h"
 #include "scaled_pixbuf.h"
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::shared_ptr;
 
 class Gtk_Tile : public Gtk::Overlay
 {

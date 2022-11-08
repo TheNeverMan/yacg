@@ -22,7 +22,11 @@
 #include "sound_button.h"
 #include "apply_button.h"
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::tuple;
+using std::array;
+using std::shared_ptr;
 
 class Game_Creation_Window : public Gtk::Window
 {

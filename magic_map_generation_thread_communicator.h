@@ -13,7 +13,9 @@ class Map_Generation_Dialog;
 class Gtk_Game_Map;
 class Game;
 
-using namespace std;
+using std::thread;
+using std::mutex;
+using std::shared_ptr;
 
 class Magic_Map_Generation_Thread_Communicator
 {

@@ -5,7 +5,7 @@
 #include "assets_path.h"
 #include "logger.h"
 
-using namespace std;
+using std::string;
 
 class File_Opener_Dialog : public Gtk::FileChooserDialog
 {

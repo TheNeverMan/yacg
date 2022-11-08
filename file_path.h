@@ -6,7 +6,8 @@
 #include "assets_path.h"
 #include "logger.h"
 
-using namespace std;
+using std::string;
+using std::fstream;
 
 class File_Path
 {

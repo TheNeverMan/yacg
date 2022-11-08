@@ -5,7 +5,11 @@
 
 #include "globals.h"
 
-using namespace std;
+using std::string;
+using std::fstream;
+using std::endl;
+using std::ios;
+using std::cout;
 
 class Logger
 {

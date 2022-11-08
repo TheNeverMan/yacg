@@ -7,7 +7,7 @@
 #include "technology_requirements_owner.h"
 #include "traits_owner.h"
 
-using namespace std;
+using std::string;
 
 class Gov : public Help_Object, public XML_Serializable, public Texture_Owner, public Technology_Requirements_Owner, public Traits_Owner
 {

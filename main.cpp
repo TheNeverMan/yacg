@@ -7,12 +7,13 @@
 #include "globals.h"
 
 using namespace rapidxml;
-using namespace std;
-
+using std::fstream;
+using std::cout;
+using std::endl;
 
 int main(int argc, char  *argv[])
 {
-	//cout << Display_Version() << endl;
+	cout << Display_Version() << endl;
 	fstream Font_File("font-installed", ios::in);
 	if(!Font_File.is_open())
 	{

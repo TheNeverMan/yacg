@@ -10,7 +10,8 @@
 #include "traits_owner.h"
 #include "audio_owner.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Unit : public Help_Object, public XML_Serializable, public Texture_Owner, public Technology_Requirements_Owner, public Traits_Owner, public Audio_Owner
 {

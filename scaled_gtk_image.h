@@ -4,7 +4,7 @@
 
 #include "image_path.h"
 
-using namespace std;
+using std::string;
 
 class Scaled_Gtk_Image
 {

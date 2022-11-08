@@ -6,7 +6,7 @@
 #include "sound_manager.h"
 #include "game_css_provider.h"
 
-using namespace std;
+using std::string;
 
 class Sound_Button : public Gtk::Button
 {

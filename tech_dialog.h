@@ -13,7 +13,12 @@
 #include "assets_path.h"
 #include "slaved_sound_button.h"
 
-using namespace std;
+using std::string;
+using std::tuple;
+using std::shared_ptr;
+using std::make_shared;
+using std::vector;
+using std::get;
 
 class Tech_Dialog : public Themed_Dialog
 {

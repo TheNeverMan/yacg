@@ -16,7 +16,9 @@
 #include "audio_path.h"
 #include "settings_manager.h"
 
-using namespace std;
+using std::string;
+using std::tuple;
+using std::vector;
 
 class Sound_Manager
 {

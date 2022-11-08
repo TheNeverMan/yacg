@@ -9,7 +9,8 @@
 class Game;
 class Game_Window;
 
-using namespace std;
+using std::thread;
+using std::mutex;
 
 class Magic_Thread_Communicator
 {

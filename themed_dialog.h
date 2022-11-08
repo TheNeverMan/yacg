@@ -6,7 +6,7 @@
 #include "apply_button.h"
 #include "logger.h"
 
-using namespace std;
+using std::string;
 
 class Themed_Dialog : public Gtk::Dialog
 {

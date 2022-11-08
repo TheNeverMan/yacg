@@ -59,7 +59,7 @@ bool Settings_Manager::Check_If_Game_Is_Launched_First_Time()
 void Settings_Manager::Load_Data_From_XML()
 {
   ifstream file (path_to_file);
-  vector<char> buffer((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+  vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
   xml_document<> doc;
   buffer.push_back('\0');
   file.close();

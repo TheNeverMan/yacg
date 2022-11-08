@@ -6,7 +6,7 @@
 #include "logger.h"
 #include "image_path.h"
 
-using namespace std;
+using std::string;
 
 class Texture_Owner
 {

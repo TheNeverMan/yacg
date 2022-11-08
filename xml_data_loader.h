@@ -14,14 +14,19 @@
 #include "logger.h"
 #include "assets_path.h"
 
-using namespace std;
+using namespace std::filesystem;
+using std::string;
+using std::shared_ptr;
+using std::fstream;
+using std::vector;
+using std::ifstream;
 
 class XML_Data_Loader
 {
   private:
     string path_to_xml;
     vector<char> Load_File(string path);
-    filesystem::directory_iterator Get_Files_In_Directory(string path);
+    std::filesystem::directory_iterator Get_Files_In_Directory(string path);
     vector<Tile> Load_Tiles_From_File(string path);
     vector<Civ> Load_Civs_From_File(string path);
     vector<Gov> Load_Govs_From_File(string path);

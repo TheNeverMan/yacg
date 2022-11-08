@@ -18,7 +18,10 @@
 #include "texture_owner.h"
 #include "logger.h"
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::array;
+using std::map;
 
 struct Coords
 {

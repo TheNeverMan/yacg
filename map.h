@@ -15,7 +15,10 @@
 #include "civ.h"
 #include "radius_generator.h"
 
-using namespace std;
+using std::string;
+using std::map;
+using std::vector;
+using std::array;
 
 class Map : public XML_Serializable
 {

@@ -4,7 +4,8 @@
 
 #include "xml_serializable.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Technology_Requirements_Owner
 {

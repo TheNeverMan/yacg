@@ -5,7 +5,7 @@
 #include "image_path.h"
 #include "assets_path.h"
 
-using namespace std;
+using std::string;
 
 class Scaled_Pixbuf
 {

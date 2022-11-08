@@ -2,8 +2,6 @@
 
 #include "file_path.h"
 
-using namespace std;
-
 class Audio_Path : public File_Path
 {
   public:
