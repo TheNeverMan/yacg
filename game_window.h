@@ -8,7 +8,7 @@
 #include<chrono> //benchmarking
 #include<tuple>
 #include<map>
-#include<thread>
+#include "thread.h"
 #include<gtkmm.h>
 
 #include "game.h"

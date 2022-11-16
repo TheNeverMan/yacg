@@ -10,8 +10,6 @@
 #include<fstream>
 #include<map>
 #include<tuple>
-#include<mutex>
-#include<thread>
 #include<memory>
 
 //#include "magic_thread_communicator.h"
@@ -36,6 +34,7 @@
 #include "xml_data_loader.h"
 #include "ai_data.h"
 #include "sound_manager.h"
+#include "thread.h"
 
 using namespace rapidxml;
 using std::string;

@@ -5,3 +5,4 @@ yacg
 *.log
 saves/*
 do_not_show_tutorial
+*.exe

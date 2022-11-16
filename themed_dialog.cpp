@@ -7,6 +7,7 @@ Themed_Dialog::Themed_Dialog(string m, string title) : Gtk::Dialog(title), Close
   auto *Dialog_Label = Gtk::make_managed<Gtk::Label>(message);
   Gtk::Box *Dialog_Box = get_content_area();
   Dialog_Box->pack_start(*Dialog_Label);
+  set_decorated(false);
   Add_Close_Button();
 }
 

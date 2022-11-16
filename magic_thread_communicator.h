@@ -1,6 +1,6 @@
 #pragma once
-#include<thread>
-#include<mutex>
+#include "thread.h"
+
 #include<gtkmm.h>
 
 #include "game.h"

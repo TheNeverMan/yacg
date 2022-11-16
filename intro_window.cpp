@@ -26,7 +26,7 @@ Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyac
   About_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::About_Button_Clicked) );
   Load_Game_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::Load_Game_Button_Clicked) );
   Load_Autosave_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::Load_Autosave_Button_Clicked) );
-
+  set_decorated(false);
   show_all_children();
 }
 

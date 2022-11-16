@@ -23,3 +23,8 @@ void Tips_Manager::Show_Tip_In_Order()
     tips_index = 0;
   Dialog.Show();
 }
+
+string Tips_Manager::Get_Random_Tip()
+{
+  return Tips[rand() % Tips.size()];
+}

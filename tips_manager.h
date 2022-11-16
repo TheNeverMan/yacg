@@ -17,4 +17,5 @@ class Tips_Manager
     Tips_Manager();
     void Show_Random_Tip();
     void Show_Tip_In_Order();
+    string Get_Random_Tip();
 };

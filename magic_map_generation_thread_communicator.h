@@ -1,7 +1,7 @@
 #pragma once
-#include<thread>
+#include "thread.h"
 #include<memory>
-#include<mutex>
+
 #include<iostream>
 #include<gtkmm.h>
 
