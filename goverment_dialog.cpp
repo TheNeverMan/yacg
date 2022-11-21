@@ -22,15 +22,15 @@ Goverment_Dialog::Goverment_Dialog(Civ p) : Themed_Dialog("Change Goverment"), P
     if(gov.Get_Name() != Player.Get_Active_Goverment_Name() && gov.Get_Name() != "Tribe")
     {
       auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-      auto *image = Gtk::make_managed<Gtk::Image>(gov.Get_Texture_Path());
+      shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(gov.Get_Texture_Path(), 64, 64);
       auto *button = Gtk::make_managed<Gtk::Button>("Revolt to " + gov.Get_Name());
       Gov_Box->pack_start(*box);
-      box->pack_start(*image, Gtk::PACK_SHRINK);
+      box->pack_start(*(image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
       box->pack_start(*button, Gtk::PACK_SHRINK);
       auto *label = Gtk::make_managed<Gtk::Label>(gov.Info(), Gtk::ALIGN_START, Gtk::ALIGN_FILL);
       box->pack_start(*label);
+      Gov_Images.push_back(image);
       Main_Provider.Add_CSS(box);
-      Main_Provider.Add_CSS(image);
       Main_Provider.Add_CSS(button);
       Main_Provider.Add_CSS(label);
       button->signal_clicked().connect(sigc::bind<Gov>(sigc::mem_fun(*this, &Goverment_Dialog::Goverment_Button_Clicked), gov ));

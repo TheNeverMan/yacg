@@ -114,8 +114,12 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Other_Players_Box.pack_start(Randomize_Starting_Locations_Button);
   Dialog_Root_Box.pack_start(Buttons_Frame);
   Buttons_Frame.add(Buttons_Box);
+  string icon_directory = "assets/textures/icons/";
+  Quit_Button.Change_Icon(icon_directory + "exit-icon.svg");
   Buttons_Box.pack_start(Quit_Button);
+  Map_Button.Change_Icon(icon_directory + "load-icon.svg");
   Buttons_Box.pack_start(Map_Button);
+  Play_Button.Change_Icon(icon_directory + "play-icon.svg");
   Buttons_Box.pack_start(Play_Button);
 
 

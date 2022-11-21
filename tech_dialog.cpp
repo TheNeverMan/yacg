@@ -23,6 +23,7 @@ Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), 
     shared_ptr<Scaled_Gtk_Image> Tech_Image = make_shared<Scaled_Gtk_Image>(tech.Get_Texture_Path(), 64, 64);
     Tech_Images.push_back(Tech_Image);
     shared_ptr<Slaved_Sound_Button> button = make_shared<Slaved_Sound_Button>("Research " + tech.Get_Name(), &Click_Sound_Manager);
+    button->Change_Icon("assets/textures/icons/science-icon.svg");
     button->set_margin_bottom(3);
     auto *label = Gtk::make_managed<Gtk::Label>(tech.Info(), Gtk::ALIGN_START, Gtk::ALIGN_FILL);
     Research_Box.attach(*(Tech_Image->Get_Gtk_Image()), 0, index);

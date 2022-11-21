@@ -18,6 +18,13 @@ void Sound_Button::Button_Clicked()
   Click_Sound_Manager.Play_Sound(Click_Sound_Path.Get_File_Path());
 }
 
+void Sound_Button::Change_Icon(string i_p)
+{
+  Image_Path Icon_Path(i_p);
+  Main_Icon = make_shared<Scaled_Gtk_Image>(Icon_Path.Get_File_Path(), 24, 24);
+  set_image(*(Main_Icon->Get_Gtk_Image()));
+}
+
 Sound_Button::Sound_Button(string t)
 {
   set_label(t);

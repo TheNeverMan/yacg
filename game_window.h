@@ -189,5 +189,7 @@ class Game_Window : public Gtk::Window
     Sound_Manager Background_Sound_Manager;
     shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
     shared_ptr<Magic_Map_Generation_Thread_Communicator> Map_Generation_Thread_Portal_Pointer;
+    shared_ptr<Scaled_Gtk_Image> End_Turn_Icon;
+    shared_ptr<Scaled_Gtk_Image> Tip_Icon;
     sigc::connection Background_Music_Loop_Connection;
 };
