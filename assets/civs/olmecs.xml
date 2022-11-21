@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Olmecs" r="86" g="85" b="90" personality="Enlightened" flag="assets/textures/flags/olmecs-flag.svg" audio="assets/sounds/themes/mistic-theme.wav">
+<civ name="Olmecs" r="86" g="85" b="90" personality="Enlightened" flag="assets/textures/flags/olmecs-flag.svg" audio="assets/sounds/themes/mistic-theme.mp3">
 <info>
 Olmecs were first major mesoamerican civilization dating between 1600 and 400 BC.
 They are known the most of building huge head sculptures and spreading their ritual ball game in the region.

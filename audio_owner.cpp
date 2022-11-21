@@ -11,7 +11,7 @@ Audio_Owner::Audio_Owner(string s_p) : Sound_Path(s_p)
 
 }
 
-Audio_Owner::Audio_Owner() : Sound_Path("assets/sounds/broken-audio.wav")
+Audio_Owner::Audio_Owner() : Sound_Path("assets/sounds/broken-audio.mp3")
 {
 
 }

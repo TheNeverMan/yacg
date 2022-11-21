@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <units>
-<unit name="Warriors" cost="10" atk="4" def="3" move="2" mait="3" is_naval="0" is_land="1" info="people with stick" requirement="Warriors" texture="assets/textures/units/warrior-unit-texture.svg" obsolete="Swordsmen" audio="assets/sounds/units/warrior-unit-audio.wav">
+<unit name="Warriors" cost="10" atk="4" def="3" move="2" mait="3" is_naval="0" is_land="1" info="people with stick" requirement="Warriors" texture="assets/textures/units/warrior-unit-texture.svg" obsolete="Swordsmen" audio="assets/sounds/units/warrior-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -10,7 +10,7 @@
 <trait name="attack"/>
 <trait name="defense"/>
 </unit>
-<unit name="Spearmen" cost="17" atk="5" def="4" move="2" mait="4" is_naval="0" is_land="1" info="people with stick" requirement="Bronze Casting" texture="assets/textures/units/spearman-unit-texture.svg" obsolete="Pikemen" audio="assets/sounds/units/spearman-unit-audio.wav">
+<unit name="Spearmen" cost="17" atk="5" def="4" move="2" mait="4" is_naval="0" is_land="1" info="people with stick" requirement="Bronze Casting" texture="assets/textures/units/spearman-unit-texture.svg" obsolete="Pikemen" audio="assets/sounds/units/spearman-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -19,7 +19,7 @@
 <trait name="attack"/>
 <trait name="defense"/>
 </unit>
-<unit name="Scouts" cost="5" atk="1" def="2" move="2" mait="1" is_naval="0" is_land="1" info="people with stick" requirement="Agriculture" texture="assets/textures/units/scout-unit-texture.svg" obsolete="Warriors" audio="assets/sounds/units/scout-unit-audio.wav">
+<unit name="Scouts" cost="5" atk="1" def="2" move="2" mait="1" is_naval="0" is_land="1" info="people with stick" requirement="Agriculture" texture="assets/textures/units/scout-unit-texture.svg" obsolete="Warriors" audio="assets/sounds/units/scout-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -27,7 +27,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Hunters" cost="7" atk="2" def="3" move="2" mait="2" is_naval="0" is_land="1" info="people with stick" requirement="Hunting" texture="assets/textures/units/hunter-unit-texture.svg" obsolete="Warriors" audio="assets/sounds/units/hunter-unit-audio.wav">
+<unit name="Hunters" cost="7" atk="2" def="3" move="2" mait="2" is_naval="0" is_land="1" info="people with stick" requirement="Hunting" texture="assets/textures/units/hunter-unit-texture.svg" obsolete="Warriors" audio="assets/sounds/units/hunter-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -35,7 +35,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Archers" cost="12" atk="5" def="2" move="2" mait="2" is_naval="0" is_land="1" info="people with bow" requirement="Archery" texture="assets/textures/units/archer-unit-texture.svg" obsolete="Crossbowmen" audio="assets/sounds/units/archer-unit-audio.wav">
+<unit name="Archers" cost="12" atk="5" def="2" move="2" mait="2" is_naval="0" is_land="1" info="people with bow" requirement="Archery" texture="assets/textures/units/archer-unit-texture.svg" obsolete="Crossbowmen" audio="assets/sounds/units/archer-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -43,7 +43,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Horsemen" cost="15" atk="5" def="3" move="3" mait="3" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Horsemanship" texture="assets/textures/units/horseman-unit-texture.svg" obsolete="Knights" audio="assets/sounds/units/horseman-unit-audio.wav">
+<unit name="Horsemen" cost="15" atk="5" def="3" move="3" mait="3" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Horsemanship" texture="assets/textures/units/horseman-unit-texture.svg" obsolete="Knights" audio="assets/sounds/units/horseman-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -52,7 +52,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Horse Archers" cost="20" atk="6" def="2" move="4" mait="4" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Horde" texture="assets/textures/units/horsearcher-unit-texture.svg" obsolete="Uhlans" audio="assets/sounds/units/horsearcher-unit-audio.wav">
+<unit name="Horse Archers" cost="20" atk="6" def="2" move="4" mait="4" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Horde" texture="assets/textures/units/horsearcher-unit-texture.svg" obsolete="Uhlans" audio="assets/sounds/units/horsearcher-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -61,7 +61,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Chariot" cost="26" atk="5" def="6" move="3" mait="6" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Chariot" texture="assets/textures/units/chariot-unit-texture.svg" obsolete="Knights" audio="assets/sounds/units/chariot-unit-audio.wav">
+<unit name="Chariot" cost="26" atk="5" def="6" move="3" mait="6" is_naval="0" is_land="1" info="people with class_horse and stick" requirement="Chariot" texture="assets/textures/units/chariot-unit-texture.svg" obsolete="Knights" audio="assets/sounds/units/chariot-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -70,11 +70,11 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Galley" cost="10" atk="2" def="2" move="4" mait="3" is_naval="1" is_land="0" info="boat" requirement="Astronomy" texture="assets/textures/units/galley-unit-texture.svg" obsolete="Caravel" audio="assets/sounds/units/galley-unit-audio.wav">
+<unit name="Galley" cost="10" atk="2" def="2" move="4" mait="3" is_naval="1" is_land="0" info="boat" requirement="Astronomy" texture="assets/textures/units/galley-unit-texture.svg" obsolete="Caravel" audio="assets/sounds/units/galley-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_weaknaval"/>
 </unit>
-<unit name="Swordsmen" cost="25" atk="6" def="6" move="2" mait="5" is_naval="0" is_land="1" info="people with strong stick" requirement="Iron Casting" texture="assets/textures/units/swordsman-unit-texture.svg" obsolete="Heavy Swordsmen" audio="assets/sounds/units/swordsman-unit-audio.wav">
+<unit name="Swordsmen" cost="25" atk="6" def="6" move="2" mait="5" is_naval="0" is_land="1" info="people with strong stick" requirement="Iron Casting" texture="assets/textures/units/swordsman-unit-texture.svg" obsolete="Heavy Swordsmen" audio="assets/sounds/units/swordsman-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -84,7 +84,7 @@
 <trait name="attack"/>
 <trait name="defense"/>
 </unit>
-<unit name="Pikemen" cost="30" atk="5" def="7" move="2" mait="7" is_naval="0" is_land="1" info="people with strong stick" requirement="Feudalism" texture="assets/textures/units/pikeman-unit-texture.svg" obsolete="Musketeers" audio="assets/sounds/units/pikeman-unit-audio.wav">
+<unit name="Pikemen" cost="30" atk="5" def="7" move="2" mait="7" is_naval="0" is_land="1" info="people with strong stick" requirement="Feudalism" texture="assets/textures/units/pikeman-unit-texture.svg" obsolete="Musketeers" audio="assets/sounds/units/pikeman-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -93,7 +93,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Heavy Swordsmen" cost="40" atk="7" def="8" move="2" mait="10" is_naval="0" is_land="1" info="people with strong stick" requirement="Steel" texture="assets/textures/units/heavyswordsman-unit-texture.svg" obsolete="Musketeers" audio="assets/sounds/units/heavyswordsman-unit-audio.wav">
+<unit name="Heavy Swordsmen" cost="40" atk="7" def="8" move="2" mait="10" is_naval="0" is_land="1" info="people with strong stick" requirement="Steel" texture="assets/textures/units/heavyswordsman-unit-texture.svg" obsolete="Musketeers" audio="assets/sounds/units/heavyswordsman-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -102,7 +102,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Crossbowmen" cost="35" atk="7" def="6" move="2" mait="8" is_naval="0" is_land="1" info="people with strong stick" requirement="Crossbow" texture="assets/textures/units/crossbowman-unit-texture.svg" obsolete="Maxim Gun" audio="assets/sounds/units/crossbowman-unit-audio.wav">
+<unit name="Crossbowmen" cost="35" atk="7" def="6" move="2" mait="8" is_naval="0" is_land="1" info="people with strong stick" requirement="Crossbow" texture="assets/textures/units/crossbowman-unit-texture.svg" obsolete="Maxim Gun" audio="assets/sounds/units/crossbowman-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -111,7 +111,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Fire Lances" cost="60" atk="9" def="9" move="2" mait="11" is_naval="0" is_land="1" info="people with strong stick" requirement="Gunpowder" texture="assets/textures/units/firelance-unit-texture.svg" obsolete="Musketeers" audio="assets/sounds/units/firelance-unit-audio.wav">
+<unit name="Fire Lances" cost="60" atk="9" def="9" move="2" mait="11" is_naval="0" is_land="1" info="people with strong stick" requirement="Gunpowder" texture="assets/textures/units/firelance-unit-texture.svg" obsolete="Musketeers" audio="assets/sounds/units/firelance-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -120,7 +120,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Musketeers" cost="70" atk="11" def="11" move="2" mait="14" is_naval="0" is_land="1" info="people with strong stick" requirement="Musket" texture="assets/textures/units/musketeer-unit-texture.svg" obsolete="Line Infantry" audio="assets/sounds/units/musketeer-unit-audio.wav">
+<unit name="Musketeers" cost="70" atk="11" def="11" move="2" mait="14" is_naval="0" is_land="1" info="people with strong stick" requirement="Musket" texture="assets/textures/units/musketeer-unit-texture.svg" obsolete="Line Infantry" audio="assets/sounds/units/musketeer-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -129,7 +129,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Zepellin" cost="120" atk="13" def="13" move="3" mait="20" is_naval="0" is_land="1" info="people with strong stick" requirement="Balloons" texture="assets/textures/units/zeppelin-unit-texture.svg" obsolete="Biplane" audio="assets/sounds/units/zeppelin-unit-audio.wav">
+<unit name="Zepellin" cost="120" atk="13" def="13" move="3" mait="20" is_naval="0" is_land="1" info="people with strong stick" requirement="Balloons" texture="assets/textures/units/zeppelin-unit-texture.svg" obsolete="Biplane" audio="assets/sounds/units/zeppelin-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -138,7 +138,7 @@
 <trait name="class_infantry"/>
 <trait name="defense"/>
 </unit>
-<unit name="Knights" cost="50" atk="9" def="8" move="3" mait="9" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Knighthood" texture="assets/textures/units/knight-unit-texture.svg" obsolete="Uhlans" audio="assets/sounds/units/knight-unit-audio.wav">
+<unit name="Knights" cost="50" atk="9" def="8" move="3" mait="9" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Knighthood" texture="assets/textures/units/knight-unit-texture.svg" obsolete="Uhlans" audio="assets/sounds/units/knight-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -147,7 +147,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Uhlans" cost="70" atk="14" def="12" move="3" mait="15" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Military Schooling" texture="assets/textures/units/uhlan-unit-texture.svg" obsolete="Cavalary" audio="assets/sounds/units/uhlan-unit-audio.wav">
+<unit name="Uhlans" cost="70" atk="14" def="12" move="3" mait="15" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Military Schooling" texture="assets/textures/units/uhlan-unit-texture.svg" obsolete="Cavalary" audio="assets/sounds/units/uhlan-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -156,7 +156,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Cavalary" cost="90" atk="16" def="15" move="3" mait="17" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Cavalary" texture="assets/textures/units/cavalary-unit-texture.svg" obsolete="Armoured Car" audio="assets/sounds/units/cavalary-unit-audio.wav">
+<unit name="Cavalary" cost="90" atk="16" def="15" move="3" mait="17" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Cavalary" texture="assets/textures/units/cavalary-unit-texture.svg" obsolete="Armoured Car" audio="assets/sounds/units/cavalary-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -165,7 +165,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Crusaders" cost="55" atk="8" def="7" move="4" mait="9" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Crusades" texture="assets/textures/units/crusader-unit-texture.svg" obsolete="Uhlans" audio="assets/sounds/units/crusader-unit-audio.wav">
+<unit name="Crusaders" cost="55" atk="8" def="7" move="4" mait="9" is_naval="0" is_land="1" info="people with strong stick and class_horse" requirement="Crusades" texture="assets/textures/units/crusader-unit-texture.svg" obsolete="Uhlans" audio="assets/sounds/units/crusader-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -174,58 +174,58 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Catapults" cost="25" atk="8" def="3" move="2" mait="5" is_naval="0" is_land="1" info="people with stone launcher" requirement="Mathematics" texture="assets/textures/units/catapult-unit-texture.svg" obsolete="Trebuchets" audio="assets/sounds/units/catapult-unit-audio.wav">
+<unit name="Catapults" cost="25" atk="8" def="3" move="2" mait="5" is_naval="0" is_land="1" info="people with stone launcher" requirement="Mathematics" texture="assets/textures/units/catapult-unit-texture.svg" obsolete="Trebuchets" audio="assets/sounds/units/catapult-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
 <trait name="class_infantry"/>
 <trait name="attack"/>
 </unit>
-<unit name="Trebuchets" cost="45" atk="12" def="5" move="2" mait="10" is_naval="0" is_land="1" info="people with stone launcher" requirement="Siege Machines" texture="assets/textures/units/trebuchet-unit-texture.svg" obsolete="Bombards" audio="assets/sounds/units/trebuchet-unit-audio.wav">
+<unit name="Trebuchets" cost="45" atk="12" def="5" move="2" mait="10" is_naval="0" is_land="1" info="people with stone launcher" requirement="Siege Machines" texture="assets/textures/units/trebuchet-unit-texture.svg" obsolete="Bombards" audio="assets/sounds/units/trebuchet-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
 <trait name="class_infantry"/>
 <trait name="attack"/>
 </unit>
-<unit name="Bombards" cost="60" atk="11" def="6" move="2" mait="12" is_naval="0" is_land="1" info="people with stone launcher" requirement="Bombards" texture="assets/textures/units/bombard-unit-texture.svg" obsolete="Cannons" audio="assets/sounds/units/bombard-unit-audio.wav">
+<unit name="Bombards" cost="60" atk="11" def="6" move="2" mait="12" is_naval="0" is_land="1" info="people with stone launcher" requirement="Bombards" texture="assets/textures/units/bombard-unit-texture.svg" obsolete="Cannons" audio="assets/sounds/units/bombard-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
 <trait name="class_infantry"/>
 <trait name="attack"/>
 </unit>
-<unit name="Cannons" cost="70" atk="15" def="8" move="2" mait="14" is_naval="0" is_land="1" info="people with stone launcher" requirement="Threading" texture="assets/textures/units/cannon-unit-texture.svg" obsolete="Artillery" audio="assets/sounds/units/cannon-unit-audio.wav">
+<unit name="Cannons" cost="70" atk="15" def="8" move="2" mait="14" is_naval="0" is_land="1" info="people with stone launcher" requirement="Threading" texture="assets/textures/units/cannon-unit-texture.svg" obsolete="Artillery" audio="assets/sounds/units/cannon-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
 <trait name="class_infantry"/>
 <trait name="attack"/>
 </unit>
-<unit name="Frigate" cost="80" atk="12" def="12" move="6" mait="15" is_naval="1" is_land="0" info="people with good boat" requirement="Sea Shipping" texture="assets/textures/units/frigate-unit-texture.svg" obsolete="Steamship" audio="assets/sounds/units/frigate-unit-audio.wav">
+<unit name="Frigate" cost="80" atk="12" def="12" move="6" mait="15" is_naval="1" is_land="0" info="people with good boat" requirement="Sea Shipping" texture="assets/textures/units/frigate-unit-texture.svg" obsolete="Steamship" audio="assets/sounds/units/frigate-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_naval"/>
 <trait name="plunder"/>
 </unit>
-<unit name="Steamship" cost="150" atk="16" def="17" move="6" mait="25" is_naval="1" is_land="0" info="people with good boat" requirement="Steamships" texture="assets/textures/units/steamship-unit-texture.svg" obsolete="Battleship" audio="assets/sounds/units/steamship-unit-audio.wav">
+<unit name="Steamship" cost="150" atk="16" def="17" move="6" mait="25" is_naval="1" is_land="0" info="people with good boat" requirement="Steamships" texture="assets/textures/units/steamship-unit-texture.svg" obsolete="Battleship" audio="assets/sounds/units/steamship-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_naval"/>
 <trait name="fightflying"/>
 <trait name="plunder"/>
 </unit>
-<unit name="Maxim Gun" cost="90" atk="14" def="10" move="2" mait="14" is_naval="0" is_land="1" info="people with stone launcher" requirement="Maxim Gun" texture="assets/textures/units/gatlinggun-unit-texture.svg" obsolete="Machine Gun" audio="assets/sounds/units/gatlinggun-unit-audio.wav">
+<unit name="Maxim Gun" cost="90" atk="14" def="10" move="2" mait="14" is_naval="0" is_land="1" info="people with stone launcher" requirement="Maxim Gun" texture="assets/textures/units/gatlinggun-unit-texture.svg" obsolete="Machine Gun" audio="assets/sounds/units/gatlinggun-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
 <trait name="class_infantry"/>
 <trait name="attack"/>
 </unit>
-<unit name="Caravel" cost="65" atk="8" def="8" move="8" mait="12" is_naval="1" is_land="0" info="people with good boat" requirement="Compass" texture="assets/textures/units/caravel-unit-texture.svg" obsolete="Steamship" audio="assets/sounds/units/caravel-unit-audio.wav">
+<unit name="Caravel" cost="65" atk="8" def="8" move="8" mait="12" is_naval="1" is_land="0" info="people with good boat" requirement="Compass" texture="assets/textures/units/caravel-unit-texture.svg" obsolete="Steamship" audio="assets/sounds/units/caravel-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_naval"/>
 <trait name="plunder"/>
 </unit>
-<unit name="Line Infantry" cost="80" atk="13" def="14" move="2" mait="13" is_naval="0" is_land="1" info="people with gun" requirement="Threading" texture="assets/textures/units/lineinfantry-unit-texture.svg" obsolete="Infantry" audio="assets/sounds/units/lineinfantry-unit-audio.wav">
+<unit name="Line Infantry" cost="80" atk="13" def="14" move="2" mait="13" is_naval="0" is_land="1" info="people with gun" requirement="Threading" texture="assets/textures/units/lineinfantry-unit-texture.svg" obsolete="Infantry" audio="assets/sounds/units/lineinfantry-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -235,7 +235,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Infantry" cost="100" atk="17" def="18" move="2" mait="18" is_naval="0" is_land="1" info="people with gun" requirement="Infantry" texture="assets/textures/units/infantry-unit-texture.svg" obsolete="Mechanized Infantry" audio="assets/sounds/units/infantry-unit-audio.wav">
+<unit name="Infantry" cost="100" atk="17" def="18" move="2" mait="18" is_naval="0" is_land="1" info="people with gun" requirement="Infantry" texture="assets/textures/units/infantry-unit-texture.svg" obsolete="Mechanized Infantry" audio="assets/sounds/units/infantry-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -245,7 +245,7 @@
 <trait name="plunder"/>
 <trait name="defense"/>
 </unit>
-<unit name="Mechanized Infantry" cost="130" atk="24" def="23" move="3" mait="23" is_naval="0" is_land="1" info="people with gun" requirement="Mechanized Infantry" texture="assets/textures/units/mechanizedinfantry-unit-texture.svg" obsolete="Modern Infantry" audio="assets/sounds/units/mechanizedinfantry-unit-audio.wav">
+<unit name="Mechanized Infantry" cost="130" atk="24" def="23" move="3" mait="23" is_naval="0" is_land="1" info="people with gun" requirement="Mechanized Infantry" texture="assets/textures/units/mechanizedinfantry-unit-texture.svg" obsolete="Modern Infantry" audio="assets/sounds/units/mechanizedinfantry-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -256,7 +256,7 @@
 <trait name="defense"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Armoured Car" cost="110" atk="19" def="17" move="3" mait="20" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Armoured Car" texture="assets/textures/units/armouredcar-unit-texture.svg" obsolete="Tanks" audio="assets/sounds/units/armouredcar-unit-audio.wav">
+<unit name="Armoured Car" cost="110" atk="19" def="17" move="3" mait="20" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Armoured Car" texture="assets/textures/units/armouredcar-unit-texture.svg" obsolete="Tanks" audio="assets/sounds/units/armouredcar-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -266,7 +266,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Tanks" cost="150" atk="28" def="24" move="4" mait="30" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Tank" texture="assets/textures/units/tank-unit-texture.svg" obsolete="Modern Armour" audio="assets/sounds/units/tank-unit-audio.wav">
+<unit name="Tanks" cost="150" atk="28" def="24" move="4" mait="30" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Tank" texture="assets/textures/units/tank-unit-texture.svg" obsolete="Modern Armour" audio="assets/sounds/units/tank-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -276,7 +276,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Modern Armour" cost="300" atk="43" def="40" move="3" mait="50" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Reactive Armor" texture="assets/textures/units/modernarmour-unit-texture.svg" obsolete=" " audio="assets/sounds/units/modernarmour-unit-audio.wav">
+<unit name="Modern Armour" cost="300" atk="43" def="40" move="3" mait="50" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Reactive Armor" texture="assets/textures/units/modernarmour-unit-texture.svg" obsolete=" " audio="assets/sounds/units/modernarmour-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -287,7 +287,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Modern Infantry" cost="270" atk="38" def="39" move="4" mait="43" is_naval="0" is_land="1" info="people with gun" requirement="Modern Infantry" texture="assets/textures/units/moderninfantry-unit-texture.svg" obsolete=" " audio="assets/sounds/units/moderninfantry-unit-audio.wav">
+<unit name="Modern Infantry" cost="270" atk="38" def="39" move="4" mait="43" is_naval="0" is_land="1" info="people with gun" requirement="Modern Infantry" texture="assets/textures/units/moderninfantry-unit-texture.svg" obsolete=" " audio="assets/sounds/units/moderninfantry-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -298,7 +298,7 @@
 <trait name="defense"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Commando" cost="270" atk="34" def="32" move="5" mait="39" is_naval="0" is_land="1" info="people with gun" requirement="Commandos" texture="assets/textures/units/commando-unit-texture.svg" obsolete=" " audio="assets/sounds/units/commando-unit-audio.wav">
+<unit name="Commando" cost="270" atk="34" def="32" move="5" mait="39" is_naval="0" is_land="1" info="people with gun" requirement="Commandos" texture="assets/textures/units/commando-unit-texture.svg" obsolete=" " audio="assets/sounds/units/commando-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -308,7 +308,7 @@
 <trait name="plunder"/>
 <trait name="attack"/>
 </unit>
-<unit name="Rocket Artillery" cost="310" atk="50" def="32" move="2" mait="48" is_naval="0" is_land="1" info="people with big gun" requirement="Rocket Artillery" texture="assets/textures/units/rocketartillery-unit-texture.svg" obsolete=" " audio="assets/sounds/units/rocketartillery-unit-audio.wav">
+<unit name="Rocket Artillery" cost="310" atk="50" def="32" move="2" mait="48" is_naval="0" is_land="1" info="people with big gun" requirement="Rocket Artillery" texture="assets/textures/units/rocketartillery-unit-texture.svg" obsolete=" " audio="assets/sounds/units/rocketartillery-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -319,7 +319,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Artillery" cost="140" atk="32" def="15" move="2" mait="28" is_naval="0" is_land="1" info="people with big gun" requirement="Tank" texture="assets/textures/units/artillery-unit-texture.svg" obsolete="Rocket Artillery" audio="assets/sounds/units/artillery-unit-audio.wav">
+<unit name="Artillery" cost="140" atk="32" def="15" move="2" mait="28" is_naval="0" is_land="1" info="people with big gun" requirement="Tank" texture="assets/textures/units/artillery-unit-texture.svg" obsolete="Rocket Artillery" audio="assets/sounds/units/artillery-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -330,7 +330,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Anti Air Gun" cost="140" atk="25" def="25" move="2" mait="23" is_naval="0" is_land="1" info="people with big gun" requirement="Radar" texture="assets/textures/units/antiairgun-unit-texture.svg" obsolete="Mobile SAM" audio="assets/sounds/units/antiairgun-unit-audio.wav">
+<unit name="Anti Air Gun" cost="140" atk="25" def="25" move="2" mait="23" is_naval="0" is_land="1" info="people with big gun" requirement="Radar" texture="assets/textures/units/antiairgun-unit-texture.svg" obsolete="Mobile SAM" audio="assets/sounds/units/antiairgun-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -343,7 +343,7 @@
 <trait name="fightflying"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Mobile SAM" cost="310" atk="30" def="35" move="2" mait="23" is_naval="0" is_land="1" info="people with big gun" requirement="Advanced Anit Air" texture="assets/textures/units/mobilesam-unit-texture.svg" obsolete=" " audio="assets/sounds/units/mobilesam-unit-audio.wav">
+<unit name="Mobile SAM" cost="310" atk="30" def="35" move="2" mait="23" is_naval="0" is_land="1" info="people with big gun" requirement="Advanced Anit Air" texture="assets/textures/units/mobilesam-unit-texture.svg" obsolete=" " audio="assets/sounds/units/mobilesam-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -357,14 +357,14 @@
 <trait name="fightflying"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Machine Gun" cost="130" atk="27" def="20" move="1" mait="25" is_naval="0" is_land="1" info="people with stone launcher" requirement="Machine Gun" texture="assets/textures/units/machinegun-unit-texture.svg" obsolete=" " audio="assets/sounds/units/machinegun-unit-audio.wav">
+<unit name="Machine Gun" cost="130" atk="27" def="20" move="1" mait="25" is_naval="0" is_land="1" info="people with stone launcher" requirement="Machine Gun" texture="assets/textures/units/machinegun-unit-texture.svg" obsolete=" " audio="assets/sounds/units/machinegun-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
 <trait name="class_infantry"/>
 <trait name="defense"/>
 </unit>
-<unit name="Biplane" cost="160" atk="20" def="17" move="5" mait="31" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Flight" texture="assets/textures/units/biplane-unit-texture.svg" obsolete="Fighter" audio="assets/sounds/units/biplane-unit-audio.wav">
+<unit name="Biplane" cost="160" atk="20" def="17" move="5" mait="31" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Flight" texture="assets/textures/units/biplane-unit-texture.svg" obsolete="Fighter" audio="assets/sounds/units/biplane-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -377,7 +377,7 @@
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>
 </unit>
-<unit name="Atomic Bomb" cost="500" atk="1" def="1" move="10" mait="1" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Atomic Bomb" texture="assets/textures/units/atomicbomb-unit-texture.svg" obsolete="ICBM Missle" audio="assets/sounds/atomicexplosion-audio.wav">
+<unit name="Atomic Bomb" cost="500" atk="1" def="1" move="10" mait="1" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Atomic Bomb" texture="assets/textures/units/atomicbomb-unit-texture.svg" obsolete="ICBM Missle" audio="assets/sounds/atomicexplosion-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -391,7 +391,7 @@
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>
 </unit>
-<unit name="ICBM Missle" cost="1500" atk="1" def="1" move="30" mait="1" is_naval="0" is_land="1" info="people in a is_land boat" requirement="ICBM Missle" texture="assets/textures/units/icbmmissle-unit-texture.svg" obsolete=" " audio="assets/sounds/units/icbm-unit-audio.wav">
+<unit name="ICBM Missle" cost="1500" atk="1" def="1" move="30" mait="1" is_naval="0" is_land="1" info="people in a is_land boat" requirement="ICBM Missle" texture="assets/textures/units/icbmmissle-unit-texture.svg" obsolete=" " audio="assets/sounds/units/icbm-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -405,7 +405,7 @@
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>
 </unit>
-<unit name="Guided Missle" cost="250" atk="55" def="1" move="15" mait="1" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Guided Missle" texture="assets/textures/units/guidedmissle-unit-texture.svg" obsolete=" " audio="assets/sounds/units/guidedmissle-unit-audio.wav">
+<unit name="Guided Missle" cost="250" atk="55" def="1" move="15" mait="1" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Guided Missle" texture="assets/textures/units/guidedmissle-unit-texture.svg" obsolete=" " audio="assets/sounds/units/guidedmissle-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -418,7 +418,7 @@
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>
 </unit>
-<unit name="Fighter" cost="170" atk="21" def="17" move="7" mait="34" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Fighter" texture="assets/textures/units/fighter-unit-texture.svg" obsolete="Jetfighter" audio="assets/sounds/units/fighter-unit-audio.wav">
+<unit name="Fighter" cost="170" atk="21" def="17" move="7" mait="34" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Fighter" texture="assets/textures/units/fighter-unit-texture.svg" obsolete="Jetfighter" audio="assets/sounds/units/fighter-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -433,7 +433,7 @@
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>
 </unit>
-<unit name="Jetfighter" cost="350" atk="32" def="25" move="11" mait="45" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Jetfighter" texture="assets/textures/units/jetfighter-unit-texture.svg" obsolete=" " audio="assets/sounds/units/jetfighter-unit-audio.wav">
+<unit name="Jetfighter" cost="350" atk="32" def="25" move="11" mait="45" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Jetfighter" texture="assets/textures/units/jetfighter-unit-texture.svg" obsolete=" " audio="assets/sounds/units/jetfighter-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -448,7 +448,7 @@
 <trait name="doesnotrecievedefensivebonus"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Drones" cost="370" atk="32" def="25" move="5" mait="35" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Drones" texture="assets/textures/units/drones-unit-texture.svg" obsolete=" " audio="assets/sounds/units/drone-unit-audio.wav">
+<unit name="Drones" cost="370" atk="32" def="25" move="5" mait="35" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Drones" texture="assets/textures/units/drones-unit-texture.svg" obsolete=" " audio="assets/sounds/units/drone-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
@@ -461,7 +461,7 @@
 <trait name="attack"/>
 <trait name="fightflying"/>
 </unit>
-<unit name="Bomber" cost="180" atk="30" def="19" move="6" mait="36" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Bomber" texture="assets/textures/units/bomber-unit-texture.svg" obsolete="Stealth Bomber" audio="assets/sounds/units/bomber-unit-audio.wav">
+<unit name="Bomber" cost="180" atk="30" def="19" move="6" mait="36" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Bomber" texture="assets/textures/units/bomber-unit-texture.svg" obsolete="Stealth Bomber" audio="assets/sounds/units/bomber-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Sea"/>
@@ -474,7 +474,7 @@
 <trait name="fightflying"/>
 <trait name="attack"/>
 </unit>
-<unit name="Stealth Bomber" cost="370" atk="40" def="25" move="10" mait="50" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Stealth Technology" texture="assets/textures/units/stealthbomber-unit-texture.svg" obsolete=" " audio="assets/sounds/units/stealthbomber-unit-audio.wav">
+<unit name="Stealth Bomber" cost="370" atk="40" def="25" move="10" mait="50" is_naval="0" is_land="1" info="people in a is_land boat" requirement="Stealth Technology" texture="assets/textures/units/stealthbomber-unit-texture.svg" obsolete=" " audio="assets/sounds/units/stealthbomber-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Sea"/>
@@ -487,23 +487,23 @@
 <trait name="fightflying"/>
 <trait name="attack"/>
 </unit>
-<unit name="Destroyer" cost="200" atk="30" def="30" move="8" mait="40" is_naval="1" is_land="0" info="people with big metal boat" requirement="Combustion Engine" texture="assets/textures/units/destroyer-unit-texture.svg" obsolete=" " audio="assets/sounds/units/destroyer-unit-audio.wav">
+<unit name="Destroyer" cost="200" atk="30" def="30" move="8" mait="40" is_naval="1" is_land="0" info="people with big metal boat" requirement="Combustion Engine" texture="assets/textures/units/destroyer-unit-texture.svg" obsolete=" " audio="assets/sounds/units/destroyer-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_naval"/>
 <trait name="fightflying"/>
 <trait name="plunder"/>
 </unit>
-<unit name="Battleship" cost="250" atk="40" def="35" move="6" mait="45" is_naval="1" is_land="0" info="people with big metal boat" requirement="Battleships" texture="assets/textures/units/battleship-unit-texture.svg" obsolete=" " audio="assets/sounds/units/battleship-unit-audio.wav">
+<unit name="Battleship" cost="250" atk="40" def="35" move="6" mait="45" is_naval="1" is_land="0" info="people with big metal boat" requirement="Battleships" texture="assets/textures/units/battleship-unit-texture.svg" obsolete=" " audio="assets/sounds/units/battleship-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_naval"/>
 <trait name="fightflying"/>
 <trait name="plunder"/>
 </unit>
-<unit name="Submarine" cost="180" atk="32" def="28" move="10" mait="32" is_naval="1" is_land="0" info="people with big metal boat" requirement="Submarine" texture="assets/textures/units/submarine-unit-texture.svg" obsolete="Nuclear Submarine" audio="assets/sounds/units/submarine-unit-audio.wav">
+<unit name="Submarine" cost="180" atk="32" def="28" move="10" mait="32" is_naval="1" is_land="0" info="people with big metal boat" requirement="Submarine" texture="assets/textures/units/submarine-unit-texture.svg" obsolete="Nuclear Submarine" audio="assets/sounds/units/submarine-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_naval"/>
 </unit>
-<unit name="Nuclear Submarine" cost="250" atk="42" def="39" move="14" mait="50" is_naval="1" is_land="0" info="people with big metal boat" requirement="Nuclear Submarine" texture="assets/textures/units/nuclearsubmarine-unit-texture.svg" obsolete=" " audio="assets/sounds/units/nuclearsubmarine-unit-audio.wav">
+<unit name="Nuclear Submarine" cost="250" atk="42" def="39" move="14" mait="50" is_naval="1" is_land="0" info="people with big metal boat" requirement="Nuclear Submarine" texture="assets/textures/units/nuclearsubmarine-unit-texture.svg" obsolete=" " audio="assets/sounds/units/nuclearsubmarine-unit-audio.mp3">
 <tile name="Sea"/>
 <trait name="class_naval"/>
 </unit>

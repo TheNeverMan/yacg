@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Sweden" r="0" g="106" b="167" personality="Expansive" flag="assets/textures/flags/sweden-flag.svg" audio="assets/sounds/themes/european-theme.wav">
+<civ name="Sweden" r="0" g="106" b="167" personality="Expansive" flag="assets/textures/flags/sweden-flag.svg" audio="assets/sounds/themes/european-theme.mp3">
 <info>
 Sweden is a nordic country in Europe. It exists as kingdom since XI centrury.
 Although in medieval age it was local superpower and was fighting its neighbours such as Russia and Poland,

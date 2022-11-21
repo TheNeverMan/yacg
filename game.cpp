@@ -43,7 +43,7 @@ void Game::Build_Upgrade(string name, int x, int y, int player_id)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   if(!is_in_thread)
-  Main_Sound_Manager.Play_Sound("assets/sounds/upgrade-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/upgrade-audio.mp3");
   Upgrade u = Get_Player_By_Id(player_id)->Find_Upgrade_By_Name(name);
   int radius = Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius();
   if(name == "City")
@@ -547,7 +547,7 @@ Unit Game::Get_Unit_By_Tile(int x, int y)
 void Game::Plunder_Tile(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Main_Sound_Manager.Play_Sound("assets/sounds/plunder-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/plunder-audio.mp3");
   Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Increase_Current_Movement(-1);
   Get_Map()->Plunder_Tile(x,y);
   Tiles_To_Update.push_back({x,y});
@@ -596,7 +596,7 @@ void Game::Move_Unit(int unit_x, int unit_y, int dest_x, int dest_y, int cost)
   Get_Map()->Get_Tile_Pointer(unit_x, unit_y)->Remove_Unit_From_Tile();
   Get_Map()->Get_Tile_Pointer(dest_x, dest_y)->Put_Unit_On_Tile(player_id);
   if(!is_in_thread)
-  Main_Sound_Manager.Play_Sound("assets/sounds/unitmove-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/unitmove-audio.mp3");
 }
 
 bool Game::Has_Currently_Moving_Player_Any_Actions_Left()
@@ -627,7 +627,7 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
       if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
       {
       //  if(!is_in_thread)
-        Main_Sound_Manager.Play_Sound("assets/sounds/citycapture-audio.wav");
+        Main_Sound_Manager.Play_Sound("assets/sounds/citycapture-audio.mp3");
         string message;
         bool capital = false;
         if(Get_Player_By_Id(tile_owner_id)->Get_City_Name_By_Coordinates(dest_x, dest_y) == Get_Player_By_Id(tile_owner_id)->Get_Capital_Name())
@@ -664,7 +664,7 @@ vector<Civ> Game::Get_All_Civs()
 void Game::Detonate_Atomic_Bomb(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Main_Sound_Manager.Play_Sound("assets/sounds/atomicexplosion-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/atomicexplosion-audio.mp3");
   Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
   Disband_Unit(x,y);
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);

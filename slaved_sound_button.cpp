@@ -1,6 +1,6 @@
 #include "slaved_sound_button.h"
 
-Slaved_Sound_Button::Slaved_Sound_Button(string t, string s = "assets/sounds/click-audio.wav")
+Slaved_Sound_Button::Slaved_Sound_Button(string t, string s = "assets/sounds/click-audio.mp3")
 {
   set_label(t);
   Change_Sound(s);
@@ -22,7 +22,7 @@ Slaved_Sound_Button::Slaved_Sound_Button(string t, Sound_Manager* c_s_m)
 {
   set_label(t);
   Click_Sound_Manager = c_s_m;
-  Change_Sound("assets/sounds/click-audio.wav");
+  Change_Sound("assets/sounds/click-audio.mp3");
   signal_clicked().connect(sigc::mem_fun(*this, &Slaved_Sound_Button::Button_Clicked));
   Main_Provider.Add_CSS(this);
 }

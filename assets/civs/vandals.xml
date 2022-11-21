@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Vandals" r="106" g="0" b="0" personality="Expansive" flag="assets/textures/flags/vandals-flag.svg" audio="assets/sounds/themes/native-theme.wav">
+<civ name="Vandals" r="106" g="0" b="0" personality="Expansive" flag="assets/textures/flags/vandals-flag.svg" audio="assets/sounds/themes/native-theme.mp3">
 <info>
 Vandals were germanic tribe from territory of Poland. Between 120 BC and 439 they have
 migrated to Northen Africa and estabilished a kingdom in the territory of Mauretania and Numidia.

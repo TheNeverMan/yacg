@@ -31,7 +31,7 @@ Sound_Manager::Sound_Manager()
     Logger::Log_Warning("Game is muted! Not going to play any sounds!");
   Logger::Log_Info("Opening New Sound Device...");
   ma_device_config deviceConfig;
-  Audio_Path Sound_Path("assets/sounds/broken-audio.wav"); //init with default file to copy parameters
+  Audio_Path Sound_Path("assets/sounds/broken-audio.mp3"); //init with default file to copy parameters
   ma_decoder_init_file(Sound_Path.Get_File_Path().c_str(), NULL, &decoder);
   deviceConfig = ma_device_config_init(ma_device_type_playback);
   deviceConfig.playback.format   = decoder.outputFormat;

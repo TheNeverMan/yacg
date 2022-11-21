@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Athens" r="203" g="133" b="81" personality="Enlightened"flag="assets/textures/flags/greece-flag.svg" audio="assets/sounds/themes/european-theme.wav">
+  <civ name="Athens" r="203" g="133" b="81" personality="Enlightened"flag="assets/textures/flags/greece-flag.svg" audio="assets/sounds/themes/european-theme.mp3">
 <info>
 Athens were a major ancient greek city-state. In 478 BC it has founded Delian League which has
 united most of the current Greece territory. Athens are home of democracy and greek culture which

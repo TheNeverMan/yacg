@@ -8,7 +8,10 @@
 #define DRWAV_PRIVATE static
 #include "dr_wav.h"
 #define MA_NO_FLAC
-#define MA_NO_MP3
+#define DR_MP3_IMPLEMENTATION
+#define DRMP3_API static
+#define DRMP3_PRIVATE static
+#include "dr_mp3.h"
 #define MA_API static
 #define MINIAUDIO_IMPLEMENTATION
 #include "miniaudio.h"

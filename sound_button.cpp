@@ -1,6 +1,6 @@
 #include "sound_button.h"
 
-Sound_Button::Sound_Button(string t, string s = "assets/sounds/click-audio.wav")
+Sound_Button::Sound_Button(string t, string s = "assets/sounds/click-audio.mp3")
 {
   set_label(t);
   Change_Sound(s);
@@ -21,7 +21,7 @@ void Sound_Button::Button_Clicked()
 Sound_Button::Sound_Button(string t)
 {
   set_label(t);
-  Change_Sound("assets/sounds/click-audio.wav");
+  Change_Sound("assets/sounds/click-audio.mp3");
   signal_clicked().connect(sigc::mem_fun(*this, &Sound_Button::Button_Clicked));
   Main_Provider.Add_CSS(this);
 }

@@ -127,14 +127,14 @@ void Game_Window::Test()
 
 void Game_Window::Show_Not_Enough_Actions_Message()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
   string message = "You don't have enough actions to do that!";
   ProgressBar_Label.set_text(message);
 }
 
 void Game_Window::Show_Not_Enough_Gold_Message()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
   string message = "You don't have enough gold to do that!";
   ProgressBar_Label.set_text(message);
 }
@@ -275,11 +275,11 @@ void Game_Window::Heal_Unit(int x, int y)
     {
       Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Heal(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x,y)).How_Many_Times_Has_Trait("increasehealrate") * 10);
       message = "Unit healed!";
-      Main_Sound_Manager.Play_Sound("assets/sounds/heal-audio.wav");
+      Main_Sound_Manager.Play_Sound("assets/sounds/heal-audio.mp3");
     }
     else
     {
-      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
+      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
       message = message + "\n Your unit doesn't have enough actions to do that!";
     }
   }
@@ -301,7 +301,7 @@ void Game_Window::Plunder_Tile(int x, int y)
     }
     else
     {
-      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
+      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
       message = message + "\n Your unit doesn't have enough actions to do that!";
     }
   }
@@ -560,7 +560,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     }
     else
     {
-      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.wav");
+      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
       ProgressBar_Label.set_text("You can't move unit here!");
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
       Update_Tile_By_Coords_Only(coords[0], coords[1]);
@@ -568,7 +568,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
   }
   else
   {
-    Main_Sound_Manager.Play_Sound("assets/sounds/tileclicked-audio.wav");
+    Main_Sound_Manager.Play_Sound("assets/sounds/tileclicked-audio.mp3");
     last_clicked_x = coords[0];
     last_clicked_y = coords[1];
     Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
@@ -690,7 +690,7 @@ void Game_Window::Enable_All_Buttons()
 void Game_Window::End_Turn()
 {
   Deselect_Unit();
-  Main_Sound_Manager.Play_Sound("assets/sounds/endturn-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/endturn-audio.mp3");
   //Logger::Log_Info(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() );
   bool are_all_techs_researched = false;
   if(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() == 0)
@@ -746,7 +746,7 @@ void Game_Window::Manage_Economy_Clicked()
 
 void Game_Window::Select_Unit(int x, int y)
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/unitselected-audio.wav");
+  Main_Sound_Manager.Play_Sound("assets/sounds/unitselected-audio.mp3");
   is_unit_selected = true;
   selected_unit_x = x;
   selected_unit_y = y;
@@ -983,7 +983,8 @@ void Game_Window::Show_Tutorial()
 bool Game_Window::Loop_Background_Music()
 {
   Logger::Log_Info("Looping Background Theme...");
-  Background_Sound_Manager.Play_Sound(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
+  if(!Main_Settings_Manager.Is_Music_Muted())
+    Background_Sound_Manager.Play_Sound(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
   return true;
 }
 

@@ -13,19 +13,24 @@ Settings_Manager::Settings_Manager(string p_t_f)
   {
     Logger::Log_Error("Opening Settings File Failed!");
     Logger::Log_Warning("Falling back to default values!");
-    autosave = false;
-    tile_size = 32;
-    show_random_tip_on_startup = true;
-    mute = false;
-    autoresize = true;
+    Set_To_Default_Values();
   }
   file.close();
 }
 
-Settings_Manager::Settings_Manager()
+void Settings_Manager::Set_To_Default_Values()
 {
   autosave = false;
   tile_size = 32;
+  show_random_tip_on_startup = true;
+  mute_music = false;
+  mute = false;
+  autoresize = true;
+}
+
+Settings_Manager::Settings_Manager()
+{
+  Set_To_Default_Values();
 }
 
 bool Settings_Manager::Is_Game_Muted()
@@ -37,6 +42,17 @@ void Settings_Manager::Set_Mute_Value(bool m)
 {
   mute = m;
 }
+
+bool Settings_Manager::Is_Music_Muted()
+{
+  return mute_music;
+}
+
+void Settings_Manager::Set_Music_Mute_Value(bool m)
+{
+  mute_music = m;
+}
+
 
 void Settings_Manager::Launch_Game_First_Time()
 {
@@ -58,19 +74,30 @@ bool Settings_Manager::Check_If_Game_Is_Launched_First_Time()
 
 void Settings_Manager::Load_Data_From_XML()
 {
-  ifstream file (path_to_file);
-  vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-  xml_document<> doc;
-  buffer.push_back('\0');
-  file.close();
-  doc.parse<0>(&buffer[0]);
-  xml_node<> *Settings_Node = doc.first_node()->first_node("settings");
-  autosave = static_cast<bool>(stoi(Settings_Node->first_node("autosave")->value()));
-  autoresize = static_cast<bool>(stoi(Settings_Node->first_node("autoresize")->value()));
-  show_random_tip_on_startup = static_cast<bool>(stoi(Settings_Node->first_node("startup_tip")->value()));
-  tile_size = stoi(Settings_Node->first_node("tile_size")->value());
-  mute = static_cast<bool>(stoi(Settings_Node->first_node("mute")->value()));
-  Logger::Log_Info("XML Settings Data Loaded!" );
+  try
+  {
+    ifstream file (path_to_file);
+    vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    xml_document<> doc;
+    buffer.push_back('\0');
+    file.close();
+    doc.parse<0>(&buffer[0]);
+    xml_node<> *Settings_Node = doc.first_node()->first_node("settings");
+    autosave = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "autosave")->value()));
+    autoresize = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "autoresize")->value()));
+    show_random_tip_on_startup = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "startup_tip")->value()));
+    tile_size = stoi(XML_Loader::Get_Subnode(Settings_Node, "tile_size")->value());
+    mute = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "mute")->value()));
+    mute_music = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "music_mute")->value()));
+    Logger::Log_Info("XML Settings Data Loaded!" );
+  }
+  catch(...)
+  {
+    Logger::Log_Error("Error loading XML Data!");
+    Logger::Log_Warning("Falling back to defaults!");
+    Set_To_Default_Values();
+    Write_To_File();
+  }
 }
 
 void Settings_Manager::Write_To_File()
@@ -90,6 +117,8 @@ void Settings_Manager::Write_To_File()
   Settings_Node->append_node(Tile_Size_Node);
   xml_node<>* Mute_Node = doc.allocate_node(node_element, "mute", doc.allocate_string(to_string(mute).c_str()));
   Settings_Node->append_node(Mute_Node);
+  xml_node<>* Music_Mute_Node = doc.allocate_node(node_element, "music_mute", doc.allocate_string(to_string(mute_music).c_str()));
+  Settings_Node->append_node(Music_Mute_Node);
   doc.append_node(Root_Node);
   std::string s;
   rapidxml::print(std::back_inserter(s), doc, 0);
@@ -135,4 +164,9 @@ void Settings_Manager::Set_Autoresize_Tiles_Value(bool a)
 bool Settings_Manager::Get_Autoresize_Tiles_Value()
 {
   return autoresize;
+}
+
+void Settings_Manager::Reload_Settings()
+{
+  Load_Data_From_XML();
 }
