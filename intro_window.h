@@ -8,6 +8,7 @@
 #include "save_loader_dialog.h"
 #include "settings_dialog.h"
 #include "apply_button.h"
+#include "trait_dialog.h"
 
 class Window_Manager;
 
@@ -24,6 +25,7 @@ class Intro_Window : public Gtk::Window
     Apply_Button Settings_Button;
     Apply_Button About_Button;
     Apply_Button Load_Game_Button;
+    Apply_Button Civs_Button;
     Apply_Button Load_Autosave_Button;
     Gtk::Image Logo;
     Gtk::Label Version_Label;
@@ -33,7 +35,7 @@ class Intro_Window : public Gtk::Window
     void About_Button_Clicked();
     void Load_Game_Button_Clicked();
     void Load_Autosave_Button_Clicked();
-
+    void Civs_Button_Clicked();
   public:
     Intro_Window(Window_Manager* m_m);
 };

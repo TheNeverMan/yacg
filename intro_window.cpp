@@ -1,7 +1,7 @@
 #include "intro_window.h"
 #include "assets_path.h"
 
-Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyacg-config-settings.xml"), Play_Button("Play!"), Quit_Button("Exit"), About_Button("About"), Settings_Button("Settings"), Load_Game_Button("Load Game"), Load_Autosave_Button("Load Autosave")
+Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyacg-config-settings.xml"), Play_Button("Play!"), Quit_Button("Exit"), About_Button("About"), Settings_Button("Settings"), Load_Game_Button("Load Game"), Load_Autosave_Button("Load Autosave"), Civs_Button("Civilizations")
 {
   auto provider = Gtk::CssProvider::create();
   Main_Manager = m_m;
@@ -17,6 +17,8 @@ Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyac
   UI_Root_Box.pack_start(Load_Game_Button);
   Load_Autosave_Button.Change_Icon(icon_directory + "load-icon.svg");
   UI_Root_Box.pack_start(Load_Autosave_Button);
+  Civs_Button.Change_Icon(icon_directory + "overview-icon.svg");
+  UI_Root_Box.pack_start(Civs_Button);
   Settings_Button.Change_Icon(icon_directory + "settings-icon.svg");
   UI_Root_Box.pack_start(Settings_Button);
   About_Button.Change_Icon(icon_directory + "about-icon.svg");
@@ -33,6 +35,8 @@ Intro_Window::Intro_Window(Window_Manager* m_m) : Main_Settings_Manager("miniyac
   About_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::About_Button_Clicked) );
   Load_Game_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::Load_Game_Button_Clicked) );
   Load_Autosave_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::Load_Autosave_Button_Clicked) );
+  Civs_Button.signal_clicked().connect( sigc::mem_fun(*this, &Intro_Window::Civs_Button_Clicked) );
+
   set_decorated(false);
   show_all_children();
 }
@@ -62,6 +66,12 @@ void Intro_Window::Load_Game_Button_Clicked()
   string path = Dialog.Get_File_Path();
   if(path != " ")
     Main_Manager->Show_Game_Window_Load_From_File(Main_Settings_Manager, path, false);
+}
+
+void Intro_Window::Civs_Button_Clicked()
+{
+  Trait_Dialog Dialog;
+  Dialog.Show();
 }
 
 void Intro_Window::Load_Autosave_Button_Clicked()
