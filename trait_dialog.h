@@ -26,7 +26,7 @@ class Trait_Dialog : public Themed_Dialog
     Gtk::Label Explanation_Label;
     Gtk::Grid Civs_Grid;
     int column_index = 1;
-    int Get_Column_For_Trait(string trait_name);
+    int Get_Column_For_Trait(string ntrait_name);
     vector<shared_ptr<Scaled_Gtk_Image>> Trait_Images;
   public:
     Trait_Dialog();
