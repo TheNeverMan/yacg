@@ -41,7 +41,7 @@ shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string trait_name
   std::transform(full_trait_name.cbegin(), full_trait_name.cend(),
                  full_trait_name.begin(), // write to the same location
                  [](unsigned char c) { return std::tolower(c); });
-  image_path = image_path + "/" + full_trait_name + "-icon.svg";
+  image_path = image_path + "/" + full_trait_name + "-icon.svg.png";
   shared_ptr<Scaled_Gtk_Image> Tmp = make_shared<Scaled_Gtk_Image>(image_path, 24, 24);
   Trait_Icons.push_back(Tmp);
   return Tmp;

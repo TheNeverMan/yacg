@@ -115,11 +115,11 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Dialog_Root_Box.pack_start(Buttons_Frame);
   Buttons_Frame.add(Buttons_Box);
   string icon_directory = "assets/textures/icons/";
-  Quit_Button.Change_Icon(icon_directory + "exit-icon.svg");
+  Quit_Button.Change_Icon(icon_directory + "exit-icon.svg.png");
   Buttons_Box.pack_start(Quit_Button);
-  Map_Button.Change_Icon(icon_directory + "load-icon.svg");
+  Map_Button.Change_Icon(icon_directory + "load-icon.svg.png");
   Buttons_Box.pack_start(Map_Button);
-  Play_Button.Change_Icon(icon_directory + "play-icon.svg");
+  Play_Button.Change_Icon(icon_directory + "play-icon.svg.png");
   Buttons_Box.pack_start(Play_Button);
 
 
