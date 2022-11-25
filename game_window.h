@@ -39,6 +39,7 @@
 #include "sound_manager.h"
 #include "apply_button.h"
 #include "sound_button.h"
+#include "civ_trait_manager.h"
 
 using namespace std::chrono;
 using std::milli;

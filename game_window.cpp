@@ -833,36 +833,20 @@ void Game_Window::Show_Intro_Message()
   string message = "You lead the civilization of " + Main_Game->Get_Currently_Moving_Player()->Get_Name() + ". ";
   message = message + "\n Your civilization may colapse after few years or survive thousands. Who knows?";
   message = message + "\n Your civlization has following traits: ";
+  Gtk::Box Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   vector<string> traits = Main_Game->Get_Currently_Moving_Player()->Get_Trait_Names();
+  Gtk::Label Dialog_Label = Gtk::Label(message);
+  Root_Box.pack_start(Dialog_Label);
+  Civ_Trait_Manager Trait_Manager;
   for(string &trait : traits)
   {
-    if(trait == "M")
-      message = message + "\n Militaristic - Your units have one more attack strength";
-    if(trait == "E")
-      message = message + "\n Economic - You can build upgrades one gold cheaper";
-    if(trait == "S")
-      message = message + "\n Scientific - Your research funds are 10% bigger";
-    if(trait == "N")
-      message = message + "\n Nautical - Your naval units have two more movement";
-    if(trait == "C")
-      message = message + "\n Cultural - Changing a goverment costs no actions";
-    if(trait == "R")
-      message = message + "\n Religious - You have one more actions from the start of the game";
-    if(trait == "X")
-      message = message + "\n Expansive - Cities you settle start with bigger teritorry";
-    if(trait == "A")
-      message = message + "\n Agricultural - Farms produce one more gold";
-    if(trait == "O")
-      message = message + "\n Commercial - Production boost from roads is doubled";
-    if(trait == "D")
-      message = message + "\n Nomadic - All your units have one more movement";
-    if(trait == "V")
-      message = message + "\n Surviving - All your infantry units can move on Ice and Desert tiles";
-    if(trait == "P")
-      message = message + "\n Patriotic - Your units fight better in your territory";
+    auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+    Trait_Box->pack_start(*(Trait_Manager.Get_Trait_Icon(trait)->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(Trait_Manager.Get_Trait_Full_Name(trait) + " - " + Trait_Manager.Get_Trait_Full_Explanation(trait));
+    Trait_Box->pack_start(*Trait_Label);
+    Root_Box.pack_start(*Trait_Box);
   }
-  Gtk::Label Dialog_Label = Gtk::Label(message);
-  Dialog_Box->pack_start(Dialog_Label);
+  Dialog_Box->pack_start(Root_Box);
   Main_Provider.Add_CSS(&dialog);
   dialog.show_all_children();
   dialog.run();

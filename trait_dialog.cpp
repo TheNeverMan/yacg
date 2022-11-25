@@ -1,54 +1,13 @@
 #include "trait_dialog.h"
 
-string Trait_Dialog::Get_Trait_Full_Name(string trait_name)
-{
-  string out;
-  if(trait_name == "M")
-    out = "Militaristic";
-  if(trait_name == "E")
-    out = "Economic";
-  if(trait_name == "S")
-    out = "Scientific";
-  if(trait_name == "N")
-    out = "Nautical";
-  if(trait_name == "C")
-    out = "Cultural";
-  if(trait_name == "R")
-    out = "Religious";
-  if(trait_name == "X")
-    out = "Expansive";
-  if(trait_name == "A")
-    out = "Agricultural";
-  if(trait_name == "O")
-    out = "Commercial";
-  if(trait_name == "D")
-    out = "Nomadic";
-  if(trait_name == "V")
-    out = "Surviving";
-  if(trait_name == "P")
-    out = "Patriotic";
-  return out;
-}
-
 int Trait_Dialog::Get_Column_For_Trait(string ntrait_name)
 {
   for (const auto& [column, trait_name] : Trait_To_Column)
   {
-    if(Get_Trait_Full_Name(ntrait_name) == trait_name)
+    if(Trait_Manager.Get_Trait_Full_Name(ntrait_name) == trait_name)
       return column;
   }
   return column_index + 1;
-}
-
-void Trait_Dialog::Get_Trait_Icon(string full_trait_name)
-{
-  string image_path = "assets/textures/icons/traits";
-  std::transform(full_trait_name.cbegin(), full_trait_name.cend(),
-                 full_trait_name.begin(), // write to the same location
-                 [](unsigned char c) { return std::tolower(c); });
-  image_path = image_path + "/" + full_trait_name + "-icon.svg";
-  shared_ptr<Scaled_Gtk_Image> Tmp = make_shared<Scaled_Gtk_Image>(image_path, 24, 24);
-  Trait_Images.push_back(Tmp);
 }
 
 Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explanation_Image("assets/textures/dialogs/trait-dialog-texture.svg", 64, 64)
@@ -62,11 +21,11 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
       bool contains = false;
       for (auto& [column, trait_name] : Trait_To_Column)
       {
-        if(trait_name == Get_Trait_Full_Name(Trait))
+        if(trait_name == Trait_Manager.Get_Trait_Full_Name(Trait))
           contains = true;
       }
       if(!contains)
-        Trait_To_Column[column_index++] = Get_Trait_Full_Name(Trait);
+        Trait_To_Column[column_index++] = Trait_Manager.Get_Trait_Full_Name(Trait);
     }
   }
 
@@ -83,20 +42,18 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
   {
     auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     auto* Trait_Label = Gtk::make_managed<Gtk::Label>(trait_name);
-    Get_Trait_Icon(trait_name);
-    Trait_Box->pack_start(*(Trait_Images[Trait_Images.size() - 1]->Get_Gtk_Image()));
+    auto Trait_Image = Trait_Manager.Get_Trait_Icon(trait_name);
+    Trait_Box->pack_start(*(Trait_Image->Get_Gtk_Image()));
     Trait_Box->pack_start(*Trait_Label);
-  //  Civs_Grid.add(*Trait_Box);
     Civs_Grid.attach(*Trait_Box, column, 0);
   }
   for (const auto& [column, trait_name] : Trait_To_Column)
   {
     auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     auto* Trait_Label = Gtk::make_managed<Gtk::Label>(trait_name);
-    Get_Trait_Icon(trait_name);
-    Trait_Box->pack_start(*(Trait_Images[Trait_Images.size() - 1]->Get_Gtk_Image()));
+    auto Trait_Image = Trait_Manager.Get_Trait_Icon(trait_name);
+    Trait_Box->pack_start(*(Trait_Image->Get_Gtk_Image()));
     Trait_Box->pack_start(*Trait_Label);
-  //  Civs_Grid.add(*Trait_Box);
     Civs_Grid.attach(*Trait_Box, 0, column);
   }
   {
@@ -122,7 +79,12 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
       col = Get_Column_For_Trait(Traits[0]);
       row = Get_Column_For_Trait(Traits[1]);
     }
+    auto* Civ_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+    shared_ptr<Scaled_Gtk_Image> Civ_Icon = make_shared<Scaled_Gtk_Image>(Civ.Get_Texture_Path(), 48, 24);
+    Trait_Images.push_back(Civ_Icon);
     auto* Civ_Label = Gtk::make_managed<Gtk::Label>(Civ.Get_Name());
-    Civs_Grid.attach(*Civ_Label, col, row);
+    Civ_Box->pack_start(*(Civ_Icon->Get_Gtk_Image()));
+    Civ_Box->pack_start(*Civ_Label);
+    Civs_Grid.attach(*Civ_Box, col, row);
   }
 }
