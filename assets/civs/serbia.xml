@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Serbia" r="198" g="54" b="60" personality="Authoritarian" flag="assets/textures/flags/serbia-flag.svg" audio="assets/sounds/themes/russian-theme.mp3">
+  <civ name="Serbia" r="198" g="54" b="60" personality="Authoritarian" flag="assets/textures/flags/serbia-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="european">
   <info>
   Serbia is located in Balkans. Historically it has been born when Kingdom of Serbia in 1217 obtained recognition.
   Later in 1346 it has became Serbian Empire and reached its maximum territorial extent. However later Serbia

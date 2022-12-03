@@ -83,7 +83,13 @@ void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
   if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
     unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
 
-  string upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path();
+  string upgrade_texture = " ";
+  if( !(Main_Game->Get_Map()->Is_Tile_Upgraded(x,y)) && Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Find_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Has_Trait("culture"))
+  {
+    upgrade_texture = Main_Game->Get_Texture_Path_For_Cultured_Upgrade(x,y, Main_Game->Get_Map()->Get_Upgrade(x,y));
+  }
+  else
+    upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path();
   guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map()->Get_Owner(x, y));
   Map_Images->Update_Tile({tile_texture, upgrade_texture, unit_texture}, border_color, x, y);
 }
@@ -530,6 +536,42 @@ void Game_Window::Update_Tile_Flag()
     Tile_Flag_Image.Change_Path(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(last_clicked_x,last_clicked_y))->Get_Texture_Path());
 }
 
+void Game_Window::Add_Combat_Overlay(array<int, 2> Coords)
+{
+  Tiles_To_Update.push_back(Coords);
+  Logger::Log_Info("Adding Combat Overlay at: " + to_string(Coords[0]) + " " + to_string(Coords[1]));
+  auto img = Map_Images->Get_Gtk_Tile(Coords[0], Coords[1])->Get_Image();
+  Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
+  Glib::RefPtr<Gdk::Pixbuf> selection_texture;
+  Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
+  selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "combat-texture.svg");
+  int true_tile_size = Main_Settings_Manager.Get_Tile_Size_Value();
+  scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
+  selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
+  scaled_pix->composite(tile_image,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
+  img->set(tile_image);
+  if(!is_remove_combat_overlays_timeout_set)
+  {
+    Logger::Log_Info("Scheluding Combat Overlays Removal!");
+    is_remove_combat_overlays_timeout_set = true;
+    sigc::slot<bool> Remove_Combat_Overlays_Slot = sigc::mem_fun(*this, &Game_Window::Remove_Combat_Overlays);
+    Remove_Combat_Overlays_Connection = Glib::signal_timeout().connect(Remove_Combat_Overlays_Slot, 1000);
+  }
+}
+
+bool Game_Window::Remove_Combat_Overlays()
+{
+  Logger::Log_Info("Removing Combat Overlays...");
+  Remove_Combat_Overlays_Connection.disconnect();
+  is_remove_combat_overlays_timeout_set = false;
+  for(auto Coord : Tiles_To_Update)
+  {
+    Update_Tile_By_Coords_Only(Coord[0], Coord[1]);
+  }
+  Tiles_To_Update.clear();
+  return true;
+}
+
 bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img)
 {
   //if(Last_Clicked_Tile != nullptr)
@@ -545,9 +587,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     vector<int> out = Main_Game->Get_Map()->Check_If_Path_For_Unit_Exists(selected_unit_x, selected_unit_y, coords[0], coords[1], Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(selected_unit_x,selected_unit_y));
     if(out[0] == 1)
     {
-      bool update_map = Main_Game->Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(selected_unit_x, selected_unit_y, out[2], out[3], out[1], (bool) out[4], out[5], out[6]);
-      if(update_map)
-        Update_Map();
+      bool combat = Main_Game->Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(selected_unit_x, selected_unit_y, out[2], out[3], out[1], (bool) out[4], out[5], out[6]);
       Update_Labels();
       //Last_Clicked_Tile = img;
       last_clicked_x = coords[0];
@@ -556,6 +596,11 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
       Update_Tile_Information_Label(coords[0],coords[1]);
       Update_Tile_By_Coords_Only(out[2], out[3]);
+      if(combat)
+      {
+        Add_Combat_Overlay({coords[0], coords[1]});
+        Add_Combat_Overlay({selected_unit_x, selected_unit_y});
+      }
       Deselect_Unit();
     }
     else
@@ -854,31 +899,8 @@ void Game_Window::Show_Intro_Message()
 
 void Game_Window::Show_Help_Message()
 {
-  Gtk::Dialog dialog("Help");
-  dialog.add_button("Ok", 0);
-  fstream Help_File(assets_directory_path + "help_file.txt");
-  string message = "Loading Help Text Failed!";
-  if(Help_File.is_open())
-  {
-    std::ostringstream sstr;
-    sstr << Help_File.rdbuf();
-    message = sstr.str();
-  }
-  else
-  {
-    Logger::Log_Error("Loading Help File failed!");
-  }
-  Gtk::Label Dialog_Label = Gtk::Label(message);
-  Gtk::Box *Dialog_Box = dialog.get_content_area();
-  Gtk::ScrolledWindow Main_Scrolled_Window;// = Gtk::ScrolledWindow(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
-  Main_Scrolled_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
-  Main_Scrolled_Window.set_min_content_height(600);
-  dialog.set_default_size(600,300);
-  Dialog_Box->pack_start(Main_Scrolled_Window);
-  Main_Scrolled_Window.add(Dialog_Label);
-  dialog.show_all_children();
-  Main_Provider.Add_CSS(&dialog);
-  dialog.run();
+  Help_Dialog Dialog;
+  Dialog.Show();
 }
 
 void Game_Window::Show_Random_Tip()
@@ -942,26 +964,8 @@ void Game_Window::Zoom_Out()
 void Game_Window::Show_Tutorial()
 {
   Logger::Log_Info("Game is launched first time! Showing tutorial...");
-  /*
-  Tutorial has 5 parts
-  1. General (ending turn, techonologies, actions, goal)
-  2. Economy (research funds, upgrades, maitenance)
-  3. Units (expansion, combat, city taking, )
-  4. Goverments
-  5. other, (foreign ministry, newspaper, overview)
-  */
-  string tutorial_text = assets_directory_path + "tutorial/";
-  string tutorial_image = assets_directory_path + "textures/tutorial/";
-  Tutorial_Dialog General_Tutorial(tutorial_image + "general-tutorial.png", tutorial_text + "general-tutorial.txt");
-  Tutorial_Dialog Economy_Tutorial(tutorial_image + "economy-tutorial.png", tutorial_text + "economy-tutorial.txt");
-  Tutorial_Dialog Units_Tutorial(tutorial_image + "units-tutorial.png", tutorial_text + "units-tutorial.txt");
-  Tutorial_Dialog Goverments_Tutorial(tutorial_image + "goverments-tutorial.png", tutorial_text + "goverments-tutorial.txt");
-  Tutorial_Dialog Other_Tutorial(tutorial_image + "other-tutorial.png", tutorial_text + "other-tutorial.txt");
-  General_Tutorial.Show();
-  Economy_Tutorial.Show();
-  Units_Tutorial.Show();
-  Goverments_Tutorial.Show();
-  Other_Tutorial.Show();
+  Help_Manager Tutorial_Manager;
+  Tutorial_Manager.Show_Basic_Tutorial();
 }
 
 bool Game_Window::Loop_Background_Music()
@@ -970,6 +974,80 @@ bool Game_Window::Loop_Background_Music()
   if(!Main_Settings_Manager.Is_Music_Muted())
     Background_Sound_Manager.Play_Sound(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
   return true;
+}
+
+bool Game_Window::on_key_press_event(GdkEventKey* key_event)
+{
+  if(key_event->keyval == GDK_KEY_equal)
+  {
+    Logger::Log_Info("Pressed Plus");
+    Zoom_In();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_minus)
+  {
+    Logger::Log_Info("Pressed Minus");
+    Zoom_Out();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_Return)
+  {
+    Logger::Log_Info("Pressed Enter");
+    End_Turn();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_t)
+  {
+    Logger::Log_Info("Pressed T");
+    Show_Random_Tip();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_s)
+  {
+    Logger::Log_Info("Pressed S");
+    Manage_Techs_Clicked();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_f)
+  {
+    Logger::Log_Info("Pressed F");
+    Manage_Economy_Clicked();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_o)
+  {
+    Logger::Log_Info("Pressed O");
+    if(Show_Civs_Button.get_sensitive())
+      Show_Civs_Clicked();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_r)
+  {
+    Logger::Log_Info("Pressed R");
+    if(Manage_Goverments_Button.get_sensitive())
+      Manage_Goverments_Clicked();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_v)
+  {
+    Logger::Log_Info("Pressed V");
+    Manage_Overview_Clicked();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_n)
+  {
+    Logger::Log_Info("Pressed N");
+    Show_Newspaper_Clicked();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_t)
+  {
+    Logger::Log_Info("Pressed T");
+    Show_Random_Tip();
+    return true;
+  }
+
+  return Gtk::Window::on_key_press_event(key_event);
 }
 
 void Game_Window::Initialize_GTK()
@@ -1084,6 +1162,7 @@ void Game_Window::Initialize_GTK()
   maximize();
   Update_Map();
   Update_Labels();
+  add_events(Gdk::KEY_PRESS_MASK);
   Show_Intro_Message();
   if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockforeign"))
     Show_Civs_Button.set_sensitive(true);

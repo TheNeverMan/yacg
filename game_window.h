@@ -8,9 +8,9 @@
 #include<chrono> //benchmarking
 #include<tuple>
 #include<map>
-#include "thread.h"
 #include<gtkmm.h>
 
+#include "thread.h"
 #include "game.h"
 #include "assets_path.h"
 #include "window_manager.h"
@@ -29,8 +29,10 @@
 #include "tips_manager.h"
 #include "magic_thread_communicator.h"
 #include "save_loader_dialog.h"
+#include "help_manager.h"
 #include "save_saver_dialog.h"
 #include "gtk_tile.h"
+#include "help_dialog.h"
 #include "scaled_gtk_image.h"
 #include "tutorial_dialog.h"
 #include "gtk_game_map.h"
@@ -193,4 +195,11 @@ class Game_Window : public Gtk::Window
     shared_ptr<Scaled_Gtk_Image> End_Turn_Icon;
     shared_ptr<Scaled_Gtk_Image> Tip_Icon;
     sigc::connection Background_Music_Loop_Connection;
+    bool on_key_press_event(GdkEventKey* key_event) override;
+    vector<array<int, 2>> Tiles_To_Update;
+    bool Remove_Combat_Overlays();
+    void Add_Combat_Overlay(array<int, 2> Coords);
+    Glib::Dispatcher Remove_Combat_Overlays_Dispatcher;
+    sigc::connection Remove_Combat_Overlays_Connection;
+    bool is_remove_combat_overlays_timeout_set = false;
 };

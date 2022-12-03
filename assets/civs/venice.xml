@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Venice" r="170" g="0" b="0" personality="Enterprising" flag="assets/textures/flags/venice-flag.svg" audio="assets/sounds/themes/european-theme.mp3">
+  <civ name="Venice" r="170" g="0" b="0" personality="Enterprising" flag="assets/textures/flags/venice-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
 <info>
 Venice or Most Serene Republic of Venice was italian city-state that exitsten from
 697 to 1797. During it existence it had controlled different territories besides its
@@ -26,7 +26,7 @@ Venetian color is red from flag of Venetian Republic.
   <leader name="Francesco Foscari"/>
   <leader name="Ludovico Manin"/>
   <trait name="S"/>
-  <trait name="E"/>
+  <trait name="X"/>
   <city name="Venice"/>
   <city name="Trieste"/>
   <city name="Muggia"/>

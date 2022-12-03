@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Carthage" r="255" g="255" b="0" personality="Expansive" flag="assets/textures/flags/carthage-flag.svg" audio="assets/sounds/themes/european-theme.mp3">
+  <civ name="Carthage" r="255" g="255" b="0" personality="Expansive" flag="assets/textures/flags/carthage-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="arabian">
 <info>
 Carthage was an ancient city founded by phoenicians in 814 BC. Later it became very powerful
 and seceded from Phoenicia. It was a major kingdom that dominated the Mediterranen Sea, however

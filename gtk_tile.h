@@ -22,7 +22,7 @@ class Gtk_Tile : public Gtk::Overlay
     Gtk::Label City_Name_Label;
     Game_CSS_Provider Main_Provider;
     int tile_size;
-    bool has_city;
+    bool has_city = false;
   public:
     void Increase_Tile_Size();
     void Decrease_Tile_Size();

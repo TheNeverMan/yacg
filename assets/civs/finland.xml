@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Finland" r="0" g="47" b="108" personality="Peaceful" flag="assets/textures/flags/finland-flag.svg" audio="assets/sounds/themes/european-theme.mp3">
+  <civ name="Finland" r="0" g="47" b="108" personality="Peaceful" flag="assets/textures/flags/finland-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
   <info>
   Finland is a nordic country that borders Russia. Historicaly it was part of Kingdom of Sweden and then when
   its power declined Tsardom of Russia. It gained independence in 1917. Finland is famous for Winter War when

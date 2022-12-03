@@ -100,6 +100,42 @@ vector<string> XML_Data_Loader::Load_Tips()
   return out;
 }
 
+vector<Culture> XML_Data_Loader::Load_Cultures_From_File(string path)
+{
+  Logger::Log_Info("Loading XML Cultures Data From " + path);
+  vector<Culture> out;
+  xml_document<> doc;
+  vector<char> buffer = Load_File(path);
+  doc.parse<0>(&buffer[0]);
+  xml_node<>* Root_Node = doc.first_node();
+  if(Root_Node == nullptr)
+  {
+    Logger::Log_Error("Loading Cultures Data failed!");
+    return out;
+  }
+  xml_node<>* cultures_node = Root_Node->first_node("cultures");
+  for(xml_node<> * culture_node = cultures_node->first_node("culture"); culture_node; culture_node = culture_node->next_sibling("culture"))
+  {
+    string name = culture_node->first_attribute("name")->value();
+    Culture tmp(name);
+    out.push_back(tmp);
+  }
+  return out;
+}
+
+vector<Culture> XML_Data_Loader::Load_Cultures()
+{
+  Logger::Log_Info("Loading XML Cultures Data..." );
+  vector<Culture> out;
+  for(auto& file : Get_Files_In_Directory("cultures"))
+  {
+    vector<Culture> tmp = Load_Cultures_From_File(file.path().string());
+    out.insert( out.end(), tmp.begin(), tmp.end() );
+  }
+  Logger::Log_Info("XML Cultures Data Loaded!" );
+  return out;
+}
+
 vector<string> XML_Data_Loader::Load_Traits_From_Root_Node(xml_node<>* Root_Node)
 {
   vector<string> out;
@@ -335,6 +371,7 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
     string p = civ_node->first_attribute("personality")->value();
     string t_p = civ_node->first_attribute("flag")->value();
     string s_p = civ_node->first_attribute("audio")->value();
+    string c = civ_node->first_attribute("culture")->value();
     vector<string> cities;
     vector<string> traits = Load_Traits_From_Root_Node(civ_node);
     vector<string> leaders;
@@ -352,7 +389,7 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
       g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("leader")->value());
       g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("state_name")->value());
     }
-    Civ tmp(n, leaders, h_t, cities, Technologies, Units, r, g, b, traits, Goverments, g_n_r, p, Upgrades, t_p, s_p);
+    Civ tmp(n, leaders, h_t, cities, Technologies, Units, r, g, b, traits, Goverments, g_n_r, p, Upgrades, t_p, s_p, c);
     out.push_back(tmp);
   }
   return out;

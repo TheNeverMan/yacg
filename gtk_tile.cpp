@@ -61,6 +61,7 @@ void Gtk_Tile::Set_City_Name(string city_name)
   set_overlay_pass_through(static_cast<Gtk::Widget&>(ref), false);
   string class_name = "small_label";
   Main_Provider.Add_CSS_With_Class(&City_Name_Label, class_name);
+  has_city = true;
   City_Name_Label.show();
 }
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Canada" r="213" g="43" b="30" personality="Peaceful" flag="assets/textures/flags/canada-flag.svg" audio="assets/sounds/themes/american-theme.mp3">
+<civ name="Canada" r="213" g="43" b="30" personality="Peaceful" flag="assets/textures/flags/canada-flag.svg" audio="assets/sounds/themes/american-theme.mp3" culture="european">
 <info>
 Canada is country located in North America. It is second-largest country in the world. It belongs
 to Commonwealth and King of United Kingdom is formal leader of Canada. It is highly developed country

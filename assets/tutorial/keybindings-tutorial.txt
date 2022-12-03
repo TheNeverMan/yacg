@@ -1,0 +1,11 @@
+You can use following keybindings to speed up your gameplay:
++ - Zoom in map,
+- - Zoom out map,
+Enter - End turn,
+t - Show random tip,
+s - Show science ministry,
+f - Show economy ministry,
+o - Show foreign ministry,
+r - Change goverment,
+v - Show overview,
+n - Show newspaper,

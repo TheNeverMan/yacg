@@ -53,7 +53,7 @@ struct Owned_City //????
 class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, public Audio_Owner
 {
   public:
-    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a);
+    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c);
     string Get_Leader_Name();
     string Get_Full_Name();
     void Assign_Id(int i);
@@ -117,6 +117,7 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     double Get_Defense_Bonus_For_Upgrade(string upg_name);
     void Give_One_Gold();
     bool Is_Unit_Obsolete(string unit_name);
+    string Get_Culture_Name();
   private:
     map<string, vector<string>> Goverment_Name_Replacements;
     bool recent_expand = false;
@@ -126,6 +127,7 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     int points_from_technologies;
     string leader;
     string personality;
+    string culture;
     string tech_in_research;
     Gov Active_Goverment;
     vector<Gov> Goverments;

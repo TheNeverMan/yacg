@@ -16,6 +16,8 @@ void Game::XML_Load_Data()
   Goverments = Loader.Load_Govs();
   Civs = Loader.Load_Civs();
   Upgrades = Loader.Load_Upgrades();
+  vector<Culture> Cultures_Vector = Loader.Load_Cultures();
+  for_each(Cultures_Vector.begin(), Cultures_Vector.end(), [&](Culture& tmp){Cultures[tmp.Get_Name()] = tmp;});
 }
 
 
@@ -37,6 +39,21 @@ void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positio
     Assign_Starting_Positions_From_Data(starting_positions);
   }
   //Game_Map.Print_Map_In_ASCII();
+}
+
+Culture Game::Get_Culture_By_Player_Id(int player_id)
+{
+  if(!Cultures.count(Get_Player_By_Id(player_id)->Get_Culture_Name()))
+  {
+    Logger::Log_Error("Culture " + Get_Player_By_Id(player_id)->Get_Culture_Name() + "not found");
+    return Cultures["european"];
+  }
+  return Cultures[Get_Player_By_Id(player_id)->Get_Culture_Name()];
+}
+
+string Game::Get_Texture_Path_For_Cultured_Upgrade(int x, int y, string upg_name)
+{
+  return Get_Culture_By_Player_Id(Get_Map()->Get_Owner(x,y)).Get_Texture_For_Upgrade(upg_name);
 }
 
 void Game::Build_Upgrade(string name, int x, int y, int player_id)
@@ -613,13 +630,12 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
   Tiles_To_Update.push_back({unit_x, unit_y});
   Tiles_To_Update.push_back({dest_x, dest_y});
   Tiles_To_Update.push_back({enemy_unit_x, enemy_unit_y});
-  bool is_map_update_necesary = false;
+  bool is_combat = false;
   Move_Unit(unit_x, unit_y, dest_x, dest_y, movement_cost);
   if(unit_owner_id != tile_owner_id)
   {
     if(Get_Map()->Get_Owner(dest_x, dest_y) != 0 && Get_Player_By_Id(Get_Map()->Get_Owner(dest_x, dest_y))->Find_Upgrade_By_Name(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade()).Has_Trait("borderexpand"))
     {
-      is_map_update_necesary = true;
       Get_Map()->Change_Tile_Owner(dest_x, dest_y, unit_owner_id);
       vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(dest_x, dest_y, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius());
       Get_Map()->Retake_Owner_In_Radius_From(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius(), tile_owner_id);
@@ -650,9 +666,10 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
   }
   if(combat)
   {
+    is_combat = true;
     Battle_Units(dest_x, dest_y, enemy_unit_x, enemy_unit_y);
   }
-  return is_map_update_necesary;
+  return is_combat;
 }
 
 vector<Civ> Game::Get_All_Civs()
@@ -790,6 +807,15 @@ void Game::Deserialize(xml_node<>* Root_Node)
     Civs.push_back(tmp);
   }
 
+  Logger::Log_Info("Deserializing Cultures...");
+  xml_node<> *Cultures_Node = Root_Node->first_node("cultures");
+  for(xml_node<> *Culture_Node = Cultures_Node->first_node("culture"); Culture_Node; Culture_Node = Culture_Node->next_sibling("culture"))
+  {
+    string name = Culture_Node->first_attribute("name")->value();
+    Culture tmp(Culture_Node->first_node("culture"));
+    Cultures[name] = tmp;
+  }
+
   Logger::Log_Info("Deserializing Players...");
   xml_node<>* Players_Node = Root_Node->first_node("players");
   for(xml_node<> *Player_Node = Players_Node->first_node("civ"); Player_Node; Player_Node = Player_Node->next_sibling("civ"))
@@ -883,6 +909,17 @@ xml_node<>*  Game::Serialize(memory_pool<>* doc)
     Civs_Node->append_node(iterated_civ.Serialize(doc));
   });
 
+  Logger::Log_Info("Serializing Cultures...");
+  xml_node<>* Cultures_Node = doc->allocate_node(node_element, "cultures");
+  for(auto const& [culture_name, culture] : Cultures)
+  {
+    xml_node<>* Culture_Node = doc->allocate_node(node_element, "replacement");
+    xml_attribute<>* Culture_Name_Attribute = doc->allocate_attribute("name", culture_name.c_str());
+    Culture_Node->append_attribute(Culture_Name_Attribute);
+    Culture_Node->append_node(static_cast<Culture>(culture).Serialize(doc));
+    Cultures_Node->append_node(Culture_Node);
+  }
+
   xml_node<>* AI_Node = doc->allocate_node(node_element, "ai_list");
 
   for_each(Is_Player_AI_List.begin(), Is_Player_AI_List.end(), [&](bool iterated_player)
@@ -936,6 +973,7 @@ xml_node<>*  Game::Serialize(memory_pool<>* doc)
   Game_Node->append_node(Players_Node);
   Game_Node->append_node(Player_Border_Colors_Node);
   Game_Node->append_node(Upgrades_Node);
+  Game_Node->append_node(Cultures_Node);
   Game_Node->append_node(Technologies_Node);
   Root_Node->append_node(Game_Node);
   //xml_document<> Document;

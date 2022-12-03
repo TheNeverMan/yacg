@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Arabia" r="31" g="95" b="31" personality="Enlightened" flag="assets/textures/flags/arabia-flag.svg" audio="assets/sounds/themes/arabian-theme.mp3">
+<civ name="Arabia" r="31" g="95" b="31" personality="Enlightened" flag="assets/textures/flags/arabia-flag.svg" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
 <info>
 Arabia or Arabian Caliphates were 3 major caliphates estabilished after death of prophet Muhammad.
 They conquered and united Arabian Penisula and then expanded to Egypt and Middle East. At greatest

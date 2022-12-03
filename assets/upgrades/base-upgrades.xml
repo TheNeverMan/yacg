@@ -88,6 +88,7 @@
 <trait name="recruit_infantry"/>
 <trait name = "avoid_City"/>
 <trait name = "minordefbonus"/>
+<trait name="culture"/>
 <trait name="giveaction"/>
 <trait name="cannotbeplundered"/>
 </upgrade>

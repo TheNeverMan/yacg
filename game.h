@@ -35,6 +35,7 @@
 #include "ai_data.h"
 #include "sound_manager.h"
 #include "thread.h"
+#include "culture.h"
 
 using namespace rapidxml;
 using std::string;
@@ -77,6 +78,7 @@ class Game : public XML_Serializable
     Newspaper Main_Newspaper;
     int currently_moving_player;
     int turn_counter;
+    map<string, Culture> Cultures;
     vector<array<int, 2>> Tiles_To_Update;
     void XML_Load_Data();
     void Do_AI_Actions_For_Currently_Moving_Player(Magic_Thread_Communicator *Thread_Portal);
@@ -99,6 +101,7 @@ class Game : public XML_Serializable
     Unit Get_Unit_By_Tile(int x, int y);
     void Remove_All_Missle_Units();
     bool Is_Only_One_Player_Alive();
+    Culture Get_Culture_By_Player_Id(int player_id);
   public:
     bool Is_Currently_Moving_Player_AI();
     void Disband_Unit(int x, int y);
@@ -143,4 +146,5 @@ class Game : public XML_Serializable
     void Detonate_Atomic_Bomb(int x, int y);
     void Build_Upgrade(string name, int x, int y, int player_id);
     int Get_Only_Living_Player_Id();
+    string Get_Texture_Path_For_Cultured_Upgrade(int x, int y, string upg_name);
 };
