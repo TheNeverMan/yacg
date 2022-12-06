@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Colombia" r="252" g="209" b="22" personality="Expansive" audio="assets/sounds/themes/cicada-theme.mp3" flag="assets/textures/flags/colombia-flag.svg" culture="american">
+<info>
+Colombia is major country and third economy of South America. It is spanish speaking country
+that gained independence after war with Spain. During Colombian Independence War, Gran Colombia
+was found which was united state from territories of Venezuela, Colombia and Ecuador, ruled by
+hero - Simon Bolivar. After his death Gran Colombia has dissolved and modern Colombia was found.
+
+Colombian traits are Patriotic and Economic, to represent the Bolivarian Revolution and modern
+power of economic growth in Colombia.
+
+Colombian leaders include various leaders of various colombian states.
+Colombian color is yellow from its flag, same flag is used as civ's flag.
+</info>
+<replacement name="Democracy" leader="President" state_name="Republic of"/>
+<replacement name="Republic" leader="President" state_name="Republic of Gran"/>
+<replacement name="Dictatorship" leader="Captain General" state_name="Supreme Junta"/>
+<trait name="P"/>
+<trait name="E"/>
+<leader name="Simón Bolívar"/>
+<leader name="Francisco de Paula Santander"/>
+<leader name="Domingo Caycedo"/>
+<leader name="Joaquon Mosquera"/>
+<leader name="Rafael Urdaneta"/>
+<leader name="Tomas Cipriano de Mosquera"/>
+<leader name="Gustavo Petro"/>
+<leader name="Mariano Ospina Rodriguez"/>
+<leader name="José Hilario López Valdéz"/>
+<city name="Bogota"/>
+<city name="Medellin"/>
+<city name="Cali"/>
+<city name="Barranquilla"/>
+<city name="Cartagena"/>
+<city name="Cucuta"/>
+<city name="Soledad"/>
+<city name="Ibague"/>
+<city name="Soacha"/>
+<city name="Bucaramanga"/>
+<city name="Villavicencio"/>
+<city name="Santa Maria"/>
+<city name="Valledupar"/>
+<city name="Bello"/>
+<city name="Pereira"/>
+<city name="Monteria"/>
+<city name="San Juan de Paso"/>
+<city name="Buenaventura"/>
+<city name="Manizales"/>
+<city name="Neiva"/>
+<city name="Palmira"/>
+<city name="Armenia"/>
+<city name="Riohacha"/>
+<city name="Sincelejo"/>
+<city name="Popayan"/>
+<city name="Itagui"/>
+<city name="Floridablanca"/>
+<city name="Envigado"/>
+<city name="Tulua"/>
+<city name="Tumaco"/>
+<city name="Dosquebradas"/>
+<city name="Tunja"/>
+<city name="San Juan de Giron"/>
+<city name="Apartado"/>
+<city name="Uribia"/>
+<city name="Barrancabermeja"/>
+<city name="Florencia"/>
+<city name="Turbo"/>
+<city name="Maicao"/>
+<city name="Piedecuesta"/>
+<city name="Yopal"/>
+<city name="Ipiales"/>
+<city name="Fusagasuga"/>
+<city name="Facatatvia"/>
+<city name="Chia"/>
+<city name="Cartago"/>
+<city name="Pitalito"/>
+<city name="Zipaquira"/>
+<city name="Jamundi"/>
+<city name="Malambo"/>
+<city name="Rionegro"/>
+<city name="Yumbo"/>
+<city name="Magangue"/>
+<city name="Santa Cruz de Lorica"/>
+<city name="Caucasia"/>
+<city name="Manaure"/>
+<city name="Quibdo"/>
+<city name="Guadalajara de Buga"/>
+<city name="Duitama"/>
+<city name="Sogamoso"/>
+<city name="Tierralta"/>
+<city name="Girardot"/>
+<city name="Cienaga"/>
+<city name="Sabanalarga"/>
+<city name="Ocana"/>
+</civ>
+</civs>
+</miniyacg>

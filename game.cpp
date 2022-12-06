@@ -255,7 +255,7 @@ void Game::Check_For_Dead_Players()
     if(player.Get_Number_Of_Cities_Owned() == 0 && find(Eliminated_Players_List.begin(),Eliminated_Players_List.end(), index) == Eliminated_Players_List.end())
     {
       //remove player
-      Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!");
+      Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!");
       vector<array<int, 2>> tmp = Get_Map()->Unclaim_All_Player_Tiles(index);
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       vector<Unit_On_Map> *units = Get_Player_By_Id(index)->Get_Owned_Units();
@@ -659,7 +659,7 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
         Get_Player_By_Id(unit_owner_id)->Build_City_On_Map_With_Name(dest_x, dest_y, city_name);
         if(capital)
           message = message + Get_Player_By_Id(tile_owner_id)->Get_Capital_Name();
-        Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
+        Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message);
         Logger::Log_Info(message + " X: " + to_string(dest_x) + " Y: " + to_string(dest_y));
       }
     }
@@ -682,7 +682,7 @@ void Game::Detonate_Atomic_Bomb(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Main_Sound_Manager.Play_Sound("assets/sounds/atomicexplosion-audio.mp3");
-  Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
+  Main_Newspaper.Add_Nuclear_Attack(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
   Disband_Unit(x,y);
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
@@ -913,7 +913,7 @@ xml_node<>*  Game::Serialize(memory_pool<>* doc)
   xml_node<>* Cultures_Node = doc->allocate_node(node_element, "cultures");
   for(auto const& [culture_name, culture] : Cultures)
   {
-    xml_node<>* Culture_Node = doc->allocate_node(node_element, "replacement");
+    xml_node<>* Culture_Node = doc->allocate_node(node_element, "culture");
     xml_attribute<>* Culture_Name_Attribute = doc->allocate_attribute("name", culture_name.c_str());
     Culture_Node->append_attribute(Culture_Name_Attribute);
     Culture_Node->append_node(static_cast<Culture>(culture).Serialize(doc));
@@ -995,10 +995,10 @@ tuple<bool, Game*> Game::Load_Game(string path)
   return Loader.Load_Game(path);
 }
 
-vector<string> Game::Get_Newspaper_Events()
+vector<array<string,2>> Game::Get_Newspaper_Events()
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return Main_Newspaper.Get_News();
+  return Main_Newspaper.Get_Events_With_Icon_Paths();
 }
 
 void Game::Change_Goverment_For_Currently_Moving_Player_By_Name(string name)
@@ -1011,7 +1011,7 @@ void Game::Change_Goverment_For_Currently_Moving_Player_By_Name(string name)
     message = message + " " + Get_Currently_Moving_Player()->Get_Raw_Name() + " has been proclaimed ";
     Get_Currently_Moving_Player()->Change_Goverment_By_Name(name);
     message = message + Get_Currently_Moving_Player()->Get_Full_Name();
-    Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
+    Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), message);
   }
 }
 
@@ -1022,7 +1022,7 @@ void Game::Build_City(int x, int y, int owner, int radius)
   Build_Upgrade(name, x, y, owner);
   Get_Player_By_Id(owner)->Build_City_On_Map(x,y);
   string message = Get_Player_By_Id(owner)->Get_Full_Name() + " has settled new city of " + Get_Player_By_Id(owner)->Get_City_Name_By_Coordinates(x,y);
-  Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
+  Main_Newspaper.Add_City_Build(Get_Current_Turn_By_Years(), message);
 }
 
 int Game::Get_Total_Cost_Of_Technology_By_Name(string name)

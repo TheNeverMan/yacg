@@ -135,6 +135,7 @@ class Game_Window : public Gtk::Window
     void Zoom_Out();
     void Zoom_In();
   private:
+    bool is_in_thread = false;
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
     bool is_delete_of_game_necessary= false;

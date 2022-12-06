@@ -569,6 +569,11 @@ void Civ::Do_Trait(string trait_name)
     }
   }
 
+  if(trait_name == "I")
+  {
+    Tech_Tree[rand() % Tech_Tree.size()].Research_Tech(99999);
+  }
+
   if(trait_name == "N")
   {
     for(auto &var : Unit_Templates)

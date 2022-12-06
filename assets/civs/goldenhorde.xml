@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Golden Horde" r="218" g="165" b="32" personality="Expansive" flag="assets/textures/flags/goldenhorde-flag.svg" culture="mongol" audio="assets/sounds/themes/mongolian-theme.mp3">
+<info>
+Golden Horde was a turkic khanate that existed from 1242 to 1502. Its borders reached from
+Crimea to Siberia. It influenced and controlled russian states by a system of tributaries
+that were paid by all neighbours of the Horde. Later in 1381 its power declined and it
+finally dissolved in 15th century.
+
+Ordian traits are Nomadic and Nomadic, to represent the nomadic character of
+the empire and system of tributaries.
+
+Oridan leaders include various khans.
+Oridian color is gold and its flag is banner from 1339.
+</info>
+<replacement name="Horde" leader="Khan" state_name="Ulus of"/>
+<trait name="D"/>
+<trait name="D"/>
+<leader name="Jochi"/>
+<leader name="Batu Khan"/>
+<leader name="Möngke Temür"/>
+<leader name="Mamai"/>
+<leader name="Sheikh Ahmed"/>
+<leader name="Mahmud bin Küchük"/>
+<leader name="Tokhtamysh"/>
+<leader name="Barāq Khan"/>
+<leader name="Batu Khan"/>
+<leader name="Orda Khan"/>
+<city name="Sarai"/>
+<city name="Sighnaq"/>
+<city name="New Sarai"/>
+<city name="Urgench"/>
+<city name="Kwarzeem"/>
+<city name="Azov"/>
+<city name="Itil"/>
+<city name="Bulgar"/>
+<city name="Kaffa"/>
+<city name="Tsaritsyn"/>
+<city name="Orda Bazar"/>
+<city name="Sygnak"/>
+<city name="Orda-Ejen"/>
+<city name="Tok-Timur"/>
+<city name="Qashliq"/>
+<city name="Isker"/>
+<city name="Chimgi Tura"/>
+<city name="Taibuga Yurt"/>
+<city name="Shiban"/>
+<city name="Sarazchik"/>
+<city name="Moksha"/>
+<city name="Gulistan"/>
+<city name="Sarai Batu"/>
+<city name="Sarai Berke"/>
+<city name="Tana"/>
+<city name="Yangi-Sherkh"/>
+<city name="Majar"/>
+<city name="Ugek"/>
+<city name="Beliaman"/>
+<city name="Astrakhan"/>
+<city name="Bish-Dagh"/>
+<city name="Azaq"/>
+<city name="Sudak"/>
+<city name="Oirim"/>
+<city name="Aq-Kerman"/>
+<city name="Manghit"/>
+<city name="Kungrad"/>
+<city name="Tyumen"/>
+<city name="Sayram"/>
+<city name="Sibir"/>
+<city name="Saraychiq"/>
+<city name="Kasura"/>
+<city name="Aqmola"/>
+<city name="Qizijar"/>
+<city name="Qizidah"/>
+<city name="Aqtopu"/>
+<city name="Cherdin"/>
+<city name="Saraijuq"/>
+<city name="Qazan"/>
+<city name="Ukek"/>
+<city name="Samar"/>
+<city name="Adis"/>
+<city name="Qaminqa"/>
+<city name="Karatufraq"/>
+<city name="Tahtawisahar"/>
+<city name="Qalmiuz"/>
+<city name="Or Qapi"/>
+<city name="Bagchasarai"/>
+<city name="Chuqraq"/>
+<city name="Balqasahar"/>
+<city name="Derbent"/>
+</civ>
+</civs>
+</miniyacg>

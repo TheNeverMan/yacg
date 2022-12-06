@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Nigeria" r="0" g="135" b="83" personality="Enterprising" flag="assets/textures/flags/nigeria-flag.svg" audio="assets/sounds/themes/african-theme.mp3" culture="african">
+<info>
+Nigeria is most populous country in Africa and its biggest economic power.
+It is african power and potentially a new rising power like Indonesia or India.
+Unfortunatelly it is still one of the most corrupt country in the world, and past
+years since independence have been marked with instability and coups.
+
+Nigerian traits are Economic and Mistic, to represent the power of its rising economy.
+
+Nigerian leaders include leaders of various nigerian goverments.
+Nigerian color is green from its current flag, civ's flag is flag of
+Federal Republic of Nigeria.
+</info>
+<trait name="E"/>
+<trait name="I"/>
+<replacement name="Democracy" leader="President" state_name="Federal Republic of"/>
+<replacement name="Tribe" leader="Eze Aro" state_name="Aro Confederacy of"/>
+<replacement name="Theocracy" leader="Caliph" state_name="Sokoto Caliphate of"/>
+<leader name="Abubakar Tafawa Balewa"/>
+<leader name="Johnson Aguiyi-Ironsi"/>
+<leader name="Yakubu Gowon"/>
+<leader name="Shehu Musa Yar'Adua"/>
+<leader name="Shehu Shagari"/>
+<leader name="Muhammadu Buhari"/>
+<leader name="Ernest Shonekan"/>
+<leader name="Sani Abacha"/>
+<leader name="Olusegun Obasanjo"/>
+<leader name="Abdulsalami Abubakar"/>
+<leader name="Umaru Yar'Adua"/>
+<city name="Abuja"/>
+<city name="Lagos"/>
+<city name="Kano"/>
+<city name="Ibadan"/>
+<city name="Benin City"/>
+<city name="Port Harcourt"/>
+<city name="Jos"/>
+<city name="Ilorin"/>
+<city name="Kaduna"/>
+<city name="Enugu"/>
+<city name="Maiduguri"/>
+<city name="Bauchi"/>
+<city name="Akure"/>
+<city name="Abeokuta"/>
+<city name="Uyo"/>
+<city name="Sokoto"/>
+<city name="Owerri"/>
+<city name="Yola"/>
+<city name="Calabar"/>
+<city name="Umuahia"/>
+<city name="Minna"/>
+<city name="Zaria"/>
+<city name="Ogbomosho"/>
+<city name="Warri"/>
+<city name="Ikorodu"/>
+<city name="Aba"/>
+<city name="Oyo"/>
+<city name="Ife"/>
+<city name="Ondo"/>
+<city name="Okene"/>
+<city name="Lafia"/>
+<city name="Katsina"/>
+<city name="Ikeja"/>
+<city name="Ado Ekiti"/>
+<city name="Awka"/>
+<city name="Makurdi"/>
+<city name="Gombe"/>
+<city name="Gusau"/>
+<city name="Osogbo"/>
+<city name="Iseyin"/>
+<city name="Mubi"/>
+<city name="Onitsha"/>
+<city name="Sagamu"/>
+<city name="Mokwa"/>
+<city name="Badagry"/>
+<city name="Ilesa"/>
+<city name="Obafemi Owode"/>
+<city name="Owo"/>
+<city name="Jimeta"/>
+<city name="Suleja"/>
+<city name="Lavun"/>
+<city name="Potiskum"/>
+<city name="Kukawa"/>
+<city name="Iwo"/>
+<city name="Bida"/>
+<city name="Ugep"/>
+<city name="Ijebu Ode"/>
+<city name="Epe"/>
+<city name="Ise Ekiti"/>
+<city name="Gboko"/>
+<city name="Ilawe Ekiti"/>
+<city name="Ikare"/>
+<city name="Okpoko"/>
+<city name="Sapele"/>
+<city name="Ila"/>
+<city name="Asaba"/>
+<city name="Ljero"/>
+<city name="Ikot Ekpene"/>
+<city name="Jalingo"/>
+<city name="Otukpo"/>
+<city name="Okigwe"/>
+<city name="Kisi"/>
+<city name="Buguma"/>
+<city name="Funtua"/>
+<city name="Gbongan"/>
+<city name="Igboho"/>
+<city name="Gashua"/>
+<city name="Bama"/>
+<city name="Uromi"/>
+</civ>
+</civs>
+</miniyacg>

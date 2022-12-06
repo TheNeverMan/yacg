@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Kazakhstan" r="0" g="171" b="194" personality="Expanding" flag="assets/textures/flags/kazakhstan-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="mongol">
+<info>
+Kazakhstan is transcontinental state in Central Asia. It is one of the biggest countries in the world.
+It gained independence after fall of Soviet Union and right now is most developed country in the region.
+Its economy is based on oil exports.
+
+Kazakh trait is Economical, to represent the oil exports and New Silk Road.
+
+Kazakh leaders include presidents of Republic, Khans of Siberian Khanate and Secretaries of
+Kazakh Soviet Republic.
+Kazakh color is cyan from its flag, flag of Republic of Kazakhstan is also civ's flag.
+</info>
+<trait name="E"/>
+<leader name="Alikhan Bukeikhanov"/>
+<leader name="Kassym-Jomart Tokayev"/>
+<leader name="Nursultan Nazarbayev"/>
+<leader name="Kerei Khan"/>
+<leader name="Janibek Khan"/>
+<leader name="Kenesary Khan"/>
+<leader name="Alihan Smaiylov"/>
+<leader name="Karim Massimov"/>
+<leader name="Daniyal Akhmetov"/>
+<leader name="Akezhan Kazhegeldin"/>
+<city name="Astana"/>
+<city name="Almaty"/>
+<city name="Shymkent"/>
+<city name="Karaganda"/>
+<city name="Taraz"/>
+<city name="Pavlodar"/>
+<city name="Oskemen"/>
+<city name="Semey"/>
+<city name="Aktobe"/>
+<city name="Oral"/>
+<city name="Kostanay"/>
+<city name="Petropavl"/>
+<city name="Kyzylorda"/>
+<city name="Aktau"/>
+<city name="Termirtau"/>
+<city name="Atyrau"/>
+<city name="Ekibastuz"/>
+<city name="Kokshetau"/>
+<city name="Taldykorgan"/>
+<city name="Jezkazgan"/>
+<city name="Turkistan"/>
+<city name="Balqash"/>
+<city name="Satpayev"/>
+<city name="Kentau"/>
+<city name="Janaozen"/>
+<city name="Baikonur"/>
+<city name="Arkalyk"/>
+<city name="Shakhtinsk"/>
+<city name="Ridder"/>
+<city name="Schuchinsk"/>
+<city name="Saran"/>
+<city name="Stepnogorsk"/>
+</civ>
+</civs>
+</miniyacg>

@@ -109,7 +109,7 @@ class Game : public XML_Serializable
     void Set_Autosave(bool a);
     bool Is_Player_Eliminated(int player_id);
     bool Has_Currently_Moving_Player_Any_Actions_Left();
-    vector<string> Get_Newspaper_Events();
+    vector<array<string,2>> Get_Newspaper_Events();
     xml_node<>*  Serialize(memory_pool<>* doc);
     string Get_Current_Turn_By_Years();
     bool Is_Map_Update_Required();

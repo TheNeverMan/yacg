@@ -84,7 +84,7 @@ void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
     unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
 
   string upgrade_texture = " ";
-  if( !(Main_Game->Get_Map()->Is_Tile_Upgraded(x,y)) && Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Find_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Has_Trait("culture"))
+  if( !(Main_Game->Get_Map()->Is_Tile_Neutral(x,y)) && !(Main_Game->Get_Map()->Is_Tile_Upgraded(x,y)) && Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Find_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Has_Trait("culture"))
   {
     upgrade_texture = Main_Game->Get_Texture_Path_For_Cultured_Upgrade(x,y, Main_Game->Get_Map()->Get_Upgrade(x,y));
   }
@@ -574,7 +574,7 @@ bool Game_Window::Remove_Combat_Overlays()
 
 bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img)
 {
-  //if(Last_Clicked_Tile != nullptr)
+  if(is_in_thread){return true;}
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
   Update_Tile_Information_Label(coords[0],coords[1]);
   Update_Tile_Flag();
@@ -698,6 +698,7 @@ void Game_Window::Player_Has_Won_Game(int player_id)
 
 void Game_Window::Disable_All_Buttons()
 {
+  is_in_thread = true;
   End_Turn_Button.set_sensitive(false);
 //  Map_Update_Button.set_sensitive(false);
   Manage_Economy_Button.set_sensitive(false);
@@ -716,6 +717,7 @@ void Game_Window::Disable_All_Buttons()
 
 void Game_Window::Enable_All_Buttons()
 {
+  is_in_thread = false;
   End_Turn_Button.set_sensitive(true);
 //  Map_Update_Button.set_sensitive(true);
   Manage_Economy_Button.set_sensitive(true);

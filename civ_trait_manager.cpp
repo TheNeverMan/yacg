@@ -27,6 +27,8 @@ string Civ_Trait_Manager::Get_Trait_Full_Name(string trait_name)
     out = "Surviving";
   if(trait_name == "P")
     out = "Patriotic";
+  if(trait_name == "I")
+    out = "Mistic";
   return out;
 }
 
@@ -74,5 +76,7 @@ string Civ_Trait_Manager::Get_Trait_Full_Explanation(string trait_name)
     out = "All your infantry units can move on Ice and Desert tiles";
   if(trait_name == "P")
     out = "Your units fight better in your territory";
+  if(trait_name == "I")
+    out = "You start the game with one more random tech unlocked";
   return out;
 }

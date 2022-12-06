@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Aksum" r="218" g="18" b="26" personality="Enlightened" flag="assets/textures/flags/aksum-flag.svg" audio="assets/sounds/themes/african-theme.mp3" culture="african">
+<info>
+Aksum or Axum was a powerful ancient kingdom located in region of Tigray. It existed
+from 1st to 10th century and reached peak of power in 3rd century, when among it was
+among biggest powers on Earth such as Persia, Rome and China.
+
+Aksumite traits are Nautical and Agricultural, to represent the power of sea trade that
+fuelled the expansion of kingdom.
+
+Aksumite leaders include kings of Aksum.
+Aksumite color is taken from present flag of Tigray.
+</info>
+<replacement name="Monarchy" leader="Negusa Nagast" state_name="Kingdom of"/>
+<leader name="Endubis"/>
+<leader name="Kaleb"/>
+<leader name="Ezana"/>
+<leader name="Bazen"/>
+<leader name="Dil Na'od"/>
+<leader name="Sahama"/>
+<leader name="Najashi"/>
+<leader name="Wazena"/>
+<leader name="All Amidas"/>
+<leader name="Nezool"/>
+<leader name="Ebana"/>
+<trait name="N"/>
+<trait name="A"/>
+<city name="Axum"/>
+<city name="Jarma"/>
+<city name="Ku'bar"/>
+<city name="Yeha"/>
+<city name="Walale"/>
+<city name="Hararghe"/>
+<city name="Lalibela"/>
+<city name="Adulis"/>
+<city name="Senafe"/>
+<city name="Sesea"/>
+<city name="Wiqro"/>
+<city name="Sanaa"/>
+<city name="Debre Damo"/>
+<city name="Yeha"/>
+<city name="Matara"/>
+<city name="Qohaito"/>
+<city name="Hawulti-Melazo"/>
+<city name="Adwa"/>
+<city name="Mekelle"/>
+<city name="Adigrat"/>
+<city name="Shire Inda Selassie"/>
+<city name="Humera"/>
+<city name="Wukro"/>
+<city name="Maychew"/>
+<city name="Sherato"/>
+<city name="Alamata"/>
+<city name="Bora"/>
+<city name="Chercher"/>
+<city name="Emba Alaje"/>
+<city name="Endamehoni"/>
+<city name="Korem"/>
+<city name="Mekhoni"/>
+<city name="Neqsege"/>
+<city name="Ofla"/>
+<city name="Raya Alamata"/>
+<city name="Raya Azebo"/>
+<city name="Selewa"/>
+<city name="Zata"/>
+<city name="Rama"/>
+<city name="Tahtay Maychew"/>
+<city name="Tanqwa Melash"/>
+<city name="Adigrat"/>
+<city name="Agulae"/>
+<city name="Atsbi"/>
+<city name="Bizet"/>
+<city name="Edaga Hamus"/>
+<city name="Erob"/>
+<city name="Freqeyni"/>
+<city name="Ganta Afeshurn"/>
+<city name="Geralta"/>
+<city name="Gulo Mekeda"/>
+<city name="Hawzen"/>
+<city name="Kelete Awelallo"/>
+<city name="Saersie"/>
+<city name="Tsaeda Emba"/>
+<city name="Wukro"/>
+<city name="Zalla Anbesa"/>
+<city name="Tahtay Koraro"/>
+<city name="Tselenti"/>
+<city name="Tsimbala"/>
+<city name="Zana"/>
+<city name="Abergele"/>
+<city name="Adi Adi"/>
+<city name="Adet"/>
+<city name="Adwa"/>
+<city name="Ahferom"/>
+<city name="Ahsea"/>
+<city name="Chila"/>
+<city name="Edaga"/>
+<city name="Emba Seneyti"/>
+<city name="Endafelasi"/>
+<city name="Enticho"/>
+<city name="Hahayle"/>
+<city name="Kayeh Tekli"/>
+<city name="Kolla Temben"/>
+<city name="Laelay Maychew"/>
+<city name="Naeder"/>
+<city name="Awrora"/>
+<city name="Dansha"/>
+<city name="Kafta Humera"/>
+<city name="Korant"/>
+<city name="May Gaba"/>
+<city name="May Kadra"/>
+<city name="Setit Humera"/>
+<city name="Tsegede"/>
+<city name="Welkait"/>
+<city name="Adi Daero"/>
+<city name="Adi Hageray"/>
+<city name="Asgede"/>
+<city name="Dima"/>
+<city name="Endabaguna"/>
+<city name="Indasilassie"/>
+<city name="Laelay Adiabo"/>
+<city name="May Tsebri"/>
+<city name="Selekleka"/>
+<city name="Seyemti Adyabo"/>
+<city name="Sheraro"/>
+<city name="Tahtay Adiyabo"/>
+</civ>
+</civs>
+</miniyacg>
