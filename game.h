@@ -10,8 +10,6 @@
 #include<fstream>
 #include<map>
 #include<tuple>
-#include<mutex>
-#include<thread>
 #include<memory>
 
 //#include "magic_thread_communicator.h"
@@ -35,11 +33,26 @@
 #include "newspaper.h"
 #include "xml_data_loader.h"
 #include "ai_data.h"
-
-class Magic_Thread_Communicator;
+#include "sound_manager.h"
+#include "thread.h"
+#include "culture.h"
 
 using namespace rapidxml;
-using namespace std;
+using std::string;
+using std::mutex;
+using std::vector;
+using std::lock_guard;
+using std::map;
+using std::stoul;
+using std::thread;
+using std::shared_ptr;
+using std::tuple;
+using std::make_tuple;
+using std::get;
+using std::make_shared;
+using std::fstream;
+
+class Magic_Thread_Communicator;
 
 class Game : public XML_Serializable
 {
@@ -48,6 +61,7 @@ class Game : public XML_Serializable
     mutex Main_Mutex;
     bool spectator_mode;
     bool autosave;
+    Sound_Manager Main_Sound_Manager;
     vector<int> Eliminated_Players_List;
     vector<Tile> Tiles;
     vector<Tech> Technologies;
@@ -64,6 +78,7 @@ class Game : public XML_Serializable
     Newspaper Main_Newspaper;
     int currently_moving_player;
     int turn_counter;
+    map<string, Culture> Cultures;
     vector<array<int, 2>> Tiles_To_Update;
     void XML_Load_Data();
     void Do_AI_Actions_For_Currently_Moving_Player(Magic_Thread_Communicator *Thread_Portal);
@@ -86,6 +101,7 @@ class Game : public XML_Serializable
     Unit Get_Unit_By_Tile(int x, int y);
     void Remove_All_Missle_Units();
     bool Is_Only_One_Player_Alive();
+    Culture Get_Culture_By_Player_Id(int player_id);
   public:
     bool Is_Currently_Moving_Player_AI();
     void Disband_Unit(int x, int y);
@@ -93,7 +109,7 @@ class Game : public XML_Serializable
     void Set_Autosave(bool a);
     bool Is_Player_Eliminated(int player_id);
     bool Has_Currently_Moving_Player_Any_Actions_Left();
-    vector<string> Get_Newspaper_Events();
+    vector<array<string,2>> Get_Newspaper_Events();
     xml_node<>*  Serialize(memory_pool<>* doc);
     string Get_Current_Turn_By_Years();
     bool Is_Map_Update_Required();
@@ -130,4 +146,5 @@ class Game : public XML_Serializable
     void Detonate_Atomic_Bomb(int x, int y);
     void Build_Upgrade(string name, int x, int y, int player_id);
     int Get_Only_Living_Player_Id();
+    string Get_Texture_Path_For_Cultured_Upgrade(int x, int y, string upg_name);
 };

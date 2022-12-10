@@ -5,7 +5,7 @@
 #include "unit.h"
 #include "scaled_gtk_image.h"
 
-using namespace std;
+using std::string;
 
 class Unit_Info_Dialog : public Themed_Dialog
 {

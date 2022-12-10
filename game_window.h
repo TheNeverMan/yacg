@@ -8,10 +8,9 @@
 #include<chrono> //benchmarking
 #include<tuple>
 #include<map>
-#include<thread>
-#include</usr/include/gtkmm-3.0/gtkmm.h>
+#include<gtkmm.h>
 
-
+#include "thread.h"
 #include "game.h"
 #include "assets_path.h"
 #include "window_manager.h"
@@ -30,13 +29,33 @@
 #include "tips_manager.h"
 #include "magic_thread_communicator.h"
 #include "save_loader_dialog.h"
+#include "help_manager.h"
 #include "save_saver_dialog.h"
 #include "gtk_tile.h"
+#include "help_dialog.h"
 #include "scaled_gtk_image.h"
 #include "tutorial_dialog.h"
 #include "gtk_game_map.h"
 #include "magic_map_generation_thread_communicator.h"
 #include "map_generation_dialog.h"
+#include "sound_manager.h"
+#include "apply_button.h"
+#include "sound_button.h"
+#include "civ_trait_manager.h"
+
+using namespace std::chrono;
+using std::milli;
+using std::string;
+using std::map;
+using std::vector;
+using std::fstream;
+using std::shared_ptr;
+using std::tuple;
+using std::make_tuple;
+using std::get;
+using std::make_shared;
+using std::map;
+using std::thread;
 
 class Window_Manager;
 class Game;
@@ -68,20 +87,20 @@ class Game_Window : public Gtk::Window
     Gtk::Label Tile_Information_Label;
     Scaled_Gtk_Image Tile_Flag_Image;
   //  Gtk::Button Map_Update_Button;
-    Gtk::Button Manage_Economy_Button;
-    Gtk::Button Manage_Techs_Button;
-    Gtk::Button Show_Civs_Button;
-    Gtk::Button Manage_Goverments_Button;
-    Gtk::Button Civ_Overview_Button;
-    Gtk::Button Save_Button;
+    Sound_Button Manage_Economy_Button;
+    Sound_Button Manage_Techs_Button;
+    Sound_Button Show_Civs_Button;
+    Sound_Button Manage_Goverments_Button;
+    Sound_Button Civ_Overview_Button;
+    Sound_Button Save_Button;
     Gtk::Frame Zoom_Frame;
     Gtk::Box Zoom_Box;
-    Gtk::Button Zoom_In_Button;
-    Gtk::Button Zoom_Out_Button;
-    Gtk::Button Load_Button;
-    Gtk::Button Newspaper_Button;
-    Gtk::Button Quit_Button;
-    Gtk::Button Help_Button;
+    Sound_Button Zoom_In_Button;
+    Sound_Button Zoom_Out_Button;
+    Sound_Button Load_Button;
+    Sound_Button Newspaper_Button;
+    Sound_Button Quit_Button;
+    Sound_Button Help_Button;
     Gtk::Button Random_Tip_Button;
   //  Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
@@ -116,11 +135,13 @@ class Game_Window : public Gtk::Window
     void Zoom_Out();
     void Zoom_In();
   private:
+    bool is_in_thread = false;
     Window_Manager* Main_Manager;
     Settings_Manager Main_Settings_Manager;
     bool is_delete_of_game_necessary= false;
     Map_Generator_Data Map_Data;
     Tips_Manager Main_Tips_Manager;
+    Sound_Manager Main_Sound_Manager;
     int minimum_tile_size = 0;
     void Update_Action_Buttons(int x, int y);
     void Update_Unit_Action_Buttons(int x, int y);
@@ -168,6 +189,18 @@ class Game_Window : public Gtk::Window
     thread* End_Turn_Thread;
     thread* Map_Generation_Thread;
     void Show_Tutorial();
+    bool Loop_Background_Music();
+    Sound_Manager Background_Sound_Manager;
     shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
     shared_ptr<Magic_Map_Generation_Thread_Communicator> Map_Generation_Thread_Portal_Pointer;
+    shared_ptr<Scaled_Gtk_Image> End_Turn_Icon;
+    shared_ptr<Scaled_Gtk_Image> Tip_Icon;
+    sigc::connection Background_Music_Loop_Connection;
+    bool on_key_press_event(GdkEventKey* key_event) override;
+    vector<array<int, 2>> Tiles_To_Update;
+    bool Remove_Combat_Overlays();
+    void Add_Combat_Overlay(array<int, 2> Coords);
+    Glib::Dispatcher Remove_Combat_Overlays_Dispatcher;
+    sigc::connection Remove_Combat_Overlays_Connection;
+    bool is_remove_combat_overlays_timeout_set = false;
 };

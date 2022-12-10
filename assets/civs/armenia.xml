@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Armenia" r="242" g="168" b="0" personality="Peaceful" flag="assets/textures/flags/armenia-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="european">
+<info>
+Armenia is landlocked country in region of Caucasus, located between Turkey and Georgia.
+It has rich ancient heritage, with first armenian state dating back to 860 BC.
+Armenia became first state to adopt Christianity as its state religion in 301,
+Armenian Apostolic Church exists to this day.
+
+Armenian traits are Patriotic and Cultural, to represent its ancient christian heritage
+and today's diplomatic and military struggle with Azerbaijan.
+
+Armenian leaders include ancient leaders of armenian states and from modern republics.
+Armenian color is orange from its flag, this is also its flag - flag of Republic of Armenia.
+</info>
+<replacement name="Democracy" leader="Prime Minister" state_name="Republic of"/>
+<trait name="P"/>
+<trait name="C"/>
+<leader name="Orontes III"/>
+<leader name="Artaxias IV"/>
+<leader name="Tiridates I"/>
+<leader name="Hovhannes Kajaznuni"/>
+<leader name="Alexander Khatisian"/>
+<leader name="Ashot I"/>
+<leader name="Abas I"/>
+<leader name="Ashot III"/>
+<leader name="Levon I"/>
+<leader name="Levon Ter-Petrosyan"/>
+<city name="Yerevan"/>
+<city name="Gyumri"/>
+<city name="Vanadzor"/>
+<city name="Vagharshapat"/>
+<city name="Abovyan"/>
+<city name="Kapan"/>
+<city name="Hradzan"/>
+<city name="Armavir"/>
+<city name="Artashat"/>
+<city name="Ijevan"/>
+<city name="Gavar"/>
+<city name="Goris"/>
+<city name="Charentsavan"/>
+<city name="Ararat"/>
+<city name="Masis"/>
+<city name="Artik"/>
+<city name="Sevan"/>
+<city name="Ashtarak"/>
+<city name="Dilijan"/>
+<city name="Sisian"/>
+<city name="Alaverdi"/>
+<city name="Stepanavan"/>
+<city name="Martuni"/>
+<city name="Spitak"/>
+<city name="Vardenis"/>
+<city name="Yeghvard"/>
+<city name="Vedi"/>
+<city name="Byureghavan"/>
+<city name="Nor Hachn"/>
+<city name="Metsamor"/>
+<city name="Berd"/>
+<city name="Yeghegnadzor"/>
+<city name="Tashir"/>
+<city name="Kajaran"/>
+<city name="Aparan"/>
+<city name="Vayk"/>
+<city name="Chambarak"/>
+<city name="Maralik"/>
+<city name="Noyemberyan"/>
+<city name="Talin"/>
+<city name="Jermuk"/>
+<city name="Meghri"/>
+<city name="Ayrum"/>
+<city name="Akhtala"/>
+<city name="Tumanyan"/>
+<city name="Tsaghkadzor"/>
+</civ>
+</civs>
+</miniyacg>

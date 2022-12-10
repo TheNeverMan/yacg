@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Rus" r="1" g="91" b="187" personality="Expansive" flag="assets/textures/flags/rus-flag.svg">
+<civ name="Rus" r="1" g="91" b="187" personality="Expansive" flag="assets/textures/flags/rus-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="european">
 <info>
 Kievan Rus was a state existing from 879 and 1240. It was one of the biggest
 european states ever existing and its territory spanned from Black Sea to Karelia.

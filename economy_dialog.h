@@ -8,7 +8,8 @@
 #include "assets_path.h"
 #include "scaled_gtk_image.h"
 
-using namespace std;
+using std::vector;
+using std::string;
 
 class Economy_Dialog : public Themed_Dialog
 {

@@ -54,6 +54,28 @@
 <starting_position name="Mississippi" x="25" y="22"/>
 <starting_position name="Pueblo" x="21" y="24"/>
 <starting_position name="Aztecs" x="22" y="29"/>
+<starting_position name="Chechnya" x="69" y="21"/>
+<starting_position name="Finland" x="61" y="12"/>
+<starting_position name="Greenland" x="37" y="11"/>
+<starting_position name="Morocco" x="52" y="26"/>
+<starting_position name="Serbia" x="62" y="22"/>
+<starting_position name="Tibet" x="84" y="26"/>
+<starting_position name="Yakutia" x="97" y="16"/>
+<starting_position name="Lithuania" x="61" y="16"/>
+<starting_position name="Golden Horde" x="70" y="20"/>
+<starting_position name="Central Africa" x="62" y="36"/>
+<starting_position name="Iran" x="71" y="26"/>
+<starting_position name="Armenia" x="68" y="24"/>
+<starting_position name="Hungary" x="61" y="20"/>
+<starting_position name="Aksum" x="67" y="33"/>
+<starting_position name="Nubia" x="64" y="31"/>
+<starting_position name="Kazakhstan" x="76" y="17"/>
+<starting_position name="Nigeria" x="56" y="36"/>
+<starting_position name="Colombia" x="29" y="36"/>
+<starting_position name="Venezuela" x="32" y="34"/>
+<starting_position name="Netherlands" x="57" y="17"/>
+<starting_position name="Belgium" x="57" y="18"/>
+<starting_position name="Austria" x="60" y="20"/>
 </starting_positions>
 <replacements>
 <replacement char="s" name="Sea"/>

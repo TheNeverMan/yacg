@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Venezuela" r="0" g="36" b="125" flag="assets/textures/flags/venezuela-flag.svg" culture="american=" personality="Expansive" audio="assets/sounds/themes/cicada-theme.mp3" culture="american">
+<info>
+Venezuela is republic in South America. It was first federal republic of Gran Colombia and later
+when Gran Colombia dissolved Venezuela became sovereign state. Later many juntas, democratic and autocratic
+goverments ruled Venezuela until today, when it is ruled by leftist populist oligarch.
+
+Venezuelian trait is Patriotic, to represent the Bolivarian Revolution.
+
+Venezuelian color is blue from its flag, civ's flag is flag of Bolivarian Republic of
+Venezuela.
+</info>
+<trait name="P"/>
+<replacement name="Communism" leader="President" state_name="Bolivarian Republic of"/>
+<replacement name="Dictatorship" leader="President" state_name="State of"/>
+<replacement name="Democracy" leader="President" state_name="United States of"/>
+<leader name="Jose Antonio Paez"/>
+<leader name="Juan Crisostomo Falcon"/>
+<leader name="Marcos Perez Jimonez"/>
+<leader name="Hugo Chavez"/>
+<leader name="Romulo Betancourt"/>
+<leader name="Nicolas Maduro"/>
+<leader name="Juan Guaido"/>
+<leader name="Rafael Caldera"/>
+<leader name="Ramon Jose Velasquez"/>
+<leader name="Carlos Andreas Perez"/>
+<city name="Caracas"/>
+<city name="Maracaibo"/>
+<city name="Valencia"/>
+<city name="Barquisimeto"/>
+<city name="Maracay"/>
+<city name="Ciudad Guyana"/>
+<city name="Barcelona"/>
+<city name="Maturin"/>
+<city name="Cumana"/>
+<city name="Petare"/>
+<city name="Turmero"/>
+<city name="Merida"/>
+<city name="Ciudad Bolivar"/>
+<city name="Barinas"/>
+<city name="Los Teques"/>
+<city name="Punto Fijo"/>
+<city name="La Guaira"/>
+<city name="Santa Teresa del Tuy"/>
+<city name="El Vigia"/>
+<city name="San Cristobal"/>
+<city name="San Felipe"/>
+<city name="Puerto La Cruz"/>
+<city name="Cabimas"/>
+<city name="Guatire"/>
+<city name="San Diego"/>
+<city name="Porlamar"/>
+<city name="Cua"/>
+<city name="Guaremas"/>
+<city name="San Fernando de Apure"/>
+<city name="Pedernales"/>
+<city name="Los Guayos"/>
+<city name="Upata"/>
+<city name="Ocumare del Tuy"/>
+<city name="Puerto Cabello"/>
+<city name="Guacara"/>
+<city name="El Tigre"/>
+<city name="Machiques"/>
+<city name="El Limon"/>
+<city name="Naguanagua"/>
+<city name="Acarigua"/>
+<city name="La Victoria"/>
+<city name="Valle de la Pascua"/>
+<city name="Zaraza"/>
+<city name="Coro"/>
+<city name="Valera"/>
+<city name="Santa Rita"/>
+<city name="Cabudare"/>
+<city name="Charallave"/>
+<city name="Ciudad Ojera"/>
+<city name="Palo Negro"/>
+<city name="Tariba"/>
+<city name="San Juan de Los Morros"/>
+<city name="Yaritagua"/>
+<city name="La Villa del Rosario"/>
+<city name="Cagua"/>
+<city name="Anaco"/>
+<city name="Calabozo"/>
+<city name="Mariara"/>
+<city name="Guanare"/>
+<city name="Carupano"/>
+<city name="Araure"/>
+<city name="Ejido"/>
+<city name="Catia La Mar"/>
+<city name="Carora"/>
+<city name="Guasdualito"/>
+<city name="La Grita"/>
+<city name="Guama"/>
+<city name="Rubio"/>
+<city name="San Carlos"/>
+<city name="Bocono"/>
+<city name="Nirgua"/>
+<city name="San Antonio de Los Altos"/>
+<city name="Tucupita"/>
+<city name="Quibor"/>
+<city name="San Jose de Guanipa"/>
+</civ>
+</civs>
+</miniyacg>

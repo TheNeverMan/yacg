@@ -1,13 +1,16 @@
 #pragma once
 #include<fstream>
-#include<iostream>
 #include<string>
 #include<tuple>
 
 #include "game.h"
 #include "logger.h"
 
-using namespace std;
+using std::string;
+using std::tuple;
+using std::make_tuple;
+using std::get;
+using std::fstream;
 
 class Game;
 

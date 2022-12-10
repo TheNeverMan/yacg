@@ -9,7 +9,8 @@
 #include "traits_owner.h"
 #include "texture_owner.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Tile : public Help_Object, public XML_Serializable, public Traits_Owner, public Texture_Owner
 {

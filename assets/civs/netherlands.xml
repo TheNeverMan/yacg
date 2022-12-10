@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Netherlands" r="255" g="153" b="0" personality="Enterprising" flag="assets/textures/flags/netherlands-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
+<info>
+Netherlands is country located in Northwestern Europe. Netherlands in 16th
+century fought independence war against Spain, which lead to creation of Duth
+Republic. This was Golden Age of Netherlands, and it has reached peak of its power,
+as economic, sea trading superpower. Later its power declined until French Revolution
+which overthrew old Republic. After Napolleonic Era Netherlands became kingdom and remain
+in this state to this day.
+
+Dutch traits are Nautical and Patriotic, to represent the power of East India Company, and
+unique character of Dutch Republic as a centre of arts and sciences.
+
+Dutch leaders include various leaders of Dutch, Batavian Republics and later kingdoms.
+Dutch color is orange from Prince's Flag, Dutch flag is flag of Kingdom of Netherlands.
+</info>
+<replacement name="Despotism" leader="King" state_name="Frisian Kingdom of"/>
+<replacement name="Republic" leader="Count" state_name="County of"/>
+<replacement name="Monarchy" leader="King" state_name="Seventeen Provinces of"/>
+<replacement name="Parliamentary Monarchy" leader="Chairman" state_name="Kingdom of"/>
+<replacement name="Democracy" leader="Stadtholder" state_name="Republic of Seven United"/>
+<replacement name="Communism" leader="Grand Pensionary" state_name="Batavian Republic of"/>
+<trait name="P"/>
+<trait name="N"/>
+<leader name="Willem-Alexander"/>
+<leader name="William the Silent"/>
+<leader name="Rutger Jan Schimmelpenninck"/>
+<leader name="Paulus Buys"/>
+<leader name="Laurens Pieter van de Spiegel"/>
+<leader name="Finn Folcwalding"/>
+<leader name="Maurice"/>
+<leader name="William V"/>
+<leader name="John William Friso"/>
+<city name="Amsterdam"/>
+<city name="Rotterdam"/>
+<city name="The Hague"/>
+<city name="Utrecht"/>
+<city name="Eindhoven"/>
+<city name="Groningen"/>
+<city name="Tilburg"/>
+<city name="Almere"/>
+<city name="Breda"/>
+<city name="Nijmegen"/>
+<city name="Apeldoorn"/>
+<city name="Arnhem"/>
+<city name="Haarlem"/>
+<city name="Enschede"/>
+<city name="Haarlemmermeer"/>
+<city name="Amersfoort"/>
+<city name="Zaanstad"/>
+<city name="Hertogenbosch"/>
+<city name="Zwolle"/>
+<city name="Zoetermeer"/>
+<city name="Leeuwarden"/>
+<city name="Delfzijl"/>
+<city name="Heerenveen"/>
+<city name="Assen"/>
+<city name="Emmen"/>
+<city name="Almelo"/>
+<city name="Venio"/>
+<city name="Maastricht"/>
+<city name="Breda"/>
+<city name="Tilburg"/>
+<city name="Middelburg"/>
+<city name="Vlissingen"/>
+<city name="Delft"/>
+<city name="Leiden"/>
+<city name="Alkmaar"/>
+<city name="Den Helder"/>
+<city name="Lelystad"/>
+<city name="Hoogeveen"/>
+<city name="Coevorden"/>
+<city name="Meppel"/>
+<city name="Biddinghuizen"/>
+<city name="Emmeloord"/>
+<city name="Sneek"/>
+<city name="Ijlist"/>
+<city name="Franeker"/>
+<city name="Bolsward"/>
+<city name="Dokkum"/>
+<city name="Sloten"/>
+<city name="Stavoren"/>
+<city name="Workum"/>
+<city name="Bredevoort"/>
+<city name="Buren"/>
+<city name="Borculo"/>
+<city name="Culemborg"/>
+<city name="Dieren"/>
+<city name="Doetinchem"/>
+<city name="Ede"/>
+<city name="Zevenaar"/>
+<city name="Elburg"/>
+<city name="Enspjik"/>
+<city name="Gendt"/>
+<city name="Groenio"/>
+<city name="Hattem"/>
+<city name="Heukelum"/>
+<city name="Nijkerk"/>
+<city name="Tiel"/>
+<city name="Ulft"/>
+<city name="Wageningen"/>
+<city name="Zaltbommel"/>
+</civ>
+</civs>
+</miniyacg>

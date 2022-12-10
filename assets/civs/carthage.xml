@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Carthage" r="255" g="255" b="0" personality="Expansive" flag="assets/textures/flags/carthage-flag.svg">
+  <civ name="Carthage" r="255" g="255" b="0" personality="Expansive" flag="assets/textures/flags/carthage-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="arabian">
 <info>
 Carthage was an ancient city founded by phoenicians in 814 BC. Later it became very powerful
 and seceded from Phoenicia. It was a major kingdom that dominated the Mediterranen Sea, however
 in 146 BC it lost rivalry with Rome and city got razed.
 
-Carthaginian trait is Expansive, to represent its power and war with romans.
+Carthaginian traits are Commercial and Nautical, to represent its power and war with romans.
 
 Carthaginian leaders include kings of Carthage.
 Carthaginian color is yellow - most likely a color of Tanit symbol.
@@ -24,7 +24,8 @@ Carthaginian color is yellow - most likely a color of Tanit symbol.
   <leader name="Gisco"/>
   <leader name="Bomilcar"/>
   <leader name="Hilmico I"/>
-  <trait name="E"/>
+  <trait name="O"/>
+  <trait name="N"/>
   <city name="Carthage"/>
   <city name="Utica"/>
   <city name="Tanit"/>

@@ -8,10 +8,12 @@
 #include "texture_owner.h"
 #include "technology_requirements_owner.h"
 #include "traits_owner.h"
+#include "audio_owner.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
-class Unit : public Help_Object, public XML_Serializable, public Texture_Owner, public Technology_Requirements_Owner, public Traits_Owner
+class Unit : public Help_Object, public XML_Serializable, public Texture_Owner, public Technology_Requirements_Owner, public Traits_Owner, public Audio_Owner
 {
   private:
     int attack_power;
@@ -50,6 +52,6 @@ class Unit : public Help_Object, public XML_Serializable, public Texture_Owner, 
     void Increase_Current_Movement(int val);
     vector<string> Get_Allowed_Tiles();
     void Allow_Moving_On_Tile_By_Name(string name);
-    Unit(string n, int c, int a, int d, int m, int ma, string i, string r, string t_p, vector<string> a_t, vector<string> t_s, string o);
+    Unit(string n, int c, int a, int d, int m, int ma, string i, string r, string t_p, vector<string> a_t, vector<string> t_s, string o, string s_p);
     Unit();
 };

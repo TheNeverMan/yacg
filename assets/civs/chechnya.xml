@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Chechnya" r="43" g="115" b="56" personality="Authoritarian" flag="assets/textures/flags/chechnya-flag.svg">
+  <civ name="Chechnya" r="43" g="115" b="56" personality="Authoritarian" flag="assets/textures/flags/chechnya-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="european">
   <info>
   Chechnya is region in North Caucasus. Currently it is part of Russian Federation as Republic of Chechnya.
   Chechnya is famous for its struggle to independence against Russia. In 1991 when Soviet Union dissolved

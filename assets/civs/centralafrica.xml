@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Central Africa" r="0" g="48" b="130" personality="Authoritarian" audio="assets/sounds/themes/african-theme.mp3" flag="assets/textures/flags/centralafrica-flag.svg" culture="african">
+<info>
+Central Africa or Central African Republic is a country located in heart of Africa,
+between Congo and Chad. It gained independence from France in 1958. It is dealing
+with permanent economic crisis, civil wars, corruption and autocratic leaders.
+
+Central African trait is Mistic.
+
+Central African leaders include presidents of Republic and one emperor.
+Central African color is blue from its flag, same flag is used as civ's flag.
+</info>
+<trait name="I"/>
+<replacement name="Democracy" leader="President" state_name="Republic of"/>
+<replacement name="Dictatorship" leader="Emperor" state_name="Empire of"/>
+<replacement name="Parliamentary Monarchy" leader="Governor-General" state_name="French Equatorial"/>
+<replacement name="Monarchy" leader="Sultan" state_name="Bangassou Sultanate of"/>
+<leader name="David Dacko"/>
+<leader name="Jean-Bédel Bokassa"/>
+<leader name="André Kolingba"/>
+<leader name="Ange-Félix Patassé"/>
+<leader name="François Bozizé"/>
+<leader name="Faustin-Archange Touadéra"/>
+<leader name="Barthélemy Boganda"/>
+<city name="Bangui"/>
+<city name="Bimbo"/>
+<city name="Berberati"/>
+<city name="Carnot"/>
+<city name="Bambari"/>
+<city name="Bouar"/>
+<city name="Bossangoa"/>
+<city name="Bria"/>
+<city name="Bangassou"/>
+<city name="Nola"/>
+<city name="Kaga-Bandoro"/>
+<city name="Ndele"/>
+<city name="Birao"/>
+<city name="Alindao"/>
+<city name="Baboua"/>
+<city name="Zinga"/>
+<city name="Sibut"/>
+<city name="Rafai"/>
+<city name="Baoro"/>
+<city name="Batangafo"/>
+<city name="Boali"/>
+<city name="Paoua"/>
+<city name="Ouango"/>
+<city name="Ouadda"/>
+<city name="Bobangui"/>
+<city name="Boda"/>
+<city name="Bossembele"/>
+<city name="Obo"/>
+<city name="Monogoumba"/>
+<city name="Mobaye"/>
+<city name="Bouar"/>
+<city name="Bouca"/>
+<city name="Damara"/>
+<city name="Mobaye"/>
+<city name="Mbaiki"/>
+<city name="Kouango"/>
+<city name="Gambo"/>
+<city name="Gamboula"/>
+<city name="Guen"/>
+<city name="Kembe"/>
+<city name="Kabo"/>
+<city name="Ippy"/>
+</civ>
+</civs>
+</miniyacg>

@@ -1,9 +1,9 @@
 #pragma once
-#include<thread>
+#include "thread.h"
 #include<memory>
-#include<mutex>
+
 #include<iostream>
-#include</usr/include/gtkmm-3.0/gtkmm.h>
+#include<gtkmm.h>
 
 #include "map_generation_dialog.h"
 #include "gtk_game_map.h"
@@ -13,7 +13,10 @@ class Map_Generation_Dialog;
 class Gtk_Game_Map;
 class Game;
 
-using namespace std;
+using std::thread;
+using std::mutex;
+using std::lock_guard;
+using std::shared_ptr;
 
 class Magic_Map_Generation_Thread_Communicator
 {

@@ -11,7 +11,9 @@
 #include "scaled_pixbuf.h"
 #include "scaled_gtk_image.h"
 
-using namespace std;
+using std::shared_ptr;
+using std::vector;
+using std::string;
 
 class Civs_Dialog : public Themed_Dialog
 {

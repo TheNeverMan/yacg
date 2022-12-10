@@ -18,9 +18,17 @@ Overview_Dialog::Overview_Dialog(vector<int> p_i, Civ p, string year) : Themed_D
   gnppc = gnppc / (double) Player.Get_Population();
   text = text + "\n GNP per capita " + to_string(static_cast<int>(gnppc)) + " $";
   Stats_Label = Gtk::Label(text);
-
-  Dialog_Box->pack_start(Root_Box);
+  vector<string> traits = p.Get_Trait_Names();
   Root_Box.pack_start(Dialog_Root_Frame);
+  for(string &trait : traits)
+  {
+    auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+    Trait_Box->pack_start(*(Trait_Manager.Get_Trait_Icon(trait)->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(Trait_Manager.Get_Trait_Full_Name(trait) + " - " + Trait_Manager.Get_Trait_Full_Explanation(trait));
+    Trait_Box->pack_start(*Trait_Label);
+    Root_Box.pack_start(*Trait_Box);
+  }
+  Dialog_Box->pack_start(Root_Box);
   Stats_Box.pack_start(*(Flag_Image.Get_Gtk_Image()));
   Dialog_Root_Frame.add(Stats_Box);
   Main_Provider.Add_CSS_With_Class(&Stats_Label, "big_label");

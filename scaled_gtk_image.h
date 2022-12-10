@@ -1,10 +1,10 @@
 #pragma once
-#include</usr/include/gtkmm-3.0/gtkmm.h>
+#include<gtkmm.h>
 #include<string>
 
 #include "image_path.h"
 
-using namespace std;
+using std::string;
 
 class Scaled_Gtk_Image
 {

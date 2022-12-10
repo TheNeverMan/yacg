@@ -1,6 +1,6 @@
 #include "civ.h"
 
-Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p) : Traits_Owner(t), Help_Object(n,c_i), Texture_Owner(t_p)
+Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c) : Traits_Owner(t), Help_Object(n,c_i), Texture_Owner(t_p), Audio_Owner(a)
 {
   srand(time(NULL));
   Goverment_Name_Replacements = g_n_r;
@@ -32,6 +32,7 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   alpha = alpha | (blue << 8);
   color = alpha;
   personality = p;
+  culture = c;
   Do_Traits();
   //start game with Agriculture researched
   for(auto &val : Tech_Tree)
@@ -39,6 +40,11 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
     if(val.Get_Name() == tech_in_research)
       val.Research_Tech(9999);
   }
+}
+
+string Civ::Get_Culture_Name()
+{
+  return culture;
 }
 
 string Civ::Get_Leader_Title()
@@ -563,6 +569,11 @@ void Civ::Do_Trait(string trait_name)
     }
   }
 
+  if(trait_name == "I")
+  {
+    Tech_Tree[rand() % Tech_Tree.size()].Research_Tech(99999);
+  }
+
   if(trait_name == "N")
   {
     for(auto &var : Unit_Templates)
@@ -797,7 +808,7 @@ int Civ::Get_Population()
   return out;
 }
 
-Civ::Civ(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node)
+Civ::Civ(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node), Texture_Owner(Root_Node), Audio_Owner(Root_Node)
 {
   Deserialize(Root_Node);
 }
@@ -818,6 +829,7 @@ void Civ::Deserialize(xml_node<>* Root_Node)
   current_actions = stoi(Root_Node->first_attribute("current_actions")->value());
   tech_money_modifier = atof(Root_Node->first_attribute("tech_money_modifier")->value());
   color = (int32_t) stoi(Root_Node->first_attribute("color")->value());
+  culture = Root_Node->first_attribute("culture")->value();
   Gov tmp(Root_Node->first_node("goverment"));
   Active_Goverment = tmp;
   xml_node<>* City_Names_Node = Root_Node->first_node("city_names");
@@ -925,7 +937,8 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   Root_Node->append_attribute(Leader);
   xml_attribute<> *Personality = doc->allocate_attribute("personality", doc->allocate_string(personality.c_str()));
   Root_Node->append_attribute(Personality);
-
+  xml_attribute<> *Culture = doc->allocate_attribute("culture", doc->allocate_string(culture.c_str()));
+  Root_Node->append_attribute(Culture);
   xml_node<> *Leaders_Node = doc->allocate_node(node_element, "leaders");
 
   for_each(Leaders.begin(), Leaders.end(), [&](string leader_name)
@@ -1019,6 +1032,7 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   Root_Node->append_node(City_Names_Node);
   Root_Node->append_node(Serialize_Traits(doc));
   Root_Node->append_node(Serialize_Textures(doc));
+  Root_Node->append_node(Serialize_Audio(doc));
   Root_Node->append_node(Owned_Units_Node);
   Root_Node->append_node(Upgrades_Node);
   Root_Node->append_node(Leaders_Node);

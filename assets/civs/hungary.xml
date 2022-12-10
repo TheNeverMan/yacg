@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Hungary" r="67" g="111" b="77" personality="Authoritarian" flag="assets/textures/flags/hungary-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
+<info>
+Hungary is state in East Europe. First hungarian state has been founded in 9th century.
+Then Hungary became major european power in 12th and later joined Austria to form Austria-Hungary.
+
+Hungarian traits are Expansive and Mistic, to represent its Finno-Ugric language and
+expansive character of its medieval kingdom.
+
+Hungarian leaders include various leaders of Hungary.
+Hungarian color is dark green from its current flag. Its flag is unofficial
+flag with coat of arms.
+</info>
+<replacement name="Tribe" state_name="Principiality of" leader="Kende"/>
+<replacement name="Republic" state_name="Kingdom of" leader="Palatine"/>
+<trait name="I"/>
+<trait name="X"/>
+<leader name="Árpád"/>
+<leader name="Stephen I"/>
+<leader name="Sigismund"/>
+<leader name="Béla IV"/>
+<leader name="Coloman"/>
+<leader name="Ladislaus V"/>
+<leader name="Lajos Kossuth"/>
+<leader name="Artúr Görgey"/>
+<leader name="Mátyás Szűrös"/>
+<leader name="Viktor Orbán"/>
+<city name="Budapest"/>
+<city name="Debrecen"/>
+<city name="Szeged"/>
+<city name="Miskolc"/>
+<city name="Pecs"/>
+<city name="Gyor"/>
+<city name="Nyiregyhaza"/>
+<city name="Kecskemet"/>
+<city name="Székesfehérvár"/>
+<city name="Szombathely"/>
+<city name="Erd"/>
+<city name="Szolnok"/>
+<city name="Tatabanya"/>
+<city name="Sopron"/>
+<city name="Kaposvar"/>
+<city name="Békéscsaba"/>
+<city name="Veszprém"/>
+<city name="Zalaegerszeg"/>
+<city name="Eger"/>
+<city name="Nagykanizsa"/>
+<city name="Dunakeszi"/>
+<city name="Hódmezővásárhely"/>
+<city name="Dunaújváros"/>
+<city name="Szigetszentmiklós"/>
+<city name="Cegléd"/>
+<city name="Mosonmagyaróvár"/>
+<city name="Baja"/>
+<city name="Vac"/>
+<city name="Gödöllő"/>
+<city name="Salgótarján"/>
+<city name="Ózd"/>
+<city name="Szekszárd"/>
+<city name="Hajdúböszörmény"/>
+<city name="Pápa"/>
+<city name="Hajdúszoboszló"/>
+<city name="Nagykőrös"/>
+<city name="Tata"/>
+<city name="Komló"/>
+<city name="Gyál"/>
+<city name="Makó"/>
+<city name="Dunaharaszti"/>
+<city name="Vecsés"/>
+<city name="Törökszentmiklós"/>
+<city name="Hatvan"/>
+<city name="Karcag"/>
+<city name="Keszthely"/>
+<city name="Várpalota"/>
+<city name="Békés"/>
+<city name="Fót"/>
+<city name="Paks"/>
+<city name="Komarom"/>
+<city name="Százhalombatta"/>
+<city name="Dombóvár"/>
+<city name="Göd"/>
+<city name="Oroszlány"/>
+<city name="Monor"/>
+<city name="Veresegyház"/>
+<city name="Balmazújváros"/>
+<city name="Mohács"/>
+<city name="Gyömrő"/>
+<city name="Szigethalom"/>
+<city name="Hajdúnánás"/>
+<city name="Mátészalka"/>
+<city name="Pomáz"/>
+<city name="Dabas"/>
+<city name="Mezőtúr"/>
+<city name="Kisvárda"/>
+<city name="Mezőkövesd"/>
+<city name="Csongrád"/>
+<city name="Szarvas"/>
+<city name="Kalocsa"/>
+<city name="Tiszaújváros"/>
+<city name="Pécel"/>
+<city name="Tapolca"/>
+<city name="Balassagyarmat"/>
+<city name="Berettyóújfalu"/>
+<city name="Sárvár"/>
+<city name="Sátoraljaújhely"/>
+<city name="Püspökladány"/>
+<city name="Abony"/>
+<city name="Kiskőrös"/>
+<city name="Mor"/>
+<city name="Budakeszi"/>
+<city name="Pilisvörösvár"/>
+<city name="Törökbálint"/>
+<city name="Bonyhád"/>
+<city name="Gyomaendrőd"/>
+<city name="Hajdúsámson"/>
+<city name="Balatonfüred"/>
+<city name="Biatorbágy"/>
+<city name="Tiszavasvári"/>
+<city name="Hajdúhadház"/>
+<city name="Újfehértó"/>
+<city name="Gárdony"/>
+<city name="Nagykáta"/>
+<city name="Kistarcsa"/>
+<city name="Bátonyterenye"/>
+<city name="Albertirsa"/>
+<city name="Nyírbátor"/>
+<city name="Sárospatak"/>
+<city name="Sárbogárd"/>
+<city name="Maglód"/>
+<city name="Bicske"/>
+<city name="Dorog"/>
+<city name="Ullo"/>
+<city name="Tiszakécske"/>
+<city name="Kőszeg"/>
+<city name="Pilis"/>
+<city name="Sajószentpéter"/>
+<city name="Körmend"/>
+<city name="Marcali"/>
+<city name="Lajosmizse"/>
+<city name="Isaszeg"/>
+<city name="Kiskunmajsa"/>
+<city name="Kisújszállás"/>
+<city name="Tiszafüred"/>
+<city name="Tolna"/>
+<city name="Celldömölk"/>
+<city name="Tiszaföldvár"/>
+<city name="Barcs"/>
+</civ>
+</civs>
+</miniyacg>

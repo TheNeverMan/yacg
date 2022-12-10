@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Lithuania" r="0" g="106" b="68" personality="Expansive" flag="assets/textures/flags/lithuania-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
+<info>
+Lithuania is small baltic state. Lithuania reached peak of its power in medieval era when it was
+Grand Duchy of Lithuania under rule of Jogaila, it was the biggest country in Europe. Later Lithuania
+unioned with Poland and then when Kingdom of Poland was annexed, Lithuania was dissolved. Modern Lithuanian Republic
+got estabilished in 1918 and later reestabilished in 1990. Today Lithuania is small minor country.
+
+Lithuanian trait is Agricultural.
+
+Lithuanian leaders include Grand Dukes and Presidents of Lithuania.
+Lithuanian color is blue from its current flag, and its flag is military banner of
+Grand Duchy from 16th century.
+</info>
+<replacement name="Tribe" state_name="Duchy of" leader="Duke"/>
+<replacement name="Despotism" state_name="Kingdom of" leader="King"/>
+<replacement name="Monarchy" state_name="Grand Duchy of" leader="Grand Duke"/>
+<replacement name="Democracy" state_name="Republic of" leader="President"/>
+<trait name="A"/>
+<leader name="Algirdas Brazauskas"/>
+<leader name="Mindaugas"/>
+<leader name="Jogaila"/>
+<leader name="Sigismund II Augustus"/>
+<leader name="Augustinas Voldemaras"/>
+<leader name="Antanas Smetona"/>
+<leader name="Aleksandras Stulginskis"/>
+<leader name="Traidenis"/>
+<leader name="Gediminas"/>
+<leader name="Algirdas"/>
+<city name="Vilnius"/>
+<city name="Kaunas"/>
+<city name="Klaipeda"/>
+<city name="Siauliai"/>
+<city name="Panevyzys"/>
+<city name="Alytus"/>
+<city name="Marijampole"/>
+<city name="Mazeikiai"/>
+<city name="Jonava"/>
+<city name="Utena"/>
+<city name="Kedainiai"/>
+<city name="Taurage"/>
+<city name="Telsiai"/>
+<city name="Ukmerge"/>
+<city name="Visaginas"/>
+<city name="Plunge"/>
+<city name="Kretinga"/>
+<city name="Palanga"/>
+<city name="Radviliskis"/>
+<city name="Silute"/>
+<city name="Gargzdai"/>
+<city name="Druskininkai"/>
+<city name="Rokiskis"/>
+<city name="Elektrenai"/>
+<city name="Kursenai"/>
+<city name="Grigiskes"/>
+<city name="Birzai"/>
+<city name="Lentvaris"/>
+<city name="Joniskis"/>
+<city name="Garliava"/>
+<city name="Jurbarkas"/>
+<city name="Raseiniai"/>
+<city name="Vilkaviskis"/>
+<city name="Anyksciai"/>
+<city name="Prienai"/>
+<city name="Varena"/>
+<city name="Kelme"/>
+<city name="Kaisiadorys"/>
+<city name="Naujoji Akmene"/>
+<city name="Salcininkai"/>
+<city name="Pasvalys"/>
+<city name="Zarasai"/>
+<city name="Kupiskis"/>
+<city name="Kazlu Ruda"/>
+<city name="Sirvintos"/>
+<city name="Moletai"/>
+<city name="Pabrade"/>
+<city name="Skuodas"/>
+<city name="Sakiai"/>
+<city name="Ignalina"/>
+<city name="Lazdijai"/>
+<city name="Svencioneliai"/>
+<city name="Silale"/>
+<city name="Nemencine"/>
+<city name="Kybartai"/>
+<city name="Vievis"/>
+<city name="Pakruojis"/>
+<city name="Trakai"/>
+<city name="Svencionys"/>
+<city name="Rietavas"/>
+<city name="Kalvarija"/>
+<city name="Ziezmariai"/>
+<city name="Eisiskes"/>
+<city name="Ariogala"/>
+<city name="Neringa"/>
+<city name="Seduva"/>
+<city name="Birstonas"/>
+<city name="Venta"/>
+<city name="Akmene"/>
+<city name="Tytuvenai"/>
+<city name="Rudiskes"/>
+<city name="Vilkija"/>
+<city name="Pagegiai"/>
+<city name="Vieksniai"/>
+<city name="Zagare"/>
+<city name="Ezerelis"/>
+<city name="Skaudvile"/>
+<city name="Gelgaudiskis"/>
+<city name="Kudirkos Naumiestis"/>
+<city name="Simnas"/>
+<city name="Salantai"/>
+<city name="Linkuva"/>
+<city name="Ramygala"/>
+<city name="Priekule"/>
+<city name="Veisiejai"/>
+<city name="Daugai"/>
+<city name="Joniskelis"/>
+<city name="Jieznas"/>
+<city name="Obeliai"/>
+<city name="Varniai"/>
+<city name="Virbalis"/>
+<city name="Seda"/>
+<city name="Vabalninkas"/>
+<city name="Subacius"/>
+<city name="Baltoji Voke"/>
+<city name="Pandelys"/>
+<city name="Dukstas"/>
+<city name="Uzventis"/>
+<city name="Dusetos"/>
+<city name="Kavarskas"/>
+<city name="Smalininkai"/>
+<city name="Troskunai"/>
+<city name="Panemune"/>
+</civ>
+</civs>
+</miniyacg>

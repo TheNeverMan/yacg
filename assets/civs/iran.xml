@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+<civ name="Iran" r="218" g="0" b="0" personality="Authoritarian" flag="assets/textures/flags/iran-flag.svg" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
+<info>
+Iran is country located in Western Asia. It is one of the oldest civilizations on Earth, dating back
+to ancient persian empires. Modern Iranian civilization became in 821 when first native muslim
+dynasty took power. Later many dynasties ruled Iran until recently it has been transformed into
+Islamic Republic.
+
+Iranian traits are Religious and Mistic, to represent the heritage of iranian civilizations and
+importance of Islam as main religion.
+
+Iranian leaders include iranian shashs and ayatollahs.
+Iranian color is red from its current flag, its flag is flag of Islamic Republic of Iran.
+</info>
+<replacement name="Fundamentalism" leader="Supreme Leader" state_name="Islamic Republic of"/>
+<replacement name="Parliamentary Monarchy" leader="Shah" state_name="Imperial State of"/>
+<replacement name="Monarchy" leader="Shahanshah" state_name="The Expansive Realm of"/>
+<trait name="R"/>
+<trait name="I"/>
+<leader name="Ali Khamenei"/>
+<leader name="Mohammad Reza Pahlavi"/>
+<leader name="Ebrahim Raisi"/>
+<leader name="Ismail I"/>
+<leader name="Hassan Rouhani"/>
+<leader name="Abolhassan Banisadr"/>
+<leader name="Mohammad-Ali Rajai"/>
+<leader name="Abbas I"/>
+<leader name="Nader Shah"/>
+<leader name="Reza Shah"/>
+<city name="Tehran"/>
+<city name="Mashhad"/>
+<city name="Isfahan"/>
+<city name="Karaj"/>
+<city name="Shiraz"/>
+<city name="Tabriz"/>
+<city name="Qom"/>
+<city name="Ahvaz"/>
+<city name="Kermanshah"/>
+<city name="Urmia"/>
+<city name="Rasht"/>
+<city name="Zahedan"/>
+<city name="Hamadan"/>
+<city name="Kerman"/>
+<city name="Yazd"/>
+<city name="Ardabil"/>
+<city name="Bandar Abbas"/>
+<city name="Arak"/>
+<city name="Eslamshahr"/>
+<city name="Zanjan"/>
+<city name="Sanandaj"/>
+<city name="Qazvin"/>
+<city name="Khorramabad"/>
+<city name="Gorgan"/>
+<city name="Sari"/>
+<city name="Shahriar"/>
+<city name="Qods"/>
+<city name="Kashan"/>
+<city name="Malard"/>
+<city name="Dezful"/>
+<city name="Nishapur"/>
+<city name="Babol"/>
+<city name="Khomeyni Shahr"/>
+<city name="Sabzevar"/>
+<city name="Golestan"/>
+<city name="Amol"/>
+<city name="Pakdasht"/>
+<city name="Najafabad"/>
+<city name="Borujerd"/>
+<city name="Abadan"/>
+<city name="Qarchak"/>
+<city name="Bojnord"/>
+<city name="Varamin"/>
+<city name="Bushehr"/>
+<city name="Saveh"/>
+<city name="Qaem Shahr"/>
+<city name="Birjand"/>
+<city name="Nasimshahr"/>
+<city name="Sirjan"/>
+<city name="Khoy"/>
+<city name="Ilam"/>
+<city name="Bukan"/>
+<city name="Shahr-e Kord"/>
+<city name="Semnan"/>
+<city name="Fardis"/>
+<city name="Maragheh"/>
+<city name="Shahin Shahr"/>
+<city name="Malayer"/>
+<city name="Mahabad"/>
+<city name="Saqqez"/>
+<city name="Bandar-e Mahshahr"/>
+<city name="Rafsanjan"/>
+<city name="Gonbad-e Kavus"/>
+<city name="Shahrud"/>
+<city name="Marvdasht"/>
+<city name="Kamal Shahr"/>
+<city name="Jahrom"/>
+<city name="Torbat-e Heydarieh"/>
+<city name="Marivan"/>
+<city name="Andimeshk"/>
+<city name="Shahreza"/>
+<city name="Zabol"/>
+<city name="Yasuj"/>
+<city name="Miandoab"/>
+<city name="Khorramshahr"/>
+<city name="Marand"/>
+<city name="Jiroft"/>
+<city name="Bam"/>
+<city name="Behbahan"/>
+<city name="Dorud"/>
+<city name="Nazarabad"/>
+<city name="Mohammadshahr"/>
+<city name="Iyeh"/>
+<city name="Bander-e Anzali"/>
+<city name="Andisheh"/>
+<city name="Iranshahr"/>
+<city name="Fasa"/>
+<city name="Borazjan"/>
+<city name="Baneh"/>
+<city name="Chabahar"/>
+<city name="Robat Karim"/>
+<city name="Kashmar"/>
+<city name="Shushtar"/>
+<city name="Quchan"/>
+<city name="Lahijan"/>
+<city name="Ahar"/>
+<city name="Masjed Soleyman"/>
+<city name="Torbat-e Jam"/>
+</civ>
+</civs>
+</miniyacg>

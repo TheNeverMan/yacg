@@ -292,7 +292,7 @@ xml_node<>* Map_Generator::Load_Map(xml_document<>* doc)
     Logger::Log_Error("Loading Map failed");
     return nullptr;
   }
-  vector<char> tmp_v((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+  vector<char> tmp_v((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
   tmp_v.push_back('\0');
   file_buf.clear();
   copy(tmp_v.begin(), tmp_v.end(), back_inserter(file_buf));

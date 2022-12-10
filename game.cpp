@@ -16,6 +16,8 @@ void Game::XML_Load_Data()
   Goverments = Loader.Load_Govs();
   Civs = Loader.Load_Civs();
   Upgrades = Loader.Load_Upgrades();
+  vector<Culture> Cultures_Vector = Loader.Load_Cultures();
+  for_each(Cultures_Vector.begin(), Cultures_Vector.end(), [&](Culture& tmp){Cultures[tmp.Get_Name()] = tmp;});
 }
 
 
@@ -39,9 +41,26 @@ void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positio
   //Game_Map.Print_Map_In_ASCII();
 }
 
+Culture Game::Get_Culture_By_Player_Id(int player_id)
+{
+  if(!Cultures.count(Get_Player_By_Id(player_id)->Get_Culture_Name()))
+  {
+    Logger::Log_Error("Culture " + Get_Player_By_Id(player_id)->Get_Culture_Name() + "not found");
+    return Cultures["european"];
+  }
+  return Cultures[Get_Player_By_Id(player_id)->Get_Culture_Name()];
+}
+
+string Game::Get_Texture_Path_For_Cultured_Upgrade(int x, int y, string upg_name)
+{
+  return Get_Culture_By_Player_Id(Get_Map()->Get_Owner(x,y)).Get_Texture_For_Upgrade(upg_name);
+}
+
 void Game::Build_Upgrade(string name, int x, int y, int player_id)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  if(!is_in_thread)
+  Main_Sound_Manager.Play_Sound("assets/sounds/upgrade-audio.mp3");
   Upgrade u = Get_Player_By_Id(player_id)->Find_Upgrade_By_Name(name);
   int radius = Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius();
   if(name == "City")
@@ -236,7 +255,7 @@ void Game::Check_For_Dead_Players()
     if(player.Get_Number_Of_Cities_Owned() == 0 && find(Eliminated_Players_List.begin(),Eliminated_Players_List.end(), index) == Eliminated_Players_List.end())
     {
       //remove player
-      Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!");
+      Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!");
       vector<array<int, 2>> tmp = Get_Map()->Unclaim_All_Player_Tiles(index);
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       vector<Unit_On_Map> *units = Get_Player_By_Id(index)->Get_Owned_Units();
@@ -545,6 +564,7 @@ Unit Game::Get_Unit_By_Tile(int x, int y)
 void Game::Plunder_Tile(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Main_Sound_Manager.Play_Sound("assets/sounds/plunder-audio.mp3");
   Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Increase_Current_Movement(-1);
   Get_Map()->Plunder_Tile(x,y);
   Tiles_To_Update.push_back({x,y});
@@ -567,6 +587,8 @@ void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
   unit_2_stats[2] = unit_2_stats[2] - ((double) 30 * ((double) unit_1_stats[0] / (double) unit_2_stats[1]));
   Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Set_HP(unit_1_stats[2]);
   Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y)->Set_HP(unit_2_stats[2]);
+  if(!is_in_thread)
+  Main_Sound_Manager.Play_Sound(Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Get_Audio_Path());
   if(unit_1_stats[2] <= 0 || Get_Unit_By_Tile(unit_1_x,unit_1_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
     Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_1_x,unit_1_y);
@@ -590,6 +612,8 @@ void Game::Move_Unit(int unit_x, int unit_y, int dest_x, int dest_y, int cost)
   Get_Player_By_Id(player_id)->Move_Unit_To_By_Coords(unit_x, unit_y, dest_x, dest_y, cost);
   Get_Map()->Get_Tile_Pointer(unit_x, unit_y)->Remove_Unit_From_Tile();
   Get_Map()->Get_Tile_Pointer(dest_x, dest_y)->Put_Unit_On_Tile(player_id);
+  if(!is_in_thread)
+  Main_Sound_Manager.Play_Sound("assets/sounds/unitmove-audio.mp3");
 }
 
 bool Game::Has_Currently_Moving_Player_Any_Actions_Left()
@@ -606,19 +630,20 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
   Tiles_To_Update.push_back({unit_x, unit_y});
   Tiles_To_Update.push_back({dest_x, dest_y});
   Tiles_To_Update.push_back({enemy_unit_x, enemy_unit_y});
-  bool is_map_update_necesary = false;
+  bool is_combat = false;
   Move_Unit(unit_x, unit_y, dest_x, dest_y, movement_cost);
   if(unit_owner_id != tile_owner_id)
   {
     if(Get_Map()->Get_Owner(dest_x, dest_y) != 0 && Get_Player_By_Id(Get_Map()->Get_Owner(dest_x, dest_y))->Find_Upgrade_By_Name(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade()).Has_Trait("borderexpand"))
     {
-      is_map_update_necesary = true;
       Get_Map()->Change_Tile_Owner(dest_x, dest_y, unit_owner_id);
       vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(dest_x, dest_y, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius());
       Get_Map()->Retake_Owner_In_Radius_From(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius(), tile_owner_id);
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
       {
+      //  if(!is_in_thread)
+        Main_Sound_Manager.Play_Sound("assets/sounds/citycapture-audio.mp3");
         string message;
         bool capital = false;
         if(Get_Player_By_Id(tile_owner_id)->Get_City_Name_By_Coordinates(dest_x, dest_y) == Get_Player_By_Id(tile_owner_id)->Get_Capital_Name())
@@ -634,16 +659,17 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
         Get_Player_By_Id(unit_owner_id)->Build_City_On_Map_With_Name(dest_x, dest_y, city_name);
         if(capital)
           message = message + Get_Player_By_Id(tile_owner_id)->Get_Capital_Name();
-        Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
+        Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message);
         Logger::Log_Info(message + " X: " + to_string(dest_x) + " Y: " + to_string(dest_y));
       }
     }
   }
   if(combat)
   {
+    is_combat = true;
     Battle_Units(dest_x, dest_y, enemy_unit_x, enemy_unit_y);
   }
-  return is_map_update_necesary;
+  return is_combat;
 }
 
 vector<Civ> Game::Get_All_Civs()
@@ -655,7 +681,8 @@ vector<Civ> Game::Get_All_Civs()
 void Game::Detonate_Atomic_Bomb(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
+  Main_Sound_Manager.Play_Sound("assets/sounds/atomicexplosion-audio.mp3");
+  Main_Newspaper.Add_Nuclear_Attack(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
   Disband_Unit(x,y);
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
@@ -780,6 +807,15 @@ void Game::Deserialize(xml_node<>* Root_Node)
     Civs.push_back(tmp);
   }
 
+  Logger::Log_Info("Deserializing Cultures...");
+  xml_node<> *Cultures_Node = Root_Node->first_node("cultures");
+  for(xml_node<> *Culture_Node = Cultures_Node->first_node("culture"); Culture_Node; Culture_Node = Culture_Node->next_sibling("culture"))
+  {
+    string name = Culture_Node->first_attribute("name")->value();
+    Culture tmp(Culture_Node->first_node("culture"));
+    Cultures[name] = tmp;
+  }
+
   Logger::Log_Info("Deserializing Players...");
   xml_node<>* Players_Node = Root_Node->first_node("players");
   for(xml_node<> *Player_Node = Players_Node->first_node("civ"); Player_Node; Player_Node = Player_Node->next_sibling("civ"))
@@ -873,6 +909,17 @@ xml_node<>*  Game::Serialize(memory_pool<>* doc)
     Civs_Node->append_node(iterated_civ.Serialize(doc));
   });
 
+  Logger::Log_Info("Serializing Cultures...");
+  xml_node<>* Cultures_Node = doc->allocate_node(node_element, "cultures");
+  for(auto const& [culture_name, culture] : Cultures)
+  {
+    xml_node<>* Culture_Node = doc->allocate_node(node_element, "culture");
+    xml_attribute<>* Culture_Name_Attribute = doc->allocate_attribute("name", culture_name.c_str());
+    Culture_Node->append_attribute(Culture_Name_Attribute);
+    Culture_Node->append_node(static_cast<Culture>(culture).Serialize(doc));
+    Cultures_Node->append_node(Culture_Node);
+  }
+
   xml_node<>* AI_Node = doc->allocate_node(node_element, "ai_list");
 
   for_each(Is_Player_AI_List.begin(), Is_Player_AI_List.end(), [&](bool iterated_player)
@@ -926,6 +973,7 @@ xml_node<>*  Game::Serialize(memory_pool<>* doc)
   Game_Node->append_node(Players_Node);
   Game_Node->append_node(Player_Border_Colors_Node);
   Game_Node->append_node(Upgrades_Node);
+  Game_Node->append_node(Cultures_Node);
   Game_Node->append_node(Technologies_Node);
   Root_Node->append_node(Game_Node);
   //xml_document<> Document;
@@ -947,10 +995,10 @@ tuple<bool, Game*> Game::Load_Game(string path)
   return Loader.Load_Game(path);
 }
 
-vector<string> Game::Get_Newspaper_Events()
+vector<array<string,2>> Game::Get_Newspaper_Events()
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return Main_Newspaper.Get_News();
+  return Main_Newspaper.Get_Events_With_Icon_Paths();
 }
 
 void Game::Change_Goverment_For_Currently_Moving_Player_By_Name(string name)
@@ -963,7 +1011,7 @@ void Game::Change_Goverment_For_Currently_Moving_Player_By_Name(string name)
     message = message + " " + Get_Currently_Moving_Player()->Get_Raw_Name() + " has been proclaimed ";
     Get_Currently_Moving_Player()->Change_Goverment_By_Name(name);
     message = message + Get_Currently_Moving_Player()->Get_Full_Name();
-    Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
+    Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), message);
   }
 }
 
@@ -974,7 +1022,7 @@ void Game::Build_City(int x, int y, int owner, int radius)
   Build_Upgrade(name, x, y, owner);
   Get_Player_By_Id(owner)->Build_City_On_Map(x,y);
   string message = Get_Player_By_Id(owner)->Get_Full_Name() + " has settled new city of " + Get_Player_By_Id(owner)->Get_City_Name_By_Coordinates(x,y);
-  Main_Newspaper.Add_News(Get_Current_Turn_By_Years(), message);
+  Main_Newspaper.Add_City_Build(Get_Current_Turn_By_Years(), message);
 }
 
 int Game::Get_Total_Cost_Of_Technology_By_Name(string name)

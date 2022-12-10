@@ -3,7 +3,7 @@
 
 #include "xml_serializable.h"
 
-using namespace std;
+using std::string;
 
 class Help_Object
 {

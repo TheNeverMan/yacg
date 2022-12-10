@@ -1,7 +1,7 @@
 #pragma once
-#include<thread>
-#include<mutex>
-#include</usr/include/gtkmm-3.0/gtkmm.h>
+#include "thread.h"
+
+#include<gtkmm.h>
 
 #include "game.h"
 #include "game_window.h"
@@ -9,7 +9,9 @@
 class Game;
 class Game_Window;
 
-using namespace std;
+using std::thread;
+using std::mutex;
+using std::lock_guard;
 
 class Magic_Thread_Communicator
 {

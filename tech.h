@@ -1,6 +1,5 @@
 #pragma once
 #include<string>
-#include<iostream>
 #include<vector>
 
 #include "help_object.h"
@@ -9,7 +8,8 @@
 #include "texture_owner.h"
 #include "technology_requirements_owner.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Tech : public Help_Object, public XML_Serializable, public Traits_Owner, public Texture_Owner, public Technology_Requirements_Owner
 {

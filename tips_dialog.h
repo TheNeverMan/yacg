@@ -3,7 +3,7 @@
 
 #include "themed_dialog.h"
 
-using namespace std;
+using std::string;
 
 class Tips_Dialog : public Themed_Dialog
 {

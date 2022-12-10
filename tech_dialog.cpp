@@ -2,8 +2,8 @@
 
 Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), Selected_Tech(*Player.Get_Currently_Researched_Tech()), Explanation_Image(assets_directory_path + "textures/dialogs/tech-dialog-texture.svg", 64, 64)
 {
-  add_button("Apply", 0);
   Gtk::Box *Dialog_Box = get_content_area();
+  Close_Button.set_label("Apply");
   Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Explanation_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Explanation_Label = Gtk::Label("Here you can set technology that is currently researched.\n Your empire can research one technology at a time. \n Every turn given percent of your income is substracted from researched technology cost.\n When researched technology cost hits 0 it is researched and gives access to other technologies. \n You can read here short descriptions of technologies that are currently \n possible to be researched.");
@@ -22,7 +22,8 @@ Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), 
   {
     shared_ptr<Scaled_Gtk_Image> Tech_Image = make_shared<Scaled_Gtk_Image>(tech.Get_Texture_Path(), 64, 64);
     Tech_Images.push_back(Tech_Image);
-    shared_ptr<Gtk::Button> button = make_shared<Gtk::Button>("Research " + tech.Get_Name());
+    shared_ptr<Slaved_Sound_Button> button = make_shared<Slaved_Sound_Button>("Research " + tech.Get_Name(), &Click_Sound_Manager);
+    button->Change_Icon("assets/textures/icons/science-icon.svg.png");
     button->set_margin_bottom(3);
     auto *label = Gtk::make_managed<Gtk::Label>(tech.Info(), Gtk::ALIGN_START, Gtk::ALIGN_FILL);
     Research_Box.attach(*(Tech_Image->Get_Gtk_Image()), 0, index);
@@ -30,7 +31,7 @@ Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), 
     Research_Box.attach(*label, 2, index);
     Main_Provider.Add_CSS(button);
     Main_Provider.Add_CSS_With_Class(label, "big_label");
-    tuple<string, shared_ptr<Gtk::Button>> tmp (tech.Get_Name(), button);
+    tuple<string, shared_ptr<Slaved_Sound_Button>> tmp (tech.Get_Name(), button);
     Tech_Buttons.push_back(tmp);
     index++;
     button->signal_clicked().connect(sigc::bind<Tech>(sigc::mem_fun(*this, &Tech_Dialog::Tech_Button_Clicked), tech ));

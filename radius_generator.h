@@ -1,8 +1,11 @@
 #pragma once
 #include<vector>
 #include<array>
+#include<string>
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::array;
 
 class Radius_Generator
 {

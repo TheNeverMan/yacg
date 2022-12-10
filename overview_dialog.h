@@ -5,8 +5,10 @@
 #include "civ.h"
 #include "themed_dialog.h"
 #include "scaled_gtk_image.h"
+#include "civ_trait_manager.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Overview_Dialog : public Themed_Dialog
 {
@@ -18,6 +20,7 @@ class Overview_Dialog : public Themed_Dialog
     Gtk::Box Stats_Box;
     Gtk::Label Stats_Label;
     Scaled_Gtk_Image Flag_Image;
+    Civ_Trait_Manager Trait_Manager;
   public:
     Overview_Dialog(vector<int> p_i, Civ p, string year);
 };
