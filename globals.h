@@ -6,8 +6,8 @@ using std::to_string;
 
 //version of the game
 const int version_major = 1;
-const int version_minor = 3;
-const int version_build = 59;
-const string codename="AUDIO";
+const int version_minor = 4;
+const int version_build = 4;
+const string codename="CULTURE";
 
 string Display_Version();

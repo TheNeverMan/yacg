@@ -10,12 +10,6 @@ Gtk_Tile::Gtk_Tile(vector<string> Textures, guint32 border_color, int t_s)
   Scaled_Pixbuf color(border_color, 32, 32);
   Pixbufs.push_back(color);
   tile_size = t_s;
-  Tile_Event_Box.add(Tile_Image);
-  Tile_Event_Box.add_events(Gdk::BUTTON_PRESS_MASK);
-  Tile_Image.set_hexpand(true);
-  Tile_Image.set_vexpand(true);
-  Gtk::EventBox& ref = Tile_Event_Box;
-  add(static_cast<Gtk::Widget&>(ref));
 }
 
 Gtk_Tile::Gtk_Tile(int layers, int t_s)
@@ -28,22 +22,6 @@ Gtk_Tile::Gtk_Tile(int layers, int t_s)
     Pixbufs.push_back(tmp);
     start++;
   }
-  Tile_Event_Box.add(Tile_Image);
-  Tile_Event_Box.add_events(Gdk::BUTTON_PRESS_MASK);
-  Tile_Image.set_hexpand(true);
-  Tile_Image.set_vexpand(true);
-  Gtk::EventBox& ref = Tile_Event_Box;
-  add(static_cast<Gtk::Widget&>(ref));
-}
-
-Gtk::Widget* Gtk_Tile::Get_Event_Box()
-{
-  return static_cast<Gtk::Widget*>(&Tile_Event_Box);
-}
-
-Gtk::Image* Gtk_Tile::Get_Image()
-{
-  return &Tile_Image;
 }
 
 bool Gtk_Tile::Has_City_Set()
@@ -51,8 +29,11 @@ bool Gtk_Tile::Has_City_Set()
   return has_city;
 }
 
-void Gtk_Tile::Set_City_Name(string city_name)
+void Gtk_Tile::Set_City_Name(string cn)
 {
+  has_city = true;
+  this->city_name = cn;
+  /*
   City_Name_Label.set_text(city_name);
   City_Name_Label.set_halign(Gtk::ALIGN_CENTER);
   City_Name_Label.set_valign(Gtk::ALIGN_END);
@@ -63,7 +44,15 @@ void Gtk_Tile::Set_City_Name(string city_name)
   Main_Provider.Add_CSS_With_Class(&City_Name_Label, class_name);
   has_city = true;
   City_Name_Label.show();
+  */
 }
+
+string Gtk_Tile::Get_City_Name()
+{
+  return city_name;
+}
+
+
 
 void Gtk_Tile::Update_Texture(vector<string> Textures, guint32 border_color)
 {
@@ -84,33 +73,54 @@ void Gtk_Tile::Update_Texture(vector<string> Textures, guint32 border_color)
   double x_proportion = static_cast<double>(tile_size) / static_cast<double>(32);
   double y_proportion = static_cast<double>(tile_size) / static_cast<double>(32);
   Finished_Pixbuf->scale(Scaled_Pixbuf, 0, 0, tile_size, tile_size, 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST );
+  Tile_Pixbuf = Scaled_Pixbuf;
+}
 
-  Tile_Image.set(Scaled_Pixbuf);
-  Tile_Image.set_size_request(tile_size, tile_size);
+Glib::RefPtr<Gdk::Pixbuf> Gtk_Tile::Get_Pixbuf()
+{
+  return Tile_Pixbuf;
+}
+
+void Gtk_Tile::Add_Combat_Overlay()
+{
+  Glib::RefPtr<Gdk::Pixbuf> selection_texture;
+  Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
+  selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "combat-texture.svg");
+  int true_tile_size = tile_size;
+  scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
+  selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
+  scaled_pix->composite(Tile_Pixbuf,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
+}
+
+void Gtk_Tile::Add_Selection_Overlay()
+{
+  Glib::RefPtr<Gdk::Pixbuf> selection_texture;
+  Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
+  selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "selection-texture.svg");
+  int true_tile_size = tile_size;
+  scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
+  selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
+  scaled_pix->composite(Tile_Pixbuf,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
 }
 
 void Gtk_Tile::Increase_Tile_Size()
 {
   tile_size = tile_size + 4;
-  Glib::RefPtr<Gdk::Pixbuf> Current_Pixbuf = Tile_Image.get_pixbuf();
   Glib::RefPtr<Gdk::Pixbuf> Scaled_Pixbuf;
   Scaled_Pixbuf = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
-  double x_proportion = static_cast<double>(tile_size) / static_cast<double>(Current_Pixbuf->get_width());
-  double y_proportion = static_cast<double>(tile_size) / static_cast<double>(Current_Pixbuf->get_height());
-  Current_Pixbuf->scale(Scaled_Pixbuf, 0, 0, tile_size, tile_size, 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST );
-  Tile_Image.set(Scaled_Pixbuf);
-  Tile_Image.set_size_request(tile_size, tile_size);
+  double x_proportion = static_cast<double>(tile_size) / static_cast<double>(Tile_Pixbuf->get_width());
+  double y_proportion = static_cast<double>(tile_size) / static_cast<double>(Tile_Pixbuf->get_height());
+  Tile_Pixbuf->scale(Scaled_Pixbuf, 0, 0, tile_size, tile_size, 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST );
+  Tile_Pixbuf = Scaled_Pixbuf;
 }
 
 void Gtk_Tile::Decrease_Tile_Size()
 {
   tile_size = tile_size - 4;
-  Glib::RefPtr<Gdk::Pixbuf> Current_Pixbuf = Tile_Image.get_pixbuf();
   Glib::RefPtr<Gdk::Pixbuf> Scaled_Pixbuf;
   Scaled_Pixbuf = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, tile_size, tile_size);
-  double x_proportion = static_cast<double>(tile_size) / static_cast<double>(Current_Pixbuf->get_width());
-  double y_proportion = static_cast<double>(tile_size) / static_cast<double>(Current_Pixbuf->get_height());
-  Current_Pixbuf->scale(Scaled_Pixbuf, 0, 0, tile_size, tile_size, 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST );
-  Tile_Image.set(Scaled_Pixbuf);
-  Tile_Image.set_size_request(tile_size, tile_size);
+  double x_proportion = static_cast<double>(tile_size) / static_cast<double>(Tile_Pixbuf->get_width());
+  double y_proportion = static_cast<double>(tile_size) / static_cast<double>(Tile_Pixbuf->get_height());
+  Tile_Pixbuf->scale(Scaled_Pixbuf, 0, 0, tile_size, tile_size, 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST );
+  Tile_Pixbuf = Scaled_Pixbuf;
 }

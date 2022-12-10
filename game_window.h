@@ -102,6 +102,7 @@ class Game_Window : public Gtk::Window
     Sound_Button Quit_Button;
     Sound_Button Help_Button;
     Gtk::Button Random_Tip_Button;
+    bool Game_Map_Clicked(GdkEventButton* key_event);
   //  Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
     shared_ptr<Gtk_Game_Map> Map_Images;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Venezuela" r="0" g="36" b="125" flag="assets/textures/flags/venezuela-flag.svg" culture="american=" personality="Expansive" audio="assets/sounds/themes/cicada-theme.mp3" culture="american">
+<civ name="Venezuela" r="0" g="36" b="125" flag="assets/textures/flags/venezuela-flag.svg" culture="american" personality="Expansive" audio="assets/sounds/themes/cicada-theme.mp3" >
 <info>
 Venezuela is republic in South America. It was first federal republic of Gran Colombia and later
 when Gran Colombia dissolved Venezuela became sovereign state. Later many juntas, democratic and autocratic

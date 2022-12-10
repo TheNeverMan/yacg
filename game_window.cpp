@@ -35,7 +35,8 @@ void Game_Window::Generate_Map_View()
   auto timer_end =std::chrono::steady_clock::now();
   auto timer_diff = timer_end - timer_start;
   Logger::Log_Info("Generation took: " + to_string(std::chrono::duration<double, milli>(timer_diff).count()) + " ms" );
-
+  root->pack_start(*Map_Images);
+/*
   while(start < x)
   {
     auto *Vertical_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL, 0);
@@ -51,16 +52,33 @@ void Game_Window::Generate_Map_View()
     start_y = 0;
     start++;
   }
-
+*/
+  add_events(Gdk::BUTTON_PRESS_MASK);
+  Map_Images->signal_button_press_event().connect(sigc::mem_fun(*this, &Game_Window::Game_Map_Clicked));
   show_all_children();
 
+}
+
+bool Game_Window::Game_Map_Clicked(GdkEventButton* key_event)
+{
+  int x = 0;
+  int y = 0;
+  if((key_event->type == GDK_BUTTON_PRESS) && (key_event->button == 1))
+  {
+    x = key_event->x;
+    y = key_event->y;
+    int tile_x = x / Map_Images->Get_Tile_Size();
+    int tile_y = y / Map_Images->Get_Tile_Size();
+    Tile_Clicked(nullptr, {tile_x, tile_y}, nullptr);
+  }
+  return true;
 }
 
 void Game_Window::Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y)
 {
   if(!(Tile_Pointer->Has_City_Set()) && Main_Game->Get_Map()->Get_Upgrade(x,y) == "City")
   {
-    Tile_Pointer->Set_City_Name(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
+    Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
   }
   string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
   string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
@@ -76,7 +94,7 @@ void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
 {
   if(!(Map_Images->Get_Gtk_Tile(x,y)->Has_City_Set()) && Main_Game->Get_Map()->Get_Upgrade(x,y) == "City")
   {
-    Map_Images->Get_Gtk_Tile(x,y)->Set_City_Name(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
+    Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
   }
   string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
   string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
@@ -538,18 +556,9 @@ void Game_Window::Update_Tile_Flag()
 
 void Game_Window::Add_Combat_Overlay(array<int, 2> Coords)
 {
+  Map_Images->Add_Combat_Overlay({Coords[0], Coords[1]});
   Tiles_To_Update.push_back(Coords);
   Logger::Log_Info("Adding Combat Overlay at: " + to_string(Coords[0]) + " " + to_string(Coords[1]));
-  auto img = Map_Images->Get_Gtk_Tile(Coords[0], Coords[1])->Get_Image();
-  Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
-  Glib::RefPtr<Gdk::Pixbuf> selection_texture;
-  Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
-  selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "combat-texture.svg");
-  int true_tile_size = Main_Settings_Manager.Get_Tile_Size_Value();
-  scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
-  selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
-  scaled_pix->composite(tile_image,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
-  img->set(tile_image);
   if(!is_remove_combat_overlays_timeout_set)
   {
     Logger::Log_Info("Scheluding Combat Overlays Removal!");
@@ -616,15 +625,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     Main_Sound_Manager.Play_Sound("assets/sounds/tileclicked-audio.mp3");
     last_clicked_x = coords[0];
     last_clicked_y = coords[1];
-    Glib::RefPtr<Gdk::Pixbuf> tile_image = img->get_pixbuf();
-    Glib::RefPtr<Gdk::Pixbuf> selection_texture;
-    Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
-    selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "selection-texture.svg");
-    int true_tile_size = Main_Settings_Manager.Get_Tile_Size_Value();
-    scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
-    selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
-    scaled_pix->composite(tile_image,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
-    img->set(tile_image);
+    Map_Images->Add_Selection_Overlay({coords[0], coords[1]});
   }
   Update_Action_Buttons(coords[0],coords[1]);
   Update_Tile_Flag();
