@@ -51,7 +51,6 @@ class Map : public XML_Serializable
     void Change_Tile_Owner(int x, int y, int id);
     void Upgrade_Tile(int x, int y, string t_u);
     void Change_Tile_Type(int x, int y, Tile t);
-    void Print_Map_In_ASCII();
     Tile Get_Tile(int x, int y);
     bool Is_Tile_Neutral(int x, int y);
     bool Is_Tile_Upgraded(int x, int y);

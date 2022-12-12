@@ -32,6 +32,39 @@ string Civ_Trait_Manager::Get_Trait_Full_Name(string trait_name)
   return out;
 }
 
+string Civ_Trait_Manager::Get_Trait_Letter(string trait_name)
+{
+  string out;
+  if(trait_name == "Militaristic")
+    out = "M";
+  if(trait_name == "Economic")
+    out = "E";
+  if(trait_name == "Scientific")
+    out = "S";
+  if(trait_name == "Nautical")
+    out = "N";
+  if(trait_name == "Cultural")
+    out = "C";
+  if(trait_name == "Religious")
+    out = "R";
+  if(trait_name == "Expansive")
+    out = "X";
+  if(trait_name == "Agricultural")
+    out = "A";
+  if(trait_name == "Commercial")
+    out = "O";
+  if(trait_name == "Nomadic")
+    out = "D";
+  if(trait_name == "Surviving")
+    out = "V";
+  if(trait_name == "Patriotic")
+    out = "P";
+  if(trait_name == "Mistic")
+    out = "I";
+  return out;
+}
+
+
 shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string trait_name)
 {
   string full_trait_name = " ";

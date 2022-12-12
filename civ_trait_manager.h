@@ -18,4 +18,5 @@ class Civ_Trait_Manager
     string Get_Trait_Full_Name(string trait_name);
     string Get_Trait_Full_Explanation(string trait_name);
     shared_ptr<Scaled_Gtk_Image> Get_Trait_Icon(string trait_name);
+    string Get_Trait_Letter(string trait_name);
 };

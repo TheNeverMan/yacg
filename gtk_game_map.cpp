@@ -137,7 +137,7 @@ bool Gtk_Game_Map::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
       if(Game_Map[index]->Has_City_Set())
       {
         cr->set_source_rgb(1.0, 1.0, 1.0);
-        draw_text(cr, {tile_size * start, static_cast<int>(tile_size * start_y + (tile_size * 0.75))}, Game_Map[index]->Get_City_Name());
+        draw_text(cr, {tile_size * start - tile_size / 2, static_cast<int>(tile_size * start_y + (tile_size * 0.75))}, Game_Map[index]->Get_City_Name());
       }
       start_y++;
       index++;

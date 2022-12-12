@@ -21,6 +21,7 @@
 #include "tutorial_dialog.h"
 #include "sound_button.h"
 #include "apply_button.h"
+#include "civ_trait_manager.h"
 
 using std::string;
 using std::vector;
@@ -34,6 +35,7 @@ using std::make_shared;
 class Game_Creation_Window : public Gtk::Window
 {
   private:
+    Civ_Trait_Manager Trait_Manager;
     Map_Generator_Data Map_Data;
     Window_Manager* Main_Manager;
     Game_CSS_Provider Main_Provider;
@@ -66,6 +68,9 @@ class Game_Creation_Window : public Gtk::Window
     Scaled_Gtk_Image Civs_Color_Image;
     Gtk::Frame Civs_Description_Frame;
     Gtk::Label Civs_Description_Label;
+    Gtk::Frame Civs_Trait_Frame;
+    Gtk::Box Civs_Trait_Box;
+    Gtk::Label Civs_Trait_Explanation_Label;
     Gtk::CheckButton Allow_Duplicate_Civs_Button;
     Gtk::CheckButton Randomize_Starting_Locations_Button;
     Gtk::CheckButton Spectator_Mode_Button;

@@ -640,11 +640,16 @@ void Game_Window::Show_Civs_Clicked()
 
 void Game_Window::Update_Economy_Label()
 {
-  string text = Main_Game->Get_Currently_Moving_Player()->Get_Full_Name() + " ID: " + to_string(Main_Game->Get_Currently_Moving_Player_Id());
-  text = text + "\n Gold: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Gold()) + " Actions: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Max_Actions());
-  text = text + "\n Tech in research: " + Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Name() + " " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Cost());
-  text = text + "\n Research Fund: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent()) + " %";
-  Economy_Label.set_text(text);
+  string civ_name_text = Main_Game->Get_Currently_Moving_Player()->Get_Full_Name() + " ID: " + to_string(Main_Game->Get_Currently_Moving_Player_Id());
+  string economy_text = "Gold: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Gold());
+  string actions_text = "Actions: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Max_Actions());
+  string tech_in_research_text = "Tech in research: " + Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Name() + " " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Cost());
+  string research_funds_text = "Research Fund: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent()) + " %";
+  Economy_Label.set_text(economy_text);
+  Civ_Name_Label.set_text(civ_name_text);
+  Actions_Label.set_text(actions_text);
+  Tech_In_Research_Label.set_text(tech_in_research_text);
+  Research_Funds_Label.set_text(research_funds_text);
 }
 
 string Game_Window::Get_Current_Turn_By_Years()
@@ -996,7 +1001,8 @@ bool Game_Window::on_key_press_event(GdkEventKey* key_event)
   if(key_event->keyval == GDK_KEY_Return)
   {
     Logger::Log_Info("Pressed Enter");
-    End_Turn();
+    if(End_Turn_Button.get_sensitive())
+      End_Turn();
     return true;
   }
   if(key_event->keyval == GDK_KEY_t)
@@ -1008,13 +1014,15 @@ bool Game_Window::on_key_press_event(GdkEventKey* key_event)
   if(key_event->keyval == GDK_KEY_s)
   {
     Logger::Log_Info("Pressed S");
-    Manage_Techs_Clicked();
+    if(Manage_Techs_Button.get_sensitive())
+      Manage_Techs_Clicked();
     return true;
   }
   if(key_event->keyval == GDK_KEY_f)
   {
     Logger::Log_Info("Pressed F");
-    Manage_Economy_Clicked();
+    if(Manage_Economy_Button.get_sensitive())
+      Manage_Economy_Clicked();
     return true;
   }
   if(key_event->keyval == GDK_KEY_o)
@@ -1034,19 +1042,15 @@ bool Game_Window::on_key_press_event(GdkEventKey* key_event)
   if(key_event->keyval == GDK_KEY_v)
   {
     Logger::Log_Info("Pressed V");
-    Manage_Overview_Clicked();
+    if(Civ_Overview_Button.get_sensitive())
+      Manage_Overview_Clicked();
     return true;
   }
   if(key_event->keyval == GDK_KEY_n)
   {
     Logger::Log_Info("Pressed N");
-    Show_Newspaper_Clicked();
-    return true;
-  }
-  if(key_event->keyval == GDK_KEY_t)
-  {
-    Logger::Log_Info("Pressed T");
-    Show_Random_Tip();
+    if(Newspaper_Button.get_sensitive())
+      Show_Newspaper_Clicked();
     return true;
   }
 
@@ -1072,7 +1076,25 @@ void Game_Window::Initialize_GTK()
   ProgressBar_Label = Gtk::Label(" ");
   Tile_Information_Label = Gtk::Label(" ");
   Economy_Label = Gtk::Label(" ");
-//  Map_Update_Button = Gtk::Button("Update Map");
+  Civ_Name_Label = Gtk::Label(" ");
+  Actions_Label = Gtk::Label(" ");
+  Research_Funds_Label = Gtk::Label(" ");
+  Tech_In_Research_Label = Gtk::Label(" ");
+
+  Info_Labels_Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
+  Economy_Label_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+  Civ_Name_Label_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+  Economy_Actions_Label_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+  Actions_Label_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+  Tech_In_Research_Label_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+  Research_Funds_Label_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
+
+  Civ_Name_Label_Icon = make_shared<Scaled_Gtk_Image>("assets/textures/icons/overview-icon.svg.png", 24,24);
+  Economy_Label_Icon = make_shared<Scaled_Gtk_Image>("assets/textures/icons/traits/economic-icon.svg.png", 24,24);
+  Actions_Label_Icon = make_shared<Scaled_Gtk_Image>("assets/textures/icons/play-icon.svg.png", 24,24);
+  Research_Funds_Label_Icon = make_shared<Scaled_Gtk_Image>("assets/textures/icons/foreign-icon.svg.png", 24,24);
+  Tech_In_Research_Label_Icon = make_shared<Scaled_Gtk_Image>("assets/textures/icons/science-icon.svg.png", 24,24);
+
   End_Turn_Button = Gtk::Button("End Turn");
   Zoom_Frame = Gtk::Frame("Zoom");
   Zoom_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
@@ -1096,9 +1118,35 @@ void Game_Window::Initialize_GTK()
   string icon_directory = "assets/textures/icons/";
   Image_Path End_Turn_Icon_Path(icon_directory + "apply-icon.svg.png");
   End_Turn_Icon = make_shared<Scaled_Gtk_Image>(End_Turn_Icon_Path.Get_File_Path(), 24 ,24);
-  End_Turn_Button.set_image(*(End_Turn_Icon->Get_Gtk_Image()));
+  End_Turn_Button.remove();
+  End_Turn_Button.add_pixlabel(End_Turn_Icon_Path.Get_File_Path(), "End Turn");
   End_Turn_Box.pack_start(End_Turn_Button, Gtk::PACK_SHRINK);
-  UI_Root_Box.pack_start(Economy_Label, Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start(Info_Labels_Root_Box, Gtk::PACK_SHRINK);
+  Info_Labels_Root_Box.pack_start(Civ_Name_Label_Box);
+  Civ_Name_Label_Box.pack_start(Civ_Name_Label);
+  Civ_Name_Label_Box.pack_start(*(Civ_Name_Label_Icon->Get_Gtk_Image()));
+  Civ_Name_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Info_Labels_Root_Box.pack_start(Economy_Actions_Label_Box);
+  Info_Labels_Root_Box.pack_start(Economy_Label_Box);
+  Economy_Label_Box.pack_start(Economy_Label);
+  Economy_Label.set_halign(Gtk::ALIGN_END);
+  Economy_Label_Box.pack_start(*(Economy_Label_Icon->Get_Gtk_Image()));
+  Economy_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Info_Labels_Root_Box.pack_start(Actions_Label_Box);
+  Actions_Label_Box.pack_start(Actions_Label);
+  Actions_Label.set_halign(Gtk::ALIGN_END);
+  Actions_Label_Box.pack_start(*(Actions_Label_Icon->Get_Gtk_Image()));
+  Actions_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Info_Labels_Root_Box.pack_start(Tech_In_Research_Label_Box);
+  Tech_In_Research_Label_Box.pack_start(Tech_In_Research_Label);
+  Tech_In_Research_Label.set_halign(Gtk::ALIGN_END);
+  Tech_In_Research_Label_Box.pack_start(*(Tech_In_Research_Label_Icon->Get_Gtk_Image()));
+  Tech_In_Research_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Info_Labels_Root_Box.pack_start(Research_Funds_Label_Box);
+  Research_Funds_Label_Box.pack_start(Research_Funds_Label);
+  Research_Funds_Label.set_halign(Gtk::ALIGN_END);
+  Research_Funds_Label_Box.pack_start(*(Research_Funds_Label_Icon->Get_Gtk_Image()));
+  Research_Funds_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
   UI_Root_Box.pack_start(Tile_Information_Label, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(*(Tile_Flag_Image.Get_Gtk_Image()), Gtk::PACK_SHRINK);
   Manage_Techs_Button.Change_Icon(icon_directory + "science-icon.svg.png");
@@ -1130,7 +1178,8 @@ void Game_Window::Initialize_GTK()
   UI_Root_Box.pack_start(Quit_Button, Gtk::PACK_SHRINK);
   Image_Path Tip_Icon_Path(icon_directory + "about-icon.svg.png");
   Tip_Icon = make_shared<Scaled_Gtk_Image>(Tip_Icon_Path.Get_File_Path(), 24 ,24);
-  Random_Tip_Button.set_image(*(Tip_Icon->Get_Gtk_Image()));
+  Random_Tip_Button.remove();
+  Random_Tip_Button.add_pixlabel(Tip_Icon_Path.Get_File_Path(), "Random Tip");
   UI_Root_Box.pack_start(Random_Tip_Button, Gtk::PACK_SHRINK);
   Help_Button.Change_Icon(icon_directory + "about-icon.svg.png");
   UI_Root_Box.pack_start(Help_Button, Gtk::PACK_SHRINK);

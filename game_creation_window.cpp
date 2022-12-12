@@ -31,6 +31,9 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Main_Scrolled_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
   Civs_Scrolled_Window.set_min_content_height(200);
   Main_Scrolled_Window.set_min_content_height(500);
+  Civs_Trait_Explanation_Label = Gtk::Label("Every Civilization has traits which \n determine its strengths and weaknesses. \n Selected civ has following traits:");
+  Civs_Trait_Frame = Gtk::Frame("Traits");
+  Civs_Trait_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
 
   Civs_Frame = Gtk::Frame("Other Players");
   Civs_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0);
@@ -100,6 +103,9 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Main_Player_UI_Box.pack_start(Civs_Chooser_Combo, Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Description_Frame, Gtk::PACK_SHRINK);
   Civs_Description_Frame.add(Civs_Description_Label);
+  Players_UI_Box.pack_start(Civs_Trait_Frame);
+  Civs_Trait_Frame.add(Civs_Trait_Box);
+  Civs_Trait_Box.pack_start(Civs_Trait_Explanation_Label);
   Other_Players_Box.pack_start(Other_Players_Label, Gtk::PACK_SHRINK);
   Other_Players_Box.pack_start(Players_Switch, Gtk::PACK_SHRINK);
   Other_Players_Box.pack_start(Other_Human_Players_Label, Gtk::PACK_SHRINK);
@@ -428,4 +434,27 @@ void Game_Creation_Window::Change_Main_Player_Civ()
   }
   Civs_Description_Label.set_text(selected_civ->Info());
   Civs_Color_Image.Change_Path(selected_civ->Get_Texture_Path());
+  auto children = Civs_Trait_Box.get_children();
+  bool skip_first = true;
+  for( auto &var : children)
+  {
+    if(skip_first)
+    {
+      skip_first = false;
+      continue;
+    }
+    var->hide();
+    Civs_Trait_Box.remove(*var);
+  }
+  for(auto& trait_name : selected_civ->Get_Trait_Names())
+  {
+    auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(Trait_Manager.Get_Trait_Full_Name(trait_name) + "-" + Trait_Manager.Get_Trait_Full_Explanation(trait_name));
+    auto Trait_Icon = Trait_Manager.Get_Trait_Icon(trait_name);
+    Main_Provider.Add_CSS_With_Class(Trait_Label, "medium_label");
+    Civs_Trait_Box.pack_start(*Trait_Box);
+    Trait_Box->pack_start(*(Trait_Icon->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    Trait_Box->pack_start(*Trait_Label);
+    show_all_children();
+  }
 }

@@ -61,11 +61,6 @@ void Map::Upgrade_Tile(int x, int y, string t_u)
   Game_Map[x][y].Place.Upgrade_Tile(t_u);
 }
 
-void Map::Print_Map_In_ASCII()
-{
-  Logger::Log_Error("Unused Function");
-}
-
 Tile Map::Get_Tile(int x, int y)
 {
   return Game_Map[x][y].Place;

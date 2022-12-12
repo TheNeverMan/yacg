@@ -13,7 +13,8 @@
   </info>
   <replacement name="Parliamentary Monarchy" leader="High Commissioner" state_name=""/>
   <replacement name="Democracy" leader="Premier" state_name=""/>
-  <trait name="S"/>
+  <trait name="V"/>
+  <trait name="N"/>
   <leader name="Jonathan Motzfeldt"/>
   <leader name="Lars-Emil Johansen"/>
   <leader name="Hans Enoksen"/>

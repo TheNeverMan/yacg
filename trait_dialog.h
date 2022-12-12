@@ -21,6 +21,9 @@ class Trait_Dialog : public Themed_Dialog
     vector<Civ> Civs;
     Gtk::Box Root_Box;
     Gtk::Box Explanation_Box;
+    Gtk::Box Grid_Box;
+    Gtk::Frame All_Traits_Frame;
+    Gtk::Box All_Traits_Box;
     Scaled_Gtk_Image Explanation_Image;
     Gtk::Label Explanation_Label;
     Gtk::Grid Civs_Grid;
