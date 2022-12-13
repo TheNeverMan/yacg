@@ -581,6 +581,22 @@ bool Game_Window::Remove_Combat_Overlays()
   return true;
 }
 
+void Game_Window::Focus_On_Capital(bool click_capital)
+{
+  cout << Map_Scrolled_Window.get_vscrollbar()->get_adjustment()->get_upper() << " " << Map_Scrolled_Window.get_vscrollbar()->get_adjustment()->get_lower() << endl;
+  Logger::Log_Info("Refocusing on Capital...");
+  array<int, 2> Coords = Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location();
+  if(click_capital)
+    Tile_Clicked(nullptr, {Coords[0], Coords[1]}, nullptr);
+  else
+    Map_Images->Add_Selection_Overlay(Coords);
+  Coords[0] = Coords[0] * Map_Images->Get_Tile_Size();
+  Coords[1] = Coords[1] * Map_Images->Get_Tile_Size();
+  Logger::Log_Info("Setting to X: " + to_string(Coords[0]) + " Y: " + to_string(Coords[1]));
+  Map_Scrolled_Window.get_hscrollbar()->set_value(Coords[0]);
+  Map_Scrolled_Window.get_vscrollbar()->set_value(Coords[1]);
+}
+
 bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img)
 {
   if(is_in_thread){return true;}
@@ -642,14 +658,22 @@ void Game_Window::Update_Economy_Label()
 {
   string civ_name_text = Main_Game->Get_Currently_Moving_Player()->Get_Full_Name() + " ID: " + to_string(Main_Game->Get_Currently_Moving_Player_Id());
   string economy_text = "Gold: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Gold());
+  if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() == 0)
+    economy_text = "<span foreground=\"red\">" + economy_text + "</span>";
   string actions_text = "Actions: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Max_Actions());
+  if(Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions() == 0)
+    actions_text = "<span foreground=\"red\">" + actions_text + "</span>";
   string tech_in_research_text = "Tech in research: " + Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Name() + " " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Cost());
+  if(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost() == 0)
+    tech_in_research_text = "<span foreground=\"red\">" + tech_in_research_text + "</span>";
   string research_funds_text = "Research Fund: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent()) + " %";
-  Economy_Label.set_text(economy_text);
+  if(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent() == 0)
+    research_funds_text = "<span foreground=\"red\">" + research_funds_text + "</span>";
+  Economy_Label.set_markup(economy_text);
   Civ_Name_Label.set_text(civ_name_text);
-  Actions_Label.set_text(actions_text);
-  Tech_In_Research_Label.set_text(tech_in_research_text);
-  Research_Funds_Label.set_text(research_funds_text);
+  Actions_Label.set_markup(actions_text);
+  Tech_In_Research_Label.set_markup(tech_in_research_text);
+  Research_Funds_Label.set_markup(research_funds_text);
 }
 
 string Game_Window::Get_Current_Turn_By_Years()
@@ -933,6 +957,8 @@ void Game_Window::Update_End_Turn_Labels()
     Logger::Log_Info("Turn has finished!");
     Enable_All_Buttons();
     Update_Labels();
+    if(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[0] < 9000)
+      Focus_On_Capital(true);
     Update_Action_Buttons(last_clicked_x, last_clicked_y);
     Update_Tiles_From_Game();
     Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
@@ -1003,6 +1029,36 @@ bool Game_Window::on_key_press_event(GdkEventKey* key_event)
     Logger::Log_Info("Pressed Enter");
     if(End_Turn_Button.get_sensitive())
       End_Turn();
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_space)
+  {
+    Logger::Log_Info("Pressed Space");
+    Focus_On_Capital(!is_in_thread);
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_Left)
+  {
+    Logger::Log_Info("Pressed Left Arrow");
+    Map_Scrolled_Window.get_hscrollbar()->set_value(Map_Scrolled_Window.get_hscrollbar()->get_value() - Map_Images->Get_Tile_Size());
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_Right)
+  {
+    Logger::Log_Info("Pressed Right Arrow");
+    Map_Scrolled_Window.get_hscrollbar()->set_value(Map_Scrolled_Window.get_hscrollbar()->get_value() + Map_Images->Get_Tile_Size());
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_Up)
+  {
+    Logger::Log_Info("Pressed Top Arrow");
+    Map_Scrolled_Window.get_vscrollbar()->set_value(Map_Scrolled_Window.get_vscrollbar()->get_value() - Map_Images->Get_Tile_Size());
+    return true;
+  }
+  if(key_event->keyval == GDK_KEY_Down)
+  {
+    Logger::Log_Info("Pressed Down Arrow");
+    Map_Scrolled_Window.get_vscrollbar()->set_value(Map_Scrolled_Window.get_vscrollbar()->get_value() + Map_Images->Get_Tile_Size());
     return true;
   }
   if(key_event->keyval == GDK_KEY_t)

@@ -151,6 +151,7 @@ class Game_Window : public Gtk::Window
     void Update_End_Turn_Labels();
     void Zoom_Out();
     void Zoom_In();
+    void Focus_On_Capital(bool click_capital);
   private:
     bool is_in_thread = false;
     Window_Manager* Main_Manager;
