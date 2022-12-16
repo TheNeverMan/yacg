@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Iran" r="218" g="0" b="0" personality="Authoritarian" flag="assets/textures/flags/iran-flag.svg" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
+<civ name="Iran" r="218" g="0" b="0" personality="Authoritarian" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
 <info>
 Iran is country located in Western Asia. It is one of the oldest civilizations on Earth, dating back
 to ancient persian empires. Modern Iranian civilization became in 821 when first native muslim
@@ -29,6 +29,9 @@ Iranian color is red from its current flag, its flag is flag of Islamic Republic
 <leader name="Abbas I"/>
 <leader name="Nader Shah"/>
 <leader name="Reza Shah"/>
+<rebel name="Safavids"/>
+<rebel name="Qajar Iran"/>
+<rebel name="Pahlavi Iran"/>
 <city name="Tehran"/>
 <city name="Mashhad"/>
 <city name="Isfahan"/>

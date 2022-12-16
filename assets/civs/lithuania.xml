@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Lithuania" r="0" g="106" b="68" personality="Expansive" flag="assets/textures/flags/lithuania-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
+<civ name="Lithuania" r="0" g="106" b="68" personality="Expansive" audio="assets/sounds/themes/european-theme.mp3" culture="european">
 <info>
 Lithuania is small baltic state. Lithuania reached peak of its power in medieval era when it was
 Grand Duchy of Lithuania under rule of Jogaila, it was the biggest country in Europe. Later Lithuania

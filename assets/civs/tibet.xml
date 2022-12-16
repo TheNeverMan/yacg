@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Tibet" r="53" g="142" b="80" personality="Holy" flag="assets/textures/flags/tibet-flag.svg" audio="assets/sounds/themes/indonesian-theme.mp3" culture="mongol">
+  <civ name="Tibet" r="53" g="142" b="80" personality="Holy" audio="assets/sounds/themes/indonesian-theme.mp3" culture="mongol">
   <info>
   Tibet is a region in East Asia, currenlty in borders of China. Historically many great empires have
   emerged from this plateau like Tibetan Empire. Later most of its territory got conquered by Chinese Empire.

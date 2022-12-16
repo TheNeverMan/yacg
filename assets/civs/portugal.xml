@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Portugal" r="0" g="81" b="151" personality="Exploring" flag="assets/textures/flags/portugal-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
+<civ name="Portugal" r="0" g="81" b="151" personality="Exploring" audio="assets/sounds/themes/european-theme.mp3" culture="european">
 <info>
 Portugal is Iberian country that has land border only with Spain.  In 15th and 16th
 centuries Portugal has founded world first colonial empire by estabilishing colonies in
@@ -25,6 +25,8 @@ Portugese color is blue from Kingdom of Portugal's flag.
 <leader name="Carlos I"/>
 <trait name="O"/>
 <trait name="O"/>
+<rebel name="Azores"/>
+<rebel name="Madeira"/>
 <city name="Lisboa"/>
 <city name="Porto"/>
 <city name="Coimbra"/>

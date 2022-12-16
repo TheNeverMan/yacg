@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Arabia" r="31" g="95" b="31" personality="Enlightened" flag="assets/textures/flags/arabia-flag.svg" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
+<civ name="Arabia" r="31" g="95" b="31" personality="Enlightened" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
 <info>
 Arabia or Arabian Caliphates were 3 major caliphates estabilished after death of prophet Muhammad.
 They conquered and united Arabian Penisula and then expanded to Egypt and Middle East. At greatest
@@ -16,6 +16,9 @@ Arabian color is dark green, blend of colors of three caliphates: black, white a
 <replacement name="Despotism" leader="Prophet" state_name="Islamic Medina of"/>
 <replacement name="Theocracy" leader="Caliph" state_name="Caliphate of"/>
 <replacement name="Fundamentalism" leader="Caliph" state_name="Caliphate of"/>
+<rebel name="Saudi Arabia"/>
+<rebel name="Nejd"/>
+<rebel name="Asir"/>
 <leader name="Muhammad"/>
 <leader name="As-Saffah"/>
 <leader name="Mu'awiya I"/>

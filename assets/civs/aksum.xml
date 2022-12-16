@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Aksum" r="218" g="18" b="26" personality="Enlightened" flag="assets/textures/flags/aksum-flag.svg" audio="assets/sounds/themes/african-theme.mp3" culture="african">
+<civ name="Aksum" r="218" g="18" b="26" personality="Enlightened" audio="assets/sounds/themes/african-theme.mp3" culture="african">
 <info>
 Aksum or Axum was a powerful ancient kingdom located in region of Tigray. It existed
 from 1st to 10th century and reached peak of power in 3rd century, when among it was

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Australia" r="0" g="0" b="139" personality="Expansive" flag="assets/textures/flags/australia-flag.svg" audio="assets/sounds/themes/american-theme.mp3" culture="european">
+<civ name="Australia" r="0" g="0" b="139" personality="Expansive" audio="assets/sounds/themes/american-theme.mp3" culture="european">
 <info>
 Australia is the biggest country in its region, it got colonized
 by England in XIX century. It still remains under formal rule of british
@@ -27,6 +27,11 @@ Australian color is blue from its flag.
 <leader name="James Scullin"/>
 <trait name="N"/>
 <trait name="E"/>
+<rebel name="Aborigenes"/>
+<rebel name="Murrawarri"/>
+<rebel name="Anangu"/>
+<rebel name="Larrakia"/>
+<rebel name="Torres Strait"/>
 <city name="Canberra"/>
 <city name="Sydney"/>
 <city name="Melbourne"/>

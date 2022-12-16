@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Māori" r="169" g="127" b="127" personality="Exploring" flag="assets/textures/flags/maori-flag.svg" audio="assets/sounds/themes/native-theme.mp3" culture="american">
+<civ name="Māori" r="169" g="127" b="127" personality="Exploring" audio="assets/sounds/themes/native-theme.mp3" culture="american">
 <info>
 Māori are native tribes of New Zealand. They have migrated from East Polynesia between 1320
 and 1350.

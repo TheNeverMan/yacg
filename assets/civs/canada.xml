@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Canada" r="213" g="43" b="30" personality="Peaceful" flag="assets/textures/flags/canada-flag.svg" audio="assets/sounds/themes/american-theme.mp3" culture="european">
+<civ name="Canada" r="213" g="43" b="30" personality="Peaceful" audio="assets/sounds/themes/american-theme.mp3" culture="european">
 <info>
 Canada is country located in North America. It is second-largest country in the world. It belongs
 to Commonwealth and King of United Kingdom is formal leader of Canada. It is highly developed country
@@ -27,6 +27,12 @@ Canadian color is red from its flag.
 <leader name="Sir Robert Borden"/>
 <leader name="Justin Trudeau"/>
 <trait name="O"/>
+<rebel name="Nunavut"/>
+<rebel name="Quebec"/>
+<rebel name="Metis"/>
+<rebel name="Anishinabe"/>
+<rebel name="Acadia"/>
+<rebel name="Lower Canda"/>
 <city name="Ottawa"/>
 <city name="Quebec City"/>
 <city name="Toronto"/>

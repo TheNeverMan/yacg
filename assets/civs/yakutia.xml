@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Yakutia" r="17" g="153" b="255" personality="Expansive" flag="assets/textures/flags/yakutia-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="mongol">
+  <civ name="Yakutia" r="17" g="153" b="255" personality="Expansive" audio="assets/sounds/themes/russian-theme.mp3" culture="mongol">
 <info>
 Yakutia or Sakha Republic is a part of Federation of Russia.  It is biggest republic in Russian Federation
 and biggest administrative subdivision in the world. In the 17th century Russia has defeated the Khnate of
@@ -27,6 +27,8 @@ Yakut color is cyan from flag of Republic of Sakha.
   <leader name="Tygyn Darkhan"/>
   <replacement name="Democracy" leader="Head" state_name="Sakha Republic of"/>
   <replacement name="Horde" leader="Khan" state_name="Sibir Khanate of"/>
+  <rebel name="Sakha"/>
+  <rebel name="Tungusia"/>
   <city name="Yakutsk"/>
   <city name="Neryungri"/>
   <city name="Mirny"/>
