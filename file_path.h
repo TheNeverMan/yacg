@@ -23,4 +23,5 @@ class File_Path
     File_Path();
     string Get_File_Path();
     void Set_File_Path(string f_p);
+    bool Does_Exist();
 };

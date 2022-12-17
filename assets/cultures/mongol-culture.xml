@@ -1,6 +1,32 @@
 <miniyacg>
   <cultures>
     <culture name="mongol">
+      <leader name="Ashina Mishe"/>
+      <leader name="Ashina Duzhī"/>
+      <leader name="Onoq Qaghan"/>
+      <leader name="Ashina Yuanqing"/>
+      <leader name="Ashina Tuizi"/>
+      <leader name="Ashina Xian"/>
+      <leader name="Ashia Zhèn"/>
+      <leader name="Ashina Buzhen"/>
+      <leader name="Ashina Huseluo"/>
+      <leader name="Jiezhong Shizhu Qaghan"/>
+      <leader name="Ashina Huaidao"/>
+      <leader name="Ashina Xin"/>
+      <leader name="Qutlugh Bilge Köl Qaghan"/>
+      <leader name="Tengrida Bolmish El Etmish Bilge Qaghan"/>
+      <leader name="Tengrida Qut Bolmish El Tutmish Alp Külüg Bilge Qaghan"/>
+      <leader name="Alp Qutlugh Bilge Qaghan"/>
+      <leader name="Külüg Bilge Qaghan"/>
+      <leader name="Qutluq Bilge Qaghan"/>
+      <leader name="Ay Tengride Ulugh Bolmish Alp Qutluq Külüg Bilge Qaghan"/>
+      <leader name="Ay Tengride Qut Bolmish Alp Bilge Qaghan"/>
+      <leader name="Kün Tengride Ulugh Bolmish Küçlüg Bilge Qaghan"/>
+      <leader name="Ay Tengride Qut Bolmish Alp Bilge Qaghan"/>
+      <leader name="Ay Tengride Qut Bolmish Alp Külüg Bilge Qaghan"/>
+      <leader name="Magor"/>
+      <leader name="Hunor"/>
+      <leader name="Attila"/>
       <city name="Abdusamad"/>
       <city name="Alga"/>
       <city name="Alichur"/>

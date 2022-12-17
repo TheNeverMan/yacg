@@ -369,8 +369,11 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
     int g = stoi(civ_node->first_attribute("g")->value());
     int b = stoi(civ_node->first_attribute("b")->value());
     string p = civ_node->first_attribute("personality")->value();
-    string lower_n = "";
-    std::transform(n.begin(), n.end(), lower_n.begin(), [](unsigned char c){ return std::tolower(c); });
+    string lower_n = n;
+    cout << n << " " << lower_n << endl;
+    std::transform(lower_n.begin(), lower_n.end(), lower_n.begin(), ::tolower);
+    lower_n.erase(std::remove_if(lower_n.begin(), lower_n.end(), isspace), lower_n.end());
+    cout << n << " " << lower_n << endl;
     string t_p = "assets/textures/flags/" + lower_n + "-flag.svg";
     string s_p = civ_node->first_attribute("audio")->value();
     string c = civ_node->first_attribute("culture")->value();

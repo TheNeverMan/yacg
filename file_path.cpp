@@ -29,6 +29,11 @@ File_Path::File_Path()
   Test_File_Existence();
 }
 
+bool File_Path::Does_Exist()
+{
+  return file_path != fallback_file_path;
+}
+
 
 void File_Path::Set_File_Path(string f_p)
 {

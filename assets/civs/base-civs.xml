@@ -1622,7 +1622,7 @@ Mauryan color is blue from one of its possible flags.
 <replacement name="Despotism" leader="Kumara" state_name="Duchy of"/>
 </civ>
 
-<civ name="Tuʻi Tonga" r="12" g="65" b="154" flag="assets/textures/flags/tuitonga-flag.svg" audio="assets/sounds/themes/cicada-theme.mp3" personality="Exploring" culture="american">
+<civ name="Tu'i Tonga" r="12" g="65" b="154" flag="assets/textures/flags/tuitonga-flag.svg" audio="assets/sounds/themes/cicada-theme.mp3" personality="Exploring" culture="american">
 <info>
 Tui'Tongan Empire was longlived Oceanian maritime empire that lasted over 2000 years.
 Tongan people managed to sail thousands of kilometers over oceans and exchange goods, trade and spread their culture.
