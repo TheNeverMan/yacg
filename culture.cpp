@@ -5,9 +5,19 @@ Culture::Culture() : Help_Object(" ", " ")
 
 }
 
-Culture::Culture(string n) : Help_Object(n, " ")
+void Culture::Shuffle_Fallback_Lists()
 {
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  shuffle(Fallback_City_Names.begin(), Fallback_City_Names.end(), std::default_random_engine(seed));
+  shuffle(Fallback_Leader_Names.begin(), Fallback_Leader_Names.end(), std::default_random_engine(seed));
 
+}
+
+Culture::Culture(string n, std::vector<string> c, vector<string> l) : Help_Object(n, " "), Fallback_City_Names(c), Fallback_Leader_Names(l)
+{
+    Shuffle_Fallback_Lists();
+    last_given_city_name = "";
+    last_give_leader_name = "";
 }
 
 Culture::~Culture()
@@ -20,33 +30,66 @@ Culture::Culture(xml_node<>* Root_Node) : Help_Object(Root_Node)
   Deserialize(Root_Node);
 }
 
+string Culture::Get_Random_City_Name()
+{
+  if(!Fallback_City_Names.size())
+    return "City Name";
+  last_given_city_name = Fallback_City_Names[0];
+  return last_given_city_name;
+}
+
+string Culture::Get_Random_Leader_Name()
+{
+  if(!Fallback_Leader_Names.size())
+    return "Leader Name";
+  last_give_leader_name = Fallback_Leader_Names[0];
+  return last_give_leader_name;
+}
+
+void Culture::Remove_Last_City_Name()
+{
+  remove(Fallback_City_Names.begin(), Fallback_City_Names.end(), last_given_city_name);
+}
+
+void Culture::Remove_Last_Leader_Name()
+{
+  remove(Fallback_Leader_Names.begin(), Fallback_Leader_Names.end(), last_give_leader_name);
+}
+
 xml_node<>* Culture::Serialize(memory_pool<>* doc)
 {
   xml_node<>* Root_Node = doc->allocate_node(node_element, "culture");
-  xml_node<>* Upgrade_Texture_Replacements_Node = doc->allocate_node(node_element, "replacements");
-  for(auto const& [upgrade_name, texture_path] : Upgrade_Texture_Replacements)
+  xml_node<>* Fallback_City_Names_Node = doc->allocate_node(node_element, "cities");
+  for_each(Fallback_City_Names.begin(), Fallback_City_Names.end(), [&](auto& city_name)
   {
-    xml_node<>* Upgrade_Texture_Replacement_Node = doc->allocate_node(node_element, "replacement");
-    xml_attribute<>* Upgrade_Name_Attribute = doc->allocate_attribute("name", upgrade_name.c_str());
-    xml_attribute<>* Texture_Path_Attribute = doc->allocate_attribute("path", texture_path.c_str());
-    Upgrade_Texture_Replacement_Node->append_attribute(Upgrade_Name_Attribute);
-    Upgrade_Texture_Replacement_Node->append_attribute(Texture_Path_Attribute);
-    Upgrade_Texture_Replacements_Node->append_node(Upgrade_Texture_Replacement_Node);
-  }
+      xml_node<>* City_Node = doc->allocate_node(node_element, "city", city_name.c_str());
+      Fallback_City_Names_Node->append_node(City_Node);
+  });
+  xml_node<>* Fallback_Leader_Names_Node = doc->allocate_node(node_element, "leaders");
+  for_each(Fallback_Leader_Names.begin(), Fallback_Leader_Names.end(), [&](auto& leader_name)
+  {
+      xml_node<>* Leader_Node = doc->allocate_node(node_element, "leader", leader_name.c_str());
+      Fallback_Leader_Names_Node->append_node(Leader_Node);
+  });
+  Root_Node->append_node(Fallback_City_Names_Node);
+  Root_Node->append_node(Fallback_Leader_Names_Node);
   Root_Node->append_node(Serialize_Help(doc));
-  Root_Node->append_node(Upgrade_Texture_Replacements_Node);
   return Root_Node;
 }
 
 void Culture::Deserialize(xml_node<>* Root_Node)
 {
-  xml_node<> *Upgrade_Texture_Replacements_Node = Root_Node->first_node("replacements");
-  for(xml_node<> *Upgrade_Texture_Replacement_Node = Upgrade_Texture_Replacements_Node->first_node("replacement"); Upgrade_Texture_Replacement_Node; Upgrade_Texture_Replacement_Node = Upgrade_Texture_Replacement_Node->next_sibling("replacement"))
+  xml_node<> *Fallback_City_Names_Node = Root_Node->first_node("cities");
+  for(xml_node<> *City_Node = Fallback_City_Names_Node->first_node("city"); City_Node; City_Node = City_Node->next_sibling("city"))
   {
-    string name = Upgrade_Texture_Replacement_Node->first_attribute("name")->value();
-    string path = Upgrade_Texture_Replacement_Node->first_node("path")->value();
-    Upgrade_Texture_Replacements[name] = path;
+    Fallback_City_Names.push_back(City_Node->value());
   }
+  xml_node<> *Fallback_Leader_Names_Node = Root_Node->first_node("leaders");
+  for(xml_node<> *Leader_Node = Fallback_Leader_Names_Node->first_node("leader"); Leader_Node; Leader_Node = Leader_Node->next_sibling("leader"))
+  {
+    Fallback_Leader_Names.push_back(Leader_Node->value());
+  }
+  Shuffle_Fallback_Lists();
 }
 
 string Culture::Get_Texture_For_Upgrade(string upgrade_name)

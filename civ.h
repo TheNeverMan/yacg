@@ -17,6 +17,7 @@
 #include "audio_owner.h"
 #include "texture_owner.h"
 #include "logger.h"
+#include "city.h"
 
 using std::string;
 using std::vector;
@@ -40,14 +41,6 @@ struct Unit_On_Map
   {
 
   }
-};
-
-//to be changed ???
-struct Owned_City //????
-{
-  Coords Coordinates;
-  string name;
-  bool is_expanded = false;
 };
 
 class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, public Audio_Owner
@@ -96,11 +89,11 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     void Move_Unit_To_By_Coords(int unit_x, int unit_y, int dest_x, int dest_y, int cost);
     int Get_Unit_Maitenance();
     void Refresh_Unit_Movement_Points();
-    string Lose_City_By_Coords(int x, int y);
+    City Lose_City_By_Coords(int x, int y);
     int Get_Number_Of_Cities_Owned();
     int Get_Population();
     int Get_Army_Manpower();
-    vector<Owned_City> Get_Owned_Cities();
+    vector<City> Get_Owned_Cities();
     string Get_Personality();
     int Get_Number_Of_Researched_Techs();
     int Get_Number_Of_Naval_Units();
@@ -139,7 +132,7 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     double tech_money_modifier = 1.0;
     int32_t color;
     vector<string> Leaders;
-    vector<Owned_City> Cities;
+    vector<City> Cities;
     vector<Tech> Tech_Tree;
     vector<Unit> Unit_Templates;
     vector<Unit_On_Map> Units_Owned;

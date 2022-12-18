@@ -119,21 +119,13 @@ void Civ::Build_City_On_Map_With_Name(int x, int y, string name)
 
 string Civ::Get_City_Name_By_Coordinates(int x, int y)
 {
-  string out = " ";
-  for(auto &city : Cities)
-  {
-    if(city.Coordinates.x == x && city.Coordinates.y == y)
-      out = city.name;
-  }
-  return out;
+  arry
+  return find_if(Cities.begin(), Cities.end(), )
 }
 
 array<int, 2> Civ::Get_Capital_Location()
 {
-  array<int, 2> out;
-  out[0] = Cities[0].Coordinates.x;
-  out[1] = Cities[0].Coordinates.y;
-  return out;
+  return Cities[0].Get_Coords();
 }
 
 Upgrade Civ::Find_Upgrade_By_Name(string upg_name)
@@ -664,7 +656,7 @@ string Civ::Get_Capital_Name()
 {
   if(Cities.size() == 0)
     return "exile";
-  return Cities[0].name;
+  return Cities[0].Get_Name();
 }
 
 string Civ::Get_Raw_Name()
@@ -731,7 +723,7 @@ void Civ::Recruit_Unit_By_Name(string name, int x, int y)
   }
 }
 
-vector<Owned_City> Civ::Get_Owned_Cities()
+vector<City> Civ::Get_Owned_Cities()
 {
   return Cities;
 }
@@ -754,23 +746,23 @@ vector<Unit_On_Map>* Civ::Get_Owned_Units()
   return &Units_Owned;
 }
 
-string Civ::Lose_City_By_Coords(int x, int y)
+City Civ::Lose_City_By_Coords(int x, int y)
 {
   max_actions--;
+  array<int, 2> C {x,y};
   int index = 0;
-  string out = " ";
   for(auto &city : Cities)
   {
-    if(city.Coordinates.x == x && city.Coordinates.y == y)
+    if(city.Get_Coords() == C)
     {
-      out = city.name;
+      City out = city;
       Cities.erase(Cities.begin() + index);
       return out;
     }
     index++;
   }
   Logger::Log_Error("City Not Found");
-  return out;
+  return nullptr;
 }
 
 string Civ::Get_Active_Goverment_Name()
@@ -873,13 +865,10 @@ void Civ::Deserialize(xml_node<>* Root_Node)
   }
 
   xml_node<>* Owned_Cities_Node = Root_Node->first_node("owned_cities");
-  for(xml_node<> *Owned_City_Node = Owned_Cities_Node->first_node("owned_city"); Owned_City_Node; Owned_City_Node = Owned_City_Node->next_sibling("owned_city"))
+  for(xml_node<> *Owned_City_Node = Owned_Cities_Node->first_node("city"); Owned_City_Node; Owned_City_Node = Owned_City_Node->next_sibling("city"))
   {
-    Owned_City tmp;
-    tmp.Coordinates.x = stoi(Owned_City_Node->first_attribute("x")->value());
-    tmp.Coordinates.y = stoi(Owned_City_Node->first_attribute("y")->value());
-    tmp.name = Owned_City_Node->first_attribute("city_name")->value();
-    Cities.push_back(tmp);
+    City Tmp(Owned_City_Node);
+    Cities.push_back(Tmp);
   }
 
   xml_node<>* Owned_Units_Node = Root_Node->first_node("owned_units");
@@ -985,16 +974,9 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
 
   xml_node<> *Owned_Cities_Node = doc->allocate_node(node_element, "owned_cities");
 
-  for(Owned_City& iterated_city : Cities)
+  for(City& iterated_city : Cities)
   {
-    xml_node<> *owned_city_node = doc->allocate_node(node_element, "owned_city");
-    xml_attribute<> *x_coord = doc->allocate_attribute("x", doc->allocate_string(to_string(iterated_city.Coordinates.x).c_str()));
-    owned_city_node->append_attribute(x_coord);
-    xml_attribute<> *y_coord = doc->allocate_attribute("y", doc->allocate_string(to_string(iterated_city.Coordinates.y).c_str()));
-    owned_city_node->append_attribute(y_coord);
-    xml_attribute<> *city_name = doc->allocate_attribute("city_name", doc->allocate_string(iterated_city.name.c_str()));
-    owned_city_node->append_attribute(city_name);
-    Owned_Cities_Node->append_node(owned_city_node);
+    Owned_Cities_Node->append_node(iterated_city.Serialize(doc));
   };
 
   xml_node<> *Owned_Units_Node = doc->allocate_node(node_element, "owned_units");
