@@ -46,14 +46,15 @@ struct Unit_On_Map
 class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, public Audio_Owner
 {
   public:
-    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c);
+    Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c, vector<string> r_n);
     string Get_Leader_Name();
     string Get_Full_Name();
     void Assign_Id(int i);
     int Get_Id();
-    void Build_City_On_Map(int x, int y);
-    void Build_City_On_Map_With_Name(int x, int y, string name);
+    bool Build_City_On_Map(int x, int y, string fallback_city_name, string founding_date);
+    void Conquer_City(City New_City);
     string Get_City_Name_By_Coordinates(int x, int y);
+    City* Get_City_By_Coordinates(array<int, 2> Coords);
     Unit Get_Unit_On_Tile(int x, int y);
     Unit* Get_Unit_On_Tile_Pointer(int x, int y);
     array<int, 2> Get_Capital_Location();
@@ -75,11 +76,13 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     void Build_Upgrade(string upg_name);
     string Get_Active_Goverment_Name();
     int Get_Upgrade_Border_Radius();
+    int Get_Number_Of_Stability_Techs();
+    int Get_Number_Of_Assimilation_Techs();
     int32_t Get_Civ_Color();
     bool Has_Researched_Border_Expand_Tech_Recently();
     string Get_Raw_Name();
     string Get_Raw_Leader_Name();
-    void Change_Goverment_By_Name(string new_gov_name);
+    bool Change_Goverment_By_Name(string new_gov_name, string fallback_leader_name);
     vector<Unit> Get_Units();
     vector<Unit_On_Map> *Get_Owned_Units();
     void Recruit_Unit_By_Name(string name, int x, int y);
@@ -93,7 +96,8 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     int Get_Number_Of_Cities_Owned();
     int Get_Population();
     int Get_Army_Manpower();
-    vector<City> Get_Owned_Cities();
+    vector<City>* Get_Owned_Cities();
+    vector<City> Get_Owned_Cities_Not_Pointer();
     string Get_Personality();
     int Get_Number_Of_Researched_Techs();
     int Get_Number_Of_Naval_Units();
@@ -111,8 +115,12 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     void Give_One_Gold();
     bool Is_Unit_Obsolete(string unit_name);
     string Get_Culture_Name();
+    bool Change_Leader_Name(string fallback_leader_name);
+    array<string, 2> Get_Rebellion_Name_And_Flag_Path();
+    vector<Tech> Get_Tech_Tree();
   private:
     map<string, vector<string>> Goverment_Name_Replacements;
+    vector<string> Rebellion_Names;
     bool recent_expand = false;
     int research_percent;
     int city_name_index;

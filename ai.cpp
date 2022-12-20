@@ -26,7 +26,7 @@ int AI::Get_Currently_Moving_Player_Finances()
 
 int AI::Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y)
 {
-  int out = sqrt((abs((p_x - g_x)^2)) + abs(((p_y - g_y)^2)));
+  int out = sqrt((abs(pow(p_x - g_x,2))) + abs((pow(p_y - g_y,2))));
   return out;
 }
 
@@ -223,23 +223,25 @@ void AI::Move_Unit_Towards_Enemy(int x, int y, Unit u)
 bool AI::Recruit_Unit_In_City()
 {
   vector<Unit> units = Main_Game->Get_Currently_Moving_Player()->Get_Units();
-  vector<Owned_City> cities = Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities();
+  vector<City> cities = Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities_Not_Pointer();
   reverse(units.begin(), units.end());
   for(auto &city : cities)
   {
-    if(Main_Game->Get_Map()->Get_Tile(city.Coordinates.x, city.Coordinates.y).Has_Unit() && Main_Game->Get_Map()->Get_Tile(city.Coordinates.x, city.Coordinates.y).Get_Unit_Owner_Id() == Main_Game->Get_Currently_Moving_Player_Id())
+    int x = city.Get_Coords()[0];
+    int y = city.Get_Coords()[1];
+    if(Main_Game->Get_Map()->Get_Tile(city.Get_Coords()[0], city.Get_Coords()[1]).Has_Unit() && Main_Game->Get_Map()->Get_Tile(city.Get_Coords()[0], city.Get_Coords()[1]).Get_Unit_Owner_Id() == Main_Game->Get_Currently_Moving_Player_Id())
     {
-      Move_Unit_Towards_Enemy(city.Coordinates.x, city.Coordinates.y, Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(city.Coordinates.x, city.Coordinates.y));
-      if(Main_Game->Get_Map()->Get_Tile(city.Coordinates.x, city.Coordinates.y).Has_Unit())
+      Move_Unit_Towards_Enemy(x,y, Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(city.Get_Coords()[0], city.Get_Coords()[1]));
+      if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
         continue;
     }
     for(auto &unit : units)
     {
-      if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(unit.Get_First_Requirement()) && unit.Can_Move_On_Tile_By_Name(Main_Game->Get_Map()->Get_Tile(city.Coordinates.x, city.Coordinates.y).Get_Name()))
+      if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(unit.Get_First_Requirement()) && unit.Can_Move_On_Tile_By_Name(Main_Game->Get_Map()->Get_Tile(city.Get_Coords()[0], city.Get_Coords()[1]).Get_Name()))
       {
         if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= unit.Get_Cost())
         {
-          Main_Game->Recruit_Unit(unit.Get_Name(), city.Coordinates.x, city.Coordinates.y);
+          Main_Game->Recruit_Unit(unit.Get_Name(), x,y);
           return true;
         }
       }
@@ -392,11 +394,11 @@ double AI::Change_Technology_Goal(double technologic_parameter, int tech_class)
 
 void AI::Heal_Units_In_Cities()
 {
-  vector<Owned_City> cities = Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities();
-  for(auto &city : cities)
+  vector<City>* cities = Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities();
+  for(auto &city : *cities)
   {
-    if(Main_Game->Get_Map()->Get_Tile(city.Coordinates.x, city.Coordinates.y).Has_Unit())
-      Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(city.Coordinates.x, city.Coordinates.y)->Heal(0);
+    if(Main_Game->Get_Map()->Get_Tile(city.Get_Coords()[0], city.Get_Coords()[1]).Has_Unit())
+      Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(city.Get_Coords()[0], city.Get_Coords()[1])->Heal(0);
   }
 }
 

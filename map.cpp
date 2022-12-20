@@ -151,6 +151,11 @@ bool Map::Is_Tile_Upgraded(int x, int y)
   return Get_Tile(x,y).Get_Upgrade() == "none";
 }
 
+array<int, 2> Map::Find_Closest_Upgrade_By_Name(array<int, 2> Coords, int owner, string name)
+{
+  return Get_Closest_Point(Coords[0], Coords[1], Find_All_Upgrade_Locations(owner, name));
+}
+
 array<int, 2> Map::Calculate_Production_For_Tile(int x, int y, int id, Civ player)
 {
   array<int, 2> out;
@@ -610,7 +615,7 @@ int Map::Count_Tiles_Owned_By_Player(int owner, string tile_name)
 
 int Map::Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y)
 {
-  int out = sqrt((abs((p_x - g_x)^2)) + abs(((p_y - g_y)^2)));
+  int out = sqrt(abs(pow(p_x - g_x,2)) + abs((pow(p_y - g_y,2))));
   return out;
 }
 

@@ -42,6 +42,7 @@
 #include "apply_button.h"
 #include "sound_button.h"
 #include "civ_trait_manager.h"
+#include "internal_dialog.h"
 
 using namespace std::chrono;
 using std::milli;
@@ -103,20 +104,21 @@ class Game_Window : public Gtk::Window
     Gtk::Label Tile_Information_Label;
     Scaled_Gtk_Image Tile_Flag_Image;
   //  Gtk::Button Map_Update_Button;
-    Sound_Button Manage_Economy_Button;
-    Sound_Button Manage_Techs_Button;
-    Sound_Button Show_Civs_Button;
-    Sound_Button Manage_Goverments_Button;
-    Sound_Button Civ_Overview_Button;
-    Sound_Button Save_Button;
+    Slaved_Sound_Button Manage_Economy_Button;
+    Slaved_Sound_Button Manage_Techs_Button;
+    Slaved_Sound_Button Show_Civs_Button;
+    Slaved_Sound_Button Manage_Goverments_Button;
+    Slaved_Sound_Button Civ_Overview_Button;
+    Slaved_Sound_Button Save_Button;
     Gtk::Frame Zoom_Frame;
     Gtk::Box Zoom_Box;
-    Sound_Button Zoom_In_Button;
-    Sound_Button Zoom_Out_Button;
-    Sound_Button Load_Button;
-    Sound_Button Newspaper_Button;
-    Sound_Button Quit_Button;
-    Sound_Button Help_Button;
+    Slaved_Sound_Button Zoom_In_Button;
+    Slaved_Sound_Button Zoom_Out_Button;
+    Slaved_Sound_Button Load_Button;
+    Slaved_Sound_Button Newspaper_Button;
+    Slaved_Sound_Button Quit_Button;
+    Slaved_Sound_Button Help_Button;
+    Slaved_Sound_Button Manage_Stability_Button;
     Gtk::Button Random_Tip_Button;
     bool Game_Map_Clicked(GdkEventButton* key_event);
   //  Gtk::Button Tip_Button;
@@ -152,6 +154,7 @@ class Game_Window : public Gtk::Window
     void Zoom_Out();
     void Zoom_In();
     void Focus_On_Capital(bool click_capital);
+    void Manage_Stability_Clicked();
   private:
     bool is_in_thread = false;
     Window_Manager* Main_Manager;

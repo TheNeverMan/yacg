@@ -19,6 +19,7 @@ using std::string;
 using std::map;
 using std::vector;
 using std::array;
+using std::pow;
 
 class Map : public XML_Serializable
 {
@@ -80,4 +81,5 @@ class Map : public XML_Serializable
     vector<int> Find_Direction_To_Enemy_City_Or_Unit(int unit_owner_id, int x, int y, int movement_points, Unit u);
     vector<array<int, 2>> Find_All_Upgrade_Locations(int owner, string upg_name);
     vector<int> Find_Direction_To_Settle_City(int owner, int x, int y, Unit u);
+    array<int, 2> Find_Closest_Upgrade_By_Name(array<int,2> Coords, int owner, string name);
 };

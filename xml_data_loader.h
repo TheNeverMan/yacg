@@ -3,6 +3,7 @@
 #include<vector>
 #include<memory>
 #include<filesystem>
+#include<clocale>
 
 #include "civ.h"
 #include "gov.h"

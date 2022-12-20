@@ -117,7 +117,17 @@ vector<Culture> XML_Data_Loader::Load_Cultures_From_File(string path)
   for(xml_node<> * culture_node = cultures_node->first_node("culture"); culture_node; culture_node = culture_node->next_sibling("culture"))
   {
     string name = culture_node->first_attribute("name")->value();
-    Culture tmp(name);
+    vector<string> cities;
+    vector<string> leaders;
+    for(xml_node<> *city_node = culture_node->first_node("city"); city_node; city_node = city_node->next_sibling("city"))
+    {
+      cities.push_back(city_node->first_attribute("name")->value());
+    }
+    for(xml_node<> *leader_node = culture_node->first_node("leader"); leader_node; leader_node = leader_node->next_sibling("leader"))
+    {
+      leaders.push_back(leader_node->first_attribute("name")->value());
+    }
+    Culture tmp(name, cities, leaders);
     out.push_back(tmp);
   }
   return out;
@@ -328,8 +338,12 @@ vector<Gov> XML_Data_Loader::Load_Govs_From_File(string path)
     string t_p = gov_node->first_attribute("texture")->value();
     string l_t = gov_node->first_attribute("title")->value();
     string s_n = gov_node->first_attribute("state_name")->value();
+    int m_s = stoi(gov_node->first_attribute("max_stability")->value());
+    std::setlocale(LC_NUMERIC,"C"); //decimal dot place
+    double pa = stod(gov_node->first_attribute("passive_stability")->value());
+    double a = stod(gov_node->first_attribute("army_stability")->value());
     vector<string> traits = Load_Traits_From_Root_Node(gov_node);
-    Gov tmp_gov(n, l_t, s_n, t_r, i, t_p, traits);
+    Gov tmp_gov(n, l_t, s_n, t_r, i, t_p, traits, m_s, pa, a);
     out.push_back(tmp_gov);
   }
   return out;
@@ -370,10 +384,8 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
     int b = stoi(civ_node->first_attribute("b")->value());
     string p = civ_node->first_attribute("personality")->value();
     string lower_n = n;
-    cout << n << " " << lower_n << endl;
     std::transform(lower_n.begin(), lower_n.end(), lower_n.begin(), ::tolower);
     lower_n.erase(std::remove_if(lower_n.begin(), lower_n.end(), isspace), lower_n.end());
-    cout << n << " " << lower_n << endl;
     string t_p = "assets/textures/flags/" + lower_n + "-flag.svg";
     string s_p = civ_node->first_attribute("audio")->value();
     string c = civ_node->first_attribute("culture")->value();
@@ -381,6 +393,7 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
     vector<string> traits = Load_Traits_From_Root_Node(civ_node);
     vector<string> leaders;
     map<string, vector<string>> g_n_r;
+    vector<string> rebellions;
     for(xml_node<> *city_node = civ_node->first_node("city"); city_node; city_node = city_node->next_sibling("city"))
     {
       cities.push_back(city_node->first_attribute("name")->value());
@@ -389,12 +402,16 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
     {
       leaders.push_back(leader_node->first_attribute("name")->value());
     }
+    for(xml_node<> *rebel_node = civ_node->first_node("rebel"); rebel_node; rebel_node = rebel_node->next_sibling("rebel"))
+    {
+      rebellions.push_back(rebel_node->first_attribute("name")->value());
+    }
     for(xml_node<> *rep_node = civ_node->first_node("replacement"); rep_node; rep_node = rep_node->next_sibling("replacement"))
     {
       g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("leader")->value());
       g_n_r[rep_node->first_attribute("name")->value()].push_back(rep_node->first_attribute("state_name")->value());
     }
-    Civ tmp(n, leaders, h_t, cities, Technologies, Units, r, g, b, traits, Goverments, g_n_r, p, Upgrades, t_p, s_p, c);
+    Civ tmp(n, leaders, h_t, cities, Technologies, Units, r, g, b, traits, Goverments, g_n_r, p, Upgrades, t_p, s_p, c, rebellions);
     out.push_back(tmp);
   }
   return out;

@@ -22,7 +22,7 @@ City::City(xml_node<>* Root_Node)
 void City::Change_Owner(string new_owner)
 {
   owner_name = new_owner;
-  stability = stability - 20;
+  stability = stability - 10;
   Update_Status();
 }
 
@@ -46,14 +46,51 @@ void City::Update_Nationality()
 {
   if(nationality != owner_name)
   {
-    if(rand() % 100 < 5)
-      nationality == owner_name;
+    if(rand() % 100 < 7)
+      nationality = owner_name;
   }
 }
 
-void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit, bool is_connected, int stability_techs, int assimilation_techs)
+bool City::Does_Have_Increased_Maitenance()
 {
+  return stability < 50;
+}
+
+void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit, int stability_techs, int assimilation_techs, double base_growth, double army_multiplier, int max_stability)
+{
+  bool is_connected = false;
   Update_Nationality();
+  double stab_growth = 0;
+  double capital_distance = sqrt((abs(pow((Get_Coords()[0] - Capital_Location[0]),2))) + abs((pow(Get_Coords()[1] - Capital_Location[1],2))));
+  if(nationality == owner_name)
+  {
+    stab_growth = (base_growth - (0.1*capital_distance)) * (1 + (0.5 * stability_techs)) * (1+ is_connected);
+    cout << stab_growth << "=" << "(" << base_growth << "- (0.1 *" << capital_distance << ")) * (1 + 0.5 * " << stability_techs << " )) * 1 + " << is_connected << ")" << endl;
+    if(has_unit)
+      stab_growth = stab_growth * army_multiplier;
+  }
+  else
+  {
+    stab_growth = (base_growth - (0.1*capital_distance)) * ((0.5 * assimilation_techs));
+    if(has_unit)
+      stab_growth = stab_growth * army_multiplier;
+  }
+  if(turns_without_stability_changes)
+    turns_without_stability_changes--;
+  if(turns_without_positive_stability_changes)
+    turns_without_positive_stability_changes--;
+  if(turns_without_stability_changes || (turns_without_positive_stability_changes && stab_growth < 0))
+    return;
+  stability = stability + stab_growth;
+  if(stability > max_stability)
+    stability = max_stability;
+}
+
+bool City::Does_Rebel()
+{
+  if(stability < 35 && rand() % 100 <= 70)
+    return true;
+  return false;
 }
 
 string City::Get_Name()
@@ -154,4 +191,36 @@ void City::Deserialize(xml_node<>* Root_Node)
 array<int, 2> City::Get_Coords()
 {
   return Coords;
+}
+
+void City::Set_Catastrophe(City_Status Type)
+{
+  if(Status < static_cast<City_Status>(3)) //cant happen if already happening
+    return;
+  Status = Type;
+  stability = stability - 20;
+  turns_without_positive_stability_changes = 3;
+  Update_Status();
+}
+
+void City::Flood()
+{
+  Set_Catastrophe(City_Status::Flood);
+}
+
+void City::Drought()
+{
+  Set_Catastrophe(City_Status::Drought);
+}
+
+void City::Epidemy()
+{
+  Set_Catastrophe(City_Status::Epidemy);
+}
+
+void City::Rebel()
+{
+  stability = stability + 20;
+  turns_without_stability_changes = 5;
+  Update_Status();
 }

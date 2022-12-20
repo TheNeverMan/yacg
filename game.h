@@ -101,8 +101,10 @@ class Game : public XML_Serializable
     Unit Get_Unit_By_Tile(int x, int y);
     void Remove_All_Missle_Units();
     bool Is_Only_One_Player_Alive();
-    Culture Get_Culture_By_Player_Id(int player_id);
+    Culture* Get_Culture_By_Player_Id(int player_id);
+    void Update_Stability_For_Currently_Moving_Player();
   public:
+    Gov Get_Goverment_By_Name(string gov_name);
     bool Is_Currently_Moving_Player_AI();
     void Disband_Unit(int x, int y);
     Unit Get_Unit_By_Name(string name);

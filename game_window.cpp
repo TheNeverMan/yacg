@@ -501,9 +501,9 @@ void Game_Window::Update_Action_Buttons(int x, int y)
 
 void Game_Window::Update_Tile_Information_Label(int x, int y)
 {
-  vector<int> coords;
-  coords.push_back(x);
-  coords.push_back(y);
+  array<int, 2> coords;
+  coords[0] = x;
+  coords[1] = y;
   string text = "Tile ";
   text = text + " X: ";
   text = text + to_string(coords[0]);
@@ -517,6 +517,11 @@ void Game_Window::Update_Tile_Information_Label(int x, int y)
   if(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Upgrade() == "City")
   {
     text = text + "\n City Name: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_Name_By_Coordinates(coords[0],coords[1]);
+    text = text + "\n City Nationality: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Nationality();
+    text = text + "\n City Stability: " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Stability());
+    text = text + "\n City Founder: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Founder_Name();
+    text = text + "\n City Founding Date: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Founding_Date();
+
   }
   if(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))
   {
@@ -645,6 +650,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
   }
   Update_Action_Buttons(coords[0],coords[1]);
   Update_Tile_Flag();
+  Update_Tiles_From_Game();
   return true;
 }
 
@@ -664,7 +670,7 @@ void Game_Window::Update_Economy_Label()
   if(Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions() == 0)
     actions_text = "<span foreground=\"red\">" + actions_text + "</span>";
   string tech_in_research_text = "Tech in research: " + Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Name() + " " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Cost());
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost() == 0)
+  if(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost() <= 0)
     tech_in_research_text = "<span foreground=\"red\">" + tech_in_research_text + "</span>";
   string research_funds_text = "Research Fund: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent()) + " %";
   if(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent() == 0)
@@ -733,6 +739,7 @@ void Game_Window::Disable_All_Buttons()
 //  Map_Update_Button.set_sensitive(false);
   Manage_Economy_Button.set_sensitive(false);
   Manage_Techs_Button.set_sensitive(false);
+  Manage_Stability_Button.set_sensitive(false);
   Show_Civs_Button.set_sensitive(false);
   Manage_Goverments_Button.set_sensitive(false);
   Civ_Overview_Button.set_sensitive(false);
@@ -752,6 +759,7 @@ void Game_Window::Enable_All_Buttons()
 //  Map_Update_Button.set_sensitive(true);
   Manage_Economy_Button.set_sensitive(true);
   Manage_Techs_Button.set_sensitive(true);
+  Manage_Stability_Button.set_sensitive(true);
   Show_Civs_Button.set_sensitive(true);
   Manage_Goverments_Button.set_sensitive(true);
   Civ_Overview_Button.set_sensitive(true);
@@ -958,7 +966,7 @@ void Game_Window::Update_End_Turn_Labels()
     Enable_All_Buttons();
     Update_Labels();
     if(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[0] < 9000)
-      Focus_On_Capital(true);
+      //Focus_On_Capital(true);
     Update_Action_Buttons(last_clicked_x, last_clicked_y);
     Update_Tiles_From_Game();
     Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
@@ -1113,6 +1121,12 @@ bool Game_Window::on_key_press_event(GdkEventKey* key_event)
   return Gtk::Window::on_key_press_event(key_event);
 }
 
+void Game_Window::Manage_Stability_Clicked()
+{
+  Internal_Dialog Dialog(Main_Game->Get_Goverment_By_Name(Main_Game->Get_Currently_Moving_Player()->Get_Active_Goverment_Name()), Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities());
+  Dialog.Show();
+}
+
 void Game_Window::Initialize_GTK()
 {
   Last_Clicked_Tile = nullptr;
@@ -1211,6 +1225,8 @@ void Game_Window::Initialize_GTK()
   UI_Root_Box.pack_start(Manage_Economy_Button, Gtk::PACK_SHRINK);
   Show_Civs_Button.Change_Icon(icon_directory + "foreign-icon.svg.png");
   UI_Root_Box.pack_start(Show_Civs_Button, Gtk::PACK_SHRINK);
+  Manage_Stability_Button.Change_Icon(icon_directory + "internal-icon.svg.png");
+  UI_Root_Box.pack_start(Manage_Stability_Button, Gtk::PACK_SHRINK);
   Manage_Goverments_Button.Change_Icon(icon_directory + "revolution-icon.svg.png");
   UI_Root_Box.pack_start(Manage_Goverments_Button, Gtk::PACK_SHRINK);
   Civ_Overview_Button.Change_Icon(icon_directory + "overview-icon.svg.png");
@@ -1259,6 +1275,7 @@ void Game_Window::Initialize_GTK()
   End_Turn_Dispatcher.connect(sigc::mem_fun(*this, &Game_Window::Update_End_Turn_Labels));
   Zoom_In_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_In));
   Zoom_Out_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Zoom_Out));
+  Manage_Stability_Button.signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Manage_Stability_Clicked));
   Main_Provider.Add_CSS(this);
   Main_Provider.Add_CSS(&End_Turn_Button);
   Main_Provider.Add_CSS(&Random_Tip_Button);
@@ -1312,9 +1329,10 @@ void Game_Window::Set_Tiles_Size_Automatically()
       Main_Settings_Manager.Set_Tile_Size_Value(new_tile_size);
     }
   }
+  //Focus_On_Capital(true);
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Show_Civs_Button("Foregin Ministry"), Manage_Techs_Button("Science Ministry"), Civ_Overview_Button("Overview"), Manage_Economy_Button("Finance Ministry"), Newspaper_Button("Newspaper"), Manage_Goverments_Button("Revolution"), Save_Button("Save Game"), Load_Button("Load Game"), Zoom_In_Button("Zoom In"), Zoom_Out_Button("Zoom Out"), Help_Button("Help"), Quit_Button("Exit to Main Menu")
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Show_Civs_Button("Foregin Ministry", &Main_Sound_Manager), Manage_Techs_Button("Science Ministry", &Main_Sound_Manager), Civ_Overview_Button("Overview", &Main_Sound_Manager), Manage_Economy_Button("Finance Ministry", &Main_Sound_Manager), Newspaper_Button("Newspaper", &Main_Sound_Manager), Manage_Goverments_Button("Revolution", &Main_Sound_Manager), Save_Button("Save Game", &Main_Sound_Manager), Load_Button("Load Game", &Main_Sound_Manager), Zoom_In_Button("Zoom In", &Main_Sound_Manager), Zoom_Out_Button("Zoom Out", &Main_Sound_Manager), Help_Button("Help", &Main_Sound_Manager), Quit_Button("Exit to Main Menu", &Main_Sound_Manager), Manage_Stability_Button("Internal Ministry", &Main_Sound_Manager)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;
@@ -1332,7 +1350,7 @@ array<int ,2> Game_Window::Get_Screen_Resolution()
   return out;
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Map_Generation_Thread(nullptr), Show_Civs_Button("Foregin Ministry"), Manage_Techs_Button("Science Ministry"), Civ_Overview_Button("Overview"), Manage_Economy_Button("Finance Ministry"), Newspaper_Button("Newspaper"), Manage_Goverments_Button("Revolution"), Save_Button("Save Game"), Load_Button("Load Game"), Zoom_In_Button("Zoom In"), Zoom_Out_Button("Zoom Out"), Help_Button("Help"), Quit_Button("Exit to Main Menu")
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Map_Generation_Thread(nullptr), Show_Civs_Button("Foregin Ministry", &Main_Sound_Manager), Manage_Techs_Button("Science Ministry", &Main_Sound_Manager), Civ_Overview_Button("Overview", &Main_Sound_Manager), Manage_Economy_Button("Finance Ministry", &Main_Sound_Manager), Newspaper_Button("Newspaper", &Main_Sound_Manager), Manage_Goverments_Button("Revolution", &Main_Sound_Manager), Save_Button("Save Game", &Main_Sound_Manager), Load_Button("Load Game", &Main_Sound_Manager), Zoom_In_Button("Zoom In", &Main_Sound_Manager), Zoom_Out_Button("Zoom Out", &Main_Sound_Manager), Help_Button("Help", &Main_Sound_Manager), Quit_Button("Exit to Main Menu", &Main_Sound_Manager), Manage_Stability_Button("Internal Ministry", &Main_Sound_Manager)
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;

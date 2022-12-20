@@ -1,10 +1,11 @@
 #include "civ.h"
 
-Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c) : Traits_Owner(t), Help_Object(n,c_i), Texture_Owner(t_p), Audio_Owner(a)
+Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c, vector<string> r_n) : Traits_Owner(t), Help_Object(n,c_i), Texture_Owner(t_p), Audio_Owner(a)
 {
   srand(time(NULL));
   Goverment_Name_Replacements = g_n_r;
   Goverments = go;
+  Rebellion_Names = r_n;
   Active_Goverment = Goverments[0];
   city_name_index = 0;
   id = 0;
@@ -42,9 +43,37 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   }
 }
 
+array<string, 2> Civ::Get_Rebellion_Name_And_Flag_Path()
+{
+  array<string, 2> out;
+  if(Rebellion_Names.size())
+  {
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    shuffle(Rebellion_Names.begin(), Rebellion_Names.end(), std::default_random_engine(seed));
+    out[0] = Rebellion_Names[0];
+    Rebellion_Names.erase(Rebellion_Names.begin());
+    string flag_name = out[0];
+    std::transform(flag_name.begin(), flag_name.end(), flag_name.begin(), ::tolower);
+    flag_name.erase(std::remove_if(flag_name.begin(), flag_name.end(), isspace), flag_name.end());
+    out[1] = "assets/textures/flags/rebellions/" + flag_name + "-flag.svg";
+  }
+  else
+  {
+    vector<string> Names {"United", "Holy", "Reformed", "Confederated", "Central", "New", "Eastern", "Patriotic", "Western", "Southern", "Northern", "Unified", "Reborn"};
+    out[0] = Names[rand() % Names.size()] + " " + Get_Name();
+    out[1] = Get_Texture_Path();
+  }
+  return out;
+}
+
 string Civ::Get_Culture_Name()
 {
   return culture;
+}
+
+vector<Tech> Civ::Get_Tech_Tree()
+{
+  return Tech_Tree;
 }
 
 string Civ::Get_Leader_Title()
@@ -95,32 +124,42 @@ int Civ::Get_Id()
   return id;
 }
 
-void Civ::Build_City_On_Map(int x, int y)
+bool Civ::Build_City_On_Map(int x, int y, string fallback_city_name, string founding_date)
 {
-  Owned_City tmp;
-  //max_actions++;
-  tmp.Coordinates.x = x;
-  tmp.Coordinates.y = y;
-  tmp.name = City_Names[city_name_index % City_Names.size()];
-  tmp.is_expanded = false;
-  Cities.push_back(tmp);
+  string city_name = "";
+  bool out = false;
+  if(!City_Names.size())
+  {
+    out = true;
+    city_name = fallback_city_name;
+  }
+  else
+  {
+      city_name = City_Names[0];
+      City_Names.erase(City_Names.begin());
+  }
+  City Tmp(city_name, Get_Name(), founding_date,Active_Goverment.Get_Max_Stability() , {x,y});
+  Cities.push_back(Tmp);
   city_name_index++;
+  return out;
 }
 
-void Civ::Build_City_On_Map_With_Name(int x, int y, string name)
+void Civ::Conquer_City(City New_City)
 {
-  Owned_City tmp;
   max_actions++;
-  tmp.Coordinates.x = x;
-  tmp.Coordinates.y = y;
-  tmp.name = name;
-  Cities.push_back(tmp);
+  New_City.Change_Owner(Get_Name());
+  Cities.push_back(New_City);
 }
 
 string Civ::Get_City_Name_By_Coordinates(int x, int y)
 {
-  arry
-  return find_if(Cities.begin(), Cities.end(), )
+  array<int, 2> Coords {x, y};
+  return (*find_if(Cities.begin(), Cities.end(), [&](auto& City){return City.Get_Coords() == Coords;})).Get_Name();
+}
+
+City* Civ::Get_City_By_Coordinates(array<int, 2> Coords)
+{
+  return &(*find_if(Cities.begin(), Cities.end(), [&](auto& City){return City.Get_Coords() == Coords;}));
 }
 
 array<int, 2> Civ::Get_Capital_Location()
@@ -425,9 +464,27 @@ void Civ::Do_Traits_Of_Researched_Tech()
 
 void Civ::End_Turn(vector<int> income)
 {
+  bool skip_capital = true;
+  array<int, 2> Capital_Location;
+  vector<array<int, 2>> Rebel_Cities;
+  int stability_techs = Get_Number_Of_Stability_Techs();
+  int assimilation_techs = Get_Number_Of_Assimilation_Techs();
+  int minus = income[1];
+  for(auto& City : Cities)
+  {
+    if(skip_capital)
+    {
+      Capital_Location = City.Get_Coords();
+      City.Change_Stability(100, false);
+      skip_capital = false;
+      continue;
+    }
+    City.Process_Passive_Changes(Capital_Location, Has_Unit_On_Tile(City.Get_Coords()[0], City.Get_Coords()[1]), stability_techs, assimilation_techs, Active_Goverment.Get_Passive_Stability(), Active_Goverment.Get_Army_Stability(), Active_Goverment.Get_Max_Stability());
+    if(City.Does_Have_Increased_Maitenance())
+      minus = minus + 5;
+  }
   int plus = income[0];
   plus = plus - Calculate_Unit_Maitenance();
-  int minus = income[1];
   if(Active_Goverment.Get_Name() == "Communism")
   {
     minus = minus * 0.5;
@@ -645,6 +702,26 @@ int Civ::Get_Upgrade_Border_Radius()
   return out;
 }
 
+int Civ::Get_Number_Of_Stability_Techs()
+{
+  int out = 0;
+  for(auto &var : Tech_Tree)
+  {
+    out = out + var.Is_Researched_And_How_Many_Times_Has_Trait_Name("stability");
+  }
+  return out;
+}
+
+int Civ::Get_Number_Of_Assimilation_Techs()
+{
+  int out = 0;
+  for(auto &var : Tech_Tree)
+  {
+    out = out + var.Is_Researched_And_How_Many_Times_Has_Trait_Name("assimilation");
+  }
+  return out;
+}
+
 bool Civ::Has_Researched_Border_Expand_Tech_Recently()
 {
   bool out = recent_expand;
@@ -669,7 +746,7 @@ string Civ::Get_Raw_Leader_Name()
   return leader;
 }
 
-void Civ::Change_Goverment_By_Name(string new_gov_name)
+bool Civ::Change_Goverment_By_Name(string new_gov_name, string fallback_leader_name)
 {
   if(Active_Goverment.Get_Name() == "Despotism")
     gold = 0;
@@ -680,12 +757,32 @@ void Civ::Change_Goverment_By_Name(string new_gov_name)
   }
   if(! Has_Trait("C"))
     current_actions = 0;
-  if(Leaders.size() != 1)
+
+  if(Cities.size())
+  {
+    array<int, 2> Capital_Coords = Cities[0].Get_Coords();
+    for_each(Cities.begin(), Cities.end(), [&Capital_Coords](auto& City){City.Change_Stability(static_cast<int>(-0.1*5*sqrt(abs(pow(City.Get_Coords()[0] - Capital_Coords[0],2))) + abs((pow(City.Get_Coords()[1] - Capital_Coords[1],2)))), false);});
+  }
+  return Change_Leader_Name(fallback_leader_name);
+}
+
+bool Civ::Change_Leader_Name(string fallback_leader_name)
+{
+  bool out = false;
+  string new_leader = " ";
+  if(Leaders.size() > 1)
   {
     int leader_id = rand() % Leaders.size();
-    leader = Leaders[leader_id];
+    new_leader = Leaders[leader_id];
     Leaders.erase(Leaders.begin() + leader_id);
   }
+  else
+  {
+    new_leader = fallback_leader_name;
+    out = true;
+  }
+  leader = new_leader;
+  return out;
 }
 
 bool Civ::Has_Tech_Been_Researched_By_Trait(string trait_name)
@@ -723,7 +820,12 @@ void Civ::Recruit_Unit_By_Name(string name, int x, int y)
   }
 }
 
-vector<City> Civ::Get_Owned_Cities()
+vector<City>* Civ::Get_Owned_Cities()
+{
+  return &Cities;
+}
+
+vector<City> Civ::Get_Owned_Cities_Not_Pointer()
 {
   return Cities;
 }
@@ -828,6 +930,12 @@ void Civ::Deserialize(xml_node<>* Root_Node)
   for(xml_node<> *City_Name_Node = City_Names_Node->first_node("city"); City_Name_Node; City_Name_Node = City_Name_Node->next_sibling("city"))
   {
     City_Names.push_back(City_Name_Node->value());
+  }
+
+  xml_node<>* Rebellions_Node = Root_Node->first_node("rebellions");
+  for(xml_node<> *Rebellion_Node = Rebellions_Node->first_node("rebellion"); Rebellion_Node; Rebellion_Node = Rebellion_Node->next_sibling("rebellion"))
+  {
+    City_Names.push_back(Rebellion_Node->value());
   }
 
   xml_node<>* Leaders_Node = Root_Node->first_node("leaders");
@@ -945,6 +1053,14 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
     City_Names_Node->append_node(city_node);
   } );
 
+  xml_node<> *Rebellions_Node = doc->allocate_node(node_element, "rebellions");
+
+  for_each(Rebellion_Names.begin(), Rebellion_Names.end(), [&](string rebel_name)
+  {
+    xml_node<>* rebel_node = doc->allocate_node(node_element, "rebellion", doc->allocate_string(rebel_name.c_str()));
+    Rebellions_Node->append_node(rebel_node);
+  } );
+
   xml_node<> *Govs_Node = doc->allocate_node(node_element, "goverments");
 
   for_each(Goverments.begin(), Goverments.end(), [&](Gov& iterated_gov)
@@ -1015,6 +1131,7 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   Root_Node->append_node(Serialize_Traits(doc));
   Root_Node->append_node(Serialize_Textures(doc));
   Root_Node->append_node(Serialize_Audio(doc));
+  Root_Node->append_node(Rebellions_Node);
   Root_Node->append_node(Owned_Units_Node);
   Root_Node->append_node(Upgrades_Node);
   Root_Node->append_node(Leaders_Node);

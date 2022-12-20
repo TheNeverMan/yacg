@@ -29,6 +29,21 @@ void Newspaper::Add_Revolt(string date, string info)
   Add_News(date, info, Event_Type::Revolt);
 }
 
+void Newspaper::Add_Rebellion(string date, string info)
+{
+  Add_News(date, info, Event_Type::Rebellion);
+}
+
+void Newspaper::Add_Catastrophe(string date, string info)
+{
+  Add_News(date, info, Event_Type::Catastrophe);
+}
+
+void Newspaper::Add_Assassination(string date, string info)
+{
+  Add_News(date, info, Event_Type::Assassination);
+}
+
 vector<array<string,2>> Newspaper::Get_Events_With_Icon_Paths()
 {
   vector<array<string,2>> out;
@@ -49,6 +64,15 @@ vector<array<string,2>> Newspaper::Get_Events_With_Icon_Paths()
         break;
       case Event_Type::Revolt:
         path = path + "revolt-icon.svg.png";
+        break;
+      case Event_Type::Rebellion:
+        path = path + "rebellion-icon.svg";
+        break;
+      case Event_Type::Catastrophe:
+        path = path + "catastrophe-icon.svg";
+        break;
+      case Event_Type::Assassination:
+        path = path + "assassination-icon.svg";
         break;
       default:
         break;

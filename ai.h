@@ -11,7 +11,7 @@
 using std::string;
 using std::vector;
 using std::array;
-
+using std::pow;
 
 
 class Game;
