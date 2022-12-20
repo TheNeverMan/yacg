@@ -2,6 +2,7 @@
 
 City::City(string n, string f_n, string f_d, int s, array<int, 2> c)
 {
+  is_connected = false;
   name = n;
   founder_name = f_n;
   nationality = f_n;
@@ -22,7 +23,7 @@ City::City(xml_node<>* Root_Node)
 void City::Change_Owner(string new_owner)
 {
   owner_name = new_owner;
-  stability = stability - 10;
+  stability = stability - 7;
   Update_Status();
 }
 
@@ -36,7 +37,7 @@ void City::Update_Status()
     return;
   if(stability < 50)
     Status = City_Status::Riots;
-  if(stability < 30)
+  if(stability < 25)
     Status = City_Status::Anarchy;
   if(stability > 50)
     Status = City_Status::Fine;
@@ -46,7 +47,7 @@ void City::Update_Nationality()
 {
   if(nationality != owner_name)
   {
-    if(rand() % 100 < 7)
+    if(rand() % 100 < 15)
       nationality = owner_name;
   }
 }
@@ -58,28 +59,37 @@ bool City::Does_Have_Increased_Maitenance()
 
 void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit, int stability_techs, int assimilation_techs, double base_growth, double army_multiplier, int max_stability)
 {
-  bool is_connected = false;
   Update_Nationality();
   double stab_growth = 0;
   double capital_distance = sqrt((abs(pow((Get_Coords()[0] - Capital_Location[0]),2))) + abs((pow(Get_Coords()[1] - Capital_Location[1],2))));
   if(nationality == owner_name)
   {
-    stab_growth = (base_growth - (0.1*capital_distance)) * (1 + (0.5 * stability_techs)) * (1+ is_connected);
-    cout << stab_growth << "=" << "(" << base_growth << "- (0.1 *" << capital_distance << ")) * (1 + 0.5 * " << stability_techs << " )) * 1 + " << is_connected << ")" << endl;
+    stab_growth = (base_growth - (0.12*capital_distance)) * (1 + (0.5 * stability_techs));
+    cout << stab_growth << "=" << "(" << base_growth << "- (0.12 *" << capital_distance << ")) * (1 + 0.5 * " << stability_techs << " )) * 1 + " << is_connected << ")" << endl;
     if(has_unit)
-      stab_growth = stab_growth * army_multiplier;
+      stab_growth = stab_growth + army_multiplier;
+    if(is_connected)
+    {
+      if(stab_growth > 0)
+        stab_growth = stab_growth * 2 + 1;
+      else
+        stab_growth = stab_growth / 2 + 1;
+    }
   }
   else
   {
-    stab_growth = (base_growth - (0.1*capital_distance)) * ((0.5 * assimilation_techs));
+    stab_growth = (base_growth - (0.12*capital_distance)) * ((0.5 * assimilation_techs));
     if(has_unit)
-      stab_growth = stab_growth * army_multiplier;
+      stab_growth = stab_growth + army_multiplier;
   }
   if(turns_without_stability_changes)
+  {
+    stability = stability + 3;
     turns_without_stability_changes--;
+  }
   if(turns_without_positive_stability_changes)
     turns_without_positive_stability_changes--;
-  if(turns_without_stability_changes || (turns_without_positive_stability_changes && stab_growth < 0))
+  if((turns_without_positive_stability_changes && stab_growth < 0))
     return;
   stability = stability + stab_growth;
   if(stability > max_stability)
@@ -88,7 +98,7 @@ void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit
 
 bool City::Does_Rebel()
 {
-  if(stability < 35 && rand() % 100 <= 70)
+  if(stability < 25 && rand() % 100 <= 40)
     return true;
   return false;
 }
@@ -166,6 +176,7 @@ xml_node<>* City::Serialize(memory_pool<>* doc)
   Root_Node->append_attribute(doc->allocate_attribute("owner_name", owner_name.c_str()));
   Root_Node->append_attribute(doc->allocate_attribute("founding_date", founding_date.c_str()));
   Root_Node->append_attribute(doc->allocate_attribute("stability", to_string(stability).c_str()));
+  Root_Node->append_attribute(doc->allocate_attribute("is_connected", to_string(is_connected).c_str()));
   Root_Node->append_attribute(doc->allocate_attribute("turns_without_stability_changes", to_string(turns_without_stability_changes).c_str()));
   Root_Node->append_attribute(doc->allocate_attribute("turns_without_positive_stability_changes", to_string(turns_without_positive_stability_changes).c_str()));
   Root_Node->append_attribute(doc->allocate_attribute("x", to_string(Coords[0]).c_str()));
@@ -181,6 +192,7 @@ void City::Deserialize(xml_node<>* Root_Node)
   owner_name = Root_Node->first_attribute("owner_name")->value();
   founding_date = Root_Node->first_attribute("founding_date")->value();
   stability = stoi(Root_Node->first_attribute("stability")->value());
+  is_connected = stoi(Root_Node->first_attribute("is_connected")->value());
   turns_without_stability_changes = stoi(Root_Node->first_attribute("turns_without_stability_changes")->value());
   turns_without_positive_stability_changes = stoi(Root_Node->first_attribute("turns_without_positive_stability_changes")->value());
   Coords[0] = stoi(Root_Node->first_attribute("x")->value());
@@ -220,7 +232,17 @@ void City::Epidemy()
 
 void City::Rebel()
 {
-  stability = stability + 20;
+  stability = stability + 100;
   turns_without_stability_changes = 5;
   Update_Status();
+}
+
+void City::Connect_City()
+{
+  is_connected = true;
+}
+
+bool City::Is_Connected()
+{
+  return is_connected;
 }

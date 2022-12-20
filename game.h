@@ -103,6 +103,7 @@ class Game : public XML_Serializable
     bool Is_Only_One_Player_Alive();
     Culture* Get_Culture_By_Player_Id(int player_id);
     void Update_Stability_For_Currently_Moving_Player();
+    vector<array<int, 3>> Search_For_Connections(array<int, 2> Coords, int player_id);
   public:
     Gov Get_Goverment_By_Name(string gov_name);
     bool Is_Currently_Moving_Player_AI();
@@ -111,7 +112,7 @@ class Game : public XML_Serializable
     void Set_Autosave(bool a);
     bool Is_Player_Eliminated(int player_id);
     bool Has_Currently_Moving_Player_Any_Actions_Left();
-    vector<array<string,2>> Get_Newspaper_Events();
+    vector<tuple<array<string,2>, int>> Get_Newspaper_Events();
     xml_node<>*  Serialize(memory_pool<>* doc);
     string Get_Current_Turn_By_Years();
     bool Is_Map_Update_Required();

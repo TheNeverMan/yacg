@@ -17,8 +17,6 @@ void Game_Window::Generate_Map_View()
   Logger::Log_Info("Generating Map View..." );
   int x = Main_Game->Get_Map()->Get_X_Size();
   int y = Main_Game->Get_Map()->Get_Y_Size();
-  int start = 0;
-  int start_y = 0;
   Logger::Log_Info("Map Size is " + to_string(x) + " " + to_string(y) );
   auto *root = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 0);
   Map_Scrolled_Window.add(*root);
@@ -521,7 +519,10 @@ void Game_Window::Update_Tile_Information_Label(int x, int y)
     text = text + "\n City Stability: " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Stability());
     text = text + "\n City Founder: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Founder_Name();
     text = text + "\n City Founding Date: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Founding_Date();
-
+    if(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Is_Connected())
+      text = text + "\n Connected To Other Cities";
+    if(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_Capital_Location() == coords)
+      text = text + "\n Capital";
   }
   if(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))
   {
@@ -591,6 +592,8 @@ void Game_Window::Focus_On_Capital(bool click_capital)
   cout << Map_Scrolled_Window.get_vscrollbar()->get_adjustment()->get_upper() << " " << Map_Scrolled_Window.get_vscrollbar()->get_adjustment()->get_lower() << endl;
   Logger::Log_Info("Refocusing on Capital...");
   array<int, 2> Coords = Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location();
+  if(Coords[0] > 9990)
+    return;
   if(click_capital)
     Tile_Clicked(nullptr, {Coords[0], Coords[1]}, nullptr);
   else
@@ -760,7 +763,8 @@ void Game_Window::Enable_All_Buttons()
   Manage_Economy_Button.set_sensitive(true);
   Manage_Techs_Button.set_sensitive(true);
   Manage_Stability_Button.set_sensitive(true);
-  Show_Civs_Button.set_sensitive(true);
+  if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockforeign"))
+    Show_Civs_Button.set_sensitive(true);
   Manage_Goverments_Button.set_sensitive(true);
   Civ_Overview_Button.set_sensitive(true);
   Newspaper_Button.set_sensitive(true);
@@ -900,7 +904,7 @@ void Game_Window::Load_Game()
 
 void Game_Window::Show_Newspaper_Clicked()
 {
-  Newspaper_Dialog Dialog(Main_Game->Get_Newspaper_Events());
+  Newspaper_Dialog Dialog(Main_Game->Get_Newspaper_Events(), Main_Game->Get_Currently_Moving_Player_Id());
   Dialog.Show();
 }
 

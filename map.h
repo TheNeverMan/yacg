@@ -82,4 +82,5 @@ class Map : public XML_Serializable
     vector<array<int, 2>> Find_All_Upgrade_Locations(int owner, string upg_name);
     vector<int> Find_Direction_To_Settle_City(int owner, int x, int y, Unit u);
     array<int, 2> Find_Closest_Upgrade_By_Name(array<int,2> Coords, int owner, string name);
+    vector<array<int, 2>> Find_All_Upgrade_Locations_In_Radius(array<int, 2> Coords, int owner, int radius, string upg_name);
 };

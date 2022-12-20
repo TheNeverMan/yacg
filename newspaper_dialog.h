@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include<array>
+#include<tuple>
 #include<memory>
 
 #include "newspaper.h"
@@ -11,6 +12,7 @@
 
 using std::shared_ptr;
 using std::make_shared;
+using std::tuple;
 
 class Newspaper_Dialog : public Themed_Dialog
 {
@@ -24,5 +26,5 @@ class Newspaper_Dialog : public Themed_Dialog
     Gtk::Box Events_List_Box;
     vector<shared_ptr<Scaled_Gtk_Image>> Event_Images;
   public:
-    Newspaper_Dialog(vector<array<string,2>> events);
+    Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, int currently_moving_player_id);
 };

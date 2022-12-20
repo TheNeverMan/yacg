@@ -19,7 +19,7 @@
 <starting_position name="Egypt" x="64" y="30"/>
 <starting_position name="Brittany" x="54" y="19"/>
 <starting_position name="Persia" x="73" y="27"/>
-<starting_position name="Tuʻi Tonga" x="117" y="43"/>
+<starting_position name="Tu'i Tonga" x="117" y="43"/>
 <starting_position name="Maurya" x="83" y="27"/>
 <starting_position name="France" x="56" y="20"/>
 <starting_position name="Japan" x="100" y="24"/>
@@ -32,14 +32,14 @@
 <starting_position name="Argentina" x="36" y="51"/>
 <starting_position name="Brazil" x="38" y="46"/>
 <starting_position name="Madagascar" x="70" y="45"/>
-<starting_position name="Māori" x="111" y="54"/>
+<starting_position name="Maori" x="111" y="54"/>
 <starting_position name="Portugal" x="52" y="22"/>
 <starting_position name="Sweden" x="59" y="14"/>
 <starting_position name="Olmecs" x="23" y="31"/>
 <starting_position name="Vandals" x="55" y="25"/>
 <starting_position name="Phoenicia" x="66" y="25"/>
 <starting_position name="Arabia" x="70" y="26"/>
-<starting_position name="Göktürks" x="82" y="17"/>
+<starting_position name="Gokturks" x="82" y="17"/>
 <starting_position name="Turkey" x="65" y="23"/>
 <starting_position name="India" x="79" y="27"/>
 <starting_position name="Canada" x="27" y="18"/>

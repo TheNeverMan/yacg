@@ -7,7 +7,7 @@ Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>* c) : Themed_Dialog("Inte
   Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Explanation_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Explanation_Label = Gtk::Label("Here you can check stability of all your cities. \n Low stability means revolts and increased city maitenance. \n Keep your stability high by connecting cities with roads and placing military \n units in cities.");
-  Goverment_Label = Gtk::Label("Goverment: " + Active_Goverment.Get_Name() + "\n Maximum City Stability: " + to_string(Active_Goverment.Get_Max_Stability()) + " Passive Stability Increase: " + to_string(Active_Goverment.Get_Passive_Stability()) + " Military Unit Modifier: x" + to_string(Active_Goverment.Get_Army_Stability()));
+  Goverment_Label = Gtk::Label("Goverment: " + Active_Goverment.Get_Name() + "\n Maximum City Stability: " + to_string(Active_Goverment.Get_Max_Stability()) + "\n Stability in every city after each turn increases by " + to_string(Active_Goverment.Get_Passive_Stability()) + " points. \n Putting military unit in city gives additional " + to_string(Active_Goverment.Get_Army_Stability()) + " points per turn.");
   Cities_Frame = Gtk::Frame("List of Cities");
   Cities_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
   Cities_Window.set_min_content_height(300);
@@ -31,7 +31,10 @@ Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>* c) : Themed_Dialog("Inte
       icon_path = icon_path + "riots-icon.svg.png";
     shared_ptr<Scaled_Gtk_Image> City_Icon = make_shared<Scaled_Gtk_Image>(icon_path, 24, 24);
     Cities_Icons.push_back(City_Icon);
-    auto* City_Name_Label = Gtk::make_managed<Gtk::Label>(City.Get_Name());
+    string city_name = City.Get_Name();
+    if(City.Is_Connected())
+      city_name = city_name + " (Connected To Other Cities)";
+    auto* City_Name_Label = Gtk::make_managed<Gtk::Label>(city)name);
     if(state == "Drought")
       state = "<span foreground=\"yellow\">" + state + "</span>";
     if(state == "Flood")
@@ -46,7 +49,7 @@ Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>* c) : Themed_Dialog("Inte
     Status_Label->set_markup(state);
     int stability = City.Get_Stability();
     string stability_label_text = " ";
-    if(stability < 35)
+    if(stability < 25)
       stability_label_text = "<span foreground=\"red\">" + to_string(stability) + "(Rebellion Risk)" + "</span>";
     else if(stability < 50)
       stability_label_text = "<span foreground=\"yellow\">" + to_string(stability)  + " (+5 Maitenance Cost)" + "</span>";

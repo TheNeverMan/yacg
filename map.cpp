@@ -39,6 +39,18 @@ int Map::Get_X_Size()
   return Game_Map.size();
 }
 
+vector<array<int, 2>> Map::Find_All_Upgrade_Locations_In_Radius(array<int, 2> Coords, int owner, int radius, string upg_name)
+{
+  vector<array<int, 2>> out;
+  vector<array<int, 2>> Tiles_To_Check = Main_Radius_Generator.Get_Radius_For_Coords(Coords[0], Coords[1], radius);
+  for(auto& Coord : Tiles_To_Check)
+  {
+    if(Get_Owner(Coord[0], Coord[1]) == owner && Get_Upgrade(Coord[0], Coord[1]) == upg_name)
+      out.push_back(Coord);
+  }
+  return out;
+}
+
 int Map::Get_Y_Size()
 {
   return Game_Map[0].size();

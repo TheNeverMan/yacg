@@ -440,10 +440,16 @@ AI_Data AI::Process_Turn(AI_Data Data)
     {
       int upgrade_production = Build_Random_Producing_Upgrade();
       if(upgrade_production == 0)
-        break;
-//if(upgrade_production == 0)
-        //Main_Game->Get_Currently_Moving_Player()->Disband_First_Unit();
-      //else
+      {
+        if(Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size())
+        {
+          Unit_On_Map Unit_To_Disband = (Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units())[0][0]; //???
+          Main_Game->Disband_Unit(Unit_To_Disband.Coordinates.x, Unit_To_Disband.Coordinates.y);
+          player_finances = player_finances + Unit_To_Disband.Self.Get_Maitenance();
+        }
+        else
+          break;
+      }
       player_finances = player_finances + upgrade_production;
     }
   }

@@ -21,6 +21,7 @@ class City : public XML_Serializable
     string nationality;
     string owner_name;
     string founding_date;
+    bool is_connected;
     int stability;
     int turns_without_stability_changes;
     int turns_without_positive_stability_changes;
@@ -60,4 +61,6 @@ class City : public XML_Serializable
     void Drought();
     void Epidemy();
     void Rebel();
+    void Connect_City();
+    bool Is_Connected();
 };

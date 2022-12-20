@@ -1,6 +1,6 @@
 #include "newspaper_dialog.h"
 
-Newspaper_Dialog::Newspaper_Dialog(vector<array<string,2>> events) : Themed_Dialog("Newspaper"), Explanation_Image(assets_directory_path + "textures/dialogs/newspaper-dialog-texture.svg", 64, 64)
+Newspaper_Dialog::Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, int currently_moving_player_id) : Themed_Dialog("Newspaper"), Explanation_Image(assets_directory_path + "textures/dialogs/newspaper-dialog-texture.svg", 64, 64)
 {
   reverse(events.begin(), events.end());
   Gtk::Box *Dialog_Box = get_content_area();
@@ -27,9 +27,13 @@ Newspaper_Dialog::Newspaper_Dialog(vector<array<string,2>> events) : Themed_Dial
   }
   for(auto &event : events)
   {
-    auto *label = Gtk::make_managed<Gtk::Label>(event[1]);
-    shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(event[0], 24 ,24);
+    string event_text = get<0>(event)[1];
+    if(get<1>(event) == currently_moving_player_id)
+      event_text = "<span foreground=\"blue\">" + event_text + "</span>";
+    auto *label = Gtk::make_managed<Gtk::Label>("");
+    shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(get<0>(event)[0], 24 ,24);
     Event_Images.push_back(image);
+    label->set_markup(event_text);
     auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     box->pack_start(*(image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
     box->pack_start(*label);

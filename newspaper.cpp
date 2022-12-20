@@ -1,52 +1,52 @@
 #include "newspaper.h"
 
-void Newspaper::Add_News(string date, string info, Event_Type Type)
+void Newspaper::Add_News(string date, string info, Event_Type Type, int player_id)
 {
-  News.push_back(make_tuple<Event_Type,string>(static_cast<Event_Type>(Type),date + ": " + info));
+  News.push_back(make_tuple<Event_Type,string,int>(static_cast<Event_Type>(Type),date + ": " + info, static_cast<int>(player_id)));
 }
 /*
 vector<string> Newspaper::Get_News()
 {
   return News;
 }*/
-void Newspaper::Add_City_Build(string date, string info)
+void Newspaper::Add_City_Build(string date, string info, int player_id)
 {
-  Add_News(date, info, Event_Type::City_Build);
+  Add_News(date, info, Event_Type::City_Build, player_id);
 }
 
-void Newspaper::Add_City_Conquer(string date, string info)
+void Newspaper::Add_City_Conquer(string date, string info, int player_id)
 {
-  Add_News(date, info, Event_Type::City_Conquer);
+  Add_News(date, info, Event_Type::City_Conquer, player_id);
 }
 
-void Newspaper::Add_Nuclear_Attack(string date, string info)
+void Newspaper::Add_Nuclear_Attack(string date, string info, int player_id)
 {
-  Add_News(date, info, Event_Type::Nuclear_Attack);
+  Add_News(date, info, Event_Type::Nuclear_Attack, player_id);
 }
 
-void Newspaper::Add_Revolt(string date, string info)
+void Newspaper::Add_Revolt(string date, string info, int player_id)
 {
-  Add_News(date, info, Event_Type::Revolt);
+  Add_News(date, info, Event_Type::Revolt, player_id);
 }
 
-void Newspaper::Add_Rebellion(string date, string info)
+void Newspaper::Add_Rebellion(string date, string info, int player_id)
 {
-  Add_News(date, info, Event_Type::Rebellion);
+  Add_News(date, info, Event_Type::Rebellion, player_id);
 }
 
-void Newspaper::Add_Catastrophe(string date, string info)
+void Newspaper::Add_Catastrophe(string date, string info, int player_id)
 {
-  Add_News(date, info, Event_Type::Catastrophe);
+  Add_News(date, info, Event_Type::Catastrophe, player_id);
 }
 
-void Newspaper::Add_Assassination(string date, string info)
+void Newspaper::Add_Assassination(string date, string info, int player_id)
 {
-  Add_News(date, info, Event_Type::Assassination);
+  Add_News(date, info, Event_Type::Assassination, player_id);
 }
 
-vector<array<string,2>> Newspaper::Get_Events_With_Icon_Paths()
+vector<tuple<array<string,2>, int>> Newspaper::Get_Events_With_Icon_Paths()
 {
-  vector<array<string,2>> out;
+  vector<tuple<array<string,2>, int>> out;
   for(auto& Event : News)
   {
     string info = get<1>(Event);
@@ -77,7 +77,7 @@ vector<array<string,2>> Newspaper::Get_Events_With_Icon_Paths()
       default:
         break;
     }
-    out.push_back({path, info});
+    out.push_back(make_tuple<array<string,2>, int>({path, info}, static_cast<int>(get<2>(Event))));
   }
   return out;
 }

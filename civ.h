@@ -118,6 +118,7 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     bool Change_Leader_Name(string fallback_leader_name);
     array<string, 2> Get_Rebellion_Name_And_Flag_Path();
     vector<Tech> Get_Tech_Tree();
+    vector<string> Get_All_Upgrade_Names_By_Trait(string trait_name);
   private:
     map<string, vector<string>> Goverment_Name_Replacements;
     vector<string> Rebellion_Names;

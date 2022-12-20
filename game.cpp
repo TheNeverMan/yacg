@@ -56,6 +56,37 @@ string Game::Get_Texture_Path_For_Cultured_Upgrade(int x, int y, string upg_name
   return Get_Culture_By_Player_Id(Get_Map()->Get_Owner(x,y))->Get_Texture_For_Upgrade(upg_name);
 }
 
+vector<array<int, 3>> Game::Search_For_Connections(array<int, 2> Coords, int player_id)
+{
+  vector<string> City_Connection_Upgrades = Get_Player_By_Id(player_id)->Get_All_Upgrade_Names_By_Trait("cityconnection");
+  vector<array<int, 2>> Cities_To_Connect;
+  vector<array<int, 2>> Tiles_To_Check;
+  vector<array<int, 2>> Tiles_Checked;
+  Tiles_To_Check.push_back(Coords);
+  do
+  {
+    if(find(Tiles_Checked.begin(), Tiles_Checked.end(), Tiles_To_Check[0]) != Tiles_Checked.end())
+    {
+      Tiles_To_Check.erase(Tiles_To_Check.begin());
+      continue;
+    }
+    for(auto& upg_name : City_Connection_Upgrades)
+    {
+      vector<array<int,2>> Tmp = Get_Map()->Find_All_Upgrade_Locations_In_Radius(Tiles_To_Check[0], player_id, 2, upg_name);
+      Tiles_To_Check.insert(Tiles_To_Check.end(), Tmp.begin(), Tmp.end());
+    }
+    vector<array<int,2>> Cities = Get_Map()->Find_All_Upgrade_Locations_In_Radius(Tiles_To_Check[0], player_id, 2, "City");
+    Cities_To_Connect.insert(Cities_To_Connect.end(), Cities.begin(), Cities.end());
+    Tiles_To_Check.insert(Tiles_To_Check.end(), Cities.begin(), Cities.end());
+    Tiles_Checked.push_back(Tiles_To_Check[0]);
+    Tiles_To_Check.erase(Tiles_To_Check.begin());
+  } while(Tiles_To_Check.size());
+  vector<array<int, 3>> out;
+  for(auto& City : Cities_To_Connect)
+    out.push_back({City[0], City[1], player_id});
+  return out;
+}
+
 void Game::Build_Upgrade(string name, int x, int y, int player_id)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
@@ -71,6 +102,14 @@ void Game::Build_Upgrade(string name, int x, int y, int player_id)
     radius = 0;
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
   Get_Player_By_Id(player_id)->Build_Upgrade(name);
+  if(u.How_Many_Times_Has_Trait("cityconnection"))
+  {
+    vector<array<int, 3>> Cities_With_Owners_To_Connect = Search_For_Connections({x,y}, player_id);
+    for(auto& City : Cities_With_Owners_To_Connect)
+    {
+      Get_Player_By_Id(City[2])->Get_City_By_Coordinates({City[0], City[1]})->Connect_City();
+    }
+  }
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
 }
 
@@ -255,7 +294,7 @@ void Game::Check_For_Dead_Players()
     if(player.Get_Number_Of_Cities_Owned() == 0 && find(Eliminated_Players_List.begin(),Eliminated_Players_List.end(), index) == Eliminated_Players_List.end())
     {
       //remove player
-      Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!");
+      Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!", index);
       vector<array<int, 2>> tmp = Get_Map()->Unclaim_All_Player_Tiles(index);
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       vector<Unit_On_Map> *units = Get_Player_By_Id(index)->Get_Owned_Units();
@@ -454,7 +493,7 @@ void Game::Update_Stability_For_Currently_Moving_Player()
           message = "Epidemy in ";
       }
       message = message + City.Get_Name() + "!";
-      Main_Newspaper.Add_Catastrophe(Get_Current_Turn_By_Years(), message);
+      Main_Newspaper.Add_Catastrophe(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
     }
     if(City.Does_Rebel())
       Rebel_Cities.push_back(City.Get_Coords());
@@ -462,7 +501,7 @@ void Game::Update_Stability_For_Currently_Moving_Player()
   if(rand() % 1000 == 69)
   {
     string message = Get_Currently_Moving_Player()->Get_Leader_Name() + " killed in " + Get_Currently_Moving_Player()->Get_Name() + ", situation in the country is unstable!";
-    Main_Newspaper.Add_Assassination(Get_Current_Turn_By_Years(), message);
+    Main_Newspaper.Add_Assassination(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
     for_each(Player_Cities->begin(), Player_Cities->end(), [](auto& City){City.Change_Stability(-20, false);});
   }
   if(Get_Currently_Moving_Player()->Get_Gold() < 0)
@@ -477,7 +516,7 @@ void Game::Update_Stability_For_Currently_Moving_Player()
     Is_Player_AI_List.push_back(true);
     Players[Players.size() - 1].Change_Goverment_By_Name(Players[rand() % (Players.size() - 1)].Get_Name(), Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id())->Get_Random_Leader_Name());
     string message = "Unrest in " + Get_Currently_Moving_Player()->Get_Full_Name() + "! Rebels take control. " + Players[Players.size() - 1].Get_Full_Name() + " is proclaimed!";
-    Main_Newspaper.Add_Rebellion(Get_Current_Turn_By_Years(), message);
+    Main_Newspaper.Add_Rebellion(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
     for(auto& Coords : Rebel_Cities)
     {
       if(Get_Map()->Get_Tile(Coords[0],Coords[1]).Has_Unit())
@@ -488,7 +527,7 @@ void Game::Update_Stability_For_Currently_Moving_Player()
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
       City city_name = Get_Currently_Moving_Player()->Lose_City_By_Coords(Coords[0], Coords[1]);
       string message = city_name.Get_Name() + " has rebelled.";
-      Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message);
+      Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
       city_name.Change_Owner(Players[Players.size() - 1].Get_Name());
       Players[Players.size() - 1].Conquer_City(city_name);
     }
@@ -641,7 +680,7 @@ void Game::Plunder_Tile(int x, int y)
   if(tile_owner) //neutrals
   {
     array<int, 2> City_Coords = Get_Map()->Find_Closest_Upgrade_By_Name({x,y}, tile_owner, "City");
-    Get_Player_By_Id(tile_owner)->Get_City_By_Coordinates(City_Coords)->Change_Stability(-6, Get_Map()->Get_Tile(City_Coords[0], City_Coords[1]).Has_Unit());
+    Get_Player_By_Id(tile_owner)->Get_City_By_Coordinates(City_Coords)->Change_Stability(-4, Get_Map()->Get_Tile(City_Coords[0], City_Coords[1]).Has_Unit());
   }
   Tiles_To_Update.push_back({x,y});
 }
@@ -726,7 +765,7 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
         {
           message = "Capital of " + Get_Player_By_Id(tile_owner_id)->Get_Full_Name() + " has been conquered! Goverment moves to ";
           capital = true;
-          for_each(Get_Player_By_Id(tile_owner_id)->Get_Owned_Cities()->begin(), Get_Player_By_Id(tile_owner_id)->Get_Owned_Cities()->end(), [](auto& City){City.Change_Stability(-20, false);});
+          for_each(Get_Player_By_Id(tile_owner_id)->Get_Owned_Cities()->begin(), Get_Player_By_Id(tile_owner_id)->Get_Owned_Cities()->end(), [](auto& City){City.Change_Stability(-15, false);});
         }
         else
         {
@@ -737,7 +776,7 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
         Get_Player_By_Id(unit_owner_id)->Conquer_City(city_name);
         if(capital)
           message = message + Get_Player_By_Id(tile_owner_id)->Get_Capital_Name();
-        Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message);
+        Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message, tile_owner_id);
         Logger::Log_Info(message + " X: " + to_string(dest_x) + " Y: " + to_string(dest_y));
       }
     }
@@ -760,7 +799,7 @@ void Game::Detonate_Atomic_Bomb(int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Main_Sound_Manager.Play_Sound("assets/sounds/atomicexplosion-audio.mp3");
-  Main_Newspaper.Add_Nuclear_Attack(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!");
+  Main_Newspaper.Add_Nuclear_Attack(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!", Get_Currently_Moving_Player_Id());
   Disband_Unit(x,y);
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
@@ -1073,7 +1112,7 @@ tuple<bool, Game*> Game::Load_Game(string path)
   return Loader.Load_Game(path);
 }
 
-vector<array<string,2>> Game::Get_Newspaper_Events()
+vector<tuple<array<string,2>, int>> Game::Get_Newspaper_Events()
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Main_Newspaper.Get_Events_With_Icon_Paths();
@@ -1092,7 +1131,7 @@ void Game::Change_Goverment_For_Currently_Moving_Player_By_Name(string name)
     if(has_been_fallback_name_used)
       Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id())->Remove_Last_Leader_Name();
     message = message + Get_Currently_Moving_Player()->Get_Full_Name();
-    Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), message);
+    Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
   }
 }
 
@@ -1106,7 +1145,7 @@ void Game::Build_City(int x, int y, int owner, int radius)
   if(has_been_fallback_name_used)
     Get_Culture_By_Player_Id(owner)->Remove_Last_City_Name();
   string message = Get_Player_By_Id(owner)->Get_Full_Name() + " has settled new city of " + Get_Player_By_Id(owner)->Get_City_Name_By_Coordinates(x,y);
-  Main_Newspaper.Add_City_Build(Get_Current_Turn_By_Years(), message);
+  Main_Newspaper.Add_City_Build(Get_Current_Turn_By_Years(), message, owner);
 }
 
 int Game::Get_Total_Cost_Of_Technology_By_Name(string name)
