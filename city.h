@@ -25,6 +25,7 @@ class City : public XML_Serializable
     int stability;
     int turns_without_stability_changes;
     int turns_without_positive_stability_changes;
+    int turns_after_revolt;
     array<int, 2> Coords;
     enum class City_Status
     {

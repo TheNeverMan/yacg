@@ -15,6 +15,7 @@
 #include "map.h"
 #include "upgrade.h"
 #include "logger.h"
+#include "FastNoise.h"
 
 using std::string;
 using std::vector;

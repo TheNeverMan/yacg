@@ -13,11 +13,13 @@ City::City(string n, string f_n, string f_d, int s, array<int, 2> c)
   Status = City_Status::Fine;
   turns_without_stability_changes = 0;
   turns_without_positive_stability_changes = 0;
+  turns_after_revolt = 0;
 }
 
 City::City(xml_node<>* Root_Node)
 {
   Deserialize(Root_Node);
+  turns_after_revolt = 0;
 }
 
 void City::Change_Owner(string new_owner)
@@ -89,6 +91,8 @@ void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit
   }
   if(turns_without_positive_stability_changes)
     turns_without_positive_stability_changes--;
+  if(turns_after_revolt)
+    turns_after_revolt--;
   if((turns_without_positive_stability_changes && stab_growth < 0))
     return;
   stability = stability + stab_growth;
@@ -98,7 +102,7 @@ void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit
 
 bool City::Does_Rebel()
 {
-  if(stability < 25 && rand() % 100 <= 40)
+  if(stability < 25 && rand() % 100 <= 40 && !turns_after_revolt)
     return true;
   return false;
 }
@@ -234,6 +238,7 @@ void City::Rebel()
 {
   stability = stability + 100;
   turns_without_stability_changes = 5;
+  turns_after_revolt = 12;
   Update_Status();
 }
 

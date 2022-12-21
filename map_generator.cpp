@@ -264,15 +264,49 @@ Map Map_Generator::Generate_Map_Using_User_Data()
   Logger::Log_Info( "Cleaning The Map..." );
   Clean_Map();
   Logger::Log_Info( "Map Clean!" );
-  unsigned long long tile_number = x * y;
-  unsigned long long land_tiles = tile_number * (double)((double)User_Data.oceans_precentage / 100);
-  Logger::Log_Info( "Continents: " + to_string(User_Data.continents_number) + " Land Percentage: " + to_string(User_Data.oceans_precentage) + " Land Tiles: " + to_string(land_tiles) );
-  land_tiles = land_tiles / User_Data.continents_number;
-  Logger::Log_Info( "Tiles Per Continent: " + to_string(land_tiles) );
+  double frequency = User_Data.continents_number * 0.007;
+  Logger::Log_Info("Frequency: " + to_string(frequency));
+  FastNoise Noise_Generator(rand());
+  Noise_Generator.SetNoiseType(FastNoise::Perlin);
+  Noise_Generator.SetFrequency(frequency);
+  vector<float> Map(x*y);
   int start = 0;
-  while(start < User_Data.continents_number)
+  int start_y = 0;
+  int index = 0;
+  while(start < x)
   {
-    Generate_Continent_At_Coords(rand() % x, rand() % y, land_tiles, rand() % 5 + 3);
+    while(start_y < y)
+    {
+      Map[index] = Noise_Generator.GetNoise((float) start, (float) start_y);
+      index++;
+      start_y++;
+    }
+    start_y = 0;
+    start++;
+  }
+  double lowest = 0.0;
+  double highest = 0.0;
+  for_each(Map.begin(), Map.end(), [&](float f){if(f < lowest){lowest = f;}if(f > highest){highest = f;}});
+  double border = (lowest+(highest*(50/User_Data.oceans_precentage)))/2;
+  start = 0;
+  start_y = 0;
+  index = 0;
+  double mountain_border = lowest / 2*(User_Data.oceans_precentage/40);
+  Logger::Log_Info("Lowest Value: " + to_string(lowest) + " Highest Value: " + to_string(highest) + " Border: " + to_string(border) + " Mountain Border: " + to_string(mountain_border));
+  while(start < x)
+  {
+    while(start_y < y)
+    {
+      if(Map[index] < border)
+        Fill_Territory("Land", start, start_y, start+1, start_y+1);
+      else
+        Fill_Territory("Sea", start, start_y, start+1, start_y+1);
+      if(Map[index] < mountain_border && rand() % 10 < 8)
+        Fill_Territory("Mountain", start, start_y, start+1, start_y+1);
+      index++;
+      start_y++;
+    }
+    start_y = 0;
     start++;
   }
   return Game_Map;

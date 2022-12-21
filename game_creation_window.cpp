@@ -56,22 +56,22 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
 
   X_Label = Gtk::Label("Map Creation Preferences\nSet Map Size\n X Size:");
   Glib::RefPtr<Gtk::Adjustment> X_Adjustment;
-  X_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
+  X_Adjustment = Gtk::Adjustment::create(50.0,10.0,1000.0,1.0,10,0.0);
   X_Switch = Gtk::SpinButton(X_Adjustment);
 
   Y_Label = Gtk::Label("Y Size:");
   Glib::RefPtr<Gtk::Adjustment> Y_Adjustment;
-  Y_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
+  Y_Adjustment = Gtk::Adjustment::create(50.0,10.0,1000.0,1.0,10,0.0);
   Y_Switch = Gtk::SpinButton(Y_Adjustment);
 
-  Continents_Label = Gtk::Label("Amount of Continents \n(To create interesting maps select values around 50-60):");
+  Continents_Label = Gtk::Label("Amount of Continents \n(Higher the value, the more fractured the land will be):");
   Glib::RefPtr<Gtk::Adjustment> Continents_Adjustment;
-  Continents_Adjustment = Gtk::Adjustment::create(10.0,0.0,1000.0,1.0,10,0.0);
+  Continents_Adjustment = Gtk::Adjustment::create(10.0,1.0,50.0,1.0,10,0.0);
   Continents_Switch = Gtk::SpinButton(Continents_Adjustment);
 
-  Water_Label = Gtk::Label("Amount of Water \n(To create balanced maps choose values around 60-70\n to create landfilled pangea-like maps choose values higher than 500):");
+  Water_Label = Gtk::Label("Amount of Water \n(Lower the value, less land will be one the map):");
   Glib::RefPtr<Gtk::Adjustment> Water_Adjustment;
-  Water_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
+  Water_Adjustment = Gtk::Adjustment::create(50.0,10.0,110.0,1.0,10,0.0);
   Water_Switch = Gtk::SpinButton(Water_Adjustment);
 
 

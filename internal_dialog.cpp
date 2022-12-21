@@ -34,7 +34,7 @@ Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>* c) : Themed_Dialog("Inte
     string city_name = City.Get_Name();
     if(City.Is_Connected())
       city_name = city_name + " (Connected To Other Cities)";
-    auto* City_Name_Label = Gtk::make_managed<Gtk::Label>(city)name);
+    auto* City_Name_Label = Gtk::make_managed<Gtk::Label>(city_name);
     if(state == "Drought")
       state = "<span foreground=\"yellow\">" + state + "</span>";
     if(state == "Flood")
