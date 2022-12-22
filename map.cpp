@@ -625,6 +625,47 @@ int Map::Count_Tiles_Owned_By_Player(int owner, string tile_name)
   return out;
 }
 
+vector<array<int,2>> Map::Find_All_Tiles_In_Radius(array<int, 2> Coords, vector<string> Allowed_Tiles, int radius)
+{
+  vector<array<int, 2>> Radius = Main_Radius_Generator.Get_Radius_For_Coords(Coords[0], Coords[1],radius);
+  vector<array<int, 2>> out;
+  for(auto& Coord : Radius)
+    if(Allowed_Tiles.end() != find(Allowed_Tiles.begin(), Allowed_Tiles.end(), Get_Tile(Coord[0], Coord[1]).Get_Name()))
+      out.push_back(Coord);
+  return out;
+}
+
+vector<array<int, 2>> Map::Get_Path_Tiles(array<int, 2> Start_Coords, array<int, 2> End_Coords, vector<string> Allowed_Tiles)
+{
+  vector<array<int, 2>> Disallowed_Tiles;
+  vector<array<int, 2>> Path;
+  while(Start_Coords != End_Coords)
+  {
+    vector<array<int, 2>> Tmp = Find_All_Tiles_In_Radius(Start_Coords, Allowed_Tiles, 2);
+    for(auto &Tile : Tmp)
+      if(Disallowed_Tiles.end() != find(Disallowed_Tiles.begin(), Disallowed_Tiles.end(), Tile))
+        remove(Tmp.begin(), Tmp.end(), Tile);
+    if(!Tmp.size())
+    {
+      if(!Path.size())
+        return {};
+      else
+      {
+        Disallowed_Tiles.push_back(Start_Coords);
+        Path.erase(Path.end() - 1);
+        Start_Coords = *(Path.end() - 1);
+        continue;
+      }
+    }
+    array<int, 2> New_Point = Get_Closest_Point(End_Coords[0], End_Coords[1], Tmp);
+    if(Tmp.end() != find(Tmp.begin(), Tmp.end(), End_Coords))
+      break;
+    Start_Coords = New_Point;
+    Path.push_back(Start_Coords);
+  }
+  return Path;
+}
+
 int Map::Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y)
 {
   int out = sqrt(abs(pow(p_x - g_x,2)) + abs((pow(p_y - g_y,2))));
@@ -640,9 +681,9 @@ array<int ,2> Map::Get_Closest_Point(int x, int y, vector<array<int ,2>> points)
   });
   for(auto &var : out)
   {
-    return var.second;
+    if(var.first)
+      return var.second;
   }
-  Logger::Log_Error("No points in Get_Closest_Point");
   return {0,0};
 }
 

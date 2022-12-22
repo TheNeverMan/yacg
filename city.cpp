@@ -67,7 +67,6 @@ void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit
   if(nationality == owner_name)
   {
     stab_growth = (base_growth - (0.12*capital_distance)) * (1 + (0.5 * stability_techs));
-    cout << stab_growth << "=" << "(" << base_growth << "- (0.12 *" << capital_distance << ")) * (1 + 0.5 * " << stability_techs << " )) * 1 + " << is_connected << ")" << endl;
     if(has_unit)
       stab_growth = stab_growth + army_multiplier;
     if(is_connected)
@@ -98,6 +97,8 @@ void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit
   stability = stability + stab_growth;
   if(stability > max_stability)
     stability = max_stability;
+  if(stability < 0)
+    stability = 0;
 }
 
 bool City::Does_Rebel()
@@ -174,17 +175,17 @@ void City::Change_Stability(int stability_change, bool has_unit)
 xml_node<>* City::Serialize(memory_pool<>* doc)
 {
   xml_node<>* Root_Node = doc->allocate_node(node_element, "city");
-  Root_Node->append_attribute(doc->allocate_attribute("name", name.c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("founder_name", founder_name.c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("nationality", nationality.c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("owner_name", owner_name.c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("founding_date", founding_date.c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("stability", to_string(stability).c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("is_connected", to_string(is_connected).c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("turns_without_stability_changes", to_string(turns_without_stability_changes).c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("turns_without_positive_stability_changes", to_string(turns_without_positive_stability_changes).c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("x", to_string(Coords[0]).c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("y", to_string(Coords[1]).c_str()));
+  Root_Node->append_attribute(doc->allocate_attribute("name", doc->allocate_string(name.c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("founder_name", doc->allocate_string(founder_name.c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("nationality", doc->allocate_string(nationality.c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("owner_name", doc->allocate_string(owner_name.c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("founding_date", doc->allocate_string(founding_date.c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("stability", doc->allocate_string(to_string(stability).c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("is_connected", doc->allocate_string(to_string(is_connected).c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("turns_without_stability_changes", doc->allocate_string(to_string(turns_without_stability_changes).c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("turns_without_positive_stability_changes", doc->allocate_string(to_string(turns_without_positive_stability_changes).c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("x", doc->allocate_string(to_string(Coords[0]).c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("y", doc->allocate_string(to_string(Coords[1]).c_str())));
   return Root_Node;
 }
 

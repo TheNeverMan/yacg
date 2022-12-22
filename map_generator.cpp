@@ -7,42 +7,6 @@ Map_Generator::Map_Generator(Map_Generator_Data mpg, vector<Tile> t, vector<Upgr
   Tiles = t;
 }
 
-void Map_Generator::Fray_Territory(int start_x, int start_y, int end_x, int end_y)
-{
-  Tile Filler;
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == "Sea")
-      Filler = var;
-  }
-  int proces_x = start_x;
-  int proces_y = start_y;
-  while(proces_x < end_x)
-  {
-    if(rand() % 2 == 0)
-    Game_Map.Change_Tile_Type(proces_x,start_y,Filler);
-    proces_x++;
-  }
-  while(proces_y < end_y)
-  {
-    if(rand() % 2 == 0)
-    Game_Map.Change_Tile_Type(start_x,proces_y,Filler);
-    proces_y++;
-  }
-  while(proces_x > end_x)
-  {
-    if(rand() % 2 == 0)
-    Game_Map.Change_Tile_Type(proces_x,proces_y,Filler);
-    proces_x--;
-  }
-  while(proces_y > end_y)
-  {
-    if(rand() % 2 == 0)
-    Game_Map.Change_Tile_Type(proces_x,proces_y,Filler);
-    proces_y--;
-  }
-}
-
 void Map_Generator::Fill_Territory(string tile_name,int start_x, int start_y, int end_x, int end_y)
 {
   Tile Filler;
@@ -71,114 +35,6 @@ void Map_Generator::Fill_Territory(string tile_name,int start_x, int start_y, in
 void Map_Generator::Clean_Map()
 {
   Fill_Territory("Sea", 0, 0, Game_Map.Get_X_Size() - 1, Game_Map.Get_Y_Size() - 1);
-}
-
-void Map_Generator::Noise_Territory(string tile_name, int x, int y, int size)
-{
-  Tile Filler;
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == tile_name)
-      Filler = var;
-  }
-  bool loop = true;
-  int limit = size;
-  while(loop)
-  {
-    int mod_x = rand() % (int)sqrt(size);
-    int mod_y = rand() % (int)sqrt(size);
-    int for_x = x + mod_x;
-    int for_y = y + mod_y;
-    Game_Map.Change_Tile_Type(for_x, for_y, Filler);
-    int random = rand() % (size);
-    if(random > limit)
-      loop = false;
-    limit--;
-  }
-}
-
-void Map_Generator::Generate_Continent_At_Coords(int x, int y, unsigned long long size, int depth)
-{
-  if(depth <= 0 || size <= 0)
-    return;
-  Logger::Log_Info( "Generating Continent at " + to_string(x) + " " + to_string(y) + " Depth: " + to_string(depth));
-  Tile Sea, Forest, Land, Mountain;
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == "Sea")
-      Sea = var;
-  }
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == "Forest")
-      Forest = var;
-  }
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == "Land")
-      Land = var;
-  }
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == "Mountain")
-      Mountain = var;
-  }
-  Fill_Territory("Land", x, y, sqrt(size) + x, sqrt(size) + y);
-  Fray_Territory(x, y, sqrt(size) + x, sqrt(size) + y);
-  // after we habe landmass lets add some trees
-
-  Noise_Territory("Mountain", x, y, size);
-
-  if(y < (User_Data.size_y * 0.15) || y > (User_Data.size_y * 0.85))
-  {
-    Logger::Log_Info("Polar continent!");
-    Noise_Territory("Forest", x, y, size);
-    Noise_Territory("Ice", x, y, size);
-    Noise_Territory("Ice", x, y, size);
-  }
-  if(y < (User_Data.size_y * 0.60) && y > (User_Data.size_y * 0.45))
-  {
-    Logger::Log_Info("Desert continent!");
-    Noise_Territory("Desert", x, y, size);
-    Noise_Territory("Desert", x, y, size);
-    Noise_Territory("Desert", x, y, size);
-  }
-  else
-  {
-    Noise_Territory("Forest", x, y, size);
-  }
-
-  int new_size = size / (rand() % 5 + 3);
-  int new_x = x;
-  int new_y = y;
-  int side = rand() % 4 + 1;
-  switch(side)
-  {
-    case 1:
-    {
-      new_x = new_x + sqrt(size);
-      break;
-    }
-    case 2:
-    {
-      new_x = new_x - sqrt(size);
-      break;
-    }
-    case 3:
-    {
-      new_y = new_y + sqrt(size);
-      break;
-    }
-    case 4:
-    {
-      new_y = new_y - sqrt(size);
-      break;
-    }
-    default:
-      break;
-  }
-  Generate_Continent_At_Coords(new_x, new_y, new_size, depth-1);
-  //Logger::Log_Info( "Generated!" );
 }
 
 map<char, Tile> Map_Generator::Load_Replacements(xml_node<>* Root_Node)
@@ -242,6 +98,35 @@ Map Map_Generator::Generate_Map_From_File()
   return Game_Map;
 }
 
+string Map_Generator::Get_Sea_Tile_For_Y(int y)
+{
+  double lower_border = User_Data.size_y * 0.15;
+  double upper_border = User_Data.size_y * 0.85;
+  string out = "Sea";
+  if((y < lower_border && rand() % static_cast<int>(lower_border) < (lower_border - y)) || (y > upper_border && rand() % static_cast<int>(lower_border) < (y - upper_border)))
+    out = "Ice";
+  return out;
+}
+
+string Map_Generator::Get_Land_Tile_For_Y(int y)
+{
+  double ice_lower_border = User_Data.size_y * 0.10;
+  double ice_upper_border = User_Data.size_y * 0.90;
+  string out = "Land";
+  if(rand() % 10 < 3)
+    out = "Forest";
+  if((y < ice_lower_border && rand() % static_cast<int>(ice_lower_border) < (ice_lower_border - y)) || (y > ice_upper_border && rand() % static_cast<int>(ice_lower_border) < (y - ice_upper_border)))
+    out = "Ice";
+  double desert_lower_border = User_Data.size_y * 0.37;
+  double desert_upper_border = User_Data.size_y * 0.53;
+  double desert_middle = User_Data.size_y * 0.45;
+  if(y < desert_upper_border && y > desert_lower_border && rand() % static_cast<int>(desert_upper_border-desert_middle) > (abs(y-desert_middle)))
+    out = "Desert";
+  else if (y < desert_upper_border && y > desert_lower_border && out == "Forest")
+    out = "Land";
+  return out;
+}
+
 Map Map_Generator::Generate_Map_Using_User_Data()
 {
   if(User_Data.map_path != " ")
@@ -291,17 +176,17 @@ Map Map_Generator::Generate_Map_Using_User_Data()
   start = 0;
   start_y = 0;
   index = 0;
-  double mountain_border = lowest / 2*(User_Data.oceans_precentage/40);
+  double mountain_border = lowest / 2;
   Logger::Log_Info("Lowest Value: " + to_string(lowest) + " Highest Value: " + to_string(highest) + " Border: " + to_string(border) + " Mountain Border: " + to_string(mountain_border));
   while(start < x)
   {
     while(start_y < y)
     {
       if(Map[index] < border)
-        Fill_Territory("Land", start, start_y, start+1, start_y+1);
+        Fill_Territory(Get_Land_Tile_For_Y(start_y), start, start_y, start+1, start_y+1);
       else
-        Fill_Territory("Sea", start, start_y, start+1, start_y+1);
-      if(Map[index] < mountain_border && rand() % 10 < 8)
+        Fill_Territory(Get_Sea_Tile_For_Y(start_y), start, start_y, start+1, start_y+1);
+      if(Map[index] < mountain_border && rand() % 10 < 7)
         Fill_Territory("Mountain", start, start_y, start+1, start_y+1);
       index++;
       start_y++;

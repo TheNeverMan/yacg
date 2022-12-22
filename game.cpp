@@ -650,11 +650,6 @@ array<int, 3> Game::Get_Units_Stats_For_Battle(int unit_x, int unit_y)
     out[1] = static_cast<double>(out[1]) * 0.9;
     out[0] = static_cast<double>(out[0]) * 0.9;
   }
-  Logger::Log_Info("Unit Debug");
-  Logger::Log_Info("Unit name: " + Stat_Unit.Get_Name());
-  Logger::Log_Info("Unit HP: " + to_string(out[2]));
-  Logger::Log_Info("Unit ATK: " + to_string(out[0]));
-  Logger::Log_Info("Unit DEF: " + to_string(out[1]) + " DEF Bonus " + to_string(unit_def_mod));
   return out;
 }
 
@@ -688,7 +683,6 @@ void Game::Plunder_Tile(int x, int y)
 void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Logger::Log_Info("Battle Debug");
   array<int, 3> unit_1_stats = Get_Units_Stats_For_Battle(unit_1_x, unit_1_y);
   array<int, 3> unit_2_stats = Get_Units_Stats_For_Battle(unit_2_x, unit_2_y);
 

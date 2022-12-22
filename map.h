@@ -17,6 +17,7 @@
 
 using std::string;
 using std::map;
+using std::find;
 using std::vector;
 using std::array;
 using std::pow;
@@ -39,6 +40,7 @@ class Map : public XML_Serializable
     array<int, 2> Calculate_Production_For_Tile(int x, int y, int id, Civ player);
     void Buff_Tiles_In_Radius(int x, int y, int radius);
     void Debuff_Tiles_In_Radius(int x, int y, int radius);
+    vector<array<int,2>> Find_All_Tiles_In_Radius(array<int, 2> Coords, vector<string> Allowed_Tiles, int radius);
   public:
     xml_node<>* Serialize(memory_pool<>* doc);
     Map(vector<Tile> t, vector<Upgrade> u);
@@ -83,4 +85,5 @@ class Map : public XML_Serializable
     vector<int> Find_Direction_To_Settle_City(int owner, int x, int y, Unit u);
     array<int, 2> Find_Closest_Upgrade_By_Name(array<int,2> Coords, int owner, string name);
     vector<array<int, 2>> Find_All_Upgrade_Locations_In_Radius(array<int, 2> Coords, int owner, int radius, string upg_name);
+    vector<array<int, 2>> Get_Path_Tiles(array<int, 2> Start_Coords, array<int, 2> End_Coords, vector<string> Allowed_Tiles);
 };

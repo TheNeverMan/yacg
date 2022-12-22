@@ -12,11 +12,15 @@ void Help_Manager::Show_Basic_Tutorial()
   Tutorial_Dialog Units_Tutorial(tutorial_image_path+ "units-tutorial.png", tutorial_text_path + "units-tutorial.txt");
   Tutorial_Dialog Goverments_Tutorial(tutorial_image_path+ "goverments-tutorial.png", tutorial_text_path + "goverments-tutorial.txt");
   Tutorial_Dialog Other_Tutorial(tutorial_image_path+ "other-tutorial.png", tutorial_text_path + "other-tutorial.txt");
+  Tutorial_Dialog Stability_Tutorial(tutorial_image_path + "stability-tutorial.png", tutorial_text_path + "stability-tutorial.txt");
+  Tutorial_Dialog Help_Tutorial(tutorial_image_path + "help-tutorial.png", tutorial_text_path + "help-tutorial.txt");
   General_Tutorial.Show();
   Economy_Tutorial.Show();
   Units_Tutorial.Show();
   Goverments_Tutorial.Show();
   Other_Tutorial.Show();
+  Stability_Tutorial.Show();
+  Help_Tutorial.Show();
 }
 
 void Help_Manager::Show_Keybindings_Dialog()

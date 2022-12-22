@@ -65,9 +65,9 @@ xml_node<>* Gov::Serialize(memory_pool<>* doc)
   Root_Node->append_attribute(State_Name);
   xml_attribute<> *Leader_Name = doc->allocate_attribute("leader_title", leader_title.c_str());
   Root_Node->append_attribute(Leader_Name);
-  Root_Node->append_attribute(doc->allocate_attribute("max_stability", to_string(max_stability).c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("passive_stability", to_string(passive_stability).c_str()));
-  Root_Node->append_attribute(doc->allocate_attribute("army_stability", to_string(army_stability).c_str()));
+  Root_Node->append_attribute(doc->allocate_attribute("max_stability", doc->allocate_string(to_string(max_stability).c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("passive_stability", doc->allocate_string(to_string(passive_stability).c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("army_stability", doc->allocate_string(to_string(army_stability).c_str())));
   Root_Node->append_node(Serialize_Help(doc));
   Root_Node->append_node(Serialize_Textures(doc));
   Root_Node->append_node(Serialize_Technologies(doc));

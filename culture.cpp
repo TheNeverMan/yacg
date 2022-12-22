@@ -62,13 +62,13 @@ xml_node<>* Culture::Serialize(memory_pool<>* doc)
   xml_node<>* Fallback_City_Names_Node = doc->allocate_node(node_element, "cities");
   for_each(Fallback_City_Names.begin(), Fallback_City_Names.end(), [&](auto& city_name)
   {
-      xml_node<>* City_Node = doc->allocate_node(node_element, "city", city_name.c_str());
+      xml_node<>* City_Node = doc->allocate_node(node_element, "city", doc->allocate_string(city_name.c_str()));
       Fallback_City_Names_Node->append_node(City_Node);
   });
   xml_node<>* Fallback_Leader_Names_Node = doc->allocate_node(node_element, "leaders");
   for_each(Fallback_Leader_Names.begin(), Fallback_Leader_Names.end(), [&](auto& leader_name)
   {
-      xml_node<>* Leader_Node = doc->allocate_node(node_element, "leader", leader_name.c_str());
+      xml_node<>* Leader_Node = doc->allocate_node(node_element, "leader", doc->allocate_string(leader_name.c_str()));
       Fallback_Leader_Names_Node->append_node(Leader_Node);
   });
   Root_Node->append_node(Fallback_City_Names_Node);

@@ -100,11 +100,11 @@ class Game : public XML_Serializable
     double Get_Defense_Bonus_For_Tile_And_Player(int x, int y, int player_id);
     Unit Get_Unit_By_Tile(int x, int y);
     void Remove_All_Missle_Units();
-    bool Is_Only_One_Player_Alive();
     Culture* Get_Culture_By_Player_Id(int player_id);
     void Update_Stability_For_Currently_Moving_Player();
     vector<array<int, 3>> Search_For_Connections(array<int, 2> Coords, int player_id);
   public:
+    bool Is_Only_One_Player_Alive();
     Gov Get_Goverment_By_Name(string gov_name);
     bool Is_Currently_Moving_Player_AI();
     void Disband_Unit(int x, int y);

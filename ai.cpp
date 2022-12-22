@@ -41,7 +41,6 @@ array<int ,2> AI::Get_Closest_Point(int x, int y, vector<array<int ,2>> points)
   {
     return var.second;
   }
-  Logger::Log_Error("No points in Get_Closest_Point");
   return {0,0};
 }
 
@@ -205,13 +204,43 @@ array<int ,2> AI::Get_Closest_Player_Capital_Location()
 //  //cout << cap[0] << " " << cap[1];
   return cap;
 }
+
+array<int ,2> AI::Get_Closest_Player_City_Location(int x, int y)
+{
+  if(!Enemy_Cities.size())
+  {
+    int index = 1;
+    while(index <= Main_Game->Get_Amount_Of_Players())
+    {
+      if(index == Main_Game->Get_Currently_Moving_Player_Id())
+      {
+        index++;
+        continue;
+      }
+      if(!Main_Game->Is_Player_Eliminated(index))
+      {
+        vector<City> Cities = Main_Game->Get_Player_By_Id(index)->Get_Owned_Cities_Not_Pointer();
+        for(auto& City : Cities)
+          if(City.Get_Coords()[0] != 9999)
+            Enemy_Cities.push_back({City.Get_Coords()[0], City.Get_Coords()[1]});
+      }
+      index++;
+    }
+  }
+  array<int, 2> cap = Get_Closest_Point(x,y, Enemy_Cities);
+  return cap;
+}
+
 void AI::Move_Unit_Towards_Enemy(int x, int y, Unit u)
 {
   vector<int> out = Main_Game->Get_Map()->Find_Direction_To_Enemy_City_Or_Unit(Main_Game->Get_Currently_Moving_Player_Id(), x, y, u.Get_Current_Actions(), u);
-  array<int, 2> capital = Get_Closest_Player_Capital_Location();
+  array<int, 2> capital = Get_Closest_Player_City_Location(x,y);
   vector<int> path_to_capital = Main_Game->Get_Map()->Check_If_Path_For_Unit_Exists(x, y, capital[0], capital[1], u);
   if(rand() % 2 == 0 && out[0] == 1)
   {
+    if(Main_Game->Get_Map()->Is_Tile_Upgraded(x,y) && Main_Game->Get_Map()->Get_Owner(x,y) != 0 && Main_Game->Get_Map()->Get_Owner(x,y) != Main_Game->Get_Currently_Moving_Player_Id())
+      if(rand() % 10 < 3 || (Main_Game->Get_Currently_Moving_Player()->Get_Personality() == "Expansive" && rand() % 10 < 5))
+        Main_Game->Plunder_Tile(x,y);
     Main_Game->Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(x, y, out[2], out[3], out[1], (bool) out[4], out[5], out[6]);
   }
   else if(path_to_capital[0] == 1)
@@ -239,6 +268,7 @@ bool AI::Recruit_Unit_In_City()
     {
       if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(unit.Get_First_Requirement()) && unit.Can_Move_On_Tile_By_Name(Main_Game->Get_Map()->Get_Tile(city.Get_Coords()[0], city.Get_Coords()[1]).Get_Name()))
       {
+        //cout << "Unlocked Unit: " << unit.Get_Name() << " " << Main_Game->Get_Currently_Moving_Player()->Get_Gold() << " " << unit.Get_Cost() << endl;
         if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= unit.Get_Cost())
         {
           Main_Game->Recruit_Unit(unit.Get_Name(), x,y);
@@ -260,7 +290,7 @@ bool AI::Recruit_Unit_By_Class_And_Coords(int x, int y, string unit_class)
   std::vector<Unit>::iterator iter = units.begin();
   while ((iter = std::find_if(iter, units.end(), [unit_class](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] == unit_class;})) != units.end())
   {
-    if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= iter->Get_Cost())
+    if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= iter->Get_Cost() && Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(iter->Get_First_Requirement()))
     {
       Main_Game->Recruit_Unit(iter->Get_Name(), x, y);
       return true;
@@ -404,6 +434,7 @@ void AI::Heal_Units_In_Cities()
 
 AI_Data AI::Process_Turn(AI_Data Data)
 {
+  User_Data = Data;
   Logger::Log_Info("Starting AI Turn of " + Main_Game->Get_Currently_Moving_Player()->Get_Name());
   Logger::Log_Info("AI Debug");
   string personality = " ";
@@ -501,7 +532,7 @@ AI_Data AI::Process_Turn(AI_Data Data)
         bool recruit_non_inf = true;
         while(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && !(military_goal <= static_cast<int>(Main_Game->Get_Currently_Moving_Player()->Get_Owned_Units()->size() / city_count)) && loop)
         {
-          if(rand() % 2 == 0 && recruit_non_inf)
+          if(rand() % 3 == 0 && recruit_non_inf)
             recruit_non_inf = Recruit_Non_Infantry_Unit();
           else
             loop = Recruit_Unit_In_City();
@@ -559,8 +590,45 @@ AI_Data AI::Process_Turn(AI_Data Data)
 
   Main_Game->Get_Currently_Moving_Player()->Set_Research_Funds_Percentage((double) technologic_parameter * 7.0 + 10);
   Heal_Units_In_Cities();
+  if((rand() % 2 == 0) && Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities_Not_Pointer().size() > 3)
+    Connect_Cities();
+  vector<array<int, 2>> Plundered_Tiles = Main_Game->Get_Map()->Find_All_Upgrade_Locations(Main_Game->Get_Currently_Moving_Player_Id(), "plundered");
+  if(Plundered_Tiles.size())
+    for(auto& Tile : Plundered_Tiles)
+      if(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left() && Main_Game->Get_Currently_Moving_Player()->Has_Enough_Gold_To_Build_Upgrade("plundered"))
+        Main_Game->Build_Upgrade("plundered", Tile[0],Tile[1], Main_Game->Get_Currently_Moving_Player_Id());
   if(Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
     while(Build_Random_Producing_Upgrade()){}
 
   return Data;
+}
+void AI::Pave_Road(Upgrade Upgrade_To_Build, vector<array<int, 2>> Road)
+{
+  for(auto& Tile : Road)
+  {
+    if(!Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
+      return;
+    if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() >= Upgrade_To_Build.Get_Cost())
+    Main_Game->Build_Upgrade(Upgrade_To_Build.Get_Name(), Tile[0], Tile[1], Main_Game->Get_Currently_Moving_Player_Id());
+  }
+}
+
+void AI::Connect_Cities()
+{
+  vector<City>* Cities = Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities();
+  vector<Upgrade> City_Connection_Upgrades = Main_Game->Get_Currently_Moving_Player()->Get_All_Upgrades_By_Trait("cityconnection");
+  vector<Upgrade> Unlocked_City_Connection_Upgrades;
+  for(auto& Upg : City_Connection_Upgrades)
+    if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(Upg.Get_First_Requirement()))
+      Unlocked_City_Connection_Upgrades.push_back(Upg);
+  if(!Unlocked_City_Connection_Upgrades.size())
+    return;
+  for(auto& City : *Cities)
+  {
+    if(City.Is_Connected())
+      continue;
+    array<int, 2> Closest_City = Main_Game->Get_Map()->Find_Closest_Upgrade_By_Name({City.Get_Coords()[0], City.Get_Coords()[1]}, Main_Game->Get_Currently_Moving_Player_Id(), "City");
+    vector<array<int, 2>> Tiles_To_Upgrade = Main_Game->Get_Map()->Get_Path_Tiles({City.Get_Coords()[0], City.Get_Coords()[1]}, {Closest_City[0], Closest_City[1]}, {"Land", "Forest", "Ice", "Desert"});
+    Pave_Road(Unlocked_City_Connection_Upgrades[rand() % Unlocked_City_Connection_Upgrades.size()], Tiles_To_Upgrade);
+  }
 }

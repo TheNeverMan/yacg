@@ -832,6 +832,13 @@ vector<string> Civ::Get_All_Upgrade_Names_By_Trait(string trait_name)
   return out;
 }
 
+vector<Upgrade> Civ::Get_All_Upgrades_By_Trait(string trait_name)
+{
+  vector<Upgrade> out;
+  for_each(Upgrades.begin(), Upgrades.end(), [&](auto& Upgrade){if(Upgrade.Get_Name() == trait_name){out.push_back(Upgrade);}});
+  return out;
+}
+
 vector<City> Civ::Get_Owned_Cities_Not_Pointer()
 {
   return Cities;

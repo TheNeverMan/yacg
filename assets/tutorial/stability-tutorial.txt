@@ -1,0 +1,11 @@
+Every city has its stability value from 0 to 100. Low stability
+means revolts and additional spendings so keep stability of your cities
+high. Stability will passively increase every turn however this effect
+gets weaker with distance from capital and eventually gets negated.
+Don't settle cities to far away!
+Stability will also decrease when city is conquered, when city is other
+nationality than yours and when random events occur (such as floods or epidemies).
+You can increase stability of your cities by connecting them with roads, putting
+unit in cities or revolting to more advanced goverment, but be aware that every
+goverment change will decrease stability of your cities a bit.
+You can always check all info about stability in your empire in Internal Ministry. 

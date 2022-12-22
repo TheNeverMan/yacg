@@ -34,23 +34,6 @@ void Game_Window::Generate_Map_View()
   auto timer_diff = timer_end - timer_start;
   Logger::Log_Info("Generation took: " + to_string(std::chrono::duration<double, milli>(timer_diff).count()) + " ms" );
   root->pack_start(*Map_Images);
-/*
-  while(start < x)
-  {
-    auto *Vertical_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_VERTICAL, 0);
-    root->pack_start(*Vertical_Box, Gtk::PACK_SHRINK);
-    while(start_y < y)
-    {
-
-      Vertical_Box->pack_start(*(Map_Images->Get_Gtk_Tile(start, start_y)), Gtk::PACK_SHRINK);
-      vector<int> coords {start, start_y};
-      Map_Images->Get_Gtk_Tile(start, start_y)->Get_Event_Box()->signal_button_press_event().connect(sigc::bind<vector<int>>(sigc::mem_fun(*this, &Game_Window::Tile_Clicked), coords, Map_Images->Get_Gtk_Tile(start, start_y)->Get_Image()));
-      start_y++;
-    }
-    start_y = 0;
-    start++;
-  }
-*/
   add_events(Gdk::BUTTON_PRESS_MASK);
   Map_Images->signal_button_press_event().connect(sigc::mem_fun(*this, &Game_Window::Game_Map_Clicked));
   show_all_children();
@@ -97,7 +80,11 @@ void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
   string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
   string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
   if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
+  {
     unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
+    if(Main_Game->Get_Map()->Get_Tile(x,y).Get_Name() == "Sea" && Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).How_Many_Times_Has_Trait("naval") == 0)
+      unit_texture = "assets/textures/units/embarked-unit-texture.svg";
+  }
 
   string upgrade_texture = " ";
   if( !(Main_Game->Get_Map()->Is_Tile_Neutral(x,y)) && !(Main_Game->Get_Map()->Is_Tile_Upgraded(x,y)) && Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Find_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Has_Trait("culture"))
@@ -589,7 +576,6 @@ bool Game_Window::Remove_Combat_Overlays()
 
 void Game_Window::Focus_On_Capital(bool click_capital)
 {
-  cout << Map_Scrolled_Window.get_vscrollbar()->get_adjustment()->get_upper() << " " << Map_Scrolled_Window.get_vscrollbar()->get_adjustment()->get_lower() << endl;
   Logger::Log_Info("Refocusing on Capital...");
   array<int, 2> Coords = Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location();
   if(Coords[0] > 9990)
@@ -727,6 +713,7 @@ void Game_Window::Player_Has_Lost_Game()
 
 void Game_Window::Player_Has_Won_Game(int player_id)
 {
+  player_id = Main_Game->Get_Currently_Moving_Player_Id();
   string name = Main_Game->Get_Player_By_Id(player_id)->Get_Full_Name();
   Logger::Log_Info(name + " has won the game!");
   Themed_Dialog Dialog(name + " has won the game and defeated all enemies!", "End the Game");
@@ -962,6 +949,14 @@ void Game_Window::Notify_Game_Window_About_Turn()
   End_Turn_Dispatcher.emit();
 }
 
+void Game_Window::Check_Is_Game_Lost_Or_Won()
+{
+  if(!Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities_Not_Pointer().size())
+    Player_Has_Lost_Game();
+  if(Main_Game->Is_Only_One_Player_Alive())
+    Player_Has_Won_Game(0);
+}
+
 void Game_Window::Update_End_Turn_Labels()
 {
   if(!Main_Game->Is_Currently_Moving_Player_AI())
@@ -969,15 +964,10 @@ void Game_Window::Update_End_Turn_Labels()
     Logger::Log_Info("Turn has finished!");
     Enable_All_Buttons();
     Update_Labels();
-    if(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[0] < 9000)
-      //Focus_On_Capital(true);
     Update_Action_Buttons(last_clicked_x, last_clicked_y);
     Update_Tiles_From_Game();
     Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-    if(Thread_Portal_Pointer->Get_Turn_Outcome() == 0)
-      Player_Has_Lost_Game();
-    if(Thread_Portal_Pointer->Get_Turn_Outcome() >= 1)
-      Player_Has_Won_Game(Thread_Portal_Pointer->Get_Turn_Outcome());
+    Check_Is_Game_Lost_Or_Won();
     if(Main_Settings_Manager.Get_Autosave_Value())
       Main_Game->Save_Game("autosave.sav");
   }

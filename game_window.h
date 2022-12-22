@@ -224,4 +224,5 @@ class Game_Window : public Gtk::Window
     Glib::Dispatcher Remove_Combat_Overlays_Dispatcher;
     sigc::connection Remove_Combat_Overlays_Connection;
     bool is_remove_combat_overlays_timeout_set = false;
+    void Check_Is_Game_Lost_Or_Won();
 };
