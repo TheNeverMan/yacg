@@ -645,6 +645,9 @@ vector<array<int, 2>> Map::Get_Path_Tiles(array<int, 2> Start_Coords, array<int,
     for(auto &Tile : Tmp)
       if(Disallowed_Tiles.end() != find(Disallowed_Tiles.begin(), Disallowed_Tiles.end(), Tile))
         remove(Tmp.begin(), Tmp.end(), Tile);
+    for(auto &Tile : Tmp)
+        if(Path.end() != find(Path.begin(), Path.end(), Tile))
+          remove(Tmp.begin(), Tmp.end(), Tile);
     if(!Tmp.size())
     {
       if(!Path.size())
