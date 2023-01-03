@@ -9,14 +9,14 @@ Tips_Manager::Tips_Manager()
 
 void Tips_Manager::Show_Random_Tip()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/tip-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/tip-audio.mp3");
   Tips_Dialog Dialog(Tips[rand() % Tips.size()]);
   Dialog.Show();
 }
 
 void Tips_Manager::Show_Tip_In_Order()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/tip-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/tip-audio.mp3");
   Tips_Dialog Dialog(Tips[tips_index]);
   tips_index++;
   if(tips_index == static_cast<int>(Tips.size()))

@@ -12,7 +12,6 @@ class Tips_Manager
   private:
     vector<string> Tips;
     int tips_index;
-    Sound_Manager Main_Sound_Manager;
   public:
     Tips_Manager();
     void Show_Random_Tip();

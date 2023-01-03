@@ -13,7 +13,6 @@ std::filesystem::directory_iterator XML_Data_Loader::Get_Files_In_Directory(stri
 
 vector<char> XML_Data_Loader::Load_File(string path)
 {
-  Logger::Log_Info("Loading file " + path + "...");
   vector<char> out;
   try
   {
@@ -96,7 +95,6 @@ vector<string> XML_Data_Loader::Load_Tips()
     vector<string> tmp = Load_Tips_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Tips Data Loaded!" );
   return out;
 }
 
@@ -142,7 +140,6 @@ vector<Culture> XML_Data_Loader::Load_Cultures()
     vector<Culture> tmp = Load_Cultures_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Cultures Data Loaded!" );
   return out;
 }
 
@@ -165,7 +162,6 @@ vector<Tile> XML_Data_Loader::Load_Tiles()
     vector<Tile> tmp = Load_Tiles_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Tile Data Loaded!" );
   return out;
 }
 
@@ -211,7 +207,6 @@ vector<Tech> XML_Data_Loader::Load_Techs()
     vector<Tech> tmp = Load_Techs_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Tech Data Loaded!" );
   return out;
 }
 
@@ -263,7 +258,6 @@ vector<Unit> XML_Data_Loader::Load_Units()
     vector<Unit> tmp = Load_Units_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Tech Units Loaded!" );
   return out;
 }
 
@@ -312,7 +306,6 @@ vector<Upgrade> XML_Data_Loader::Load_Upgrades()
     vector<Upgrade> tmp = Load_Upgrades_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Tech Upgrades Loaded!" );
   return out;
 }
 
@@ -358,7 +351,6 @@ vector<Gov> XML_Data_Loader::Load_Govs()
     vector<Gov> tmp = Load_Govs_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Tech Goverments Loaded!" );
   return out;
 }
 
@@ -426,6 +418,5 @@ vector<Civ> XML_Data_Loader::Load_Civs()
     vector<Civ> tmp = Load_Civs_From_File(file.path().string());
     out.insert( out.end(), tmp.begin(), tmp.end() );
   }
-  Logger::Log_Info("XML Tech Civs Loaded!" );
   return out;
 }

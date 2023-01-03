@@ -15,7 +15,7 @@ void Sound_Button::Change_Sound(string n_s)
 
 void Sound_Button::Button_Clicked()
 {
-  Click_Sound_Manager.Play_Sound(Click_Sound_Path.Get_File_Path());
+  Sound_Manager::Play_Sound(Click_Sound_Path.Get_File_Path());
 }
 
 void Sound_Button::Change_Icon(string i_p)

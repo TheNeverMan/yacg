@@ -22,7 +22,7 @@ Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), 
   {
     shared_ptr<Scaled_Gtk_Image> Tech_Image = make_shared<Scaled_Gtk_Image>(tech.Get_Texture_Path(), 64, 64);
     Tech_Images.push_back(Tech_Image);
-    shared_ptr<Slaved_Sound_Button> button = make_shared<Slaved_Sound_Button>("Research " + tech.Get_Name(), &Click_Sound_Manager);
+    shared_ptr<Sound_Button> button = make_shared<Sound_Button>("Research " + tech.Get_Name());
     button->Change_Icon("assets/textures/icons/science-icon.svg.png");
     button->set_margin_bottom(3);
     auto *label = Gtk::make_managed<Gtk::Label>(tech.Info(), Gtk::ALIGN_START, Gtk::ALIGN_FILL);
@@ -31,7 +31,7 @@ Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), 
     Research_Box.attach(*label, 2, index);
     Main_Provider.Add_CSS(button);
     Main_Provider.Add_CSS_With_Class(label, "big_label");
-    tuple<string, shared_ptr<Slaved_Sound_Button>> tmp (tech.Get_Name(), button);
+    tuple<string, shared_ptr<Sound_Button>> tmp (tech.Get_Name(), button);
     Tech_Buttons.push_back(tmp);
     index++;
     button->signal_clicked().connect(sigc::bind<Tech>(sigc::mem_fun(*this, &Tech_Dialog::Tech_Button_Clicked), tech ));

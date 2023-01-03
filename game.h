@@ -61,7 +61,6 @@ class Game : public XML_Serializable
     mutex Main_Mutex;
     bool spectator_mode;
     bool autosave;
-    Sound_Manager Main_Sound_Manager;
     vector<int> Eliminated_Players_List;
     vector<Tile> Tiles;
     vector<Tech> Technologies;

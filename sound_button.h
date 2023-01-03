@@ -17,7 +17,6 @@ class Sound_Button : public Gtk::Button
 {
   private:
     Audio_Path Click_Sound_Path;
-    Sound_Manager Click_Sound_Manager;
     Game_CSS_Provider Main_Provider;
     shared_ptr<Scaled_Gtk_Image> Main_Icon;
     string label;

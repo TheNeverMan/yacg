@@ -44,37 +44,37 @@ Settings_Dialog::Settings_Dialog() : Themed_Dialog("Settings", "Apply"), Explana
 
 void Settings_Dialog::Change_Tile_Size_Value()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/apply-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/apply-audio.mp3");
   Main_Settings_Manager.Set_Tile_Size_Value((int)Tile_Size_Switch.get_value());
 }
 
 void Settings_Dialog::Change_Autosave_Value()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/apply-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/apply-audio.mp3");
   Main_Settings_Manager.Set_Autosave_Value(Autosave_Button.get_active());
 }
 
 void Settings_Dialog::Change_Autoresize_Value()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/apply-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/apply-audio.mp3");
   Main_Settings_Manager.Set_Autoresize_Tiles_Value(Autoresize_Button.get_active());
 }
 
 void Settings_Dialog::Change_Startup_Tip_Value()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/apply-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/apply-audio.mp3");
   Main_Settings_Manager.Set_Random_Tip_On_Startup_Value(Startup_Tip_Button.get_active());
 }
 
 void Settings_Dialog::Change_Mute_Value()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/apply-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/apply-audio.mp3");
   Main_Settings_Manager.Set_Mute_Value(Mute_Button.get_active());
 }
 
 void Settings_Dialog::Change_Music_Mute_Value()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/apply-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/apply-audio.mp3");
   Main_Settings_Manager.Set_Music_Mute_Value(Mute_Music_Button.get_active());
 }
 Settings_Dialog::~Settings_Dialog()

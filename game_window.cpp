@@ -136,14 +136,14 @@ void Game_Window::Test()
 
 void Game_Window::Show_Not_Enough_Actions_Message()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
   string message = "You don't have enough actions to do that!";
   ProgressBar_Label.set_text(message);
 }
 
 void Game_Window::Show_Not_Enough_Gold_Message()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
   string message = "You don't have enough gold to do that!";
   ProgressBar_Label.set_text(message);
 }
@@ -284,11 +284,11 @@ void Game_Window::Heal_Unit(int x, int y)
     {
       Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Heal(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x,y)).How_Many_Times_Has_Trait("increasehealrate") * 10);
       message = "Unit healed!";
-      Main_Sound_Manager.Play_Sound("assets/sounds/heal-audio.mp3");
+      Sound_Manager::Play_Sound("assets/sounds/heal-audio.mp3");
     }
     else
     {
-      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
+      Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
       message = message + "\n Your unit doesn't have enough actions to do that!";
     }
   }
@@ -310,7 +310,7 @@ void Game_Window::Plunder_Tile(int x, int y)
     }
     else
     {
-      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
+      Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
       message = message + "\n Your unit doesn't have enough actions to do that!";
     }
   }
@@ -624,7 +624,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     }
     else
     {
-      Main_Sound_Manager.Play_Sound("assets/sounds/broken-audio.mp3");
+      Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
       ProgressBar_Label.set_text("You can't move unit here!");
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
       Update_Tile_By_Coords_Only(coords[0], coords[1]);
@@ -632,7 +632,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
   }
   else
   {
-    Main_Sound_Manager.Play_Sound("assets/sounds/tileclicked-audio.mp3");
+    Sound_Manager::Play_Sound("assets/sounds/tileclicked-audio.mp3");
     last_clicked_x = coords[0];
     last_clicked_y = coords[1];
     Map_Images->Add_Selection_Overlay({coords[0], coords[1]});
@@ -766,7 +766,7 @@ void Game_Window::Enable_All_Buttons()
 void Game_Window::End_Turn()
 {
   Deselect_Unit();
-  Main_Sound_Manager.Play_Sound("assets/sounds/endturn-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/endturn-audio.mp3");
   //Logger::Log_Info(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() );
   bool are_all_techs_researched = false;
   if(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() == 0)
@@ -822,7 +822,7 @@ void Game_Window::Manage_Economy_Clicked()
 
 void Game_Window::Select_Unit(int x, int y)
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/unitselected-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/unitselected-audio.mp3");
   is_unit_selected = true;
   selected_unit_x = x;
   selected_unit_y = y;
@@ -1008,7 +1008,7 @@ bool Game_Window::Loop_Background_Music()
 {
   Logger::Log_Info("Looping Background Theme...");
   if(!Main_Settings_Manager.Is_Music_Muted())
-    Background_Sound_Manager.Play_Sound(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
+    Sound_Manager::Play_Sound(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
   return true;
 }
 
@@ -1299,7 +1299,6 @@ void Game_Window::Initialize_GTK()
   if(Main_Settings_Manager.Check_If_Game_Is_Launched_First_Time())
     Show_Tutorial();
   Main_Settings_Manager.Launch_Game_First_Time();
-  Main_Sound_Manager.Set_Background_Song(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
   Loop_Background_Music();
   sigc::slot<bool> Background_Music_Loop_Slot = sigc::mem_fun(*this, &Game_Window::Loop_Background_Music);
 // This is where we connect the slot to the Glib::signal_timeout()
@@ -1326,7 +1325,7 @@ void Game_Window::Set_Tiles_Size_Automatically()
   //Focus_On_Capital(true);
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Show_Civs_Button("Foregin Ministry", &Main_Sound_Manager), Manage_Techs_Button("Science Ministry", &Main_Sound_Manager), Civ_Overview_Button("Overview", &Main_Sound_Manager), Manage_Economy_Button("Finance Ministry", &Main_Sound_Manager), Newspaper_Button("Newspaper", &Main_Sound_Manager), Manage_Goverments_Button("Revolution", &Main_Sound_Manager), Save_Button("Save Game", &Main_Sound_Manager), Load_Button("Load Game", &Main_Sound_Manager), Zoom_In_Button("Zoom In", &Main_Sound_Manager), Zoom_Out_Button("Zoom Out", &Main_Sound_Manager), Help_Button("Help", &Main_Sound_Manager), Quit_Button("Exit to Main Menu", &Main_Sound_Manager), Manage_Stability_Button("Internal Ministry", &Main_Sound_Manager)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Show_Civs_Button("Foregin Ministry"), Manage_Techs_Button("Science Ministry"), Civ_Overview_Button("Overview"), Manage_Economy_Button("Finance Ministry"), Newspaper_Button("Newspaper"), Manage_Goverments_Button("Revolution"), Save_Button("Save Game"), Load_Button("Load Game"), Zoom_In_Button("Zoom In"), Zoom_Out_Button("Zoom Out"), Help_Button("Help"), Quit_Button("Exit to Main Menu"), Manage_Stability_Button("Internal Ministry")
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;
@@ -1344,7 +1343,7 @@ array<int ,2> Game_Window::Get_Screen_Resolution()
   return out;
 }
 
-Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Map_Generation_Thread(nullptr), Show_Civs_Button("Foregin Ministry", &Main_Sound_Manager), Manage_Techs_Button("Science Ministry", &Main_Sound_Manager), Civ_Overview_Button("Overview", &Main_Sound_Manager), Manage_Economy_Button("Finance Ministry", &Main_Sound_Manager), Newspaper_Button("Newspaper", &Main_Sound_Manager), Manage_Goverments_Button("Revolution", &Main_Sound_Manager), Save_Button("Save Game", &Main_Sound_Manager), Load_Button("Load Game", &Main_Sound_Manager), Zoom_In_Button("Zoom In", &Main_Sound_Manager), Zoom_Out_Button("Zoom Out", &Main_Sound_Manager), Help_Button("Help", &Main_Sound_Manager), Quit_Button("Exit to Main Menu", &Main_Sound_Manager), Manage_Stability_Button("Internal Ministry", &Main_Sound_Manager)
+Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string path = " ", bool spectator_mode = false) : Root_Box(Gtk::ORIENTATION_HORIZONTAL,2), End_Turn_Thread(nullptr), Tile_Flag_Image(128, 64), Map_Generation_Thread(nullptr), Show_Civs_Button("Foregin Ministry"), Manage_Techs_Button("Science Ministry"), Civ_Overview_Button("Overview"), Manage_Economy_Button("Finance Ministry"), Newspaper_Button("Newspaper"), Manage_Goverments_Button("Revolution"), Save_Button("Save Game"), Load_Button("Load Game"), Zoom_In_Button("Zoom In"), Zoom_Out_Button("Zoom Out"), Help_Button("Help"), Quit_Button("Exit to Main Menu"), Manage_Stability_Button("Internal Ministry")
 {
   Logger::Log_Info("Showing Game Window...");
   Main_Manager = m_m;

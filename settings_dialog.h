@@ -14,7 +14,6 @@ class Settings_Dialog : public Themed_Dialog
     Gtk::CheckButton Mute_Button;
     Gtk::CheckButton Mute_Music_Button;
     Settings_Manager Main_Settings_Manager;
-    Sound_Manager Main_Sound_Manager;
     Gtk::Frame Dialog_Settings_Frame;
     Gtk::Label Tile_Size_Label;
     Gtk::Box Explanation_Box;
