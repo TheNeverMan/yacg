@@ -2,7 +2,7 @@
 #include<string>
 #include<tuple>
 #include<vector>
-#include<mutex>
+
 
 #define DR_WAV_IMPLEMENTATION
 #define DRWAV_API static
@@ -20,6 +20,8 @@
 #include "audio_path.h"
 #include "settings_manager.h"
 #define MA_DEBUG_OUTPUT
+
+#include "thread.h"
 
 using std::string;
 using std::tuple;
