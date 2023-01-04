@@ -135,19 +135,22 @@ class Sound_Manager
 
     static void Play_Sound(string path)
     {
+      Settings_Manager Mute_Settings("miniyacg-config-settings.xml");
+      if(Mute_Settings.Is_Game_Muted())
+        return;
       ma_result result;
       int index = 0;
       while(!Ended_Decoders[index])
         index++;
       lock_guard<mutex> Guard(Sound_Mutex);
       Audio_Path Resource_Path(path);
-      Logger::Log_Info("Playing " + Resource_Path.Get_File_Path());
       result = ma_decoder_init_file(Resource_Path.Get_File_Path().c_str(), &Decoder_Config, &Decoders[index]);
       Ended_Decoders[index] = false;
       if (result != MA_SUCCESS) {
          Logger::Log_Error("Failed to load: " + Resource_Path.Get_File_Path());
          ma_decoder_uninit(&Decoders[index]);
       }
+      Logger::Log_Info("Playing " + Resource_Path.Get_File_Path());
     }
 
     static void Uninit_Manager()

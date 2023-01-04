@@ -19,6 +19,25 @@ dialog
   color: #ffffff;
 }
 
+comboboxtext *
+{
+  background-image: url("combo-background.png");
+  color: #ffffff;
+}
+
+combobox *
+{
+  background-image: url("combo-background.png");
+  color: #ffffff;
+}
+
+.combobox 
+{
+  background-image: url("combo-background.png");
+  color: #ffffff;
+}
+
+
 .small_label
 {
   font: 10px "Connection II";

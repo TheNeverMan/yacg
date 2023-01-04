@@ -143,6 +143,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
 
   Main_Provider.Add_CSS(&Civs_Box);
   Main_Provider.Add_CSS_With_Class(&Civs_Description_Label, "medium_label");
+  Main_Provider.Add_CSS_With_Class(&Civs_Chooser_Combo, "combobox");
   Change_Main_Player_Civ();
   set_decorated(false);
   show_all_children();

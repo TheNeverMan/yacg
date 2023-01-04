@@ -44,8 +44,7 @@ void File_Path::Set_File_Path(string f_p)
 
 void File_Path::Test_File_Existence()
 {
-  fstream File(file_path);
-  if(!File.is_open())
+  if(!std::filesystem::exists(file_path))
   {
     Logger::Log_Warning("File " + file_path + " not found! Setting to " + fallback_file_path);
     file_path = fallback_file_path;
