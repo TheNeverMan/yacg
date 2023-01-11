@@ -1,8 +1,8 @@
-# yacg
-YACG or Yet Another Civilization Game is a civilization-like strategy game. Choose one of historical civilizations and play from ancient era to modern.
-Download it from itch.io:
-https://theneverman.itch.io/yet-another-civilization-game
-Join Discord:
+# Yet Another Civilization Game
+YACG or Yet Another Civilization Game is a civilization-like strategy game. Choose one of historical civilizations and play from ancient era to modern.  
+Download it from itch.io:  
+https://theneverman.itch.io/yet-another-civilization-game  
+Join Discord:  
 https://discord.gg/MBxsNUzJGZ
 
 How to Build From Source
