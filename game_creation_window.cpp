@@ -144,6 +144,15 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Main_Provider.Add_CSS(&Civs_Box);
   Main_Provider.Add_CSS_With_Class(&Civs_Description_Label, "medium_label");
   Main_Provider.Add_CSS_With_Class(&Civs_Chooser_Combo, "combobox");
+  Main_Provider.Add_CSS(&X_Switch);
+  Main_Provider.Add_CSS(&Y_Switch);
+  Main_Provider.Add_CSS(&Continents_Switch);
+  Main_Provider.Add_CSS(&Water_Switch);
+  Main_Provider.Add_CSS(&Human_Players_Switch);
+  Main_Provider.Add_CSS(&Players_Switch);
+  auto Children = Civs_Chooser_Combo.get_children();
+  for(auto& item : Children)
+    Main_Provider.Add_CSS_With_Class(item, "combobox");
   Change_Main_Player_Civ();
   set_decorated(false);
   show_all_children();

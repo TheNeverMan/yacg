@@ -41,6 +41,7 @@ Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), 
   Research_Percent_Switch = Gtk::SpinButton(Research_Adjustment);
   Research_Percent_Info = Gtk::Label("Set Research Funds Percent:");
   Root_Box.pack_start(Research_Percent_Info);
+  Main_Provider.Add_CSS(&Research_Percent_Switch);
   Root_Box.pack_start(Research_Percent_Switch);
   Set_Currently_Researched_Button();
   Research_Percent_Switch.signal_value_changed().connect(sigc::mem_fun(*this, &Tech_Dialog::Research_Percent_Switch_Changed));

@@ -9,7 +9,8 @@ string Display_Version()
   out = out + ".";
   out = out + to_string(version_build);
   out = out + "-";
-  out = out + codename;
+  string codename_string(codename);
+  out = out + codename_string;
   out = out + " " + path_delimeter;
   return out;
   //return version_major + "." + version_minor + "." + version_build + "-" + codename;

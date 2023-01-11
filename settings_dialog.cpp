@@ -39,7 +39,7 @@ Settings_Dialog::Settings_Dialog() : Themed_Dialog("Settings", "Apply"), Explana
   Startup_Tip_Button.signal_toggled().connect(sigc::mem_fun(*this, &Settings_Dialog::Change_Startup_Tip_Value));
   Mute_Button.signal_toggled().connect(sigc::mem_fun(*this, &Settings_Dialog::Change_Mute_Value));
   Mute_Music_Button.signal_toggled().connect(sigc::mem_fun(*this, &Settings_Dialog::Change_Music_Mute_Value));
-
+  Main_Provider.Add_CSS(&Tile_Size_Switch);
 }
 
 void Settings_Dialog::Change_Tile_Size_Value()
