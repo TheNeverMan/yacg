@@ -18,5 +18,5 @@ class Scaled_Gtk_Image
     void Resize_Image(int s_x, int s_y);
     void Change_Path(string p);
     Scaled_Gtk_Image(int s_x, int s_y);
-    Gtk::Image* Get_Gtk_Image();
+    Gtk::Image* Get_Gtk_Image() const;
 };

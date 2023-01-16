@@ -57,6 +57,7 @@ using std::get;
 using std::make_shared;
 using std::map;
 using std::thread;
+using std::string_view;
 
 class Window_Manager;
 class Game;
@@ -131,8 +132,8 @@ class Game_Window : public Gtk::Window
     void Show_Civs_Clicked();
     void Manage_Techs_Clicked();
     void Manage_Goverments_Clicked();
-    void Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, int owner);
-    void Recruit_Unit(string u, int x, int y);
+    void Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int y, int owner);
+    void Recruit_Unit(string_view u, int x, int y);
     void Select_Unit(int x, int y);
     void Deselect_Unit();
     void Manage_Overview_Clicked();
@@ -142,7 +143,7 @@ class Game_Window : public Gtk::Window
     void Show_Newspaper_Clicked();
     void Exit_To_Main_Menu();
     void Show_Help_Message();
-    void Show_Themed_Dialog(string message);
+    void Show_Themed_Dialog(string_view message);
     void Show_Unit_Info_Dialog(Unit u);
     void Show_Upgrade_Info_Dialog(Upgrade u);
     void Plunder_Tile(int x, int y);
@@ -196,8 +197,8 @@ class Game_Window : public Gtk::Window
     void Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y);
     array<int ,2> Get_Screen_Resolution();
     void Set_Tiles_Size_Automatically();
-    bool Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y);
-    bool Check_Must_Border_Trait_For_Upgrades(string upg_name, int x, int y);
+    bool Check_Avoid_Trait_For_Upgrades(string_view upg_name, int x, int y);
+    bool Check_Must_Border_Trait_For_Upgrades(string_view upg_name, int x, int y);
     string Get_Current_Turn_By_Years();
     void Update_Tiles_From_Game();
     void Player_Has_Won_Game(int player_id);

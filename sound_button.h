@@ -11,6 +11,7 @@
 
 using std::string;
 using std::shared_ptr;
+using std::string_view;
 using std::make_shared;
 
 class Sound_Button : public Gtk::Button
@@ -21,10 +22,10 @@ class Sound_Button : public Gtk::Button
     shared_ptr<Scaled_Gtk_Image> Main_Icon;
     string label;
   protected:
-    void Change_Sound(string n_s);
+    void Change_Sound(string_view n_s);
     void Button_Clicked();
   public:
     Sound_Button(string t, string s);
     Sound_Button(string t);
-    void Change_Icon(string i_p);
+    void Change_Icon(string_view i_p);
 };

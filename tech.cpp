@@ -14,29 +14,29 @@ void Tech::Research_Tech(int val)
     is_researched = true;
 }
 
-bool Tech::Is_Reseached()
+bool Tech::Is_Reseached() const
 {
   return is_researched;
 }
 
-int Tech::Get_Cost()
+int Tech::Get_Cost() const
 {
   return cost;
 }
 
-int Tech::Get_Current_Cost()
+int Tech::Get_Current_Cost() const
 {
   return current_cost;
 }
 
-int Tech::Is_Researched_And_How_Many_Times_Has_Trait_Name(string trait_name)
+int Tech::Is_Researched_And_How_Many_Times_Has_Trait_Name(string_view trait_name) const
 {
   if(is_researched)
     return How_Many_Times_Has_Trait(trait_name);
   return 0;
 }
 
-bool Tech::Is_Researched_And_Has_Trait(string trait_name)
+bool Tech::Is_Researched_And_Has_Trait(string_view trait_name) const
 {
   bool out = is_researched && Has_Trait(trait_name);
   return out;

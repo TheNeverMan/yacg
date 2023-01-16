@@ -18,7 +18,7 @@ Unit::Unit() : Help_Object(" ", " "), Texture_Owner(), Technology_Requirements_O
     //in god we trust
 }
 
-int Unit::Get_Maitenance()
+int Unit::Get_Maitenance() const
 {
   return maintenance;
 }
@@ -40,7 +40,7 @@ void Unit::Refresh_Movement_Points()
     current_movement_points = movement_points;
 }
 
-bool Unit::Can_Move_On_Tile_By_Name(string name)
+bool Unit::Can_Move_On_Tile_By_Name(string_view name) const
 {
   for(auto &var : Allowed_Tiles)
   {
@@ -50,7 +50,7 @@ bool Unit::Can_Move_On_Tile_By_Name(string name)
   return false;
 }
 
-bool Unit::Is_Naval()
+bool Unit::Is_Naval() const
 {
   return Can_Move_On_Tile_By_Name("Sea");
 }
@@ -71,22 +71,22 @@ void Unit::Increase_Current_Movement(int val)
   current_movement_points = current_movement_points + val;
 }
 
-int Unit::Get_Cost()
+int Unit::Get_Cost() const
 {
   return cost;
 }
 
-int Unit::Get_HP()
+int Unit::Get_HP() const
 {
   return hp;
 }
 
-int Unit::Get_Current_Actions()
+int Unit::Get_Current_Actions() const
 {
   return current_movement_points;
 }
 
-int Unit::Get_Max_Actions()
+int Unit::Get_Max_Actions() const
 {
   return movement_points;
 }
@@ -96,17 +96,17 @@ void Unit::Decrease_Movement(int val)
   current_movement_points = current_movement_points - val;
 }
 
-void Unit::Allow_Moving_On_Tile_By_Name(string name)
+void Unit::Allow_Moving_On_Tile_By_Name(string_view name)
 {
-  Allowed_Tiles.push_back(name);
+  Allowed_Tiles.push_back(name.data());
 }
 
-int Unit::Get_Attack_Power()
+int Unit::Get_Attack_Power() const
 {
   return attack_power;
 }
 
-int Unit::Get_Defense_Power()
+int Unit::Get_Defense_Power() const
 {
   return defense_power;
 }
@@ -116,7 +116,7 @@ void Unit::Remove_All_Movement()
   current_movement_points = 0;
 }
 
-bool Unit::Has_Full_HP()
+bool Unit::Has_Full_HP() const
 {
   if(hp == 100)
     return true;
@@ -140,7 +140,7 @@ void Unit::Heal(int howmuch = 0)
     hp = 100;
 }
 
-int Unit::Get_Manpower()
+int Unit::Get_Manpower() const
 {
   int out;
   out = (attack_power + defense_power) / 2 * 100;
@@ -148,7 +148,7 @@ int Unit::Get_Manpower()
   return out;
 }
 
-vector<string> Unit::Get_Allowed_Tiles()
+vector<string> Unit::Get_Allowed_Tiles() const
 {
   return Allowed_Tiles;
 }
@@ -160,22 +160,22 @@ Unit::Unit(xml_node<>* Root_Node) : Help_Object(Root_Node), Texture_Owner(Root_N
 
 void Unit::Deserialize(xml_node<>* Root_Node)
 {
-  cost = stoi(Root_Node->first_attribute("cost")->value());
-  attack_power = stoi(Root_Node->first_attribute("attack_power")->value());
-  defense_power = stoi(Root_Node->first_attribute("defense_power")->value());
-  movement_points = stoi(Root_Node->first_attribute("movement")->value());
-  current_movement_points = stoi(Root_Node->first_attribute("current_movement")->value());
-  obsolete_unit_name = Root_Node->first_attribute("obsolete")->value();
-  hp = stoi(Root_Node->first_attribute("hp")->value());
-  maintenance = stoi(Root_Node->first_attribute("maitenance")->value());
-  xml_node<>* Allowed_Tiles_Node = Root_Node->first_node("tiles");
+  cost = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "cost");
+  attack_power = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "attack_power");
+  defense_power = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "defense_power");
+  movement_points = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "movement");
+  current_movement_points = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "current_movement");
+  obsolete_unit_name = Traits_Owner::Get_Value_From_Attribute(Root_Node, "obsolete");
+  hp = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "hp");
+  maintenance = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "maitenance");
+  xml_node<>* Allowed_Tiles_Node = Traits_Owner::Get_Subnode(Root_Node, "tiles");
   for(xml_node<> *Allowed_Tile_Node = Allowed_Tiles_Node->first_node("tile"); Allowed_Tile_Node; Allowed_Tile_Node = Allowed_Tile_Node->next_sibling("tile"))
   {
     Allowed_Tiles.push_back(Allowed_Tile_Node->value());
   }
 }
 
-string Unit::Get_Obsolete_Unit_Name()
+string_view Unit::Get_Obsolete_Unit_Name() const
 {
   return obsolete_unit_name;
 }

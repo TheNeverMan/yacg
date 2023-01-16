@@ -33,7 +33,7 @@ Trait::Trait(string raw_trait)
 
 Trait::Trait(xml_node<>* Root_Node)
 {
-  trait_name = Root_Node->first_attribute("name")->value();
+  trait_name = Get_Value_From_Attribute(Root_Node, "name");
   for(xml_node<> *Argument_Node = Root_Node->first_node("argument"); Argument_Node; Argument_Node = Argument_Node->next_sibling("argument"))
   {
     Arguments.push_back(Argument_Node->value());
@@ -54,12 +54,12 @@ xml_node<>* Trait::Serialize_Trait(memory_pool<>* doc)
   return Trait_Node;
 }
 
-string Trait::Get_Trait_Name()
+string_view Trait::Get_Trait_Name() const
 {
   return trait_name;
 }
 
-string Trait::Get_First_Argument()
+string_view Trait::Get_First_Argument() const
 {
   if(Arguments.size())
     return Arguments[0];
@@ -67,7 +67,7 @@ string Trait::Get_First_Argument()
   return " ";
 }
 
-vector<string> Trait::Get_All_Arguments()
+vector<string> Trait::Get_All_Arguments() const
 {
   return Arguments;
 }

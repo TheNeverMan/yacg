@@ -19,27 +19,27 @@ Gov::~Gov()
   //scanf("%s\n", );
 }
 
-string Gov::Get_Leader_Title()
+string_view Gov::Get_Leader_Title() const
 {
   return leader_title;
 }
 
-string Gov::Get_State_Name()
+string_view Gov::Get_State_Name() const
 {
   return state_name;
 }
 
-int Gov::Get_Max_Stability()
+int Gov::Get_Max_Stability() const
 {
   return max_stability;
 }
 
-double Gov::Get_Passive_Stability()
+double Gov::Get_Passive_Stability() const
 {
   return passive_stability;
 }
 
-double Gov::Get_Army_Stability()
+double Gov::Get_Army_Stability() const
 {
   return army_stability;
 }
@@ -51,11 +51,11 @@ Gov::Gov(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node
 
 void Gov::Deserialize(xml_node<>* Root_Node)
 {
-  state_name = Root_Node->first_attribute("state_name")->value();
-  leader_title = Root_Node->first_attribute("leader_title")->value();
-  max_stability = stoi(Root_Node->first_attribute("max_stability")->value());
-  passive_stability = stod(Root_Node->first_attribute("passive_stability")->value());
-  army_stability = stod(Root_Node->first_attribute("army_stability")->value());
+  state_name = Traits_Owner::Get_Value_From_Attribute(Root_Node, "state_name");
+  leader_title = Traits_Owner::Get_Value_From_Attribute(Root_Node, "leader_title");
+  max_stability = Get_Int_Value_From_Attribute(Root_Node, "max_stability");
+  passive_stability = stod(Traits_Owner::Get_Value_From_Attribute(Root_Node, "passive_stability"));
+  army_stability = stod(Traits_Owner::Get_Value_From_Attribute(Root_Node, "army_stability"));
 }
 
 xml_node<>* Gov::Serialize(memory_pool<>* doc)

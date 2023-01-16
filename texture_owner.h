@@ -7,6 +7,7 @@
 #include "image_path.h"
 
 using std::string;
+using std::string_view;
 
 class Texture_Owner
 {
@@ -16,6 +17,6 @@ class Texture_Owner
     Texture_Owner(string t_p);
     Texture_Owner();
     Texture_Owner(xml_node<>* Root_Node);
-    string Get_Texture_Path();
+    string_view Get_Texture_Path() const;
     xml_node<>* Serialize_Textures(memory_pool<>* doc);
 };

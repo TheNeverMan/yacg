@@ -51,6 +51,7 @@ using std::make_tuple;
 using std::get;
 using std::make_shared;
 using std::fstream;
+using std::string_view;
 
 class Magic_Thread_Communicator;
 

@@ -6,6 +6,7 @@
 
 using std::string;
 using std::vector;
+using std::string_view;
 
 class Technology_Requirements_Owner
 {
@@ -17,5 +18,5 @@ class Technology_Requirements_Owner
     Technology_Requirements_Owner(xml_node<>* Root_Node);
     xml_node<>* Serialize_Technologies(memory_pool<>* doc);
     vector<string> Get_All_Requirements();
-    string Get_First_Requirement();
+    string_view Get_First_Requirement() const;
 };

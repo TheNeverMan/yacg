@@ -7,6 +7,7 @@
 
 using std::string;
 using std::vector;
+using std::string_view;
 
 class Trait
 {
@@ -17,7 +18,7 @@ class Trait
     Trait(string raw_trait);
     Trait(xml_node<>* Root_Node);
     xml_node<>* Serialize_Trait(memory_pool<>* doc);
-    string Get_Trait_Name();
-    string Get_First_Argument();
-    vector<string> Get_All_Arguments();
+    string_view Get_Trait_Name() const;
+    string_view Get_First_Argument() const;
+    vector<string> Get_All_Arguments() const;
 };

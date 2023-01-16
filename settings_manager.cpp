@@ -33,7 +33,7 @@ Settings_Manager::Settings_Manager()
   Set_To_Default_Values();
 }
 
-bool Settings_Manager::Is_Game_Muted()
+bool Settings_Manager::Is_Game_Muted() const
 {
   return mute;
 }
@@ -43,7 +43,7 @@ void Settings_Manager::Set_Mute_Value(bool m)
   mute = m;
 }
 
-bool Settings_Manager::Is_Music_Muted()
+bool Settings_Manager::Is_Music_Muted() const
 {
   return mute_music;
 }
@@ -54,7 +54,7 @@ void Settings_Manager::Set_Music_Mute_Value(bool m)
 }
 
 
-void Settings_Manager::Launch_Game_First_Time()
+void Settings_Manager::Launch_Game_First_Time() const
 {
   Logger::Log_Info("Creating Tutorial flag");
   ofstream File("do_not_show_tutorial");
@@ -62,7 +62,7 @@ void Settings_Manager::Launch_Game_First_Time()
   File.close();
 }
 
-bool Settings_Manager::Check_If_Game_Is_Launched_First_Time()
+bool Settings_Manager::Check_If_Game_Is_Launched_First_Time() const
 {
   bool out = true;
   fstream File("do_not_show_tutorial");
@@ -83,12 +83,12 @@ void Settings_Manager::Load_Data_From_XML()
     file.close();
     doc.parse<0>(&buffer[0]);
     xml_node<> *Settings_Node = doc.first_node()->first_node("settings");
-    autosave = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "autosave")->value()));
-    autoresize = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "autoresize")->value()));
-    show_random_tip_on_startup = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "startup_tip")->value()));
+    autosave = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "autosave")->value()));
+    autoresize = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "autoresize")->value()));
+    show_random_tip_on_startup = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "startup_tip")->value()));
     tile_size = stoi(XML_Loader::Get_Subnode(Settings_Node, "tile_size")->value());
-    mute = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "mute")->value()));
-    mute_music = static_cast<bool>(stoi(XML_Loader::Get_Subnode(Settings_Node, "music_mute")->value()));
+    mute = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "mute")->value()));
+    mute_music = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "music_mute")->value()));
     Logger::Log_Info("XML Settings Data Loaded!" );
   }
   catch(...)
@@ -125,12 +125,12 @@ void Settings_Manager::Write_To_File()
   File << s;
 }
 
-bool Settings_Manager::Get_Autosave_Value()
+bool Settings_Manager::Get_Autosave_Value() const
 {
   return autosave;
 }
 
-int Settings_Manager::Get_Tile_Size_Value()
+int Settings_Manager::Get_Tile_Size_Value() const
 {
   return tile_size;
 }
@@ -140,7 +140,7 @@ void Settings_Manager::Set_Autosave_Value(bool a)
   autosave = a;
 }
 
-bool Settings_Manager::Get_Random_Tip_On_Startup_Value()
+bool Settings_Manager::Get_Random_Tip_On_Startup_Value() const
 {
   return show_random_tip_on_startup;
 }
@@ -161,7 +161,7 @@ void Settings_Manager::Set_Autoresize_Tiles_Value(bool a)
   autoresize = a;
 }
 
-bool Settings_Manager::Get_Autoresize_Tiles_Value()
+bool Settings_Manager::Get_Autoresize_Tiles_Value() const
 {
   return autoresize;
 }

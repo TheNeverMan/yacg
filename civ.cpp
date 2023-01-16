@@ -2,7 +2,7 @@
 
 Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c, vector<string> r_n) : Traits_Owner(t), Help_Object(n,c_i), Texture_Owner(t_p), Audio_Owner(a)
 {
-  srand(time(NULL));
+  srand(time(0));
   Goverment_Name_Replacements = g_n_r;
   Goverments = go;
   Rebellion_Names = r_n;
@@ -21,7 +21,6 @@ Civ::Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech
   points_from_technologies = 0;
   City_Names = c_n;
   Tech_Tree = t_t;
-  ////cout << "cos" << endl;
   tech_in_research = "Agriculture";
   Unit_Templates = u_t;
   int32_t red = r;
@@ -60,51 +59,51 @@ array<string, 2> Civ::Get_Rebellion_Name_And_Flag_Path()
   else
   {
     vector<string> Names {"United", "Holy", "Reformed", "Confederated", "Central", "New", "Eastern", "Patriotic", "Western", "Southern", "Northern", "Unified", "Reborn"};
-    out[0] = Names[rand() % Names.size()] + " " + Get_Name();
+    out[0] = Names[rand() % Names.size()] + " " + Get_Name().data();
     out[1] = Get_Texture_Path();
   }
   return out;
 }
 
-string Civ::Get_Culture_Name()
+string_view Civ::Get_Culture_Name() const
 {
   return culture;
 }
 
-vector<Tech> Civ::Get_Tech_Tree()
+vector<Tech> Civ::Get_Tech_Tree() const
 {
   return Tech_Tree;
 }
 
-string Civ::Get_Leader_Title()
+string_view Civ::Get_Leader_Title()
 {
-  if(Goverment_Name_Replacements.count(Active_Goverment.Get_Name()))
-    return Goverment_Name_Replacements[Active_Goverment.Get_Name()][0];
+  if(Goverment_Name_Replacements.count(Active_Goverment.Get_Name().data()))
+    return Goverment_Name_Replacements[Active_Goverment.Get_Name().data()][0];
   else
     return Active_Goverment.Get_Leader_Title();
 }
 
-string Civ::Get_State_Name()
+string_view Civ::Get_State_Name()
 {
-  if(Goverment_Name_Replacements.count(Active_Goverment.Get_Name()))
-    return Goverment_Name_Replacements[Active_Goverment.Get_Name()][1];
+  if(Goverment_Name_Replacements.count(Active_Goverment.Get_Name().data()))
+    return Goverment_Name_Replacements[Active_Goverment.Get_Name().data()][1];
   else
     return Active_Goverment.Get_State_Name();
 }
 
-string Civ::Get_Full_Name()
+string_view Civ::Get_Full_Name()
 {
-  string out = Get_State_Name() + " " + Get_Name();
+  string out = string(Get_State_Name()) + " " + string(Get_Name());
   return out;
 }
 
-string Civ::Get_Leader_Name()
+string_view Civ::Get_Leader_Name()
 {
-  string out = Get_Leader_Title() + " " + leader;
+  string out = string(Get_Leader_Title()) + " " + leader;
   return out;
 }
 
-string Civ::Get_Personality()
+string_view Civ::Get_Personality() const
 {
   return personality;
 }
@@ -119,12 +118,12 @@ void Civ::Give_One_Gold()
   gold++;
 }
 
-int Civ::Get_Id()
+int Civ::Get_Id() const
 {
   return id;
 }
 
-bool Civ::Build_City_On_Map(int x, int y, string fallback_city_name, string founding_date)
+bool Civ::Build_City_On_Map(int x, int y, string_view fallback_city_name, string_view founding_date)
 {
   string city_name = "";
   bool out = false;
@@ -138,7 +137,7 @@ bool Civ::Build_City_On_Map(int x, int y, string fallback_city_name, string foun
       city_name = City_Names[0];
       City_Names.erase(City_Names.begin());
   }
-  City Tmp(city_name, Get_Name(), founding_date,Active_Goverment.Get_Max_Stability() , {x,y});
+  City Tmp(city_name, Get_Name().data(), founding_date.data() ,Active_Goverment.Get_Max_Stability() , {x,y});
   Cities.push_back(Tmp);
   city_name_index++;
   return out;
@@ -147,27 +146,27 @@ bool Civ::Build_City_On_Map(int x, int y, string fallback_city_name, string foun
 void Civ::Conquer_City(City New_City)
 {
   max_actions++;
-  New_City.Change_Owner(Get_Name());
+  New_City.Change_Owner(Get_Name().data());
   Cities.push_back(New_City);
 }
 
-string Civ::Get_City_Name_By_Coordinates(int x, int y)
+string_view Civ::Get_City_Name_By_Coordinates(int x, int y) const
 {
   array<int, 2> Coords {x, y};
-  return (*find_if(Cities.begin(), Cities.end(), [&](auto& City){return City.Get_Coords() == Coords;})).Get_Name();
+  return (*find_if(Cities.begin(), Cities.end(), [&](auto& City){return City.Get_Coords() == Coords;})).Get_Name().data();
 }
 
-City* Civ::Get_City_By_Coordinates(array<int, 2> Coords)
+City& Civ::Get_City_By_Coordinates(array<int, 2> Coords)
 {
-  return &(*find_if(Cities.begin(), Cities.end(), [&](auto& City){return City.Get_Coords() == Coords;}));
+  return (*find_if(Cities.begin(), Cities.end(), [&](auto& City){return City.Get_Coords() == Coords;}));
 }
 
-array<int, 2> Civ::Get_Capital_Location()
+array<int, 2> Civ::Get_Capital_Location() const
 {
   return Cities[0].Get_Coords();
 }
 
-Upgrade Civ::Find_Upgrade_By_Name(string upg_name)
+Upgrade Civ::Find_Upgrade_By_Name(string_view upg_name) const
 {
   auto it = find_if(Upgrades.begin(), Upgrades.end(), [&upg_name](Upgrade& upg)
   {
@@ -178,11 +177,11 @@ Upgrade Civ::Find_Upgrade_By_Name(string upg_name)
   if(it != Upgrades.end())
     return *it;
   else
-    Logger::Log_Error("Upgrade not found! " + upg_name);
+    Logger::Log_Error("Upgrade not found! " + string(upg_name));
   throw;
 }
 
-void Civ::Build_Upgrade(string upg_name)
+void Civ::Build_Upgrade(string_view upg_name)
 {
   int cost = Find_Upgrade_By_Name(upg_name).Get_Cost();
   max_actions = max_actions + Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("giveaction");
@@ -203,7 +202,7 @@ void Civ::Build_Upgrade(string upg_name)
   current_actions--;
 }
 
-Unit Civ::Get_Unit_On_Tile(int x, int y)
+Unit Civ::Get_Unit_On_Tile(int x, int y) const
 {
   for(auto &unit : Units_Owned)
   {
@@ -214,19 +213,19 @@ Unit Civ::Get_Unit_On_Tile(int x, int y)
   throw;
 }
 
-Unit* Civ::Get_Unit_On_Tile_Pointer(int x, int y)
+Unit& Civ::Get_Unit_On_Tile_Pointer(int x, int y)
 {
   for(auto &unit : Units_Owned)
   {
     if(unit.Coordinates.x == x && unit.Coordinates.y == y)
-      return &unit.Self;
+      return unit.Self;
   }
   Logger::Log_Error("Unit not found!");
   throw;
 }
 
 
-bool Civ::Has_Unit_On_Tile(int x, int y)
+bool Civ::Has_Unit_On_Tile(int x, int y) const
 {
   for(auto &unit : Units_Owned)
   {
@@ -236,7 +235,7 @@ bool Civ::Has_Unit_On_Tile(int x, int y)
   return false;
 }
 
-int Civ::Get_Number_Of_Cities_Owned()
+int Civ::Get_Number_Of_Cities_Owned() const
 {
   return Cities.size();
 }
@@ -253,7 +252,7 @@ void Civ::Remove_Unit_By_Coords(int x, int y)
   //fuuuck;
 }
 
-int Civ::Get_Upgrade_Production_By_Name(string upg_name)
+int Civ::Get_Upgrade_Production_By_Name(string_view upg_name) const
 {
   int out = Find_Upgrade_By_Name(upg_name).Get_Production();
   if(upg_name == "Farm")
@@ -265,7 +264,7 @@ int Civ::Get_Upgrade_Production_By_Name(string upg_name)
   return out;
 }
 
-int Civ::Get_Upgrade_Maitenance_By_Name(string upg_name)
+int Civ::Get_Upgrade_Maitenance_By_Name(string_view upg_name) const
 {
   int out = Find_Upgrade_By_Name(upg_name).Get_Maitenance();
   if(upg_name == "Farm")
@@ -278,7 +277,7 @@ int Civ::Get_Upgrade_Maitenance_By_Name(string upg_name)
   return out;
 }
 
-int Civ::Get_Upgrade_Buff_By_Name(string upg_name)
+int Civ::Get_Upgrade_Buff_By_Name(string_view upg_name) const
 {
   int out = Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("economybonus");
   out = out * (How_Many_Times_Has_Trait("O") + 1);
@@ -289,7 +288,7 @@ int Civ::Get_Upgrade_Buff_By_Name(string upg_name)
   return out;
 }
 
-double Civ::Get_Defense_Bonus_For_Upgrade(string upg_name)
+double Civ::Get_Defense_Bonus_For_Upgrade(string_view upg_name) const
 {
   double out = 1.0;
   out = out + (static_cast<double>(Find_Upgrade_By_Name(upg_name).How_Many_Times_Has_Trait("minordefbonus")) / 10.0);
@@ -317,35 +316,35 @@ int Civ::Get_Score()
   return points;
 }
 
-int Civ::Get_Gold()
+int Civ::Get_Gold() const
 {
   return gold;
 }
 
-int Civ::Get_Max_Actions()
+int Civ::Get_Max_Actions() const
 {
   return max_actions;
 }
 
-int Civ::Get_Current_Actions()
+int Civ::Get_Current_Actions() const
 {
   return current_actions;
 }
 
-Tech* Civ::Get_Currently_Researched_Tech()
+Tech& Civ::Get_Currently_Researched_Tech()
 {
   //Set_Research_Tech_By_Name("s");
   ////cout << "tech ine reseasrh " << tech_in_research << endl;
   for(auto &tech : Tech_Tree)
   {
     if(tech.Get_Name() == tech_in_research)
-      return &tech;
+      return tech;
   }
   Logger::Log_Error("No Tech in research!");
   throw;
 }
 
-int Civ::Calculate_Unit_Maitenance()
+int Civ::Calculate_Unit_Maitenance() const
 {
   int out = 0;
   for(auto &unit : Units_Owned)
@@ -359,16 +358,16 @@ int Civ::Calculate_Unit_Maitenance()
   return out;
 }
 
-int Civ::Get_Research_Percent()
+int Civ::Get_Research_Percent() const
 {
   return research_percent;
 }
 
 void Civ::Do_Traits_Of_Researched_Tech()
 {
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseborder"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increaseborder"))
     recent_expand = true;
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("embarkment"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("embarkment"))
   {
     for(auto &unit : Unit_Templates)
     {
@@ -381,29 +380,29 @@ void Civ::Do_Traits_Of_Researched_Tech()
         unit.Self.Allow_Moving_On_Tile_By_Name("Sea");
     }
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseresearchfunds"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increaseresearchfunds"))
     tech_money_modifier = tech_money_modifier + 0.05;
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("givepoints"))
-    points_from_technologies = points_from_technologies + stoi(Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("givepoints")[0]);
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceallupgradescost"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("givepoints"))
+    points_from_technologies = points_from_technologies + stoi(Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("givepoints")[0]);
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("reduceallupgradescost"))
     for_each(Upgrades.begin(), Upgrades.end(), [](Upgrade& u){u.Reduce_Cost(1);});
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("giveallunits"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("giveallunits"))
   {
-    string trait = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("giveallunits")[0];
+    string trait = Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("giveallunits")[0];
     for_each(Unit_Templates.begin(), Unit_Templates.end(), [&trait](Unit& u){u.Give_Trait(trait);});
     for_each(Units_Owned.begin(), Units_Owned.end(), [&trait](Unit_On_Map& u){u.Self.Give_Trait(trait);});
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceallunitsmaitenancecost"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("reduceallunitsmaitenancecost"))
   {
     for_each(Unit_Templates.begin(), Unit_Templates.end(), [](Unit& u){u.Reduce_Maitenance_By_One();});
     for_each(Units_Owned.begin(), Units_Owned.end(), [](Unit_On_Map& u){u.Self.Reduce_Maitenance_By_One();});
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseallunitsmovementspeed"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increaseallunitsmovementspeed"))
   {
     for_each(Unit_Templates.begin(), Unit_Templates.end(), [](Unit& u){u.Increase_Movement_By_One();});
     for_each(Units_Owned.begin(), Units_Owned.end(), [](Unit_On_Map& u){u.Self.Increase_Movement_By_One();});
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increasenavalunitsmovement"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increasenavalunitsmovement"))
   {
     std::vector<Unit>::iterator iter = Unit_Templates.begin();
     while ((iter = std::find_if(iter, Unit_Templates.end(), [](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] == "naval";})) != Unit_Templates.end())
@@ -413,36 +412,36 @@ void Civ::Do_Traits_Of_Researched_Tech()
       iter++;
     }
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceupgradebuildcost"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("reduceupgradebuildcost"))
   {
-    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("reduceupgradebuildcost")[0];
-    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Reduce_Cost(Get_Currently_Researched_Tech()->How_Many_Times_Has_Trait("reduceupgradebuildcost"));
+    string name = Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("reduceupgradebuildcost")[0];
+    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Reduce_Cost(Get_Currently_Researched_Tech().How_Many_Times_Has_Trait("reduceupgradebuildcost"));
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("reduceupgrademaitenancecost"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("reduceupgrademaitenancecost"))
   {
-    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("reduceupgrademaitenancecost")[0];
-    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Reduce_Maitenance(Get_Currently_Researched_Tech()->How_Many_Times_Has_Trait("reduceupgrademaitenancecost"));
+    string name = Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("reduceupgrademaitenancecost")[0];
+    find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Reduce_Maitenance(Get_Currently_Researched_Tech().How_Many_Times_Has_Trait("reduceupgrademaitenancecost"));
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseupgradeproduction"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increaseupgradeproduction"))
   {
-    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("increaseupgradeproduction")[0];
+    string name = Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("increaseupgradeproduction")[0];
     find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return name == u.Get_Name();})->Increase_Production_By_One();
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaseunitmovementspeed"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increaseunitmovementspeed"))
   {
-    for_each(Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("increaseunitmovementspeed").begin(), Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("increaseunitmovementspeed").end(), [&](string& unit_name)
+    for_each(Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("increaseunitmovementspeed").begin(), Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("increaseunitmovementspeed").end(), [&](string& unit_name)
     {
       find_if(Unit_Templates.begin(), Unit_Templates.end(), [unit_name](Unit& u){return u.Get_Name() == unit_name;})->Increase_Movement_By_One();
       find_if(Units_Owned.begin(), Units_Owned.end(), [unit_name](Unit_On_Map& u){return u.Self.Get_Name() == unit_name;})->Self.Increase_Movement_By_One();
     });
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("giveupgradetrait"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("giveupgradetrait"))
   {
-    string name = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("giveupgradetrait")[0];
-    string trait = Get_Currently_Researched_Tech()->Get_All_Arguments_For_Trait("giveupgradetrait")[1];
+    string name = Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("giveupgradetrait")[0];
+    string trait = Get_Currently_Researched_Tech().Get_All_Arguments_For_Trait("giveupgradetrait")[1];
     find_if(Upgrades.begin(), Upgrades.end(), [&name](Upgrade& u){return u.Get_Name() == name;})->Give_Trait(trait);
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increasenavalhealrate"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increasenavalhealrate"))
   {
     std::vector<Unit>::iterator iter = Unit_Templates.begin();
     while ((iter = std::find_if(iter, Unit_Templates.end(), [](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] == "naval";})) != Unit_Templates.end())
@@ -451,7 +450,7 @@ void Civ::Do_Traits_Of_Researched_Tech()
       iter++;
     }
   }
-  if(Get_Currently_Researched_Tech()->Is_Researched_And_Has_Trait("increaselandhealrate"))
+  if(Get_Currently_Researched_Tech().Is_Researched_And_Has_Trait("increaselandhealrate"))
   {
     std::vector<Unit>::iterator iter = Unit_Templates.begin();
     while ((iter = std::find_if(iter, Unit_Templates.end(), [](Unit& u){return u.Get_All_Arguments_For_Trait("class")[0] != "naval";})) != Unit_Templates.end())
@@ -499,7 +498,7 @@ void Civ::End_Turn(vector<int> income)
     if(Active_Goverment.Get_Name() == "Dictatorship")
       research_fund = (double) research_fund * (double) 0.80;
     plus = plus - research_fund;
-    Get_Currently_Researched_Tech()->Research_Tech((int)research_fund * tech_money_modifier);
+    Get_Currently_Researched_Tech().Research_Tech((int)research_fund * tech_money_modifier);
     Do_Traits_Of_Researched_Tech();
     gold = gold + plus;
   }
@@ -509,7 +508,7 @@ void Civ::End_Turn(vector<int> income)
   }
 }
 
-int Civ::Get_Unit_Maitenance()
+int Civ::Get_Unit_Maitenance() const
 {
   return Calculate_Unit_Maitenance();
 }
@@ -529,26 +528,26 @@ void Civ::Start_Turn()
   current_actions = max_actions;
 }
 
-bool Civ::Is_Unit_Unlocked(string unit_name)
+bool Civ::Is_Unit_Unlocked(string_view unit_name) const
 {
   if(unit_name == " ")
     return false;
   Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](Unit& i_u){return unit_name == i_u.Get_Name();});
-  return Has_Tech_Been_Researched_By_Name(u.Get_First_Requirement());
+  return Has_Tech_Been_Researched_By_Name(string(u.Get_First_Requirement()));
 }
 
-vector<Upgrade>* Civ::Get_Upgrades()
+vector<Upgrade>& Civ::Get_Upgrades()
 {
-  return &Upgrades;
+  return Upgrades;
 }
 
-bool Civ::Is_Unit_Obsolete(string unit_name)
+bool Civ::Is_Unit_Obsolete(string_view unit_name) const
 {
   Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](Unit& i_u){return unit_name == i_u.Get_Name();});
   return Is_Unit_Unlocked(u.Get_Obsolete_Unit_Name());
 }
 
-bool Civ::Has_Tech_Been_Researched_By_Name(string tech_name)
+bool Civ::Has_Tech_Been_Researched_By_Name(string_view tech_name) const
 {
   bool out = false;
   for(auto &tech : Tech_Tree)
@@ -571,7 +570,7 @@ vector<Tech> Civ::Get_Possible_Research_Techs()
       if(!Has_Tech_Been_Researched_By_Name(tech))
         has_all_requirements = false;
     }
-    if(has_all_requirements && !Has_Tech_Been_Researched_By_Name(tech.Get_Name()))
+    if(has_all_requirements && !Has_Tech_Been_Researched_By_Name(tech.Get_Name().data()))
     {
       out.push_back(tech);
     }
@@ -579,18 +578,18 @@ vector<Tech> Civ::Get_Possible_Research_Techs()
   return out;
 }
 
-vector<Gov> Civ::Get_Possible_Goverments()
+vector<Gov> Civ::Get_Possible_Goverments() const
 {
   vector<Gov> out;
   for(auto &var : Goverments)
   {
-    if(Has_Tech_Been_Researched_By_Name(var.Get_First_Requirement()))
+    if(Has_Tech_Been_Researched_By_Name(var.Get_First_Requirement().data()))
       out.push_back(var);
   }
   return out;
 }
 
-void Civ::Set_Research_Tech_By_Name(string tech_name)
+void Civ::Set_Research_Tech_By_Name(string_view tech_name)
 {
   tech_in_research = tech_name;
   if(Active_Goverment.Get_Name() == "Republic")
@@ -603,12 +602,12 @@ void Civ::Set_Research_Funds_Percentage(int new_val)
   research_percent = new_val;
 }
 
-int32_t Civ::Get_Civ_Color()
+int32_t Civ::Get_Civ_Color() const
 {
   return color;
 }
 
-void Civ::Do_Trait(string trait_name)
+void Civ::Do_Trait(string_view trait_name)
 {
   if(trait_name == "M")
   {
@@ -666,7 +665,7 @@ void Civ::Do_Trait(string trait_name)
 
 }
 
-bool Civ::Has_Enough_Gold_To_Build_Upgrade(string upg_name)
+bool Civ::Has_Enough_Gold_To_Build_Upgrade(string_view upg_name) const
 {
   for(auto& var : Upgrades)
   {
@@ -677,7 +676,7 @@ bool Civ::Has_Enough_Gold_To_Build_Upgrade(string upg_name)
       return false;
     }
   }
-  Logger::Log_Error("Upgrade not found! " + upg_name);
+  Logger::Log_Error("Upgrade not found! " + string(upg_name));
   return false;
 }
 
@@ -689,7 +688,7 @@ void Civ::Do_Traits()
   }
 }
 
-int Civ::Get_Upgrade_Border_Radius()
+int Civ::Get_Upgrade_Border_Radius() const
 {
   int out = 2;
   for(auto &var : Tech_Tree)
@@ -702,7 +701,7 @@ int Civ::Get_Upgrade_Border_Radius()
   return out;
 }
 
-int Civ::Get_Number_Of_Stability_Techs()
+int Civ::Get_Number_Of_Stability_Techs() const
 {
   int out = 0;
   for(auto &var : Tech_Tree)
@@ -712,7 +711,7 @@ int Civ::Get_Number_Of_Stability_Techs()
   return out;
 }
 
-int Civ::Get_Number_Of_Assimilation_Techs()
+int Civ::Get_Number_Of_Assimilation_Techs() const
 {
   int out = 0;
   for(auto &var : Tech_Tree)
@@ -729,24 +728,24 @@ bool Civ::Has_Researched_Border_Expand_Tech_Recently()
   return out;
 }
 
-string Civ::Get_Capital_Name()
+string_view Civ::Get_Capital_Name() const
 {
   if(Cities.size() == 0)
     return "exile";
   return Cities[0].Get_Name();
 }
 
-string Civ::Get_Raw_Name()
+string_view Civ::Get_Raw_Name() const
 {
   return Get_Name();
 }
 
-string Civ::Get_Raw_Leader_Name()
+string_view Civ::Get_Raw_Leader_Name() const
 {
   return leader;
 }
 
-bool Civ::Change_Goverment_By_Name(string new_gov_name, string fallback_leader_name)
+bool Civ::Change_Goverment_By_Name(string_view new_gov_name, string_view fallback_leader_name)
 {
   if(Active_Goverment.Get_Name() == "Despotism")
     gold = 0;
@@ -766,7 +765,7 @@ bool Civ::Change_Goverment_By_Name(string new_gov_name, string fallback_leader_n
   return Change_Leader_Name(fallback_leader_name);
 }
 
-bool Civ::Change_Leader_Name(string fallback_leader_name)
+bool Civ::Change_Leader_Name(string_view fallback_leader_name)
 {
   bool out = false;
   string new_leader = " ";
@@ -785,7 +784,7 @@ bool Civ::Change_Leader_Name(string fallback_leader_name)
   return out;
 }
 
-bool Civ::Has_Tech_Been_Researched_By_Trait(string trait_name)
+bool Civ::Has_Tech_Been_Researched_By_Trait(string_view trait_name) const
 {
   for(auto &var : Tech_Tree)
   {
@@ -795,12 +794,14 @@ bool Civ::Has_Tech_Been_Researched_By_Trait(string trait_name)
   return false;
 }
 
-vector<Unit> Civ::Get_Units()
+
+
+vector<Unit> Civ::Get_Units() const
 {
   return Unit_Templates;
 }
 
-void Civ::Recruit_Unit_By_Name(string name, int x, int y)
+void Civ::Recruit_Unit_By_Name(string_view name, int x, int y)
 {
   for(auto &var : Unit_Templates)
   {
@@ -820,26 +821,26 @@ void Civ::Recruit_Unit_By_Name(string name, int x, int y)
   }
 }
 
-vector<City>* Civ::Get_Owned_Cities()
+vector<City>& Civ::Get_Owned_Cities()
 {
-  return &Cities;
+  return Cities;
 }
 
-vector<string> Civ::Get_All_Upgrade_Names_By_Trait(string trait_name)
+vector<string> Civ::Get_All_Upgrade_Names_By_Trait(string_view trait_name) const
 {
   vector<string> out;
-  for_each(Upgrades.begin(), Upgrades.end(), [&](auto& Upgrade){if(Upgrade.Get_Name() == trait_name){out.push_back(Upgrade.Get_Name());}});
+  for_each(Upgrades.begin(), Upgrades.end(), [&](auto& Upgrade){if(Upgrade.Get_Name().data() == trait_name){out.push_back(Upgrade.Get_Name().data());}});
   return out;
 }
 
-vector<Upgrade> Civ::Get_All_Upgrades_By_Trait(string trait_name)
+vector<Upgrade> Civ::Get_All_Upgrades_By_Trait(string_view trait_name) const
 {
   vector<Upgrade> out;
-  for_each(Upgrades.begin(), Upgrades.end(), [&](auto& Upgrade){if(Upgrade.Get_Name() == trait_name){out.push_back(Upgrade);}});
+  for_each(Upgrades.begin(), Upgrades.end(), [&](auto& Upgrade){if(Upgrade.Get_Name().data() == trait_name){out.push_back(Upgrade);}});
   return out;
 }
 
-vector<City> Civ::Get_Owned_Cities_Not_Pointer()
+vector<City> Civ::Get_Owned_Cities_Not_Pointer() const
 {
   return Cities;
 }
@@ -857,9 +858,9 @@ void Civ::Move_Unit_To_By_Coords(int unit_x, int unit_y, int dest_x, int dest_y,
   }
 }
 
-vector<Unit_On_Map>* Civ::Get_Owned_Units()
+vector<Unit_On_Map>& Civ::Get_Owned_Units()
 {
-  return &Units_Owned;
+  return Units_Owned;
 }
 
 City Civ::Lose_City_By_Coords(int x, int y)
@@ -881,12 +882,12 @@ City Civ::Lose_City_By_Coords(int x, int y)
   return nullptr;
 }
 
-string Civ::Get_Active_Goverment_Name()
+string_view Civ::Get_Active_Goverment_Name() const
 {
   return Active_Goverment.Get_Name();
 }
 
-int Civ::Get_Army_Manpower()
+int Civ::Get_Army_Manpower() const
 {
   int out = 0;
   for(auto &unit : Units_Owned)
@@ -896,7 +897,7 @@ int Civ::Get_Army_Manpower()
   return out;
 }
 
-int Civ::Get_Population()
+int Civ::Get_Population() const
 {
   int out = 0;
   int per_city_multiplier = 10000;
@@ -923,77 +924,77 @@ Civ::Civ(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_Node
 
 void Civ::Deserialize(xml_node<>* Root_Node)
 {
-  recent_expand = (bool) stoi(Root_Node->first_attribute("recent_expand")->value());
-  research_percent = stoi(Root_Node->first_attribute("research_percent")->value());
-  city_name_index = stoi(Root_Node->first_attribute("city_name_index")->value());
-  points = stoi(Root_Node->first_attribute("points")->value());
-  points_from_technologies = stoi(Root_Node->first_attribute("points_from_tech")->value());
-  leader = Root_Node->first_attribute("leader")->value();
-  personality = Root_Node->first_attribute("personality")->value();
-  tech_in_research = Root_Node->first_attribute("tech_in_research")->value();
-  gold = stoi(Root_Node->first_attribute("gold")->value());
-  id = stoi(Root_Node->first_attribute("id")->value());
-  max_actions = stoi(Root_Node->first_attribute("max_actions")->value());
-  current_actions = stoi(Root_Node->first_attribute("current_actions")->value());
-  tech_money_modifier = atof(Root_Node->first_attribute("tech_money_modifier")->value());
-  color = (int32_t) stoi(Root_Node->first_attribute("color")->value());
-  culture = Root_Node->first_attribute("culture")->value();
-  Gov tmp(Root_Node->first_node("goverment"));
+  recent_expand = (bool) Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "recent_expand");
+  research_percent = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "research_percent");
+  city_name_index = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "city_name_index");
+  points = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "points");
+  points_from_technologies = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "points_from_tech");
+  leader = Traits_Owner::Get_Value_From_Attribute(Root_Node, "leader");
+  personality = Traits_Owner::Get_Value_From_Attribute(Root_Node, "personality");
+  tech_in_research = Traits_Owner::Get_Value_From_Attribute(Root_Node, "tech_in_research");
+  gold = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "gold");
+  id = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "id");
+  max_actions = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "max_actions");
+  current_actions = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "current_actions");
+  tech_money_modifier = atof(Traits_Owner::Get_Value_From_Attribute(Root_Node, "tech_money_modifier").c_str());
+  color = (int32_t) Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "color");
+  culture = Traits_Owner::Get_Value_From_Attribute(Root_Node, "culture");
+  Gov tmp(Traits_Owner::Get_Subnode(Root_Node, "goverment"));
   Active_Goverment = tmp;
-  xml_node<>* City_Names_Node = Root_Node->first_node("city_names");
+  xml_node<>* City_Names_Node = Traits_Owner::Get_Subnode(Root_Node, "city_names");
   for(xml_node<> *City_Name_Node = City_Names_Node->first_node("city"); City_Name_Node; City_Name_Node = City_Name_Node->next_sibling("city"))
   {
     City_Names.push_back(City_Name_Node->value());
   }
 
-  xml_node<>* Rebellions_Node = Root_Node->first_node("rebellions");
+  xml_node<>* Rebellions_Node = Traits_Owner::Get_Subnode(Root_Node, "rebellions");
   for(xml_node<> *Rebellion_Node = Rebellions_Node->first_node("rebellion"); Rebellion_Node; Rebellion_Node = Rebellion_Node->next_sibling("rebellion"))
   {
     City_Names.push_back(Rebellion_Node->value());
   }
 
-  xml_node<>* Leaders_Node = Root_Node->first_node("leaders");
+  xml_node<>* Leaders_Node = Traits_Owner::Get_Subnode(Root_Node, "leaders");
   for(xml_node<> *Leader_Node = Leaders_Node->first_node("leader"); Leader_Node; Leader_Node = Leader_Node->next_sibling("leader"))
   {
     Leaders.push_back(Leader_Node->value());
   }
 
-  xml_node<>* Goverments_Node = Root_Node->first_node("goverments");
+  xml_node<>* Goverments_Node = Traits_Owner::Get_Subnode(Root_Node, "goverments");
   for(xml_node<> *Goverment_Node = Goverments_Node->first_node("goverment"); Goverment_Node; Goverment_Node = Goverment_Node->next_sibling("goverment"))
   {
     Gov tmp(Goverment_Node);
     Goverments.push_back(tmp);
   }
 
-  xml_node<>* Units_Node = Root_Node->first_node("units");
+  xml_node<>* Units_Node = Traits_Owner::Get_Subnode(Root_Node, "units");
   for(xml_node<> *Unit_Node = Units_Node->first_node("unit"); Unit_Node; Unit_Node = Unit_Node->next_sibling("unit"))
   {
     Unit tmp(Unit_Node);
     Unit_Templates.push_back(tmp);
   }
 
-  xml_node<>* Technologies_Node = Root_Node->first_node("techs");
+  xml_node<>* Technologies_Node = Traits_Owner::Get_Subnode(Root_Node, "techs");
   for(xml_node<> *Technology_Node = Technologies_Node->first_node("tech"); Technology_Node; Technology_Node = Technology_Node->next_sibling("tech"))
   {
     Tech tmp(Technology_Node);
     Tech_Tree.push_back(tmp);
   }
 
-  xml_node<>* Upgrades_Node = Root_Node->first_node("upgrades");
+  xml_node<>* Upgrades_Node = Traits_Owner::Get_Subnode(Root_Node, "upgrades");
   for(xml_node<> *Upgrade_Node = Upgrades_Node->first_node("upgrade"); Upgrade_Node; Upgrade_Node = Upgrade_Node->next_sibling("upgrade"))
   {
     Upgrade tmp(Upgrade_Node);
     Upgrades.push_back(tmp);
   }
 
-  xml_node<>* Owned_Cities_Node = Root_Node->first_node("owned_cities");
+  xml_node<>* Owned_Cities_Node = Traits_Owner::Get_Subnode(Root_Node, "owned_cities");
   for(xml_node<> *Owned_City_Node = Owned_Cities_Node->first_node("city"); Owned_City_Node; Owned_City_Node = Owned_City_Node->next_sibling("city"))
   {
     City Tmp(Owned_City_Node);
     Cities.push_back(Tmp);
   }
 
-  xml_node<>* Owned_Units_Node = Root_Node->first_node("owned_units");
+  xml_node<>* Owned_Units_Node = Traits_Owner::Get_Subnode(Root_Node, "owned_units");
   for(xml_node<> *Owned_Unit_Node = Owned_Units_Node->first_node("owned_unit"); Owned_Unit_Node; Owned_Unit_Node = Owned_Unit_Node->next_sibling("owned_unit"))
   {
     Unit_On_Map tmp(Owned_Unit_Node);
@@ -1018,7 +1019,7 @@ void Civ::Deserialize(xml_node<>* Root_Node)
 
 xml_node<>* Civ::Serialize(memory_pool<>* doc)
 {
-  Logger::Log_Info( "Serializing " + Get_Raw_Name());
+  Logger::Log_Info("Serializing " + string(Get_Raw_Name()));
   xml_node<> *Root_Node = doc->allocate_node(node_element, "civ");
   xml_attribute<> *Recent_Expand = doc->allocate_attribute("recent_expand", doc->allocate_string(to_string(recent_expand).c_str()));
   Root_Node->append_attribute(Recent_Expand);
@@ -1158,7 +1159,7 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
   return Root_Node;
 }
 
-int Civ::Get_Number_Of_Researched_Techs()
+int Civ::Get_Number_Of_Researched_Techs() const
 {
   return count_if(Tech_Tree.begin(), Tech_Tree.end(), [](Tech &tech){return tech.Is_Reseached();});
 }
@@ -1173,12 +1174,12 @@ void Civ::Disband_First_Unit()
   }
 }
 
-int Civ::Get_Number_Of_Naval_Units()
+int Civ::Get_Number_Of_Naval_Units() const
 {
   return count_if(Units_Owned.begin(), Units_Owned.end(), [](Unit_On_Map& unit){return unit.Self.Is_Naval();});
 }
 
-void Civ::Set_Research_Tech_By_Trait(string trait)
+void Civ::Set_Research_Tech_By_Trait(string_view trait)
 {
   vector<Tech> Possible_Techs = Get_Possible_Research_Techs();
   vector<Tech> Possible_Techs_With_Trait;
@@ -1188,7 +1189,7 @@ void Civ::Set_Research_Tech_By_Trait(string trait)
       Possible_Techs_With_Trait.push_back(tech);
   }
   if(Possible_Techs_With_Trait.size() > 0)
-    Set_Research_Tech_By_Name(Possible_Techs_With_Trait[0].Get_Name());
+    Set_Research_Tech_By_Name(Possible_Techs_With_Trait[0].Get_Name().data());
   else
-    Set_Research_Tech_By_Name(Possible_Techs[0].Get_Name());
+    Set_Research_Tech_By_Name(Possible_Techs[0].Get_Name().data());
 }

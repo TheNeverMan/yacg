@@ -1,9 +1,8 @@
 #include "city.h"
 
-City::City(string n, string f_n, string f_d, int s, array<int, 2> c)
+City::City(string n, string f_n, string f_d, int s, array<int, 2> c) : Help_Object(n, " ")
 {
   is_connected = false;
-  name = n;
   founder_name = f_n;
   nationality = f_n;
   owner_name = f_n;
@@ -16,7 +15,7 @@ City::City(string n, string f_n, string f_d, int s, array<int, 2> c)
   turns_after_revolt = 0;
 }
 
-City::City(xml_node<>* Root_Node)
+City::City(xml_node<>* Root_Node) : Help_Object(Root_Node)
 {
   Deserialize(Root_Node);
   turns_after_revolt = 0;
@@ -101,44 +100,39 @@ void City::Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit
     stability = 0;
 }
 
-bool City::Does_Rebel()
+bool City::Does_Rebel() const
 {
   if(stability < 25 && rand() % 100 <= 40 && !turns_after_revolt)
     return true;
   return false;
 }
 
-string City::Get_Name()
-{
-  return name;
-}
-
-string City::Get_Founder_Name()
+string_view City::Get_Founder_Name() const
 {
   return founder_name;
 }
 
-string City::Get_Nationality()
+string_view City::Get_Nationality() const
 {
   return nationality;
 }
 
-string City::Get_Owner_Name()
+string_view City::Get_Owner_Name() const
 {
   return owner_name;
 }
 
-string City::Get_Founding_Date()
+string_view City::Get_Founding_Date() const
 {
   return founding_date;
 }
 
-int City::Get_Stability()
+int City::Get_Stability() const
 {
   return stability;
 }
 
-string City::Get_Status()
+string_view City::Get_Status() const
 {
   switch (Status)
   {
@@ -175,37 +169,36 @@ void City::Change_Stability(int stability_change, bool has_unit)
 xml_node<>* City::Serialize(memory_pool<>* doc)
 {
   xml_node<>* Root_Node = doc->allocate_node(node_element, "city");
-  Root_Node->append_attribute(doc->allocate_attribute("name", doc->allocate_string(name.c_str())));
-  Root_Node->append_attribute(doc->allocate_attribute("founder_name", doc->allocate_string(founder_name.c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("founder_name", doc->allocate_string(founder_name.data())));
   Root_Node->append_attribute(doc->allocate_attribute("nationality", doc->allocate_string(nationality.c_str())));
   Root_Node->append_attribute(doc->allocate_attribute("owner_name", doc->allocate_string(owner_name.c_str())));
-  Root_Node->append_attribute(doc->allocate_attribute("founding_date", doc->allocate_string(founding_date.c_str())));
+  Root_Node->append_attribute(doc->allocate_attribute("founding_date", doc->allocate_string(founding_date.data())));
   Root_Node->append_attribute(doc->allocate_attribute("stability", doc->allocate_string(to_string(stability).c_str())));
   Root_Node->append_attribute(doc->allocate_attribute("is_connected", doc->allocate_string(to_string(is_connected).c_str())));
   Root_Node->append_attribute(doc->allocate_attribute("turns_without_stability_changes", doc->allocate_string(to_string(turns_without_stability_changes).c_str())));
   Root_Node->append_attribute(doc->allocate_attribute("turns_without_positive_stability_changes", doc->allocate_string(to_string(turns_without_positive_stability_changes).c_str())));
   Root_Node->append_attribute(doc->allocate_attribute("x", doc->allocate_string(to_string(Coords[0]).c_str())));
   Root_Node->append_attribute(doc->allocate_attribute("y", doc->allocate_string(to_string(Coords[1]).c_str())));
+  Root_Node->append_node(Serialize_Help(doc));
   return Root_Node;
 }
 
 void City::Deserialize(xml_node<>* Root_Node)
 {
-  name = Root_Node->first_attribute("name")->value();
-  founder_name = Root_Node->first_attribute("founder_name")->value();
-  nationality = Root_Node->first_attribute("nationality")->value();
-  owner_name = Root_Node->first_attribute("owner_name")->value();
-  founding_date = Root_Node->first_attribute("founding_date")->value();
-  stability = stoi(Root_Node->first_attribute("stability")->value());
-  is_connected = stoi(Root_Node->first_attribute("is_connected")->value());
-  turns_without_stability_changes = stoi(Root_Node->first_attribute("turns_without_stability_changes")->value());
-  turns_without_positive_stability_changes = stoi(Root_Node->first_attribute("turns_without_positive_stability_changes")->value());
-  Coords[0] = stoi(Root_Node->first_attribute("x")->value());
-  Coords[1] = stoi(Root_Node->first_attribute("y")->value());
+  founder_name = Get_Value_From_Attribute(Root_Node, "founder_name");
+  nationality = Get_Value_From_Attribute(Root_Node, "nationality");
+  owner_name = Get_Value_From_Attribute(Root_Node, "owner_name");
+  founding_date = Get_Value_From_Attribute(Root_Node, "founding_date");
+  stability = Get_Int_Value_From_Attribute(Root_Node, "stability");
+  is_connected = Get_Int_Value_From_Attribute(Root_Node, "is_connected");
+  turns_without_stability_changes = Get_Int_Value_From_Attribute(Root_Node, "turns_without_stability_changes");
+  turns_without_positive_stability_changes = Get_Int_Value_From_Attribute(Root_Node, "turns_without_positive_stability_changes");
+  Coords[0] = Get_Int_Value_From_Attribute(Root_Node, "x");
+  Coords[1] = Get_Int_Value_From_Attribute(Root_Node, "y");
   Update_Status();
 }
 
-array<int, 2> City::Get_Coords()
+array<int, 2> City::Get_Coords() const
 {
   return Coords;
 }
@@ -248,7 +241,7 @@ void City::Connect_City()
   is_connected = true;
 }
 
-bool City::Is_Connected()
+bool City::Is_Connected() const
 {
   return is_connected;
 }

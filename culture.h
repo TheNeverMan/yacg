@@ -16,8 +16,9 @@ using std::string;
 using std::vector;
 using std::shuffle;
 using std::remove;
+using std::string_view;
 
-class Culture : public Help_Object
+class Culture : public Help_Object, public XML_Serializable
 {
   private:
     vector<string> Fallback_City_Names;
@@ -28,9 +29,9 @@ class Culture : public Help_Object
   public:
     Culture(string n, vector<string> c, vector<string> l);
     Culture();
-    string Get_Texture_For_Upgrade(string upgrade_name);
-    string Get_Random_City_Name();
-    string Get_Random_Leader_Name();
+    string_view Get_Texture_For_Upgrade(string upgrade_name) const;
+    string_view Get_Random_City_Name();
+    string_view Get_Random_Leader_Name();
     void Remove_Last_City_Name();
     void Remove_Last_Leader_Name();
     xml_node<>* Serialize(memory_pool<>* doc);

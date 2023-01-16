@@ -30,7 +30,7 @@ Culture::Culture(xml_node<>* Root_Node) : Help_Object(Root_Node)
   Deserialize(Root_Node);
 }
 
-string Culture::Get_Random_City_Name()
+string_view Culture::Get_Random_City_Name()
 {
   if(!Fallback_City_Names.size())
     return "City Name";
@@ -38,7 +38,7 @@ string Culture::Get_Random_City_Name()
   return last_given_city_name;
 }
 
-string Culture::Get_Random_Leader_Name()
+string_view Culture::Get_Random_Leader_Name()
 {
   if(!Fallback_Leader_Names.size())
     return "Leader Name";
@@ -79,12 +79,12 @@ xml_node<>* Culture::Serialize(memory_pool<>* doc)
 
 void Culture::Deserialize(xml_node<>* Root_Node)
 {
-  xml_node<> *Fallback_City_Names_Node = Root_Node->first_node("cities");
+  xml_node<> *Fallback_City_Names_Node = Get_Subnode(Root_Node, "cities");
   for(xml_node<> *City_Node = Fallback_City_Names_Node->first_node("city"); City_Node; City_Node = City_Node->next_sibling("city"))
   {
     Fallback_City_Names.push_back(City_Node->value());
   }
-  xml_node<> *Fallback_Leader_Names_Node = Root_Node->first_node("leaders");
+  xml_node<> *Fallback_Leader_Names_Node = Get_Subnode(Root_Node, "leaders");
   for(xml_node<> *Leader_Node = Fallback_Leader_Names_Node->first_node("leader"); Leader_Node; Leader_Node = Leader_Node->next_sibling("leader"))
   {
     Fallback_Leader_Names.push_back(Leader_Node->value());
@@ -92,9 +92,8 @@ void Culture::Deserialize(xml_node<>* Root_Node)
   Shuffle_Fallback_Lists();
 }
 
-string Culture::Get_Texture_For_Upgrade(string upgrade_name)
+string_view Culture::Get_Texture_For_Upgrade(string upgrade_name) const
 {
   std::transform(upgrade_name.begin(), upgrade_name.end(), upgrade_name.begin(), ::tolower);
-  string out = "assets/textures/upgrades/" + upgrade_name + "/" + Get_Name() + "-" + upgrade_name + "-upgrade-texture.svg";
-  return out;
+  return "assets/textures/upgrades/" + upgrade_name + "/" + Get_Name().data() + "-" + upgrade_name + "-upgrade-texture.svg";
 }

@@ -148,7 +148,7 @@ void Game_Window::Show_Not_Enough_Gold_Message()
   ProgressBar_Label.set_text(message);
 }
 
-bool Game_Window::Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y)
+bool Game_Window::Check_Avoid_Trait_For_Upgrades(string_view upg_name, int x, int y)
 {
   if(!Main_Game->Get_Upgrade_By_Name(upg_name).Has_Trait("avoid"))
     return true;
@@ -162,7 +162,7 @@ bool Game_Window::Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y)
   return true;
 }
 
-bool Game_Window::Check_Must_Border_Trait_For_Upgrades(string upg_name, int x, int y)
+bool Game_Window::Check_Must_Border_Trait_For_Upgrades(string_view upg_name, int x, int y)
 {
   if(!Main_Game->Get_Upgrade_By_Name(upg_name).Has_Trait("mustborder"))
     return true;
@@ -183,7 +183,7 @@ void Game_Window::Update_Tiles_From_Game()
     Update_Tile_By_Coords_Only(tile[0], tile[1]);
 }
 
-void Game_Window::Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, int owner)
+void Game_Window::Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int y, int owner)
 {
   if(!Main_Game->Get_Currently_Moving_Player()->Has_Enough_Gold_To_Build_Upgrade(upg_name))
   {
@@ -192,7 +192,7 @@ void Game_Window::Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, i
   }
   if(!Check_Avoid_Trait_For_Upgrades(upg_name, x, y))
   {
-    string message = " You can't build " + upg_name + " here there is other " + upg_name + " close!";
+    string message = " You can't build " + string(upg_name) + " here there is other " + string(upg_name) + " close!";
     ProgressBar_Label.set_text(message);
     return;
   }
@@ -234,7 +234,7 @@ void Game_Window::Clear_Action_Buttons()
   }
 }
 
-void Game_Window::Recruit_Unit(string u, int x, int y)
+void Game_Window::Recruit_Unit(string_view u, int x, int y)
 {
   string message = " ";
   if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() < Main_Game->Get_Unit_By_Name(u).Get_Cost())
@@ -248,7 +248,7 @@ void Game_Window::Recruit_Unit(string u, int x, int y)
     return;
   }
   Main_Game->Recruit_Unit(u, x, y);
-  message = "Unit " + u + " recruited!";
+  message = "Unit " + u.data() + " recruited!";
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
@@ -381,9 +381,9 @@ void Game_Window::Update_Unit_Action_Buttons(int x, int y)
   }
 }
 
-void Game_Window::Show_Themed_Dialog(string message)
+void Game_Window::Show_Themed_Dialog(string_view message)
 {
-  Themed_Dialog Dialog(message, "Info");
+  Themed_Dialog Dialog(string(message), "Info");
   Dialog.Show();
 }
 

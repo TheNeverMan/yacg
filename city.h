@@ -5,18 +5,19 @@
 
 #include "xml_serializable.h"
 #include "logger.h"
+#include "help_object.h"
 
 using std::string;
 using std::array;
 using std::to_string;
+using std::string_view;
 using std::sqrt;
 using std::abs;
 using std::pow;
 
-class City : public XML_Serializable
+class City : public XML_Serializable, public Help_Object
 {
   private:
-    string name;
     string founder_name;
     string nationality;
     string owner_name;
@@ -47,21 +48,20 @@ class City : public XML_Serializable
     void Deserialize(xml_node<>* Root_Node);
     void Change_Owner(string new_owner);
     void Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit, int stability_techs, int assimilation_techs, double base_growth, double army_multiplier, int max_stability);
-    bool Does_Rebel();
-    string Get_Name();
-    string Get_Founder_Name();
-    string Get_Nationality();
-    string Get_Owner_Name();
-    string Get_Founding_Date();
-    int Get_Stability();
-    string Get_Status();
+    bool Does_Rebel() const;
+    string_view Get_Founder_Name() const;
+    string_view Get_Nationality() const;
+    string_view Get_Owner_Name() const;
+    string_view Get_Founding_Date() const;
+    int Get_Stability() const;
+    string_view Get_Status() const;
     void Change_Stability(int stability_change, bool has_unit);
-    array<int, 2> Get_Coords();
+    array<int, 2> Get_Coords() const;
     bool Does_Have_Increased_Maitenance();
     void Flood();
     void Drought();
     void Epidemy();
     void Rebel();
     void Connect_City();
-    bool Is_Connected();
+    bool Is_Connected() const;
 };

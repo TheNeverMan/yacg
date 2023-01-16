@@ -36,7 +36,7 @@ vector<string> Technology_Requirements_Owner::Get_All_Requirements()
   return Required_Technologies;
 }
 
-string Technology_Requirements_Owner::Get_First_Requirement()
+string_view Technology_Requirements_Owner::Get_First_Requirement() const
 {
   return Required_Technologies[0];
 }

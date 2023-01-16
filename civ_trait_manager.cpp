@@ -1,11 +1,11 @@
 #include "civ_trait_manager.h"
 
-string Civ_Trait_Manager::Get_Trait_Full_Name(string trait_name)
+string_view Civ_Trait_Manager::Get_Trait_Full_Name(string trait_name) const
 {
   return Traits[trait_name][0];
 }
 
-string Civ_Trait_Manager::Get_Trait_Letter(string trait_name)
+string_view Civ_Trait_Manager::Get_Trait_Letter(string trait_name) const
 {
   for(auto &var : Traits)
   {
@@ -17,7 +17,7 @@ string Civ_Trait_Manager::Get_Trait_Letter(string trait_name)
 }
 
 
-shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string trait_name)
+shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string trait_name) const
 {
   string full_trait_name = " ";
   if(trait_name.size() == 1)
@@ -51,7 +51,7 @@ Civ_Trait_Manager::Civ_Trait_Manager()
   Traits["I"] = {"Mistic", "You start the game with one more random tech unlocked"};
 }
 
-string Civ_Trait_Manager::Get_Trait_Full_Explanation(string trait_name)
+string_view Civ_Trait_Manager::Get_Trait_Full_Explanation(string trait_name) const
 {
   return Traits[trait_name][1];
 }

@@ -30,6 +30,7 @@ using std::get;
 using std::vector;
 using std::mutex;
 using std::lock_guard;
+using std::string_view;
 
 extern mutex Sound_Mutex;
 
@@ -133,7 +134,7 @@ class Sound_Manager
         return totalFramesRead;
     }
 
-    static void Play_Sound(string path)
+    static void Play_Sound(string_view path)
     {
       Settings_Manager Mute_Settings("miniyacg-config-settings.xml");
       if(Mute_Settings.Is_Game_Muted())
@@ -143,14 +144,14 @@ class Sound_Manager
       while(!Ended_Decoders[index])
         index++;
       lock_guard<mutex> Guard(Sound_Mutex);
-      Audio_Path Resource_Path(path);
-      result = ma_decoder_init_file(Resource_Path.Get_File_Path().c_str(), &Decoder_Config, &Decoders[index]);
+      Audio_Path Resource_Path(path.data());
+      result = ma_decoder_init_file(Resource_Path.Get_File_Path().data(), &Decoder_Config, &Decoders[index]);
       Ended_Decoders[index] = false;
       if (result != MA_SUCCESS) {
-         Logger::Log_Error("Failed to load: " + Resource_Path.Get_File_Path());
+         Logger::Log_Error("Failed to load: " + string(Resource_Path.Get_File_Path()));
          ma_decoder_uninit(&Decoders[index]);
       }
-      Logger::Log_Info("Playing " + Resource_Path.Get_File_Path());
+      Logger::Log_Info("Playing " + string(Resource_Path.Get_File_Path()));
     }
 
     static void Uninit_Manager()
