@@ -44,7 +44,7 @@ void Newspaper::Add_Assassination(string date, string info, int player_id)
   Add_News(date, info, Event_Type::Assassination, player_id);
 }
 
-vector<tuple<array<string,2>, int>> Newspaper::Get_Events_With_Icon_Paths()
+vector<tuple<array<string,2>, int>> Newspaper::Get_Events_With_Icon_Paths() const
 {
   vector<tuple<array<string,2>, int>> out;
   for(auto& Event : News)

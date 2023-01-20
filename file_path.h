@@ -9,6 +9,7 @@
 using std::string;
 using std::fstream;
 using std::string_view;
+using std::replace;
 
 class File_Path
 {

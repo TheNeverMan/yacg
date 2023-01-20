@@ -23,7 +23,7 @@ Settings_Dialog::Settings_Dialog() : Themed_Dialog("Settings", "Apply"), Explana
   Tile_Size_Adjustment = Gtk::Adjustment::create(Main_Settings_Manager.Get_Tile_Size_Value(),32.0,512.0,1.0,10,0.0);
   Tile_Size_Switch = Gtk::SpinButton(Tile_Size_Adjustment);
   Dialog_Box->pack_start(Explanation_Box);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image())); //???
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image())); //???
   Explanation_Box.pack_start(Explanation_Label);
   Dialog_Box->pack_start(Dialog_Settings_Frame);
   Dialog_Settings_Frame.add(Dialog_Root_Box);

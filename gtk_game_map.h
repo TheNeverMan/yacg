@@ -12,6 +12,7 @@
 
 using std::array;
 
+
 class Magic_Map_Generation_Thread_Communicator;
 
 class Gtk_Game_Map : public Gtk::DrawingArea
@@ -32,13 +33,13 @@ class Gtk_Game_Map : public Gtk::DrawingArea
     Gtk_Game_Map(int x_s, int y_s, int t_s);
     Gtk_Game_Map();
     void Set_Tile_Size(int t_s);
-    void Update_Tile(vector<string> Textures, guint32 border_color, int x, int y);
+    void Update_Tile(vector<string_view> Textures, guint32 border_color, int x, int y);
     void Set_Map_Size(int x_s, int y_s);
     void Zoom_In();
     void Zoom_Out();
     shared_ptr<Gtk_Tile> Get_Gtk_Tile(int x, int y);
-    int Get_Tile_Size();
+    int Get_Tile_Size() const;
     void Add_Selection_Overlay(array<int, 2> Coords);
     void Add_Combat_Overlay(array<int, 2> Coords);
-    void Set_City_Overlay(array<int, 2> Coords, string city_name);
+    void Set_City_Overlay(array<int, 2> Coords, string_view city_name);
 };

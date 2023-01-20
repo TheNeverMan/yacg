@@ -78,7 +78,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
 
   Civilizations = Loader.Load_Civs();
   for(auto &civ : Civilizations)
-    Civs_Chooser_Combo.append(civ.Get_Raw_Name());
+    Civs_Chooser_Combo.append(civ.Get_Raw_Name().data());
 
   add(Dialog_Root_Box);
   Civs_Chooser_Combo.set_active(true);
@@ -99,7 +99,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Map_Data_Box.pack_start(Dialog_Players_Frame, Gtk::PACK_SHRINK);
   Dialog_Players_Frame.add(Players_UI_Box);
   Players_UI_Box.pack_start(Main_Player_UI_Box, Gtk::PACK_SHRINK);
-  Main_Player_UI_Box.pack_start(*(Civs_Color_Image.Get_Gtk_Image()), Gtk::PACK_SHRINK);
+  Main_Player_UI_Box.pack_start(Civs_Color_Image.Get_Gtk_Image(), Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Chooser_Combo, Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Description_Frame, Gtk::PACK_SHRINK);
   Civs_Description_Frame.add(Civs_Description_Label);
@@ -159,7 +159,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Randomize_Starting_Locations_Button.hide();
   if(Main_Settings_Manager.Check_If_Game_Is_Launched_First_Time())
   {
-    Tutorial_Dialog Dialog(assets_directory_path + "textures/tutorial/game-creation-tutorial.png", assets_directory_path + "tutorial/game-creation-tutorial.txt");
+    Tutorial_Dialog Dialog(string(assets_directory_path) + "textures/tutorial/game-creation-tutorial.png", string(assets_directory_path) + "tutorial/game-creation-tutorial.txt");
     Dialog.Show();
   }
 }
@@ -239,7 +239,7 @@ void Game_Creation_Window::Update_Other_Player_Civ(int index, bool is_ai, shared
   }
   else
   {
-    image->Change_Path(assets_directory_path + "textures/flags/neutral-flag.svg");
+    image->Change_Path(string(assets_directory_path) + "textures/flags/neutral-flag.svg");
   }
   if(is_ai)
     AI_Players[index] = selected_civ_name;
@@ -251,7 +251,7 @@ void Game_Creation_Window::Update_Other_Player_Civ(int index, bool is_ai, shared
 void Game_Creation_Window::Add_Human_Player()
 {
   auto *label = Gtk::make_managed<Gtk::Label>("Human");
-  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(assets_directory_path + "textures/flags/neutral-flag.svg", 96, 48);
+  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.svg", 96, 48);
   auto* name = Gtk::make_managed<Gtk::ComboBoxText>();
   auto* box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
   Human_Players.push_back("Random Civilization");
@@ -259,16 +259,16 @@ void Game_Creation_Window::Add_Human_Player()
   name->set_active(true);
   name->append("Random Civilization");
   for(auto &civ : Civilizations)
-    name->append(civ.Get_Raw_Name());
+    name->append(civ.Get_Raw_Name().data());
 
   name->set_active_text("Random Civilization");
-  box->pack_start(*(image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+  box->pack_start((image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
   box->pack_start(*name, Gtk::PACK_SHRINK);
   box->pack_start(*label, Gtk::PACK_SHRINK);
   Civs_Box.pack_start(*box);
   name->show();
   box->show();
-  image->Get_Gtk_Image()->show();
+  image->Get_Gtk_Image().show();
   label->show();
   name->signal_changed().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Creation_Window::Update_Other_Player_Civ), Human_Players.size() - 1, false, image, name));
 }
@@ -276,7 +276,7 @@ void Game_Creation_Window::Add_Human_Player()
 void Game_Creation_Window::Add_AI_Player()
 {
   auto *label = Gtk::make_managed<Gtk::Label>("AI");
-  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(assets_directory_path + "textures/flags/neutral-flag.svg", 96, 48);
+  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.svg", 96, 48);
   auto* name = Gtk::make_managed<Gtk::ComboBoxText>();
   auto* box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
   AI_Players.push_back("Random Civilization");
@@ -284,17 +284,17 @@ void Game_Creation_Window::Add_AI_Player()
   name->set_active(true);
   name->append("Random Civilization");
   for(auto &civ : Civilizations)
-    name->append(civ.Get_Raw_Name());
+    name->append(civ.Get_Raw_Name().data());
 
   name->set_active_text("Random Civilization");
-  box->pack_start(*(image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+  box->pack_start((image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
   box->pack_start(*name, Gtk::PACK_SHRINK);
   box->pack_start(*label, Gtk::PACK_SHRINK);
   Civs_Box.pack_start(*box);
   name->show();
   box->show();
-  image->Get_Gtk_Image()->set_margin_bottom(2);
-  image->Get_Gtk_Image()->show();
+  image->Get_Gtk_Image().set_margin_bottom(2);
+  image->Get_Gtk_Image().show();
   label->show();
   name->signal_changed().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Creation_Window::Update_Other_Player_Civ), AI_Players.size() - 1, true, image, name));
 }
@@ -371,7 +371,7 @@ void Game_Creation_Window::Add_Players_From_Vector(vector<string> Players_To_Add
       if(Civilizations.size() > 0)
       {
         int random = rand() % Civilizations.size();
-        string n = Civilizations[random].Get_Raw_Name();
+        string n = Civilizations[random].Get_Raw_Name().data();
         Players.push_back({n, Is_AI});
         if(! Allow_Duplicate_Civs_Button.get_active())
           Civilizations.erase(Civilizations.begin() + random);
@@ -397,7 +397,7 @@ void Game_Creation_Window::Play_Button_Clicked()
     int index = 0;
     for(auto& civ : Civilizations)
     {
-      if(civ.Get_Raw_Name() == Civs_Chooser_Combo.get_active_text())
+      if(civ.Get_Raw_Name().data() == Civs_Chooser_Combo.get_active_text())
       {
         Civilizations.erase(Civilizations.begin() + index);
         break;
@@ -442,7 +442,7 @@ void Game_Creation_Window::Change_Main_Player_Civ()
     Logger::Log_Error("Error civ not found!");
     return;
   }
-  Civs_Description_Label.set_text(selected_civ->Info());
+  Civs_Description_Label.set_text(selected_civ->Info().data());
   Civs_Color_Image.Change_Path(selected_civ->Get_Texture_Path());
   auto children = Civs_Trait_Box.get_children();
   bool skip_first = true;
@@ -459,11 +459,11 @@ void Game_Creation_Window::Change_Main_Player_Civ()
   for(auto& trait_name : selected_civ->Get_Trait_Names())
   {
     auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(Trait_Manager.Get_Trait_Full_Name(trait_name) + "-" + Trait_Manager.Get_Trait_Full_Explanation(trait_name));
+    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(string(Trait_Manager.Get_Trait_Full_Name(trait_name)) + "-" + string(Trait_Manager.Get_Trait_Full_Explanation(trait_name)));
     auto Trait_Icon = Trait_Manager.Get_Trait_Icon(trait_name);
     Main_Provider.Add_CSS_With_Class(Trait_Label, "medium_label");
     Civs_Trait_Box.pack_start(*Trait_Box);
-    Trait_Box->pack_start(*(Trait_Icon->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    Trait_Box->pack_start((Trait_Icon->Get_Gtk_Image()), Gtk::PACK_SHRINK);
     Trait_Box->pack_start(*Trait_Label);
     show_all_children();
   }

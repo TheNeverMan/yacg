@@ -29,7 +29,7 @@ void Scaled_Pixbuf::Resize(int x_s, int y_s)
 {
   if(!Is_Size_Different(x_s, y_s))
     return;
-  Glib::RefPtr<Gdk::Pixbuf> Tmp_Pixbuf = Gdk::Pixbuf::create_from_file(Texture_Path.Get_File_Path());
+  Glib::RefPtr<Gdk::Pixbuf> Tmp_Pixbuf = Gdk::Pixbuf::create_from_file(Texture_Path.Get_File_Path().data());
   double x_proportion = static_cast<double>(Tmp_Pixbuf->get_width()) / static_cast<double>(x_s);
   double y_proportion = static_cast<double>(Tmp_Pixbuf->get_height()) / static_cast<double>(y_s);
   Tmp_Pixbuf->scale(Main_Pixbuf, 0, 0, x_s, y_s, 0, 0, x_proportion, y_proportion, Gdk::INTERP_NEAREST );
@@ -49,7 +49,7 @@ void Scaled_Pixbuf::Set_Texture(string_view t_p)
   {
     Image_Path tmp(t_p.data());
     Main_Pixbuf = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, x_size, y_size);
-    Glib::RefPtr<Gdk::Pixbuf> Tmp_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path());
+    Glib::RefPtr<Gdk::Pixbuf> Tmp_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path().data());
 
     if(Tmp_Pixbuf->get_width() != x_size || Tmp_Pixbuf->get_height() != y_size)
     {
@@ -59,7 +59,7 @@ void Scaled_Pixbuf::Set_Texture(string_view t_p)
     }
     else
     {
-      Main_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path());
+      Main_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path().data());
     }
     Texture_Path = tmp;
   }
@@ -70,11 +70,11 @@ Glib::RefPtr<Gdk::Pixbuf> Scaled_Pixbuf::Get_Pixbuf() const
   return Main_Pixbuf;
 }
 
-Scaled_Pixbuf::Scaled_Pixbuf(string t_p, int x_s, int y_s) : x_size(x_s), y_size(y_s), Main_Color(0)
+Scaled_Pixbuf::Scaled_Pixbuf(string_view t_p, int x_s, int y_s) : x_size(x_s), y_size(y_s), Main_Color(0)
 {
   Main_Pixbuf = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, x_s, y_s);
-  Image_Path tmp(t_p);
-  Glib::RefPtr<Gdk::Pixbuf> Tmp_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path());
+  Image_Path tmp(t_p.data());
+  Glib::RefPtr<Gdk::Pixbuf> Tmp_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path().data());
   if(Tmp_Pixbuf->get_width() != x_size || Tmp_Pixbuf->get_height() != y_size)
   {
     double x_proportion = static_cast<double>(x_size) / static_cast<double>(Tmp_Pixbuf->get_width());
@@ -83,7 +83,7 @@ Scaled_Pixbuf::Scaled_Pixbuf(string t_p, int x_s, int y_s) : x_size(x_s), y_size
   }
   else
   {
-    Main_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path());
+    Main_Pixbuf = Gdk::Pixbuf::create_from_file(tmp.Get_File_Path().data());
 
   }
   Texture_Path = tmp;
@@ -102,7 +102,7 @@ void Scaled_Pixbuf::Set_Color(guint32 color)
   Main_Color = color;
 }
 
-Scaled_Pixbuf::Scaled_Pixbuf(guint32 color, int x_s, int y_s) : x_size(x_s), y_size(y_s), Texture_Path(assets_directory_path + "textures/broken-texture.png")
+Scaled_Pixbuf::Scaled_Pixbuf(guint32 color, int x_s, int y_s) : x_size(x_s), y_size(y_s), Texture_Path(string(assets_directory_path) + "textures/broken-texture.png")
 {
   Main_Pixbuf = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, x_s, y_s);
   Main_Pixbuf->fill(color);

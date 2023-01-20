@@ -25,7 +25,7 @@ class Scaled_Pixbuf
     void Set_Color(guint32 color);
     void Resize(int x_s, int y_s);
     Glib::RefPtr<Gdk::Pixbuf> Get_Pixbuf() const;
-    Scaled_Pixbuf(string t_p, int x_s, int y_s);
+    Scaled_Pixbuf(string_view t_p, int x_s, int y_s);
     Scaled_Pixbuf(int x_s, int y_s);
     Scaled_Pixbuf(guint32 color, int x_s, int y_s);
 };

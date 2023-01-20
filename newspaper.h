@@ -29,5 +29,5 @@ class Newspaper
     void Add_Rebellion(string date, string info, int player_id);
     void Add_Assassination(string date, string info, int player_id);
     //vector<string> Get_News();
-    vector<tuple<array<string, 2>, int>> Get_Events_With_Icon_Paths();
+    vector<tuple<array<string, 2>, int>> Get_Events_With_Icon_Paths() const;
 };

@@ -12,6 +12,7 @@
 using std::string;
 using std::vector;
 using std::shared_ptr;
+using std::string_view;
 
 class Gtk_Tile
 {
@@ -24,13 +25,13 @@ class Gtk_Tile
   public:
     void Increase_Tile_Size();
     void Decrease_Tile_Size();
-    Gtk_Tile(vector<string> Textures, guint32 border_color, int t_s);
+    Gtk_Tile(vector<string_view> Textures, guint32 border_color, int t_s);
     Gtk_Tile(int layers, int t_s);
-    void Update_Texture(vector<string> Textures, guint32 border_color);
-    bool Has_City_Set();
-    void Set_City_Name(string cn);
+    void Update_Texture(vector<string_view> Textures, guint32 border_color);
+    bool Has_City_Set() const;
+    void Set_City_Name(string_view cn);
     void Add_Combat_Overlay();
     void Add_Selection_Overlay();
-    Glib::RefPtr<Gdk::Pixbuf> Get_Pixbuf();
-    string Get_City_Name();
+    Glib::RefPtr<Gdk::Pixbuf> Get_Pixbuf() const;
+    string_view Get_City_Name() const;
 };

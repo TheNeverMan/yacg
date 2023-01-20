@@ -29,8 +29,8 @@ void Themed_Dialog::Add_Close_Button()
   Gtk::Box *Dialog_Box = get_content_area();
   Dialog_Box->pack_end(Close_Button);
   Image_Path Icon_Path("assets/textures/icons/apply-icon.svg.png");
-  Icon_Image = make_shared<Scaled_Gtk_Image>(Icon_Path.Get_File_Path(), 24 ,24);
-  Close_Button.set_image(*(Icon_Image->Get_Gtk_Image()));
+  Icon_Image = make_shared<Scaled_Gtk_Image>(Icon_Path.Get_File_Path().data(), 24 ,24);
+  Close_Button.set_image((Icon_Image->Get_Gtk_Image()));
   Close_Button.signal_clicked().connect(sigc::mem_fun(*this, &Themed_Dialog::Close_Button_Clicked));
 }
 

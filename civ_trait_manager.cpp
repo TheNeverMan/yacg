@@ -1,23 +1,23 @@
 #include "civ_trait_manager.h"
 
-string_view Civ_Trait_Manager::Get_Trait_Full_Name(string trait_name) const
+string_view Civ_Trait_Manager::Get_Trait_Full_Name(string_view trait_name)
 {
-  return Traits[trait_name][0];
+  return Traits[string(trait_name)][0];
 }
 
-string_view Civ_Trait_Manager::Get_Trait_Letter(string trait_name) const
+string_view Civ_Trait_Manager::Get_Trait_Letter(string_view trait_name)
 {
   for(auto &var : Traits)
   {
     if(var.second[0] == trait_name)
       return var.first;
   }
-  Logger::Log_Error(trait_name + " trait not found!");
+  Logger::Log_Error(string(trait_name) + " trait not found!");
   throw;
 }
 
 
-shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string trait_name) const
+shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string_view trait_name)
 {
   string full_trait_name = " ";
   if(trait_name.size() == 1)
@@ -51,7 +51,7 @@ Civ_Trait_Manager::Civ_Trait_Manager()
   Traits["I"] = {"Mistic", "You start the game with one more random tech unlocked"};
 }
 
-string_view Civ_Trait_Manager::Get_Trait_Full_Explanation(string trait_name) const
+string_view Civ_Trait_Manager::Get_Trait_Full_Explanation(string_view trait_name)
 {
-  return Traits[trait_name][1];
+  return Traits[string(trait_name)][1];
 }

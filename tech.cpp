@@ -49,9 +49,9 @@ Tech::Tech(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_No
 
 void Tech::Deserialize(xml_node<>* Root_Node)
 {
-  cost = stoi(Root_Node->first_attribute("cost")->value());
-  current_cost = stoi(Root_Node->first_attribute("current_cost")->value());
-  is_researched = (bool) stoi(Root_Node->first_attribute("is_researched")->value());
+  cost = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "cost");
+  current_cost = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "current_cost");
+  is_researched = (bool) Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "is_researched");
 }
 
 xml_node<>* Tech::Serialize(memory_pool<>* doc)

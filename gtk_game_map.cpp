@@ -55,7 +55,7 @@ void Gtk_Game_Map::Set_Map_Size(int x_s, int y_s)
   y_size = y_s;
 }
 
-void Gtk_Game_Map::Update_Tile(vector<string> Textures, guint32 border_color, int x, int y)
+void Gtk_Game_Map::Update_Tile(vector<string_view> Textures, guint32 border_color, int x, int y)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Game_Map[y + (x * y_size)]->Update_Texture(Textures, border_color);
@@ -198,7 +198,7 @@ void Gtk_Game_Map::Generate_Map(Game* Main_Game, Magic_Map_Generation_Thread_Com
     is_in_thread = false;
 }
 
-shared_ptr<Gtk_Tile> Gtk_Game_Map::Get_Gtk_Tile(int x, int y)
+shared_ptr<Gtk_Tile> Gtk_Game_Map::Get_Gtk_Tile(int x, int y) const
 {
   return Game_Map[y + (x * y_size)];
 }

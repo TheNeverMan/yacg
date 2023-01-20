@@ -1,6 +1,6 @@
 #include "civs_dialog.h"
 
-Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry"), Explanation_Image(assets_directory_path + "textures/dialogs/civs-dialog-texture.svg", 70, 70)
+Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry"), Explanation_Image(string(assets_directory_path) + "textures/dialogs/civs-dialog-texture.svg", 70, 70)
 {
   Players = p;
   Gtk::Box *Dialog_Box = get_content_area();
@@ -12,7 +12,7 @@ Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry"), Exp
   Dialog_Box->pack_start(Explanation_Box);
   Hide_Dead_Button = Gtk::CheckButton("Hide eliminated players");
   Hide_Dead_Button.set_active(true);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image()));
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Explanation_Label);
   //Dialog_Box->pack_start(Hide_Dead_Button);
   Dialog_Box->pack_start(Dialog_Root_Frame);
@@ -41,7 +41,7 @@ void Civs_Dialog::Update_Players()
   {
     if(Hide_Dead_Button.get_active() && player.Get_Capital_Name() == "exile")
     {
-      Logger::Log_Info("Player " + player.Get_Name() + " is dead, skipping...");
+      Logger::Log_Info("Player " + string(player.Get_Name()) + " is dead, skipping...");
       continue;
     }
     auto *image = Gtk::make_managed<Gtk::Image>();
@@ -52,11 +52,11 @@ void Civs_Dialog::Update_Players()
     color_pix->fill(player.Get_Civ_Color());
     color_image->set(color_pix);
     color_image->set_margin_bottom(3);
-    auto *Name_Label = Gtk::make_managed<Gtk::Label>(player.Get_Full_Name() + " (" + player.Get_Leader_Name() + ") " + " ID: " + to_string(index));
+    auto *Name_Label = Gtk::make_managed<Gtk::Label>(string(player.Get_Full_Name()) + " (" + string(player.Get_Leader_Name()) + ") " + " ID: " + to_string(index));
     auto *Points_Label = Gtk::make_managed<Gtk::Label>(" Points: " + to_string(player.Get_Score()));
     auto *Army_Label = Gtk::make_managed<Gtk::Label>(" Army Size: " + to_string(player.Get_Army_Manpower()));
     auto *Population_Label = Gtk::make_managed<Gtk::Label>(" Population: " + to_string(player.Get_Population()));
-    auto *Capital_Label = Gtk::make_managed<Gtk::Label>(" Capital: " + player.Get_Capital_Name());
+    auto *Capital_Label = Gtk::make_managed<Gtk::Label>(" Capital: " + string(player.Get_Capital_Name()));
     rows++;
     image->set(tmp.Get_Pixbuf());
     image->set_margin_end(3);

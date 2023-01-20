@@ -86,7 +86,7 @@ void Settings_Manager::Load_Data_From_XML()
     autosave = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "autosave")->value()));
     autoresize = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "autoresize")->value()));
     show_random_tip_on_startup = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "startup_tip")->value()));
-    tile_size = stoi(XML_Loader::Get_Subnode(Settings_Node, "tile_size")->value());
+    tile_size = stoi(Get_Subnode(Settings_Node, "tile_size")->value());
     mute = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "mute")->value()));
     mute_music = static_cast<bool>(stoi(Get_Subnode(Settings_Node, "music_mute")->value()));
     Logger::Log_Info("XML Settings Data Loaded!" );

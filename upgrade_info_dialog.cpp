@@ -88,7 +88,7 @@ string Upgrade_Info_Dialog::Get_Trait_Info()
   return out;
 }
 
-Upgrade_Info_Dialog::Upgrade_Info_Dialog(Upgrade u) : Described_Upgrade(u), Themed_Dialog("Upgrade"), Described_Upgrade_Image(u.Get_Texture_Path(), 96, 96)
+Upgrade_Info_Dialog::Upgrade_Info_Dialog(Upgrade u) : Described_Upgrade(u), Themed_Dialog("Upgrade"), Described_Upgrade_Image(u.Get_Texture_Path().data(), 96, 96)
 {
   Gtk::Box *Dialog_Box = get_content_area();
   auto* Dialog_Root_Frame = Gtk::make_managed<Gtk::Frame>("Upgrade Informations");
@@ -96,7 +96,7 @@ Upgrade_Info_Dialog::Upgrade_Info_Dialog(Upgrade u) : Described_Upgrade(u), Them
   string allowed_tiles;
   vector<string> Allowed_Tiles = u.Get_Allowed_Tiles();
   for_each(Allowed_Tiles.begin(), Allowed_Tiles.end(), [&](string &tile){allowed_tiles = allowed_tiles + tile + ", ";});
-  string message = "Build " + Described_Upgrade.Get_Name();
+  string message = "Build " + string(Described_Upgrade.Get_Name());
   message = message + "\n Allowed Tiles: " + allowed_tiles;
   message = message + "\n Cost \t" + to_string(Described_Upgrade.Get_Cost());
   message = message + "\n Maintenace \t" + to_string(Described_Upgrade.Get_Maitenance());
@@ -105,6 +105,6 @@ Upgrade_Info_Dialog::Upgrade_Info_Dialog(Upgrade u) : Described_Upgrade(u), Them
   auto* Described_Upgrade_Label = Gtk::make_managed<Gtk::Label>(message);
   Dialog_Box->pack_start(*Dialog_Root_Frame);
   Dialog_Root_Frame->add(*Dialog_Root_Box);
-  Dialog_Root_Box->pack_start(*(Described_Upgrade_Image.Get_Gtk_Image()));
+  Dialog_Root_Box->pack_start((Described_Upgrade_Image.Get_Gtk_Image()));
   Dialog_Root_Box->pack_start(*Described_Upgrade_Label);
 }

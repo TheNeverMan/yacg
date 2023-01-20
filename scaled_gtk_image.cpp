@@ -5,7 +5,7 @@ Scaled_Gtk_Image::Scaled_Gtk_Image(string p, int s_x, int s_y) : Path(p), size_x
   Resize_Image(size_x, size_y);
 }
 
-Gtk::Image* Scaled_Gtk_Image::Get_Gtk_Image()
+Gtk::Image& Scaled_Gtk_Image::Get_Gtk_Image() const
 {
   return &Main_Image;
 }
@@ -27,7 +27,7 @@ void Scaled_Gtk_Image::Resize_Image(int s_x, int s_y)
   size_y = s_y;
 }
 
-void Scaled_Gtk_Image::Change_Path(string p)
+void Scaled_Gtk_Image::Change_Path(string_view p)
 {
   Path.Set_File_Path(p);
   Resize_Image(size_x, size_y);

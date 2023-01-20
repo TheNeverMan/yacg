@@ -12,7 +12,7 @@ using std::string;
 using std::vector;
 using std::string_view;
 
-class Tech : public Help_Object, public XML_Serializable, public Traits_Owner, public Texture_Owner, public Technology_Requirements_Owner
+class Tech : public Help_Object, public Traits_Owner, public Texture_Owner, public Technology_Requirements_Owner
 {
   public:
     void Research_Tech(int val);

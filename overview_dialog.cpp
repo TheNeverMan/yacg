@@ -23,7 +23,7 @@ Overview_Dialog::Overview_Dialog(vector<int> p_i, Civ p, string year) : Themed_D
   for(string &trait : traits)
   {
     auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-    Trait_Box->pack_start(*(Trait_Manager.Get_Trait_Icon(trait)->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    Trait_Box->pack_start((Trait_Manager.Get_Trait_Icon(trait)->Get_Gtk_Image()), Gtk::PACK_SHRINK);
     auto* Trait_Label = Gtk::make_managed<Gtk::Label>(Trait_Manager.Get_Trait_Full_Name(trait) + " - " + Trait_Manager.Get_Trait_Full_Explanation(trait));
     Trait_Box->pack_start(*Trait_Label);
     Root_Box.pack_start(*Trait_Box);

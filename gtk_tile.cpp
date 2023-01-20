@@ -1,8 +1,8 @@
 #include "gtk_tile.h"
 
-Gtk_Tile::Gtk_Tile(vector<string> Textures, guint32 border_color, int t_s)
+Gtk_Tile::Gtk_Tile(vector<string_view> Textures, guint32 border_color, int t_s)
 {
-  for(string &t_p : Textures)
+  for(auto &t_p : Textures)
   {
     Scaled_Pixbuf tmp(t_p, 32, 32);
     Pixbufs.push_back(tmp);
@@ -24,15 +24,15 @@ Gtk_Tile::Gtk_Tile(int layers, int t_s)
   }
 }
 
-bool Gtk_Tile::Has_City_Set()
+bool Gtk_Tile::Has_City_Set() const
 {
   return has_city;
 }
 
-void Gtk_Tile::Set_City_Name(string cn)
+void Gtk_Tile::Set_City_Name(string_view cn)
 {
   has_city = true;
-  this->city_name = cn;
+  this->city_name = cn.data();
   /*
   City_Name_Label.set_text(city_name);
   City_Name_Label.set_halign(Gtk::ALIGN_CENTER);
@@ -47,14 +47,14 @@ void Gtk_Tile::Set_City_Name(string cn)
   */
 }
 
-string Gtk_Tile::Get_City_Name()
+string_view Gtk_Tile::Get_City_Name() const
 {
   return city_name;
 }
 
 
 
-void Gtk_Tile::Update_Texture(vector<string> Textures, guint32 border_color)
+void Gtk_Tile::Update_Texture(vector<string_view> Textures, guint32 border_color)
 {
   Glib::RefPtr<Gdk::Pixbuf> Finished_Pixbuf;
   Glib::RefPtr<Gdk::Pixbuf> Scaled_Pixbuf;
@@ -76,7 +76,7 @@ void Gtk_Tile::Update_Texture(vector<string> Textures, guint32 border_color)
   Tile_Pixbuf = Scaled_Pixbuf;
 }
 
-Glib::RefPtr<Gdk::Pixbuf> Gtk_Tile::Get_Pixbuf()
+Glib::RefPtr<Gdk::Pixbuf> Gtk_Tile::Get_Pixbuf() const
 {
   return Tile_Pixbuf;
 }
@@ -85,7 +85,7 @@ void Gtk_Tile::Add_Combat_Overlay()
 {
   Glib::RefPtr<Gdk::Pixbuf> selection_texture;
   Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
-  selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "combat-texture.svg");
+  selection_texture = Gdk::Pixbuf::create_from_file(string(assets_directory_path) + "textures" + string(path_delimeter) + "other" + string(path_delimeter) + "combat-texture.svg");
   int true_tile_size = tile_size;
   scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
   selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
@@ -96,7 +96,7 @@ void Gtk_Tile::Add_Selection_Overlay()
 {
   Glib::RefPtr<Gdk::Pixbuf> selection_texture;
   Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
-  selection_texture = Gdk::Pixbuf::create_from_file(assets_directory_path + "textures" + path_delimeter + "other" + path_delimeter + "selection-texture.svg");
+  selection_texture = Gdk::Pixbuf::create_from_file(string(assets_directory_path) + "textures" + string(path_delimeter) + "other" + string(path_delimeter) + "selection-texture.svg");
   int true_tile_size = tile_size;
   scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
   selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);

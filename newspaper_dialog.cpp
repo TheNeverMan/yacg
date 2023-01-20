@@ -1,6 +1,6 @@
 #include "newspaper_dialog.h"
 
-Newspaper_Dialog::Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, int currently_moving_player_id) : Themed_Dialog("Newspaper"), Explanation_Image(assets_directory_path + "textures/dialogs/newspaper-dialog-texture.svg", 64, 64)
+Newspaper_Dialog::Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, int currently_moving_player_id) : Themed_Dialog("Newspaper"), Explanation_Image(string(assets_directory_path) + "textures/dialogs/newspaper-dialog-texture.svg", 64, 64)
 {
   reverse(events.begin(), events.end());
   Gtk::Box *Dialog_Box = get_content_area();
@@ -14,7 +14,7 @@ Newspaper_Dialog::Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, i
   Events_List_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   Dialog_Box->pack_start(Root_Box);
   Root_Box.pack_start(Explanation_Box);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image()));
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Explanation_Label);
   Root_Box.pack_start(Dialog_Root_Frame);
   Dialog_Root_Frame.add(Dialog_Scrolled_Window);
@@ -35,7 +35,7 @@ Newspaper_Dialog::Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, i
     Event_Images.push_back(image);
     label->set_markup(event_text);
     auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-    box->pack_start(*(image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    box->pack_start((image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
     box->pack_start(*label);
     Events_List_Box.pack_start(*box);
     Main_Provider.Add_CSS(label);
