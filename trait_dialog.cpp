@@ -38,7 +38,7 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
   Explanation_Label = Gtk::Label("This is a table of all civilizations in the game, sorted by their trait combinations:");
   Dialog_Box->pack_start(Root_Box);
   Root_Box.pack_start(Explanation_Box);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image()));
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Explanation_Label);
   Root_Box.pack_start(Grid_Box);
   Grid_Box.pack_start(Civs_Grid);
@@ -50,7 +50,7 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
     auto* Trait_Label = Gtk::make_managed<Gtk::Label>(trait_name);
     Main_Provider.Add_CSS_With_Class(Trait_Label, "medium_label");
     auto Trait_Image = Trait_Manager.Get_Trait_Icon(trait_name);
-    Trait_Box->pack_start(*(Trait_Image->Get_Gtk_Image()));
+    Trait_Box->pack_start((Trait_Image->Get_Gtk_Image()));
     Trait_Box->pack_start(*Trait_Label);
     Civs_Grid.attach(*Trait_Box, column, 0);
   }
@@ -60,7 +60,7 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
     auto* Trait_Label = Gtk::make_managed<Gtk::Label>(trait_name);
     auto Trait_Image = Trait_Manager.Get_Trait_Icon(trait_name);
     Main_Provider.Add_CSS_With_Class(Trait_Label, "medium_label");
-    Trait_Box->pack_start(*(Trait_Image->Get_Gtk_Image()));
+    Trait_Box->pack_start((Trait_Image->Get_Gtk_Image()));
     Trait_Box->pack_start(*Trait_Label);
     Civs_Grid.attach(*Trait_Box, 0, column);
   }
@@ -96,11 +96,11 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
       row = tmp;
     }
     auto* Civ_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-    shared_ptr<Scaled_Gtk_Image> Civ_Icon = make_shared<Scaled_Gtk_Image>(Civ.Get_Texture_Path(), 48, 24);
+    shared_ptr<Scaled_Gtk_Image> Civ_Icon = make_shared<Scaled_Gtk_Image>(Civ.Get_Texture_Path().data(), 48, 24);
     Trait_Images.push_back(Civ_Icon);
-    auto* Civ_Label = Gtk::make_managed<Gtk::Label>(Civ.Get_Name());
+    auto* Civ_Label = Gtk::make_managed<Gtk::Label>(Civ.Get_Name().data());
     Main_Provider.Add_CSS_With_Class(Civ_Label, "medium_label");
-    Civ_Box->pack_start(*(Civ_Icon->Get_Gtk_Image()));
+    Civ_Box->pack_start((Civ_Icon->Get_Gtk_Image()));
     Civ_Box->pack_start(*Civ_Label);
     Civs_Grid.attach(*Civ_Box, col, row);
     auto* Reverse_Label = Gtk::make_managed<Gtk::Label>(" --- ");
@@ -111,11 +111,11 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
   for(const auto& [column, trait_name] : Trait_To_Column)
   {
     auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(trait_name + "-" + Trait_Manager.Get_Trait_Full_Explanation(Trait_Manager.Get_Trait_Letter(trait_name)));
+    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(trait_name + "-" + string(Trait_Manager.Get_Trait_Full_Explanation(Trait_Manager.Get_Trait_Letter(trait_name))));
     auto Trait_Icon = Trait_Manager.Get_Trait_Icon(trait_name);
     Main_Provider.Add_CSS_With_Class(Trait_Label, "medium_label");
     All_Traits_Box.pack_start(*Trait_Box, Gtk::PACK_SHRINK);
-    Trait_Box->pack_start(*(Trait_Icon->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    Trait_Box->pack_start((Trait_Icon->Get_Gtk_Image()), Gtk::PACK_SHRINK);
     Trait_Box->pack_start(*Trait_Label, Gtk::PACK_SHRINK);
   }
 }

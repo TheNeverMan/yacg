@@ -19,7 +19,7 @@ void Gtk_Game_Map::Set_Tile_Size(int t_s)
   tile_size = t_s;
 }
 
-int Gtk_Game_Map::Get_Tile_Size()
+int Gtk_Game_Map::Get_Tile_Size() const
 {
   return tile_size;
 }
@@ -78,7 +78,7 @@ void Gtk_Game_Map::Zoom_Out()
   Force_Redraw();
 }
 
-void Gtk_Game_Map::Set_City_Overlay(array<int, 2> Coords, string city_name)
+void Gtk_Game_Map::Set_City_Overlay(array<int, 2> Coords, string_view city_name)
 {
   Get_Gtk_Tile(Coords[0], Coords[1])->Set_City_Name(city_name);
 }
@@ -137,7 +137,7 @@ bool Gtk_Game_Map::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
       if(Game_Map[index]->Has_City_Set())
       {
         cr->set_source_rgb(1.0, 1.0, 1.0);
-        draw_text(cr, {tile_size * start - tile_size / 2, static_cast<int>(tile_size * start_y + (tile_size * 0.75))}, Game_Map[index]->Get_City_Name());
+        draw_text(cr, {tile_size * start - tile_size / 2, static_cast<int>(tile_size * start_y + (tile_size * 0.75))}, Game_Map[index]->Get_City_Name().data());
       }
       start_y++;
       index++;
@@ -171,14 +171,14 @@ void Gtk_Game_Map::Generate_Map(Game* Main_Game, Magic_Map_Generation_Thread_Com
       {
         {
           if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-          string tile_texture = Main_Game->Get_Map()->Get_Tile(start,start_y).Get_Texture_Path(); //this is incredibly slow pls fix
-          string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
-          if(Main_Game->Get_Map()->Get_Tile(start,start_y).Has_Unit())
-            unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(start,start_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(start,start_y).Get_Texture_Path();
-          string upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(start,start_y)).Get_Texture_Path();
-          guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map()->Get_Owner(start,start_y));
+          string_view tile_texture = Main_Game->Get_Map().Get_Tile(start,start_y).Get_Texture_Path(); //this is incredibly slow pls fix
+          string unit_texture = assets_directory_path + "textures" + string(path_delimeter) + "upgrades" + string(path_delimeter) + "none-upgrade-texture.png";
+          if(Main_Game->Get_Map().Get_Tile(start,start_y).Has_Unit())
+            unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(start,start_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(start,start_y).Get_Texture_Path();
+          string_view upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map().Get_Upgrade(start,start_y)).Get_Texture_Path();
+          guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map().Get_Owner(start,start_y));
 
-          vector<string> Textures {tile_texture, upgrade_texture, unit_texture};
+          vector<string_view> Textures {tile_texture, upgrade_texture, (unit_texture)};
           auto tmp = make_shared<Gtk_Tile>(Textures, border_color, tile_size);
           Game_Map.push_back(tmp);
           //cout << start_y << " " << start << endl;
@@ -198,7 +198,7 @@ void Gtk_Game_Map::Generate_Map(Game* Main_Game, Magic_Map_Generation_Thread_Com
     is_in_thread = false;
 }
 
-shared_ptr<Gtk_Tile> Gtk_Game_Map::Get_Gtk_Tile(int x, int y) const
+shared_ptr<Gtk_Tile> Gtk_Game_Map::Get_Gtk_Tile(int x, int y)
 {
   return Game_Map[y + (x * y_size)];
 }

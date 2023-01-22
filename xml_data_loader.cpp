@@ -6,17 +6,17 @@ XML_Data_Loader::XML_Data_Loader(string p_t_x)
   Logger::Log_Info("Initializing XML Loader with path " + path_to_xml);
 }
 
-std::filesystem::directory_iterator XML_Data_Loader::Get_Files_In_Directory(string path)
+std::filesystem::directory_iterator XML_Data_Loader::Get_Files_In_Directory(string_view path)
 {
-  return std::filesystem::directory_iterator(assets_directory_path + path);
+  return std::filesystem::directory_iterator(string(assets_directory_path) + string(path));
 }
 
-vector<char> XML_Data_Loader::Load_File(string path)
+vector<char> XML_Data_Loader::Load_File(string_view path)
 {
   vector<char> out;
   try
   {
-    ifstream file (path);
+    ifstream file (path.data());
     if(! file.is_open())
     {
       Logger::Log_Error("Loading file failed");
@@ -34,9 +34,9 @@ vector<char> XML_Data_Loader::Load_File(string path)
 
 }
 
-vector<Tile> XML_Data_Loader::Load_Tiles_From_File(string path)
+vector<Tile> XML_Data_Loader::Load_Tiles_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Tile Data From " + path);
+  Logger::Log_Info("Loading XML Tile Data From " + string(path));
   vector<Tile> out;
   xml_document<> doc;
   vector<char> buffer = Load_File(path);
@@ -50,7 +50,7 @@ vector<Tile> XML_Data_Loader::Load_Tiles_From_File(string path)
   xml_node<>* tiles_node = Root_Node->first_node("tiles");
   for(xml_node<> * tile_node = tiles_node->first_node("tile"); tile_node; tile_node = tile_node->next_sibling())
   {
-    int c = stoi(tile_node->first_attribute("cost")->value());
+    int c = Get_Int_Value_From_Attribute(tile_node, "cost");
     string n = tile_node->first_attribute("name")->value();
     string t_p = tile_node->first_attribute("texture")->value();
     vector<string> traits;
@@ -64,9 +64,9 @@ vector<Tile> XML_Data_Loader::Load_Tiles_From_File(string path)
   return out;
 }
 
-vector<string> XML_Data_Loader::Load_Tips_From_File(string path)
+vector<string> XML_Data_Loader::Load_Tips_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Tips Data From " + path);
+  Logger::Log_Info("Loading XML Tips Data From " + string(path));
   vector<string> out;
   xml_document<> doc;
   vector<char> buffer = Load_File(path);
@@ -98,9 +98,9 @@ vector<string> XML_Data_Loader::Load_Tips()
   return out;
 }
 
-vector<Culture> XML_Data_Loader::Load_Cultures_From_File(string path)
+vector<Culture> XML_Data_Loader::Load_Cultures_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Cultures Data From " + path);
+  Logger::Log_Info("Loading XML Cultures Data From " + string(path));
   vector<Culture> out;
   xml_document<> doc;
   vector<char> buffer = Load_File(path);
@@ -165,9 +165,9 @@ vector<Tile> XML_Data_Loader::Load_Tiles()
   return out;
 }
 
-vector<Tech> XML_Data_Loader::Load_Techs_From_File(string path)
+vector<Tech> XML_Data_Loader::Load_Techs_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Techs Data From " + path );
+  Logger::Log_Info("Loading XML Techs Data From " + string(path) );
   vector<Tech> out;
   xml_document<> doc;
   vector<char> buffer = Load_File(path);
@@ -181,7 +181,7 @@ vector<Tech> XML_Data_Loader::Load_Techs_From_File(string path)
   xml_node<>* technologies_node = Root_Node->first_node("technologies");
   for(xml_node<> * tech_node = technologies_node->first_node("technology"); tech_node; tech_node = tech_node->next_sibling())
   {
-    int c = stoi(tech_node->first_attribute("cost")->value());
+    int c = Get_Int_Value_From_Attribute(tech_node, "cost");
     string n = tech_node->first_attribute("name")->value();
     string h_t = tech_node->first_attribute("info")->value();
     string t_p = tech_node->first_attribute("texture")->value();
@@ -210,9 +210,9 @@ vector<Tech> XML_Data_Loader::Load_Techs()
   return out;
 }
 
-vector<Unit> XML_Data_Loader::Load_Units_From_File(string path)
+vector<Unit> XML_Data_Loader::Load_Units_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Units Data From " + path);
+  Logger::Log_Info("Loading XML Units Data From " + string(path));
   vector<Unit> out;
   xml_document<> doc;
   vector<char> buffer = Load_File(path);
@@ -227,11 +227,11 @@ vector<Unit> XML_Data_Loader::Load_Units_From_File(string path)
   for(xml_node<> * unit_node = units_node->first_node("unit"); unit_node; unit_node = unit_node->next_sibling())
   {
     string n = unit_node->first_attribute("name")->value();
-    int c = stoi(unit_node->first_attribute("cost")->value());
-    int a = stoi(unit_node->first_attribute("atk")->value());
-    int d = stoi(unit_node->first_attribute("def")->value());
-    int m = stoi(unit_node->first_attribute("move")->value());
-    int ma = stoi(unit_node->first_attribute("mait")->value());
+    int c = Get_Int_Value_From_Attribute(unit_node, "cost");
+    int a = Get_Int_Value_From_Attribute(unit_node, "atk");
+    int d = Get_Int_Value_From_Attribute(unit_node, "def");
+    int m = Get_Int_Value_From_Attribute(unit_node, "move");
+    int ma = Get_Int_Value_From_Attribute(unit_node, "mait");
     string r = unit_node->first_attribute("requirement")->value();
     string h_t = unit_node->first_attribute("info")->value();
     string t_p = unit_node->first_attribute("texture")->value();
@@ -261,9 +261,9 @@ vector<Unit> XML_Data_Loader::Load_Units()
   return out;
 }
 
-vector<Upgrade> XML_Data_Loader::Load_Upgrades_From_File(string path)
+vector<Upgrade> XML_Data_Loader::Load_Upgrades_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Upgrades Data From " + path);
+  Logger::Log_Info("Loading XML Upgrades Data From " + string(path));
   vector<Upgrade> out;
   xml_document<> doc;
   vector<char> buffer = Load_File(path);
@@ -278,13 +278,13 @@ vector<Upgrade> XML_Data_Loader::Load_Upgrades_From_File(string path)
   for(xml_node<> * upgrade_node = upgrades_node->first_node("upgrade"); upgrade_node; upgrade_node = upgrade_node->next_sibling())
   {
     string n = upgrade_node->first_attribute("name")->value();
-    int c = stoi(upgrade_node->first_attribute("cost")->value());
-    int m = stoi(upgrade_node->first_attribute("mait")->value());
-    int p = stoi(upgrade_node->first_attribute("prod")->value());
+    int c = Get_Int_Value_From_Attribute(upgrade_node, "cost");
+    int m = Get_Int_Value_From_Attribute(upgrade_node, "mait");
+    int p = Get_Int_Value_From_Attribute(upgrade_node, "prod");
     string h_t = upgrade_node->first_attribute("info")->value();
     string r = upgrade_node->first_attribute("requirement")->value();
     string t_p = upgrade_node->first_attribute("texture")->value();
-    bool avoid = (bool) stoi(upgrade_node->first_attribute("avoid")->value());
+    bool avoid = (bool) Get_Int_Value_From_Attribute(upgrade_node, "avoid");
     vector<string> correct_tiles;
     vector<string> traits = Load_Traits_From_Root_Node(upgrade_node);
     for(xml_node<> *tile_node = upgrade_node->first_node("tile"); tile_node; tile_node = tile_node->next_sibling("tile"))
@@ -309,9 +309,9 @@ vector<Upgrade> XML_Data_Loader::Load_Upgrades()
   return out;
 }
 
-vector<Gov> XML_Data_Loader::Load_Govs_From_File(string path)
+vector<Gov> XML_Data_Loader::Load_Govs_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Govs Data From " + path );
+  Logger::Log_Info("Loading XML Govs Data From " + string(path) );
   vector<Gov> out;
   xml_document<> doc;
   vector<char> buffer = Load_File(path);
@@ -331,7 +331,7 @@ vector<Gov> XML_Data_Loader::Load_Govs_From_File(string path)
     string t_p = gov_node->first_attribute("texture")->value();
     string l_t = gov_node->first_attribute("title")->value();
     string s_n = gov_node->first_attribute("state_name")->value();
-    int m_s = stoi(gov_node->first_attribute("max_stability")->value());
+    int m_s = Get_Int_Value_From_Attribute(gov_node, "max_stability");
     std::setlocale(LC_NUMERIC,"C"); //decimal dot place
     double pa = stod(gov_node->first_attribute("passive_stability")->value());
     double a = stod(gov_node->first_attribute("army_stability")->value());
@@ -354,9 +354,9 @@ vector<Gov> XML_Data_Loader::Load_Govs()
   return out;
 }
 
-vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
+vector<Civ> XML_Data_Loader::Load_Civs_From_File(string_view path)
 {
-  Logger::Log_Info("Loading XML Civs Data From " + path );
+  Logger::Log_Info("Loading XML Civs Data From " + string(path) );
   vector<Civ> out;
   vector<Tech> Technologies = Load_Techs();
   vector<Unit> Units = Load_Units();
@@ -371,9 +371,9 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string path)
   {
     string n = civ_node->first_attribute("name")->value();
     string h_t = civ_node->first_node("info")->value();
-    int r = stoi(civ_node->first_attribute("r")->value());
-    int g = stoi(civ_node->first_attribute("g")->value());
-    int b = stoi(civ_node->first_attribute("b")->value());
+    int r = Get_Int_Value_From_Attribute(civ_node, "r");
+    int g = Get_Int_Value_From_Attribute(civ_node, "g");
+    int b = Get_Int_Value_From_Attribute(civ_node, "b");
     string p = civ_node->first_attribute("personality")->value();
     string lower_n = n;
     std::transform(lower_n.begin(), lower_n.end(), lower_n.begin(), ::tolower);

@@ -11,7 +11,6 @@ string Display_Version()
   out = out + "-";
   string codename_string(codename);
   out = out + codename_string;
-  out = out + " " + path_delimeter;
   return out;
   //return version_major + "." + version_minor + "." + version_build + "-" + codename;
 }

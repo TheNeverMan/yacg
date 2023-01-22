@@ -2,13 +2,13 @@
 
 int Game::Get_Amount_Of_Players() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Players.size();
 }
 
 void Game::XML_Load_Data()
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   try
   {
     XML_Data_Loader Loader(" ");
@@ -30,7 +30,7 @@ void Game::XML_Load_Data()
 
 void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positions)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Logger::Log_Info("Generating map...");
   Map_Generator Gen(User_Data, Tiles, Upgrades);
   Game_Map = Gen.Generate_Map_Using_User_Data();
@@ -48,24 +48,34 @@ void Game::Generate_Map(Map_Generator_Data User_Data, bool load_starting_positio
   //Game_Map.Print_Map_In_ASCII();
 }
 
-Culture Game::Get_Culture_By_Player_Id(int player_id) const
+Culture& Game::Get_Culture_By_Player_Id(int player_id)
 {
-  if(!Cultures.count(Get_Player_By_Id(player_id)->Get_Culture_Name()))
+  if(!Cultures.count(Get_Player_By_Id(player_id).Get_Culture_Name()))
   {
-    Logger::Log_Error("Culture " + Get_Player_By_Id(player_id)->Get_Culture_Name() + "not found");
+    Logger::Log_Error("Culture " + string(Get_Player_By_Id(player_id).Get_Culture_Name()) + "not found");
     return Cultures["european"];
   }
-  return Cultures[Get_Player_By_Id(player_id)->Get_Culture_Name()];
+  return Cultures[Get_Player_By_Id(player_id).Get_Culture_Name()];
+}
+
+Culture& Game::Get_Culture_By_Player_Id(int player_id) const
+{
+  if(!Cultures.count(Get_Player_By_Id(player_id).Get_Culture_Name()))
+  {
+    Logger::Log_Error("Culture " + string(Get_Player_By_Id(player_id).Get_Culture_Name()) + "not found");
+    return Cultures["european"];
+  }
+  return Cultures[Get_Player_By_Id(player_id).Get_Culture_Name()];
 }
 
 string_view Game::Get_Texture_Path_For_Cultured_Upgrade(int x, int y, string_view upg_name) const
 {
-  return Get_Culture_By_Player_Id(Get_Map()->Get_Owner(x,y))->Get_Texture_For_Upgrade(upg_name);
+  return Get_Culture_By_Player_Id(Get_Map().Get_Owner(x,y)).Get_Texture_For_Upgrade(upg_name);
 }
 
 vector<array<int, 3>> Game::Search_For_Connections(array<int, 2> Coords, int player_id) const
 {
-  vector<string> City_Connection_Upgrades = Get_Player_By_Id(player_id)->Get_All_Upgrade_Names_By_Trait("cityconnection");
+  vector<string> City_Connection_Upgrades = Get_Player_By_Id(player_id).Get_All_Upgrade_Names_By_Trait("cityconnection");
   vector<array<int, 2>> Cities_To_Connect;
   vector<array<int, 2>> Tiles_To_Check;
   vector<array<int, 2>> Tiles_Checked;
@@ -79,10 +89,10 @@ vector<array<int, 3>> Game::Search_For_Connections(array<int, 2> Coords, int pla
     }
     for(auto& upg_name : City_Connection_Upgrades)
     {
-      vector<array<int,2>> Tmp = Get_Map()->Find_All_Upgrade_Locations_In_Radius(Tiles_To_Check[0], player_id, 2, upg_name);
+      vector<array<int,2>> Tmp = Get_Map().Find_All_Upgrade_Locations_In_Radius(Tiles_To_Check[0], player_id, 2, upg_name);
       Tiles_To_Check.insert(Tiles_To_Check.end(), Tmp.begin(), Tmp.end());
     }
-    vector<array<int,2>> Cities = Get_Map()->Find_All_Upgrade_Locations_In_Radius(Tiles_To_Check[0], player_id, 2, "City");
+    vector<array<int,2>> Cities = Get_Map().Find_All_Upgrade_Locations_In_Radius(Tiles_To_Check[0], player_id, 2, "City");
     Cities_To_Connect.insert(Cities_To_Connect.end(), Cities.begin(), Cities.end());
     Tiles_To_Check.insert(Tiles_To_Check.end(), Cities.begin(), Cities.end());
     Tiles_Checked.push_back(Tiles_To_Check[0]);
@@ -96,11 +106,11 @@ vector<array<int, 3>> Game::Search_For_Connections(array<int, 2> Coords, int pla
 
 void Game::Build_Upgrade(string name, int x, int y, int player_id)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   if(!is_in_thread)
   Sound_Manager::Play_Sound("assets/sounds/upgrade-audio.mp3");
-  Upgrade u = Get_Player_By_Id(player_id)->Find_Upgrade_By_Name(name);
-  int radius = Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius();
+  Upgrade u = Get_Player_By_Id(player_id).Find_Upgrade_By_Name(name);
+  int radius = Get_Player_By_Id(player_id).Get_Upgrade_Border_Radius();
   if(name == "City")
     Game_Map.Build_City(x,y,player_id,radius);
   else
@@ -108,13 +118,13 @@ void Game::Build_Upgrade(string name, int x, int y, int player_id)
   if(u.How_Many_Times_Has_Trait("borderexpand") == 0)
     radius = 0;
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
-  Get_Player_By_Id(player_id)->Build_Upgrade(name);
+  Get_Player_By_Id(player_id).Build_Upgrade(name);
   if(u.How_Many_Times_Has_Trait("cityconnection"))
   {
     vector<array<int, 3>> Cities_With_Owners_To_Connect = Search_For_Connections({x,y}, player_id);
     for(auto& City : Cities_With_Owners_To_Connect)
     {
-      Get_Player_By_Id(City[2])->Get_City_By_Coordinates({City[0], City[1]})->Connect_City();
+      Get_Player_By_Id(City[2]).Get_City_By_Coordinates({City[0], City[1]}).Connect_City();
     }
   }
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
@@ -122,15 +132,15 @@ void Game::Build_Upgrade(string name, int x, int y, int player_id)
 
 void Game::Assing_Starting_Position_For_Player(int player_id, int x, int y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Get_Player_By_Id(player_id)->Assign_Id(player_id);
-  Logger::Log_Info("Player " + Get_Player_By_Id(player_id)->Get_Leader_Name() + " will start at position " + to_string(x) + " " + to_string(y) );
-  Build_City(x,y,player_id,Get_Player_By_Id(player_id)->Get_Upgrade_Border_Radius());
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Get_Player_By_Id(player_id).Assign_Id(player_id);
+  Logger::Log_Info("Player " + Get_Player_By_Id(player_id).Get_Leader_Name() + " will start at position " + to_string(x) + " " + to_string(y) );
+  Build_City(x,y,player_id,Get_Player_By_Id(player_id).Get_Upgrade_Border_Radius());
 }
 
 void Game::Asign_Random_Starting_Position_For_Player(int player_id)
 {
-    if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+    //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
     int x = 0;
     int y = 0;
     bool loop = true;
@@ -153,7 +163,7 @@ void Game::Asign_Random_Starting_Position_For_Player(int player_id)
 
 void Game::Assign_Starting_Positions_From_Data(map<string, array<int, 2>> starting_positions)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   int player_id = 1;
   if(player_id == 1 && spectator_mode)
   {
@@ -167,15 +177,15 @@ void Game::Assign_Starting_Positions_From_Data(map<string, array<int, 2>> starti
       player_id++;
       continue;
     }
-    if(starting_positions.count(player.Get_Raw_Name()))
+    if(starting_positions.count(player.Get_Raw_Name().data()))
     {
-      int x = starting_positions[player.Get_Raw_Name()][0];
-      int y = starting_positions[player.Get_Raw_Name()][1];
+      int x = starting_positions[player.Get_Raw_Name().data()][0];
+      int y = starting_positions[player.Get_Raw_Name().data()][1];
       Assing_Starting_Position_For_Player(player_id, x ,y);
     }
     else
     {
-      Logger::Log_Warning("Could not find starting position for " + player.Get_Raw_Name() + " assuming random...");
+      Logger::Log_Warning("Could not find starting position for " + string(player.Get_Raw_Name()) + " assuming random...");
       Asign_Random_Starting_Position_For_Player(player_id);
     }
     player_id++;
@@ -187,15 +197,15 @@ void Game::Assign_Random_Starting_Positions()
   int player_id = 1;
   for(auto &player : Players)
   {
-    if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+    //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
     Asign_Random_Starting_Position_For_Player(player_id);
     player_id++;
   }
 }
 
-void Game::Add_Player_By_Name(string name, bool ai)
+void Game::Add_Player_By_Name(string_view name, bool ai)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Is_Player_AI_List.push_back(ai);
   for(auto& civ : Civs)
   {
@@ -212,7 +222,7 @@ void Game::Add_Player_By_Name(string name, bool ai)
 
 void Game::Add_Players(vector<tuple<string, bool>> players)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   currently_moving_player = 1;
   Is_Player_AI_List.push_back(0); //neutrals
   Logger::Log_Info("Adding " + to_string(players.size()) + " players!");
@@ -226,7 +236,7 @@ void Game::Add_Players(vector<tuple<string, bool>> players)
 
 Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> players, bool load_starting_positions, bool spectator_mode) : Main_Radius_Generator(Map_Data.size_x, Map_Data.size_y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   srand(time(0));
   this->spectator_mode = spectator_mode;
   turn_counter = 1;
@@ -236,7 +246,7 @@ Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> play
   Logger::Log_Info("XML Data Loaded!" );
   Add_Players(players);
   Generate_Map(Map_Data, load_starting_positions);
-  Main_Radius_Generator.Set_Size(Get_Map()->Get_X_Size(), Get_Map()->Get_Y_Size());
+  Main_Radius_Generator.Set_Size(Get_Map().Get_X_Size(), Get_Map().Get_Y_Size());
   autosave = a;
   for(auto &player : Players)
   {
@@ -246,31 +256,43 @@ Game::Game(bool a, Map_Generator_Data Map_Data, vector<tuple<string, bool>> play
 
 Game::Game() : Main_Radius_Generator(0,0)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   //in gond we truts
 }
 
 Civ& Game::Get_Player_By_Id(int id)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return &Players[id-1];
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  return Players[id-1];
+}
+
+Civ& Game::Get_Player_By_Id(int id) const
+{
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  return Players[id-1];
 }
 
 int Game::Get_Currently_Moving_Player_Id() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return currently_moving_player;
 }
 
 Map& Game::Get_Map()
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  return Game_Map;
+}
+
+Map& Game::Get_Map() const
+{
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Game_Map;
 }
 
 uint32_t Game::Get_Border_Color_By_Player_Id(int id) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   if(id == 0)
     return 0;
   return Player_Border_Colors[id-1];
@@ -278,7 +300,7 @@ uint32_t Game::Get_Border_Color_By_Player_Id(int id) const
 
 int Game::Get_Turn() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return turn_counter;
 }
 
@@ -287,18 +309,18 @@ void Game::Check_For_Dead_Players()
   int index = 1;
   for(auto &player : Players)
   {
-    if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+    //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
     if(player.Get_Number_Of_Cities_Owned() == 0 && find(Eliminated_Players_List.begin(),Eliminated_Players_List.end(), index) == Eliminated_Players_List.end())
     {
       //remove player
-      Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index)->Get_Full_Name() + " has fallen!", index);
-      vector<array<int, 2>> tmp = Get_Map()->Unclaim_All_Player_Tiles(index);
+      Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index).Get_Full_Name() + " has fallen!", index);
+      vector<array<int, 2>> tmp = Get_Map().Unclaim_All_Player_Tiles(index);
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
-      vector<Unit_On_Map> *units = Get_Player_By_Id(index)->Get_Owned_Units();
-      for(auto &unit : *units)
+      auto units = Get_Player_By_Id(index).Get_Owned_Units();
+      for(auto &unit : units)
       {
-        Get_Map()->Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y)->Remove_Unit_From_Tile();
-        Get_Player_By_Id(index)->Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
+        Get_Map().Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y).Remove_Unit_From_Tile();
+        Get_Player_By_Id(index).Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
         Tiles_To_Update.push_back({unit.Coordinates.x, unit.Coordinates.y});
       }
       Eliminated_Players_List.push_back(index);
@@ -309,29 +331,29 @@ void Game::Check_For_Dead_Players()
 
 bool Game::Is_Player_AI(int player_id) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Is_Player_AI_List[player_id];
 }
 
 bool Game::Is_Currently_Moving_Player_AI() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Is_Player_AI(Get_Currently_Moving_Player_Id());
 }
 
 vector<array<int, 2>> Game::Get_Tiles_To_Update()
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   vector<array<int, 2>> out = Tiles_To_Update;
   Tiles_To_Update.clear();
   return out;
 }
 
-void Game::Recruit_Unit(string u, int x, int y)
+void Game::Recruit_Unit(string_view u, int x, int y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Get_Map()->Get_Tile_Pointer(x,y)->Put_Unit_On_Tile(Get_Currently_Moving_Player_Id());
-  Get_Currently_Moving_Player()->Recruit_Unit_By_Name(u,x,y);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Get_Map().Get_Tile_Pointer(x,y).Put_Unit_On_Tile(Get_Currently_Moving_Player_Id());
+  Get_Currently_Moving_Player().Recruit_Unit_By_Name(u,x,y);
   Tiles_To_Update.push_back({x,y});
 }
 
@@ -339,7 +361,7 @@ void Game::Recruit_Unit(string u, int x, int y)
 
 void Game::Do_AI_Actions_For_Currently_Moving_Player(Magic_Thread_Communicator *Thread_Portal)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   AI AI_Player(this);
   AI_Data_For_Players[Get_Currently_Moving_Player_Id()] = AI_Player.Process_Turn(AI_Data_For_Players[Get_Currently_Moving_Player_Id()]);
   End_Player_Turn(Thread_Portal);
@@ -347,8 +369,8 @@ void Game::Do_AI_Actions_For_Currently_Moving_Player(Magic_Thread_Communicator *
 
 void Game::Start_Turn_Of_Currently_Moving_Player(Magic_Thread_Communicator *Thread_Portal)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Get_Player_By_Id(currently_moving_player)->Start_Turn();
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Get_Player_By_Id(currently_moving_player).Start_Turn();
   if(Is_Currently_Moving_Player_AI())
   {
     Do_AI_Actions_For_Currently_Moving_Player(Thread_Portal);
@@ -357,7 +379,7 @@ void Game::Start_Turn_Of_Currently_Moving_Player(Magic_Thread_Communicator *Thre
 
 bool Game::Is_Map_Update_Required() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   bool out = false;
   for_each(Players.begin(), Players.end(), [&out](Civ& player)
 {
@@ -368,7 +390,7 @@ bool Game::Is_Map_Update_Required() const
 
 int Game::First_Not_Eliminated_Player_Id() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   int index = 1; //fucking neutrals
   while(index <= static_cast<int>(Players.size()))
   {
@@ -383,7 +405,7 @@ int Game::First_Not_Eliminated_Player_Id() const
 
 bool Game::Is_Player_Eliminated(int player_id) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   if(find(Eliminated_Players_List.begin(), Eliminated_Players_List.end(), player_id) != Eliminated_Players_List.end())
     return true;
   return false;
@@ -391,13 +413,13 @@ bool Game::Is_Player_Eliminated(int player_id) const
 
 bool Game::Is_Currently_Moving_Player_Eliminated() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Is_Player_Eliminated(Get_Currently_Moving_Player_Id());
 }
 
 bool Game::All_Humans_Are_Eliminated() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   //Logger::Log_Warning("Checking for alive humans! Turn off when AI only");
   bool out = true;
   int index = 1; //fucking neutrals
@@ -412,7 +434,7 @@ bool Game::All_Humans_Are_Eliminated() const
 
 bool Game::Is_Only_One_Player_Alive() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   int player_count = 0;
   int index = 1; //fucking neutrals
   while(index <= static_cast<int>(Players.size()))
@@ -428,7 +450,7 @@ bool Game::Is_Only_One_Player_Alive() const
 
 int Game::Get_Only_Living_Player_Id() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   if(!Is_Only_One_Player_Alive())
     return Get_Currently_Moving_Player_Id();
 
@@ -445,21 +467,21 @@ int Game::Get_Only_Living_Player_Id() const
 
 void Game::Set_Autosave(bool a)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   autosave = a;
 }
 
 void Game::Remove_All_Missle_Units()
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   for(auto& player : Players)
   {
-    for(auto& unit : *player.Get_Owned_Units())
+    for(auto& unit : player.Get_Owned_Units())
     {
       if(unit.Self.Has_Trait("missle"))
       {
-        Get_Player_By_Id(Get_Map()->Get_Tile(unit.Coordinates.x,unit.Coordinates.y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
-        Get_Map()->Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y)->Remove_Unit_From_Tile();
+        Get_Player_By_Id(Get_Map().Get_Tile(unit.Coordinates.x,unit.Coordinates.y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
+        Get_Map().Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y).Remove_Unit_From_Tile();
         Tiles_To_Update.push_back({unit.Coordinates.x, unit.Coordinates.y});
       }
     }
@@ -468,10 +490,10 @@ void Game::Remove_All_Missle_Units()
 
 void Game::Update_Stability_For_Currently_Moving_Player()
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  auto Player_Cities = Get_Currently_Moving_Player()->Get_Owned_Cities();
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  auto Player_Cities = Get_Currently_Moving_Player().Get_Owned_Cities();
   vector<array<int, 2>> Rebel_Cities;
-  for(auto& City : *Player_Cities)
+  for(auto& City : Player_Cities)
   {
     if(rand() % 150 == 149)
     {
@@ -497,33 +519,33 @@ void Game::Update_Stability_For_Currently_Moving_Player()
   }
   if(rand() % 1000 == 69)
   {
-    string message = Get_Currently_Moving_Player()->Get_Leader_Name() + " killed in " + Get_Currently_Moving_Player()->Get_Name() + ", situation in the country is unstable!";
+    string message = Get_Currently_Moving_Player().Get_Leader_Name() + " killed in " + string(Get_Currently_Moving_Player().Get_Name()) + ", situation in the country is unstable!";
     Main_Newspaper.Add_Assassination(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
-    for_each(Player_Cities->begin(), Player_Cities->end(), [](auto& City){City.Change_Stability(-20, false);});
+    for_each(Player_Cities.begin(), Player_Cities.end(), [](auto& City){City.Change_Stability(-20, false);});
   }
-  if(Get_Currently_Moving_Player()->Get_Gold() < 0)
-    for_each(Player_Cities->begin(), Player_Cities->end(), [](auto& City){City.Change_Stability(-5, false);});
+  if(Get_Currently_Moving_Player().Get_Gold() < 0)
+    for_each(Player_Cities.begin(), Player_Cities.end(), [](auto& City){City.Change_Stability(-5, false);});
   if(Rebel_Cities.size())
   {
-    array<string, 2> Name_And_Flag = Get_Currently_Moving_Player()->Get_Rebellion_Name_And_Flag_Path();
-    Civ Rebels(Name_And_Flag[0], {Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id())->Get_Random_Leader_Name()}, " ", {Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id())->Get_Random_City_Name()}, Get_Currently_Moving_Player()->Get_Tech_Tree(), Units, rand() % 256, rand() % 256, rand() % 256, {}, Goverments, {}, "Holy", Upgrades, Name_And_Flag[1], Get_Currently_Moving_Player()->Get_Audio_Path(), Get_Currently_Moving_Player()->Get_Culture_Name(), {});
+    array<string, 2> Name_And_Flag = Get_Currently_Moving_Player().Get_Rebellion_Name_And_Flag_Path();
+    Civ Rebels(Name_And_Flag[0], {Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id()).Get_Random_Leader_Name()}, " ", {Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id()).Get_Random_City_Name()}, Get_Currently_Moving_Player().Get_Tech_Tree(), Units, rand() % 256, rand() % 256, rand() % 256, {}, Goverments, {}, "Holy", Upgrades, Name_And_Flag[1], Get_Currently_Moving_Player().Get_Audio_Path(), Get_Currently_Moving_Player().Get_Culture_Name(), {});
     Players.push_back(Rebels);
     Player_Border_Colors.push_back(Rebels.Get_Civ_Color());
     Players[Players.size() - 1].Assign_Id(Players.size());
     Is_Player_AI_List.push_back(true);
-    Players[Players.size() - 1].Change_Goverment_By_Name(Players[rand() % (Players.size() - 1)].Get_Name(), Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id())->Get_Random_Leader_Name());
-    string message = "Unrest in " + Get_Currently_Moving_Player()->Get_Full_Name() + "! Rebels take control. " + Players[Players.size() - 1].Get_Full_Name() + " is proclaimed!";
+    Players[Players.size() - 1].Change_Goverment_By_Name(Players[rand() % (Players.size() - 1)].Get_Name(), Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id()).Get_Random_Leader_Name());
+    string message = "Unrest in " + Get_Currently_Moving_Player().Get_Full_Name() + "! Rebels take control. " + Players[Players.size() - 1].Get_Full_Name() + " is proclaimed!";
     Main_Newspaper.Add_Rebellion(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
     for(auto& Coords : Rebel_Cities)
     {
-      if(Get_Map()->Get_Tile(Coords[0],Coords[1]).Has_Unit())
+      if(Get_Map().Get_Tile(Coords[0],Coords[1]).Has_Unit())
         Disband_Unit(Coords[0], Coords[1]);
-      Get_Map()->Change_Tile_Owner(Coords[0], Coords[1], Players.size());
+      Get_Map().Change_Tile_Owner(Coords[0], Coords[1], Players.size());
       vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(Coords[0], Coords[1], Players[Players.size() -1].Get_Upgrade_Border_Radius());
-      Get_Map()->Retake_Owner_In_Radius_From(Coords[0], Coords[1], Players.size(), Players[Players.size() -1].Get_Upgrade_Border_Radius(), Get_Currently_Moving_Player_Id());
+      Get_Map().Retake_Owner_In_Radius_From(Coords[0], Coords[1], Players.size(), Players[Players.size() -1].Get_Upgrade_Border_Radius(), Get_Currently_Moving_Player_Id());
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
-      City city_name = Get_Currently_Moving_Player()->Lose_City_By_Coords(Coords[0], Coords[1]);
-      string message = city_name.Get_Name() + " has rebelled.";
+      City city_name = Get_Currently_Moving_Player().Lose_City_By_Coords(Coords[0], Coords[1]);
+      string message = string(city_name.Get_Name()) + " has rebelled.";
       Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
       city_name.Change_Owner(Players[Players.size() - 1].Get_Name());
       Players[Players.size() - 1].Conquer_City(city_name);
@@ -536,13 +558,13 @@ int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
   int out = -1;
   {
     is_in_thread = true;
-    if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+    //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
     Remove_All_Missle_Units();
-    vector<int> income = Get_Map()->Get_Netto_Income_For_Player_By_Id(Get_Currently_Moving_Player_Id(), *Get_Currently_Moving_Player());
-    Get_Currently_Moving_Player()->End_Turn(income);
-    if(Get_Currently_Moving_Player()->Has_Researched_Border_Expand_Tech_Recently())
+    vector<int> income = Get_Map().Get_Netto_Income_For_Player_By_Id(Get_Currently_Moving_Player_Id(), Get_Currently_Moving_Player());
+    Get_Currently_Moving_Player().End_Turn(income);
+    if(Get_Currently_Moving_Player().Has_Researched_Border_Expand_Tech_Recently())
     {
-      vector<array<int,2>> tmp = Get_Map()->Recalculate_Borders_For_Player_By_Id(Get_Currently_Moving_Player_Id(), Get_Currently_Moving_Player()->Get_Upgrade_Border_Radius(), *Get_Currently_Moving_Player());
+      vector<array<int,2>> tmp = Get_Map().Recalculate_Borders_For_Player_By_Id(Get_Currently_Moving_Player_Id(), Get_Currently_Moving_Player().Get_Upgrade_Border_Radius(), Get_Currently_Moving_Player());
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
     }
     Update_Stability_For_Currently_Moving_Player();
@@ -560,13 +582,13 @@ int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
   }
   Thread_Portal->Notify_Window();
   {
-    if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-    Get_Currently_Moving_Player()->Refresh_Unit_Movement_Points();
-    vector<Unit_On_Map> *u = Get_Currently_Moving_Player()->Get_Owned_Units();
+    //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+    Get_Currently_Moving_Player().Refresh_Unit_Movement_Points();
+    vector<Unit_On_Map> *u = Get_Currently_Moving_Player().Get_Owned_Units();
     for(auto &var : *u)
     {
-      var.Self.Increase_Current_Movement(Get_Currently_Moving_Player()->Find_Upgrade_By_Name(Get_Map()->Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Upgrade()).How_Many_Times_Has_Trait("movementbonus"));
-      if(var.Self.Get_All_Arguments_For_Trait("class")[0] == "flying" && Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(var.Coordinates.x, var.Coordinates.y)).Has_Trait("renewflyingmovement"))
+      var.Self.Increase_Current_Movement(Get_Currently_Moving_Player().Find_Upgrade_By_Name(Get_Map().Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Upgrade()).How_Many_Times_Has_Trait("movementbonus"));
+      if(var.Self.Get_All_Arguments_For_Trait("class")[0] == "flying" && Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(var.Coordinates.x, var.Coordinates.y)).Has_Trait("renewflyingmovement"))
         var.Self.Increase_Current_Movement(999);
     }
 
@@ -587,25 +609,25 @@ int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
 
 Civ& Game::Get_Currently_Moving_Player()
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Players[currently_moving_player-1];
 }
 
 vector<Upgrade> Game::Get_Upgrades() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Upgrades;
 }
 
 vector<Unit> Game::Get_Units() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Units;
 }
 
 Upgrade Game::Get_Upgrade_By_Name(string_view name) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   for(auto &upg : Upgrades)
   {
     if(upg.Get_Name() == name)
@@ -616,33 +638,33 @@ Upgrade Game::Get_Upgrade_By_Name(string_view name) const
 
 double Game::Get_Defense_Bonus_For_Tile_And_Player(int x, int y, int player_id) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return Get_Map()->Get_Defense_Bonus_For_Tile(x, y) + (Get_Player_By_Id(player_id)->Get_Defense_Bonus_For_Upgrade(Get_Map()->Get_Tile(x,y).Get_Upgrade()) - 1.0);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  return Get_Map().Get_Defense_Bonus_For_Tile(x, y) + (Get_Player_By_Id(player_id).Get_Defense_Bonus_For_Upgrade(Get_Map().Get_Tile(x,y).Get_Upgrade()) - 1.0);
 }
 
 array<int, 3> Game::Get_Units_Stats_For_Battle(int unit_x, int unit_y) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Get_Player_By_Id(Get_Map()->Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_x, unit_y)->Remove_All_Movement();
-  Unit Stat_Unit = Get_Player_By_Id(Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(unit_x, unit_y);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Get_Player_By_Id(Get_Map().Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_x, unit_y).Remove_All_Movement();
+  Unit Stat_Unit = Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(unit_x, unit_y);
   array<int, 3> out;
   out[0] = Stat_Unit.Get_Attack_Power();
   out[1] = Stat_Unit.Get_Defense_Power();
   out[2] = Stat_Unit.Get_HP();
   double unit_def_mod = 0.0;
   if(!Stat_Unit.Has_Trait("doesnotrecievedefensivebonus"))
-    unit_def_mod = Get_Defense_Bonus_For_Tile_And_Player(unit_x, unit_y, Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id());
+    unit_def_mod = Get_Defense_Bonus_For_Tile_And_Player(unit_x, unit_y, Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id());
 
   out[1] = static_cast<double>(out[1]) * unit_def_mod;
 
-  if(Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id() == Get_Map()->Get_Owner(unit_x, unit_y))
+  if(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id() == Get_Map().Get_Owner(unit_x, unit_y))
   {
-    out[1] = static_cast<double>(out[1]) * (1 + (Get_Player_By_Id(Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id())->How_Many_Times_Has_Trait("P") / 10));
-    out[0] = static_cast<double>(out[0]) * (1 + (Get_Player_By_Id(Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id())->How_Many_Times_Has_Trait("P") / 10));
+    out[1] = static_cast<double>(out[1]) * (1 + (Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).How_Many_Times_Has_Trait("P") / 10));
+    out[0] = static_cast<double>(out[0]) * (1 + (Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).How_Many_Times_Has_Trait("P") / 10));
 
   }
 
-  if(Get_Player_By_Id(Get_Map()->Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id())->Get_Active_Goverment_Name() == "Fundamentalism")
+  if(Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).Get_Active_Goverment_Name() == "Fundamentalism")
   {
     out[1] = static_cast<double>(out[1]) * 0.9;
     out[0] = static_cast<double>(out[0]) * 0.9;
@@ -653,8 +675,8 @@ array<int, 3> Game::Get_Units_Stats_For_Battle(int unit_x, int unit_y) const
 
 Unit Game::Get_Unit_By_Tile(int x, int y) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return Get_Player_By_Id(Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  return Get_Player_By_Id(Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y);
 }
 
 Gov Game::Get_Goverment_By_Name(string_view gov_name) const
@@ -664,22 +686,22 @@ Gov Game::Get_Goverment_By_Name(string_view gov_name) const
 
 void Game::Plunder_Tile(int x, int y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Sound_Manager::Play_Sound("assets/sounds/plunder-audio.mp3");
-  Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Increase_Current_Movement(-1);
-  Get_Map()->Plunder_Tile(x,y);
-  int tile_owner = Get_Map()->Get_Owner(x,y);
+  Get_Currently_Moving_Player().Get_Unit_On_Tile_Pointer(x,y).Increase_Current_Movement(-1);
+  Get_Map().Plunder_Tile(x,y);
+  int tile_owner = Get_Map().Get_Owner(x,y);
   if(tile_owner) //neutrals
   {
-    array<int, 2> City_Coords = Get_Map()->Find_Closest_Upgrade_By_Name({x,y}, tile_owner, "City");
-    Get_Player_By_Id(tile_owner)->Get_City_By_Coordinates(City_Coords)->Change_Stability(-4, Get_Map()->Get_Tile(City_Coords[0], City_Coords[1]).Has_Unit());
+    array<int, 2> City_Coords = Get_Map().Find_Closest_Upgrade_By_Name({x,y}, tile_owner, "City");
+    Get_Player_By_Id(tile_owner).Get_City_By_Coordinates(City_Coords).Change_Stability(-4, Get_Map().Get_Tile(City_Coords[0], City_Coords[1]).Has_Unit());
   }
   Tiles_To_Update.push_back({x,y});
 }
 
 void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   array<int, 3> unit_1_stats = Get_Units_Stats_For_Battle(unit_1_x, unit_1_y);
   array<int, 3> unit_2_stats = Get_Units_Stats_For_Battle(unit_2_x, unit_2_y);
 
@@ -691,48 +713,48 @@ void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
 
   unit_1_stats[2] = unit_1_stats[2] - ((double) 30 * ((double) unit_2_stats[0] / (double) unit_1_stats[1]));
   unit_2_stats[2] = unit_2_stats[2] - ((double) 30 * ((double) unit_1_stats[0] / (double) unit_2_stats[1]));
-  Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Set_HP(unit_1_stats[2]);
-  Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y)->Set_HP(unit_2_stats[2]);
+  Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y).Set_HP(unit_1_stats[2]);
+  Get_Player_By_Id(Get_Map().Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y).Set_HP(unit_2_stats[2]);
   if(!is_in_thread)
-  Sound_Manager::Play_Sound(Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y)->Get_Audio_Path());
+  Sound_Manager::Play_Sound(Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y).Get_Audio_Path());
   if(unit_1_stats[2] <= 0 || Get_Unit_By_Tile(unit_1_x,unit_1_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
-    Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_1_x,unit_1_y);
-    Get_Map()->Get_Tile_Pointer(unit_1_x,unit_1_y)->Remove_Unit_From_Tile();
+    Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit_1_x,unit_1_y);
+    Get_Map().Get_Tile_Pointer(unit_1_x,unit_1_y).Remove_Unit_From_Tile();
     if(unit_2_stats[2] > 0 && Get_Unit_By_Tile(unit_2_x, unit_2_y).Has_Trait("steal"))
-      Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Give_One_Gold();
+      Get_Player_By_Id(Get_Map().Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Give_One_Gold();
   }
   if(unit_2_stats[2] <= 0 || Get_Unit_By_Tile(unit_2_x,unit_2_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
-    Get_Player_By_Id(Get_Map()->Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id())->Remove_Unit_By_Coords(unit_2_x,unit_2_y);
-    Get_Map()->Get_Tile_Pointer(unit_2_x,unit_2_y)->Remove_Unit_From_Tile();
+    Get_Player_By_Id(Get_Map().Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit_2_x,unit_2_y);
+    Get_Map().Get_Tile_Pointer(unit_2_x,unit_2_y).Remove_Unit_From_Tile();
     if(unit_1_stats[2] > 0 && Get_Unit_By_Tile(unit_1_x, unit_1_y).Has_Trait("steal"))
-      Get_Player_By_Id(Get_Map()->Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id())->Give_One_Gold();
+      Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Give_One_Gold();
   }
 }
 
 void Game::Move_Unit(int unit_x, int unit_y, int dest_x, int dest_y, int cost)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  int player_id = Get_Map()->Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id();
-  Get_Player_By_Id(player_id)->Move_Unit_To_By_Coords(unit_x, unit_y, dest_x, dest_y, cost);
-  Get_Map()->Get_Tile_Pointer(unit_x, unit_y)->Remove_Unit_From_Tile();
-  Get_Map()->Get_Tile_Pointer(dest_x, dest_y)->Put_Unit_On_Tile(player_id);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  int player_id = Get_Map().Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id();
+  Get_Player_By_Id(player_id).Move_Unit_To_By_Coords(unit_x, unit_y, dest_x, dest_y, cost);
+  Get_Map().Get_Tile_Pointer(unit_x, unit_y).Remove_Unit_From_Tile();
+  Get_Map().Get_Tile_Pointer(dest_x, dest_y).Put_Unit_On_Tile(player_id);
   if(!is_in_thread)
   Sound_Manager::Play_Sound("assets/sounds/unitmove-audio.mp3");
 }
 
 bool Game::Has_Currently_Moving_Player_Any_Actions_Left() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return (bool) Get_Currently_Moving_Player().Get_Current_Actions();
 }
 
 bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit_y, int dest_x, int dest_y, int movement_cost, bool combat, int enemy_unit_x, int enemy_unit_y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  int unit_owner_id = Get_Map()->Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id();
-  int tile_owner_id = Get_Map()->Get_Owner(dest_x, dest_y);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  int unit_owner_id = Get_Map().Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id();
+  int tile_owner_id = Get_Map().Get_Owner(dest_x, dest_y);
   Tiles_To_Update.push_back({unit_x, unit_y});
   Tiles_To_Update.push_back({dest_x, dest_y});
   Tiles_To_Update.push_back({enemy_unit_x, enemy_unit_y});
@@ -740,33 +762,33 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
   Move_Unit(unit_x, unit_y, dest_x, dest_y, movement_cost);
   if(unit_owner_id != tile_owner_id)
   {
-    if(Get_Map()->Get_Owner(dest_x, dest_y) != 0 && Get_Player_By_Id(Get_Map()->Get_Owner(dest_x, dest_y))->Find_Upgrade_By_Name(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade()).Has_Trait("borderexpand"))
+    if(Get_Map().Get_Owner(dest_x, dest_y) != 0 && Get_Player_By_Id(Get_Map().Get_Owner(dest_x, dest_y)).Find_Upgrade_By_Name(Get_Map().Get_Tile(dest_x, dest_y).Get_Upgrade()).Has_Trait("borderexpand"))
     {
-      Get_Map()->Change_Tile_Owner(dest_x, dest_y, unit_owner_id);
-      vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(dest_x, dest_y, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius());
-      Get_Map()->Retake_Owner_In_Radius_From(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id)->Get_Upgrade_Border_Radius(), tile_owner_id);
+      Get_Map().Change_Tile_Owner(dest_x, dest_y, unit_owner_id);
+      vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(dest_x, dest_y, Get_Player_By_Id(unit_owner_id).Get_Upgrade_Border_Radius());
+      Get_Map().Retake_Owner_In_Radius_From(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id).Get_Upgrade_Border_Radius(), tile_owner_id);
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
-      if(Get_Map()->Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
+      if(Get_Map().Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
       {
       //  if(!is_in_thread)
         Sound_Manager::Play_Sound("assets/sounds/citycapture-audio.mp3");
         string message;
         bool capital = false;
-        if(Get_Player_By_Id(tile_owner_id)->Get_City_Name_By_Coordinates(dest_x, dest_y) == Get_Player_By_Id(tile_owner_id)->Get_Capital_Name())
+        if(Get_Player_By_Id(tile_owner_id).Get_City_Name_By_Coordinates(dest_x, dest_y) == Get_Player_By_Id(tile_owner_id).Get_Capital_Name())
         {
-          message = "Capital of " + Get_Player_By_Id(tile_owner_id)->Get_Full_Name() + " has been conquered! Goverment moves to ";
+          message = "Capital of " + Get_Player_By_Id(tile_owner_id).Get_Full_Name() + " has been conquered! Goverment moves to ";
           capital = true;
-          for_each(Get_Player_By_Id(tile_owner_id)->Get_Owned_Cities()->begin(), Get_Player_By_Id(tile_owner_id)->Get_Owned_Cities()->end(), [](auto& City){City.Change_Stability(-15, false);});
+          for_each(Get_Player_By_Id(tile_owner_id).Get_Owned_Cities().begin(), Get_Player_By_Id(tile_owner_id).Get_Owned_Cities().end(), [](auto& City){City.Change_Stability(-15, false);});
         }
         else
         {
-          message = Get_Player_By_Id(unit_owner_id)->Get_Full_Name() + " has conquered " + Get_Player_By_Id(tile_owner_id)->Get_City_Name_By_Coordinates(dest_x, dest_y);
+          message = Get_Player_By_Id(unit_owner_id).Get_Full_Name() + " has conquered " + string(Get_Player_By_Id(tile_owner_id).Get_City_Name_By_Coordinates(dest_x, dest_y));
         }
-        City city_name = Get_Player_By_Id(tile_owner_id)->Lose_City_By_Coords(dest_x, dest_y);
-        city_name.Change_Owner(Get_Player_By_Id(unit_owner_id)->Get_Name());
-        Get_Player_By_Id(unit_owner_id)->Conquer_City(city_name);
+        City city_name = Get_Player_By_Id(tile_owner_id).Lose_City_By_Coords(dest_x, dest_y);
+        city_name.Change_Owner(Get_Player_By_Id(unit_owner_id).Get_Name());
+        Get_Player_By_Id(unit_owner_id).Conquer_City(city_name);
         if(capital)
-          message = message + Get_Player_By_Id(tile_owner_id)->Get_Capital_Name();
+          message = message + Get_Player_By_Id(tile_owner_id).Get_Capital_Name();
         Main_Newspaper.Add_City_Conquer(Get_Current_Turn_By_Years(), message, tile_owner_id);
         Logger::Log_Info(message + " X: " + to_string(dest_x) + " Y: " + to_string(dest_y));
       }
@@ -780,59 +802,59 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
   return is_combat;
 }
 
-vector<Civ> Game::Get_All_Civs() const
+vector<Civ>& Game::Get_All_Civs()
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Civs;
 }
 
 void Game::Detonate_Atomic_Bomb(int x, int y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Sound_Manager::Play_Sound("assets/sounds/atomicexplosion-audio.mp3");
-  Main_Newspaper.Add_Nuclear_Attack(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player()->Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!", Get_Currently_Moving_Player_Id());
+  Main_Newspaper.Add_Nuclear_Attack(Get_Current_Turn_By_Years(), Get_Currently_Moving_Player().Get_Full_Name() + " has dropped atomic bomb on tile X: " + to_string(x) + " Y: " + to_string(y) + "!", Get_Currently_Moving_Player_Id());
   Disband_Unit(x,y);
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
-  if(Get_Map()->Get_Tile(x+1,y).Has_Unit())
+  if(Get_Map().Get_Tile(x+1,y).Has_Unit())
     Disband_Unit(x+1,y);
-  if(Get_Map()->Get_Tile(x+1,y-1).Has_Unit())
+  if(Get_Map().Get_Tile(x+1,y-1).Has_Unit())
     Disband_Unit(x+1,y-1);
-  if(Get_Map()->Get_Tile(x+1,y+1).Has_Unit())
+  if(Get_Map().Get_Tile(x+1,y+1).Has_Unit())
     Disband_Unit(x+1,y+1);
-  if(Get_Map()->Get_Tile(x-1,y).Has_Unit())
+  if(Get_Map().Get_Tile(x-1,y).Has_Unit())
     Disband_Unit(x-1,y);
-  if(Get_Map()->Get_Tile(x-1,y+1).Has_Unit())
+  if(Get_Map().Get_Tile(x-1,y+1).Has_Unit())
     Disband_Unit(x-1,y+1);
-  if(Get_Map()->Get_Tile(x-1,y-1).Has_Unit())
+  if(Get_Map().Get_Tile(x-1,y-1).Has_Unit())
     Disband_Unit(x-1,y-1);
-  if(Get_Map()->Get_Tile(x,y+1).Has_Unit())
+  if(Get_Map().Get_Tile(x,y+1).Has_Unit())
     Disband_Unit(x,y+1);
-  if(Get_Map()->Get_Tile(x,y-1).Has_Unit())
+  if(Get_Map().Get_Tile(x,y-1).Has_Unit())
     Disband_Unit(x,y-1);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x, y)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x,y);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x+1, y)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x+1,y);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x+1, y-1)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x+1,y-1);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x+1, y+1)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x+1,y+1);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x-1, y)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x-1,y);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x-1, y-1)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x-1,y-1);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x-1, y+1)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x-1,y+1);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x, y-1)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x,y-1);
-  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map()->Get_Upgrade(x, y+1)).Has_Trait("cannotbeplundered"))
-    Get_Map()->Plunder_Tile(x,y+1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x, y)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x,y);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x+1, y)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x+1,y);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x+1, y-1)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x+1,y-1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x+1, y+1)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x+1,y+1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x-1, y)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x-1,y);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x-1, y-1)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x-1,y-1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x-1, y+1)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x-1,y+1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x, y-1)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x,y-1);
+  if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x, y+1)).Has_Trait("cannotbeplundered"))
+    Get_Map().Plunder_Tile(x,y+1);
 }
 
 string Game::Get_Current_Turn_By_Years() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   string out;
   int starting_year = -4000;
   int current_year = starting_year + (turn_counter * 15);
@@ -846,15 +868,15 @@ string Game::Get_Current_Turn_By_Years() const
 
 Game::Game(xml_node<>* Root_Node) : Game_Map(Root_Node->first_node("map"))
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Main_Radius_Generator.Set_Size(Get_Map()->Get_X_Size(), Get_Map()->Get_Y_Size());
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Main_Radius_Generator.Set_Size(Get_Map().Get_X_Size(), Get_Map().Get_Y_Size());
   Logger::Log_Info("Deserializing Game...");
   Deserialize(Root_Node);
 }
 
 void Game::Deserialize(xml_node<>* Root_Node)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   currently_moving_player = Get_Int_Value_From_Attribute(Root_Node, "currently_moving_player");
   turn_counter = Get_Int_Value_From_Attribute(Root_Node, "turn");
 
@@ -957,7 +979,7 @@ void Game::Deserialize(xml_node<>* Root_Node)
 
 xml_node<>*  Game::Serialize(memory_pool<>* doc)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Logger::Log_Info("Saving Game...");
   xml_node<> *Root_Node = doc->allocate_node(node_element, "miniyacg");
   xml_node<> *Game_Node = doc->allocate_node(node_element, "game");
@@ -977,43 +999,36 @@ xml_node<>*  Game::Serialize(memory_pool<>* doc)
 
   for_each(Tiles.begin(), Tiles.end(), [&](Tile& iterated_tile)
   {
-    Logger::Log_Info("Serializing " + iterated_tile.Get_Name() );
     Tiles_Node->append_node(iterated_tile.Serialize(doc));
   });
 
   for_each(Upgrades.begin(), Upgrades.end(), [&](Upgrade& iterated_upgrade)
   {
-    Logger::Log_Info("Serializing " + iterated_upgrade.Get_Name() );
     Upgrades_Node->append_node(iterated_upgrade.Serialize(doc));
   });
 
   for_each(Technologies.begin(), Technologies.end(), [&](Tech& iterated_tech)
   {
-    Logger::Log_Info("Serializing " + iterated_tech.Get_Name() );
     Technologies_Node->append_node(iterated_tech.Serialize(doc));
   });
 
   for_each(Units.begin(), Units.end(), [&](Unit& iterated_unit)
   {
-    Logger::Log_Info("Serializing " + iterated_unit.Get_Name() );
     Units_Node->append_node(iterated_unit.Serialize(doc));
   });
 
   for_each(Goverments.begin(), Goverments.end(), [&](Gov& iterated_gov)
   {
-    Logger::Log_Info("Serializing " + iterated_gov.Get_Name() );
     Govs_Node->append_node(iterated_gov.Serialize(doc));
   });
 
   for_each(Players.begin(), Players.end(), [&](Civ& iterated_civ)
   {
-    Logger::Log_Info("Serializing " + iterated_civ.Get_Name() );
     Players_Node->append_node(iterated_civ.Serialize(doc));
   });
 
   for_each(Civs.begin(), Civs.end(), [&](Civ& iterated_civ)
   {
-    Logger::Log_Info("Serializing " + iterated_civ.Get_Name() );
     Civs_Node->append_node(iterated_civ.Serialize(doc));
   });
 
@@ -1091,57 +1106,57 @@ xml_node<>*  Game::Serialize(memory_pool<>* doc)
 
 bool Game::Save_Game(string_view path)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Game_Saver Saver(this);
   return Saver.Save_Game(path.data());
 }
 
 tuple<bool, Game*> Game::Load_Game(string_view path)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Game_Loader Loader;
   return Loader.Load_Game(path.data());
 }
 
 vector<tuple<array<string,2>, int>> Game::Get_Newspaper_Events() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Main_Newspaper.Get_Events_With_Icon_Paths();
 }
 
 void Game::Change_Goverment_For_Currently_Moving_Player_By_Name(string_view name)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  if(Get_Currently_Moving_Player()->Get_Current_Actions() == Get_Currently_Moving_Player()->Get_Max_Actions())
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  if(Get_Currently_Moving_Player().Get_Current_Actions() == Get_Currently_Moving_Player().Get_Max_Actions())
   {
-    string message = "Riots in " + string(Get_Currently_Moving_Player()->Get_Capital_Name()) + "!";
-    message = message + " " + string(Get_Currently_Moving_Player()->Get_Leader_Name()) + " has been killed.";
-    message = message + " " + string(Get_Currently_Moving_Player()->Get_Raw_Name()) + " has been proclaimed ";
-    auto fallback_leader_name = Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id())->Get_Random_Leader_Name();
-    bool has_been_fallback_name_used = Get_Currently_Moving_Player()->Change_Goverment_By_Name(name, fallback_leader_name);
+    string message = "Riots in " + string(Get_Currently_Moving_Player().Get_Capital_Name()) + "!";
+    message = message + " " + string(Get_Currently_Moving_Player().Get_Leader_Name()) + " has been killed.";
+    message = message + " " + string(Get_Currently_Moving_Player().Get_Raw_Name()) + " has been proclaimed ";
+    auto fallback_leader_name = Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id()).Get_Random_Leader_Name();
+    bool has_been_fallback_name_used = Get_Currently_Moving_Player().Change_Goverment_By_Name(name, fallback_leader_name);
     if(has_been_fallback_name_used)
-      Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id())->Remove_Last_Leader_Name();
-    message = message + string(Get_Currently_Moving_Player()->Get_Full_Name());
+      Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id()).Remove_Last_Leader_Name();
+    message = message + string(Get_Currently_Moving_Player().Get_Full_Name());
     Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
   }
 }
 
 void Game::Build_City(int x, int y, int owner, int radius)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   string name = "City";
   Build_Upgrade(name, x, y, owner);
-  auto fallback_city_name = Get_Culture_By_Player_Id(owner)->Get_Random_City_Name();
-  bool has_been_fallback_name_used = Get_Player_By_Id(owner)->Build_City_On_Map(x,y, fallback_city_name, Get_Current_Turn_By_Years());
+  auto fallback_city_name = Get_Culture_By_Player_Id(owner).Get_Random_City_Name();
+  bool has_been_fallback_name_used = Get_Player_By_Id(owner).Build_City_On_Map(x,y, fallback_city_name, Get_Current_Turn_By_Years());
   if(has_been_fallback_name_used)
-    Get_Culture_By_Player_Id(owner)->Remove_Last_City_Name();
-  string message = string(Get_Player_By_Id(owner)->Get_Full_Name()) + " has settled new city of " + string(Get_Player_By_Id(owner)->Get_City_Name_By_Coordinates(x,y));
+    Get_Culture_By_Player_Id(owner).Remove_Last_City_Name();
+  string message = string(Get_Player_By_Id(owner).Get_Full_Name()) + " has settled new city of " + string(Get_Player_By_Id(owner).Get_City_Name_By_Coordinates(x,y));
   Main_Newspaper.Add_City_Build(Get_Current_Turn_By_Years(), message, owner);
 }
 
 int Game::Get_Total_Cost_Of_Technology_By_Name(string_view name) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   auto it = find_if(Technologies.begin(), Technologies.end(), [&name](Tech& t){
     return t.Get_Name() == name;
   });
@@ -1156,7 +1171,7 @@ int Game::Get_Total_Cost_Of_Technology_By_Name(string_view name) const
 
 Unit Game::Get_Unit_By_Name(string_view name) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   auto it = find_if(Units.begin(), Units.end(), [&name](Unit& u){
     return u.Get_Name() == name;
   });
@@ -1166,20 +1181,20 @@ Unit Game::Get_Unit_By_Name(string_view name) const
 
 void Game::Disband_Unit(int x, int y)
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Get_Map()->Get_Tile_Pointer(x,y)->Remove_Unit_From_Tile();
-  Get_Currently_Moving_Player()->Remove_Unit_By_Coords(x,y);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  Get_Map().Get_Tile_Pointer(x,y).Remove_Unit_From_Tile();
+  Get_Currently_Moving_Player().Remove_Unit_By_Coords(x,y);
   Tiles_To_Update.push_back({x,y});
 }
 
 vector<Civ> Game::Get_Players() const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Players;
 }
 
 Upgrade Game::Get_Upgrade_Of_Currently_Moving_Player(string_view upg_name) const
 {
-  if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return Get_Currently_Moving_Player()->Find_Upgrade_By_Name(upg_name);
+  //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
+  return Get_Currently_Moving_Player().Find_Upgrade_By_Name(upg_name);
 }

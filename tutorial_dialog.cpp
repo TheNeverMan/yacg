@@ -4,7 +4,7 @@ Tutorial_Dialog::Tutorial_Dialog(string i_p, string t_p) : Themed_Dialog("Tutori
 {
   Gtk::Box* Root_Box = get_content_area();
   Close_Button.set_label("Got it!");
-  Explanation_Image = Gtk::Image(Explanation_Image_Path.Get_File_Path());
+  Explanation_Image = Gtk::Image(Explanation_Image_Path.Get_File_Path().data());
   Explanation_Text = Gtk::Label(Explanation_Text_Path.Get_File_Content());
   Text_Frame = Gtk::Frame("Tutorial");
   Dialog_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);

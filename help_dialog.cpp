@@ -14,7 +14,7 @@ Help_Dialog::Help_Dialog() : Themed_Dialog("Help"), Help_Text_Button("Help Manua
 
   Dialog_Box->pack_start(Root_Box);
   Root_Box.pack_start(Explanation_Box);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image()));
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Explanation_Label);
   Root_Box.pack_start(Root_Frame);
   Root_Frame.add(Help_Buttons_Box);

@@ -46,7 +46,7 @@ class City : public XML_Serializable, public Help_Object
     City(xml_node<>* Root_Node);
     xml_node<>* Serialize(memory_pool<>* doc);
     void Deserialize(xml_node<>* Root_Node);
-    void Change_Owner(string new_owner);
+    void Change_Owner(string_view new_owner);
     void Process_Passive_Changes(array<int, 2> Capital_Location, bool has_unit, int stability_techs, int assimilation_techs, double base_growth, double army_multiplier, int max_stability);
     bool Does_Rebel() const;
     string_view Get_Founder_Name() const;

@@ -91,13 +91,13 @@ string_view Civ::Get_State_Name()
     return Active_Goverment.Get_State_Name();
 }
 
-string_view Civ::Get_Full_Name()
+string Civ::Get_Full_Name()
 {
   string out = string(Get_State_Name()) + " " + string(Get_Name());
   return out;
 }
 
-string_view Civ::Get_Leader_Name()
+string Civ::Get_Leader_Name()
 {
   string out = string(Get_Leader_Title()) + " " + leader;
   return out;
@@ -168,7 +168,7 @@ array<int, 2> Civ::Get_Capital_Location() const
 
 Upgrade Civ::Find_Upgrade_By_Name(string_view upg_name) const
 {
-  auto it = find_if(Upgrades.begin(), Upgrades.end(), [&upg_name](Upgrade& upg)
+  auto it = find_if(Upgrades.begin(), Upgrades.end(), [&upg_name](const Upgrade& upg)
   {
     if(upg.Get_Name() == upg_name)
       return true;
@@ -532,7 +532,7 @@ bool Civ::Is_Unit_Unlocked(string_view unit_name) const
 {
   if(unit_name == " ")
     return false;
-  Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](Unit& i_u){return unit_name == i_u.Get_Name();});
+  Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](const Unit& i_u){return unit_name == i_u.Get_Name();});
   return Has_Tech_Been_Researched_By_Name(string(u.Get_First_Requirement()));
 }
 
@@ -543,7 +543,7 @@ vector<Upgrade>& Civ::Get_Upgrades()
 
 bool Civ::Is_Unit_Obsolete(string_view unit_name) const
 {
-  Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](Unit& i_u){return unit_name == i_u.Get_Name();});
+  Unit u = *find_if(Unit_Templates.begin(), Unit_Templates.end(), [&unit_name](const Unit& i_u){return unit_name == i_u.Get_Name();});
   return Is_Unit_Unlocked(u.Get_Obsolete_Unit_Name());
 }
 
@@ -1161,7 +1161,7 @@ xml_node<>* Civ::Serialize(memory_pool<>* doc)
 
 int Civ::Get_Number_Of_Researched_Techs() const
 {
-  return count_if(Tech_Tree.begin(), Tech_Tree.end(), [](Tech &tech){return tech.Is_Reseached();});
+  return count_if(Tech_Tree.begin(), Tech_Tree.end(), [](const Tech &tech){return tech.Is_Reseached();});
 }
 
 void Civ::Disband_First_Unit()
@@ -1176,7 +1176,7 @@ void Civ::Disband_First_Unit()
 
 int Civ::Get_Number_Of_Naval_Units() const
 {
-  return count_if(Units_Owned.begin(), Units_Owned.end(), [](Unit_On_Map& unit){return unit.Self.Is_Naval();});
+  return count_if(Units_Owned.begin(), Units_Owned.end(), [](const Unit_On_Map& unit){return unit.Self.Is_Naval();});
 }
 
 void Civ::Set_Research_Tech_By_Trait(string_view trait)

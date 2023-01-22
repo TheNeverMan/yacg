@@ -48,8 +48,8 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
 {
   public:
     Civ(string n, vector<string> l, string c_i, vector<string> c_n, vector<Tech> t_t, vector<Unit> u_t, int r, int g, int b, vector<string> t, vector<Gov> go, map<string, vector<string>> g_n_r, string p, vector<Upgrade> us, string t_p, string a, string c, vector<string> r_n);
-    string_view Get_Leader_Name();
-    string_view Get_Full_Name();
+    string Get_Leader_Name();
+    string Get_Full_Name();
     void Assign_Id(int i);
     int Get_Id() const;
     bool Build_City_On_Map(int x, int y, string_view fallback_city_name, string_view founding_date);

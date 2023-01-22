@@ -15,8 +15,8 @@ void Game_Window::Generate_Map_View()
 {
   auto timer_start = std::chrono::steady_clock::now();
   Logger::Log_Info("Generating Map View..." );
-  int x = Main_Game->Get_Map()->Get_X_Size();
-  int y = Main_Game->Get_Map()->Get_Y_Size();
+  int x = Main_Game->Get_Map().Get_X_Size();
+  int y = Main_Game->Get_Map().Get_Y_Size();
   Logger::Log_Info("Map Size is " + to_string(x) + " " + to_string(y) );
   auto *root = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 0);
   Map_Scrolled_Window.add(*root);
@@ -57,55 +57,55 @@ bool Game_Window::Game_Map_Clicked(GdkEventButton* key_event)
 
 void Game_Window::Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y)
 {
-  if(!(Tile_Pointer->Has_City_Set()) && Main_Game->Get_Map()->Get_Upgrade(x,y) == "City")
+  if(!(Tile_Pointer->Has_City_Set()) && Main_Game->Get_Map().Get_Upgrade(x,y) == "City")
   {
-    Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
+    Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(x,y)).Get_City_Name_By_Coordinates(x,y));
   }
-  string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
-  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
-  if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
-    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
+  string_view tile_texture = Main_Game->Get_Map().Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
+  string_view unit_texture = string(assets_directory_path) + "textures/upgrades/none-upgrade-texture.png";
+  if(Main_Game->Get_Map().Get_Tile(x,y).Has_Unit())
+    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y).Get_Texture_Path();
 
-  string upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path();
-  guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map()->Get_Owner(x, y));
+  string_view upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map().Get_Upgrade(x,y)).Get_Texture_Path();
+  guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map().Get_Owner(x, y));
   Tile_Pointer->Update_Texture({tile_texture, upgrade_texture, unit_texture}, border_color);
 }
 
 void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
 {
-  if(!(Map_Images->Get_Gtk_Tile(x,y)->Has_City_Set()) && Main_Game->Get_Map()->Get_Upgrade(x,y) == "City")
+  if(!(Map_Images->Get_Gtk_Tile(x,y)->Has_City_Set()) && Main_Game->Get_Map().Get_Upgrade(x,y) == "City")
   {
-    Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Get_City_Name_By_Coordinates(x,y));
+    Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(x,y)).Get_City_Name_By_Coordinates(x,y));
   }
-  string tile_texture = Main_Game->Get_Map()->Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
-  string unit_texture = assets_directory_path + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png";
-  if(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit())
+  string_view tile_texture = Main_Game->Get_Map().Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
+  string_view unit_texture = string(assets_directory_path) + "textures/upgrades/none-upgrade-texture.png";
+  if(Main_Game->Get_Map().Get_Tile(x,y).Has_Unit())
   {
-    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).Get_Texture_Path();
-    if(Main_Game->Get_Map()->Get_Tile(x,y).Get_Name() == "Sea" && Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(x,y).Get_Unit_Owner_Id())->Get_Unit_On_Tile(x,y).How_Many_Times_Has_Trait("naval") == 0)
+    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y).Get_Texture_Path();
+    if(Main_Game->Get_Map().Get_Tile(x,y).Get_Name() == "Sea" && Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y).How_Many_Times_Has_Trait("naval") == 0)
       unit_texture = "assets/textures/units/embarked-unit-texture.svg";
   }
 
   string upgrade_texture = " ";
-  if( !(Main_Game->Get_Map()->Is_Tile_Neutral(x,y)) && !(Main_Game->Get_Map()->Is_Tile_Upgraded(x,y)) && Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(x,y))->Find_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Has_Trait("culture"))
+  if( !(Main_Game->Get_Map().Is_Tile_Neutral(x,y)) && !(Main_Game->Get_Map().Is_Tile_Upgraded(x,y)) && Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(x,y)).Find_Upgrade_By_Name(Main_Game->Get_Map().Get_Upgrade(x,y)).Has_Trait("culture"))
   {
-    upgrade_texture = Main_Game->Get_Texture_Path_For_Cultured_Upgrade(x,y, Main_Game->Get_Map()->Get_Upgrade(x,y));
+    upgrade_texture = Main_Game->Get_Texture_Path_For_Cultured_Upgrade(x,y, Main_Game->Get_Map().Get_Upgrade(x,y));
   }
   else
-    upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map()->Get_Upgrade(x,y)).Get_Texture_Path();
-  guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map()->Get_Owner(x, y));
+    upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map().Get_Upgrade(x,y)).Get_Texture_Path();
+  guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map().Get_Owner(x, y));
   Map_Images->Update_Tile({tile_texture, upgrade_texture, unit_texture}, border_color, x, y);
 }
 
 void Game_Window::Update_Map()
 {
-  unsigned long long tiles = Main_Game->Get_Map()->Get_X_Size() * Main_Game->Get_Map()->Get_Y_Size();
+  unsigned long long tiles = Main_Game->Get_Map().Get_X_Size() * Main_Game->Get_Map().Get_Y_Size();
   auto timer_start =std::chrono::steady_clock::now();
   Logger::Log_Info("Updating Map..." );
   int start = 0;
   int start_y = 0;
-  int x = Main_Game->Get_Map()->Get_X_Size();
-  int y = Main_Game->Get_Map()->Get_Y_Size();
+  int x = Main_Game->Get_Map().Get_X_Size();
+  int y = Main_Game->Get_Map().Get_Y_Size();
   while(start < x)
   {
     while(start_y < y)
@@ -156,7 +156,7 @@ bool Game_Window::Check_Avoid_Trait_For_Upgrades(string_view upg_name, int x, in
 
   for(string &upg : avoids)
   {
-    if(Main_Game->Get_Map()->Is_Upgrade_In_Radius_By_Name(upg,x,y))
+    if(Main_Game->Get_Map().Is_Upgrade_In_Radius_By_Name(upg,x,y))
       return false;
   }
   return true;
@@ -170,7 +170,7 @@ bool Game_Window::Check_Must_Border_Trait_For_Upgrades(string_view upg_name, int
   bool out = false;
   for(string &upg : avoids)
   {
-    if(Main_Game->Get_Map()->Is_Upgrade_In_Radius_By_Name(upg,x,y))
+    if(Main_Game->Get_Map().Is_Upgrade_In_Radius_By_Name(upg,x,y))
       out = true;
   }
   return out;
@@ -185,7 +185,7 @@ void Game_Window::Update_Tiles_From_Game()
 
 void Game_Window::Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int y, int owner)
 {
-  if(!Main_Game->Get_Currently_Moving_Player()->Has_Enough_Gold_To_Build_Upgrade(upg_name))
+  if(!Main_Game->Get_Currently_Moving_Player().Has_Enough_Gold_To_Build_Upgrade(upg_name))
   {
     Show_Not_Enough_Gold_Message();
     return;
@@ -198,7 +198,7 @@ void Game_Window::Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int
   }
   if(!Check_Must_Border_Trait_For_Upgrades(upg_name, x, y))
   {
-    string message = " You can't build " + upg_name + " here!";
+    string message = " You can't build " + string(upg_name) + " here!";
     ProgressBar_Label.set_text(message);
     return;
   }
@@ -207,8 +207,8 @@ void Game_Window::Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int
     Show_Not_Enough_Actions_Message();
     return;
   }
-  string message = upg_name + " built sucessfully!";
-  int radius = Main_Game->Get_Player_By_Id(owner)->Get_Upgrade_Border_Radius();
+  string message = string(upg_name) + " built sucessfully!";
+  int radius = Main_Game->Get_Player_By_Id(owner).Get_Upgrade_Border_Radius();
   if(upg_name == "City")
   {
     Main_Game->Build_City(x,y,owner, radius);
@@ -237,7 +237,7 @@ void Game_Window::Clear_Action_Buttons()
 void Game_Window::Recruit_Unit(string_view u, int x, int y)
 {
   string message = " ";
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() < Main_Game->Get_Unit_By_Name(u).Get_Cost())
+  if(Main_Game->Get_Currently_Moving_Player().Get_Gold() < Main_Game->Get_Unit_By_Name(u).Get_Cost())
   {
     Show_Not_Enough_Gold_Message();
     return;
@@ -248,7 +248,7 @@ void Game_Window::Recruit_Unit(string_view u, int x, int y)
     return;
   }
   Main_Game->Recruit_Unit(u, x, y);
-  message = "Unit " + u.data() + " recruited!";
+  message = "Unit " + string(u) + " recruited!";
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
@@ -263,7 +263,7 @@ void Game_Window::Disband_Unit(int x, int y)
     Show_Not_Enough_Actions_Message();
     return;
   }
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))
   {
     Main_Game->Disband_Unit(x,y);
     Deselect_Unit();
@@ -278,11 +278,11 @@ void Game_Window::Disband_Unit(int x, int y)
 void Game_Window::Heal_Unit(int x, int y)
 {
   string message = " ";
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))
   {
-    if(Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(x,y).Get_Current_Actions() > 1)
+    if(Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(x,y).Get_Current_Actions() > 1)
     {
-      Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile_Pointer(x,y)->Heal(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x,y)).How_Many_Times_Has_Trait("increasehealrate") * 10);
+      Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile_Pointer(x,y).Heal(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x,y)).How_Many_Times_Has_Trait("increasehealrate") * 10);
       message = "Unit healed!";
       Sound_Manager::Play_Sound("assets/sounds/heal-audio.mp3");
     }
@@ -301,9 +301,9 @@ void Game_Window::Heal_Unit(int x, int y)
 void Game_Window::Plunder_Tile(int x, int y)
 {
   string message = " ";
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))
   {
-    if(Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(x,y).Get_Current_Actions() > 1)
+    if(Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(x,y).Get_Current_Actions() > 1)
     {
       Main_Game->Plunder_Tile(x,y);
       message = "Tile plundered!";
@@ -328,7 +328,7 @@ void Game_Window::Fix_Tile(int x, int y)
 void Game_Window::Detonate_Atomic_Bomb(int x, int y)
 {
   string message = " ";
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))
   {
     Main_Game->Detonate_Atomic_Bomb(x,y);
     message = "Bomb Detonated!";
@@ -353,9 +353,9 @@ void Game_Window::Update_Unit_Action_Buttons(int x, int y)
   Action_Buttons_Box.pack_start(*button_2);
   Main_Provider.Add_CSS(button_2);
   button_2->show();
-  if(!Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Full_HP())
+  if(!Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Full_HP())
   {
-    if((Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Get_All_Arguments_For_Trait("class")[0] == "flying" && !Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x, y)).Has_Trait("allowflyingunitsheal")))
+    if((Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Get_All_Arguments_For_Trait("class")[0] == "flying" && !Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x, y)).Has_Trait("allowflyingunitsheal")))
       return;
     auto *button_3 = Gtk::make_managed<Gtk::Button>("Heal Unit");
     button_3->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Heal_Unit), selected_unit_x, selected_unit_y));
@@ -363,7 +363,7 @@ void Game_Window::Update_Unit_Action_Buttons(int x, int y)
     Main_Provider.Add_CSS(button_3);
     button_3->show();
   }
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Trait("plunder") && Main_Game->Get_Map()->Can_Tile_Plundered(selected_unit_x,selected_unit_y) && !Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x, y)).Has_Trait("cannotbeplundered"))
+  if(Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Trait("plunder") && Main_Game->Get_Map().Can_Tile_Plundered(selected_unit_x,selected_unit_y) && !Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x, y)).Has_Trait("cannotbeplundered"))
   {
     auto *button_4 = Gtk::make_managed<Gtk::Button>("Plunder");
     button_4->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Plunder_Tile), selected_unit_x, selected_unit_y));
@@ -371,7 +371,7 @@ void Game_Window::Update_Unit_Action_Buttons(int x, int y)
     Main_Provider.Add_CSS(button_4);
     button_4->show();
   }
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Trait("atomic"))
+  if(Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Trait("atomic"))
   {
     auto *button_5 = Gtk::make_managed<Gtk::Button>("Detonate!");
     button_5->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Detonate_Atomic_Bomb), selected_unit_x, selected_unit_y));
@@ -401,7 +401,7 @@ void Game_Window::Show_Upgrade_Info_Dialog(Upgrade u)
 
 void Game_Window::Update_Tile_Action_Buttons(int x, int y)
 {
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))
   {
     auto *button = Gtk::make_managed<Gtk::Button>("Select Unit");
     button->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Select_Unit), x, y));
@@ -409,20 +409,20 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
     Main_Provider.Add_CSS(button);
     show_all_children();
   }
-  if(!(Main_Game->Get_Map()->Get_Owner(x,y) == Main_Game->Get_Currently_Moving_Player_Id() || (Main_Game->Get_Map()->Get_Owner(x,y) == 0 && Main_Game->Get_Currently_Moving_Player()->Has_Unit_On_Tile(x,y))))
+  if(!(Main_Game->Get_Map().Get_Owner(x,y) == Main_Game->Get_Currently_Moving_Player_Id() || (Main_Game->Get_Map().Get_Owner(x,y) == 0 && Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))))
   {
     return;
   }
-  if(!Main_Game->Get_Map()->Can_Tile_Plundered(x,y))
+  if(!Main_Game->Get_Map().Can_Tile_Plundered(x,y))
   {
     auto *button = Gtk::make_managed<Gtk::Button>("Fix Upgrade");
     button->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Fix_Tile), x,y));
     Action_Buttons_Box.pack_start(*button);
     Main_Provider.Add_CSS(button);
   }
-  for(auto &upgrade : *Main_Game->Get_Currently_Moving_Player()->Get_Upgrades())
+  for(auto &upgrade : Main_Game->Get_Currently_Moving_Player().Get_Upgrades())
   {
-    if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(upgrade.Get_First_Requirement()) && upgrade.Is_Tile_Allowed_By_Name(Main_Game->Get_Map()->Get_Tile(x,y).Get_Name()) && (Main_Game->Get_Map()->Is_Tile_Upgraded(x,y)))
+    if(Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Name(upgrade.Get_First_Requirement()) && upgrade.Is_Tile_Allowed_By_Name(Main_Game->Get_Map().Get_Tile(x,y).Get_Name()) && (Main_Game->Get_Map().Is_Tile_Upgraded(x,y)))
     {
       auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
       auto *button_info = Gtk::make_managed<Gtk::Button>("?");
@@ -436,25 +436,25 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
       Main_Provider.Add_CSS(button);
     }
   }
-  if(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x,y)).Has_Trait("removable"))
+  if(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x,y)).Has_Trait("removable"))
   {
-    auto *button = Gtk::make_managed<Gtk::Button>("Remove " + Main_Game->Get_Map()->Get_Upgrade(x,y));
+    auto *button = Gtk::make_managed<Gtk::Button>("Remove " + string(Main_Game->Get_Map().Get_Upgrade(x,y)));
     button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), "none" , x,y, Main_Game->Get_Currently_Moving_Player_Id()));
     Action_Buttons_Box.pack_start(*button);
     Main_Provider.Add_CSS(button);
   }
-  if(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x,y)).Has_Trait("recruit"))
+  if(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x,y)).Has_Trait("recruit"))
   {
-    vector<Unit> Units = Main_Game->Get_Currently_Moving_Player()->Get_Units();
-    vector<string> Classes = Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map()->Get_Upgrade(x,y)).Get_All_Arguments_For_Trait("recruit");
+    vector<Unit> Units = Main_Game->Get_Currently_Moving_Player().Get_Units();
+    vector<string> Classes = Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x,y)).Get_All_Arguments_For_Trait("recruit");
     for(auto &unit : Units)
     {
-      if(!(Main_Game->Get_Map()->Get_Tile(x,y).Has_Unit()) && Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Name(unit.Get_First_Requirement()) && (find(Classes.begin(), Classes.end(), unit.Get_All_Arguments_For_Trait("class")[0]) != Classes.end()) && !(Main_Game->Get_Currently_Moving_Player()->Is_Unit_Obsolete(unit.Get_Name())))
+      if(!(Main_Game->Get_Map().Get_Tile(x,y).Has_Unit()) && Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Name(unit.Get_First_Requirement()) && (find(Classes.begin(), Classes.end(), unit.Get_All_Arguments_For_Trait("class")[0]) != Classes.end()) && !(Main_Game->Get_Currently_Moving_Player().Is_Unit_Obsolete(unit.Get_Name())))
       {
         auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
         auto *button_info = Gtk::make_managed<Gtk::Button>("?");
-        auto *button = Gtk::make_managed<Gtk::Button>("Recruit " + unit.Get_Name());
-        button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Recruit_Unit),unit.Get_Name() ,x,y));
+        auto *button = Gtk::make_managed<Gtk::Button>("Recruit " + string(unit.Get_Name()));
+        button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Recruit_Unit), string(unit.Get_Name()) ,x,y));
         button_info->signal_clicked().connect(sigc::bind<Unit>(sigc::mem_fun(*this, &Game_Window::Show_Unit_Info_Dialog), unit));
         Action_Buttons_Box.pack_start(*box);
         box->pack_start(*button);
@@ -469,12 +469,12 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
 
 void Game_Window::Update_Action_Buttons(int x, int y)
 {
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockforeign"))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Trait("unlockforeign"))
     Show_Civs_Button.set_sensitive(true);
   else
     Show_Civs_Button.set_sensitive(false);
   Clear_Action_Buttons();
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Max_Actions() == Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions())
+  if(Main_Game->Get_Currently_Moving_Player().Get_Max_Actions() == Main_Game->Get_Currently_Moving_Player().Get_Current_Actions())
     Manage_Goverments_Button.set_sensitive(true);
   else
     Manage_Goverments_Button.set_sensitive(false);
@@ -497,35 +497,35 @@ void Game_Window::Update_Tile_Information_Label(int x, int y)
   text = text + to_string(coords[1]);
   if(!Main_Game->Is_Currently_Moving_Player_AI())
     ProgressBar_Label.set_text(text);
-  text = text + "\n Type: " + Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Name();
-  text = text + "\n Upgrade: " + Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Upgrade();
-  if(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Upgrade() == "City")
+  text = text + "\n Type: " + string(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Name());
+  text = text + "\n Upgrade: " + string(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Upgrade());
+  if(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Upgrade() == "City")
   {
-    text = text + "\n City Name: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_Name_By_Coordinates(coords[0],coords[1]);
-    text = text + "\n City Nationality: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Nationality();
-    text = text + "\n City Stability: " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Stability());
-    text = text + "\n City Founder: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Founder_Name();
-    text = text + "\n City Founding Date: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Get_Founding_Date();
-    if(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_City_By_Coordinates(coords)->Is_Connected())
+    text = text + "\n City Name: " + string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_City_Name_By_Coordinates(coords[0],coords[1]));
+    text = text + "\n City Nationality: " + string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_City_By_Coordinates(coords).Get_Nationality());
+    text = text + "\n City Stability: " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_City_By_Coordinates(coords).Get_Stability());
+    text = text + "\n City Founder: " + string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_City_By_Coordinates(coords).Get_Founder_Name());
+    text = text + "\n City Founding Date: " + string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_City_By_Coordinates(coords).Get_Founding_Date());
+    if(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_City_By_Coordinates(coords).Is_Connected())
       text = text + "\n Connected To Other Cities";
-    if(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_Capital_Location() == coords)
+    if(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_Capital_Location() == coords)
       text = text + "\n Capital";
   }
-  if(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))
+  if(Main_Game->Get_Map().Get_Owner(coords[0],coords[1]))
   {
-    text = text + "\n Owner: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]))->Get_Name();
-    text = text + " ID: " + to_string(Main_Game->Get_Map()->Get_Owner(coords[0],coords[1]));
+    text = text + "\n Owner: " + string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(coords[0],coords[1])).Get_Name());
+    text = text + " ID: " + to_string(Main_Game->Get_Map().Get_Owner(coords[0],coords[1]));
   }
   else
     text = text + "\n Owner: Neutral";
 
-  if(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Has_Unit())
+  if(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Has_Unit())
   {
-    text = text + "\n Unit: " + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id())->Get_Unit_On_Tile(coords[0],coords[1]).Get_Name() + " (" + Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id())->Get_Name() + " ID: " + to_string(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id()) + ") ";
-    text = text + "\n HP: " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id())->Get_Unit_On_Tile(coords[0],coords[1]).Get_HP()) + " / 100";
-    if(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id() == Main_Game->Get_Currently_Moving_Player_Id())
+    text = text + "\n Unit: " + string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id()).Get_Unit_On_Tile(coords[0],coords[1]).Get_Name()) + " (" + string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id()).Get_Name()) + " ID: " + to_string(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id()) + ") ";
+    text = text + "\n HP: " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id()).Get_Unit_On_Tile(coords[0],coords[1]).Get_HP()) + " / 100";
+    if(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id() == Main_Game->Get_Currently_Moving_Player_Id())
     {
-      text = text + "\n Actions " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id())->Get_Unit_On_Tile(coords[0],coords[1]).Get_Current_Actions()) + " / " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id())->Get_Unit_On_Tile(coords[0],coords[1]).Get_Max_Actions());
+      text = text + "\n Actions " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id()).Get_Unit_On_Tile(coords[0],coords[1]).Get_Current_Actions()) + " / " + to_string(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(coords[0],coords[1]).Get_Unit_Owner_Id()).Get_Unit_On_Tile(coords[0],coords[1]).Get_Max_Actions());
     }
   }
   else
@@ -538,13 +538,13 @@ void Game_Window::Update_Tile_Information_Label(int x, int y)
 void Game_Window::Update_Tile_Flag()
 {
   Reset_Tile_Flag_Label();
-  if(Main_Game->Get_Map()->Get_Tile(last_clicked_x, last_clicked_y).Has_Unit())
+  if(Main_Game->Get_Map().Get_Tile(last_clicked_x, last_clicked_y).Has_Unit())
   {
-    Tile_Flag_Image.Change_Path(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Tile(last_clicked_x,last_clicked_y).Get_Unit_Owner_Id())->Get_Texture_Path());
+    Tile_Flag_Image.Change_Path(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(last_clicked_x,last_clicked_y).Get_Unit_Owner_Id()).Get_Texture_Path());
     return;
   }
-  if(Main_Game->Get_Map()->Get_Owner(last_clicked_x,last_clicked_y) != 0)
-    Tile_Flag_Image.Change_Path(Main_Game->Get_Player_By_Id(Main_Game->Get_Map()->Get_Owner(last_clicked_x,last_clicked_y))->Get_Texture_Path());
+  if(Main_Game->Get_Map().Get_Owner(last_clicked_x,last_clicked_y) != 0)
+    Tile_Flag_Image.Change_Path(Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(last_clicked_x,last_clicked_y)).Get_Texture_Path());
 }
 
 void Game_Window::Add_Combat_Overlay(array<int, 2> Coords)
@@ -577,7 +577,7 @@ bool Game_Window::Remove_Combat_Overlays()
 void Game_Window::Focus_On_Capital(bool click_capital)
 {
   Logger::Log_Info("Refocusing on Capital...");
-  array<int, 2> Coords = Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location();
+  array<int, 2> Coords = Main_Game->Get_Currently_Moving_Player().Get_Capital_Location();
   if(Coords[0] > 9990)
     return;
   if(click_capital)
@@ -603,7 +603,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
   if(Is_Unit_Selected())
   {
     string message = " ";
-    vector<int> out = Main_Game->Get_Map()->Check_If_Path_For_Unit_Exists(selected_unit_x, selected_unit_y, coords[0], coords[1], Main_Game->Get_Currently_Moving_Player()->Get_Unit_On_Tile(selected_unit_x,selected_unit_y));
+    vector<int> out = Main_Game->Get_Map().Check_If_Path_For_Unit_Exists(selected_unit_x, selected_unit_y, coords[0], coords[1], Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y));
     if(out[0] == 1)
     {
       bool combat = Main_Game->Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(selected_unit_x, selected_unit_y, out[2], out[3], out[1], (bool) out[4], out[5], out[6]);
@@ -651,18 +651,18 @@ void Game_Window::Show_Civs_Clicked()
 
 void Game_Window::Update_Economy_Label()
 {
-  string civ_name_text = Main_Game->Get_Currently_Moving_Player()->Get_Full_Name() + " ID: " + to_string(Main_Game->Get_Currently_Moving_Player_Id());
-  string economy_text = "Gold: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Gold());
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Gold() == 0)
+  string civ_name_text = Main_Game->Get_Currently_Moving_Player().Get_Full_Name() + " ID: " + to_string(Main_Game->Get_Currently_Moving_Player_Id());
+  string economy_text = "Gold: " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Gold());
+  if(Main_Game->Get_Currently_Moving_Player().Get_Gold() == 0)
     economy_text = "<span foreground=\"red\">" + economy_text + "</span>";
-  string actions_text = "Actions: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Max_Actions());
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions() == 0)
+  string actions_text = "Actions: " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Current_Actions()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player().Get_Max_Actions());
+  if(Main_Game->Get_Currently_Moving_Player().Get_Current_Actions() == 0)
     actions_text = "<span foreground=\"red\">" + actions_text + "</span>";
-  string tech_in_research_text = "Tech in research: " + Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Name() + " " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Cost());
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Current_Cost() <= 0)
+  string tech_in_research_text = "Tech in research: " + Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name() + " " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Cost());
+  if(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Current_Cost() <= 0)
     tech_in_research_text = "<span foreground=\"red\">" + tech_in_research_text + "</span>";
-  string research_funds_text = "Research Fund: " + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent()) + " %";
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Research_Percent() == 0)
+  string research_funds_text = "Research Fund: " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Research_Percent()) + " %";
+  if(Main_Game->Get_Currently_Moving_Player().Get_Research_Percent() == 0)
     research_funds_text = "<span foreground=\"red\">" + research_funds_text + "</span>";
   Economy_Label.set_markup(economy_text);
   Civ_Name_Label.set_text(civ_name_text);
@@ -674,7 +674,7 @@ void Game_Window::Update_Economy_Label()
 string Game_Window::Get_Current_Turn_By_Years()
 {
   string out = Main_Game->Get_Current_Turn_By_Years();
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockdate"))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Trait("unlockdate"))
     return out;
   return "Unknown Year";
 }
@@ -682,15 +682,15 @@ string Game_Window::Get_Current_Turn_By_Years()
 void Game_Window::Update_Capital_Label()
 {
   string capital_label_text = "Your Capital is located at ";
-  capital_label_text = capital_label_text + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[0]);
+  capital_label_text = capital_label_text + to_string(Main_Game->Get_Currently_Moving_Player().Get_Capital_Location()[0]);
   capital_label_text = capital_label_text + " ";
-  capital_label_text = capital_label_text + to_string(Main_Game->Get_Currently_Moving_Player()->Get_Capital_Location()[1]);
+  capital_label_text = capital_label_text + to_string(Main_Game->Get_Currently_Moving_Player().Get_Capital_Location()[1]);
   Capital_Label.set_text(capital_label_text);
 }
 
 void Game_Window::Update_Map_Frame()
 {
-  Map_Frame.set_label("Map of " + Main_Game->Get_Currently_Moving_Player()->Get_Full_Name() + " " + Get_Current_Turn_By_Years());
+  Map_Frame.set_label("Map of " + Main_Game->Get_Currently_Moving_Player().Get_Full_Name() + " " + Get_Current_Turn_By_Years());
 }
 
 void Game_Window::Update_Labels()
@@ -714,7 +714,7 @@ void Game_Window::Player_Has_Lost_Game()
 void Game_Window::Player_Has_Won_Game(int player_id)
 {
   player_id = Main_Game->Get_Currently_Moving_Player_Id();
-  string name = Main_Game->Get_Player_By_Id(player_id)->Get_Full_Name();
+  string name = Main_Game->Get_Player_By_Id(player_id).Get_Full_Name();
   Logger::Log_Info(name + " has won the game!");
   Themed_Dialog Dialog(name + " has won the game and defeated all enemies!", "End the Game");
   Dialog.Show();
@@ -750,7 +750,7 @@ void Game_Window::Enable_All_Buttons()
   Manage_Economy_Button.set_sensitive(true);
   Manage_Techs_Button.set_sensitive(true);
   Manage_Stability_Button.set_sensitive(true);
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockforeign"))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Trait("unlockforeign"))
     Show_Civs_Button.set_sensitive(true);
   Manage_Goverments_Button.set_sensitive(true);
   Civ_Overview_Button.set_sensitive(true);
@@ -767,15 +767,15 @@ void Game_Window::End_Turn()
 {
   Deselect_Unit();
   Sound_Manager::Play_Sound("assets/sounds/endturn-audio.mp3");
-  //Logger::Log_Info(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() );
+  //Logger::Log_Info(Main_Game->Get_Currently_Moving_Player().Get_Possible_Research_Techs().size() );
   bool are_all_techs_researched = false;
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Possible_Research_Techs().size() == 0)
+  if(Main_Game->Get_Currently_Moving_Player().Get_Possible_Research_Techs().size() == 0)
   {
     are_all_techs_researched = true;
   }
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Is_Reseached() && !are_all_techs_researched)
+  if(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Is_Reseached() && !are_all_techs_researched)
   {
-    ProgressBar_Label.set_text(Main_Game->Get_Currently_Moving_Player()->Get_Currently_Researched_Tech()->Get_Name() + " is researched! Select other tech to complete turn!");
+    ProgressBar_Label.set_text(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name() + " is researched! Select other tech to complete turn!");
   }
   else
   {
@@ -792,31 +792,31 @@ void Game_Window::End_Turn()
 
 void Game_Window::Manage_Goverments_Clicked()
 {
-  Goverment_Dialog Dialog(*Main_Game->Get_Currently_Moving_Player());
+  Goverment_Dialog Dialog(Main_Game->Get_Currently_Moving_Player());
   Dialog.Show();
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Active_Goverment_Name() != Dialog.Get_Selected_Goverment())
+  if(Main_Game->Get_Currently_Moving_Player().Get_Active_Goverment_Name() != Dialog.Get_Selected_Goverment())
     Main_Game->Change_Goverment_For_Currently_Moving_Player_By_Name(Dialog.Get_Selected_Goverment());
   Update_Labels();
 }
 
 void Game_Window::Manage_Techs_Clicked()
 {
-  Tech_Dialog Dialog(*Main_Game->Get_Currently_Moving_Player());
+  Tech_Dialog Dialog(Main_Game->Get_Currently_Moving_Player());
   Dialog.Show();
-  Main_Game->Get_Currently_Moving_Player()->Set_Research_Tech_By_Name(Dialog.Get_Selected_Tech().Get_Name());
-  Main_Game->Get_Currently_Moving_Player()->Set_Research_Funds_Percentage(Dialog.Get_Research_Percent());
+  Main_Game->Get_Currently_Moving_Player().Set_Research_Tech_By_Name(Dialog.Get_Selected_Tech().Get_Name());
+  Main_Game->Get_Currently_Moving_Player().Set_Research_Funds_Percentage(Dialog.Get_Research_Percent());
   Update_Labels();
 }
 
 void Game_Window::Manage_Overview_Clicked()
 {
-  Overview_Dialog Dialog(Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player()), *Main_Game->Get_Currently_Moving_Player(), Main_Game->Get_Current_Turn_By_Years());
+  Overview_Dialog Dialog(Main_Game->Get_Map().Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), Main_Game->Get_Currently_Moving_Player()), Main_Game->Get_Currently_Moving_Player(), Main_Game->Get_Current_Turn_By_Years());
   Dialog.Show();
 }
 
 void Game_Window::Manage_Economy_Clicked()
 {
-  Economy_Dialog Dialog(Main_Game->Get_Map()->Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), *Main_Game->Get_Currently_Moving_Player()), *Main_Game->Get_Currently_Moving_Player());
+  Economy_Dialog Dialog(Main_Game->Get_Map().Get_Netto_Income_For_Player_By_Id(Main_Game->Get_Currently_Moving_Player_Id(), Main_Game->Get_Currently_Moving_Player()), Main_Game->Get_Currently_Moving_Player());
   Dialog.Show();
 }
 
@@ -858,7 +858,7 @@ void Game_Window::Save_Game()
 
 void Game_Window::Clear_Map_Images()
 {
-  Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map()->Get_X_Size(), Main_Game->Get_Map()->Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
+  Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map().Get_X_Size(), Main_Game->Get_Map().Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
 }
 
 void Game_Window::Load_Game()
@@ -906,18 +906,18 @@ void Game_Window::Show_Intro_Message()
   Gtk::Dialog dialog("Start the game");
   Gtk::Box *Dialog_Box = dialog.get_content_area();
   dialog.add_button("Lets start!", 0);
-  string message = "You lead the civilization of " + Main_Game->Get_Currently_Moving_Player()->Get_Name() + ". ";
+  string message = "You lead the civilization of " + string(Main_Game->Get_Currently_Moving_Player().Get_Name()) + ". ";
   message = message + "\n Your civilization may colapse after few years or survive thousands. Who knows?";
   message = message + "\n Your civlization has following traits: ";
   Gtk::Box Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
-  vector<string> traits = Main_Game->Get_Currently_Moving_Player()->Get_Trait_Names();
+  vector<string> traits = Main_Game->Get_Currently_Moving_Player().Get_Trait_Names();
   Gtk::Label Dialog_Label = Gtk::Label(message);
   Root_Box.pack_start(Dialog_Label);
   Civ_Trait_Manager Trait_Manager;
   for(string &trait : traits)
   {
     auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-    Trait_Box->pack_start(*(Trait_Manager.Get_Trait_Icon(trait)->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    Trait_Box->pack_start((Trait_Manager.Get_Trait_Icon(trait)->Get_Gtk_Image()), Gtk::PACK_SHRINK);
     auto* Trait_Label = Gtk::make_managed<Gtk::Label>(Trait_Manager.Get_Trait_Full_Name(trait) + " - " + Trait_Manager.Get_Trait_Full_Explanation(trait));
     Trait_Box->pack_start(*Trait_Label);
     Root_Box.pack_start(*Trait_Box);
@@ -951,7 +951,7 @@ void Game_Window::Notify_Game_Window_About_Turn()
 
 void Game_Window::Check_Is_Game_Lost_Or_Won()
 {
-  if(!Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities_Not_Pointer().size())
+  if(!Main_Game->Get_Currently_Moving_Player().Get_Owned_Cities_Not_Pointer().size())
     Player_Has_Lost_Game();
   if(Main_Game->Is_Only_One_Player_Alive())
     Player_Has_Won_Game(0);
@@ -973,7 +973,7 @@ void Game_Window::Update_End_Turn_Labels()
   }
   else
   {
-    ProgressBar_Label.set_text(Main_Game->Get_Currently_Moving_Player()->Get_Name() + " is currently moving...");
+    ProgressBar_Label.set_text(string(Main_Game->Get_Currently_Moving_Player().Get_Name()) + " is currently moving...");
     Update_Tiles_From_Game();
   }
 }
@@ -1008,7 +1008,7 @@ bool Game_Window::Loop_Background_Music()
 {
   Logger::Log_Info("Looping Background Theme...");
   if(!Main_Settings_Manager.Is_Music_Muted())
-    Sound_Manager::Play_Sound(Main_Game->Get_Currently_Moving_Player()->Get_Audio_Path());
+    Sound_Manager::Play_Sound(Main_Game->Get_Currently_Moving_Player().Get_Audio_Path());
   return true;
 }
 
@@ -1117,7 +1117,7 @@ bool Game_Window::on_key_press_event(GdkEventKey* key_event)
 
 void Game_Window::Manage_Stability_Clicked()
 {
-  Internal_Dialog Dialog(Main_Game->Get_Goverment_By_Name(Main_Game->Get_Currently_Moving_Player()->Get_Active_Goverment_Name()), Main_Game->Get_Currently_Moving_Player()->Get_Owned_Cities());
+  Internal_Dialog Dialog(Main_Game->Get_Goverment_By_Name(Main_Game->Get_Currently_Moving_Player().Get_Active_Goverment_Name()), Main_Game->Get_Currently_Moving_Player().Get_Owned_Cities());
   Dialog.Show();
 }
 
@@ -1183,36 +1183,36 @@ void Game_Window::Initialize_GTK()
   Image_Path End_Turn_Icon_Path(icon_directory + "apply-icon.svg.png");
   End_Turn_Icon = make_shared<Scaled_Gtk_Image>(End_Turn_Icon_Path.Get_File_Path(), 24 ,24);
   End_Turn_Button.remove();
-  End_Turn_Button.add_pixlabel(End_Turn_Icon_Path.Get_File_Path(), "End Turn");
+  End_Turn_Button.add_pixlabel(End_Turn_Icon_Path.Get_File_Path().data(), "End Turn");
   End_Turn_Box.pack_start(End_Turn_Button, Gtk::PACK_SHRINK);
   UI_Root_Box.pack_start(Info_Labels_Root_Box, Gtk::PACK_SHRINK);
   Info_Labels_Root_Box.pack_start(Civ_Name_Label_Box);
   Civ_Name_Label_Box.pack_start(Civ_Name_Label);
-  Civ_Name_Label_Box.pack_start(*(Civ_Name_Label_Icon->Get_Gtk_Image()));
-  Civ_Name_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Civ_Name_Label_Box.pack_start((Civ_Name_Label_Icon->Get_Gtk_Image()));
+  Civ_Name_Label_Icon->Get_Gtk_Image().set_halign(Gtk::ALIGN_START);
   Info_Labels_Root_Box.pack_start(Economy_Actions_Label_Box);
   Info_Labels_Root_Box.pack_start(Economy_Label_Box);
   Economy_Label_Box.pack_start(Economy_Label);
   Economy_Label.set_halign(Gtk::ALIGN_END);
-  Economy_Label_Box.pack_start(*(Economy_Label_Icon->Get_Gtk_Image()));
-  Economy_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Economy_Label_Box.pack_start((Economy_Label_Icon->Get_Gtk_Image()));
+  Economy_Label_Icon->Get_Gtk_Image().set_halign(Gtk::ALIGN_START);
   Info_Labels_Root_Box.pack_start(Actions_Label_Box);
   Actions_Label_Box.pack_start(Actions_Label);
   Actions_Label.set_halign(Gtk::ALIGN_END);
-  Actions_Label_Box.pack_start(*(Actions_Label_Icon->Get_Gtk_Image()));
-  Actions_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Actions_Label_Box.pack_start((Actions_Label_Icon->Get_Gtk_Image()));
+  Actions_Label_Icon->Get_Gtk_Image().set_halign(Gtk::ALIGN_START);
   Info_Labels_Root_Box.pack_start(Tech_In_Research_Label_Box);
   Tech_In_Research_Label_Box.pack_start(Tech_In_Research_Label);
   Tech_In_Research_Label.set_halign(Gtk::ALIGN_END);
-  Tech_In_Research_Label_Box.pack_start(*(Tech_In_Research_Label_Icon->Get_Gtk_Image()));
-  Tech_In_Research_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Tech_In_Research_Label_Box.pack_start((Tech_In_Research_Label_Icon->Get_Gtk_Image()));
+  Tech_In_Research_Label_Icon->Get_Gtk_Image().set_halign(Gtk::ALIGN_START);
   Info_Labels_Root_Box.pack_start(Research_Funds_Label_Box);
   Research_Funds_Label_Box.pack_start(Research_Funds_Label);
   Research_Funds_Label.set_halign(Gtk::ALIGN_END);
-  Research_Funds_Label_Box.pack_start(*(Research_Funds_Label_Icon->Get_Gtk_Image()));
-  Research_Funds_Label_Icon->Get_Gtk_Image()->set_halign(Gtk::ALIGN_START);
+  Research_Funds_Label_Box.pack_start((Research_Funds_Label_Icon->Get_Gtk_Image()));
+  Research_Funds_Label_Icon->Get_Gtk_Image().set_halign(Gtk::ALIGN_START);
   UI_Root_Box.pack_start(Tile_Information_Label, Gtk::PACK_SHRINK);
-  UI_Root_Box.pack_start(*(Tile_Flag_Image.Get_Gtk_Image()), Gtk::PACK_SHRINK);
+  UI_Root_Box.pack_start((Tile_Flag_Image.Get_Gtk_Image()), Gtk::PACK_SHRINK);
   Manage_Techs_Button.Change_Icon(icon_directory + "science-icon.svg.png");
   UI_Root_Box.pack_start(Manage_Techs_Button, Gtk::PACK_SHRINK);
   Manage_Economy_Button.Change_Icon(icon_directory + "economy-icon.svg.png");
@@ -1245,7 +1245,7 @@ void Game_Window::Initialize_GTK()
   Image_Path Tip_Icon_Path(icon_directory + "about-icon.svg.png");
   Tip_Icon = make_shared<Scaled_Gtk_Image>(Tip_Icon_Path.Get_File_Path(), 24 ,24);
   Random_Tip_Button.remove();
-  Random_Tip_Button.add_pixlabel(Tip_Icon_Path.Get_File_Path(), "Random Tip");
+  Random_Tip_Button.add_pixlabel(Tip_Icon_Path.Get_File_Path().data(), "Random Tip");
   UI_Root_Box.pack_start(Random_Tip_Button, Gtk::PACK_SHRINK);
   Help_Button.Change_Icon(icon_directory + "about-icon.svg.png");
   UI_Root_Box.pack_start(Help_Button, Gtk::PACK_SHRINK);
@@ -1274,7 +1274,7 @@ void Game_Window::Initialize_GTK()
   Main_Provider.Add_CSS(&End_Turn_Button);
   Main_Provider.Add_CSS(&Random_Tip_Button);
   Set_Tiles_Size_Automatically();
-  Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map()->Get_X_Size(), Main_Game->Get_Map()->Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
+  Map_Images = make_shared<Gtk_Game_Map>(Main_Game->Get_Map().Get_X_Size(), Main_Game->Get_Map().Get_Y_Size(), Main_Settings_Manager.Get_Tile_Size_Value());
   Generate_Map_View();
   show_all_children();
   set_default_size(800,800);
@@ -1283,12 +1283,12 @@ void Game_Window::Initialize_GTK()
   Update_Labels();
   add_events(Gdk::KEY_PRESS_MASK);
   Show_Intro_Message();
-  if(Main_Game->Get_Currently_Moving_Player()->Has_Tech_Been_Researched_By_Trait("unlockforeign"))
+  if(Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Trait("unlockforeign"))
     Show_Civs_Button.set_sensitive(true);
   else
     Show_Civs_Button.set_sensitive(false);
   Clear_Action_Buttons();
-  if(Main_Game->Get_Currently_Moving_Player()->Get_Max_Actions() == Main_Game->Get_Currently_Moving_Player()->Get_Current_Actions())
+  if(Main_Game->Get_Currently_Moving_Player().Get_Max_Actions() == Main_Game->Get_Currently_Moving_Player().Get_Current_Actions())
     Manage_Goverments_Button.set_sensitive(true);
   else
     Manage_Goverments_Button.set_sensitive(false);
@@ -1309,9 +1309,9 @@ void Game_Window::Set_Tiles_Size_Automatically()
 {
   array<int, 2> Resolution = Get_Screen_Resolution();
   Logger::Log_Info("Screen resolution is " + to_string(Resolution[0]) + "x" + to_string(Resolution[1]));
-  int tiles_in_x = Main_Game->Get_Map()->Get_X_Size() * Main_Settings_Manager.Get_Tile_Size_Value();
-  int tiles_in_y = Main_Game->Get_Map()->Get_Y_Size() * Main_Settings_Manager.Get_Tile_Size_Value();
-  int new_tile_size = Resolution[0] / Main_Game->Get_Map()->Get_X_Size();
+  int tiles_in_x = Main_Game->Get_Map().Get_X_Size() * Main_Settings_Manager.Get_Tile_Size_Value();
+  int tiles_in_y = Main_Game->Get_Map().Get_Y_Size() * Main_Settings_Manager.Get_Tile_Size_Value();
+  int new_tile_size = Resolution[0] / Main_Game->Get_Map().Get_X_Size();
   minimum_tile_size = new_tile_size;
   if(tiles_in_x < Resolution[0] || tiles_in_y < Resolution[1])
   {

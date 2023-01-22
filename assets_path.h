@@ -10,4 +10,4 @@ using std::string_view;
 #define STD_THREAD_IMPLEMENTATION_INCLUDE_THREAD "mingw-std-threads/mingw.thread.h"
 
   constexpr string_view path_delimeter(&std::filesystem::path::preferred_separator, 1);
-  const string_view assets_directory_path(string("assets") + string(path_delimeter));
+  const string assets_directory_path("assets" + string(path_delimeter));

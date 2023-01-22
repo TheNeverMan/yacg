@@ -9,7 +9,7 @@ using std::string;
 using std::vector;
 using std::string_view;
 
-class Trait
+class Trait : public XML_Serializable
 {
   private:
     string trait_name;

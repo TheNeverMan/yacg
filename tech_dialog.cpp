@@ -1,6 +1,6 @@
 #include "tech_dialog.h"
 
-Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), Selected_Tech(*Player.Get_Currently_Researched_Tech()), Explanation_Image(assets_directory_path + "textures/dialogs/tech-dialog-texture.svg", 64, 64)
+Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), Selected_Tech(Player.Get_Currently_Researched_Tech()), Explanation_Image(assets_directory_path + "textures/dialogs/tech-dialog-texture.svg", 64, 64)
 {
   Gtk::Box *Dialog_Box = get_content_area();
   Close_Button.set_label("Apply");
@@ -12,21 +12,20 @@ Tech_Dialog::Tech_Dialog(Civ p) : Themed_Dialog("Science Ministry"), Player(p), 
   research_funds_percent = Player.Get_Research_Percent();
   Dialog_Box->pack_start(Root_Box);
   Root_Box.pack_start(Explanation_Box);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image()));
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Explanation_Label);
   Root_Box.pack_start(Dialog_Root_Frame);
   Dialog_Root_Frame.add(Research_Box);
-  Selected_Tech = *p.Get_Currently_Researched_Tech();
   int index = 0;
   for(auto &tech : techs)
   {
-    shared_ptr<Scaled_Gtk_Image> Tech_Image = make_shared<Scaled_Gtk_Image>(tech.Get_Texture_Path(), 64, 64);
+    shared_ptr<Scaled_Gtk_Image> Tech_Image = make_shared<Scaled_Gtk_Image>(tech.Get_Texture_Path().data(), 64, 64);
     Tech_Images.push_back(Tech_Image);
-    shared_ptr<Sound_Button> button = make_shared<Sound_Button>("Research " + tech.Get_Name());
+    shared_ptr<Sound_Button> button = make_shared<Sound_Button>("Research " + string(tech.Get_Name()));
     button->Change_Icon("assets/textures/icons/science-icon.svg.png");
     button->set_margin_bottom(3);
-    auto *label = Gtk::make_managed<Gtk::Label>(tech.Info(), Gtk::ALIGN_START, Gtk::ALIGN_FILL);
-    Research_Box.attach(*(Tech_Image->Get_Gtk_Image()), 0, index);
+    auto *label = Gtk::make_managed<Gtk::Label>(tech.Info().data(), Gtk::ALIGN_START, Gtk::ALIGN_FILL);
+    Research_Box.attach((Tech_Image->Get_Gtk_Image()), 0, index);
     Research_Box.attach(*button, 1, index);
     Research_Box.attach(*label, 2, index);
     Main_Provider.Add_CSS(button);

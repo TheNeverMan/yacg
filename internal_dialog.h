@@ -29,5 +29,5 @@ class Internal_Dialog : public Themed_Dialog
     Gtk::Box Cities_Box;
     vector<shared_ptr<Scaled_Gtk_Image>> Cities_Icons;
   public:
-    Internal_Dialog(Gov a_g, vector<City>* c);
+    Internal_Dialog(Gov a_g, vector<City>& c);
 };

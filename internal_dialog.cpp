@@ -1,6 +1,6 @@
 #include "internal_dialog.h"
 
-Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>* c) : Themed_Dialog("Internal Ministry"), Active_Goverment(a_g), Explanation_Image(string(assets_directory_path) + "textures/dialogs/internal-dialog-texture.svg", 64, 64)
+Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>& c) : Themed_Dialog("Internal Ministry"), Active_Goverment(a_g), Explanation_Image(string(assets_directory_path) + "textures/dialogs/internal-dialog-texture.svg", 64, 64)
 {
   Cities = c;
   auto* Dialog_Box = get_content_area();

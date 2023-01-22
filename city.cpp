@@ -21,7 +21,7 @@ City::City(xml_node<>* Root_Node) : Help_Object(Root_Node)
   turns_after_revolt = 0;
 }
 
-void City::Change_Owner(string new_owner)
+void City::Change_Owner(string_view new_owner)
 {
   owner_name = new_owner;
   stability = stability - 7;

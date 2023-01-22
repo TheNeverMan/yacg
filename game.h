@@ -102,6 +102,9 @@ class Game : public XML_Serializable
     void Remove_All_Missle_Units();
     Culture& Get_Culture_By_Player_Id(int player_id);
     void Update_Stability_For_Currently_Moving_Player();
+    Map& Get_Map() const;
+    Civ& Get_Player_By_Id(int id) const;
+    Culture& Get_Culture_By_Player_Id(int player_id) const;
     vector<array<int, 3>> Search_For_Connections(array<int, 2> Coords, int player_id) const;
   public:
     bool Is_Only_One_Player_Alive() const;
@@ -130,7 +133,7 @@ class Game : public XML_Serializable
     Civ& Get_Player_By_Id(int id);
     int Get_Currently_Moving_Player_Id() const;
     int Get_Amount_Of_Players() const;
-    vector<Civ> Get_All_Civs() const;
+    vector<Civ>& Get_All_Civs();
     Civ& Get_Currently_Moving_Player();
     vector<Upgrade> Get_Upgrades() const;
     vector<Unit> Get_Units() const;
