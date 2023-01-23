@@ -1,8 +1,7 @@
 #include "civs_dialog.h"
 
-Civs_Dialog::Civs_Dialog(vector<Civ> p) : Themed_Dialog("Foregin Ministry"), Explanation_Image(string(assets_directory_path) + "textures/dialogs/civs-dialog-texture.svg", 70, 70)
+Civs_Dialog::Civs_Dialog(vector<Civ>& p) : Themed_Dialog("Foregin Ministry"), Explanation_Image(string(assets_directory_path) + "textures/dialogs/civs-dialog-texture.svg", 70, 70), Players(p)
 {
-  Players = p;
   Gtk::Box *Dialog_Box = get_content_area();
   Explanation_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Explanation_Label = Gtk::Label("Here is information about every civilization currently in the game. \n Each civilization has score in points which measures its overall performance.");

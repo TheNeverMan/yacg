@@ -38,7 +38,7 @@ void Traits_Owner::Give_Trait(string_view raw_trait)
 vector<string> Traits_Owner::Get_Trait_Names()
 {
   vector<string> out;
-  for_each(Traits.begin(), Traits.end(), [&](Trait t){out.push_back(t.Get_Trait_Name().data());});
+  for_each(Traits.begin(), Traits.end(), [&](Trait& t){out.push_back(t.Get_Trait_Name().data());});
   return out;
 }
 
@@ -61,10 +61,10 @@ int Traits_Owner::How_Many_Times_Has_Trait(string_view trait_name) const
   });
 }
 
-vector<string> Traits_Owner::Get_All_Arguments_For_Trait(string_view trait_name)
+vector<string> Traits_Owner::Get_All_Arguments_For_Trait(string_view trait_name) const
 {
   vector<string> out;
-  for(Trait t : Traits)
+  for(const Trait& t : Traits)
   {
     if(t.Get_Trait_Name() == trait_name)
     {
@@ -73,4 +73,5 @@ vector<string> Traits_Owner::Get_All_Arguments_For_Trait(string_view trait_name)
     }
   }
   return out;
+
 }

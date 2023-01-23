@@ -155,7 +155,7 @@ int Map::Calculate_Buff_For_Tile(int x, int y, int owner, Civ player) const
 
 string_view Map::Get_Upgrade(int x, int y) const
 {
-  return Get_Tile(x,y).Get_Upgrade();
+  return Get_Tile_Pointer(x,y).Get_Upgrade();
 }
 
 bool Map::Is_Tile_Upgraded(int x, int y) const
@@ -254,6 +254,11 @@ bool Map::Is_Upgrade_In_Radius_By_Name(string_view upg_name, int x, int y) const
 }
 
 Tile& Map::Get_Tile_Pointer(int x, int y)
+{
+  return Game_Map[x][y].Place;
+}
+
+const Tile& Map::Get_Tile_Pointer(int x, int y) const
 {
   return Game_Map[x][y].Place;
 }

@@ -18,7 +18,7 @@ class Internal_Dialog : public Themed_Dialog
 {
   private:
     Gov Active_Goverment;
-    vector<City>* Cities;
+    vector<City>& Cities;
     Gtk::Box Root_Box;
     Gtk::Box Explanation_Box;
     Gtk::Label Explanation_Label;

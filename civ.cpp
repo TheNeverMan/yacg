@@ -224,6 +224,17 @@ Unit& Civ::Get_Unit_On_Tile_Pointer(int x, int y)
   throw;
 }
 
+const Unit& Civ::Get_Unit_On_Tile_Pointer(int x, int y) const
+{
+  for(const auto &unit : Units_Owned)
+  {
+    if(unit.Coordinates.x == x && unit.Coordinates.y == y)
+      return unit.Self;
+  }
+  Logger::Log_Error("Unit not found!");
+  throw;
+}
+
 
 bool Civ::Has_Unit_On_Tile(int x, int y) const
 {

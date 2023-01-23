@@ -29,7 +29,7 @@ class Culture : public Help_Object, public XML_Serializable
   public:
     Culture(string n, vector<string> c, vector<string> l);
     Culture();
-    string_view Get_Texture_For_Upgrade(string upgrade_name) const;
+    string Get_Texture_For_Upgrade(string upgrade_name) const;
     string_view Get_Random_City_Name();
     string_view Get_Random_Leader_Name();
     void Remove_Last_City_Name();

@@ -171,10 +171,10 @@ void Gtk_Game_Map::Generate_Map(Game* Main_Game, Magic_Map_Generation_Thread_Com
       {
         {
           if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-          string_view tile_texture = Main_Game->Get_Map().Get_Tile(start,start_y).Get_Texture_Path(); //this is incredibly slow pls fix
+          string_view tile_texture = Main_Game->Get_Map().Get_Tile_Pointer(start,start_y).Get_Texture_Path(); //this is incredibly slow pls fix
           string unit_texture = assets_directory_path + "textures" + string(path_delimeter) + "upgrades" + string(path_delimeter) + "none-upgrade-texture.png";
           if(Main_Game->Get_Map().Get_Tile(start,start_y).Has_Unit())
-            unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(start,start_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(start,start_y).Get_Texture_Path();
+            unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile_Pointer(start,start_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(start,start_y).Get_Texture_Path();
           string_view upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map().Get_Upgrade(start,start_y)).Get_Texture_Path();
           guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map().Get_Owner(start,start_y));
 

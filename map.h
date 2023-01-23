@@ -41,6 +41,7 @@ class Map : public XML_Serializable
     void Buff_Tiles_In_Radius(int x, int y, int radius);
     void Debuff_Tiles_In_Radius(int x, int y, int radius);
     vector<array<int,2>> Find_All_Tiles_In_Radius(array<int, 2> Coords, vector<string> Allowed_Tiles, int radius) const;
+    const Tile& Get_Tile_Pointer(int x, int y) const;
   public:
     xml_node<>* Serialize(memory_pool<>* doc);
     Map(vector<Tile> t, vector<Upgrade> u);

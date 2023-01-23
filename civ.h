@@ -121,6 +121,7 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     vector<Tech> Get_Tech_Tree() const;
     vector<string> Get_All_Upgrade_Names_By_Trait(string_view trait_name) const;
     vector<Upgrade> Get_All_Upgrades_By_Trait(string_view trait_name) const;
+    const Unit& Get_Unit_On_Tile_Pointer(int x, int y) const;
   private:
     map<string, vector<string>> Goverment_Name_Replacements;
     vector<string> Rebellion_Names;

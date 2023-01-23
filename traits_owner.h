@@ -21,6 +21,6 @@ class Traits_Owner : public XML_Serializable
     xml_node<>* Serialize_Traits(memory_pool<>* doc);
     vector<string> Get_Trait_Names();
     int How_Many_Times_Has_Trait(string_view trait_name) const;
-    vector<string> Get_All_Arguments_For_Trait(string_view trait_name);
+    vector<string> Get_All_Arguments_For_Trait(string_view trait_name) const;
     void Give_Trait(string_view raw_trait);
 };

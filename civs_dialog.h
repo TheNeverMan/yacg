@@ -18,7 +18,7 @@ using std::string;
 class Civs_Dialog : public Themed_Dialog
 {
   private:
-    vector<Civ> Players;
+    vector<Civ>& Players;
     Gtk::Label Explanation_Label;
     Gtk::Frame Dialog_Root_Frame;
     Gtk::ScrolledWindow Dialog_Scrolled_Window;
@@ -29,5 +29,5 @@ class Civs_Dialog : public Themed_Dialog
     int rows;
     void Update_Players();
   public:
-    Civs_Dialog(vector<Civ> p);
+    Civs_Dialog(vector<Civ>& p);
 };

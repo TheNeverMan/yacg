@@ -92,7 +92,7 @@ void Culture::Deserialize(xml_node<>* Root_Node)
   Shuffle_Fallback_Lists();
 }
 
-string_view Culture::Get_Texture_For_Upgrade(string upgrade_name) const
+string Culture::Get_Texture_For_Upgrade(string upgrade_name) const
 {
   std::transform(upgrade_name.begin(), upgrade_name.end(), upgrade_name.begin(), ::tolower);
   return "assets/textures/upgrades/" + upgrade_name + "/" + Get_Name().data() + "-" + upgrade_name + "-upgrade-texture.svg";

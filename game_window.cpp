@@ -57,18 +57,7 @@ bool Game_Window::Game_Map_Clicked(GdkEventButton* key_event)
 
 void Game_Window::Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y)
 {
-  if(!(Tile_Pointer->Has_City_Set()) && Main_Game->Get_Map().Get_Upgrade(x,y) == "City")
-  {
-    Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(x,y)).Get_City_Name_By_Coordinates(x,y));
-  }
-  string_view tile_texture = Main_Game->Get_Map().Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
-  string_view unit_texture = string(assets_directory_path) + "textures/upgrades/none-upgrade-texture.png";
-  if(Main_Game->Get_Map().Get_Tile(x,y).Has_Unit())
-    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y).Get_Texture_Path();
-
-  string_view upgrade_texture = Main_Game->Get_Upgrade_By_Name(Main_Game->Get_Map().Get_Upgrade(x,y)).Get_Texture_Path();
-  guint32 border_color = Main_Game->Get_Border_Color_By_Player_Id(Main_Game->Get_Map().Get_Owner(x, y));
-  Tile_Pointer->Update_Texture({tile_texture, upgrade_texture, unit_texture}, border_color);
+  Update_Tile_By_Coords_Only(x,y);
 }
 
 void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
@@ -77,12 +66,12 @@ void Game_Window::Update_Tile_By_Coords_Only(int x, int y)
   {
     Map_Images->Set_City_Overlay({x,y}, Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Owner(x,y)).Get_City_Name_By_Coordinates(x,y));
   }
-  string_view tile_texture = Main_Game->Get_Map().Get_Tile(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
-  string_view unit_texture = string(assets_directory_path) + "textures/upgrades/none-upgrade-texture.png";
+  string_view tile_texture = Main_Game->Get_Map().Get_Tile_Pointer(x,y).Get_Texture_Path(); //this is incredibly slow pls fix
+  string unit_texture = string(assets_directory_path) + "textures/upgrades/none-upgrade-texture.png";
   if(Main_Game->Get_Map().Get_Tile(x,y).Has_Unit())
   {
-    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y).Get_Texture_Path();
-    if(Main_Game->Get_Map().Get_Tile(x,y).Get_Name() == "Sea" && Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y).How_Many_Times_Has_Trait("naval") == 0)
+    unit_texture = Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(x,y).Get_Texture_Path();
+    if(Main_Game->Get_Map().Get_Tile_Pointer(x,y).Get_Name() == "Sea" && Main_Game->Get_Player_By_Id(Main_Game->Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y).How_Many_Times_Has_Trait("naval") == 0)
       unit_texture = "assets/textures/units/embarked-unit-texture.svg";
   }
 
@@ -426,8 +415,8 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
     {
       auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
       auto *button_info = Gtk::make_managed<Gtk::Button>("?");
-      auto *button = Gtk::make_managed<Gtk::Button>("Build " + upgrade.Get_Name());
-      button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), upgrade.Get_Name(), x,y, Main_Game->Get_Currently_Moving_Player_Id()));
+      auto *button = Gtk::make_managed<Gtk::Button>("Build " + string(upgrade.Get_Name()));
+      button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), upgrade.Get_Name().data(), x,y, Main_Game->Get_Currently_Moving_Player_Id()));
       button_info->signal_clicked().connect(sigc::bind<Upgrade>(sigc::mem_fun(*this, &Game_Window::Show_Upgrade_Info_Dialog), upgrade));
       Action_Buttons_Box.pack_start(*box);
       box->pack_start(*button);
@@ -658,7 +647,7 @@ void Game_Window::Update_Economy_Label()
   string actions_text = "Actions: " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Current_Actions()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player().Get_Max_Actions());
   if(Main_Game->Get_Currently_Moving_Player().Get_Current_Actions() == 0)
     actions_text = "<span foreground=\"red\">" + actions_text + "</span>";
-  string tech_in_research_text = "Tech in research: " + Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name() + " " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Cost());
+  string tech_in_research_text = "Tech in research: " + string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name()) + " " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Current_Cost()) + "/" + to_string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Cost());
   if(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Current_Cost() <= 0)
     tech_in_research_text = "<span foreground=\"red\">" + tech_in_research_text + "</span>";
   string research_funds_text = "Research Fund: " + to_string(Main_Game->Get_Currently_Moving_Player().Get_Research_Percent()) + " %";
@@ -775,7 +764,7 @@ void Game_Window::End_Turn()
   }
   if(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Is_Reseached() && !are_all_techs_researched)
   {
-    ProgressBar_Label.set_text(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name() + " is researched! Select other tech to complete turn!");
+    ProgressBar_Label.set_text(string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name()) + " is researched! Select other tech to complete turn!");
   }
   else
   {
@@ -918,7 +907,7 @@ void Game_Window::Show_Intro_Message()
   {
     auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     Trait_Box->pack_start((Trait_Manager.Get_Trait_Icon(trait)->Get_Gtk_Image()), Gtk::PACK_SHRINK);
-    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(Trait_Manager.Get_Trait_Full_Name(trait) + " - " + Trait_Manager.Get_Trait_Full_Explanation(trait));
+    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(string(Trait_Manager.Get_Trait_Full_Name(trait)) + " - " + string(Trait_Manager.Get_Trait_Full_Explanation(trait)));
     Trait_Box->pack_start(*Trait_Label);
     Root_Box.pack_start(*Trait_Box);
   }
@@ -1181,7 +1170,7 @@ void Game_Window::Initialize_GTK()
   UI_Frame.add(UI_Root_Box);
   string icon_directory = "assets/textures/icons/";
   Image_Path End_Turn_Icon_Path(icon_directory + "apply-icon.svg.png");
-  End_Turn_Icon = make_shared<Scaled_Gtk_Image>(End_Turn_Icon_Path.Get_File_Path(), 24 ,24);
+  End_Turn_Icon = make_shared<Scaled_Gtk_Image>(End_Turn_Icon_Path.Get_File_Path().data(), 24 ,24);
   End_Turn_Button.remove();
   End_Turn_Button.add_pixlabel(End_Turn_Icon_Path.Get_File_Path().data(), "End Turn");
   End_Turn_Box.pack_start(End_Turn_Button, Gtk::PACK_SHRINK);
@@ -1243,7 +1232,7 @@ void Game_Window::Initialize_GTK()
   Quit_Button.Change_Icon(icon_directory + "exit-icon.svg.png");
   UI_Root_Box.pack_start(Quit_Button, Gtk::PACK_SHRINK);
   Image_Path Tip_Icon_Path(icon_directory + "about-icon.svg.png");
-  Tip_Icon = make_shared<Scaled_Gtk_Image>(Tip_Icon_Path.Get_File_Path(), 24 ,24);
+  Tip_Icon = make_shared<Scaled_Gtk_Image>(Tip_Icon_Path.Get_File_Path().data(), 24 ,24);
   Random_Tip_Button.remove();
   Random_Tip_Button.add_pixlabel(Tip_Icon_Path.Get_File_Path().data(), "Random Tip");
   UI_Root_Box.pack_start(Random_Tip_Button, Gtk::PACK_SHRINK);

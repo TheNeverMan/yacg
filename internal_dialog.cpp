@@ -1,8 +1,7 @@
 #include "internal_dialog.h"
 
-Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>& c) : Themed_Dialog("Internal Ministry"), Active_Goverment(a_g), Explanation_Image(string(assets_directory_path) + "textures/dialogs/internal-dialog-texture.svg", 64, 64)
+Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>& c) : Themed_Dialog("Internal Ministry"), Active_Goverment(a_g), Explanation_Image(string(assets_directory_path) + "textures/dialogs/internal-dialog-texture.svg", 64, 64), Cities(c)
 {
-  Cities = c;
   auto* Dialog_Box = get_content_area();
   Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Explanation_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
@@ -12,7 +11,7 @@ Internal_Dialog::Internal_Dialog(Gov a_g, vector<City>& c) : Themed_Dialog("Inte
   Cities_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
   Cities_Window.set_min_content_height(300);
   Cities_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
-  for(auto& City : *Cities)
+  for(auto& City : Cities)
   {
     auto* City_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
     string state = string(City.Get_Status());
