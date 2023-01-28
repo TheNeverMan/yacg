@@ -126,6 +126,7 @@ class Game_Window : public Gtk::Window
     Gtk::ScrolledWindow Map_Scrolled_Window;
     shared_ptr<Gtk_Game_Map> Map_Images;
     Gtk::Label ProgressBar_Label;
+    void Cut_Down(int x, int y);
     void Save_Game();
     void Load_Game();
     bool Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img);

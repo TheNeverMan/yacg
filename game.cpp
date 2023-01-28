@@ -153,7 +153,7 @@ void Game::Asign_Random_Starting_Position_For_Player(int player_id)
     {
       x = rand() % Game_Map.Get_X_Size();
       y = rand() % Game_Map.Get_Y_Size();
-      if(Game_Map.Is_Tile_Neutral(x,y) && Game_Map.Get_Tile(x,y).Get_Name() == "Land")
+      if(Game_Map.Is_Tile_Neutral(x,y) && Game_Map.Get_Tile_Pointer(x,y).Get_Name() == "Land")
       {
         Assing_Starting_Position_For_Player(player_id, x, y);
         loop = false;
@@ -341,6 +341,21 @@ bool Game::Is_Currently_Moving_Player_AI() const
   return Is_Player_AI(Get_Currently_Moving_Player_Id());
 }
 
+void Game::Cut_Down_Tile(int x, int y)
+{
+  string new_tile_name = Get_Map().Get_Tile_Pointer(x,y).Get_All_Arguments_For_Trait("removable")[0];
+  bool has_unit = Get_Map().Get_Tile_Pointer(x,y).Has_Unit();
+  int unit_owner = Get_Map().Get_Tile_Pointer(x,y).Get_Unit_Owner_Id();
+  Tile t = *find_if(Tiles.begin(), Tiles.end(), [&new_tile_name](Tile& t){return t.Get_Name() == new_tile_name;});
+  if(has_unit)
+  {
+    t.Put_Unit_On_Tile(unit_owner);
+  }
+  Get_Map().Change_Tile_Type(x,y, t);
+  Logger::Log_Info("Changed X: " + to_string(x) + " Y: " + to_string(y) + " to " + new_tile_name);
+  Get_Player_By_Id(Get_Map().Get_Owner(x,y)).Lose_Gold_And_One_Action(5);
+}
+
 vector<array<int, 2>> Game::Get_Tiles_To_Update()
 {
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
@@ -480,7 +495,7 @@ void Game::Remove_All_Missle_Units()
     {
       if(unit.Self.Has_Trait("missle"))
       {
-        Get_Player_By_Id(Get_Map().Get_Tile(unit.Coordinates.x,unit.Coordinates.y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
+        Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit.Coordinates.x,unit.Coordinates.y);
         Get_Map().Get_Tile_Pointer(unit.Coordinates.x,unit.Coordinates.y).Remove_Unit_From_Tile();
         Tiles_To_Update.push_back({unit.Coordinates.x, unit.Coordinates.y});
       }
@@ -538,7 +553,7 @@ void Game::Update_Stability_For_Currently_Moving_Player()
     Main_Newspaper.Add_Rebellion(Get_Current_Turn_By_Years(), message, Get_Currently_Moving_Player_Id());
     for(auto& Coords : Rebel_Cities)
     {
-      if(Get_Map().Get_Tile(Coords[0],Coords[1]).Has_Unit())
+      if(Get_Map().Get_Tile_Pointer(Coords[0],Coords[1]).Has_Unit())
         Disband_Unit(Coords[0], Coords[1]);
       Get_Map().Change_Tile_Owner(Coords[0], Coords[1], Players.size());
       vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(Coords[0], Coords[1], Players[Players.size() -1].Get_Upgrade_Border_Radius());
@@ -587,7 +602,7 @@ int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
     vector<Unit_On_Map>& u = Get_Currently_Moving_Player().Get_Owned_Units();
     for(auto &var : u)
     {
-      var.Self.Increase_Current_Movement(Get_Currently_Moving_Player().Find_Upgrade_By_Name(Get_Map().Get_Tile(var.Coordinates.x, var.Coordinates.y).Get_Upgrade()).How_Many_Times_Has_Trait("movementbonus"));
+      var.Self.Increase_Current_Movement(Get_Currently_Moving_Player().Find_Upgrade_By_Name(Get_Map().Get_Tile_Pointer(var.Coordinates.x, var.Coordinates.y).Get_Upgrade()).How_Many_Times_Has_Trait("movementbonus"));
       if(var.Self.Get_All_Arguments_For_Trait("class")[0] == "flying" && Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(var.Coordinates.x, var.Coordinates.y)).Has_Trait("renewflyingmovement"))
         var.Self.Increase_Current_Movement(999);
     }
@@ -645,32 +660,32 @@ const Upgrade& Game::Get_Upgrade_By_Name(string_view name) const
 double Game::Get_Defense_Bonus_For_Tile_And_Player(int x, int y, int player_id) const
 {
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return Get_Map().Get_Defense_Bonus_For_Tile(x, y) + (Get_Player_By_Id(player_id).Get_Defense_Bonus_For_Upgrade(Get_Map().Get_Tile(x,y).Get_Upgrade()) - 1.0);
+  return Get_Map().Get_Defense_Bonus_For_Tile(x, y) + (Get_Player_By_Id(player_id).Get_Defense_Bonus_For_Upgrade(Get_Map().Get_Tile_Pointer(x,y).Get_Upgrade()) - 1.0);
 }
 
 array<int, 3> Game::Get_Units_Stats_For_Battle(int unit_x, int unit_y)
 {
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  Get_Player_By_Id(Get_Map().Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_x, unit_y).Remove_All_Movement();
-  Unit Stat_Unit = Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(unit_x, unit_y);
+  Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_x,unit_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_x, unit_y).Remove_All_Movement();
+  Unit Stat_Unit = Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_x, unit_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(unit_x, unit_y);
   array<int, 3> out;
   out[0] = Stat_Unit.Get_Attack_Power();
   out[1] = Stat_Unit.Get_Defense_Power();
   out[2] = Stat_Unit.Get_HP();
   double unit_def_mod = 0.0;
   if(!Stat_Unit.Has_Trait("doesnotrecievedefensivebonus"))
-    unit_def_mod = Get_Defense_Bonus_For_Tile_And_Player(unit_x, unit_y, Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id());
+    unit_def_mod = Get_Defense_Bonus_For_Tile_And_Player(unit_x, unit_y, Get_Map().Get_Tile_Pointer(unit_x, unit_y).Get_Unit_Owner_Id());
 
   out[1] = static_cast<double>(out[1]) * unit_def_mod;
 
-  if(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id() == Get_Map().Get_Owner(unit_x, unit_y))
+  if(Get_Map().Get_Tile_Pointer(unit_x, unit_y).Get_Unit_Owner_Id() == Get_Map().Get_Owner(unit_x, unit_y))
   {
-    out[1] = static_cast<double>(out[1]) * (1 + (Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).How_Many_Times_Has_Trait("P") / 10));
-    out[0] = static_cast<double>(out[0]) * (1 + (Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).How_Many_Times_Has_Trait("P") / 10));
+    out[1] = static_cast<double>(out[1]) * (1 + (Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_x, unit_y).Get_Unit_Owner_Id()).How_Many_Times_Has_Trait("P") / 10));
+    out[0] = static_cast<double>(out[0]) * (1 + (Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_x, unit_y).Get_Unit_Owner_Id()).How_Many_Times_Has_Trait("P") / 10));
 
   }
 
-  if(Get_Player_By_Id(Get_Map().Get_Tile(unit_x, unit_y).Get_Unit_Owner_Id()).Get_Active_Goverment_Name() == "Fundamentalism")
+  if(Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_x, unit_y).Get_Unit_Owner_Id()).Get_Active_Goverment_Name() == "Fundamentalism")
   {
     out[1] = static_cast<double>(out[1]) * 0.9;
     out[0] = static_cast<double>(out[0]) * 0.9;
@@ -682,7 +697,7 @@ array<int, 3> Game::Get_Units_Stats_For_Battle(int unit_x, int unit_y)
 Unit Game::Get_Unit_By_Tile(int x, int y) const
 {
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  return Get_Player_By_Id(Get_Map().Get_Tile(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y);
+  return Get_Player_By_Id(Get_Map().Get_Tile_Pointer(x,y).Get_Unit_Owner_Id()).Get_Unit_On_Tile(x,y);
 }
 
 Gov Game::Get_Goverment_By_Name(string_view gov_name) const
@@ -700,7 +715,7 @@ void Game::Plunder_Tile(int x, int y)
   if(tile_owner) //neutrals
   {
     array<int, 2> City_Coords = Get_Map().Find_Closest_Upgrade_By_Name({x,y}, tile_owner, "City");
-    Get_Player_By_Id(tile_owner).Get_City_By_Coordinates(City_Coords).Change_Stability(-4, Get_Map().Get_Tile(City_Coords[0], City_Coords[1]).Has_Unit());
+    Get_Player_By_Id(tile_owner).Get_City_By_Coordinates(City_Coords).Change_Stability(-4, Get_Map().Get_Tile_Pointer(City_Coords[0], City_Coords[1]).Has_Unit());
   }
   Tiles_To_Update.push_back({x,y});
 }
@@ -719,30 +734,30 @@ void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
 
   unit_1_stats[2] = unit_1_stats[2] - ((double) 30 * ((double) unit_2_stats[0] / (double) unit_1_stats[1]));
   unit_2_stats[2] = unit_2_stats[2] - ((double) 30 * ((double) unit_1_stats[0] / (double) unit_2_stats[1]));
-  Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y).Set_HP(unit_1_stats[2]);
-  Get_Player_By_Id(Get_Map().Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y).Set_HP(unit_2_stats[2]);
+  Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y).Set_HP(unit_1_stats[2]);
+  Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_2_x, unit_2_y).Set_HP(unit_2_stats[2]);
   if(!is_in_thread)
-  Sound_Manager::Play_Sound(Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y).Get_Audio_Path());
+  Sound_Manager::Play_Sound(Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Get_Unit_On_Tile_Pointer(unit_1_x, unit_1_y).Get_Audio_Path());
   if(unit_1_stats[2] <= 0 || Get_Unit_By_Tile(unit_1_x,unit_1_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
-    Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit_1_x,unit_1_y);
+    Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit_1_x,unit_1_y);
     Get_Map().Get_Tile_Pointer(unit_1_x,unit_1_y).Remove_Unit_From_Tile();
     if(unit_2_stats[2] > 0 && Get_Unit_By_Tile(unit_2_x, unit_2_y).Has_Trait("steal"))
-      Get_Player_By_Id(Get_Map().Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Give_One_Gold();
+      Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Give_One_Gold();
   }
   if(unit_2_stats[2] <= 0 || Get_Unit_By_Tile(unit_2_x,unit_2_y).Get_All_Arguments_For_Trait("class")[0] == "missle")
   {
-    Get_Player_By_Id(Get_Map().Get_Tile(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit_2_x,unit_2_y);
+    Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_2_x,unit_2_y).Get_Unit_Owner_Id()).Remove_Unit_By_Coords(unit_2_x,unit_2_y);
     Get_Map().Get_Tile_Pointer(unit_2_x,unit_2_y).Remove_Unit_From_Tile();
     if(unit_1_stats[2] > 0 && Get_Unit_By_Tile(unit_1_x, unit_1_y).Has_Trait("steal"))
-      Get_Player_By_Id(Get_Map().Get_Tile(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Give_One_Gold();
+      Get_Player_By_Id(Get_Map().Get_Tile_Pointer(unit_1_x,unit_1_y).Get_Unit_Owner_Id()).Give_One_Gold();
   }
 }
 
 void Game::Move_Unit(int unit_x, int unit_y, int dest_x, int dest_y, int cost)
 {
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  int player_id = Get_Map().Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id();
+  int player_id = Get_Map().Get_Tile_Pointer(unit_x,unit_y).Get_Unit_Owner_Id();
   Get_Player_By_Id(player_id).Move_Unit_To_By_Coords(unit_x, unit_y, dest_x, dest_y, cost);
   Get_Map().Get_Tile_Pointer(unit_x, unit_y).Remove_Unit_From_Tile();
   Get_Map().Get_Tile_Pointer(dest_x, dest_y).Put_Unit_On_Tile(player_id);
@@ -759,7 +774,7 @@ bool Game::Has_Currently_Moving_Player_Any_Actions_Left() const
 bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit_y, int dest_x, int dest_y, int movement_cost, bool combat, int enemy_unit_x, int enemy_unit_y)
 {
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-  int unit_owner_id = Get_Map().Get_Tile(unit_x,unit_y).Get_Unit_Owner_Id();
+  int unit_owner_id = Get_Map().Get_Tile_Pointer(unit_x,unit_y).Get_Unit_Owner_Id();
   int tile_owner_id = Get_Map().Get_Owner(dest_x, dest_y);
   Tiles_To_Update.push_back({unit_x, unit_y});
   Tiles_To_Update.push_back({dest_x, dest_y});
@@ -768,13 +783,13 @@ bool Game::Move_Unit_And_Attack_If_Necessary_Or_Take_Cities(int unit_x, int unit
   Move_Unit(unit_x, unit_y, dest_x, dest_y, movement_cost);
   if(unit_owner_id != tile_owner_id)
   {
-    if(Get_Map().Get_Owner(dest_x, dest_y) != 0 && Get_Player_By_Id(Get_Map().Get_Owner(dest_x, dest_y)).Find_Upgrade_By_Name(Get_Map().Get_Tile(dest_x, dest_y).Get_Upgrade()).Has_Trait("borderexpand"))
+    if(Get_Map().Get_Owner(dest_x, dest_y) != 0 && Get_Player_By_Id(Get_Map().Get_Owner(dest_x, dest_y)).Find_Upgrade_By_Name(Get_Map().Get_Tile_Pointer(dest_x, dest_y).Get_Upgrade()).Has_Trait("borderexpand"))
     {
       Get_Map().Change_Tile_Owner(dest_x, dest_y, unit_owner_id);
       vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(dest_x, dest_y, Get_Player_By_Id(unit_owner_id).Get_Upgrade_Border_Radius());
       Get_Map().Retake_Owner_In_Radius_From(dest_x, dest_y, unit_owner_id, Get_Player_By_Id(unit_owner_id).Get_Upgrade_Border_Radius(), tile_owner_id);
       Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
-      if(Get_Map().Get_Tile(dest_x, dest_y).Get_Upgrade() == "City")
+      if(Get_Map().Get_Tile_Pointer(dest_x, dest_y).Get_Upgrade() == "City")
       {
       //  if(!is_in_thread)
         Sound_Manager::Play_Sound("assets/sounds/citycapture-audio.mp3");
@@ -822,21 +837,21 @@ void Game::Detonate_Atomic_Bomb(int x, int y)
   Disband_Unit(x,y);
   vector<array<int, 2>> tmp = Main_Radius_Generator.Get_Radius_For_Coords(x,y,2);
   Tiles_To_Update.insert(Tiles_To_Update.end(), tmp.begin(), tmp.end());
-  if(Get_Map().Get_Tile(x+1,y).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x+1,y).Has_Unit())
     Disband_Unit(x+1,y);
-  if(Get_Map().Get_Tile(x+1,y-1).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x+1,y-1).Has_Unit())
     Disband_Unit(x+1,y-1);
-  if(Get_Map().Get_Tile(x+1,y+1).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x+1,y+1).Has_Unit())
     Disband_Unit(x+1,y+1);
-  if(Get_Map().Get_Tile(x-1,y).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x-1,y).Has_Unit())
     Disband_Unit(x-1,y);
-  if(Get_Map().Get_Tile(x-1,y+1).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x-1,y+1).Has_Unit())
     Disband_Unit(x-1,y+1);
-  if(Get_Map().Get_Tile(x-1,y-1).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x-1,y-1).Has_Unit())
     Disband_Unit(x-1,y-1);
-  if(Get_Map().Get_Tile(x,y+1).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x,y+1).Has_Unit())
     Disband_Unit(x,y+1);
-  if(Get_Map().Get_Tile(x,y-1).Has_Unit())
+  if(Get_Map().Get_Tile_Pointer(x,y-1).Has_Unit())
     Disband_Unit(x,y-1);
   if(!Get_Upgrade_Of_Currently_Moving_Player(Get_Map().Get_Upgrade(x, y)).Has_Trait("cannotbeplundered"))
     Get_Map().Plunder_Tile(x,y);

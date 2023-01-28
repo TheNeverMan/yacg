@@ -38,13 +38,13 @@ void Traits_Owner::Give_Trait(string_view raw_trait)
 vector<string> Traits_Owner::Get_Trait_Names()
 {
   vector<string> out;
-  for_each(Traits.begin(), Traits.end(), [&](Trait& t){out.push_back(t.Get_Trait_Name().data());});
+  for_each(Traits.begin(), Traits.end(), [&](Trait& t){out.push_back(string(t.Get_Trait_Name()));});
   return out;
 }
 
 bool Traits_Owner::Has_Trait(string_view trait_name) const
 {
-  if(find_if(Traits.begin(), Traits.end(), [&](Trait trait){ if(trait.Get_Trait_Name() == trait_name){return true;} return false; }) != Traits.end())
+  if(find_if(Traits.begin(), Traits.end(), [&](const Trait& trait){ if(trait.Get_Trait_Name() == trait_name){return true;} return false; }) != Traits.end())
   {
     return true;
   }
@@ -53,7 +53,7 @@ bool Traits_Owner::Has_Trait(string_view trait_name) const
 
 int Traits_Owner::How_Many_Times_Has_Trait(string_view trait_name) const
 {
-  return count_if(Traits.begin(), Traits.end(), [&](Trait trait)
+  return count_if(Traits.begin(), Traits.end(), [&trait_name](const Trait& trait)
   {
     if(trait_name == trait.Get_Trait_Name())
       return true;

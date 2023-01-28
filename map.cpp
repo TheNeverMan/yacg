@@ -160,7 +160,7 @@ string_view Map::Get_Upgrade(int x, int y) const
 
 bool Map::Is_Tile_Upgraded(int x, int y) const
 {
-  return Get_Tile(x,y).Get_Upgrade() == "none";
+  return Get_Tile_Pointer(x,y).Get_Upgrade() == "none";
 }
 
 array<int, 2> Map::Find_Closest_Upgrade_By_Name(array<int, 2> Coords, int owner, string_view name) const
@@ -417,7 +417,8 @@ vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_
 
 bool Map::Can_Tile_Plundered(int x, int y) const
 {
-  return Get_Tile(x,y).Get_Upgrade() != "plundered";
+  //cout << Get_Tile_Pointer(x,y).Get_Upgrade() << " " << Get_Tile(x,y).Get_Upgrade() << endl;
+  return (Get_Tile_Pointer(x,y).Get_Upgrade() != "plundered") ||  (Get_Tile_Pointer(x,y).Get_Upgrade() != "none");
 }
 
 void Map::Plunder_Tile(int x, int y)

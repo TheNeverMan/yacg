@@ -153,5 +153,6 @@ class Game : public XML_Serializable
     void Detonate_Atomic_Bomb(int x, int y);
     void Build_Upgrade(string_view name, int x, int y, int player_id);
     int Get_Only_Living_Player_Id() const;
+    void Cut_Down_Tile(int x, int y);
     string Get_Texture_Path_For_Cultured_Upgrade(int x, int y, string_view upg_name) const;
 };

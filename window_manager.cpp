@@ -2,7 +2,7 @@
 
 Window_Manager::Window_Manager(int argc, char* argv[])
 {
-  Logger::Prepare_Logger("miniyacg-log.log", true);
+  Logger::Prepare_Logger("miniyacg-log.log", false);
   Logger::Log_Info("Preparing Windows...");
   Main_Application = Gtk::Application::create(argc, argv, "org.yacg.miniyacg");
   Create_Intro_Window();

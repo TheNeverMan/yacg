@@ -5,16 +5,15 @@ Map_Generator::Map_Generator(Map_Generator_Data mpg, vector<Tile> t, vector<Upgr
   srand(time(0));
   User_Data = mpg;
   Tiles = t;
+  for(Tile &t : Tiles)
+  {
+      Tiles_By_Names[string(t.Get_Name())] = t;
+  }
 }
 
-void Map_Generator::Fill_Territory(string tile_name,int start_x, int start_y, int end_x, int end_y)
+void Map_Generator::Fill_Territory(string_view tile_name,int start_x, int start_y, int end_x, int end_y)
 {
-  Tile Filler;
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == tile_name)
-      Filler = var;
-  }
+  Tile& Filler = Tiles_By_Names[tile_name.data()];
   int old_y = start_y;
   int limit_x = Game_Map.Get_X_Size() - 1;
   int limit_y = Game_Map.Get_Y_Size() - 1;
@@ -108,7 +107,7 @@ string Map_Generator::Get_Sea_Tile_For_Y(int y)
   return out;
 }
 
-string Map_Generator::Get_Land_Tile_For_Y(int y)
+string Map_Generator::Get_Land_Tile_For_Y(int y, double x)
 {
   double ice_lower_border = User_Data.size_y * 0.10;
   double ice_upper_border = User_Data.size_y * 0.90;
@@ -117,13 +116,20 @@ string Map_Generator::Get_Land_Tile_For_Y(int y)
     out = "Forest";
   if((y < ice_lower_border && rand() % static_cast<int>(ice_lower_border) < (ice_lower_border - y)) || (y > ice_upper_border && rand() % static_cast<int>(ice_lower_border) < (y - ice_upper_border)))
     out = "Ice";
-  double desert_lower_border = User_Data.size_y * 0.37;
-  double desert_upper_border = User_Data.size_y * 0.53;
-  double desert_middle = User_Data.size_y * 0.45;
-  if(y < desert_upper_border && y > desert_lower_border && rand() % static_cast<int>(desert_upper_border-desert_middle) > (abs(y-desert_middle)))
+  double jungle_lower_border = User_Data.size_y * 0.38;
+  double jungle_upper_border = User_Data.size_y * 0.52;
+  double jungle_middle = User_Data.size_y * 0.40;
+  double desert_lower_border = User_Data.size_y * 0.35;
+  double desert_upper_border = User_Data.size_y * 0.55;
+  double desert_middle = User_Data.size_y * 0.40;
+  if(y < desert_upper_border && y > desert_lower_border && rand() % static_cast<int>(desert_upper_border-desert_middle) > (abs(y-desert_middle)) && x > desert_border)
     out = "Desert";
-  else if (y < desert_upper_border && y > desert_lower_border && out == "Forest")
+    else if (y < desert_upper_border && y > desert_lower_border && out == "Forest")
     out = "Land";
+  if(y < jungle_upper_border && y > jungle_lower_border && rand() % static_cast<int>(jungle_upper_border-jungle_middle) > (abs(y-jungle_middle)) && x > desert_border)
+    out = "Jungle";
+  else if (y < jungle_upper_border && y > jungle_lower_border && out == "Forest")
+    out = "Jungle";
   return out;
 }
 
@@ -134,14 +140,9 @@ Map Map_Generator::Generate_Map_Using_User_Data()
     Logger::Log_Info("Loading map from file!");
     return Generate_Map_From_File();
   }
+
   //firstly fill the map with ocean
   Game_Map.Set_Size(User_Data.size_x, User_Data.size_y);
-  Tile Ocean;
-  for(auto &var : Tiles)
-  {
-    if(var.Get_Name() == "Sea")
-      Ocean = var;
-  }
   int x = Game_Map.Get_X_Size();
   int y = Game_Map.Get_Y_Size();
   Logger::Log_Info( "Map Generator" );
@@ -177,13 +178,14 @@ Map Map_Generator::Generate_Map_Using_User_Data()
   start_y = 0;
   index = 0;
   double mountain_border = lowest / 2;
+  desert_border = lowest / 3;
   Logger::Log_Info("Lowest Value: " + to_string(lowest) + " Highest Value: " + to_string(highest) + " Border: " + to_string(border) + " Mountain Border: " + to_string(mountain_border));
   while(start < x)
   {
     while(start_y < y)
     {
       if(Map[index] < border)
-        Fill_Territory(Get_Land_Tile_For_Y(start_y), start, start_y, start+1, start_y+1);
+        Fill_Territory(Get_Land_Tile_For_Y(start_y, Map[index]), start, start_y, start+1, start_y+1);
       else
         Fill_Territory(Get_Sea_Tile_For_Y(start_y), start, start_y, start+1, start_y+1);
       if(Map[index] < mountain_border && rand() % 10 < 7)

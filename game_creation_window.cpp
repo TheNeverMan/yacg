@@ -69,7 +69,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Continents_Adjustment = Gtk::Adjustment::create(10.0,1.0,50.0,1.0,10,0.0);
   Continents_Switch = Gtk::SpinButton(Continents_Adjustment);
 
-  Water_Label = Gtk::Label("Amount of Water \n(Lower the value, less land will be one the map):");
+  Water_Label = Gtk::Label("Amount of Water \n(Higher the value, less land will be one the map):");
   Glib::RefPtr<Gtk::Adjustment> Water_Adjustment;
   Water_Adjustment = Gtk::Adjustment::create(50.0,10.0,110.0,1.0,10,0.0);
   Water_Switch = Gtk::SpinButton(Water_Adjustment);
@@ -154,7 +154,7 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   for(auto& item : Children)
     Main_Provider.Add_CSS_With_Class(item, "combobox");
   Change_Main_Player_Civ();
-  set_decorated(false);
+  //set_decorated(false);
   show_all_children();
   Randomize_Starting_Locations_Button.hide();
   if(Main_Settings_Manager.Check_If_Game_Is_Launched_First_Time())

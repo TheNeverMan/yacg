@@ -84,6 +84,8 @@ string Upgrade_Info_Dialog::Get_Trait_Info()
       out = out + "\n Movement Debuff - Moving on this tile will cost one more movement point";
     if(trait == "cannotbeplundered")
       out = out + "\n Can't Be Plundered";
+    if(trait == "onlyneutral")
+     out = out + "\n Can Only Be Built On Neutral Lands";
   }
   return out;
 }

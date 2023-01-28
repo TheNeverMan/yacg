@@ -181,6 +181,12 @@ Upgrade Civ::Find_Upgrade_By_Name(string_view upg_name) const
   throw;
 }
 
+void Civ::Lose_Gold_And_One_Action(int reduction)
+{
+  gold = gold - reduction;
+  current_actions--;
+}
+
 void Civ::Build_Upgrade(string_view upg_name)
 {
   int cost = Find_Upgrade_By_Name(upg_name).Get_Cost();
