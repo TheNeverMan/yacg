@@ -861,10 +861,10 @@ void Game::Battle_Units(int unit_1_x, int unit_1_y, int unit_2_x, int unit_2_y)
   array<int, 3> unit_2_stats = Get_Units_Stats_For_Battle(unit_2_x, unit_2_y);
 
   if(Get_Unit_By_Tile(unit_1_x,unit_1_y).Get_All_Arguments_For_Trait("class")[0] == "flying")
-    unit_2_stats[0] = unit_2_stats[0] * Get_Unit_By_Tile(unit_2_x, unit_2_x).How_Many_Times_Has_Trait("fightflying");
+    unit_2_stats[0] = unit_2_stats[0] * Get_Unit_By_Tile(unit_2_x, unit_2_y).How_Many_Times_Has_Trait("fightflying");
 
   if(Get_Unit_By_Tile(unit_2_x,unit_2_y).Get_All_Arguments_For_Trait("class")[0] == "flying")
-    unit_2_stats[0] = unit_2_stats[0] * Get_Unit_By_Tile(unit_1_x, unit_1_x).How_Many_Times_Has_Trait("fightflying");
+    unit_2_stats[0] = unit_2_stats[0] * Get_Unit_By_Tile(unit_1_x, unit_1_y).How_Many_Times_Has_Trait("fightflying");
 
   unit_1_stats[2] = unit_1_stats[2] - ((double) 30 * ((double) unit_2_stats[0] / (double) unit_1_stats[1]));
   unit_2_stats[2] = unit_2_stats[2] - ((double) 30 * ((double) unit_1_stats[0] / (double) unit_2_stats[1]));
