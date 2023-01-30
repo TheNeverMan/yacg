@@ -103,6 +103,18 @@ void Gtk_Tile::Add_Selection_Overlay()
   scaled_pix->composite(Tile_Pixbuf,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
 }
 
+void Gtk_Tile::Add_Overlay_From_Path(string_view path)
+{
+  Image_Path Overlay_Path(path.data());
+  Glib::RefPtr<Gdk::Pixbuf> selection_texture;
+  Glib::RefPtr<Gdk::Pixbuf> scaled_pix;
+  selection_texture = Gdk::Pixbuf::create_from_file(Overlay_Path.Get_File_Path().data());
+  int true_tile_size = tile_size;
+  scaled_pix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, true_tile_size, true_tile_size);
+  selection_texture->scale(scaled_pix, 0, 0, true_tile_size, true_tile_size, 0, 0, ((double) true_tile_size / (double) selection_texture->get_width()), ((double) true_tile_size / (double) selection_texture->get_height()), Gdk::INTERP_BILINEAR);
+  scaled_pix->composite(Tile_Pixbuf,0,0,true_tile_size,true_tile_size,0,0,1,1,Gdk::INTERP_BILINEAR,255);
+}
+
 void Gtk_Tile::Increase_Tile_Size()
 {
   tile_size = tile_size + 4;

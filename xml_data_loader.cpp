@@ -98,6 +98,41 @@ vector<string> XML_Data_Loader::Load_Tips()
   return out;
 }
 
+vector<tuple<int,string>>XML_Data_Loader::Load_Deco_Events_From_File(string_view path)
+{
+  Logger::Log_Info("Loading XML Deco Events Data From " + string(path));
+  vector<tuple<int,string>> out;
+  xml_document<> doc;
+  vector<char> buffer = Load_File(path);
+  doc.parse<0>(&buffer[0]);
+  xml_node<>* Root_Node = doc.first_node();
+  if(Root_Node == nullptr)
+  {
+    Logger::Log_Error("Loading Events Data failed!");
+    return out;
+  }
+  xml_node<>* events_node = Root_Node->first_node("events");
+  for(xml_node<> * event_node = events_node->first_node("event"); event_node; event_node = event_node->next_sibling("event"))
+  {
+    string data = event_node->first_attribute("data")->value();
+    int year = stoi(event_node->first_attribute("year")->value());
+    out.push_back({year, data});
+  }
+  return out;
+}
+
+vector<tuple<int,string>> XML_Data_Loader::Load_Deco_Events()
+{
+  Logger::Log_Info("Loading XML Deco Events Data..." );
+  vector<tuple<int,string>> out;
+  for(auto& file : Get_Files_In_Directory("newspaper"))
+  {
+    vector<tuple<int,string>> tmp = Load_Deco_Events_From_File(file.path().string());
+    out.insert( out.end(), tmp.begin(), tmp.end() );
+  }
+  return out;
+}
+
 vector<Culture> XML_Data_Loader::Load_Cultures_From_File(string_view path)
 {
   Logger::Log_Info("Loading XML Cultures Data From " + string(path));
@@ -378,7 +413,7 @@ vector<Civ> XML_Data_Loader::Load_Civs_From_File(string_view path)
     string lower_n = n;
     std::transform(lower_n.begin(), lower_n.end(), lower_n.begin(), ::tolower);
     lower_n.erase(std::remove_if(lower_n.begin(), lower_n.end(), isspace), lower_n.end());
-    string t_p = "assets/textures/flags/" + lower_n + "-flag.svg";
+    string t_p = "assets/textures/flags/" + lower_n + "-flag.png";
     string s_p = civ_node->first_attribute("audio")->value();
     string c = civ_node->first_attribute("culture")->value();
     vector<string> cities;

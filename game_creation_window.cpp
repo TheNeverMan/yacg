@@ -239,7 +239,7 @@ void Game_Creation_Window::Update_Other_Player_Civ(int index, bool is_ai, shared
   }
   else
   {
-    image->Change_Path(string(assets_directory_path) + "textures/flags/neutral-flag.svg");
+    image->Change_Path(string(assets_directory_path) + "textures/flags/neutral-flag.png");
   }
   if(is_ai)
     AI_Players[index] = selected_civ_name;
@@ -251,7 +251,7 @@ void Game_Creation_Window::Update_Other_Player_Civ(int index, bool is_ai, shared
 void Game_Creation_Window::Add_Human_Player()
 {
   auto *label = Gtk::make_managed<Gtk::Label>("Human");
-  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.svg", 96, 48);
+  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.png", 96, 48);
   auto* name = Gtk::make_managed<Gtk::ComboBoxText>();
   auto* box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
   Human_Players.push_back("Random Civilization");
@@ -276,7 +276,7 @@ void Game_Creation_Window::Add_Human_Player()
 void Game_Creation_Window::Add_AI_Player()
 {
   auto *label = Gtk::make_managed<Gtk::Label>("AI");
-  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.svg", 96, 48);
+  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.png", 96, 48);
   auto* name = Gtk::make_managed<Gtk::ComboBoxText>();
   auto* box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
   AI_Players.push_back("Random Civilization");

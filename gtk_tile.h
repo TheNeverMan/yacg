@@ -32,6 +32,7 @@ class Gtk_Tile
     void Set_City_Name(string_view cn);
     void Add_Combat_Overlay();
     void Add_Selection_Overlay();
+    void Add_Overlay_From_Path(string_view path);
     Glib::RefPtr<Gdk::Pixbuf> Get_Pixbuf() const;
     string_view Get_City_Name() const;
 };

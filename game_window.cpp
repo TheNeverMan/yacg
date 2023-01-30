@@ -8,7 +8,7 @@ Game_Window::~Game_Window()
 
 void Game_Window::Reset_Tile_Flag_Label()
 {
-  Tile_Flag_Image.Change_Path(assets_directory_path + "textures/flags/neutral-flag.svg");
+  Tile_Flag_Image.Change_Path(assets_directory_path + "textures/flags/neutral-flag.png");
 }
 
 void Game_Window::Generate_Map_View()
@@ -115,7 +115,7 @@ void Game_Window::Update_Map()
   text = text + " ms (";
   text = text + to_string(tiles);
   text = text + " tiles)";
-  ProgressBar_Label.set_text(text);
+  Set_Progress_Bar_Label_Text(text);
 }
 
 void Game_Window::Test()
@@ -127,14 +127,14 @@ void Game_Window::Show_Not_Enough_Actions_Message()
 {
   Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
   string message = "You don't have enough actions to do that!";
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text_Red(message);
 }
 
 void Game_Window::Show_Not_Enough_Gold_Message()
 {
   Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
   string message = "You don't have enough gold to do that!";
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text_Red(message);
 }
 
 bool Game_Window::Check_Avoid_Trait_For_Upgrades(string_view upg_name, int x, int y)
@@ -182,13 +182,13 @@ void Game_Window::Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int
   if(!Check_Avoid_Trait_For_Upgrades(upg_name, x, y))
   {
     string message = " You can't build " + string(upg_name) + " here there is other " + string(upg_name) + " close!";
-    ProgressBar_Label.set_text(message);
+    Set_Progress_Bar_Label_Text_Red(message);
     return;
   }
   if(!Check_Must_Border_Trait_For_Upgrades(upg_name, x, y))
   {
     string message = " You can't build " + string(upg_name) + " here!";
-    ProgressBar_Label.set_text(message);
+    Set_Progress_Bar_Label_Text_Red(message);
     return;
   }
   if(! Main_Game->Has_Currently_Moving_Player_Any_Actions_Left())
@@ -210,7 +210,7 @@ void Game_Window::Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text(message);
 }
 
 void Game_Window::Clear_Action_Buttons()
@@ -241,7 +241,7 @@ void Game_Window::Recruit_Unit(string_view u, int x, int y)
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text(message);
 }
 
 void Game_Window::Disband_Unit(int x, int y)
@@ -261,7 +261,7 @@ void Game_Window::Disband_Unit(int x, int y)
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text(message);
 }
 
 void Game_Window::Heal_Unit(int x, int y)
@@ -285,7 +285,7 @@ void Game_Window::Heal_Unit(int x, int y)
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text(message);
 }
 
 void Game_Window::Plunder_Tile(int x, int y)
@@ -307,7 +307,7 @@ void Game_Window::Plunder_Tile(int x, int y)
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text(message);
 }
 
 void Game_Window::Fix_Tile(int x, int y)
@@ -328,7 +328,7 @@ void Game_Window::Detonate_Atomic_Bomb(int x, int y)
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text(message);
 }
 
 void Game_Window::Cut_Down(int x, int y)
@@ -350,45 +350,40 @@ void Game_Window::Cut_Down(int x, int y)
   Update_Labels();
   Update_Action_Buttons(last_clicked_x, last_clicked_y);
   Update_Tile_By_Coords_Only(last_clicked_x, last_clicked_y);
-  ProgressBar_Label.set_text(message);
+  Set_Progress_Bar_Label_Text(message);
 }
 
 void Game_Window::Update_Unit_Action_Buttons(int x, int y)
 {
-  auto *button = Gtk::make_managed<Gtk::Button>("Deselect Unit");
+  auto button = Create_Pixlabel_Button("assets/textures/icons/apply-icon.svg.png", "Deselect Unit");
   button->signal_clicked().connect(sigc::mem_fun(*this, &Game_Window::Deselect_Unit));
   Action_Buttons_Box.pack_start(*button);
-  Main_Provider.Add_CSS(button);
   button->show();
-  auto *button_2 = Gtk::make_managed<Gtk::Button>("Disband Unit");
+  auto button_2 = Create_Pixlabel_Button("assets/textures/icons/exit-icon.svg.png", "Disband Unit");
   button_2->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Disband_Unit), x, y));
   Action_Buttons_Box.pack_start(*button_2);
-  Main_Provider.Add_CSS(button_2);
   button_2->show();
   if(!Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Full_HP())
   {
     if((Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Get_All_Arguments_For_Trait("class")[0] == "flying" && !Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x, y)).Has_Trait("allowflyingunitsheal")))
       return;
-    auto *button_3 = Gtk::make_managed<Gtk::Button>("Heal Unit");
+    auto button_3 = Create_Pixlabel_Button("assets/textures/icons/minus-icon.svg.png", "Heal Unit");
     button_3->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Heal_Unit), selected_unit_x, selected_unit_y));
     Action_Buttons_Box.pack_start(*button_3);
-    Main_Provider.Add_CSS(button_3);
     button_3->show();
   }
   if(Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Trait("plunder") && Main_Game->Get_Map().Can_Tile_Plundered(selected_unit_x,selected_unit_y) && !Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x, y)).Has_Trait("cannotbeplundered"))
   {
-    auto *button_4 = Gtk::make_managed<Gtk::Button>("Plunder");
+    auto button_4 = Create_Pixlabel_Button("assets/textures/icons/riots-icon.svg.png", "Plunder");
     button_4->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Plunder_Tile), selected_unit_x, selected_unit_y));
     Action_Buttons_Box.pack_start(*button_4);
-    Main_Provider.Add_CSS(button_4);
     button_4->show();
   }
   if(Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x,selected_unit_y).Has_Trait("atomic"))
   {
-    auto *button_5 = Gtk::make_managed<Gtk::Button>("Detonate!");
+    auto button_5 = Create_Pixlabel_Button("assets/textures/icons/nuclear-icon.svg.png", "Detonate!");
     button_5->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Detonate_Atomic_Bomb), selected_unit_x, selected_unit_y));
     Action_Buttons_Box.pack_start(*button_5);
-    Main_Provider.Add_CSS(button_5);
     button_5->show();
   }
 }
@@ -411,33 +406,37 @@ void Game_Window::Show_Upgrade_Info_Dialog(Upgrade u)
   Dialog.Show();
 }
 
+Gtk::Button* Game_Window::Create_Pixlabel_Button(string label, string icon_path)
+{
+  auto *button = Gtk::make_managed<Gtk::Button>();
+  Image_Path Icon_Path(label);
+  button->add_pixlabel(Icon_Path.Get_File_Path().data(), icon_path);
+  Main_Provider.Add_CSS(button);
+  return button;
+}
+
 void Game_Window::Update_Tile_Action_Buttons(int x, int y)
 {
   if(Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))
   {
-    auto *button = Gtk::make_managed<Gtk::Button>("Select Unit");
+    auto button = Create_Pixlabel_Button("assets/textures/icons/load-icon.svg.png", "Select Unit");
     button->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Select_Unit), x, y));
     Action_Buttons_Box.pack_start(*button);
-    Main_Provider.Add_CSS(button);
     show_all_children();
   }
   if(!(Main_Game->Get_Map().Get_Owner(x,y) == Main_Game->Get_Currently_Moving_Player_Id() || (Main_Game->Get_Map().Get_Owner(x,y) == 0 && Main_Game->Get_Currently_Moving_Player().Has_Unit_On_Tile(x,y))))
-  {
     return;
-  }
   if(!Main_Game->Get_Map().Can_Tile_Plundered(x,y))
   {
-    auto *button = Gtk::make_managed<Gtk::Button>("Fix Upgrade");
+    auto button = Create_Pixlabel_Button("assets/textures/icons/settings-icon.svg.png", "Fix Upgrade");
     button->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Fix_Tile), x,y));
     Action_Buttons_Box.pack_start(*button);
-    Main_Provider.Add_CSS(button);
   }
   if(Main_Game->Get_Map().Get_Tile_Pointer(x,y).How_Many_Times_Has_Trait("removable") != 0 && (Main_Game->Get_Map().Is_Tile_Upgraded(x,y)))
   {
-    auto *button = Gtk::make_managed<Gtk::Button>("Cut Down " + string(Main_Game->Get_Map().Get_Tile_Pointer(x,y).Get_Name()));
+    auto button = Create_Pixlabel_Button("assets/textures/icons/construct-icon.svg.png", "Cut Down " + string(Main_Game->Get_Map().Get_Tile_Pointer(x,y).Get_Name()));
     button->signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Window::Cut_Down), x,y));
     Action_Buttons_Box.pack_start(*button);
-    Main_Provider.Add_CSS(button);
   }
   for(auto &upgrade : Main_Game->Get_Currently_Moving_Player().Get_Upgrades())
   {
@@ -446,23 +445,20 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
     if(Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Name(upgrade.Get_First_Requirement()) && upgrade.Is_Tile_Allowed_By_Name(Main_Game->Get_Map().Get_Tile_Pointer(x,y).Get_Name()) && (Main_Game->Get_Map().Is_Tile_Upgraded(x,y)))
     {
       auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-      auto *button_info = Gtk::make_managed<Gtk::Button>("?");
-      auto *button = Gtk::make_managed<Gtk::Button>("Build " + string(upgrade.Get_Name()));
+      auto button_info = Create_Pixlabel_Button("assets/textures/icons/about-icon.svg.png", "Info");
+      auto button = Create_Pixlabel_Button("assets/textures/icons/construct-icon.svg.png", "Build " + string(upgrade.Get_Name()));
       button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), upgrade.Get_Name().data(), x,y, Main_Game->Get_Currently_Moving_Player_Id()));
       button_info->signal_clicked().connect(sigc::bind<Upgrade>(sigc::mem_fun(*this, &Game_Window::Show_Upgrade_Info_Dialog), upgrade));
       Action_Buttons_Box.pack_start(*box);
       box->pack_start(*button);
       box->pack_start(*button_info);
-      Main_Provider.Add_CSS(button_info);
-      Main_Provider.Add_CSS(button);
     }
   }
   if(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x,y)).Has_Trait("removable"))
   {
-    auto *button = Gtk::make_managed<Gtk::Button>("Remove " + string(Main_Game->Get_Map().Get_Upgrade(x,y)));
+    auto button = Create_Pixlabel_Button("assets/textures/icons/exit-icon.svg.png", "Remove " + string(Main_Game->Get_Map().Get_Upgrade(x,y)));
     button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Build_Upgrade_By_Name_On_Tile), "none" , x,y, Main_Game->Get_Currently_Moving_Player_Id()));
     Action_Buttons_Box.pack_start(*button);
-    Main_Provider.Add_CSS(button);
   }
   if(Main_Game->Get_Upgrade_Of_Currently_Moving_Player(Main_Game->Get_Map().Get_Upgrade(x,y)).Has_Trait("recruit"))
   {
@@ -473,15 +469,13 @@ void Game_Window::Update_Tile_Action_Buttons(int x, int y)
       if(!(Main_Game->Get_Map().Get_Tile_Pointer(x,y).Has_Unit()) && Main_Game->Get_Currently_Moving_Player().Has_Tech_Been_Researched_By_Name(unit.Get_First_Requirement()) && (find(Classes.begin(), Classes.end(), unit.Get_All_Arguments_For_Trait("class")[0]) != Classes.end()) && !(Main_Game->Get_Currently_Moving_Player().Is_Unit_Obsolete(unit.Get_Name())))
       {
         auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
-        auto *button_info = Gtk::make_managed<Gtk::Button>("?");
-        auto *button = Gtk::make_managed<Gtk::Button>("Recruit " + string(unit.Get_Name()));
+        auto button_info = Create_Pixlabel_Button("assets/textures/icons/about-icon.svg.png", "Info");
+        auto button = Create_Pixlabel_Button("assets/textures/icons/revolt-icon.svg.png" , "Recruit " + string(unit.Get_Name()));
         button->signal_clicked().connect(sigc::bind<string>(sigc::mem_fun(*this, &Game_Window::Recruit_Unit), string(unit.Get_Name()) ,x,y));
         button_info->signal_clicked().connect(sigc::bind<Unit>(sigc::mem_fun(*this, &Game_Window::Show_Unit_Info_Dialog), unit));
         Action_Buttons_Box.pack_start(*box);
         box->pack_start(*button);
         box->pack_start(*button_info);
-        Main_Provider.Add_CSS(button_info);
-        Main_Provider.Add_CSS(button);
       }
     }
   }
@@ -517,7 +511,7 @@ void Game_Window::Update_Tile_Information_Label(int x, int y)
   text = text + "Y: ";
   text = text + to_string(coords[1]);
   if(!Main_Game->Is_Currently_Moving_Player_AI())
-    ProgressBar_Label.set_text(text);
+    Set_Progress_Bar_Label_Text(text);
   text = text + "\n Type: " + string(Main_Game->Get_Map().Get_Tile_Pointer(coords[0],coords[1]).Get_Name());
   text = text + "\n Upgrade: " + string(Main_Game->Get_Map().Get_Tile_Pointer(coords[0],coords[1]).Get_Upgrade());
   if(Main_Game->Get_Map().Get_Tile_Pointer(coords[0],coords[1]).Get_Upgrade() == "City")
@@ -646,7 +640,7 @@ bool Game_Window::Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, G
     else
     {
       Sound_Manager::Play_Sound("assets/sounds/broken-audio.mp3");
-      ProgressBar_Label.set_text("You can't move unit here!");
+      Set_Progress_Bar_Label_Text_Red("You can't move unit here!");
       Update_Tile_By_Coords_Only(selected_unit_x, selected_unit_y);
       Update_Tile_By_Coords_Only(coords[0], coords[1]);
     }
@@ -796,7 +790,7 @@ void Game_Window::End_Turn()
   }
   if(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Is_Reseached() && !are_all_techs_researched)
   {
-    ProgressBar_Label.set_text(string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name()) + " is researched! Select other tech to complete turn!");
+    Set_Progress_Bar_Label_Text(string(Main_Game->Get_Currently_Moving_Player().Get_Currently_Researched_Tech().Get_Name()) + " is researched! Select other tech to complete turn!");
   }
   else
   {
@@ -847,12 +841,72 @@ void Game_Window::Select_Unit(int x, int y)
   is_unit_selected = true;
   selected_unit_x = x;
   selected_unit_y = y;
+  Highlight_Tiles();
   Update_Action_Buttons(x,y);
-  ProgressBar_Label.set_text("Click on tile to move unit!");
+  Set_Progress_Bar_Label_Text("Click on tile to move unit!");
+}
+
+void Game_Window::Highlight_Tiles()
+{
+  vector<tuple<array<int, 2>, int>> Tiles;
+  //0 - Self
+  //1 - Move
+  //2 - Border Move
+  //3 - Combat
+  Tiles.push_back({{selected_unit_x, selected_unit_y}, 0});
+  int unit_movement = Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x, selected_unit_y).Get_Current_Actions();
+  int upper_corner_left_x = selected_unit_x - unit_movement;
+  int upper_corner_left_y = selected_unit_y - unit_movement;
+  int down_corner_right_x = selected_unit_x + unit_movement;
+  int down_corner_right_y = selected_unit_y + unit_movement;
+  int tile_owner_id = Main_Game->Get_Map().Get_Owner(selected_unit_x, selected_unit_y);
+  vector<string> Allowed_Tiles = Main_Game->Get_Currently_Moving_Player().Get_Unit_On_Tile(selected_unit_x, selected_unit_y).Get_Allowed_Tiles();
+  clamp(upper_corner_left_x, 0, Main_Game->Get_Map().Get_X_Size());
+  clamp(upper_corner_left_y, 0, Main_Game->Get_Map().Get_Y_Size());
+  clamp(down_corner_right_x, 0, Main_Game->Get_Map().Get_X_Size());
+  clamp(down_corner_right_y, 0, Main_Game->Get_Map().Get_Y_Size());
+  int start = upper_corner_left_x;
+  int start_y = upper_corner_left_y;
+  while(start <= down_corner_right_x)
+  {
+    while(start_y <= down_corner_right_y)
+    {
+      if(start == selected_unit_x && start_y == selected_unit_y)
+      {
+        start_y++;
+        continue;
+      }
+      if(find(Allowed_Tiles.begin(), Allowed_Tiles.end(), Main_Game->Get_Map().Get_Tile_Pointer(start, start_y).Get_Name().data()) != Allowed_Tiles.end())
+      {
+        int type = 1;
+        if(Main_Game->Get_Map().Get_Owner(start, start_y) != tile_owner_id)
+          type = 2;
+        if(Main_Game->Get_Map().Get_Tile_Pointer(start, start_y).Has_Unit())
+        {
+          if(Main_Game->Get_Map().Get_Tile_Pointer(start, start_y).Get_Unit_Owner_Id() == Main_Game->Get_Currently_Moving_Player_Id())
+          {
+            start_y++;
+            continue;
+          }
+          else
+          {
+            type = 3;
+          }
+        }
+        Tiles.push_back({{start, start_y}, type});
+        Tiles_To_Update.push_back({start, start_y});
+      }
+      start_y++;
+    }
+    start++;
+    start_y = upper_corner_left_y;
+  }
+  Map_Images->Add_Unit_Move_Selection(Tiles);
 }
 
 void Game_Window::Deselect_Unit()
 {
+  Remove_Combat_Overlays();
   is_unit_selected = false;
   Update_Action_Buttons(selected_unit_x, selected_unit_y);
   selected_unit_x = 0;
@@ -874,7 +928,7 @@ void Game_Window::Save_Game()
   if(return_value)
     ProgressBar_Label.set_text("Game saved to " + path);
   else
-    ProgressBar_Label.set_text("Saving game failed!");
+    Set_Progress_Bar_Label_Text_Red("Saving game failed!");
 }
 
 void Game_Window::Clear_Map_Images()
@@ -893,7 +947,7 @@ void Game_Window::Load_Game()
   tuple<bool, Game*> return_value = Main_Game->Load_Game(path);
   if(get<0>(return_value))
   {
-    ProgressBar_Label.set_text("Game loaded from " + path);
+    Set_Progress_Bar_Label_Text("Game loaded from " + path);
     delete Main_Game;
     Main_Game = get<1>(return_value);
     Main_Game->Set_Autosave(Main_Settings_Manager.Get_Autosave_Value());
@@ -906,9 +960,20 @@ void Game_Window::Load_Game()
   }
   else
   {
-    ProgressBar_Label.set_text("Game loading failed");
+    Set_Progress_Bar_Label_Text_Red("Game loading failed");
   }
 }
+
+void Game_Window::Set_Progress_Bar_Label_Text(string text)
+{
+  ProgressBar_Label.set_text(text);
+}
+
+void Game_Window::Set_Progress_Bar_Label_Text_Red(string text)
+{
+  ProgressBar_Label.set_markup("<span foreground=\"red\">" + text + "</span>");
+}
+
 
 void Game_Window::Show_Newspaper_Clicked()
 {
@@ -994,7 +1059,7 @@ void Game_Window::Update_End_Turn_Labels()
   }
   else
   {
-    ProgressBar_Label.set_text(string(Main_Game->Get_Currently_Moving_Player().Get_Name()) + " is currently moving...");
+    Set_Progress_Bar_Label_Text(string(Main_Game->Get_Currently_Moving_Player().Get_Name()) + " is currently moving...");
     Update_Tiles_From_Game();
   }
 }
@@ -1183,7 +1248,7 @@ void Game_Window::Initialize_GTK()
   End_Turn_Button = Gtk::Button("End Turn");
   Zoom_Frame = Gtk::Frame("Zoom");
   Zoom_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
-  Tile_Flag_Image.Change_Path(assets_directory_path + "textures/flags/neutral-flag.svg");
+  Tile_Flag_Image.Change_Path(assets_directory_path + "textures/flags/neutral-flag.png");
   Reset_Tile_Flag_Label();
   Random_Tip_Button = Gtk::Button("Random Tip");
 //  Tip_Button = Gtk::Button("Tip");
@@ -1404,6 +1469,7 @@ Game_Window::Game_Window(Window_Manager *m_m, Settings_Manager m_s_m, string pat
   if(path == " ")
   {
     Show_Themed_Dialog("Loading Save File failed!");
+    Main_Manager->Loading_Save_File_Failed();
     Main_Manager->Show_Intro_Window();
   }
 }

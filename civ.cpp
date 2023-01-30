@@ -54,13 +54,13 @@ array<string, 2> Civ::Get_Rebellion_Name_And_Flag_Path()
     string flag_name = out[0];
     std::transform(flag_name.begin(), flag_name.end(), flag_name.begin(), ::tolower);
     flag_name.erase(std::remove_if(flag_name.begin(), flag_name.end(), isspace), flag_name.end());
-    out[1] = "assets/textures/flags/rebellions/" + flag_name + "-flag.svg";
+    out[1] = "assets/textures/flags/rebellions/" + flag_name + "-flag.png";
   }
   else
   {
     vector<string> Names {"United", "Holy", "Reformed", "Confederated", "Central", "New", "Eastern", "Patriotic", "Western", "Southern", "Northern", "Unified", "Reborn"};
     out[0] = Names[rand() % Names.size()] + " " + Get_Name().data();
-    out[1] = Get_Texture_Path();
+    out[1] = "assets/textures/flags/other/" + to_string(rand() % 703) + ".png";
   }
   return out;
 }

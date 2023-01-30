@@ -77,7 +77,17 @@ void Window_Manager::Show_Game_Window_Load_Starting_Positions(Settings_Manager m
 void Window_Manager::Show_Game_Window_Load_From_File(Settings_Manager m_s_m, string path, bool spectator_mode)
 {
   Create_Game_Window_From_File(m_s_m, path, spectator_mode);
+  if(does_loading_file_failed)
+  {
+    does_loading_file_failed = false;
+    return;
+  }
   Switch_Current_Window(3);
+}
+
+void Window_Manager::Loading_Save_File_Failed()
+{
+  does_loading_file_failed = true;
 }
 
 void Window_Manager::Switch_Current_Window(int specifier)

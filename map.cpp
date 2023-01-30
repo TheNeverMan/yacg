@@ -389,9 +389,12 @@ vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_
       break;
     if(!u.Can_Move_On_Tile_By_Name(Get_Tile(unit_x,unit_y).Get_Name()))
       break;
-    if(current_movement_points - Get_Tile(unit_x, unit_y).Get_Movement_Cost() < 0)
+    int tile_movement_cost = Get_Tile(unit_x, unit_y).Get_Movement_Cost();
+    if(Get_Owner(form_x, form_y) != Get_Owner(unit_x, unit_y))
+      tile_movement_cost++;
+    if(current_movement_points - tile_movement_cost < 0)
       break;
-    out[1] = out[1] + Get_Tile(unit_x, unit_y).Get_Movement_Cost();
+    out[1] = out[1] + tile_movement_cost;
     current_movement_points = current_movement_points - Get_Tile(unit_x, unit_y).Get_Movement_Cost();
     if(unit_x == dest_x && unit_y == dest_y)
     {

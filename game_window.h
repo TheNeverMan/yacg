@@ -56,6 +56,7 @@ using std::make_tuple;
 using std::get;
 using std::make_shared;
 using std::map;
+using std::clamp;
 using std::thread;
 using std::string_view;
 
@@ -171,6 +172,7 @@ class Game_Window : public Gtk::Window
     void Clear_Action_Buttons();
     void Test();
     void Clear_Map_Images();
+    void Highlight_Tiles();
     void End_Turn();
     void Update_Labels();
     void Update_Economy_Label();
@@ -225,4 +227,7 @@ class Game_Window : public Gtk::Window
     sigc::connection Remove_Combat_Overlays_Connection;
     bool is_remove_combat_overlays_timeout_set = false;
     void Check_Is_Game_Lost_Or_Won();
+    void Set_Progress_Bar_Label_Text(string text);
+    void Set_Progress_Bar_Label_Text_Red(string text);
+    Gtk::Button* Create_Pixlabel_Button(string label, string icon_path);
 };

@@ -18,6 +18,7 @@ void Game::XML_Load_Data()
     Goverments = Loader.Load_Govs();
     Civs = Loader.Load_Civs();
     Upgrades = Loader.Load_Upgrades();
+    Deco_Events = Loader.Load_Deco_Events();
     vector<Culture> Cultures_Vector = Loader.Load_Cultures();
     for_each(Cultures_Vector.begin(), Cultures_Vector.end(), [&](Culture& tmp){Cultures[tmp.Get_Name().data()] = tmp;});
   }
@@ -568,6 +569,46 @@ void Game::Update_Stability_For_Currently_Moving_Player()
 }
 }
 
+void Game::New_Turn()
+{
+  turn_counter++;
+  istringstream iss(Get_Current_Turn_By_Years());
+  string s;
+  getline( iss, s, ' ' );
+  int number_date = stoi(s);
+  int start = 0;
+  while(start < Deco_Events.size())
+  {
+    if(get<0>(Deco_Events[start]) < number_date)
+    {
+      string event_text = get<1>(Deco_Events[start]);
+      int rand_id = 0;
+      int tries = 0;
+      do
+      {
+        tries++;
+        rand_id = rand() % Players.size();
+      }
+      while(!Is_Player_Eliminated(rand_id) && tries < 100);
+      if(tries == 99)
+        rand_id = First_Not_Eliminated_Player_Id();
+      string city_name = Get_Player_By_Id(rand_id).Get_Capital_Name().data();
+      string civ_name = Get_Player_By_Id(rand_id).Get_Name().data();
+      event_text = std::regex_replace(event_text, std::regex("@"), civ_name);
+      event_text = std::regex_replace(event_text, std::regex("#"), city_name);
+      Main_Newspaper.Add_Deco_Event(Get_Current_Turn_By_Years(), event_text, rand_id);
+      Deco_Events.erase(Deco_Events.begin() + start);
+    }
+    else
+      break;
+    start++;
+  }
+  if(rand() % 300 == 69)
+  {
+    Logger::Log_Info("Adding Nomads...");
+  }
+}
+
 int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
 {
   int out = -1;
@@ -608,7 +649,9 @@ int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
     }
 
     if(currently_moving_player == First_Not_Eliminated_Player_Id())
-      turn_counter++;
+    {
+      New_Turn();
+    }
     Start_Turn_Of_Currently_Moving_Player(Thread_Portal);
     out = -1;
     if(All_Humans_Are_Eliminated())
@@ -1139,7 +1182,7 @@ tuple<bool, Game*> Game::Load_Game(string_view path)
   return Loader.Load_Game(path.data());
 }
 
-vector<tuple<array<string,2>, int>> Game::Get_Newspaper_Events() const
+const vector<Newspaper_Event>& Game::Get_Newspaper_Events() const
 {
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   return Main_Newspaper.Get_Events_With_Icon_Paths();

@@ -48,6 +48,32 @@ void Gtk_Game_Map::Add_Selection_Overlay(array<int, 2> Coords)
   Force_Redraw();
 }
 
+void Gtk_Game_Map::Add_Unit_Move_Selection(vector<tuple<array<int, 2>, int>> Tiles)
+{
+  for(auto& t : Tiles)
+  {
+    string path = "assets/textures/other/unit-selection.png";
+    switch(get<1>(t))
+    {
+      case 0:
+        break;
+      case 1:
+        path = "assets/textures/other/unit-selection-move.png";
+        break;
+      case 2:
+        path = "assets/textures/other/unit-selection-border-move.png";
+        break;
+      case 3:
+        path = "assets/textures/other/unit-selection-combat.png";
+        break;
+      default:
+        break;
+    }
+    Get_Gtk_Tile(get<0>(t)[0], get<0>(t)[1])->Add_Overlay_From_Path(path);
+  }
+  Force_Redraw();
+}
+
 void Gtk_Game_Map::Set_Map_Size(int x_s, int y_s)
 {
   if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
@@ -69,6 +95,7 @@ void Gtk_Game_Map::Zoom_In()
   for_each(Game_Map.begin(), Game_Map.end(), [&](shared_ptr<Gtk_Tile> Tile){Tile->Increase_Tile_Size();});
   Force_Redraw();
 }
+
 
 void Gtk_Game_Map::Zoom_Out()
 {

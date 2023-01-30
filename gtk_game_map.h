@@ -3,6 +3,7 @@
 #include<array>
 #include<algorithm>
 #include<vector>
+#include<tuple>
 #include<memory>
 
 #include "thread.h"
@@ -11,7 +12,7 @@
 #include "game.h"
 
 using std::array;
-
+using std::tuple;
 
 class Magic_Map_Generation_Thread_Communicator;
 
@@ -42,4 +43,5 @@ class Gtk_Game_Map : public Gtk::DrawingArea
     void Add_Selection_Overlay(array<int, 2> Coords);
     void Add_Combat_Overlay(array<int, 2> Coords);
     void Set_City_Overlay(array<int, 2> Coords, string_view city_name);
+    void Add_Unit_Move_Selection(vector<tuple<array<int, 2>, int>> Tiles);
 };

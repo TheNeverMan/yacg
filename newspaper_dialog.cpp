@@ -1,9 +1,7 @@
 #include "newspaper_dialog.h"
 
-Newspaper_Dialog::Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, int currently_moving_player_id) : Themed_Dialog("Newspaper"), Explanation_Image(string(assets_directory_path) + "textures/dialogs/newspaper-dialog-texture.svg", 64, 64)
+Newspaper_Dialog::Newspaper_Dialog(const vector<Newspaper_Event>&  events, int currently_moving_player_id) : Themed_Dialog("Newspaper"), Explanation_Image(string(assets_directory_path) + "textures/dialogs/newspaper-dialog-texture.svg", 64, 64), Events(events)
 {
-  reverse(events.begin(), events.end());
-  Events = events;
   this->currently_moving_player_id = currently_moving_player_id;
   Gtk::Box *Dialog_Box = get_content_area();
   Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
@@ -43,15 +41,20 @@ void Newspaper_Dialog::Update_Events(bool only_currently_moving_player)
     Events_List_Box.pack_start(*label);
     Main_Provider.Add_CSS(label);
   }
-  for(auto &event : Events)
+  int start = Events.size() -1;
+  while(start > -1)
   {
-    string event_text = get<0>(event)[1];
-    if(get<1>(event) != currently_moving_player_id && only_currently_moving_player)
+    string event_text = Events[start].Get_Event().data();
+    string color = "white";
+    if(Events[start].Get_Player_Id() != currently_moving_player_id && only_currently_moving_player)
       continue;
-    if(get<1>(event) == currently_moving_player_id)
-      event_text = "<span foreground=\"blue\">" + event_text + "</span>";
+    if(Events[start].Get_Player_Id() == currently_moving_player_id)
+      color = "blue";
+    if(Events[start].Is_Decorative())
+      color = "#CCCCCC";
+    event_text = "<span foreground =\"" + color + "\">" + event_text + "</span>";
     auto *label = Gtk::make_managed<Gtk::Label>("");
-    shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(get<0>(event)[0], 24 ,24);
+    shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(Events[start].Get_Texture_Path().data(), 24 ,24);
     Event_Images.push_back(image);
     label->set_markup(event_text);
     auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
@@ -59,6 +62,7 @@ void Newspaper_Dialog::Update_Events(bool only_currently_moving_player)
     box->pack_start(*label);
     Events_List_Box.pack_start(*box);
     Main_Provider.Add_CSS(label);
+    start--;
   }
   show_all_children();
 }

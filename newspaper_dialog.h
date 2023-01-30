@@ -26,11 +26,11 @@ class Newspaper_Dialog : public Themed_Dialog
     Gtk::ScrolledWindow Dialog_Scrolled_Window;
     Gtk::Box Events_List_Box;
     vector<shared_ptr<Scaled_Gtk_Image>> Event_Images;
-    vector<tuple<array<string,2>, int>> Events;
+    const vector<Newspaper_Event>& Events;
     int currently_moving_player_id;
     void Update_Events(bool only_currently_moving_player);
   protected:
     void Check_Button_Clicked();
   public:
-    Newspaper_Dialog(vector<tuple<array<string,2>, int>> events, int currently_moving_player_id);
+    Newspaper_Dialog(const vector<Newspaper_Event>& events, int currently_moving_player_id);
 };

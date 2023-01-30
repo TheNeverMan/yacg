@@ -7,6 +7,7 @@
 #include<ctime>
 #include<memory>
 #include<algorithm>
+#include <regex>
 #include<fstream>
 #include<map>
 #include<tuple>
@@ -74,6 +75,7 @@ class Game : public XML_Serializable
     vector<uint32_t> Player_Border_Colors;
     vector<bool> Is_Player_AI_List;
     map<int, AI_Data> AI_Data_For_Players;
+    vector<tuple<int, string>> Deco_Events;
     Map Game_Map;
     Newspaper Main_Newspaper;
     int currently_moving_player;
@@ -106,6 +108,7 @@ class Game : public XML_Serializable
     const Civ& Get_Player_By_Id(int id) const;
     const Culture& Get_Culture_By_Player_Id(int player_id) const;
     const Civ& Get_Currently_Moving_Player() const;
+    void New_Turn();
     vector<array<int, 3>> Search_For_Connections(array<int, 2> Coords, int player_id) const;
   public:
     bool Is_Only_One_Player_Alive() const;
@@ -116,7 +119,7 @@ class Game : public XML_Serializable
     void Set_Autosave(bool a);
     bool Is_Player_Eliminated(int player_id) const;
     bool Has_Currently_Moving_Player_Any_Actions_Left() const;
-    vector<tuple<array<string,2>, int>> Get_Newspaper_Events() const;
+    const vector<Newspaper_Event>& Get_Newspaper_Events() const;
     xml_node<>*  Serialize(memory_pool<>* doc);
     string Get_Current_Turn_By_Years() const;
     bool Is_Map_Update_Required();
