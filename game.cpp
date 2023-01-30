@@ -588,6 +588,8 @@ void Game::New_Turn()
       {
         tries++;
         rand_id = rand() % Players.size();
+        if(rand_id == 0)
+          rand_id++;
       }
       while(!Is_Player_Eliminated(rand_id) && tries < 100);
       if(tries == 99)
@@ -599,8 +601,6 @@ void Game::New_Turn()
       Main_Newspaper.Add_Deco_Event(Get_Current_Turn_By_Years(), event_text, rand_id);
       Deco_Events.erase(Deco_Events.begin() + start);
     }
-    else
-      break;
     start++;
   }
   if(rand() % 300 == 69)
@@ -935,6 +935,8 @@ Game::Game(xml_node<>* Root_Node) : Game_Map(Root_Node->first_node("map"))
   //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
   Main_Radius_Generator.Set_Size(Get_Map().Get_X_Size(), Get_Map().Get_Y_Size());
   Logger::Log_Info("Deserializing Game...");
+  XML_Data_Loader Loader(" ");
+  Deco_Events = Loader.Load_Deco_Events();
   Deserialize(Root_Node);
 }
 
