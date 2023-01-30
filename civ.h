@@ -123,6 +123,7 @@ class Civ : public Help_Object, public Traits_Owner, public Texture_Owner, publi
     vector<Upgrade> Get_All_Upgrades_By_Trait(string_view trait_name) const;
     const Unit& Get_Unit_On_Tile_Pointer(int x, int y) const;
     void Lose_Gold_And_One_Action(int reduction);
+    void Give_All_Units_No_Cost();
   private:
     map<string, vector<string>> Goverment_Name_Replacements;
     vector<string> Rebellion_Names;

@@ -14,6 +14,7 @@
 <tile name="Desert" cost="1" texture="assets/textures/tiles/desert-tile-texture.png"/>
 <tile name="Jungle" cost="2" texture="assets/textures/tiles/jungle-tile-texture.png">
   <trait name="minordefbonus"/>
+  <trait name="removable_Forest"/>
 </tile>
 </tiles>
 </miniyacg>

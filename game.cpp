@@ -18,6 +18,7 @@ void Game::XML_Load_Data()
     Goverments = Loader.Load_Govs();
     Civs = Loader.Load_Civs();
     Upgrades = Loader.Load_Upgrades();
+    Hordes = Loader.Load_Hordes();
     Deco_Events = Loader.Load_Deco_Events();
     vector<Culture> Cultures_Vector = Loader.Load_Cultures();
     for_each(Cultures_Vector.begin(), Cultures_Vector.end(), [&](Culture& tmp){Cultures[tmp.Get_Name().data()] = tmp;});
@@ -311,7 +312,11 @@ void Game::Check_For_Dead_Players()
   for(auto &player : Players)
   {
     //if(is_in_thread){lock_guard<mutex> Lock(Main_Mutex);}
-    if(player.Get_Number_Of_Cities_Owned() == 0 && find(Eliminated_Players_List.begin(),Eliminated_Players_List.end(), index) == Eliminated_Players_List.end())
+    bool is_horde = false;
+    if(player.Get_Owned_Units().size())
+      if(player.Get_Owned_Units()[0].Self.How_Many_Times_Has_Trait("nocost"))
+        is_horde = true;
+    if(player.Get_Number_Of_Cities_Owned() == 0 && find(Eliminated_Players_List.begin(),Eliminated_Players_List.end(), index) == Eliminated_Players_List.end() && !(is_horde) )
     {
       //remove player
       Main_Newspaper.Add_Revolt(Get_Current_Turn_By_Years(), "Goverment of " + Get_Player_By_Id(index).Get_Full_Name() + " has fallen!", index);
@@ -579,21 +584,10 @@ void Game::New_Turn()
   int start = 0;
   while(start < Deco_Events.size())
   {
-    if(get<0>(Deco_Events[start]) < number_date)
+    if(get<0>(Deco_Events[start]) <= number_date && get<0>(Deco_Events[start]) >= (number_date-15))
     {
       string event_text = get<1>(Deco_Events[start]);
-      int rand_id = 0;
-      int tries = 0;
-      do
-      {
-        tries++;
-        rand_id = rand() % Players.size();
-        if(rand_id == 0)
-          rand_id++;
-      }
-      while(!Is_Player_Eliminated(rand_id) && tries < 100);
-      if(tries == 99)
-        rand_id = First_Not_Eliminated_Player_Id();
+      int rand_id = Get_Random_Player_Id();
       string city_name = Get_Player_By_Id(rand_id).Get_Capital_Name().data();
       string civ_name = Get_Player_By_Id(rand_id).Get_Name().data();
       event_text = std::regex_replace(event_text, std::regex("@"), civ_name);
@@ -603,10 +597,107 @@ void Game::New_Turn()
     }
     start++;
   }
-  if(rand() % 300 == 69)
+  if(rand() % 100 == 69)
   {
     Logger::Log_Info("Adding Nomads...");
+    if(!Hordes.size())
+      return;
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    shuffle(Hordes.begin(), Hordes.end(), std::default_random_engine(seed));
+    auto Horde = Hordes[0];
+    Hordes.erase(Hordes.begin());
+    Civ Horde_Civ(Horde[0], {Horde[1]}, " ", {string(Get_Culture_By_Player_Id(Get_Currently_Moving_Player_Id()).Get_Random_City_Name())}, Get_Currently_Moving_Player().Get_Tech_Tree(), Units, rand() % 256, rand() % 256, rand() % 256, {}, Goverments, {}, "Holy", Upgrades, Horde[2], string(Get_Currently_Moving_Player().Get_Audio_Path()), "mongol", {});
+    Players.push_back(Horde_Civ);
+    Player_Border_Colors.push_back(Horde_Civ.Get_Civ_Color());
+    Players[Players.size() - 1].Assign_Id(Players.size());
+    Is_Player_AI_List.push_back(true);
+    int cur_moving_player = Get_Currently_Moving_Player_Id();
+    currently_moving_player = Players.size(); //for recruitment
+    int rand_id = Get_Random_Player_Id_Except_Last();
+    auto capital = Get_Player_By_Id(rand_id).Get_Capital_Location();
+    if(capital[0] == 9999)
+      capital = { rand() % Get_Map().Get_X_Size(), rand() % Get_Map().Get_Y_Size() };
+    auto closest_tile = Get_Map().Find_Closest_Tile_Owned_By_No_Movement_Points(0, capital, "Land");
+    Main_Newspaper.Add_Horde(Get_Current_Turn_By_Years(), "A wild horde of nomadic " + Horde[0] + " has appeared near borders of " + Get_Player_By_Id(rand_id).Get_Full_Name() + "!", rand_id);
+    vector<array<int, 2>> Tiles_For_Units = Main_Radius_Generator.Get_Radius_For_Coords(closest_tile[0], closest_tile[1], 3);
+    vector<string> Unit_Names;
+    switch(Get_Player_By_Id(rand_id).Get_Upgrade_Border_Radius())
+    {
+      default:
+      case 2:
+        Unit_Names.push_back("Scouts");
+        Unit_Names.push_back("Hunters");
+        break;
+      case 3:
+        Unit_Names.push_back("Horsemen");
+        Unit_Names.push_back("Horse Archers");
+        break;
+      case 4:
+        Unit_Names.push_back("Swordsmen");
+        Unit_Names.push_back("Spearmen");
+        break;
+      case 5:
+        Unit_Names.push_back("Knights");
+        Unit_Names.push_back("Pikemen");
+        break;
+      case 6:
+        Unit_Names.push_back("Uhlans");
+        Unit_Names.push_back("Musketeers");
+        break;
+      case 7:
+        Unit_Names.push_back("Cavalary");
+        Unit_Names.push_back("Infantry");
+        break;
+    }
+
+    for(auto& tile : Tiles_For_Units)
+    {
+      if(Get_Map().Get_Owner(tile[0], tile[1]))
+        continue;
+      if(Get_Map().Get_Tile_Pointer(tile[0], tile[1]).Has_Unit())
+        continue;
+      Recruit_Unit(Unit_Names[rand() % Unit_Names.size()], tile[0], tile[1]);
+      Tiles_To_Update.push_back(tile);
+    }
+    Get_Currently_Moving_Player().Give_All_Units_No_Cost();
+    currently_moving_player = cur_moving_player;
   }
+}
+
+int Game::Get_Random_Player_Id() const
+{
+  int rand_id = 0;
+  int tries = 0;
+  do
+  {
+    tries++;
+    rand_id = rand() % Players.size();
+    if(rand_id == 0)
+      rand_id++;
+  }
+  while(!Is_Player_Eliminated(rand_id) && tries < 100);
+  if(tries == 99)
+    rand_id = First_Not_Eliminated_Player_Id();
+  return rand_id;
+}
+
+int Game::Get_Random_Player_Id_Except_Last() const
+{
+  int rand_id = 0;
+  int tries = 0;
+  do
+  {
+    tries++;
+    rand_id = rand() % Players.size();
+    if(rand_id == 0)
+      rand_id++;
+    if(rand_id == Players.size() - 1)
+      continue;
+  }
+  while(!Is_Player_Eliminated(rand_id) && tries < 100);
+  if(tries == 99)
+    rand_id = First_Not_Eliminated_Player_Id();
+  return rand_id;
 }
 
 int Game::End_Player_Turn(Magic_Thread_Communicator* Thread_Portal)
@@ -937,6 +1028,7 @@ Game::Game(xml_node<>* Root_Node) : Game_Map(Root_Node->first_node("map"))
   Logger::Log_Info("Deserializing Game...");
   XML_Data_Loader Loader(" ");
   Deco_Events = Loader.Load_Deco_Events();
+  Hordes = Loader.Load_Hordes();
   Deserialize(Root_Node);
 }
 

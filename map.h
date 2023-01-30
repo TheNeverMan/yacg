@@ -31,6 +31,7 @@ class Map : public XML_Serializable
     vector<Upgrade> Upgrades;
     Upgrade Find_Upgrade_By_Name_In_Vector(string_view n, vector<Upgrade> u) const;
     vector<array<int, 2>> Find_Closest_Tile_Owned_By_One_Direction(int owner, int x, int y, int x_dir, int y_dir, Unit u, string_view tile_type) const;
+    vector<array<int, 2>> Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(int owner, array<int, 2> Coords, int x_dir, int y_dir, string_view tile_type) const;
     vector<array<int, 2>> Find_In_One_Direction_To_Enemy_City_Or_Unit(int owner, int x, int y, int x_dir, int y_dir, Unit u);
     int Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y) const;
     array<int, 2> Get_Closest_Point(int x, int y, vector<array<int ,2>> points) const;
@@ -87,4 +88,5 @@ class Map : public XML_Serializable
     array<int, 2> Find_Closest_Upgrade_By_Name(array<int,2> Coords, int owner, string_view name) const;
     vector<array<int, 2>> Find_All_Upgrade_Locations_In_Radius(array<int, 2> Coords, int owner, int radius, string_view upg_name) const;
     vector<array<int, 2>> Get_Path_Tiles(array<int, 2> Start_Coords, array<int, 2> End_Coords, vector<string> Allowed_Tiles);
+    array<int, 2> Find_Closest_Tile_Owned_By_No_Movement_Points(int owner, array<int, 2> Coords, string_view tile_type) const;
 };

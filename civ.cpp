@@ -163,6 +163,8 @@ City& Civ::Get_City_By_Coordinates(array<int, 2> Coords)
 
 array<int, 2> Civ::Get_Capital_Location() const
 {
+  if(!Cities.size())
+    return {0,0};
   return Cities[0].Get_Coords();
 }
 
@@ -366,6 +368,8 @@ int Civ::Calculate_Unit_Maitenance() const
   int out = 0;
   for(auto &unit : Units_Owned)
   {
+    if(unit.Self.How_Many_Times_Has_Trait("nocost"))
+      continue;
     out = out + unit.Self.Get_Maitenance();
   }
   if(Active_Goverment.Get_Name() == "Dictatorship")
@@ -841,6 +845,12 @@ void Civ::Recruit_Unit_By_Name(string_view name, int x, int y)
 vector<City>& Civ::Get_Owned_Cities()
 {
   return Cities;
+}
+
+void Civ::Give_All_Units_No_Cost()
+{
+  for(auto& u : Units_Owned)
+    u.Self.Give_Trait("nocost");
 }
 
 vector<string> Civ::Get_All_Upgrade_Names_By_Trait(string_view trait_name) const

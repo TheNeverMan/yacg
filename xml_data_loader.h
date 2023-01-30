@@ -43,6 +43,7 @@ class XML_Data_Loader : public XML_Serializable
     vector<string> Load_Traits_From_Root_Node(xml_node<>* Root_Node);
     vector<string> Load_Tips_From_File(string_view path);
     vector<tuple<int,string>> Load_Deco_Events_From_File(string_view path);
+    vector<array<string, 3>> Load_Hordes_From_File(string_view path);
   public:
     XML_Data_Loader(string p_t_x);
     vector<Civ> Load_Civs();
@@ -54,4 +55,5 @@ class XML_Data_Loader : public XML_Serializable
     vector<string> Load_Tips();
     vector<Culture> Load_Cultures();
     vector<tuple<int, string>> Load_Deco_Events();
+    vector<array<string, 3>> Load_Hordes();
 };

@@ -739,6 +739,46 @@ vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, i
   return out;
 }
 
+vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(int owner, array<int, 2> Coords, int x_dir, int y_dir, string_view tile_type) const
+{
+  vector<array<int, 2>> out;
+  if(Is_Tile_Out_Of_Bounds(Coords[0], Coords[1]))
+    return out;
+  int x_border = Coords[0] + (999 * x_dir);
+  int y_border = Coords[1] + (999 * y_dir);
+  int y_base = Coords[1];
+  while(Coords[0] != x_border)
+  {
+    if(Is_Tile_Out_Of_Bounds(Coords[0], Coords[1]) )
+      break;
+    while(Coords[1] != y_border)
+    {
+      if(Is_Tile_Out_Of_Bounds(Coords[0], Coords[1]) )
+        break;
+      if(Get_Owner(Coords[0], Coords[1])  == owner && (tile_type == "any" || tile_type == Get_Tile(Coords[0], Coords[1]) .Get_Name()))
+        out.push_back(Coords);
+      Coords[1] = Coords[1] + y_dir;
+    }
+    Coords[0] = Coords[0] + x_dir;
+    Coords[1] = y_base;
+  }
+  return out;
+}
+
+array<int, 2> Map::Find_Closest_Tile_Owned_By_No_Movement_Points(int owner, array<int, 2> Coords, string_view tile_type = "any") const
+{
+  vector<array<int, 2>> points;
+  vector<array<int, 2>> tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner, Coords, 1, 1,  tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner,Coords, -1,1, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner,Coords, 1,-1, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner,Coords, -1,-1, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  return Get_Closest_Point(Coords[0], Coords[1], points);
+}
+
 array<int, 2> Map::Find_Closest_Tile_Owned_By(int owner, int x, int y, Unit u, string_view tile_type = "any") const
 {
   array<int, 2> out;

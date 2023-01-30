@@ -52,6 +52,7 @@ using std::make_tuple;
 using std::get;
 using std::make_shared;
 using std::fstream;
+using std::shuffle;
 using std::string_view;
 
 class Magic_Thread_Communicator;
@@ -76,6 +77,7 @@ class Game : public XML_Serializable
     vector<bool> Is_Player_AI_List;
     map<int, AI_Data> AI_Data_For_Players;
     vector<tuple<int, string>> Deco_Events;
+    vector<array<string, 3>> Hordes;
     Map Game_Map;
     Newspaper Main_Newspaper;
     int currently_moving_player;
@@ -109,6 +111,8 @@ class Game : public XML_Serializable
     const Culture& Get_Culture_By_Player_Id(int player_id) const;
     const Civ& Get_Currently_Moving_Player() const;
     void New_Turn();
+    int Get_Random_Player_Id() const;
+    int Get_Random_Player_Id_Except_Last() const;
     vector<array<int, 3>> Search_For_Connections(array<int, 2> Coords, int player_id) const;
   public:
     bool Is_Only_One_Player_Alive() const;

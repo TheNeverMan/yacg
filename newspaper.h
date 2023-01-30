@@ -18,7 +18,7 @@ class Newspaper
   private:
     enum class Event_Type
     {
-      Deco, City_Build, City_Conquer, Nuclear_Attack, Revolt, Catastrophe, Rebellion, Assassination
+      Horde, Deco, City_Build, City_Conquer, Nuclear_Attack, Revolt, Catastrophe, Rebellion, Assassination
     };
     vector<Newspaper_Event> News;
     void Add_News(string date, string info, Event_Type Type, int player_id, bool is_deco);
@@ -31,6 +31,7 @@ class Newspaper
     void Add_Rebellion(string date, string info, int player_id);
     void Add_Assassination(string date, string info, int player_id);
     void Add_Deco_Event(string date, string info, int player_id);
+    void Add_Horde(string date, string info, int player_id);
     //vector<string> Get_News();
     const vector<Newspaper_Event>& Get_Events_With_Icon_Paths() const;
 };

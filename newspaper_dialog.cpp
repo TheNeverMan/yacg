@@ -8,6 +8,7 @@ Newspaper_Dialog::Newspaper_Dialog(const vector<Newspaper_Event>&  events, int c
   Explanation_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Explanation_Label = Gtk::Label("Below are listed all events that have occured from game launch. \n Most notable events that will appear here are:\n -city settlements, \n-wars & conquers, \n-nuclear attacks");
   Dialog_Root_Frame = Gtk::Frame("Events");
+  Turn_Frame = Gtk::Frame("Events From This Turn");
   Show_Only_Currently_Moving_Player_Events_Button = Gtk::CheckButton("Show only events about your empire");
   Show_Only_Currently_Moving_Player_Events_Button.set_active(false);
   Show_Only_Currently_Moving_Player_Events_Button.signal_toggled().connect(sigc::mem_fun(*this, &Newspaper_Dialog::Check_Button_Clicked));
@@ -15,11 +16,18 @@ Newspaper_Dialog::Newspaper_Dialog(const vector<Newspaper_Event>&  events, int c
   Dialog_Scrolled_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
   Dialog_Scrolled_Window.set_min_content_height(300);
   Events_List_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
+  Turn_Window = Gtk::ScrolledWindow();
+  Turn_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
+  Turn_Window.set_min_content_height(300);
+  Turn_Events_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL,2);
   Dialog_Box->pack_start(Root_Box);
   Root_Box.pack_start(Explanation_Box);
   Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Explanation_Label);
   Root_Box.pack_start(Show_Only_Currently_Moving_Player_Events_Button);
+  Root_Box.pack_start(Turn_Frame);
+  Turn_Frame.add(Turn_Window);
+  Turn_Window.add(Turn_Events_Box);
   Root_Box.pack_start(Dialog_Root_Frame);
   Dialog_Root_Frame.add(Dialog_Scrolled_Window);
   Dialog_Scrolled_Window.add(Events_List_Box);
@@ -34,20 +42,33 @@ void Newspaper_Dialog::Update_Events(bool only_currently_moving_player)
     var->hide();
     Events_List_Box.remove(*var);
   }
+  auto children_2 = Turn_Events_Box.get_children();
+  for( auto &var : children_2)
+  {
+    var->hide();
+    Turn_Events_Box.remove(*var);
+  }
   Event_Images.clear();
   if(Events.size() == 0)
   {
     auto *label = Gtk::make_managed<Gtk::Label>("Events will appear here during game...");
     Events_List_Box.pack_start(*label);
     Main_Provider.Add_CSS(label);
+    auto *label_2 = Gtk::make_managed<Gtk::Label>("Continue playing to see anything here...");
+    Turn_Events_Box.pack_start(*label_2);
+    Main_Provider.Add_CSS(label);
   }
   int start = Events.size() -1;
+  string last_year = Events[Events.size() - 1].Get_Full_Date().data();
   while(start > -1)
   {
     string event_text = Events[start].Get_Event().data();
     string color = "white";
     if(Events[start].Get_Player_Id() != currently_moving_player_id && only_currently_moving_player)
+    {
+      start--;
       continue;
+    }
     if(Events[start].Get_Player_Id() == currently_moving_player_id)
       color = "blue";
     if(Events[start].Is_Decorative())
@@ -62,6 +83,18 @@ void Newspaper_Dialog::Update_Events(bool only_currently_moving_player)
     box->pack_start(*label);
     Events_List_Box.pack_start(*box);
     Main_Provider.Add_CSS(label);
+    if(Events[start].Get_Full_Date() == last_year)
+    {
+      auto *label = Gtk::make_managed<Gtk::Label>("");
+      shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(Events[start].Get_Texture_Path().data(), 24 ,24);
+      Event_Images.push_back(image);
+      label->set_markup(event_text);
+      auto *box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+      box->pack_start((image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+      box->pack_start(*label);
+      Turn_Events_Box.pack_start(*box);
+      Main_Provider.Add_CSS(label);
+    }
     start--;
   }
   show_all_children();

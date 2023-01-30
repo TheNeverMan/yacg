@@ -30,6 +30,9 @@ void Newspaper::Add_News(string date, string info, Event_Type Type, int player_i
     case Event_Type::Deco:
       path = path + "about-icon.svg";
       break;
+    case Event_Type::Horde:
+      path = path + "riots-icon.svg";
+      break;
     default:
       break;
   }
@@ -84,4 +87,9 @@ void Newspaper::Add_Deco_Event(string date, string info, int player_id)
 const vector<Newspaper_Event>& Newspaper::Get_Events_With_Icon_Paths() const
 {
   return News;
+}
+
+void Newspaper::Add_Horde(string date, string info, int player_id)
+{
+  Add_News(date, info, Event_Type::Horde, player_id, false);
 }

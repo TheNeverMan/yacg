@@ -133,6 +133,46 @@ vector<tuple<int,string>> XML_Data_Loader::Load_Deco_Events()
   return out;
 }
 
+vector<array<string, 3>> XML_Data_Loader::Load_Hordes_From_File(string_view path)
+{
+  Logger::Log_Info("Loading XML Hordes Data From " + string(path));
+  vector<array<string, 3>> out;
+  xml_document<> doc;
+  vector<char> buffer = Load_File(path);
+  doc.parse<0>(&buffer[0]);
+  xml_node<>* Root_Node = doc.first_node();
+  if(Root_Node == nullptr)
+  {
+    Logger::Log_Error("Loading Hordes Data failed!");
+    return out;
+  }
+  xml_node<>* hordes_node = Root_Node->first_node("hordes");
+  for(xml_node<> * horde_node = hordes_node->first_node("horde"); horde_node; horde_node = horde_node->next_sibling("horde"))
+  {
+    string name = horde_node->first_attribute("name")->value();
+    string leader = horde_node->first_attribute("leader")->value();
+    string lower_n = name;
+    std::transform(lower_n.begin(), lower_n.end(), lower_n.begin(), ::tolower);
+    lower_n.erase(std::remove_if(lower_n.begin(), lower_n.end(), isspace), lower_n.end());
+    string flag = "assets/textures/flags/hordes/" + lower_n + "-horde.png";
+    out.push_back({name, leader, flag});
+  }
+  return out;
+}
+
+vector<array<string, 3>> XML_Data_Loader::Load_Hordes()
+{
+  Logger::Log_Info("Loading XML Hordes Data..." );
+  vector<array<string, 3>> out;
+  for(auto& file : Get_Files_In_Directory("hordes"))
+  {
+    vector<array<string, 3>> tmp = Load_Hordes_From_File(file.path().string());
+    out.insert( out.end(), tmp.begin(), tmp.end() );
+  }
+  return out;
+}
+
+
 vector<Culture> XML_Data_Loader::Load_Cultures_From_File(string_view path)
 {
   Logger::Log_Info("Loading XML Cultures Data From " + string(path));

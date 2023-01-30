@@ -25,6 +25,9 @@ class Newspaper_Dialog : public Themed_Dialog
     Gtk::Frame Dialog_Root_Frame;
     Gtk::ScrolledWindow Dialog_Scrolled_Window;
     Gtk::Box Events_List_Box;
+    Gtk::Frame Turn_Frame;
+    Gtk::ScrolledWindow Turn_Window;
+    Gtk::Box Turn_Events_Box;
     vector<shared_ptr<Scaled_Gtk_Image>> Event_Images;
     const vector<Newspaper_Event>& Events;
     int currently_moving_player_id;

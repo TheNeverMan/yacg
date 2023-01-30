@@ -437,6 +437,13 @@ AI_Data AI::Process_Turn(AI_Data Data)
   User_Data = Data;
   Logger::Log_Info("Starting AI Turn of " + string(Main_Game->Get_Currently_Moving_Player().Get_Name()));
   Logger::Log_Info("AI Debug");
+  if(Main_Game->Get_Currently_Moving_Player().Get_Owned_Units().size())
+    if(Main_Game->Get_Currently_Moving_Player().Get_Owned_Units()[0].Self.How_Many_Times_Has_Trait("nocost"))
+    {
+      Logger::Log_Info("Nomadic Tribe, skipping AI....");
+      Move_All_Units_Not_In_Cities_To_Enemy();
+      return Data;
+    }
   string personality = " ";
   personality = Main_Game->Get_Currently_Moving_Player().Get_Personality();
   int economy_parameter = 0;
