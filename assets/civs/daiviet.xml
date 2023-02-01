@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Dai Viet" r="255" g="245" b="0" personality="Enlightened" audio="assets/sounds/themes/chinese-theme.mp3" culture="chinese">
+  <info>
+Dai Viet (Greater Viet) was a kingdom in Indochina region. It was
+ruled by eight dynasties for over 800 years. Finally France has
+colonized Dai Viet ruled by Nguyen Dynasty during colonial wars
+in 1858-1887. Dai Viet kingdom had its Golden Era during XI century
+when it successfully fought with China and could be considered regional
+power. Later however it was conquered by China, revived, then in XVI
+century disintegrated into pieces. At the end of XVIII century new
+Nguyen Dynasty has conquered and unified former Dai Viet territory.
+
+Vietnamese traits are double Patriotic, to represent its resistance
+and rebellions againt chinese.
+
+Vietnamese leaders include kings of Dai Viet, Nguyen Vietnam and Empire of Vietnam.
+Vietnamese flag is flag of Empire of Vietnam, a japanese puppet state flag, based
+of Nguyen Dynasty flag.
+</info>
+<trait name="P"/>
+<trait name="P"/>
+<replacement name="Monarchy" leader="Emperor" state_name="Greater "/>
+<leader name="Bao Dai"/>
+<leader name="Gia Long"/>
+<leader name="Tu Doc"/>
+<leader name="Minh Mang"/>
+<leader name="Ly Thai To"/>
+<leader name="Ly Thai Tong"/>
+<leader name="Ly Thanh Tong"/>
+<leader name="Le Loi"/>
+<leader name="Le Thanh Tong"/>
+<leader name="Nguyen Nhac"/>
+<leader name="Mac Dang Dung"/>
+<leader name="Ho Quy Ly"/>
+<leader name="Tran Due Tong"/>
+<rebel name="Cochinchina"/>
+<rebel name="Krom Khmer"/>
+<rebel name="North Vietnam"/>
+<rebel name="South Vietnam"/>
+<rebel name="Sedang"/>
+<rebel name="Tai"/>
+<city name="Dai La"/>
+<city name="Phu Xuan"/>
+<city name="Hoa Lu"/>
+<city name="Lang Son"/>
+<city name="Nin Binh"/>
+<city name="Quang Yen"/>
+<city name="Cao Bang"/>
+<city name="Tuyen Quang"/>
+<city name="Son Tay"/>
+<city name="Bac Ninh"/>
+<city name="Hung Yen"/>
+<city name="Nam Dinh"/>
+<city name="Bien Hoa"/>
+<city name="Hue"/>
+<city name="Hai Duong"/>
+<city name="Di An"/>
+<city name="Nha Trang"/>
+<city name="Vung Tau"/>
+<city name="Buon Ma Thuot"/>
+<city name="Thanh Hoa"/>
+<city name="Thai Nguyen"/>
+<city name="Vinh"/>
+<city name="Thu Dau Mot"/>
+<city name="Ha Long"/>
+<city name="Viet Tri"/>
+<city name="Quy Nhon"/>
+<city name="Long Xuyen"/>
+<city name="Quang Ngai"/>
+<city name="Pleiku"/>
+<city name="Nam Dinh"/>
+<city name="Tuyen Quang"/>
+<city name="Da Lat"/>
+<city name="Rach Gia"/>
+<city name="My Tho"/>
+<city name="Phan Thiet"/>
+<city name="Ca Mau"/>
+<city name="Chi Linh"/>
+<city name="Cao Lanh"/>
+<city name="Thai Binh"/>
+<city name="Ba Ria[4]"/>
+<city name="Soc Trang"/>
+<city name="Ha Tinh"/>
+<city name="B0x1EAFc Giang"/>
+<city name="Long Khanh"/>
+<city name="Kon Tum"/>
+<city name="Phan Rang - Thap Cham"/>
+<city name="Bao Loc"/>
+<city name="Bac Lieu"/>
+<city name="Phu Ly"/>
+<city name="Tuy Hoa"/>
+<city name="Cam Pha"/>
+<city name="Phuc Yen"/>
+<city name="Tan An"/>
+<city name="Phu Quoc"/>
+<city name="Cam Ranh"/>
+<city name="Vinh Long"/>
+<city name="Hoa Binh"/>
+<city name="Tay Ninh"/>
+<city name="Dong Hoi"/>
+<city name="Lao Cai"/>
+<city name="Ninh Binh"/>
+<city name="Ben Tre"/>
+<city name="Tam Ky"/>
+<city name="Uong Bi"/>
+<city name="Hung Yen"/>
+<city name="Vinh Yen"/>
+<city name="Tra Vinh"/>
+<city name="Sam Son"/>
+<city name="Dong Xoai"/>
+<city name="Mong Cai"/>
+<city name="Sa Dec"/>
+<city name="Son La"/>
+<city name="Lang Son"/>
+<city name="Chau Doc"/>
+<city name="Yen Bai"/>
+<city name="Hoi An"/>
+<city name="Dong Ha"/>
+<city name="Dien Bien Phu"/>
+<city name="Cao Bang"/>
+<city name="Vi Thanh"/>
+<city name="Song Cong"/>
+<city name="Gia Nghia"/>
+<city name="Tam Diep"/>
+<city name="Nga Bay"/>
+<city name="Ha Giang"/>
+<city name="Ha Tien"/>
+<city name="Lai Chau"/>
+</civ>
+</civs>
+</miniyacg>

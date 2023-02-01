@@ -84,6 +84,11 @@ Trait_Dialog::Trait_Dialog() : Themed_Dialog("All Civilizations", "Ok"), Explana
       col = Get_Column_For_Trait(Traits[0]);
       row = column_index + 1;
     }
+    else if(!Traits.size())
+    {
+      col = column_index + 1;
+      row = column_index + 1;
+    }
     else
     {
       col = Get_Column_For_Trait(Traits[0]);
