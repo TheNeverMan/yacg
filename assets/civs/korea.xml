@@ -30,6 +30,8 @@ Korean leaders include South and North Korean presidents and kings of Joseon.
 <leader name="Syngman Rhee"/>
 <leader name="Kim Dzong Il"/>
 <leader name="Kim Dae Jung"/>
+<trait name="P"/>
+<trait name="S"/>
 <city name="Seoul"/>
 <city name="Busan"/>
 <city name="Incheon"/>
