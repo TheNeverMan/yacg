@@ -1,6 +1,6 @@
 #include "help_dialog.h"
 
-Help_Dialog::Help_Dialog() : Themed_Dialog("Help"), Help_Text_Button("Help Manual", &Main_Sound_Manager), Basic_Tutorial_Button("Basic Tutorial", &Main_Sound_Manager), Keybindings_Tutorial_Button("Keybindings", &Main_Sound_Manager), Explanation_Image("assets/textures/tip.png",64,64)
+Help_Dialog::Help_Dialog() : Themed_Dialog("Help"), Help_Text_Button("Help Manual"), Basic_Tutorial_Button("Basic Tutorial"), Keybindings_Tutorial_Button("Keybindings"), Explanation_Image("assets/textures/tip.png",64,64)
 {
   auto* Dialog_Box = get_content_area();
   Root_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
@@ -14,7 +14,7 @@ Help_Dialog::Help_Dialog() : Themed_Dialog("Help"), Help_Text_Button("Help Manua
 
   Dialog_Box->pack_start(Root_Box);
   Root_Box.pack_start(Explanation_Box);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image()));
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Explanation_Label);
   Root_Box.pack_start(Root_Frame);
   Root_Frame.add(Help_Buttons_Box);

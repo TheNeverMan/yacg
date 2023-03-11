@@ -1,38 +1,23 @@
 #include "civ_trait_manager.h"
 
-string Civ_Trait_Manager::Get_Trait_Full_Name(string trait_name)
+string_view Civ_Trait_Manager::Get_Trait_Full_Name(string_view trait_name)
 {
-  string out;
-  if(trait_name == "M")
-    out = "Militaristic";
-  if(trait_name == "E")
-    out = "Economic";
-  if(trait_name == "S")
-    out = "Scientific";
-  if(trait_name == "N")
-    out = "Nautical";
-  if(trait_name == "C")
-    out = "Cultural";
-  if(trait_name == "R")
-    out = "Religious";
-  if(trait_name == "X")
-    out = "Expansive";
-  if(trait_name == "A")
-    out = "Agricultural";
-  if(trait_name == "O")
-    out = "Commercial";
-  if(trait_name == "D")
-    out = "Nomadic";
-  if(trait_name == "V")
-    out = "Surviving";
-  if(trait_name == "P")
-    out = "Patriotic";
-  if(trait_name == "I")
-    out = "Mistic";
-  return out;
+  return Traits[string(trait_name)][0];
 }
 
-shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string trait_name)
+string_view Civ_Trait_Manager::Get_Trait_Letter(string_view trait_name)
+{
+  for(auto &var : Traits)
+  {
+    if(var.second[0] == trait_name)
+      return var.first;
+  }
+  Logger::Log_Error(string(trait_name) + " trait not found!");
+  throw;
+}
+
+
+shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string_view trait_name)
 {
   string full_trait_name = " ";
   if(trait_name.size() == 1)
@@ -49,34 +34,24 @@ shared_ptr<Scaled_Gtk_Image> Civ_Trait_Manager::Get_Trait_Icon(string trait_name
   return Tmp;
 }
 
-string Civ_Trait_Manager::Get_Trait_Full_Explanation(string trait_name)
+Civ_Trait_Manager::Civ_Trait_Manager()
 {
-  string out = " ";
-  if(trait_name == "M")
-    out = "Your units have one more attack strength";
-  if(trait_name == "E")
-    out = "You can build upgrades one gold cheaper";
-  if(trait_name == "S")
-    out = "Your research funds are 10% bigger";
-  if(trait_name == "N")
-    out = "Your naval units have two more movement";
-  if(trait_name == "C")
-    out = "Changing a goverment costs no actions";
-  if(trait_name == "R")
-    out = "You have one more actions from the start of the game";
-  if(trait_name == "X")
-    out = "Cities you settle start with bigger teritorry";
-  if(trait_name == "A")
-    out = "Farms produce one more gold";
-  if(trait_name == "O")
-    out = "Production boost from roads is doubled";
-  if(trait_name == "D")
-    out = "All your units have one more movement";
-  if(trait_name == "V")
-    out = "All your infantry units can move on Ice and Desert tiles";
-  if(trait_name == "P")
-    out = "Your units fight better in your territory";
-  if(trait_name == "I")
-    out = "You start the game with one more random tech unlocked";
-  return out;
+  Traits["M"] = {"Militaristic", "Your units have one more attack strength"};
+  Traits["E"] = {"Economic", "You can build upgrades one gold cheaper"};
+  Traits["S"] = {"Scientific", "Your research funds are 10% bigger"};
+  Traits["N"] = {"Nautical", "Your naval units have two more movement"};
+  Traits["C"] = {"Cultural", "Changing a goverment costs no actions"};
+  Traits["R"] = {"Religious", "You have one more actions from the start of the game"};
+  Traits["X"] = {"Expansive", "Cities you settle start with bigger teritorry"};
+  Traits["A"] = {"Agricultural", "Farms produce one more gold"};
+  Traits["O"] = {"Commercial", "Production boost from roads is doubled"};
+  Traits["D"] = {"Nomadic", "All your units have one more movement"};
+  Traits["V"] = {"Surviving", "All your infantry units can move on Ice and Desert tiles"};
+  Traits["P"] = {"Patriotic", "Your units fight better in your territory"};
+  Traits["I"] = {"Mistic", "You start the game with one more random tech unlocked"};
+}
+
+string_view Civ_Trait_Manager::Get_Trait_Full_Explanation(string_view trait_name)
+{
+  return Traits[string(trait_name)][1];
 }

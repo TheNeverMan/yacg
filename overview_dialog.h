@@ -14,7 +14,7 @@ class Overview_Dialog : public Themed_Dialog
 {
   private:
     vector<int> Player_Income;
-    Civ Player;
+    Civ& Player;
     Gtk::Box Root_Box;
     Gtk::Frame Dialog_Root_Frame;
     Gtk::Box Stats_Box;
@@ -22,5 +22,5 @@ class Overview_Dialog : public Themed_Dialog
     Scaled_Gtk_Image Flag_Image;
     Civ_Trait_Manager Trait_Manager;
   public:
-    Overview_Dialog(vector<int> p_i, Civ p, string year);
+    Overview_Dialog(vector<int> p_i, Civ& p, string year);
 };

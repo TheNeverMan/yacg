@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Turkey" r="227" g="10" b="23" personality="Expansive" flag="assets/textures/flags/turkey-flag.svg" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
+<civ name="Turkey" r="227" g="10" b="23" personality="Expansive" audio="assets/sounds/themes/arabian-theme.mp3" culture="arabian">
 <info>
 Turkey is country located on Anatolian Penisula. Modern Turkey had emerged
 from ruins of Ottoman Empire
@@ -31,6 +31,9 @@ Turkish color is red from Turkey flag.
 <leader name="Osman I"/>
 <trait name="M"/>
 <trait name="X"/>
+<rebel name="Western Thrace"/>
+<rebel name="Hatay"/>
+<rebel name="Turkmeneli"/>
 <city name="Ankara"/>
 <city name="Istanbul"/>
 <city name="Izmir"/>

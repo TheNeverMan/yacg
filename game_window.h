@@ -42,6 +42,7 @@
 #include "apply_button.h"
 #include "sound_button.h"
 #include "civ_trait_manager.h"
+#include "internal_dialog.h"
 
 using namespace std::chrono;
 using std::milli;
@@ -55,7 +56,9 @@ using std::make_tuple;
 using std::get;
 using std::make_shared;
 using std::map;
+using std::clamp;
 using std::thread;
+using std::string_view;
 
 class Window_Manager;
 class Game;
@@ -80,10 +83,26 @@ class Game_Window : public Gtk::Window
     Gtk::Label Capital_Label;
     Gtk::Box UI_Root_Box;
     Gtk::Box End_Turn_Box;
+    Gtk::Box Info_Labels_Root_Box;
+    Gtk::Box Civ_Name_Label_Box;
+    Gtk::Label Civ_Name_Label;
+    Gtk::Box Economy_Actions_Label_Box;
+    Gtk::Box Economy_Label_Box;
+    Gtk::Box Actions_Label_Box;
+    Gtk::Box Tech_In_Research_Label_Box;
+    Gtk::Label Tech_In_Research_Label;
+    Gtk::Label Actions_Label;
+    Gtk::Label Economy_Label;
+    Gtk::Box Research_Funds_Label_Box;
+    Gtk::Label Research_Funds_Label;
+    shared_ptr<Scaled_Gtk_Image> Civ_Name_Label_Icon;
+    shared_ptr<Scaled_Gtk_Image> Economy_Label_Icon;
+    shared_ptr<Scaled_Gtk_Image> Actions_Label_Icon;
+    shared_ptr<Scaled_Gtk_Image> Research_Funds_Label_Icon;
+    shared_ptr<Scaled_Gtk_Image> Tech_In_Research_Label_Icon;
     Gtk::Box Action_Buttons_Box;
     Gtk::Frame Action_Buttons_Frame;
     Gtk::Button End_Turn_Button;
-    Gtk::Label Economy_Label;
     Gtk::Label Tile_Information_Label;
     Scaled_Gtk_Image Tile_Flag_Image;
   //  Gtk::Button Map_Update_Button;
@@ -101,19 +120,22 @@ class Game_Window : public Gtk::Window
     Sound_Button Newspaper_Button;
     Sound_Button Quit_Button;
     Sound_Button Help_Button;
+    Sound_Button Manage_Stability_Button;
     Gtk::Button Random_Tip_Button;
+    bool Game_Map_Clicked(GdkEventButton* key_event);
   //  Gtk::Button Tip_Button;
     Gtk::ScrolledWindow Map_Scrolled_Window;
     shared_ptr<Gtk_Game_Map> Map_Images;
     Gtk::Label ProgressBar_Label;
+    void Cut_Down(int x, int y);
     void Save_Game();
     void Load_Game();
     bool Tile_Clicked(GdkEventButton* tile_event, vector<int> coords, Gtk::Image *img);
     void Show_Civs_Clicked();
     void Manage_Techs_Clicked();
     void Manage_Goverments_Clicked();
-    void Build_Upgrade_By_Name_On_Tile(string upg_name, int x, int y, int owner);
-    void Recruit_Unit(string u, int x, int y);
+    void Build_Upgrade_By_Name_On_Tile(string_view upg_name, int x, int y, int owner);
+    void Recruit_Unit(string_view u, int x, int y);
     void Select_Unit(int x, int y);
     void Deselect_Unit();
     void Manage_Overview_Clicked();
@@ -123,7 +145,7 @@ class Game_Window : public Gtk::Window
     void Show_Newspaper_Clicked();
     void Exit_To_Main_Menu();
     void Show_Help_Message();
-    void Show_Themed_Dialog(string message);
+    void Show_Themed_Dialog(string_view message);
     void Show_Unit_Info_Dialog(Unit u);
     void Show_Upgrade_Info_Dialog(Upgrade u);
     void Plunder_Tile(int x, int y);
@@ -134,6 +156,8 @@ class Game_Window : public Gtk::Window
     void Update_End_Turn_Labels();
     void Zoom_Out();
     void Zoom_In();
+    void Focus_On_Capital(bool click_capital);
+    void Manage_Stability_Clicked();
   private:
     bool is_in_thread = false;
     Window_Manager* Main_Manager;
@@ -141,7 +165,6 @@ class Game_Window : public Gtk::Window
     bool is_delete_of_game_necessary= false;
     Map_Generator_Data Map_Data;
     Tips_Manager Main_Tips_Manager;
-    Sound_Manager Main_Sound_Manager;
     int minimum_tile_size = 0;
     void Update_Action_Buttons(int x, int y);
     void Update_Unit_Action_Buttons(int x, int y);
@@ -149,6 +172,7 @@ class Game_Window : public Gtk::Window
     void Clear_Action_Buttons();
     void Test();
     void Clear_Map_Images();
+    void Highlight_Tiles();
     void End_Turn();
     void Update_Labels();
     void Update_Economy_Label();
@@ -176,8 +200,8 @@ class Game_Window : public Gtk::Window
     void Update_Tile(shared_ptr<Gtk_Tile> Tile_Pointer, int x, int y);
     array<int ,2> Get_Screen_Resolution();
     void Set_Tiles_Size_Automatically();
-    bool Check_Avoid_Trait_For_Upgrades(string upg_name, int x, int y);
-    bool Check_Must_Border_Trait_For_Upgrades(string upg_name, int x, int y);
+    bool Check_Avoid_Trait_For_Upgrades(string_view upg_name, int x, int y);
+    bool Check_Must_Border_Trait_For_Upgrades(string_view upg_name, int x, int y);
     string Get_Current_Turn_By_Years();
     void Update_Tiles_From_Game();
     void Player_Has_Won_Game(int player_id);
@@ -190,7 +214,6 @@ class Game_Window : public Gtk::Window
     thread* Map_Generation_Thread;
     void Show_Tutorial();
     bool Loop_Background_Music();
-    Sound_Manager Background_Sound_Manager;
     shared_ptr<Magic_Thread_Communicator> Thread_Portal_Pointer;
     shared_ptr<Magic_Map_Generation_Thread_Communicator> Map_Generation_Thread_Portal_Pointer;
     shared_ptr<Scaled_Gtk_Image> End_Turn_Icon;
@@ -203,4 +226,8 @@ class Game_Window : public Gtk::Window
     Glib::Dispatcher Remove_Combat_Overlays_Dispatcher;
     sigc::connection Remove_Combat_Overlays_Connection;
     bool is_remove_combat_overlays_timeout_set = false;
+    void Check_Is_Game_Lost_Or_Won();
+    void Set_Progress_Bar_Label_Text(string text);
+    void Set_Progress_Bar_Label_Text_Red(string text);
+    Gtk::Button* Create_Pixlabel_Button(string label, string icon_path);
 };

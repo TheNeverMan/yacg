@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Circassia" r="42" g="107" b="17" personality="Holy" audio="assets/audio/theme/russian-theme.mp3" culture="european">
+  <replacement name="Monarchy" leader="Prince" state_name="Zichia Kingdom of"/>
+  <replacement name="Republic" leader="President" state_name="Confederation of"/>
+  <info>
+  Circassia, Cherkessia or Adygea is region and federal republic in Caucasus
+   in Russia. Circassian state firstly appeared during 10th century, later
+  Inal the Great has united all circassian lands under his command. State of
+  Circassia has been destroyed by russians in 1864 after a war during
+  a genocide. This day Circassia is known as Republic of Adygea and it is a
+  russian federal subject.
+
+  Circassian traits are to represent the resistance against imperial Russia.
+
+  Circassian leaders include leaders of Adygea, Circassia and Zichia kingdom.
+  Circassian flag and color is taken from modern Adygea flag.
+  </info>
+  <trait name="P"/>
+  <trait name="A"/>
+  <leader name="Inal the Great"/>
+  <leader name="Hekaktaios"/>
+  <leader name="Aslan Dzharimov"/>
+  <leader name="Murat Kumpilov"/>
+  <leader name="Oktamasades"/>
+  <leader name="Bakhsan Dawiqo["/>
+  <leader name="Jankhot II Qushuq"/>
+  <leader name="Qerandiqo Berzeg"/>
+  <leader name="Sefer Bey Zanuqo"/>
+  <leader name="Muhammad Amin"/>
+  <leader name="Ismail Berzeg"/>
+  <leader name="Shuwpagwe Qalawebateqo"/>
+  <leader name="Atajuq III"/>
+  <leader name="Misost II Bematiqwa"/>
+  <leader name="Qasey Atajuq"/>
+  <leader name="Qeytuqo Aslanbech"/>
+  <leader name="Rededya"/>
+  <rebel name="Zichia"/>
+  <rebel name="Ubykhs"/>
+  <rebel name="Shapsugs"/>
+  <rebel name="Natukhajs"/>
+  <rebel name="Chemirgoys"/>
+  <rebel name="Abzakhs"/>
+  <rebel name="Bzhedugs"/>
+  <city name="Maykop"/>
+  <city name="Tulsky"/>
+  <city name="Giaginskaya"/>
+  <city name="Koshekhabl"/>
+  <city name="Khakutinokhabl"/>
+  <city name="Krasnogvardeyskoye"/>
+  <city name="Adygeysk"/>
+  <city name="Ponezhukay"/>
+  <city name="Takhtamukay"/>
+  <city name="Ayryumovskoye"/>
+  <city name="Dondukovskoye"/>
+  <city name="Giaginskoye"/>
+  <city name="Kelermesskoye"/>
+  <city name="Sergiyevskoye"/>
+  <city name="Blechepsinskoye"/>
+  <city name="Dmitriyevskoye"/>
+  <city name="Ignatyevskoye"/>
+  <city name="Khodzinskoye"/>
+  <city name="Koshekhablskoye"/>
+  <city name="Mayskoye"/>
+  <city name="Natyrbovskoye"/>
+  <city name="Volnenskoye"/>
+  <city name="Egerukhayskoye"/>
+  <city name="Dukmasovskoye"/>
+  <city name="Dzherokayskoye"/>
+  <city name="Khakurinokhablskoye"/>
+  <city name="Khatazhukayskoye"/>
+  <city name="Mamkhegskoye"/>
+  <city name="Zarevskoye"/>
+  <city name="Enemskoye"/>
+  <city name="Yablonovskoye"/>
+  <city name="Afipsipskoye"/>
+  <city name="Kozetskoye"/>
+  <city name="Shendzhiyskoye"/>
+  <city name="Starobzhegokayskoye"/>
+  <city name="Takhtamukayskoye"/>
+  <city name="Tlyustenkhablskoye"/>
+  <city name="Assokolayskoye"/>
+  <city name="Gabukayskoye"/>
+  <city name="Dzhidzhikhablskoye"/>
+  <city name="Pchegatlukayskoye"/>
+  <city name="Ponezhukayskoye"/>
+  <city name="Vochepshiyskoye"/>
+  </civ>
+</civs>
+</miniyacg>

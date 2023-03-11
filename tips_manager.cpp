@@ -7,16 +7,16 @@ Tips_Manager::Tips_Manager()
   tips_index = 0;
 }
 
-void Tips_Manager::Show_Random_Tip()
+void Tips_Manager::Show_Random_Tip() const
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/tip-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/tip-audio.mp3");
   Tips_Dialog Dialog(Tips[rand() % Tips.size()]);
   Dialog.Show();
 }
 
 void Tips_Manager::Show_Tip_In_Order()
 {
-  Main_Sound_Manager.Play_Sound("assets/sounds/tip-audio.mp3");
+  Sound_Manager::Play_Sound("assets/sounds/tip-audio.mp3");
   Tips_Dialog Dialog(Tips[tips_index]);
   tips_index++;
   if(tips_index == static_cast<int>(Tips.size()))
@@ -24,7 +24,7 @@ void Tips_Manager::Show_Tip_In_Order()
   Dialog.Show();
 }
 
-string Tips_Manager::Get_Random_Tip()
+string_view Tips_Manager::Get_Random_Tip() const
 {
   return Tips[rand() % Tips.size()];
 }

@@ -8,22 +8,22 @@ Sound_Button::Sound_Button(string t, string s = "assets/sounds/click-audio.mp3")
   Main_Provider.Add_CSS(this);
 }
 
-void Sound_Button::Change_Sound(string n_s)
+void Sound_Button::Change_Sound(string_view n_s)
 {
   Click_Sound_Path.Set_File_Path(n_s);
 }
 
 void Sound_Button::Button_Clicked()
 {
-  Click_Sound_Manager.Play_Sound(Click_Sound_Path.Get_File_Path());
+  Sound_Manager::Play_Sound(Click_Sound_Path.Get_File_Path());
 }
 
-void Sound_Button::Change_Icon(string i_p)
+void Sound_Button::Change_Icon(string_view i_p)
 {
   remove();
-  Image_Path Icon_Path(i_p);
-  Main_Icon = make_shared<Scaled_Gtk_Image>(Icon_Path.Get_File_Path(), 24, 24);
-  add_pixlabel(Icon_Path.Get_File_Path(), label);
+  Image_Path Icon_Path((string(i_p)));
+  Main_Icon = make_shared<Scaled_Gtk_Image>(Icon_Path.Get_File_Path().data(), 24, 24);
+  add_pixlabel(Icon_Path.Get_File_Path().data(), label);
 }
 
 Sound_Button::Sound_Button(string t) : label(t)

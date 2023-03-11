@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Kazakhstan" r="0" g="171" b="194" personality="Expanding" flag="assets/textures/flags/kazakhstan-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="mongol">
+<civ name="Kazakhstan" r="0" g="171" b="194" personality="Expanding" audio="assets/sounds/themes/russian-theme.mp3" culture="mongol">
 <info>
 Kazakhstan is transcontinental state in Central Asia. It is one of the biggest countries in the world.
 It gained independence after fall of Soviet Union and right now is most developed country in the region.

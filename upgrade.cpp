@@ -10,29 +10,29 @@ Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t, vector<s
   does_avoid_same_type_upgrades = avoid;
 }
 
-Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t) : Traits_Owner({"unbuildable"}), Help_Object(n, h_t), Texture_Owner("assets" + path_delimeter + "textures" + path_delimeter + "upgrades" + path_delimeter + "none-upgrade-texture.png"), Technology_Requirements_Owner(r_t)
+Upgrade::Upgrade(int c, int p, int m, string h_t, string n, string r_t) : Traits_Owner({"unbuildable"}), Help_Object(n, h_t), Texture_Owner("assets/textures/upgrades/none-upgrade-texture.png"), Technology_Requirements_Owner(r_t)
 {
   cost = c;
   production = p;
   maitenance = m;
 }
 
-int Upgrade::Get_Production()
+int Upgrade::Get_Production() const
 {
   return production;
 }
 
-int Upgrade::Get_Maitenance()
+int Upgrade::Get_Maitenance() const
 {
   return maitenance;
 }
 
-int Upgrade::Get_Cost()
+int Upgrade::Get_Cost() const
 {
   return cost;
 }
 
-bool Upgrade::Is_Tile_Allowed_By_Name(string tile_name)
+bool Upgrade::Is_Tile_Allowed_By_Name(string_view tile_name) const
 {
   for(auto &name : Allowed_Tiles)
     if(name == tile_name)
@@ -40,12 +40,12 @@ bool Upgrade::Is_Tile_Allowed_By_Name(string tile_name)
   return false;
 }
 
-bool Upgrade::Does_Avoid_Same_Type_Upgrades()
+bool Upgrade::Does_Avoid_Same_Type_Upgrades() const
 {
   return Has_Trait("must_avoid");
 }
 
-vector<string> Upgrade::Get_Allowed_Tiles()
+vector<string> Upgrade::Get_Allowed_Tiles() const
 {
   return Allowed_Tiles;
 }
@@ -62,10 +62,10 @@ Upgrade::Upgrade(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(R
 
 void Upgrade::Deserialize(xml_node<>* Root_Node)
 {
-  cost = stoi(Root_Node->first_attribute("cost")->value());
-  production = stoi(Root_Node->first_attribute("production")->value());
-  maitenance = stoi(Root_Node->first_attribute("maitenance")->value());
-  xml_node<>* Allowed_Tiles_Node = Root_Node->first_node("tiles");
+  cost = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "cost");
+  production = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "production");
+  maitenance = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "maitenance");
+  xml_node<>* Allowed_Tiles_Node = Traits_Owner::Get_Subnode(Root_Node, "tiles");
   for(xml_node<> *Allowed_Tile_Node = Allowed_Tiles_Node->first_node("tile"); Allowed_Tile_Node; Allowed_Tile_Node = Allowed_Tile_Node->next_sibling("tile"))
   {
     Allowed_Tiles.push_back(Allowed_Tile_Node->value());

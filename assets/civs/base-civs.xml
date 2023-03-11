@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="China"  r="254" g="206" b="27" flag="assets/textures/flags/china-flag.svg" audio="assets/sounds/themes/chinese-theme.mp3" personality="Authoritarian" culture="chinese">
+<civ name="China"  r="254" g="206" b="27" audio="assets/sounds/themes/chinese-theme.mp3" personality="Authoritarian" culture="chinese">
 <replacement name="Monarchy" leader="Emperor" state_name="Great Qing of"/>
 <info>
 China as a culture and military entity is
@@ -30,6 +30,17 @@ China's color is yellow - backgound color of Qing Dynasty flag.
 <leader name="Tang Taizong"/>
 <trait name="S"/>
 <trait name="M"/>
+<rebel name="Baguataiji"/>
+<rebel name="Dahanqi"/>
+<rebel name="Hongxian China"/>
+<rebel name="Hui"/>
+<rebel name="Manchukuo"/>
+<rebel name="Ren"/>
+<rebel name="Republican China"/>
+<rebel name="Taiwan"/>
+<rebel name="Xinjiang"/>
+<rebel name="Macau"/>
+<rebel name="Hong Kong"/>
 <city name="Bejing"/>
 <city name="Shanghai"/>
 <city name="Guangzhou"/>
@@ -112,6 +123,7 @@ Majaphit's color is gold - the color of Surya Majapahit, the symbol of Majapahit
 <leader name="Girishawardhana"/>
 <leader name="Suraprabhawa"/>
 <leader name="Girindrawardhana"/>
+<rebel name="Demak"/>
 <city name="Trowulan"/>
 <city name="Pajang"/>
 <city name="Kahuripan"/>
@@ -187,6 +199,7 @@ Egypt's color is orange - the color of Red Crown.
 <leader name="Snefru"/>
 <trait name="E"/>
 <trait name="R"/>
+<rebel name="Nubia"/>
 <city name="Thebes"/>
 <city name="Memphis"/>
 <city name="Akhetaten"/>
@@ -264,6 +277,10 @@ English color is red from English flag - the Union Jack.
 <leader name="George VI"/>
 <leader name="Arthur"/>
 <leader name="Henry VIII"/>
+<rebel name="Sealand"/>
+<rebel name="Scotland"/>
+<rebel name="Ireland"/>
+<rebel name="Wales"/>
 <city name="London"/>
 <city name="Manchester"/>
 <city name="Birmingham"/>
@@ -341,6 +358,12 @@ American color is blue from american flag.
 <leader name="John Kennedy"/>
 <leader name="Ronald Reagan"/>
 <leader name="Lyndon Johnson"/>
+<rebel name="California"/>
+<rebel name="Ohio"/>
+<rebel name="Maine"/>
+<rebel name="Vermont"/>
+<rebel name="West Florida"/>
+<rebel name="Confederated States"/>
 <city name="Washington"/>
 <city name="New York"/>
 <city name="Los Angeles"/>
@@ -419,6 +442,8 @@ Incan color is green, one of the colors of rainbow on Sapa Inca banner.
 <leader name="Sayri Túpac"/>
 <leader name="Titu Cusi"/>
 <leader name="Túpac Amaru"/>
+<rebel name="Aymara"/>
+<rebel name="Neoinca"/>
 <city name="Cuzco"/>
 <city name="Macchu Piccu"/>
 <city name="Choquequirao"/>
@@ -498,6 +523,7 @@ Babylonian color is grey.
 <leader name="Adad-apla-iddina"/>
 <trait name="S"/>
 <trait name="C"/>
+<rebel name="Assyria"/>
 <city name="Babilon"/>
 <city name="Kish"/>
 <city name="Sippar"/>
@@ -577,6 +603,7 @@ Congolese color is dark green that can be found on Kingdom of Kongo coat of arms
 <leader name="Pedro IV"/>
 <replacement name="Monarchy" leader="Manikongo" state_name="Kingdom of"/>
 <leader name="Republic" leader="Mfila Ntu" state_name="Republic of"/>
+<rebel name="Katanga"/>
 <city name="Kinshasa"/>
 <city name="Lubumbashi"/>
 <city name="Mbuji-Mayi"/>
@@ -653,6 +680,9 @@ Roman color is purple.
 <leader name="Vespasian"/>
 <leader name="Claudius"/>
 <leader name="Tiberius"/>
+<rebel name="Byzantium"/>
+<rebel name="Mauroromania"/>
+<rebel name="Soissons"/>
 <city name="Rome"/>
 <city name="Antioch"/>
 <city name="Amorium"/>
@@ -727,6 +757,9 @@ Mongol color is brown that can be found on the modern-day Mongolia's flag.
 <leader name="Töregene Khatun"/>
 <trait name="D"/>
 <trait name="M"/>
+<rebel name="Ilkhanate"/>
+<rebel name="Chagatai"/>
+<rebel name="Yuan Dynasty"/>
 <city name="Quaraqorum"/>
 <city name="Avarga"/>
 <city name="Khan Baliq"/>
@@ -888,6 +921,7 @@ Persia's color is aquamarine - one of the possible colors of the Acheamenid stan
 <leader name="Nader Shah"/>
 <trait name="E"/>
 <trait name="C"/>
+<rebel name="Sasanides"/>
 <city name="Pasargadae"/>
 <city name="Susa"/>
 <city name="Persepolis"/>
@@ -950,6 +984,9 @@ German color is black a color that has many times appeared on their flag.
 <replacement name="Democracy" state_name="Federal Republic of" leader="Chancellor"/>
 <replacement name="Dictatorship" state_name="Third Reich of" leader="Fuhrer"/>
 <replacement name="Republic" state_name="Republic of" leader="Chancellor"/>
+<rebel name="Prussia"/>
+<rebel name="Bavaria"/>
+<rebel name="Saxony"/>
 <city name="Berlin"/>
 <city name="Hamburg"/>
 <city name="Dresden"/>
@@ -1022,6 +1059,7 @@ the region.
 <leader name="Udayadityavarman II"/>
 <leader name="Dharanindravarman I"/>
 <leader name="Tribhuvanadityavarman"/>
+<rebel name="Ayutthaya"/>
 <city name="Angkor"/>
 <city name="Mahendraparvata"/>
 <city name="Hariharalaya"/>
@@ -1101,6 +1139,7 @@ Songhay color is red from Mali Emipre flag
 <leader name="Askia Muhammad II"/>
 <leader name="Muhammad Bani"/>
 <leader name="Askia Ishaq II"/>
+<rebel name="Timbuktu"/>
 <city name="Gao"/>
 <city name="Timbuktu"/>
 <city name="Tadmekka"/>
@@ -1232,6 +1271,10 @@ Polish color is red from polish flag.
 <leader name="Mieszko I"/>
 <leader name="Lestek Piast"/>
 <leader name="Zygmunt II August"/>
+<rebel name="Kashubia"/>
+<rebel name="Silesia"/>
+<rebel name="Podlachia"/>
+<rebel name="Mazovia"/>
 <city name="Warsaw"/>
 <city name="Cracow"/>
 <city name="Gdansk"/>
@@ -1358,6 +1401,14 @@ Russian color is yellow from Russian Empire flag.
 <replacement name="Despotism" state_name="Grand Duchy of" leader="Grand Duke"/>
 <replacement name="Monarchy" state_name="Tsardom of" leader="Tsar"/>
 <replacement name="Communism" state_name="Soviet Republic of" leader="First Secretary"/>
+<rebel name="Alash"/>
+<rebel name="Belarus"/>
+<rebel name="Soviet Russia"/>
+<rebel name="Chukotka"/>
+<rebel name="Kossaks"/>
+<rebel name="Novogrod"/>
+<rebel name="Tatars"/>
+<rebel name="Turkestan"/>
 <city name="Moscow"/>
 <city name="Saint Petersburg"/>
 <city name="Novosibirsk"/>
@@ -1444,6 +1495,15 @@ French color is blue from its flag.
 <leader name="Charles IX"/>
 <leader name="Philip II"/>
 <leader name="Charles the Bald"/>
+<rebel name="Catalonia"/>
+<rebel name="Guadeloupe"/>
+<rebel name="Guiana"/>
+<rebel name="Martinique"/>
+<rebel name="New Caledonia"/>
+<rebel name="Occitania"/>
+<rebel name="Pied Noir"/>
+<rebel name="Polynesia"/>
+<rebel name="Reunion"/>
 <city name="Paris"/>
 <city name="Marseille"/>
 <city name="Lyon"/>
@@ -1562,7 +1622,7 @@ Mauryan color is blue from one of its possible flags.
 <replacement name="Despotism" leader="Kumara" state_name="Duchy of"/>
 </civ>
 
-<civ name="Tuʻi Tonga" r="12" g="65" b="154" flag="assets/textures/flags/tuitonga-flag.svg" audio="assets/sounds/themes/cicada-theme.mp3" personality="Exploring" culture="american">
+<civ name="Tu'i Tonga" r="12" g="65" b="154" flag="assets/textures/flags/tuitonga-flag.svg" audio="assets/sounds/themes/cicada-theme.mp3" personality="Exploring" culture="american">
 <info>
 Tui'Tongan Empire was longlived Oceanian maritime empire that lasted over 2000 years.
 Tongan people managed to sail thousands of kilometers over oceans and exchange goods, trade and spread their culture.
@@ -1662,6 +1722,7 @@ Sikh color is green from Nishan Sahib introducted by Ranjit Singh - the founder 
 <leader name="Chand Kaur"/>
 <trait name="R"/>
 <trait name="R"/>
+<rebel name="Kashmir"/>
 <city name="Lahore"/>
 <city name="Jammu"/>
 <city name="Peshwar"/>
@@ -1736,6 +1797,9 @@ Ethiopian color is brown, color of lion on the Empire of Ethiopia flag.
 <leader name="Yagbe'u Seyon"/>
 <leader name="Dawit I"/>
 <leader name="Meles Zenawi"/>
+<rebel name="Ogaden"/>
+<rebel name="Oromia"/>
+<rebel name="Sidama"/>
 <trait name="R"/>
 <trait name="A"/>
 <city name="Addis Ababa"/>
@@ -1839,6 +1903,8 @@ Japanses color is white, present on its flag.
 <leader name="Itō Hirobumi"/>
 <leader name="Hideki Tōjō"/>
 <leader name="Shinzō Abe"/>
+<rebel name="Ryukyu"/>
+<rebel name="Ainu"/>
 <city name="Tokyo"/>
 <city name="Jokohama"/>
 <city name="Osaka"/>
@@ -1967,6 +2033,8 @@ Macedonian color is light yellow - color of Vergina Sun.
 <leader name="Perdiccas II"/>
 <trait name="X"/>
 <trait name="X"/>
+<rebel name="Thrace"/>
+<rebel name="Ptolemaic Egypt"/>
 <city name="Pella"/>
 <city name="Aigai"/>
 <city name="Methoni"/>
@@ -2129,6 +2197,13 @@ Spanish color is red from its actuall flag.
 <leader name="Ferdinand II of Aragon"/>
 <trait name="O"/>
 <trait name="X"/>
+<rebel name="Catalonia"/>
+<rebel name="Asturias"/>
+<rebel name="Basquia"/>
+<rebel name="Andalucia"/>
+<rebel name="Republican Spain"/>
+<rebel name="Balearic Islands"/>
+<rebel name="Canary Islands"/>
 <city name="Madrid"/>
 <city name="Barcelona"/>
 <city name="Valencia"/>
@@ -2331,6 +2406,12 @@ Argentinian color is light blue from its flag.
 <leader name="Alberto Fernández"/>
 <trait name="R"/>
 <trait name="N"/>
+<rebel name="Qom"/>
+<rebel name="Tucuman"/>
+<rebel name="Buenos Aires"/>
+<rebel name="Patagonia"/>
+<rebel name="Mapuche"/>
+<rebel name="Entre Rios"/>
 <city name="Buenos Aires"/>
 <city name="Córdoba"/>
 <city name="Rosario"/>
@@ -2626,6 +2707,13 @@ Brazilian color is green - the background color of its flag.
 <leader name="Dilma Rousseff"/>
 <trait name="E"/>
 <trait name="O"/>
+<rebel name="Acre"/>
+<rebel name="Equador"/>
+<rebel name="Guyana"/>
+<rebel name="Jeovah"/>
+<rebel name="Juliana"/>
+<rebel name="Pernambuco"/>
+<rebel name="Rio Grande"/>
 <city name="Brasília"/>
 <city name="Rio de Janeiro"/>
 <city name="São Paulo"/>

@@ -11,7 +11,7 @@ Tile::Tile(int m_c, string n, string t_p, vector<string> t) : Traits_Owner(t), H
   is_plundered = false;
 }
 
-void Tile::Upgrade_Tile(string t_u)
+void Tile::Upgrade_Tile(string_view t_u)
 {
   upgrade = t_u;
 }
@@ -25,7 +25,7 @@ Tile::Tile() : Traits_Owner({" "}), Help_Object(" ", " "), Texture_Owner()
   is_plundered = false;
 }
 
-string Tile::Get_Upgrade()
+string_view Tile::Get_Upgrade() const
 {
   if(is_plundered)
     return "plundered";
@@ -42,12 +42,12 @@ void Tile::Fix()
   is_plundered = false;
 }
 
-bool Tile::Has_Unit()
+bool Tile::Has_Unit() const
 {
   return has_unit;
 }
 
-int Tile::Get_Unit_Owner_Id()
+int Tile::Get_Unit_Owner_Id() const
 {
   return unit_owner_id;
 }
@@ -57,7 +57,7 @@ void Tile::Buff_Tile()
   is_buffed++;
 }
 
-bool Tile::Is_Buffed()
+bool Tile::Is_Buffed() const
 {
   if(is_buffed > 0)
     return true;
@@ -76,7 +76,7 @@ void Tile::Put_Unit_On_Tile(int owner)
   unit_owner_id = owner;
 }
 
-int Tile::Get_Movement_Cost()
+int Tile::Get_Movement_Cost() const
 {
   return movement_cost;
 }
@@ -93,11 +93,11 @@ Tile::Tile(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_No
 
 void Tile::Deserialize(xml_node<>* Root_Node)
 {
-  movement_cost = stoi(Root_Node->first_attribute("cost")->value());
-  has_unit = (bool) stoi(Root_Node->first_attribute("has_unit")->value());
-  upgrade = Root_Node->first_attribute("upgrade")->value();
-  unit_owner_id = stoi(Root_Node->first_attribute("unit_owner_id")->value());
-  is_plundered =  stoi(Root_Node->first_attribute("is_plundered")->value());
+  movement_cost = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "cost");
+  has_unit = (bool) Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "has_unit");
+  upgrade = Traits_Owner::Get_Value_From_Attribute(Root_Node, "upgrade");
+  unit_owner_id = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "unit_owner_id");
+  is_plundered =  Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "is_plundered");
 }
 
 xml_node<>* Tile::Serialize(memory_pool<>* doc)

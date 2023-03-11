@@ -31,6 +31,9 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Main_Scrolled_Window.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
   Civs_Scrolled_Window.set_min_content_height(200);
   Main_Scrolled_Window.set_min_content_height(500);
+  Civs_Trait_Explanation_Label = Gtk::Label("Every Civilization has traits which \n determine its strengths and weaknesses. \n Selected civ has following traits:");
+  Civs_Trait_Frame = Gtk::Frame("Traits");
+  Civs_Trait_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
 
   Civs_Frame = Gtk::Frame("Other Players");
   Civs_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0);
@@ -53,29 +56,29 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
 
   X_Label = Gtk::Label("Map Creation Preferences\nSet Map Size\n X Size:");
   Glib::RefPtr<Gtk::Adjustment> X_Adjustment;
-  X_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
+  X_Adjustment = Gtk::Adjustment::create(50.0,10.0,1000.0,1.0,10,0.0);
   X_Switch = Gtk::SpinButton(X_Adjustment);
 
   Y_Label = Gtk::Label("Y Size:");
   Glib::RefPtr<Gtk::Adjustment> Y_Adjustment;
-  Y_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
+  Y_Adjustment = Gtk::Adjustment::create(50.0,10.0,1000.0,1.0,10,0.0);
   Y_Switch = Gtk::SpinButton(Y_Adjustment);
 
-  Continents_Label = Gtk::Label("Amount of Continents \n(To create interesting maps select values around 50-60):");
+  Continents_Label = Gtk::Label("Amount of Continents \n(Higher the value, the more fractured the land will be):");
   Glib::RefPtr<Gtk::Adjustment> Continents_Adjustment;
-  Continents_Adjustment = Gtk::Adjustment::create(10.0,0.0,1000.0,1.0,10,0.0);
+  Continents_Adjustment = Gtk::Adjustment::create(10.0,1.0,50.0,1.0,10,0.0);
   Continents_Switch = Gtk::SpinButton(Continents_Adjustment);
 
-  Water_Label = Gtk::Label("Amount of Water \n(To create balanced maps choose values around 60-70\n to create landfilled pangea-like maps choose values higher than 500):");
+  Water_Label = Gtk::Label("Amount of Water \n(Higher the value, less land will be one the map):");
   Glib::RefPtr<Gtk::Adjustment> Water_Adjustment;
-  Water_Adjustment = Gtk::Adjustment::create(50.0,0.0,1000.0,1.0,10,0.0);
+  Water_Adjustment = Gtk::Adjustment::create(50.0,10.0,110.0,1.0,10,0.0);
   Water_Switch = Gtk::SpinButton(Water_Adjustment);
 
 
 
   Civilizations = Loader.Load_Civs();
   for(auto &civ : Civilizations)
-    Civs_Chooser_Combo.append(civ.Get_Raw_Name());
+    Civs_Chooser_Combo.append(civ.Get_Raw_Name().data());
 
   add(Dialog_Root_Box);
   Civs_Chooser_Combo.set_active(true);
@@ -96,10 +99,13 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
   Map_Data_Box.pack_start(Dialog_Players_Frame, Gtk::PACK_SHRINK);
   Dialog_Players_Frame.add(Players_UI_Box);
   Players_UI_Box.pack_start(Main_Player_UI_Box, Gtk::PACK_SHRINK);
-  Main_Player_UI_Box.pack_start(*(Civs_Color_Image.Get_Gtk_Image()), Gtk::PACK_SHRINK);
+  Main_Player_UI_Box.pack_start(Civs_Color_Image.Get_Gtk_Image(), Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Chooser_Combo, Gtk::PACK_SHRINK);
   Main_Player_UI_Box.pack_start(Civs_Description_Frame, Gtk::PACK_SHRINK);
   Civs_Description_Frame.add(Civs_Description_Label);
+  Players_UI_Box.pack_start(Civs_Trait_Frame);
+  Civs_Trait_Frame.add(Civs_Trait_Box);
+  Civs_Trait_Box.pack_start(Civs_Trait_Explanation_Label);
   Other_Players_Box.pack_start(Other_Players_Label, Gtk::PACK_SHRINK);
   Other_Players_Box.pack_start(Players_Switch, Gtk::PACK_SHRINK);
   Other_Players_Box.pack_start(Other_Human_Players_Label, Gtk::PACK_SHRINK);
@@ -137,13 +143,23 @@ Game_Creation_Window::Game_Creation_Window(Window_Manager* m_m, Settings_Manager
 
   Main_Provider.Add_CSS(&Civs_Box);
   Main_Provider.Add_CSS_With_Class(&Civs_Description_Label, "medium_label");
+  Main_Provider.Add_CSS_With_Class(&Civs_Chooser_Combo, "combobox");
+  Main_Provider.Add_CSS(&X_Switch);
+  Main_Provider.Add_CSS(&Y_Switch);
+  Main_Provider.Add_CSS(&Continents_Switch);
+  Main_Provider.Add_CSS(&Water_Switch);
+  Main_Provider.Add_CSS(&Human_Players_Switch);
+  Main_Provider.Add_CSS(&Players_Switch);
+  auto Children = Civs_Chooser_Combo.get_children();
+  for(auto& item : Children)
+    Main_Provider.Add_CSS_With_Class(item, "combobox");
   Change_Main_Player_Civ();
-  set_decorated(false);
+  //set_decorated(false);
   show_all_children();
   Randomize_Starting_Locations_Button.hide();
   if(Main_Settings_Manager.Check_If_Game_Is_Launched_First_Time())
   {
-    Tutorial_Dialog Dialog(assets_directory_path + "textures/tutorial/game-creation-tutorial.png", assets_directory_path + "tutorial/game-creation-tutorial.txt");
+    Tutorial_Dialog Dialog(string(assets_directory_path) + "textures/tutorial/game-creation-tutorial.png", string(assets_directory_path) + "tutorial/game-creation-tutorial.txt");
     Dialog.Show();
   }
 }
@@ -223,7 +239,7 @@ void Game_Creation_Window::Update_Other_Player_Civ(int index, bool is_ai, shared
   }
   else
   {
-    image->Change_Path(assets_directory_path + "textures/flags/neutral-flag.svg");
+    image->Change_Path(string(assets_directory_path) + "textures/flags/neutral-flag.png");
   }
   if(is_ai)
     AI_Players[index] = selected_civ_name;
@@ -235,7 +251,7 @@ void Game_Creation_Window::Update_Other_Player_Civ(int index, bool is_ai, shared
 void Game_Creation_Window::Add_Human_Player()
 {
   auto *label = Gtk::make_managed<Gtk::Label>("Human");
-  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(assets_directory_path + "textures/flags/neutral-flag.svg", 96, 48);
+  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.png", 96, 48);
   auto* name = Gtk::make_managed<Gtk::ComboBoxText>();
   auto* box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
   Human_Players.push_back("Random Civilization");
@@ -243,16 +259,16 @@ void Game_Creation_Window::Add_Human_Player()
   name->set_active(true);
   name->append("Random Civilization");
   for(auto &civ : Civilizations)
-    name->append(civ.Get_Raw_Name());
+    name->append(civ.Get_Raw_Name().data());
 
   name->set_active_text("Random Civilization");
-  box->pack_start(*(image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+  box->pack_start((image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
   box->pack_start(*name, Gtk::PACK_SHRINK);
   box->pack_start(*label, Gtk::PACK_SHRINK);
   Civs_Box.pack_start(*box);
   name->show();
   box->show();
-  image->Get_Gtk_Image()->show();
+  image->Get_Gtk_Image().show();
   label->show();
   name->signal_changed().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Creation_Window::Update_Other_Player_Civ), Human_Players.size() - 1, false, image, name));
 }
@@ -260,7 +276,7 @@ void Game_Creation_Window::Add_Human_Player()
 void Game_Creation_Window::Add_AI_Player()
 {
   auto *label = Gtk::make_managed<Gtk::Label>("AI");
-  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(assets_directory_path + "textures/flags/neutral-flag.svg", 96, 48);
+  shared_ptr<Scaled_Gtk_Image> image = make_shared<Scaled_Gtk_Image>(string(assets_directory_path) + "textures/flags/neutral-flag.png", 96, 48);
   auto* name = Gtk::make_managed<Gtk::ComboBoxText>();
   auto* box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
   AI_Players.push_back("Random Civilization");
@@ -268,17 +284,17 @@ void Game_Creation_Window::Add_AI_Player()
   name->set_active(true);
   name->append("Random Civilization");
   for(auto &civ : Civilizations)
-    name->append(civ.Get_Raw_Name());
+    name->append(civ.Get_Raw_Name().data());
 
   name->set_active_text("Random Civilization");
-  box->pack_start(*(image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+  box->pack_start((image->Get_Gtk_Image()), Gtk::PACK_SHRINK);
   box->pack_start(*name, Gtk::PACK_SHRINK);
   box->pack_start(*label, Gtk::PACK_SHRINK);
   Civs_Box.pack_start(*box);
   name->show();
   box->show();
-  image->Get_Gtk_Image()->set_margin_bottom(2);
-  image->Get_Gtk_Image()->show();
+  image->Get_Gtk_Image().set_margin_bottom(2);
+  image->Get_Gtk_Image().show();
   label->show();
   name->signal_changed().connect(sigc::bind<int>(sigc::mem_fun(*this, &Game_Creation_Window::Update_Other_Player_Civ), AI_Players.size() - 1, true, image, name));
 }
@@ -355,7 +371,7 @@ void Game_Creation_Window::Add_Players_From_Vector(vector<string> Players_To_Add
       if(Civilizations.size() > 0)
       {
         int random = rand() % Civilizations.size();
-        string n = Civilizations[random].Get_Raw_Name();
+        string n = Civilizations[random].Get_Raw_Name().data();
         Players.push_back({n, Is_AI});
         if(! Allow_Duplicate_Civs_Button.get_active())
           Civilizations.erase(Civilizations.begin() + random);
@@ -381,7 +397,7 @@ void Game_Creation_Window::Play_Button_Clicked()
     int index = 0;
     for(auto& civ : Civilizations)
     {
-      if(civ.Get_Raw_Name() == Civs_Chooser_Combo.get_active_text())
+      if(civ.Get_Raw_Name().data() == Civs_Chooser_Combo.get_active_text())
       {
         Civilizations.erase(Civilizations.begin() + index);
         break;
@@ -426,6 +442,29 @@ void Game_Creation_Window::Change_Main_Player_Civ()
     Logger::Log_Error("Error civ not found!");
     return;
   }
-  Civs_Description_Label.set_text(selected_civ->Info());
+  Civs_Description_Label.set_text(selected_civ->Info().data());
   Civs_Color_Image.Change_Path(selected_civ->Get_Texture_Path());
+  auto children = Civs_Trait_Box.get_children();
+  bool skip_first = true;
+  for( auto &var : children)
+  {
+    if(skip_first)
+    {
+      skip_first = false;
+      continue;
+    }
+    var->hide();
+    Civs_Trait_Box.remove(*var);
+  }
+  for(auto& trait_name : selected_civ->Get_Trait_Names())
+  {
+    auto* Trait_Box = Gtk::make_managed<Gtk::Box>(Gtk::ORIENTATION_HORIZONTAL, 2);
+    auto* Trait_Label = Gtk::make_managed<Gtk::Label>(string(Trait_Manager.Get_Trait_Full_Name(trait_name)) + "-" + string(Trait_Manager.Get_Trait_Full_Explanation(trait_name)));
+    auto Trait_Icon = Trait_Manager.Get_Trait_Icon(trait_name);
+    Main_Provider.Add_CSS_With_Class(Trait_Label, "medium_label");
+    Civs_Trait_Box.pack_start(*Trait_Box);
+    Trait_Box->pack_start((Trait_Icon->Get_Gtk_Image()), Gtk::PACK_SHRINK);
+    Trait_Box->pack_start(*Trait_Label);
+    show_all_children();
+  }
 }

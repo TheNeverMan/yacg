@@ -14,6 +14,8 @@ using std::endl;
 int main(int argc, char  *argv[])
 {
 	cout << Display_Version() << endl;
+	cout << path_delimeter << " is path delimeter for this version" << endl;
+	Sound_Manager::Init_Manager();
 	fstream Font_File("font-installed", ios::in);
 	if(!Font_File.is_open())
 	{
@@ -26,5 +28,7 @@ int main(int argc, char  *argv[])
 	}
 	Font_File.close();
 	Window_Manager Main_Manager(argc, argv);
-	return Main_Manager.Run();
+	int out = Main_Manager.Run();
+	Sound_Manager::Uninit_Manager();
+	return out;
 }

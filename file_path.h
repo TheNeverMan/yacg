@@ -8,11 +8,13 @@
 
 using std::string;
 using std::fstream;
+using std::string_view;
+using std::replace;
 
 class File_Path
 {
   protected:
-    void Set_Fallback_File_Path(string f_f_p);
+    void Set_Fallback_File_Path(string_view f_f_p);
     string fallback_file_path;
     void Test_File_Existence();
   private:
@@ -21,6 +23,7 @@ class File_Path
   public:
     File_Path(string f_p);
     File_Path();
-    string Get_File_Path();
-    void Set_File_Path(string f_p);
+    string_view Get_File_Path() const;
+    void Set_File_Path(string_view f_p);
+    bool Does_Exist() const;
 };

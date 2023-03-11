@@ -15,7 +15,7 @@ Text_Path::Text_Path() : File_Path()
 string Text_Path::Get_File_Content()
 {
   string out = "";
-  fstream File(Get_File_Path(), ios::in);
+  fstream File(Get_File_Path().data(), ios::in);
   std::ostringstream sstr;
   sstr << File.rdbuf();
   out = sstr.str();

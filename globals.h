@@ -1,13 +1,15 @@
 #pragma once
 #include<string>
+#include<string_view>
 
 using std::string;
 using std::to_string;
+using std::string_view;
 
 //version of the game
-const int version_major = 1;
-const int version_minor = 3;
-const int version_build = 59;
-const string codename="AUDIO";
+constexpr int version_major = 1;
+constexpr int version_minor = 4;
+constexpr int version_build = 36;
+constexpr string_view codename="REBELS";
 
 string Display_Version();

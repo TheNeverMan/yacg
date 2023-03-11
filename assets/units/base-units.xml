@@ -5,6 +5,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -14,6 +15,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -31,6 +33,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -79,6 +82,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -89,6 +93,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="defense"/>
@@ -98,6 +103,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -116,6 +122,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -125,6 +132,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="defense"/>
@@ -152,6 +160,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_horse"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -161,6 +170,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_horse"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -170,6 +180,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_horse"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -199,6 +210,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="attack"/>
 </unit>
@@ -217,6 +229,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="attack"/>
 </unit>
@@ -231,6 +244,7 @@
 <tile name="Land"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="defense"/>
@@ -241,6 +255,7 @@
 <tile name="Land"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
 <trait name="defense"/>
@@ -251,6 +266,7 @@
 <tile name="Land"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_armored"/>
 <trait name="plunder"/>
 <trait name="defense"/>
@@ -282,6 +298,7 @@
 <tile name="Land"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_armored"/>
 <trait name="plunder"/>
 <trait name="attack"/>
@@ -293,6 +310,7 @@
 <tile name="Land"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
+<tile name="Jungle"/>
 <trait name="class_armored"/>
 <trait name="plunder"/>
 <trait name="defense"/>
@@ -303,6 +321,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Ice"/>
+<tile name="Jungle"/>
 <tile name="Desert"/>
 <trait name="class_infantry"/>
 <trait name="plunder"/>
@@ -313,6 +332,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Ice"/>
+<tile name="Jungle"/>
 <tile name="Desert"/>
 <trait name="class_armored"/>
 <trait name="plunder"/>
@@ -348,6 +368,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Ice"/>
+<tile name="Jungle"/>
 <tile name="Desert"/>
 <trait name="class_armored"/>
 <trait name="plunder"/>
@@ -360,6 +381,7 @@
 <unit name="Machine Gun" cost="130" atk="27" def="20" move="1" mait="25" is_naval="0" is_land="1" info="people with stone launcher" requirement="Machine Gun" texture="assets/textures/units/machinegun-unit-texture.svg" obsolete=" " audio="assets/sounds/units/machinegun-unit-audio.mp3">
 <tile name="Forest"/>
 <tile name="Mountain"/>
+<tile name="Jungle"/>
 <tile name="Land"/>
 <trait name="class_infantry"/>
 <trait name="defense"/>
@@ -369,6 +391,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Ice"/>
+<tile name="Jungle"/>
 <tile name="Sea"/>
 <tile name="Desert"/>
 <trait name="class_flying"/>
@@ -382,6 +405,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Ice"/>
+<tile name="Jungle"/>
 <tile name="Sea"/>
 <tile name="Desert"/>
 <trait name="missle"/>
@@ -395,6 +419,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <tile name="Ice"/>
 <tile name="Sea"/>
 <tile name="Desert"/>
@@ -410,6 +435,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Ice"/>
+<tile name="Jungle"/>
 <tile name="Sea"/>
 <tile name="Desert"/>
 <trait name="missle"/>
@@ -422,6 +448,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <tile name="Sea"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
@@ -438,6 +465,7 @@
 <tile name="Mountain"/>
 <tile name="Land"/>
 <tile name="Sea"/>
+<tile name="Jungle"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
 <trait name="class_flying"/>
@@ -452,6 +480,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <tile name="Sea"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
@@ -465,6 +494,7 @@
 <tile name="Forest"/>
 <tile name="Mountain"/>
 <tile name="Sea"/>
+<tile name="Jungle"/>
 <tile name="Land"/>
 <tile name="Ice"/>
 <tile name="Desert"/>
@@ -479,6 +509,7 @@
 <tile name="Mountain"/>
 <tile name="Sea"/>
 <tile name="Land"/>
+<tile name="Jungle"/>
 <tile name="Ice"/>
 <trait name="cannottakecities"/>
 <trait name="doesnotrecievedefensivebonus"/>

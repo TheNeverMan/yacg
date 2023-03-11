@@ -5,9 +5,9 @@ Scaled_Gtk_Image::Scaled_Gtk_Image(string p, int s_x, int s_y) : Path(p), size_x
   Resize_Image(size_x, size_y);
 }
 
-Gtk::Image* Scaled_Gtk_Image::Get_Gtk_Image()
+Gtk::Image& Scaled_Gtk_Image::Get_Gtk_Image()
 {
-  return &Main_Image;
+  return Main_Image;
 }
 
 void Scaled_Gtk_Image::Resize_Image(int s_x, int s_y)
@@ -15,7 +15,7 @@ void Scaled_Gtk_Image::Resize_Image(int s_x, int s_y)
   Glib::RefPtr<Gdk::Pixbuf> Image_Pixbuf;
   Glib::RefPtr<Gdk::Pixbuf> Finished_Pixbuf;
   Finished_Pixbuf = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, s_x, s_y);
-  Image_Pixbuf = Gdk::Pixbuf::create_from_file(Path.Get_File_Path());
+  Image_Pixbuf = Gdk::Pixbuf::create_from_file(Path.Get_File_Path().data());
   double x_proportion = 0;
   double y_proportion = 0;
   x_proportion = static_cast<double>(s_x) / static_cast<double>(Image_Pixbuf->get_width());
@@ -27,7 +27,7 @@ void Scaled_Gtk_Image::Resize_Image(int s_x, int s_y)
   size_y = s_y;
 }
 
-void Scaled_Gtk_Image::Change_Path(string p)
+void Scaled_Gtk_Image::Change_Path(string_view p)
 {
   Path.Set_File_Path(p);
   Resize_Image(size_x, size_y);

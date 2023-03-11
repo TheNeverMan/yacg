@@ -11,7 +11,7 @@
 using std::string;
 using std::vector;
 using std::array;
-
+using std::pow;
 
 
 class Game;
@@ -43,6 +43,11 @@ class AI
     void Heal_Units_In_Cities();
     bool Recruit_Non_Infantry_Unit();
     int Get_Currently_Moving_Player_Finances();
+    AI_Data User_Data;
+    array<int, 2> Get_Closest_Player_City_Location(int x, int y);
+    void Connect_Cities();
+    vector<array<int,2>> Enemy_Cities;
+    void Pave_Road(Upgrade Upgrade_To_Build, vector<array<int, 2>> Road);
   public:
     AI_Data Process_Turn(AI_Data Data);
     AI(Game *m_g);

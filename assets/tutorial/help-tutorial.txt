@@ -1,0 +1,2 @@
+You can access Help Menu to get more information about the game,
+such as keybindings or manual.

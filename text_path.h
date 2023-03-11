@@ -5,6 +5,7 @@
 #include "file_path.h"
 
 using std::string;
+using std::string_view;
 using std::fstream;
 using std::stringstream;
 

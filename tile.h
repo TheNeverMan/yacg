@@ -11,8 +11,9 @@
 
 using std::string;
 using std::vector;
+using std::string_view;
 
-class Tile : public Help_Object, public XML_Serializable, public Traits_Owner, public Texture_Owner
+class Tile : public Help_Object, public Traits_Owner, public Texture_Owner
 {
   private:
     int movement_cost;
@@ -28,16 +29,16 @@ class Tile : public Help_Object, public XML_Serializable, public Traits_Owner, p
     Tile(xml_node<>* Root_Node);
     xml_node<>* Serialize(memory_pool<>* doc);
     void Deserialize(xml_node<>* Root_Node);
-    void Upgrade_Tile(string t_u);
-    int Get_Unit_Owner_Id();
-    string Get_Upgrade();
-    bool Has_Unit();
+    void Upgrade_Tile(string_view t_u);
+    int Get_Unit_Owner_Id() const;
+    string_view Get_Upgrade() const;
+    bool Has_Unit() const;
     void Buff_Tile();
     void Debuff_Tile();
-    bool Is_Buffed();
+    bool Is_Buffed() const;
     void Put_Unit_On_Tile(int owner);
     void Remove_Unit_From_Tile();
-    int Get_Movement_Cost();
+    int Get_Movement_Cost() const;
     void Plunder();
     void Fix();
 };

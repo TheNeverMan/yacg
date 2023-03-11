@@ -15,6 +15,7 @@
 #include "map.h"
 #include "upgrade.h"
 #include "logger.h"
+#include "FastNoise.h"
 
 using std::string;
 using std::vector;
@@ -28,17 +29,19 @@ class Map_Generator
     vector<char> file_buf;
     Map_Generator_Data User_Data;
     vector<Tile> Tiles;
+    map<string, Tile> Tiles_By_Names;
     vector<Upgrade> Upgrades;
     Map Game_Map;
+    double desert_border;
     void Clean_Map();
-    void Generate_Continent_At_Coords(int x, int y, unsigned long long size, int depth);
-    void Fill_Territory(string tile_name,int start_x, int start_y, int end_x, int end_y);
-    void Fray_Territory(int start_x, int start_y, int end_x, int end_y);
-    void Noise_Territory(string tile_name, int x, int y, int size);
+    void Fill_Territory(string_view tile_name,int start_x, int start_y, int end_x, int end_y);
     xml_node<>* Load_Map(xml_document<>* doc);
     Map Generate_Map_From_File();
     map<char, Tile> Load_Replacements(xml_node<>* Root_Node);
     void Load_Map_From_File(xml_node<>* Root_Node, map<char, Tile> Replacements);
+    string Get_Land_Tile_For_Y(int y, double x);
+    string Get_Sea_Tile_For_Y(int y);
+    string Get_Mountain_Tile_For_Y(int y);
   public:
     Map_Generator(Map_Generator_Data mpg, vector<Tile> t, vector<Upgrade> u);
     string Info();

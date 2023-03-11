@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Seychelles" r="0" g="122" b="57" personality="Peaceful" audio="assets/audio/themes/wave-theme.mp3" culture="african">
+  <info>
+  Seychelles are islands located on Indian Ocean. Seychelles were
+  uninhabitated until 18th century when enslaved Africans arrived on
+  the islands. Currently Seychelles are semistable democratic republic.
+
+  Seychelles have no traits.
+
+  Seychelles leaders include democratic leaders from Republic.
+  Seychellan flag is flag from 1996.
+  </info>
+  <leader name="Wavel Ramkalawan"/>
+  <leader name="Danny Faure"/>
+  <leader name="James Michel"/>
+  <leader name="France-Albert Ren�"/>
+  <leader name="James Mancham"/>
+  <replacement name="Democracy" leader="President" state_name="Republic of"/>
+  <city name="Victoria"/>
+  <city name="Baie Saint Anne"/>
+  <city name="Grand'Anse Praslin"/>
+  <city name="Bel Ombre"/>
+  <city name="Grand'Anse Mahe"/>
+  <city name="La Digue"/>
+  <city name="Anse Royale"/>
+  <city name="Baie Lazare"/>
+  <city name="Takamaka"/>
+  <city name="Anse aux Pins"/>
+  <city name="Au Cap"/>
+  <city name="Cascade"/>
+  <city name="Pointe La Rue"/>
+  <city name="Anse Etoile"/>
+  <city name="Beau Vallon"/>
+  <city name="Glacis"/>
+  <city name="Ile Perseverance"/>
+  <city name="Mont Fleuri"/>
+  <city name="Plaisance"/>
+  <city name="Saint Louis"/>
+  <city name="Roche Caiman"/>
+  <city name="English River"/>
+  <city name="Mont Buxton"/>
+  <city name="Bel Air"/>
+  <city name="Les Mamelles"/>
+  </civ>
+</civs>
+</miniyacg>

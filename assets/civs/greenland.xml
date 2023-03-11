@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-  <civ name="Greenland" r="200" g="16" b="46" personality="Exploring" flag="assets/textures/flags/greenland-flag.svg" audio="assets/sounds/themes/native-theme.mp3" culture="european">
+  <civ name="Greenland" r="200" g="16" b="46" personality="Exploring" audio="assets/sounds/themes/native-theme.mp3" culture="european">
   <info>
   Greenland is world largset island and one of the coldest permanently inhabitated lands on Earth. Today it is a
   country in Danish Realm, but historically it has been colonized by Vikings, Portugal, Norway and finally Denmark.
@@ -13,7 +13,8 @@
   </info>
   <replacement name="Parliamentary Monarchy" leader="High Commissioner" state_name=""/>
   <replacement name="Democracy" leader="Premier" state_name=""/>
-  <trait name="S"/>
+  <trait name="V"/>
+  <trait name="N"/>
   <leader name="Jonathan Motzfeldt"/>
   <leader name="Lars-Emil Johansen"/>
   <leader name="Hans Enoksen"/>

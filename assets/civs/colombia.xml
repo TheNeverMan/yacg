@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Colombia" r="252" g="209" b="22" personality="Expansive" audio="assets/sounds/themes/cicada-theme.mp3" flag="assets/textures/flags/colombia-flag.svg" culture="american">
+<civ name="Colombia" r="252" g="209" b="22" personality="Expansive" audio="assets/sounds/themes/cicada-theme.mp3" culture="american">
 <info>
 Colombia is major country and third economy of South America. It is spanish speaking country
 that gained independence after war with Spain. During Colombian Independence War, Gran Colombia
@@ -28,6 +28,9 @@ Colombian color is yellow from its flag, same flag is used as civ's flag.
 <leader name="Gustavo Petro"/>
 <leader name="Mariano Ospina Rodriguez"/>
 <leader name="José Hilario López Valdéz"/>
+<rebel name="Muzo"/>
+<rebel name="New Granada"/>
+<rebel name="Cundinamarca"/>
 <city name="Bogota"/>
 <city name="Medellin"/>
 <city name="Cali"/>

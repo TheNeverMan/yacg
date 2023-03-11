@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="South Africa" r="0" g="122" b="77" culture="european" personality="Expansive" audio="assets/audio/themes/european-theme.mp3">
+  <info>
+  South African Republic was a boer state that existed from 1852 to 1902.
+  It was founded after a convention with Great Britain, when empire agreed
+  to recognise independence of this boer state. Republic was dissolved after
+  Second Boer War, it was annexed by Britain and converted to colony. Later
+  Transvaal Colony was unified with other south african colonies and the
+  Union of South Africa was formed, which will later convert to RPA.
+
+  South African trait is Militaristic, to represent the Boer wars.
+
+  South African leaders include presidents, state secretaries of republic.
+  South African color is taken from its flag.
+  </info>
+  <trait name="M"/>
+  <replacement name="Parliamentary Monarchy" leader="Governor General" state_name="Transvaal Colony of"/>
+  <rebel name="Vrystaat"/>
+  <rebel name="Nieuwe Republiek"/>
+  <rebel name="Zoutpansberg"/>
+  <leader name="Marthinus Wessel Pretorius"/>
+  <leader name="Johannes Hermanus Grobler"/>
+  <leader name="Stephanus Schoeman"/>
+  <leader name="Willem Cornelis Janse van Rensburg"/>
+  <leader name="Daniel Jacobus Erasmus"/>
+  <leader name="Thomas Fran�ois Burgers"/>
+  <leader name="Piet Joubert"/>
+  <leader name="Paul Kruger"/>
+  <leader name="Schalk Willem Burger"/>
+  <leader name="Willem Eduard Bok"/>
+  <leader name="Willem Johannes Leyds"/>
+  <leader name="Francis William Reitz"/>
+  <city name="Pretoria"/>
+  <city name="Potchefstroom"/>
+  <city name="Heidelberg"/>
+  <city name="Krugersdorp"/>
+  <city name="Wakkerstroom"/>
+  <city name="Rustenburg"/>
+  <city name="Middelburg"/>
+  <city name="Zoutpansberg"/>
+  <city name="Heidelberg"/>
+  <city name="Standerton"/>
+  <city name="Johannesburg"/>
+  <city name="Lichtenburg"/>
+  <city name="Marico"/>
+  <city name="Barberton"/>
+  <city name="Boksburg"/>
+  <city name="Vrijheid"/>
+  <city name="Waterberg"/>
+  <city name="Ermelo"/>
+  <city name="Carolina"/>
+  <city name="Bloemhof"/>
+  <city name="Wolmaranstad"/>
+  <city name="Utrecht"/>
+  <city name="Lydenburg"/>
+  <city name="Piet-Retief"/>
+  </civ>
+</civs>
+</miniyacg>

@@ -8,7 +8,7 @@ Map_Generation_Dialog::Map_Generation_Dialog() : Themed_Dialog("Please Wait...")
   Text_Tip_Box = Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2);
   Fraction_Bar_Box = Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 2);
   Explanation_Label = Gtk::Label("Please Wait...\nLoading game...");
-  Tip_Label = Gtk::Label(Random_Tip_Manager.Get_Random_Tip());
+  Tip_Label = Gtk::Label(Random_Tip_Manager.Get_Random_Tip().data());
   Fraction_Label = Gtk::Label("0.0");
   Main_Provider.Add_CSS(&Tip_Label);
   Main_Provider.Add_CSS(Root_Box);
@@ -21,7 +21,7 @@ Map_Generation_Dialog::Map_Generation_Dialog() : Themed_Dialog("Please Wait...")
   Dialog_Box.pack_start(Fraction_Bar_Box);
   Fraction_Bar_Box.pack_start(Main_Progress_Bar);
   Fraction_Bar_Box.pack_start(Fraction_Label);
-  Explanation_Box.pack_start(*(Explanation_Image.Get_Gtk_Image()));
+  Explanation_Box.pack_start((Explanation_Image.Get_Gtk_Image()));
   Explanation_Box.pack_start(Text_Tip_Box);
   Text_Tip_Box.pack_start(Explanation_Label);
   Text_Tip_Box.pack_start(Tip_Label);

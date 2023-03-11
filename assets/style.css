@@ -9,7 +9,19 @@ window
 box *
 {
   background-image: url("button-background.png");
+  border-radius: 0px;
   color: #ffffff;
+}
+
+button:hover
+{
+  box-shadow: 6px 6px #936D2F inset;
+  color: yellow;
+}
+
+spinbutton *
+{
+  background-image: url("combo-background.png");
 }
 
 dialog
@@ -17,6 +29,16 @@ dialog
   background-image: url("dialog-background.png");
   font: 18px "Connection II";
   color: #ffffff;
+}
+
+*:disabled
+{
+  color: red;
+}
+
+combobox *
+{
+  color: #ff0000;
 }
 
 .small_label

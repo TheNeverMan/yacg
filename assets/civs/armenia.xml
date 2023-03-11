@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Armenia" r="242" g="168" b="0" personality="Peaceful" flag="assets/textures/flags/armenia-flag.svg" audio="assets/sounds/themes/russian-theme.mp3" culture="european">
+<civ name="Armenia" r="242" g="168" b="0" personality="Peaceful" audio="assets/sounds/themes/russian-theme.mp3" culture="european">
 <info>
 Armenia is landlocked country in region of Caucasus, located between Turkey and Georgia.
 It has rich ancient heritage, with first armenian state dating back to 860 BC.
@@ -27,6 +27,9 @@ Armenian color is orange from its flag, this is also its flag - flag of Republic
 <leader name="Ashot III"/>
 <leader name="Levon I"/>
 <leader name="Levon Ter-Petrosyan"/>
+<rebel name="Soviet Armenia"/>
+<rebel name="Artsakh"/>
+<rebel name="Van"/>
 <city name="Yerevan"/>
 <city name="Gyumri"/>
 <city name="Vanadzor"/>

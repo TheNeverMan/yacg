@@ -1,64 +1,64 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <goverments>
-<goverment name="Tribe" title="Chief" state_name="Tribe of" requirement="Agriculture" info="yes" texture="assets/textures/goverments/tribe-goverment-texture.svg">
+<goverment name="Tribe" title="Chief" state_name="Tribe of" requirement="Agriculture" info="yes" max_stability="60" army_stability="1.0" passive_stability="1.3" texture="assets/textures/goverments/tribe-goverment-texture.svg">
 <trait name="x"/>
 </goverment>
-<goverment name="Monarchy" title="King" state_name="Kingdom of" requirement="Feudalism" info="Monarchy is very advanced form of Despotism.
+<goverment name="Monarchy" title="King" state_name="Kingdom of" requirement="Feudalism" max_stability="75" army_stability="4" passive_stability="3.0"  info="Monarchy is very advanced form of Despotism.
 In monarchy the ruler - king is elected by his blood rather than power.
 
 Farms under monarchy produce one gold more, but are 2 gold more expensive to build." texture="assets/textures/goverments/monarchy-goverment-texture.svg">
 <trait name="economic"/>
 </goverment>
-<goverment name="Republic" title="Consul" state_name="Republic of" requirement="Philosophy" info="Republic or Classical Republic is a form of organised goverment, where elected people hold power.
+<goverment name="Republic" title="Consul" state_name="Republic of" requirement="Philosophy" max_stability="75" army_stability="2.5" passive_stability="2.4"  info="Republic or Classical Republic is a form of organised goverment, where elected people hold power.
 In republic it is usually a group of people - a Senate or similar.
 
 Republic gives you one gold discount on all upgrades building, but switching technologies under Republic costs an action." texture="assets/textures/goverments/republic-goverment-texture.svg">
 <trait name="economic"/>
 </goverment>
-<goverment name="Communism" title="Chairman" state_name="People's Republic of" requirement="Ideology" info="Communism is a totalitarian goverment which gives power to the masses.
+<goverment name="Communism" title="Chairman" state_name="People's Republic of" requirement="Ideology" max_stability="100" army_stability="6" passive_stability="5.5"  info="Communism is a totalitarian goverment which gives power to the masses.
 In communist state economy is planed and all control is given to one party.
 
 Under communism maintenace of all your upgrades will cost 50% less gold, but building any upgrade will cost one gold more." texture="assets/textures/goverments/communism-goverment-texture.svg">
 <trait name="expanse"/>
 </goverment>
-<goverment name="Dictatorship" title="General" state_name="Great Empire of" requirement="Fascism" info="Dictatorship or Junta is highly militarized goverment.
+<goverment name="Dictatorship" title="General" state_name="Great Empire of" requirement="Fascism" max_stability="100" army_stability="9" passive_stability="5.4"  info="Dictatorship or Junta is highly militarized goverment.
 In dictatorship the army holds power and controls the state.
 
 Under dictatorship maintenance of your army will cost 25% gold less, but also your research funds will be 20% less effective." texture="assets/textures/goverments/dictatorship-goverment-texture.svg">
 <trait name="military"/>
 </goverment>
-<goverment name="Despotism" title="Despot" state_name="Empire of" requirement="Chiefdom" info="Despotism is an early form of monarchy where one individual hold all power.
+<goverment name="Despotism" title="Despot" state_name="Empire of" requirement="Chiefdom" max_stability="75" army_stability="2" passive_stability="2.0"  info="Despotism is an early form of monarchy where one individual hold all power.
 Despotic goverments are usually built on power - the strongest individual rules.
 
 Despotism allows to build units one gold cheaper, but when you revolt to new goverment your gold will be zeroed." texture="assets/textures/goverments/despotism-goverment-texture.svg">
 <trait name="military"/>
 </goverment>
-<goverment name="Theocracy" title="God-King" state_name="Holy Empire of" requirement="Religion" info="Theocracy is advanced form of Despotism.
+<goverment name="Theocracy" title="God-King" state_name="Holy Empire of" requirement="Religion"  max_stability="75" army_stability="3" passive_stability="2.5"  info="Theocracy is advanced form of Despotism.
 In theocratic goverment ruler is identified as religious leader. Usually by stating that he/she is a god-son or sometimes that ruler is god himself.
 
 Theocracy gives 10 gold discount on city building, but cities cost additional 2 gold maintenance." texture="assets/textures/goverments/theocracy-goverment-texture.svg">
 <trait name="expanse"/>
 </goverment>
-<goverment name="Democracy" title="President" state_name="Democratic Republic of" requirement="Freedom of Speech" info="Democracy is modern version of classical republic.
+<goverment name="Democracy" title="President" state_name="Democratic Republic of" requirement="Freedom of Speech" max_stability="100" army_stability="4" passive_stability="6.5"  info="Democracy is modern version of classical republic.
 Democratic goverment is highly legalized form of goverment which tries to give as much decision power to people, while protecting their laws and freedom.
 
 Under democracy economic effect of roads will be doubled, but maintenance of your army will cost 25% more gold." texture="assets/textures/goverments/democracy-goverment-texture.svg">
 <trait name="economic"/>
 </goverment>
-<goverment name="Fundamentalism" title="Holy Leader" state_name="Religious State of" requirement="Crusades" info="Fundamentalism is a modern version of Theocracy.
+<goverment name="Fundamentalism" title="Holy Leader" state_name="Religious State of" requirement="Crusades" max_stability="80" army_stability="5" passive_stability="3.4"  info="Fundamentalism is a modern version of Theocracy.
 Usually modern fundamentalists don't create new religions and their rulers don't describe themselves as gods, but rather prophets.
 
 Under fundamentalism recruiting a unit does not cost an action, but your units will be weaker in combat." texture="assets/textures/goverments/fundamentalism-goverment-texture.svg">
 <trait name="military"/>
 </goverment>
-<goverment name="Khanate" title="Khan" state_name="Horde of" requirement="Horde" texture="assets/textures/goverments/khanate-goverment-texture.svg" info="Khanate or Horde is a form of nomadic empire.
+<goverment name="Khanate" title="Khan" state_name="Horde of" requirement="Horde" max_stability="65" army_stability="5" passive_stability="2.6"  texture="assets/textures/goverments/khanate-goverment-texture.svg" info="Khanate or Horde is a form of nomadic empire.
 Khanates usually pay little attention to building infrastructure, but increase their army.
 
 Under Khanate your units have one more movement, but your border radius is reduced by one.">
 <trait name="expanse"/>
 </goverment>
-<goverment name="Parliamentary Monarchy" title="Prime Minister" state_name="Kingdom of" requirement="Parliamentary Monarchy" texture="assets/textures/goverments/parliamentarymonarchy-goverment-texture.svg" info="Parliamentary Monarchy is a form of monarchy
+<goverment name="Parliamentary Monarchy" title="Prime Minister" state_name="Kingdom of" requirement="Parliamentary Monarchy" max_stability="80" army_stability="1.6" passive_stability="4.0"  texture="assets/textures/goverments/parliamentarymonarchy-goverment-texture.svg" info="Parliamentary Monarchy is a form of monarchy
 where king only holds decorative role and actual ruling is done by parliament.
 
 Under Parliamentary Monarchy stability of your empire will be increased, but maintenance of your army will cost 25% more gold">

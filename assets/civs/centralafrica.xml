@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Central Africa" r="0" g="48" b="130" personality="Authoritarian" audio="assets/sounds/themes/african-theme.mp3" flag="assets/textures/flags/centralafrica-flag.svg" culture="african">
+<civ name="Central Africa" r="0" g="48" b="130" personality="Authoritarian" audio="assets/sounds/themes/african-theme.mp3" culture="african">
 <info>
 Central Africa or Central African Republic is a country located in heart of Africa,
 between Congo and Chad. It gained independence from France in 1958. It is dealing
@@ -24,6 +24,8 @@ Central African color is blue from its flag, same flag is used as civ's flag.
 <leader name="François Bozizé"/>
 <leader name="Faustin-Archange Touadéra"/>
 <leader name="Barthélemy Boganda"/>
+<rebel name="Logone"/>
+<rebel name="Central African Empire"/>
 <city name="Bangui"/>
 <city name="Bimbo"/>
 <city name="Berberati"/>

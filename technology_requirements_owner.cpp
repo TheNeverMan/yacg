@@ -31,12 +31,12 @@ xml_node<>* Technology_Requirements_Owner::Serialize_Technologies(memory_pool<>*
   return Technology_Requirements_Node;
 }
 
-vector<string> Technology_Requirements_Owner::Get_All_Requirements()
+vector<string> Technology_Requirements_Owner::Get_All_Requirements() const
 {
   return Required_Technologies;
 }
 
-string Technology_Requirements_Owner::Get_First_Requirement()
+string_view Technology_Requirements_Owner::Get_First_Requirement() const
 {
   return Required_Technologies[0];
 }

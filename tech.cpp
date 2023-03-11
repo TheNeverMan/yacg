@@ -14,29 +14,29 @@ void Tech::Research_Tech(int val)
     is_researched = true;
 }
 
-bool Tech::Is_Reseached()
+bool Tech::Is_Reseached() const
 {
   return is_researched;
 }
 
-int Tech::Get_Cost()
+int Tech::Get_Cost() const
 {
   return cost;
 }
 
-int Tech::Get_Current_Cost()
+int Tech::Get_Current_Cost() const
 {
   return current_cost;
 }
 
-int Tech::Is_Researched_And_How_Many_Times_Has_Trait_Name(string trait_name)
+int Tech::Is_Researched_And_How_Many_Times_Has_Trait_Name(string_view trait_name) const
 {
   if(is_researched)
     return How_Many_Times_Has_Trait(trait_name);
   return 0;
 }
 
-bool Tech::Is_Researched_And_Has_Trait(string trait_name)
+bool Tech::Is_Researched_And_Has_Trait(string_view trait_name) const
 {
   bool out = is_researched && Has_Trait(trait_name);
   return out;
@@ -49,9 +49,9 @@ Tech::Tech(xml_node<>* Root_Node) : Traits_Owner(Root_Node), Help_Object(Root_No
 
 void Tech::Deserialize(xml_node<>* Root_Node)
 {
-  cost = stoi(Root_Node->first_attribute("cost")->value());
-  current_cost = stoi(Root_Node->first_attribute("current_cost")->value());
-  is_researched = (bool) stoi(Root_Node->first_attribute("is_researched")->value());
+  cost = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "cost");
+  current_cost = Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "current_cost");
+  is_researched = (bool) Traits_Owner::Get_Int_Value_From_Attribute(Root_Node, "is_researched");
 }
 
 xml_node<>* Tech::Serialize(memory_pool<>* doc)

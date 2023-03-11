@@ -34,12 +34,24 @@ Map::Map()
 
 }
 
-int Map::Get_X_Size()
+int Map::Get_X_Size() const
 {
   return Game_Map.size();
 }
 
-int Map::Get_Y_Size()
+vector<array<int, 2>> Map::Find_All_Upgrade_Locations_In_Radius(array<int, 2> Coords, int owner, int radius, string_view upg_name) const
+{
+  vector<array<int, 2>> out;
+  vector<array<int, 2>> Tiles_To_Check = Main_Radius_Generator.Get_Radius_For_Coords(Coords[0], Coords[1], radius);
+  for(auto& Coord : Tiles_To_Check)
+  {
+    if(Get_Owner(Coord[0], Coord[1]) == owner && Get_Upgrade(Coord[0], Coord[1]) == upg_name)
+      out.push_back(Coord);
+  }
+  return out;
+}
+
+int Map::Get_Y_Size() const
 {
   return Game_Map[0].size();
 }
@@ -56,22 +68,17 @@ void Map::Change_Tile_Type(int x, int y, Tile t)
     Game_Map[x][y].Place = t;
 }
 
-void Map::Upgrade_Tile(int x, int y, string t_u)
+void Map::Upgrade_Tile(int x, int y, string_view t_u)
 {
   Game_Map[x][y].Place.Upgrade_Tile(t_u);
 }
 
-void Map::Print_Map_In_ASCII()
-{
-  Logger::Log_Error("Unused Function");
-}
-
-Tile Map::Get_Tile(int x, int y)
+Tile Map::Get_Tile(int x, int y) const
 {
   return Game_Map[x][y].Place;
 }
 
-bool Map::Is_Tile_Neutral(int x, int y)
+bool Map::Is_Tile_Neutral(int x, int y) const
 {
   if(Game_Map[x][y].owner)
     return false;
@@ -80,7 +87,7 @@ bool Map::Is_Tile_Neutral(int x, int y)
 
 //to be outsourced to some utility file?
 //no use std::algorithm
-Upgrade Map::Find_Upgrade_By_Name_In_Vector(string n, vector<Upgrade> u)
+Upgrade Map::Find_Upgrade_By_Name_In_Vector(string_view n, vector<Upgrade> u) const
 {
   for(auto &var : u)
   {
@@ -117,12 +124,12 @@ void Map::Build_City(int x, int y, int owner,int radius)
   Build_Upgrade(Find_Upgrade_By_Name_In_Vector("City", Upgrades), x, y, owner, radius);
 }
 
-int Map::Get_Owner(int x, int y)
+int Map::Get_Owner(int x, int y) const
 {
   return Game_Map[x][y].owner;
 }
 
-int Map::Get_Buff_From_Tile(int x, int y, int owner, Civ player)
+int Map::Get_Buff_From_Tile(int x, int y, int owner, Civ player) const
 {
   if(Is_Tile_Out_Of_Bounds(x,y))
     return 0;
@@ -131,7 +138,7 @@ int Map::Get_Buff_From_Tile(int x, int y, int owner, Civ player)
   return player.Get_Upgrade_Buff_By_Name(Get_Tile(x,y).Get_Upgrade());
 }
 
-int Map::Calculate_Buff_For_Tile(int x, int y, int owner, Civ player)
+int Map::Calculate_Buff_For_Tile(int x, int y, int owner, Civ player) const
 {
   vector<int> out;
   out.push_back(Get_Buff_From_Tile(x+1,y,owner,player));
@@ -146,17 +153,22 @@ int Map::Calculate_Buff_For_Tile(int x, int y, int owner, Civ player)
   return rout;
 }
 
-string Map::Get_Upgrade(int x, int y)
+string_view Map::Get_Upgrade(int x, int y) const
 {
-  return Get_Tile(x,y).Get_Upgrade();
+  return Get_Tile_Pointer(x,y).Get_Upgrade();
 }
 
-bool Map::Is_Tile_Upgraded(int x, int y)
+bool Map::Is_Tile_Upgraded(int x, int y) const
 {
-  return Get_Tile(x,y).Get_Upgrade() == "none";
+  return Get_Tile_Pointer(x,y).Get_Upgrade() == "none";
 }
 
-array<int, 2> Map::Calculate_Production_For_Tile(int x, int y, int id, Civ player)
+array<int, 2> Map::Find_Closest_Upgrade_By_Name(array<int, 2> Coords, int owner, string_view name) const
+{
+  return Get_Closest_Point(Coords[0], Coords[1], Find_All_Upgrade_Locations(owner, name));
+}
+
+array<int, 2> Map::Calculate_Production_For_Tile(int x, int y, int id, Civ player) const
 {
   array<int, 2> out;
   out[0] = 0;
@@ -191,7 +203,7 @@ array<int, 2> Map::Calculate_Production_For_Tile(int x, int y, int id, Civ playe
   return out;
 }
 
-vector<int> Map::Get_Netto_Income_For_Player_By_Id(int id, Civ player)
+vector<int> Map::Get_Netto_Income_For_Player_By_Id(int id, Civ& player) const
 {
   vector<int> out;
   out.push_back(10);
@@ -217,7 +229,7 @@ vector<int> Map::Get_Netto_Income_For_Player_By_Id(int id, Civ player)
   return out;
 }
 
-bool Map::Is_Upgrade_In_Radius_By_Name(string upg_name, int x, int y)
+bool Map::Is_Upgrade_In_Radius_By_Name(string_view upg_name, int x, int y) const
 {
   bool out = false;
   if((!Is_Tile_Out_Of_Bounds(x+1,y)) && Get_Tile(x+1,y).Get_Upgrade() == upg_name)
@@ -241,9 +253,14 @@ bool Map::Is_Upgrade_In_Radius_By_Name(string upg_name, int x, int y)
   return out;
 }
 
-Tile* Map::Get_Tile_Pointer(int x, int y)
+Tile& Map::Get_Tile_Pointer(int x, int y)
 {
-  return &Game_Map[x][y].Place;
+  return Game_Map[x][y].Place;
+}
+
+const Tile& Map::Get_Tile_Pointer(int x, int y) const
+{
+  return Game_Map[x][y].Place;
 }
 
 vector<array<int,2>> Map::Recalculate_Borders_For_Player_By_Id(int owner, int radius, Civ player)
@@ -278,7 +295,7 @@ void Map::Buff_Tiles_In_Radius(int x, int y, int radius)
   vector<array<int, 2>> Tiles_To_Buff = Main_Radius_Generator.Get_Radius_For_Coords(x,y,radius);
   Tiles_To_Buff.erase(Tiles_To_Buff.begin());
   for(auto& Tile : Tiles_To_Buff)
-    Get_Tile_Pointer(Tile[0], Tile[1])->Buff_Tile();
+    Get_Tile_Pointer(Tile[0], Tile[1]).Buff_Tile();
 }
 void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 {
@@ -287,7 +304,7 @@ void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
     return;
   if(upg.Get_Name() == "plundered")
   {
-    Get_Tile_Pointer(x,y)->Fix();
+    Get_Tile_Pointer(x,y).Fix();
     return;
   }
   if(upg.Has_Trait("economybonus") && !(Get_Tile(x+1,y).Is_Buffed()))
@@ -302,7 +319,7 @@ void Map::Build_Upgrade(Upgrade upg, int x, int y, int owner, int radius)
 
 }
 
-vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_x, int dest_y, Unit u)
+vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_x, int dest_y, Unit u) const
 {
   int does_exist = 1;
   int cost = 0;
@@ -372,9 +389,12 @@ vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_
       break;
     if(!u.Can_Move_On_Tile_By_Name(Get_Tile(unit_x,unit_y).Get_Name()))
       break;
-    if(current_movement_points - Get_Tile(unit_x, unit_y).Get_Movement_Cost() < 0)
+    int tile_movement_cost = Get_Tile(unit_x, unit_y).Get_Movement_Cost();
+    if(Get_Owner(form_x, form_y) != Get_Owner(unit_x, unit_y))
+      tile_movement_cost++;
+    if(current_movement_points - tile_movement_cost < 0)
       break;
-    out[1] = out[1] + Get_Tile(unit_x, unit_y).Get_Movement_Cost();
+    out[1] = out[1] + tile_movement_cost;
     current_movement_points = current_movement_points - Get_Tile(unit_x, unit_y).Get_Movement_Cost();
     if(unit_x == dest_x && unit_y == dest_y)
     {
@@ -398,14 +418,15 @@ vector<int> Map::Check_If_Path_For_Unit_Exists(int unit_x, int unit_y, int dest_
   return out;
 }
 
-bool Map::Can_Tile_Plundered(int x, int y)
+bool Map::Can_Tile_Plundered(int x, int y) const
 {
-  return Get_Tile(x,y).Get_Upgrade() != "plundered";
+  //cout << Get_Tile_Pointer(x,y).Get_Upgrade() << " " << Get_Tile(x,y).Get_Upgrade() << endl;
+  return (Get_Tile_Pointer(x,y).Get_Upgrade() != "plundered") ||  (Get_Tile_Pointer(x,y).Get_Upgrade() != "none");
 }
 
 void Map::Plunder_Tile(int x, int y)
 {
-  Get_Tile_Pointer(x,y)->Plunder();
+  Get_Tile_Pointer(x,y).Plunder();
 }
 
 void Map::Retake_Tile(int x, int y, int owner)
@@ -466,7 +487,7 @@ vector<array<int, 2>> Map::Unclaim_All_Player_Tiles(int player)
   return out;
 }
 
-double Map::Get_Defense_Bonus_For_Tile(int x, int y)
+double Map::Get_Defense_Bonus_For_Tile(int x, int y) const
 {
   double out = 1.0;
   out = out + (static_cast<double>(Get_Tile(x,y).How_Many_Times_Has_Trait("minordefbonus")) / 10.0);
@@ -482,14 +503,14 @@ Map::Map(xml_node<>* Root_Node)
 
 void Map::Deserialize(xml_node<>* Root_Node)
 {
-  xml_node<>* Tiles_Node = Root_Node->first_node("tiles");
+  xml_node<>* Tiles_Node = Get_Subnode(Root_Node, "tiles");
   for(xml_node<> *Tile_Node = Tiles_Node->first_node("tile"); Tile_Node; Tile_Node = Tile_Node->next_sibling("tile"))
   {
     Tile tmp(Tile_Node);
     Tiles.push_back(tmp);
   }
 
-  xml_node<>* Upgrades_Node = Root_Node->first_node("upgrades");
+  xml_node<>* Upgrades_Node = Get_Subnode(Root_Node, "upgrades");
   for(xml_node<> *Upgrade_Node = Upgrades_Node->first_node("upgrade"); Upgrade_Node; Upgrade_Node = Upgrade_Node->next_sibling("upgrade"))
   {
     Upgrade tmp(Upgrade_Node);
@@ -498,7 +519,7 @@ void Map::Deserialize(xml_node<>* Root_Node)
 
   int x = 0;
   int y = 0;
-  xml_node<>* Tile_Map_Node = Root_Node->first_node("tile_map");
+  xml_node<>* Tile_Map_Node = Get_Subnode(Root_Node, "tile_map");
   for(xml_node<> *Row_Node = Tile_Map_Node->first_node("row"); Row_Node; Row_Node = Row_Node->next_sibling("row"))
   {
     vector<Owned_Tile> v;
@@ -506,7 +527,7 @@ void Map::Deserialize(xml_node<>* Root_Node)
     for(xml_node<> *Owned_Tile_Node = Row_Node->first_node("owned_tile"); Owned_Tile_Node; Owned_Tile_Node = Owned_Tile_Node->next_sibling("owned_tile"))
     {
       Owned_Tile tmp(Owned_Tile_Node);
-      tmp.owner = stoi(Owned_Tile_Node->first_attribute("owner_id")->value());
+      tmp.owner = Get_Int_Value_From_Attribute(Owned_Tile_Node, "owner_id");
       Game_Map[x].push_back(tmp);
       y++;
     }
@@ -556,7 +577,7 @@ xml_node<>* Map::Serialize(memory_pool<>* doc)
   return Root_Node;
 }
 
-vector<int> Map::Find_Owned_Tile_For_Upgrade(int owner_id, string upg_name)
+vector<int> Map::Find_Owned_Tile_For_Upgrade(int owner_id, string_view upg_name) const
 {
   int x = Get_X_Size();
   int y = Get_Y_Size();
@@ -587,7 +608,7 @@ vector<int> Map::Find_Owned_Tile_For_Upgrade(int owner_id, string upg_name)
   return out;
 }
 
-int Map::Count_Tiles_Owned_By_Player(int owner, string tile_name)
+int Map::Count_Tiles_Owned_By_Player(int owner, string_view tile_name) const
 {
   int x = Get_X_Size();
   int y = Get_Y_Size();
@@ -613,13 +634,57 @@ int Map::Count_Tiles_Owned_By_Player(int owner, string tile_name)
   return out;
 }
 
-int Map::Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y)
+vector<array<int,2>> Map::Find_All_Tiles_In_Radius(array<int, 2> Coords, vector<string> Allowed_Tiles, int radius) const
 {
-  int out = sqrt((abs((p_x - g_x)^2)) + abs(((p_y - g_y)^2)));
+  vector<array<int, 2>> Radius = Main_Radius_Generator.Get_Radius_For_Coords(Coords[0], Coords[1],radius);
+  vector<array<int, 2>> out;
+  for(auto& Coord : Radius)
+    if(Allowed_Tiles.end() != find(Allowed_Tiles.begin(), Allowed_Tiles.end(), Get_Tile(Coord[0], Coord[1]).Get_Name()))
+      out.push_back(Coord);
   return out;
 }
 
-array<int ,2> Map::Get_Closest_Point(int x, int y, vector<array<int ,2>> points)
+vector<array<int, 2>> Map::Get_Path_Tiles(array<int, 2> Start_Coords, array<int, 2> End_Coords, vector<string> Allowed_Tiles)
+{
+  vector<array<int, 2>> Disallowed_Tiles;
+  vector<array<int, 2>> Path;
+  while(Start_Coords != End_Coords)
+  {
+    vector<array<int, 2>> Tmp = Find_All_Tiles_In_Radius(Start_Coords, Allowed_Tiles, 2);
+    for(auto &Tile : Tmp)
+      if(Disallowed_Tiles.end() != find(Disallowed_Tiles.begin(), Disallowed_Tiles.end(), Tile))
+        remove(Tmp.begin(), Tmp.end(), Tile);
+    for(auto &Tile : Tmp)
+        if(Path.end() != find(Path.begin(), Path.end(), Tile))
+          remove(Tmp.begin(), Tmp.end(), Tile);
+    if(!Tmp.size())
+    {
+      if(!Path.size())
+        return {};
+      else
+      {
+        Disallowed_Tiles.push_back(Start_Coords);
+        Path.erase(Path.end() - 1);
+        Start_Coords = *(Path.end() - 1);
+        continue;
+      }
+    }
+    array<int, 2> New_Point = Get_Closest_Point(End_Coords[0], End_Coords[1], Tmp);
+    if(Tmp.end() != find(Tmp.begin(), Tmp.end(), End_Coords))
+      break;
+    Start_Coords = New_Point;
+    Path.push_back(Start_Coords);
+  }
+  return Path;
+}
+
+int Map::Calculate_Distance_Between_Points(int p_x, int p_y, int g_x, int g_y) const
+{
+  int out = sqrt(abs(pow(p_x - g_x,2)) + abs((pow(p_y - g_y,2))));
+  return out;
+}
+
+array<int ,2> Map::Get_Closest_Point(int x, int y, vector<array<int ,2>> points) const
 {
   map<int, array<int, 2>> out;
   for_each(points.begin(), points.end(), [&](array<int, 2> point)
@@ -628,13 +693,13 @@ array<int ,2> Map::Get_Closest_Point(int x, int y, vector<array<int ,2>> points)
   });
   for(auto &var : out)
   {
-    return var.second;
+    if(var.first)
+      return var.second;
   }
-  Logger::Log_Error("No points in Get_Closest_Point");
   return {0,0};
 }
 
-bool Map::Is_Tile_Out_Of_Bounds(int x, int y)
+bool Map::Is_Tile_Out_Of_Bounds(int x, int y) const
 {
   if(x < 0 || y < 0)
   {
@@ -647,7 +712,7 @@ bool Map::Is_Tile_Out_Of_Bounds(int x, int y)
   return false;
 }
 
-vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, int x, int y, int x_dir, int y_dir, Unit u, string tile_type)
+vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, int x, int y, int x_dir, int y_dir, Unit u, string_view tile_type) const
 {
   vector<array<int, 2>> out;
   int unit_movement = u.Get_Current_Actions();
@@ -674,7 +739,47 @@ vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction(int owner, i
   return out;
 }
 
-array<int, 2> Map::Find_Closest_Tile_Owned_By(int owner, int x, int y, Unit u, string tile_type = "any")
+vector<array<int ,2>> Map::Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(int owner, array<int, 2> Coords, int x_dir, int y_dir, string_view tile_type) const
+{
+  vector<array<int, 2>> out;
+  if(Is_Tile_Out_Of_Bounds(Coords[0], Coords[1]))
+    return out;
+  int x_border = Coords[0] + (999 * x_dir);
+  int y_border = Coords[1] + (999 * y_dir);
+  int y_base = Coords[1];
+  while(Coords[0] != x_border)
+  {
+    if(Is_Tile_Out_Of_Bounds(Coords[0], Coords[1]) )
+      break;
+    while(Coords[1] != y_border)
+    {
+      if(Is_Tile_Out_Of_Bounds(Coords[0], Coords[1]) )
+        break;
+      if(Get_Owner(Coords[0], Coords[1])  == owner && (tile_type == "any" || tile_type == Get_Tile(Coords[0], Coords[1]) .Get_Name()))
+        out.push_back(Coords);
+      Coords[1] = Coords[1] + y_dir;
+    }
+    Coords[0] = Coords[0] + x_dir;
+    Coords[1] = y_base;
+  }
+  return out;
+}
+
+array<int, 2> Map::Find_Closest_Tile_Owned_By_No_Movement_Points(int owner, array<int, 2> Coords, string_view tile_type = "any") const
+{
+  vector<array<int, 2>> points;
+  vector<array<int, 2>> tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner, Coords, 1, 1,  tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner,Coords, -1,1, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner,Coords, 1,-1, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  tmp = Find_Closest_Tile_Owned_By_One_Direction_No_Movement_Points(owner,Coords, -1,-1, tile_type);
+  points.insert(points.end(), tmp.begin(), tmp.end());
+  return Get_Closest_Point(Coords[0], Coords[1], points);
+}
+
+array<int, 2> Map::Find_Closest_Tile_Owned_By(int owner, int x, int y, Unit u, string_view tile_type = "any") const
 {
   array<int, 2> out;
   out[0] = x;
@@ -691,7 +796,7 @@ array<int, 2> Map::Find_Closest_Tile_Owned_By(int owner, int x, int y, Unit u, s
   return Get_Closest_Point(x, y, points);
 }
 
-vector<int> Map::Find_Direction_Away_From_Borders(int owner, int x, int y, int movement_points, Unit u)
+vector<int> Map::Find_Direction_Away_From_Borders(int owner, int x, int y, int movement_points, Unit u) const
 {
   array<int, 2> neutral_tile = Find_Closest_Tile_Owned_By(0, x, y, u);
   return Check_If_Path_For_Unit_Exists(x,y,neutral_tile[0], neutral_tile[1], u);
@@ -749,7 +854,7 @@ vector<int> Map::Find_Direction_To_Enemy_City_Or_Unit(int unit_owner_id, int x, 
   return Check_If_Path_For_Unit_Exists(x,y,closest_point[0], closest_point[1], u);
 }
 
-vector<array<int, 2>> Map::Find_All_Upgrade_Locations(int owner, string upg_name)
+vector<array<int, 2>> Map::Find_All_Upgrade_Locations(int owner, string_view upg_name) const
 {
   vector<array<int, 2>> out;
   int start = 0;

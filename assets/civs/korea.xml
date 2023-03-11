@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miniyacg>
+<civs>
+  <civ name="Korea" r="41" g="23" b="110" personality="Enlightened" audio="assets/sounds/themes/chinese-theme.mp3" culture="chinese">
+  <info>
+Korea is a penisular region in Asia. Korea since end of World War 2 is divided into 2
+countries - both claiming the whole region. Korea has been united in 1392 by Joseon
+dynasty. Kingdom lasted until first years of XX century, when Japan invaded Korea.
+Joseon kingdom saw the height of Korean culture and science. It also defended against
+Japansese invasions.
+
+Korean traits are Scientific and Patriotic, to represent the Golden Age of Korean
+Science during Joseon Dynasty and defense wars against Japan.
+
+Korean leaders include South and North Korean presidents and kings of Joseon.
+</info>
+<replacement name="Monarchy" leader="King" state_name=""/>
+<replacement name="Republic" leader="Yeonguijeong" state_name=""/>
+<rebel name="Goryeo"/>
+<rebel name="Silla"/>
+<rebel name="Goguryeo"/>
+<leader name="Sejong"/>
+<leader name="Kim Ir Sen"/>
+<leader name="Ha Yeon"/>
+<leader name="Taejo"/>
+<leader name="Gojong"/>
+<leader name="Taejong"/>
+<leader name="Park Chung-Hee"/>
+<leader name="Yi Sun-Sin"/>
+<leader name="Syngman Rhee"/>
+<leader name="Kim Dzong Il"/>
+<leader name="Kim Dae Jung"/>
+<trait name="P"/>
+<trait name="S"/>
+<city name="Seoul"/>
+<city name="Busan"/>
+<city name="Incheon"/>
+<city name="Daegu"/>
+<city name="Daejeon"/>
+<city name="Gwangju"/>
+<city name="Suwon"/>
+<city name="Ulsan"/>
+<city name="Changwon"/>
+<city name="Goyang"/>
+<city name="Yongin"/>
+<city name="Seongnam"/>
+<city name="Bucheon"/>
+<city name="Cheongju"/>
+<city name="Ansan"/>
+<city name="Namyangju"/>
+<city name="Jeonju"/>
+<city name="Hwaseong"/>
+<city name="Cheonan"/>
+<city name="Anyang"/>
+<city name="Gimhae"/>
+<city name="Pohang"/>
+<city name="Pyeongtaek"/>
+<city name="Jeju"/>
+<city name="Uijeongbu"/>
+<city name="Paju"/>
+<city name="Gumi"/>
+<city name="Siheung"/>
+<city name="Gimpo"/>
+<city name="Jinju"/>
+<city name="Gwangmyeong"/>
+<city name="Wonju"/>
+<city name="Gwangju"/>
+<city name="Yangsan"/>
+<city name="Asan"/>
+<city name="Iksan"/>
+<city name="Yeosu"/>
+<city name="Gunpo"/>
+<city name="Chuncheon"/>
+<city name="Suncheon"/>
+<city name="Gunsan"/>
+<city name="Gyeongju"/>
+<city name="Gyeongsan"/>
+<city name="Geoje"/>
+<city name="Sejong"/>
+<city name="Mokpo"/>
+<city name="Gangneung"/>
+<city name="Hanam"/>
+<city name="Icheon"/>
+<city name="Osan"/>
+<city name="Chungju"/>
+<city name="Yangju"/>
+<city name="Guri"/>
+<city name="Anseong"/>
+<city name="Seogwipo"/>
+<city name="Seosan"/>
+<city name="Andong"/>
+<city name="Dangjin"/>
+<city name="Uiwang"/>
+<city name="Pocheon"/>
+<city name="Gwangyang"/>
+<city name="Gimcheon"/>
+<city name="Tongyeong"/>
+<city name="Jecheon"/>
+<city name="Nonsan"/>
+<city name="Jeongeup"/>
+<city name="Sacheon"/>
+<city name="Yeoju"/>
+<city name="Gongju"/>
+<city name="Yeongju"/>
+<city name="Miryang"/>
+<city name="Naju"/>
+<city name="Boryeong"/>
+<city name="Sangju"/>
+<city name="Yeongcheon"/>
+<city name="Dongducheon"/>
+<city name="Donghae"/>
+<city name="Gimje"/>
+<city name="Namwon"/>
+<city name="Sokcho"/>
+<city name="Mungyeong"/>
+<city name="Samcheok"/>
+<city name="Gwacheon"/>
+<city name="Taebaek"/>
+<city name="Gyeryong"/>
+<city name="Cheongjin"/>
+<city name="Gaeseong"/>
+<city name="Haeju"/>
+<city name="Hamheung"/>
+<city name="Heungnam"/>
+<city name="Jinnampo"/>
+<city name="Najin"/>
+<city name="Pyeongyang"/>
+<city name="Sariwon"/>
+<city name="Seongjin"/>
+<city name="Sinuiju"/>
+<city name="Songnim"/>
+<city name="Wonsan"/>
+<city name="Hamhung"/>
+<city name="Chongjin"/>
+<city name="Nampo"/>
+<city name="Wonsan"/>
+<city name="Sinuiju"/>
+<city name="Tanchon"/>
+<city name="Kaechon"/>
+<city name="Kaesong"/>
+<city name="Sariwon"/>
+<city name="Sunchon"/>
+<city name="Pyongsong"/>
+<city name="Haeju"/>
+<city name="Kanggye"/>
+<city name="Anju"/>
+<city name="Tokchon"/>
+<city name="Kimchaek"/>
+<city name="Rason"/>
+<city name="Kusong"/>
+<city name="Hyesan"/>
+<city name="Chongju"/>
+<city name="Huichon"/>
+<city name="Hoeryong"/>
+<city name="Sinpo"/>
+<city name="Songrim"/>
+<city name="Munchon"/>
+<city name="Manpo"/>
+<city name="Samjiyon"/>
+</civ>
+</civs>
+</miniyacg>

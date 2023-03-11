@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Netherlands" r="255" g="153" b="0" personality="Enterprising" flag="assets/textures/flags/netherlands-flag.svg" audio="assets/sounds/themes/european-theme.mp3" culture="european">
+<civ name="Netherlands" r="255" g="153" b="0" personality="Enterprising" audio="assets/sounds/themes/european-theme.mp3" culture="european">
 <info>
 Netherlands is country located in Northwestern Europe. Netherlands in 16th
 century fought independence war against Spain, which lead to creation of Duth
@@ -33,6 +33,7 @@ Dutch color is orange from Prince's Flag, Dutch flag is flag of Kingdom of Nethe
 <leader name="Maurice"/>
 <leader name="William V"/>
 <leader name="John William Friso"/>
+<rebel name="Batavia"/>
 <city name="Amsterdam"/>
 <city name="Rotterdam"/>
 <city name="The Hague"/>

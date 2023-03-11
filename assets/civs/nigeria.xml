@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Nigeria" r="0" g="135" b="83" personality="Enterprising" flag="assets/textures/flags/nigeria-flag.svg" audio="assets/sounds/themes/african-theme.mp3" culture="african">
+<civ name="Nigeria" r="0" g="135" b="83" personality="Enterprising" audio="assets/sounds/themes/african-theme.mp3" culture="african">
 <info>
 Nigeria is most populous country in Africa and its biggest economic power.
 It is african power and potentially a new rising power like Indonesia or India.
@@ -30,6 +30,9 @@ Federal Republic of Nigeria.
 <leader name="Olusegun Obasanjo"/>
 <leader name="Abdulsalami Abubakar"/>
 <leader name="Umaru Yar'Adua"/>
+<rebel name="Biafra"/>
+<rebel name="Ogoni"/>
+<rebel name="Niger Delta"/>
 <city name="Abuja"/>
 <city name="Lagos"/>
 <city name="Kano"/>

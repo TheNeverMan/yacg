@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="India" r="255" g="153" b="51" personality="Enterprising" flag="assets/textures/flags/india-flag.svg" audio="assets/sounds/themes/indonesian-theme.mp3" culture="indian">
+<civ name="India" r="255" g="153" b="51" personality="Enterprising" audio="assets/sounds/themes/indonesian-theme.mp3" culture="indian">
 <info>
 India is a country in South Asia. It is one of the most populous contries in the world.
 It is also the biggest democratic republic in the world. Before 1947 it was british colony, it gained

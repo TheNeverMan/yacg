@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <miniyacg>
 <civs>
-<civ name="Göktürks" r="93" g="184" b="238" personality="Expansive" flag="assets/textures/flags/gokturks-flag.svg" audio="assets/sounds/themes/mongolian-theme.mp3" culture="mongol">
+<civ name="Gokturks" r="93" g="184" b="238" personality="Expansive" flag="assets/textures/flags/gokturks-flag.svg" audio="assets/sounds/themes/mongolian-theme.mp3" culture="mongol">
 <info>
 Göktürks were a nomadic confederation of Turkic people in medieval Asia. In 552 they have estabilished
 First Turkic Khagante which spanned from Manchuria to Black Sea. Later after First Khaganate splitted in two parts,
@@ -24,6 +24,7 @@ Türk color is light blue, from possible flag of First Turkic Khaganate.
 <leader name="Shetu"/>
 <leader name="Daluobian"/>
 <leader name="Dianjue"/>
+<rebel name="Uyghurs"/>
 <trait name="D"/>
 <trait name="X"/>
 <city name="Suyab"/>
